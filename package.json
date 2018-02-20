@@ -3,6 +3,13 @@
   "version": "0.0.1",
   "description": "Web Manager Vulnerability Assesment",
   "main": "index.js",
+  "dependencies": {
+    "express": "~4.13.2",
+    "mongoose": "~3.6.2",
+    "morgan": "~1.6.1",
+    "body-parser": "~1.14.1",
+    "method-override": "~2.3.5"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
