@@ -1,0 +1,27 @@
+{
+  "name": "webmva",
+  "version": "0.0.1",
+  "description": "Web Manager Vulnerability Assesment",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/unicam-webmva/webmva.git"
+  },
+  "keywords": [
+    "nessus",
+    "nmap",
+    "vulnerability",
+    "assemsent",
+    "report",
+    "scan"
+  ],
+  "author": "Riccardo Cannella, Margherita Renieri",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/unicam-webmva/webmva/issues"
+  },
+  "homepage": "https://github.com/unicam-webmva/webmva#readme"
+}
