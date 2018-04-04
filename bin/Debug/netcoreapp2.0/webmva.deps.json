@@ -1,7 +1,7 @@
 {
   "runtimeTarget": {
     "name": ".NETCoreApp,Version=v2.0",
-    "signature": "1d9d19401c32d7d11292df61ff8d54397bf121b1"
+    "signature": "e9caecfaf4e50c45bccf2ac9ea42b3798a35ec55"
   },
   "compilationOptions": {
     "defines": [
@@ -24,8 +24,10 @@
       "webmva/1.0.0": {
         "dependencies": {
           "Microsoft.AspNetCore.All": "2.0.5",
+          "Microsoft.Composition": "1.0.30",
           "Microsoft.NETCore.App": "2.0.0",
-          "Microsoft.VisualStudio.Web.CodeGeneration.Design": "2.0.0"
+          "Microsoft.VisualStudio.Web.CodeGeneration.Design": "2.0.0",
+          "System.Composition": "1.0.31"
         },
         "runtime": {
           "webmva.dll": {}
@@ -1487,6 +1489,7 @@
           "lib/netstandard1.3/Microsoft.CodeAnalysis.Workspaces.dll": {}
         }
       },
+      "Microsoft.Composition/1.0.30": {},
       "Microsoft.CSharp/4.4.0": {},
       "Microsoft.Data.Edm/5.8.2": {
         "runtime": {
@@ -4902,6 +4905,13 @@
       "sha512": "sha512-/Y9zLXlvWVvGxLyNWvLrSRRZ6c1F3L2yVwhUcmGd9un7u/TJguOyY2BEOD10uA/KBDKbA4pmnWnJFq+2n5IYPg==",
       "path": "microsoft.codeanalysis.workspaces.common/2.3.1",
       "hashPath": "microsoft.codeanalysis.workspaces.common.2.3.1.nupkg.sha512"
+    },
+    "Microsoft.Composition/1.0.30": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-IDOxST2DCUziePSD2vK3Z7LI6e1rejJCp21/rKZ8fdsyTcq9SfnAV8udi0GSIpjO9wwSLZx9Kfc7co3PTs7IlA==",
+      "path": "microsoft.composition/1.0.30",
+      "hashPath": "microsoft.composition.1.0.30.nupkg.sha512"
     },
     "Microsoft.CSharp/4.4.0": {
       "type": "package",

@@ -8,3 +8,4 @@ D:\universita\Università\III Anno\stage\webmva\obj\Debug\netcoreapp2.0\webmva.A
 D:\universita\Università\III Anno\stage\webmva\obj\Debug\netcoreapp2.0\webmva.AssemblyInfo.cs
 D:\universita\Università\III Anno\stage\webmva\obj\Debug\netcoreapp2.0\webmva.dll
 D:\universita\Università\III Anno\stage\webmva\obj\Debug\netcoreapp2.0\webmva.pdb
+D:\universita\Università\III Anno\stage\webmva\obj\Debug\netcoreapp2.0\webmva.csprojResolveAssemblyReference.cache

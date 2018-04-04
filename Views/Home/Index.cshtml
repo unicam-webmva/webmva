@@ -213,8 +213,7 @@
                     </div>
 
                     <div class="btn-group" role="group">
-                        <button type="button" id="Visualizza" class="btn btn-default " data-action="save" role="button" onclick="location.href='@Url.Action("
-                            Index ", "Visualizza ")'; return false;">Salva</button>
+                        <a asp-area="" asp-controller="Visualizza" asp-action="Index"><button type="button" class="btn btn-default " data-action="save" role="button">Salva</button></a>
 
                     </div>
                 </div>
@@ -253,7 +252,7 @@
         var data = document.getElementById("data");   
         //--var codice = (nome.slice(1,3)+data.slice(0,3));
         var codice = nome.concatenate(data).using(_);
-  document.write(codice);
+        document.write(codice);
    
 });
 

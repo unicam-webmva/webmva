@@ -8,7 +8,7 @@ using webmva.Models;
 
 namespace webmva.Controllers
 {
-    public class Modulo : Controller
+    public class ModuloOld : Controller
     {
         public IActionResult Index()
         {

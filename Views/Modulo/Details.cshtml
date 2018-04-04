@@ -1,0 +1,36 @@
+@model webmva.Models.Modulo
+
+@{
+    ViewData["Title"] = "Dettagli modulo";
+}
+
+<h2>Dettagli</h2>
+
+<div>
+    <h4>Modulo</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Nome)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Nome)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Comando)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Comando)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Tipo)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Tipo)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.ID">Modifica</a> |
+    <a asp-action="Index">Torna alla lista dei moduli</a>
+</div>
