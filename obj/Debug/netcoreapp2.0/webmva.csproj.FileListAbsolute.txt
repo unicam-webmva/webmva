@@ -1,11 +1,22 @@
-D:\universita\Università\III Anno\stage\webmva\bin\Debug\netcoreapp2.0\webmva.deps.json
-D:\universita\Università\III Anno\stage\webmva\bin\Debug\netcoreapp2.0\webmva.runtimeconfig.json
-D:\universita\Università\III Anno\stage\webmva\bin\Debug\netcoreapp2.0\webmva.runtimeconfig.dev.json
-D:\universita\Università\III Anno\stage\webmva\bin\Debug\netcoreapp2.0\webmva.dll
-D:\universita\Università\III Anno\stage\webmva\bin\Debug\netcoreapp2.0\webmva.pdb
-D:\universita\Università\III Anno\stage\webmva\obj\Debug\netcoreapp2.0\webmva.csproj.CoreCompileInputs.cache
-D:\universita\Università\III Anno\stage\webmva\obj\Debug\netcoreapp2.0\webmva.AssemblyInfoInputs.cache
-D:\universita\Università\III Anno\stage\webmva\obj\Debug\netcoreapp2.0\webmva.AssemblyInfo.cs
-D:\universita\Università\III Anno\stage\webmva\obj\Debug\netcoreapp2.0\webmva.dll
-D:\universita\Università\III Anno\stage\webmva\obj\Debug\netcoreapp2.0\webmva.pdb
-D:\universita\Università\III Anno\stage\webmva\obj\Debug\netcoreapp2.0\webmva.csprojResolveAssemblyReference.cache
+D:/universita/Università/III Anno/stage/webmva/bin/Debug/netcoreapp2.0/webmva.deps.json
+D:/universita/Università/III Anno/stage/webmva/bin/Debug/netcoreapp2.0/webmva.runtimeconfig.json
+D:/universita/Università/III Anno/stage/webmva/bin/Debug/netcoreapp2.0/webmva.runtimeconfig.dev.json
+D:/universita/Università/III Anno/stage/webmva/bin/Debug/netcoreapp2.0/webmva.dll
+D:/universita/Università/III Anno/stage/webmva/bin/Debug/netcoreapp2.0/webmva.pdb
+D:/universita/Università/III Anno/stage/webmva/obj/Debug/netcoreapp2.0/webmva.csproj.CoreCompileInputs.cache
+D:/universita/Università/III Anno/stage/webmva/obj/Debug/netcoreapp2.0/webmva.AssemblyInfoInputs.cache
+D:/universita/Università/III Anno/stage/webmva/obj/Debug/netcoreapp2.0/webmva.AssemblyInfo.cs
+D:/universita/Università/III Anno/stage/webmva/obj/Debug/netcoreapp2.0/webmva.dll
+D:/universita/Università/III Anno/stage/webmva/obj/Debug/netcoreapp2.0/webmva.pdb
+D:/universita/Università/III Anno/stage/webmva/obj/Debug/netcoreapp2.0/webmva.csprojResolveAssemblyReference.cache
+/Users/margheritarenieri/Desktop/webmva/bin/Debug/netcoreapp2.0/webmva.deps.json
+/Users/margheritarenieri/Desktop/webmva/bin/Debug/netcoreapp2.0/webmva.runtimeconfig.json
+/Users/margheritarenieri/Desktop/webmva/bin/Debug/netcoreapp2.0/webmva.runtimeconfig.dev.json
+/Users/margheritarenieri/Desktop/webmva/bin/Debug/netcoreapp2.0/webmva.dll
+/Users/margheritarenieri/Desktop/webmva/bin/Debug/netcoreapp2.0/webmva.pdb
+/Users/margheritarenieri/Desktop/webmva/obj/Debug/netcoreapp2.0/webmva.csprojResolveAssemblyReference.cache
+/Users/margheritarenieri/Desktop/webmva/obj/Debug/netcoreapp2.0/webmva.csproj.CoreCompileInputs.cache
+/Users/margheritarenieri/Desktop/webmva/obj/Debug/netcoreapp2.0/webmva.AssemblyInfoInputs.cache
+/Users/margheritarenieri/Desktop/webmva/obj/Debug/netcoreapp2.0/webmva.AssemblyInfo.cs
+/Users/margheritarenieri/Desktop/webmva/obj/Debug/netcoreapp2.0/webmva.dll
+/Users/margheritarenieri/Desktop/webmva/obj/Debug/netcoreapp2.0/webmva.pdb
