@@ -1,8 +1,5 @@
 @model webmva.Models.Modulo
-
-@{
-    ViewData["Title"] = "Create";
-}
+@{ ViewData["Title"] = "Create"; }
 <div class="col-md-2 sidebar">
     <div class="row">
         <!-- uncomment code for absolute positioning tweek see top comment in css -->
@@ -18,7 +15,7 @@
                         <a>
                             <li class="panel-default" id="progetto">
                                 <span class="glyphicon glyphicon-barcode"></span>
-                                <strong> MODULO</strong>
+                                <strong>MODULO</strong>
                         </a>
 
                         <!-- Dropdown level 1-->
@@ -63,15 +60,82 @@
     <div class="col-5">
         <div class="panel panel-default">
             <div class="panel-heading">
-                <a data-toggle="collapse" data-target="#apriNmap">
+                <a href="#" data-toggle="collapse" data-target="#apriNmap">
                     <strong>
                         NMAP SCAN
                     </strong>
                     <span class="caret"></span>
                 </a>
-
             </div>
-            <div id="apriNmap" class="col-5">
+            <div class="collapse col-5" id="apriNmap">
+                <div class="panel-body">
+                    <h4>
+                        <strong> Configura modulo </strong>
+                    </h4>
+                    <hr>
+                    <form asp-action="Create" name="nmapForm">
+                        <label asp-for="Nome"></label>
+                        <div class="panel panel-default">
+                            <input asp-for="Nome" class="form-control" />
+                            <span asp-validation-for="Nome" class="text-danger"></span>
+                        </div>
+                        <div class="col-6">
+                            <label>Opzioni</label>
+                            <div class="panel panel-default">
+                                <div class="panel-body form-horizontal payment-form">
+                                    <div class="form-check">
+                                        <label>
+                                            <input type="radio" id="pingScan" name="nmap" value="-sn">
+                                            <span class="label-text">Ping scan </span>
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <label>
+                                            <input type="radio" id="scanVeloce" name="nmap" value="-T4 -F">
+                                            <span class="label-text"></span>Scan veloce</span>
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <label>
+                                            <input type="radio" id="scanIntenso" name="nmap" value="-T4 -A -v">
+                                            <span class="label-text">Scan intenso</span>
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <label>
+                                            <input type="radio" id="porteUDP" name="nmap" value="-sS -sU">
+                                            <span class="label-text">Porte UDP</span>
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <label>
+                                            <input type="radio" id="allTCP" name="nmap" value="-p 1-65535">
+                                            <span class="label-text">Tutte le porte TCP</span>
+                                        </label>
+                                    </div>
+                                    <br>
+                                    <input type="text" asp-for="Comando" class="form-control" id="Comando" name="Comando">
+                                    <br>
+                                    <div class="col text-right">
+                                        <input type="submit" value="Create" class="btn btn-default" />
+                                    </div>
+                                </div>
+                            </div>
+                    </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <a href="#" data-toggle="collapse" data-target="#apriNessus">
+                    <strong>
+                        NESSUS SCAN
+                    </strong>
+                    <span class="caret"></span>
+                </a>
+            </div>
+            <div id="apriNessus" class="collapse col-5">
                 <div class="panel-body">
                     <h4>
                         <strong> Configura modulo </strong>
@@ -83,8 +147,6 @@
                             <input type="text" class="form-control" id="nomeModulo" name="nomeModulo">
                         </div>
                     </form>
-                </div>
-                <div class="panel-body">
                     <div class="col-6">
                         <form>
                             <label>Opzioni</label>
@@ -93,7 +155,7 @@
                                     <div class="form-check">
                                         <label>
                                             <input type="radio" id="pingScan" name="nmap" value="-sn">
-                                            <span class="label-text">ping scan </span>
+                                            <span class="label-text">TSUGDIHDUFYGV </span>
                                         </label>
                                     </div>
                                     <div class="form-check">
@@ -140,16 +202,15 @@
         </div>
         <div class="panel panel-default">
             <div class="panel-heading">
-                <a data-toggle="collapse" data-target="#apriNessus">
+                <a href="#" data-toggle="collapse" data-target="#apriOpenVAS">
                     <strong>
-                        NESSUS SCAN
+                        OPENVAS SCAN
                     </strong>
                     <span class="caret"></span>
                 </a>
 
             </div>
-
-            <div id="apriNessus" class="col-5">
+            <div id="apriOpenVAS" class="collapse col-5">
                 <div class="panel-body">
                     <h4>
                         <strong> Configura modulo </strong>
@@ -161,8 +222,6 @@
                             <input type="text" class="form-control" id="nomeModulo" name="nomeModulo">
                         </div>
                     </form>
-                </div>
-                <div class="panel-body">
                     <div class="col-6">
                         <form>
                             <label>Opzioni</label>
@@ -215,122 +274,12 @@
                     </div>
                 </div>
             </div>
-    </div>
-    <div class="panel panel-default">
-        <div class="panel-heading">
-            <a data-toggle="collapse" data-target="#apriOpenVAS">
-                <strong>
-                    OPENVAS SCAN
-                </strong>
-                <span class="caret"></span>
-            </a>
-
-        </div>
-        <div id="apriOpenVAS" class="col-5">
-            <div class="panel-body">
-                <h4>
-                    <strong> Configura modulo </strong>
-                </h4>
-                <hr>
-                <form>
-                    <label>Nome</label>
-                    <div class="panel panel-default">
-                        <input type="text" class="form-control" id="nomeModulo" name="nomeModulo">
-                    </div>
-                </form>
-            </div>
-            <div class="panel-body">
-                <div class="col-6">
-                    <form>
-                        <label>Opzioni</label>
-                        <div class="panel panel-default">
-                            <div class="panel-body form-horizontal payment-form">
-                                <div class="form-check">
-                                    <label>
-                                        <input type="radio" id="pingScan" name="nmap" value="-sn">
-                                        <span class="label-text">ping scan </span>
-                                    </label>
-                                </div>
-                                <div class="form-check">
-                                    <label>
-                                        <input type="radio" id="scanVeloce" name="nmap" value="-T4 -F">
-                                        <span class="label-text"></span> scan veloce</span>
-                                    </label>
-                                </div>
-                                <div class="form-check">
-                                    <label>
-                                        <input type="radio" id="scanIntenso" name="nmap" value="-T4 -A -v">
-                                        <span class="label-text">scan intenso</span>
-                                    </label>
-                                </div>
-                                <div class="form-check">
-                                    <label>
-                                        <input type="radio" id="porteUDP" name="nmap" value="-sS -sU">
-                                        <span class="label-text"> porte UDP</span>
-                                    </label>
-                                </div>
-                                <div class="form-check">
-                                    <label>
-                                        <input type="radio" id="allTCP" name="nmap" value="-p 1-65535">
-                                        <span class="label-text">tutte le porte TCP</span>
-                                    </label>
-                                </div>
-                                <br>
-                                <input type="text" class="form-control" id="ciao" name="ciao">
-                                <br>
-                                <div class="col text-right">
-                                    <button type="button" class="btn btn-default preview-add-button">
-                                        <span class="glyphicon glyphicon-plus"></span>
-                                        <span data-toggle="modal" data-target="#confermaModulo" href="">
-                                            <strong> conferma </strong>
-                                        </span>
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
         </div>
     </div>
-</div>
 
 </div>
 </div>
-<div class="modal fade" id="confermaModulo" tabindex="-1" role="dialog" aria-labelledby="none" aria-hidden="true" data-backdrop="static"
-    data-keyboard="false">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h3 class="modal-title">
-                    <strong>Nuovo Modulo NMAP</strong>
-                </h3>
-            </div>
-            <div class="modal-body">
 
-                <!-- content goes here -->
-                <form>
-                    <div class="form-group">
-                        <label for="name">Nome</label>
-                        <input type="text" class="form-control" id="nome" placeholder="nome del progetto">
-                    </div>
-                </form>
-            </div>
-
-            <div class="modal-footer">
-                <div class="btn-group btn-group-justified" role="group" aria-label="group button">
-                    <div class="btn-group" role="group">
-                        <button type="button" class="btn btn-default" data-dismiss="modal" role="button" data-toggle="modal" data-target="#chiusuraModulo">Cancella</button>
-                    </div>
-
-                    <div class="btn-group" role="group">
-                        <!--<button type="button" id="Modulo" class="btn btn-default " data-action="save" role="button" onclick="location.href='@Url.Action("Index ", "Modulo ")'; return false;">Salva</button>-->
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
 <div id="chiusuraModulo" class="modal fade in">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -363,16 +312,16 @@
             // change the page per this logic
             switch ($('input[name=nmap]:checked').val()) {
                 case '-sn':
-                    $('#ciao').val('nmap -sn');
+                    $('#Comando').val('-sn');
                     break;
                 case '-T4 -F':
-                    $('#ciao').val('nmap -T4 -F'); break;
+                    $('#Comando').val('-T4 -F'); break;
                 case '-T4 -A -v':
-                    $('#ciao').val('nmap -T4 -A -v'); break;
+                    $('#Comando').val('-T4 -A -v'); break;
                 case '-sS -sU':
-                    $('#ciao').val('nmap -sS -sU'); break;
+                    $('#Comando').val('-sS -sU'); break;
                 case '-p 1-65535':
-                    $('#ciao').val('nmap -p 1-65535'); break;
+                    $('#Comando').val('-p 1-65535'); break;
                 case ' ':
                     break;
                 default:
@@ -384,7 +333,7 @@
     $(function () {
 
 
-        $('#ciao').keyup(function () {
+        $('#Comando').keyup(function () {
             $('input[name=nmap]').removeAttr('checked');
         });
     });
