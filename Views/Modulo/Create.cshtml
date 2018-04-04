@@ -23,15 +23,15 @@
                             <div class="panel-body">
                                 <ul class="panel-default" style="list-style-type:none; margin-left:-40px">
                                     <li>
-                                        <a data-toggle="collapse" data-target="#apriNmap">Nmap scan</a>
+                                        <a href="#" data-toggle="collapse" data-target="#apriNmap">Nmap scan</a>
                                     </li>
                                     <br>
                                     <li>
-                                        <a data-toggle="collapse" data-target="#apriNessus">Nessus scan</a>
+                                        <a href="#" data-toggle="collapse" data-target="#apriNessus">Nessus scan</a>
                                     </li>
                                     <br>
                                     <li>
-                                        <a data-toggle="collapse" data-target="#apriOpenVAS">OpenVAS scan</a>
+                                        <a href="#" data-toggle="collapse" data-target="#apriOpenVAS">OpenVAS scan</a>
                                     </li>
                                     <br>
 
@@ -113,6 +113,10 @@
                                             <span class="label-text">Tutte le porte TCP</span>
                                         </label>
                                     </div>
+                                    <div class="hidden">
+                                        <input asp-for="Tipo" value="SCRIPT" />
+                                        <input asp-for="Applicazione" value="NMAP" />
+                                    </div>
                                     <br>
                                     <input type="text" asp-for="Comando" class="form-control" id="Comando" name="Comando">
                                     <br>
@@ -126,6 +130,8 @@
                 </div>
             </div>
         </div>
+
+
         <div class="panel panel-default">
             <div class="panel-heading">
                 <a href="#" data-toggle="collapse" data-target="#apriNessus">
@@ -135,173 +141,101 @@
                     <span class="caret"></span>
                 </a>
             </div>
-            <div id="apriNessus" class="collapse col-5">
+            <div class="collapse col-5" id="apriNessus">
                 <div class="panel-body">
                     <h4>
                         <strong> Configura modulo </strong>
                     </h4>
                     <hr>
-                    <form>
-                        <label>Nome</label>
+                    <form asp-action="Create" name="nessusForm">
+                        <label asp-for="Nome"></label>
                         <div class="panel panel-default">
-                            <input type="text" class="form-control" id="nomeModulo" name="nomeModulo">
+                            <input asp-for="Nome" class="form-control" />
+                            <span asp-validation-for="Nome" class="text-danger"></span>
                         </div>
-                    </form>
-                    <div class="col-6">
-                        <form>
+                        <div class="col-6">
                             <label>Opzioni</label>
                             <div class="panel panel-default">
                                 <div class="panel-body form-horizontal payment-form">
                                     <div class="form-check">
                                         <label>
-                                            <input type="radio" id="pingScan" name="nmap" value="-sn">
-                                            <span class="label-text">TSUGDIHDUFYGV </span>
+                                            <input type="radio" id="simpleScan" name="nessus" value="BOH!">
+                                            <span class="label-text">Scan semplice </span>
                                         </label>
                                     </div>
-                                    <div class="form-check">
-                                        <label>
-                                            <input type="radio" id="scanVeloce" name="nmap" value="-T4 -F">
-                                            <span class="label-text"></span> scan veloce</span>
-                                        </label>
-                                    </div>
-                                    <div class="form-check">
-                                        <label>
-                                            <input type="radio" id="scanIntenso" name="nmap" value="-T4 -A -v">
-                                            <span class="label-text">scan intenso</span>
-                                        </label>
-                                    </div>
-                                    <div class="form-check">
-                                        <label>
-                                            <input type="radio" id="porteUDP" name="nmap" value="-sS -sU">
-                                            <span class="label-text"> porte UDP</span>
-                                        </label>
-                                    </div>
-                                    <div class="form-check">
-                                        <label>
-                                            <input type="radio" id="allTCP" name="nmap" value="-p 1-65535">
-                                            <span class="label-text">tutte le porte TCP</span>
-                                        </label>
+                                    <div class="hidden">
+                                        <input asp-for="Tipo" value="API" />
+                                        <input asp-for="Applicazione" value="NESSUS" />
                                     </div>
                                     <br>
-                                    <input type="text" class="form-control" id="ciao" name="ciao">
+                                    <input type="text" asp-for="Comando" class="form-control" id="Comando2" name="Comando2">
                                     <br>
                                     <div class="col text-right">
-                                        <button type="button" class="btn btn-default preview-add-button">
-                                            <span class="glyphicon glyphicon-plus"></span>
-                                            <span data-toggle="modal" data-target="#confermaModulo" href="">
-                                                <strong> conferma </strong>
-                                            </span>
-                                        </button>
+                                        <input type="submit" value="Create" class="btn btn-default" />
                                     </div>
                                 </div>
                             </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="panel panel-default">
-            <div class="panel-heading">
-                <a href="#" data-toggle="collapse" data-target="#apriOpenVAS">
-                    <strong>
-                        OPENVAS SCAN
-                    </strong>
-                    <span class="caret"></span>
-                </a>
-
-            </div>
-            <div id="apriOpenVAS" class="collapse col-5">
-                <div class="panel-body">
-                    <h4>
-                        <strong> Configura modulo </strong>
-                    </h4>
-                    <hr>
-                    <form>
-                        <label>Nome</label>
-                        <div class="panel panel-default">
-                            <input type="text" class="form-control" id="nomeModulo" name="nomeModulo">
-                        </div>
                     </form>
-                    <div class="col-6">
-                        <form>
-                            <label>Opzioni</label>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <a href="#" data-toggle="collapse" data-target="#apriOpenVAS">
+                        <strong>
+                            OPENVAS SCAN
+                        </strong>
+                        <span class="caret"></span>
+                    </a>
+                </div>
+                <div class="collapse col-5" id="apriOpenVAS">
+                    <div class="panel-body">
+                        <h4>
+                            <strong> Configura modulo </strong>
+                        </h4>
+                        <hr>
+                        <form asp-action="Create" name="nmapForm">
+                            <label asp-for="Nome"></label>
                             <div class="panel panel-default">
-                                <div class="panel-body form-horizontal payment-form">
-                                    <div class="form-check">
-                                        <label>
-                                            <input type="radio" id="pingScan" name="nmap" value="-sn">
-                                            <span class="label-text">ping scan </span>
-                                        </label>
-                                    </div>
-                                    <div class="form-check">
-                                        <label>
-                                            <input type="radio" id="scanVeloce" name="nmap" value="-T4 -F">
-                                            <span class="label-text"></span> scan veloce</span>
-                                        </label>
-                                    </div>
-                                    <div class="form-check">
-                                        <label>
-                                            <input type="radio" id="scanIntenso" name="nmap" value="-T4 -A -v">
-                                            <span class="label-text">scan intenso</span>
-                                        </label>
-                                    </div>
-                                    <div class="form-check">
-                                        <label>
-                                            <input type="radio" id="porteUDP" name="nmap" value="-sS -sU">
-                                            <span class="label-text"> porte UDP</span>
-                                        </label>
-                                    </div>
-                                    <div class="form-check">
-                                        <label>
-                                            <input type="radio" id="allTCP" name="nmap" value="-p 1-65535">
-                                            <span class="label-text">tutte le porte TCP</span>
-                                        </label>
+                                <input asp-for="Nome" class="form-control" />
+                                <span asp-validation-for="Nome" class="text-danger"></span>
+                            </div>
+                            <div class="col-6">
+                                <label>Opzioni</label>
+                                <div class="panel panel-default">
+                                    <div class="panel-body form-horizontal payment-form">
+                                        <div class="form-check">
+                                            <label>
+                                                <input type="radio" id="scan" name="openvas" value="BOH!">
+                                                <span class="label-text">Scan</span>
+                                            </label>
+                                        </div>
+                                        <div class="hidden">
+                                        <input asp-for="Tipo" value="SCRIPT" />
+                                        <input asp-for="Applicazione" value="OPENVAS" />
                                     </div>
                                     <br>
-                                    <input type="text" class="form-control" id="ciao" name="ciao">
-                                    <br>
-                                    <div class="col text-right">
-                                        <button type="button" class="btn btn-default preview-add-button">
-                                            <span class="glyphicon glyphicon-plus"></span>
-                                            <span data-toggle="modal" data-target="#confermaModulo" href="">
-                                                <strong> conferma </strong>
-                                            </span>
-                                        </button>
+                                        <input type="text" asp-for="Comando" class="form-control" id="Comando3" name="Comando3">
+                                        <br>
+                                        <div class="col text-right">
+                                            <input type="submit" value="Create" class="btn btn-default" />
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
                         </form>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
+
+
     </div>
 
 </div>
-</div>
 
-<div id="chiusuraModulo" class="modal fade in">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-            </div>
-            <div class="modal-body">
-                <h4>
-                    <strong>Confermi di chiudere questo progetto?</strong>
-                </h4>
-            </div>
-            <div class="modal-footer">
-                <div class="btn-group" role="group">
-                    <button class="btn btn-default" data-dismiss="modal">SI</button>
-                    <button class="btn btn-default" data-target="#confermaModulo" data-toggle="modal" data-dismiss="modal"> NO</button>
-                </div>
-            </div>
-
-        </div>
-        <!-- /.modal-content -->
-    </div>
-    <!-- /.modal-dalog -->
-</div>
 
 @section scripts{
 <script>
@@ -325,7 +259,7 @@
                 case ' ':
                     break;
                 default:
-                    $('#ciao').val('nmap');
+                    $('#Comando').val('');
             };
         }).change();
     });
