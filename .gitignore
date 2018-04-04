@@ -99,3 +99,4 @@ msbuild.wrn
 .vs/
 
 webmva.db
+*desktop.ini
