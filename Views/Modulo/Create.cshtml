@@ -1,4 +1,4 @@
-@model webmva.Models.Modulo
+@model webmva.Models.Modulo 
 @{ ViewData["Title"] = "Create"; }
 <div class="col-md-2 sidebar">
     <div class="row">
@@ -41,9 +41,6 @@
                             </div>
                         </div>
                         </li>
-
-
-
                     </ul>
                 </div>
                 <!-- /.navbar-collapse -->
@@ -54,9 +51,7 @@
 </div>
 
 <div class="col-6 col-md-10">
-
     <br>
-
     <div class="col-5">
         <div class="panel panel-default">
             <div class="panel-heading">
@@ -179,59 +174,55 @@
                     </div>
                 </div>
             </div>
-
-
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <a href="#" data-toggle="collapse" data-target="#apriOpenVAS">
-                        <strong>
-                            OPENVAS SCAN
-                        </strong>
-                        <span class="caret"></span>
-                    </a>
-                </div>
-                <div class="collapse col-5" id="apriOpenVAS">
-                    <div class="panel-body">
-                        <h4>
-                            <strong> Configura modulo </strong>
-                        </h4>
-                        <hr>
-                        <form asp-action="Create" name="nmapForm">
-                            <label asp-for="Nome"></label>
+        </div>
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <a href="#" data-toggle="collapse" data-target="#apriOpenVAS">
+                    <strong>
+                        OPENVAS SCAN
+                    </strong>
+                    <span class="caret"></span>
+                </a>
+            </div>
+            <div class="collapse col-5" id="apriOpenVAS">
+                <div class="panel-body">
+                    <h4>
+                        <strong> Configura modulo </strong>
+                    </h4>
+                    <hr>
+                    <form asp-action="Create" name="nmapForm">
+                        <label asp-for="Nome"></label>
+                        <div class="panel panel-default">
+                            <input asp-for="Nome" class="form-control" />
+                            <span asp-validation-for="Nome" class="text-danger"></span>
+                        </div>
+                        <div class="col-6">
+                            <label>Opzioni</label>
                             <div class="panel panel-default">
-                                <input asp-for="Nome" class="form-control" />
-                                <span asp-validation-for="Nome" class="text-danger"></span>
-                            </div>
-                            <div class="col-6">
-                                <label>Opzioni</label>
-                                <div class="panel panel-default">
-                                    <div class="panel-body form-horizontal payment-form">
-                                        <div class="form-check">
-                                            <label>
-                                                <input type="radio" id="scan" name="openvas" value="BOH!">
-                                                <span class="label-text">Scan</span>
-                                            </label>
-                                        </div>
-                                        <div class="hidden">
+                                <div class="panel-body form-horizontal payment-form">
+                                    <div class="form-check">
+                                        <label>
+                                            <input type="radio" id="scan" name="openvas" value="BOH!">
+                                            <span class="label-text">Scan</span>
+                                        </label>
+                                    </div>
+                                    <div class="hidden">
                                         <input asp-for="Tipo" value="SCRIPT" />
                                         <input asp-for="Applicazione" value="OPENVAS" />
                                     </div>
                                     <br>
-                                        <input type="text" asp-for="Comando" class="form-control" id="Comando3" name="Comando3">
-                                        <br>
-                                        <div class="col text-right">
-                                            <input type="submit" value="Create" class="btn btn-default" />
-                                        </div>
+                                    <input type="text" asp-for="Comando" class="form-control" id="Comando3" name="Comando3">
+                                    <br>
+                                    <div class="col text-right">
+                                        <input type="submit" value="Create" class="btn btn-default" />
                                     </div>
                                 </div>
-                        </form>
-                        </div>
+                            </div>
+                    </form>
                     </div>
                 </div>
             </div>
         </div>
-
-
     </div>
 
 </div>
@@ -240,10 +231,9 @@
 @section scripts{
 <script>
     $(function () {
-        //seleziona scanner
-        //$('input[name=nmap]:first').attr('checked', true);   //Setta il tipo di scanner    
+        // Questa funzione va a cambiare il campo del comando ogni volta
+        // che viene cliccato un radio button nel gruppo riguardante nmap    
         $('input[name=nmap]').change(function () {
-            // change the page per this logic
             switch ($('input[name=nmap]:checked').val()) {
                 case '-sn':
                     $('#Comando').val('-sn');
@@ -262,11 +252,8 @@
                     $('#Comando').val('');
             };
         }).change();
-    });
-
-    $(function () {
-
-
+        // Questa funzione ascolta ogni pressione di tastiera nel campo comando
+        // per togliere il valore checked nei radio button nel gruppo di nmap
         $('#Comando').keyup(function () {
             $('input[name=nmap]').removeAttr('checked');
         });
