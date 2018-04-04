@@ -10,22 +10,22 @@ using webmva.Models;
 
 namespace webmva.Controllers_
 {
-    public class ModuloController : Controller
+    public class ProgettoController : Controller
     {
         private readonly MyDbContext _context;
 
-        public ModuloController(MyDbContext context)
+        public ProgettoController(MyDbContext context)
         {
             _context = context;
         }
 
-        // GET: Modulo
+        // GET: Progetto
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Moduli.ToListAsync());
+            return View(await _context.Progetti.ToListAsync());
         }
 
-        // GET: Modulo/Details/5
+        // GET: Progetto/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -33,39 +33,42 @@ namespace webmva.Controllers_
                 return NotFound();
             }
 
-            var modulo = await _context.Moduli
+            var progetto = await _context.Progetti
+                .Include(list => list.ModuliProgetto)
+                    .ThenInclude(mod => mod.Modulo)
+                .AsNoTracking()
                 .SingleOrDefaultAsync(m => m.ID == id);
-            if (modulo == null)
+            if (progetto == null)
             {
                 return NotFound();
             }
 
-            return View(modulo);
+            return View(progetto);
         }
 
-        // GET: Modulo/Create
+        // GET: Progetto/Create
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST: Modulo/Create
+        // POST: Progetto/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ID,Nome,Comando,Tipo,Applicazione")] Modulo modulo)
+        public async Task<IActionResult> Create([Bind("ID,Nome")] Progetto progetto)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(modulo);
+                _context.Add(progetto);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(modulo);
+            return View(progetto);
         }
 
-        // GET: Modulo/Edit/5
+        // GET: Progetto/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -73,22 +76,22 @@ namespace webmva.Controllers_
                 return NotFound();
             }
 
-            var modulo = await _context.Moduli.SingleOrDefaultAsync(m => m.ID == id);
-            if (modulo == null)
+            var progetto = await _context.Progetti.SingleOrDefaultAsync(m => m.ID == id);
+            if (progetto == null)
             {
                 return NotFound();
             }
-            return View(modulo);
+            return View(progetto);
         }
 
-        // POST: Modulo/Edit/5
+        // POST: Progetto/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("ID,Nome,Comando,Tipo,Applicazione")] Modulo modulo)
+        public async Task<IActionResult> Edit(int id, [Bind("ID,Nome")] Progetto progetto)
         {
-            if (id != modulo.ID)
+            if (id != progetto.ID)
             {
                 return NotFound();
             }
@@ -97,12 +100,12 @@ namespace webmva.Controllers_
             {
                 try
                 {
-                    _context.Update(modulo);
+                    _context.Update(progetto);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!ModuloExists(modulo.ID))
+                    if (!ProgettoExists(progetto.ID))
                     {
                         return NotFound();
                     }
@@ -113,10 +116,10 @@ namespace webmva.Controllers_
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(modulo);
+            return View(progetto);
         }
 
-        // GET: Modulo/Delete/5
+        // GET: Progetto/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -124,30 +127,30 @@ namespace webmva.Controllers_
                 return NotFound();
             }
 
-            var modulo = await _context.Moduli
+            var progetto = await _context.Progetti
                 .SingleOrDefaultAsync(m => m.ID == id);
-            if (modulo == null)
+            if (progetto == null)
             {
                 return NotFound();
             }
 
-            return View(modulo);
+            return View(progetto);
         }
 
-        // POST: Modulo/Delete/5
+        // POST: Progetto/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var modulo = await _context.Moduli.SingleOrDefaultAsync(m => m.ID == id);
-            _context.Moduli.Remove(modulo);
+            var progetto = await _context.Progetti.SingleOrDefaultAsync(m => m.ID == id);
+            _context.Progetti.Remove(progetto);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool ModuloExists(int id)
+        private bool ProgettoExists(int id)
         {
-            return _context.Moduli.Any(e => e.ID == id);
+            return _context.Progetti.Any(e => e.ID == id);
         }
     }
 }

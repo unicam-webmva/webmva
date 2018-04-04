@@ -9,7 +9,8 @@ namespace webmva.Data
         
         //QUI CI VANNO LE TABELLE DEL DB
         public DbSet<Modulo> Moduli { get; set; }
-        //public DbSet<Progetto> Progetti { get; set; }
-        //public DbSet<Risultato> Risultati { get; set; }
+        
+        public DbSet<Progetto> Progetti { get; set; }
+        public DbSet<ModuliProgetto> ModuliProgetto {get; set;}
     }
 }

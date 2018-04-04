@@ -1,12 +1,12 @@
 @model webmva.Models.Modulo
 
 @{
-    ViewData["Title"] = "Elimina modulo";
+    ViewData["Title"] = "Delete";
 }
 
-<h2>Elimina</h2>
+<h2>Delete</h2>
 
-<h3>Sei sicuro di voler eliminare questo modulo?</h3>
+<h3>Are you sure you want to delete this?</h3>
 <div>
     <h4>Modulo</h4>
     <hr />
@@ -29,11 +29,17 @@
         <dd>
             @Html.DisplayFor(model => model.Tipo)
         </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Applicazione)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Applicazione)
+        </dd>
     </dl>
     
     <form asp-action="Delete">
         <input type="hidden" asp-for="ID" />
-        <input type="submit" value="Elimina" class="btn btn-default" /> |
-        <a asp-action="Index">Torna alla lista dei moduli</a>
+        <input type="submit" value="Delete" class="btn btn-default" /> |
+        <a asp-action="Index">Back to List</a>
     </form>
 </div>

@@ -1,10 +1,10 @@
 @model webmva.Models.Modulo
 
 @{
-    ViewData["Title"] = "Crea modulo";
+    ViewData["Title"] = "Create";
 }
 
-<h2>Crea modulo</h2>
+<h2>Create</h2>
 
 <h4>Modulo</h4>
 <hr />
@@ -24,17 +24,22 @@
             </div>
             <div class="form-group">
                 <label asp-for="Tipo" class="control-label"></label>
-                <input asp-for="Tipo" class="form-control" />
+                <select asp-for="Tipo" class="form-control"></select>
                 <span asp-validation-for="Tipo" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <input type="submit" value="Crea modulo" class="btn btn-default" />
+                <label asp-for="Applicazione" class="control-label"></label>
+                <select asp-for="Applicazione" class="form-control"></select>
+                <span asp-validation-for="Applicazione" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-default" />
             </div>
         </form>
     </div>
 </div>
 
 <div>
-    <a asp-action="Index">Torna alla lista dei moduli</a>
+    <a asp-action="Index">Back to List</a>
 </div>
 

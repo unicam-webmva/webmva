@@ -1,4 +1,4 @@
-@model IEnumerable<webmva.Models.Modulo>
+@model IEnumerable<webmva.Models.Progetto>
 
 @{
     ViewData["Title"] = "Index";
@@ -15,15 +15,6 @@
                 <th>
                     @Html.DisplayNameFor(model => model.Nome)
                 </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Comando)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Tipo)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Applicazione)
-                </th>
             <th></th>
         </tr>
     </thead>
@@ -32,15 +23,6 @@
         <tr>
             <td>
                 @Html.DisplayFor(modelItem => item.Nome)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Comando)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Tipo)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Applicazione)
             </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.ID">Edit</a> |
