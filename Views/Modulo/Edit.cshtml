@@ -7,31 +7,30 @@
     <form asp-action="Edit">
         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
         <input type="hidden" asp-for="ID" />
-    <div class="panel panel-default col-lg-10">
-        <div class="form-group">
-            <div class="panel-body">
-                <label>Nome</label>
-                
-                    <input type="text" class="form-control" asp-for="Nome" asp-validation-for="Nome">
-                
-            </div>
-            <div class="panel-body ">
-                    <label>Comando</label>
-                    <input type="text" class="form-control " asp-for="Comando" asp-validation-for="Comando">
-                    <br>
-                    <div class="col text-right">
-                        <div class="form-group">
-                            <input type="submit" value="Save" class="btn btn-default" />
-                            <a asp-action="Index">Back to List</a>
-                        </div>
-
+        <div class="panel panel-default col-md-10">
+        <div class="container">
+            <div class="form-group col-lg-10 ">
+                <div class="col-md-7">
+                    <div class="panel-body">
+                        <label>Nome</label>
+                        <input type="text" class="form-control" asp-for="Nome" asp-validation-for="Nome">
                     </div>
-
-               
+                </div>
+                <div class="col-md-7">
+                    <div class=" panel-body">
+                        <label>Comando</label>
+                        <input type="text" class="form-control" asp-for="Comando" asp-validation-for="Comando">
+                    </div>
+                </div>
+                
+                <div class="col-md-9 text-right">
+                    <div class="form-group">
+                        <input type="submit" value="Save" class="btn btn-default" />
+                        <a asp-action="Index">Back to List</a>
+                    </div>
+                </div>
+                </div>
             </div>
-        </div>
-        </form>
+    </form>
     </div>
-</div>
-</div>
 </div>
