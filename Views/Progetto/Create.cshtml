@@ -1,30 +1,80 @@
 @model webmva.Models.Progetto
-
-@{
-    ViewData["Title"] = "Create";
-}
-
-<h2>Create</h2>
-
-<h4>Progetto</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
+ @{ ViewData["Title"] = "Crea progetto"; }
+ <div class="container">
+    <h2>Nuovo Progetto</h2>
+    <hr />
+    <div class="row panel panel-default col-md-9">
+        <!--<div class="col-md-9">-->
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
+            <input type="hidden" asp-for="ID" />
+            <div class="form-group"><br>
                 <label asp-for="Nome" class="control-label"></label>
                 <input asp-for="Nome" class="form-control" />
-                <span asp-validation-for="Nome" class="text-danger"></span>
+                <span asp-validation-for="Nome" class="text-danger"></span><br>
+                <div class="col-md-7 form-group">
+                    <label for="oggi">Data</label>
+                    <input type="text" class="form-control" id="oggi" name="oggi" placeholder="" onclick="dataOggi()"><br>
+                </div>
+                <br>
+                <input type="text" class="form-control" id="codice" name="codice" placeholder="codice" onclick="creaCodice()">
+                <br>
+                <label for="descrizione">Descrizione</label>
+                <textarea class="form-control" id="descrizione" placeholder="descrizione del progetto" rows="5" cols="40" style="resize:none"
+                    maxlength="1000"></textarea>
             </div>
-            <div class="form-group">
+            <div class="form-group col-sm-6 ">
                 <input type="submit" value="Create" class="btn btn-default" />
+
             </div>
+                <div class="form-group col-sm-6 text-right">
+                    <a asp-action="Index">Back to List</a>
+                </div>
         </form>
     </div>
-</div>
+ 
+           
+      
 
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
 
+@section scripts{
+<script>
+    function creaCodice() {
+
+        var nome = $('input[name=nome]').val();
+        var oggi = $('input[name=oggi]').val();
+        var codice = oggi + "_" + nome;
+
+        $('input[name=codice]').val(codice);
+
+    };
+    function dataOggi() {
+        var oggi = new Date();
+        var dd = oggi.getDate();
+        var mm = oggi.getMonth() + 1; //January is 0!
+        var yyyy = oggi.getFullYear();
+        var hh = oggi.getHours();
+        var ff = oggi.getMinutes();
+
+        if (dd < 10) {
+            dd = '0' + dd
+        }
+
+        if (mm < 10) {
+            mm = '0' + mm
+        }
+        if (hh < 10) {
+            hh = '0' + hh
+        }
+        if (ff < 10) {
+
+            ff = '0' + ff
+        }
+
+        oggi = mm + '/' + dd + '/' + yyyy + '_' + hh + ':' + ff;
+        $('input[name=oggi]').val(oggi);
+        $('input[name=Progetto]').val(oggi);
+    };
+
+
+</script> }

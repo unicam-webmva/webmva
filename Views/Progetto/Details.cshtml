@@ -1,54 +1,58 @@
-@model webmva.Models.Progetto
+@model webmva.Models.Progetto 
+@{ ViewData["Title"] = "Dettagli"; }
 
-@{
-    ViewData["Title"] = "Details";
-}
+<h2>Dettagli @Html.DisplayFor(model => model.Nome)</h2>
+<hr />
+<div class="col-md-8">
+    <div class="panel panel-default">
+        <div class="container">
+            <div class="form-group">
+                <div class="col-md-7">
+                    <dl class="dl-horizontal">
+                        <div class="panel-body">
 
-<h2>Details</h2>
+                            <dt>
+                                <strong> Nome del Progetto </strong>
+                            </dt>
+                            <dd>
+                                @Html.DisplayFor(model => model.Nome)
+                            </dd>
+                        </div>
+                        <dt>
+                            <strong> Scegli il Modulo </strong>
+                        </dt>
 
-<div>
-    <h4>Progetto</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Nome)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Nome)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.ModuliProgetto)
-        </dt>
-        <dd>
-            <table class="table">
-                <tr>
-                    <th>Nome modulo</th>
-                    <th>Tipo</th>
-                    <th>Applicazione</th>
-                    <th>Comando</th>
-                </tr>
-                @foreach (var item in Model.ModuliProgetto)
-                {
-                    <tr>
-                    <td>
-                            @Html.DisplayFor(modelItem => item.Modulo.Nome)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Modulo.Tipo)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Modulo.Applicazione)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Modulo.Comando)
-                        </td>
-                    </tr>
-                }
-            </table>
-        </dd>
-    </dl>
-</div>
-<div>
-    <a asp-action="Edit" asp-route-id="@Model.ID">Edit</a> |
-    <a asp-action="Index">Back to List</a>
-</div>
+                        <dd>
+                            <table class="table">
+                                <tr>
+                                    <th> </th>
+                                    <th>Modulo</th>
+                                    <th>Comando</th>
+
+                                </tr>
+                                @foreach (var item in Model.ModuliProgetto) {
+                                <tr>
+                                        <td><input type="checkbox" id="checkall" >
+                                        </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Modulo.Nome)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Modulo.Comando)
+                                    </td>
+                                </tr>
+                                }
+                            </table>
+                        </dd>
+                    </dl>
+                </div>
+                <div class="col-md-8 text-right">
+                    <div class="form-group">
+                        <a asp-action="Edit" asp-route-id="@Model.ID">Edit </a>|
+                        <a asp-action="Index"> Back to List</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
