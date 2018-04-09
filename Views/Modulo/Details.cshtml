@@ -1,31 +1,45 @@
-@model webmva.Models.Modulo
+@model webmva.Models.Modulo 
+@{ ViewData["Title"] = "Dettagli"; }
 
-@{
-    ViewData["Title"] = "Details";
-}
-
-<h2>Details</h2>
-
-<div>
-    <h4>Modulo</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Nome)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Nome)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.Comando)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Comando)
-        </dd>
-    </dl>
+<h2>Dettagli @Html.DisplayFor(model => model.Nome)
+</h2>
+<hr />
+<div class="col-md-7 ">
+    <form asp-action="Edit">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <input type="hidden" asp-for="ID" />
+        <div class="panel panel-default col-md-10">
+            <div class="container">
+                <div class="form-group">
+                    <div class="col-md-7">
+                        <!--vedere l'elenco puntato-->
+                        <dl class="dl-horizontal">
+                            <div class="panel-body">
+                                <dt>
+                                    <strong> Nome : </strong>
+                                </dt>
+                                <dd>
+                                    @Html.DisplayFor(model => model.Nome)
+                                </dd>
+                            </div>
+                            <div class="panel-body">
+                                <dt>
+                                    <strong> Comando : </strong>
+                                </dt>
+                                <dd>
+                                    @Html.DisplayFor(model => model.Comando)
+                                </dd>
+                            </div>
+                        </dl>
+                    </div>
+                </div>
+                <div class="col-xs-6 text-right">
+                    <div class="form-group">
+                        <a asp-action="Edit" asp-route-id="@Model.ID">Edit </a>|
+                        <a asp-action="Index"> Back to List</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
 </div>
-<div>
-    <a asp-action="Edit" asp-route-id="@Model.ID">Edit</a> |
-    <a asp-action="Index">Back to List</a>
-</div>
-

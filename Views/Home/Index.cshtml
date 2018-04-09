@@ -1,9 +1,10 @@
-﻿@{ ViewData["Title"] = "Home"; }
+﻿@{ ViewData["Title"] = "Home"; } 
+@model webmva.Models.Progetto
 
-<div class="col-md-2 sidebar">
+<div class="col-md-2 sidebar" aria-expanded="false">
     <div class="row">
-        <!-- uncomment code for absolute positioning tweek see top comment in css -->
-        <div class="absolute-wrapper"> </div>
+        <!-- uncomment code for absolute positioning tweek see top comment in css 
+        <div class="absolute-wrapper"> </div>-->
         <!-- Menu -->
         <br>
         <div class="side-menu col-6">
@@ -25,11 +26,12 @@
                                 <div class="panel-body">
                                     <ul class="panel-default">
                                         <li>
-                                            <a data-toggle="modal" data-target="#nuovoProgetto" href="">nuovo progetto </a>
+                                            <a href="/Progetto/Create">nuovo progetto </a>
+                                        
                                         </li>
-                                        <li>
+                                        <!--<li>
                                             <a href="/Visualizza">visualizza progetti recenti</a>
-                                        </li>
+                                        </li>-->
                                         <li>
                                             <a href="/Progetto">visualizza progetti</a>
                                         </li>
@@ -57,9 +59,6 @@
                                         <li>
                                             <a href="/Modulo">visualizza modulo</a>
                                         </li>
-                                        <li>
-                                            <a href="">Link</a>
-                                        </li>
 
                                         <!-- Dropdown level 2 -->
 
@@ -79,18 +78,12 @@
                                 <div class="panel-body">
                                     <ul class="panel-default">
                                         <li>
-                                            <a href="/importaReport">importa report</a>
+                                            <a href="/Report">importa report</a>
                                         </li>
                                         <li>
                                             <a href="/visualizzaReport">visualizza report</a>
                                         </li>
-                                        <li>
-                                            <a href="#">Link</a>
-                                        </li>
-
-                                        <!-- Dropdown level 2 -->
-
-                                    </ul>
+                                     </ul>
                                 </div>
                             </div>
                         </li>
@@ -164,125 +157,4 @@
 
     </div>
 </div>
-<div class="modal fade" id="nuovoProgetto" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true" data-backdrop="static"
-    data-keyboard="false">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <!--<button type="button" class="close" data-toggle="modal" data-target="#confermaChiusura">
-                    <span aria-hidden="true">×</span>
-                    <span class="sr-only">Close</span>
-                </button>-->
 
-                <h3 class="modal-title" id="lineModalLabel">
-                    <strong>
-                        <p name="Progetto">Nuovo Progetto</strong>
-                </h3>
-            </div>
-            <div class="modal-body">
-                <!-- content goes here -->
-                <form id="settaggio">
-                    <div class="form-group">
-                        <label for="nome">Nome</label>
-                        <input type="text" class="form-control" id="nome" name="nome" placeholder="nome del progetto">
-                    </div>
-                    <div class="fcol-xs-6 form-group">
-                        <label for="oggi">Data</label>
-                        <input type="data" class="form-control" id="oggi" name="oggi" placeholder="" onclick="dataOggi()">
-                    </div>
-                    <!-- CREARE UN CODICE IN BASE AL NOME DEL PROGETTO E ALLA DATA-->
-
-                    <div class="col-md-8 form-group" style="text-align:left">
-
-                        <input type="text" class="form-control" id="codice" name="codice" placeholder="codice" onclick="creaCodice()">
-                    </div>
-                    <br>
-
-                    <div class="col-8 form-group">
-                        <label for="descrizione">Descrizione</label>
-                        <textarea class="form-control" id="descrizione" placeholder="descrizione del progetto" rows="5" cols="40" style="resize:none"
-                            maxlength="1000"></textarea>
-                    </div>
-                </form>
-
-            </div>
-            <div class="modal-footer">
-                <div class="btn-group btn-group-justified" role="group" aria-label="group button">
-                    <div class="btn-group" role="group">
-                        <button type="button" class="btn btn-default" data-dismiss="modal" role="button" data-toggle="modal" data-target="#confermaChiusura">Cancella</button>
-                    </div>
-
-                    <div class="btn-group" role="group">
-                        <a asp-area="" asp-controller="Visualizza" asp-action="Index">
-                            <button type="button" class="btn btn-default " data-action="save" role="button">Salva</button>
-                        </a>
-
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-<div id="confermaChiusura" class="modal fade in">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-            </div>
-            <div class="modal-body">
-                <h4>
-                    <strong>Confermi di chiudere questo progetto?</strong>
-                </h4>
-            </div>
-            <div class="modal-footer">
-                <div class="btn-group" role="group">
-                    <button onclick="document.getElementById('settaggio').reset()" class="btn btn-default" data-dismiss="modal" type="submit">SI</button>
-                    <button class="btn btn-default" data-target="#nuovoProgetto" data-toggle="modal" data-dismiss="modal"> NO</button>
-                </div>
-            </div>
-
-        </div>
-        <!-- /.modal-content -->
-    </div>
-    <!-- /.modal-dalog -->
-</div>
-<!-- /.modal -->
-@section scripts{
-<script>
-    function creaCodice() {
-
-        var nome = $('input[name=nome]').val();
-        var oggi = $('input[name=oggi]').val();
-        var codice = oggi + "_" + nome;
-
-        $('input[name=codice]').val(codice);
-
-    };
-    function dataOggi() {
-        var oggi = new Date();
-        var dd = oggi.getDate();
-        var mm = oggi.getMonth() + 1; //January is 0!
-        var yyyy = oggi.getFullYear();
-        var hh = oggi.getHours();
-        var ff = oggi.getMinutes();
-
-        if (dd < 10) {
-            dd = '0' + dd
-        }
-
-        if (mm < 10) {
-            mm = '0' + mm
-        }
-        if (hh < 10) {
-            hh = '0' + hh
-        }
-        if (ff < 10) {
-            ff = '0' + ff
-        }
-
-        oggi = mm + '/' + dd + '/' + yyyy + '_' + hh + ':' + ff;
-        $('input[name=oggi]').val(oggi);
-        $('input[name=Progetto]').val(oggi);
-    };
-    
-
-</script> }
