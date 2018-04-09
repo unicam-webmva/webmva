@@ -4,17 +4,20 @@
     <div class="container">
         <h2>Progetti</h2>
         <p class="lead">
-            I progetti presenti sono questi! Per creare un nuovo progetto <a data-toggle="modal" data-target="Progetto/Create">clicca qui </a>!
+            I progetti presenti sono questi! Per creare un nuovo progetto <a href="/Progetto/Create">clicca qui </a>!
         </p>
         <!--rivedere-->
         <hr />
-            <div class="panel panel-default col-md-7 col-md-offset-1">
+            <div class="panel panel-default col-md-9 col-md-offset-1">
                 <table class="table">
                     <div class="method">
                         <thead>
                             <tr>
                                 <th>
                                     @Html.DisplayNameFor(model => model.Nome)
+                                </th>
+                                 <th>
+                                    @Html.DisplayNameFor(model => model.Data)
                                 </th>
                                 <th></th>
                             </tr>
@@ -26,11 +29,13 @@
                             <td>
                                 @Html.DisplayFor(modelItem => item.Nome)
                             </td>
-
+<td>
+                                @Html.DisplayFor(modelItem => item.Data)
+                            </td>
                             <td>
-                                <div class="col-sm-7 col-sm-offset-4">
-                                    <a asp-action="Edit" asp-route-id="@item.ID">Modifica </a> |
-                                    <a asp-action="Details" asp-route-id="@item.ID">Dettagli </a> |
+                                <div class="col-sm-8 col-sm-offset-4">
+                                    <a asp-action="Edit" asp-route-id="@item.ID">Modifica </a>|
+                                    <a asp-action="Details" asp-route-id="@item.ID">Dettagli </a>|
                                     <a asp-action="Delete" asp-route-id="@item.ID">Cancella </a>
                                 </div>
                             </td>

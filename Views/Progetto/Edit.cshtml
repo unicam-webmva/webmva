@@ -1,5 +1,5 @@
-@model webmva.Models.Progetto 
-@{ ViewData["Title"] = "Edit"; }
+@model webmva.Models.Progetto
+ @{ ViewData["Title"] = "Edit"; }
 <div class="container">
     <h2>Modifica Progetto</h2>
     <hr />
@@ -8,20 +8,63 @@
         <form asp-action="Edit">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="ID" />
-            <div class="form-group"><br>
+            <div class="form-group">
+                <br>
                 <label asp-for="Nome" class="control-label"></label>
                 <input asp-for="Nome" class="form-control" />
-                <span asp-validation-for="Nome" class="text-danger"></span><br>
+                <span asp-validation-for="Nome" class="text-danger"></span>
+                
+                <br>
+                <label asp-for="Target" class="control-label"></label>
+                <input asp-for="Target" class="form-control" onfocusout="checkIP()" name="Target" />
+                <span asp-validation-for="Target" class="text-danger"></span>
+               
+                <br>
                 <label for="descrizione">Descrizione</label>
                 <textarea class="form-control" id="descrizione" placeholder="descrizione del progetto" rows="5" cols="40" style="resize:none"
                     maxlength="1000"></textarea>
             </div>
+
             <div class="form-group col-sm-6 ">
                 <input type="submit" value="Save" class="btn btn-default" />
 
             </div>
-                <div class="form-group col-sm-6 text-right">
-                    <a asp-action="Index">Back to List</a>
-                </div>
+            <div class="form-group col-sm-6 text-right">
+                <a asp-action="Index">Back to List</a>
+            </div>
         </form>
+
     </div>
+</div>
+
+@section scripts{
+    <script>
+    function checkIP(){
+     var Target = $('input[name=Target]').val().toString().split(".");
+    console.log(Target);
+    if (Target.length != 4) {
+        console.log("INVALIDO");
+        alert("Hai inserito un IP errato!"); 
+        return false;
+    }
+    //Check Numbers
+    for (var i = 0; i < 4; i++) {
+        //Perform Test
+        if ( Target[i] <= -1 || Target[i] > 255 || 
+             isNaN(parseFloat(Target[i])) || 
+             !isFinite(Target[i])  || 
+             Target[i].indexOf(" ") !== -1 ) {
+                 console.log("INVALIDO");
+                // alert ("Hai inserito un IP errato!!");
+                 $('input[name=Target]').val(" ");
+             return false;
+        }
+    }
+    console.log("VALIDO");
+
+    return true;
+        
+    };
+   
+</script>
+}

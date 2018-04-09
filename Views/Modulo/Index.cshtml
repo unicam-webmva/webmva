@@ -7,7 +7,70 @@
             I moduli presenti sono questi! Per creare un nuovo modulo <a href="/Modulo/Create">clicca qui</a> !
         </p>
         <hr/>
-        <div class="panel panel-default col-lg-10">
+        <div class="col-md-2 sidebar">
+    <div class="row">
+        <!-- uncomment code for absolute positioning tweek see top comment in css -->
+        <div class="absolute-wrapper"> </div>
+        <!-- Menu -->
+        <br>
+        <div class="side-menu col-6">
+            <nav class="navbar navbar-default" role="navigation">
+                <!-- Main Menu -->
+                <div class="side-menu-container">
+                    <ul class="nav navbar-nav" style="list-style-type:none">
+                        <!-- Dropdown-->
+                        <a>
+                            <li class="panel-default" id="progetto">
+                                <span class="glyphicon glyphicon-barcode"></span>
+                                <strong>MODULO</strong>
+                        </a>
+
+                        <!-- Dropdown level 1-->
+                        <div id="dropdown-lvl1" class="panel-collapse">
+                            <div class="panel-body">
+                                <ul class="panel-default" style="list-style-type:none; margin-left:-40px">
+                                    <li>
+                                        <a href="#" data-toggle="collapse" data-target="#Nmap">Nmap</a>
+                                    </li>
+                                    <br>
+                                    <li>
+                                        <a href="#" data-toggle="collapse" data-target="#Nessus">Nessus</a>
+                                    </li>
+                                    <br>
+                                    <li>
+                                        <a href="#" data-toggle="collapse" data-target="#OpenVAS">OpenVAS</a>
+                                    </li>
+                                    <br>
+
+
+                                </ul>
+
+                            </div>
+                        </div>
+                        </li>
+                    </ul>
+                </div>
+                <!-- /.navbar-collapse -->
+            </nav>
+
+        </div>
+    </div>
+</div>
+
+<div class="col-6 col-md-10">
+    <br>
+    <div class="col-5">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <a href="#" data-toggle="collapse" data-target="#Nmap">
+                    <strong>
+                        MODULO NMAP 
+                    </strong>
+                    <span class="caret"></span>
+                </a>
+            </div>
+            <div class="collapse col-lg-10" id="Nmap">
+               
             <table class="table">
                 <div class="method">
                     <thead>
@@ -44,13 +107,135 @@
                           }   
                         }
                         <td>
-                            <a asp-action="Edit" asp-route-id="@item.ID">Edit</a> |
-                            <a asp-action="Details" asp-route-id="@item.ID">Details</a> |
-                            <a asp-action="Delete" asp-route-id="@item.ID">Delete</a>
+                            <a asp-action="Edit" asp-route-id="@item.ID">Modifica</a> |
+                            <a asp-action="Details" asp-route-id="@item.ID">Dettagli</a> |
+                            <a asp-action="Delete" asp-route-id="@item.ID">Cancella</a>
                         </td>
                     </tr>
                     }
                 </tbody>
             </table>
+       
+            </div>
         </div>
+
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <a href="#" data-toggle="collapse" data-target="#Nessus">
+                    <strong>
+                       MODULO NESSUS 
+                    </strong>
+                    <span class="caret"></span>
+                </a>
+            </div>
+            <div class="collapse col-lg-10" id="Nessus">
+              
+            <table class="table">
+                <div class="method">
+                    <thead>
+                        <tr>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Nome)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Comando)
+                            </th>
+                            <th>
+                                Applicazione
+                            </th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                </div>
+                <tbody>
+                    @foreach (var item in Model) {
+                        var tipo = item.GetType();
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Nome)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Comando)
+                        </td>
+                        @{
+                          if(tipo == typeof(webmva.Models.ModuloNESSUS)){
+                            <td>Nessus</td>
+                          }
+                          else if(tipo == typeof(webmva.Models.ModuloNMAP)){
+                            <td>nmap</td>
+                          }   
+                        }
+                        <td>
+                            <a asp-action="Edit" asp-route-id="@item.ID">Modifica</a> |
+                            <a asp-action="Details" asp-route-id="@item.ID">Dettagli</a> |
+                            <a asp-action="Delete" asp-route-id="@item.ID">Cancella</a>
+                        </td>
+                    </tr>
+                    }
+                </tbody>
+            </table>
+        
+            </div>
+        </div>
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <a href="#" data-toggle="collapse" data-target="#OpenVAS">
+                    <strong>
+                       MODULO OPENVAS
+                    </strong>
+                    <span class="caret"></span>
+                </a>
+            </div>
+            <div class="collapse col-lg-10" id="OpenVAS">
+               
+            <table class="table">
+                <div class="method">
+                    <thead>
+                        <tr>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Nome)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Comando)
+                            </th>
+                            <th>
+                                Applicazione
+                            </th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                </div>
+                <tbody>
+                    @foreach (var item in Model) {
+                        var tipo = item.GetType();
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Nome)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Comando)
+                        </td>
+                        @{
+                          if(tipo == typeof(webmva.Models.ModuloNESSUS)){
+                            <td>Nessus</td>
+                          }
+                          else if(tipo == typeof(webmva.Models.ModuloNMAP)){
+                            <td>nmap</td>
+                          }   
+                        }
+                        <td>
+                            <a asp-action="Edit" asp-route-id="@item.ID">Modifica</a> |
+                            <a asp-action="Details" asp-route-id="@item.ID">Dettagli</a> |
+                            <a asp-action="Delete" asp-route-id="@item.ID">Cancella</a>
+                        </td>
+                    </tr>
+                    }
+                </tbody>
+            </table>
+      
+            </div>
+        </div>
+    </div>
+
+</div>
     </div>
