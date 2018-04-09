@@ -19,10 +19,7 @@
                                 @Html.DisplayNameFor(model => model.Comando)
                             </th>
                             <th>
-                                @Html.DisplayNameFor(model => model.Tipo)
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.Applicazione)
+                                Applicazione
                             </th>
                             <th></th>
                         </tr>
@@ -30,6 +27,7 @@
                 </div>
                 <tbody>
                     @foreach (var item in Model) {
+                    var tipo = item.GetType();
                     <tr>
                         <td>
                             @Html.DisplayFor(modelItem => item.Nome)
@@ -37,12 +35,14 @@
                         <td>
                             @Html.DisplayFor(modelItem => item.Comando)
                         </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Tipo)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Applicazione)
-                        </td>
+                        @{
+                          if(tipo == typeof(webmva.Models.ModuloNESSUS)){
+                            <td>Nessus</td>
+                          }
+                          else if(tipo == typeof(webmva.Models.ModuloNMAP)){
+                            <td>nmap</td>
+                          }   
+                        }
                         <td>
                             <a asp-action="Edit" asp-route-id="@item.ID">Edit</a> |
                             <a asp-action="Details" asp-route-id="@item.ID">Details</a> |
@@ -54,10 +54,3 @@
             </table>
         </div>
     </div>
-
-
-
-
-
-
-    
