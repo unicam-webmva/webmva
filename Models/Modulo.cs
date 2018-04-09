@@ -18,12 +18,11 @@ namespace webmva.Models
     /// <summary>
     /// Questo modello rappresenta un Modulo, usabile in più Progetti.
     /// </summary>
-    public class Modulo
+    public abstract class Modulo
     {
-        public int ID { get; set; }
-        public string Nome { get; set; }
-        public string Comando { get; set; }
-        public Tipo Tipo {get; set;}
-        public Applicazione Applicazione {get; set;}
+         public int ID { get; set; }
+         public string Nome { get; set; }
+         public virtual string Comando {get;}
+         
     }
 }
