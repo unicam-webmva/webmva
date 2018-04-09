@@ -25,8 +25,8 @@ namespace webmva.Data
             { return; }
             var progetti = new Progetto[]
             {
-            new Progetto{Nome="Test1"},
-            new Progetto{Nome="Test2"},
+            new Progetto{Nome="Test1", Data=new DateTime(2018,02,07,12,00,34),Target="90.147.0.0"},
+            new Progetto{Nome="Test2", Data=new DateTime(2018,02,15,12,00,34),Target="90.147.0.0"},
             };
             foreach (Progetto p in progetti)
             { context.Progetti.Add(p); }
