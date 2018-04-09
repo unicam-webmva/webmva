@@ -12,5 +12,10 @@ namespace webmva.Data
         
         public DbSet<Progetto> Progetti { get; set; }
         public DbSet<ModuliProgetto> ModuliProgetto {get; set;}
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder){
+            modelBuilder.Entity<ModuloNMAP>().HasBaseType<Modulo>();
+            modelBuilder.Entity<ModuloNESSUS>().HasBaseType<Modulo>();
+        }
     }
 }
