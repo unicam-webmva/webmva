@@ -21,12 +21,12 @@ namespace webmva.Migrations
                     AckDiscoveryPorts = table.Column<string>(nullable: true),
                     AllDetections = table.Column<bool>(nullable: true),
                     ArpDiscovery = table.Column<bool>(nullable: true),
+                    ComandoPersonalizzato = table.Column<string>(nullable: true),
                     FastScan = table.Column<bool>(nullable: true),
                     Fragmented = table.Column<bool>(nullable: true),
                     IPv6Scan = table.Column<bool>(nullable: true),
                     IncreaseVerbosity = table.Column<bool>(nullable: true),
                     ListSpecificPort = table.Column<string>(nullable: true),
-                    LivelloParanoia = table.Column<int>(nullable: true),
                     MaimonScan = table.Column<bool>(nullable: true),
                     NoDNSResolution = table.Column<bool>(nullable: true),
                     NoHostDiscovery = table.Column<bool>(nullable: true),
@@ -43,6 +43,7 @@ namespace webmva.Migrations
                     TCPConnectScan = table.Column<bool>(nullable: true),
                     UDPScan = table.Column<bool>(nullable: true),
                     UdpDiscoveryPorts = table.Column<string>(nullable: true),
+                    Velocita = table.Column<int>(nullable: true),
                     WindowPortScan = table.Column<bool>(nullable: true)
                 },
                 constraints: table =>
@@ -56,7 +57,9 @@ namespace webmva.Migrations
                 {
                     ID = table.Column<int>(nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
-                    Nome = table.Column<string>(nullable: true)
+                    Data = table.Column<DateTime>(nullable: false),
+                    Nome = table.Column<string>(nullable: true),
+                    Target = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {

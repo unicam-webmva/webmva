@@ -15,8 +15,8 @@ namespace webmva.Data
             var moduli = new Modulo[]
             {
             new ModuloNMAP{Nome="Ping Scan", NoPortScan=true}, //-sn
-            new ModuloNMAP{Nome="Scan Veloce",LivelloParanoia=4, FastScan=true}, // -T4 -F
-            new ModuloNMAP{Nome="Scan Intenso",LivelloParanoia=4, AllDetections=true, IncreaseVerbosity=true }, // -T4 -A -v
+            new ModuloNMAP{Nome="Scan Veloce",Velocita=4, FastScan=true}, // -T4 -F
+            new ModuloNMAP{Nome="Scan Intenso",Velocita=4, AllDetections=true, IncreaseVerbosity=true }, // -T4 -A -v
             new ModuloNMAP{Nome="Scan Porte UDP", SYNScan=true, UDPScan=true }, //-sS -sU
             new ModuloNMAP{Nome="Scan All TCP", ListSpecificPort="1-65535"}, // -p 1-65535
             new ModuloNESSUS{Nome="TestNessus", JSON="prova"}

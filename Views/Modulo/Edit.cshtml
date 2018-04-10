@@ -1,37 +1,276 @@
-@model webmva.Models.Modulo 
-@{ ViewData["Title"] = "Edit"; }
+@model webmva.Models.Modulo
+@{ ViewData["Title"] = "Edit";
+    bool nmap = Model is webmva.Models.ModuloNMAP;
+    bool nessus = Model is webmva.Models.ModuloNESSUS;
+}
 
 <h2>Modifica modulo</h2>
 <hr />
 <div class="col-md-10">
-    <form asp-action="Edit">
-        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-        <input type="hidden" asp-for="ID" />
-        <div class="panel panel-default col-md-10">
-        <div class="container">
-            <div class="form-group col-lg-10 ">
-                <div class="col-md-7">
-                    <div class="panel-body">
-                        <label>Nome</label>
-                        <input type="text" class="form-control" asp-for="Nome" asp-validation-for="Nome">
+    @{
+        @* -----NMAP----- *@
+        if (nmap)
+        {
+            <form asp-action="Edit" name="nmapForm">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <input type="hidden" asp-for="ID" />
+                <div class="panel panel-default col-10">
+                    <div class="container">
+                        <div class="form-group col-lg-10 ">
+                            <label asp-for="Nome"></label>
+                            <div class="panel panel-default">
+                                <input asp-for="Nome" class="form-control" />
+                                <span asp-validation-for="Nome" class="text-danger"></span>
+                            </div>
+                            <div class="col-6">
+                                <label>Opzioni</label>
+                                <div class="panel panel-default">
+                                    <div class="panel-body form-horizontal payment-form">
+                                        <div class="form-group" style="padding-left:1em">
+                                            <h4>Tecniche di Scan</h4>
+                                            <div class="row">
+                                                <div class="col-md-4">
+                                                    @{ var mySYNScan = (Model as webmva.Models.ModuloNMAP).SYNScan;}
+                                                    <label>
+                                                        <input type="checkbox" asp-for="@mySYNScan" name="nmap" value="-sS">
+                                                        SYN scan
+                                                    </label>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    @{ var myTCPConnectScan = (Model as webmva.Models.ModuloNMAP).TCPConnectScan;}
+                                                    <label>
+                                                        <input type="checkbox" asp-for="@myTCPConnectScan" name="nmap" value="-sS">
+                                                        TCP Connect Scan
+                                                    </label>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    @{ var myUDPScan = (Model as webmva.Models.ModuloNMAP).UDPScan;}
+                                                    <label>
+                                                        <input type="checkbox" asp-for="@myUDPScan" name="nmap" value="-sU">
+                                                        UDP Scan
+                                                    </label>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-4">
+                                                    @{ var myACKScan = (Model as webmva.Models.ModuloNMAP).ACKScan;}
+                                                    <label>
+                                                        <input type="checkbox" asp-for="@myACKScan" name="nmap" value="-sS">
+                                                        ACK Scan
+                                                    </label>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    @{ var myWindowPortScan = (Model as webmva.Models.ModuloNMAP).WindowPortScan;}
+                                                    <label>
+                                                        <input type="checkbox" asp-for="@myWindowPortScan" name="nmap" value="-sS">
+                                                        Window Port Scan
+                                                    </label>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    @{ var myMaimonScan = (Model as webmva.Models.ModuloNMAP).MaimonScan;}
+                                                    <label>
+                                                        <input type="checkbox" asp-for="@myMaimonScan" name="nmap" value="-sS">
+                                                        Maimon Scan
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group" style="padding-left:1em">
+                                            <h4>Host Discovery</h4>
+                                            <div class="row">
+                                                <div class="col-md-4">
+                                                    @{ var myNoScan = (Model as webmva.Models.ModuloNMAP).NoScan;}
+                                                    <label>
+                                                        <input type="checkbox" asp-for="@myNoScan" name="nmap" value="-sS">
+                                                        No scan (solo lista host)
+                                                    </label>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    @{ var myNoPortScan = (Model as webmva.Models.ModuloNMAP).NoPortScan;}
+                                                    <label>
+                                                        <input type="checkbox" asp-for="@myNoPortScan" name="nmap" value="-sS">
+                                                        No Port Scan
+                                                    </label>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    @{ var myNoHostDiscovery = (Model as webmva.Models.ModuloNMAP).NoHostDiscovery;}
+                                                    <label>
+                                                        <input type="checkbox" asp-for="@myNoHostDiscovery" name="nmap" value="-sU">
+                                                        No Host Discovery
+                                                    </label>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-4">
+                                                    @{ var mySynDiscPorts = (Model as webmva.Models.ModuloNMAP).SynDiscoveryPorts;}
+                                                    <label>
+                                                        <input type="text" asp-for="@mySynDiscPorts" name="nmap" placeholder="Es: 22,25,400-500">
+                                                        SYN Discovery Ports
+                                                    </label>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    @{ var myAckDiscPorts = (Model as webmva.Models.ModuloNMAP).AckDiscoveryPorts;}
+                                                    <label>
+                                                        <input type="text" asp-for="@myAckDiscPorts" name="nmap" placeholder="Es: 22,25,400-500">
+                                                        ACK Discovery Ports
+                                                    </label>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    @{ var myUdpDiscPort = (Model as webmva.Models.ModuloNMAP).UdpDiscoveryPorts;}
+                                                    <label>
+                                                        <input type="text" asp-for="@myUdpDiscPort" name="nmap" placeholder="Es: 22,25,400-500">
+                                                        UDP Discovery Ports
+                                                    </label>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-4">
+                                                    @{ var myArpDiscovery = (Model as webmva.Models.ModuloNMAP).ArpDiscovery;}
+                                                    <label>
+                                                        <input type="checkbox" asp-for="@myArpDiscovery" name="nmap">
+                                                        ARP Discovery
+                                                    </label>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    @{ var myNoDNS = (Model as webmva.Models.ModuloNMAP).NoDNSResolution;}
+                                                    <label>
+                                                        <input type="checkbox" asp-for="@myNoDNS" name="nmap">
+                                                        No DNS Resolution
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group" style="padding-left:1em">
+                                            <h4>Porte</h4>
+                                            <div class="row">
+                                                <div class="col-md-4">
+                                                    @{ var myListSpecPort = (Model as webmva.Models.ModuloNMAP).ListSpecificPort;}
+                                                    <label>
+                                                        <input type="text" asp-for="@myListSpecPort" name="nmap" placeholder="Es: 22,25,400-500">
+                                                        Porte specifiche
+                                                    </label>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    @{ var myScanAll = (Model as webmva.Models.ModuloNMAP).ScanAllPorts;}
+                                                    <label>
+                                                        <input type="checkbox" asp-for="@myScanAll" name="nmap">
+                                                        Scan su tutte le porte TCP
+                                                    </label>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    @{ var myFastScan = (Model as webmva.Models.ModuloNMAP).FastScan;}
+                                                    <label>
+                                                        <input type="checkbox" asp-for="@myFastScan" name="nmap">
+                                                        Fast Scan
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group" style="padding-left:1em">
+                                            <h4>Scoperta servizi e versioni</h4>
+                                            <div class="row">
+                                                <div class="col-md-4">
+                                                    @{ var myServVer = (Model as webmva.Models.ModuloNMAP).ServiceVersion;}
+                                                    <label>
+                                                        <input type="checkbox" asp-for="@myServVer" name="nmap">
+                                                        Prova a scoprire la versione del servizio
+                                                    </label>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    @{ var mySerVerIntensity = (Model as webmva.Models.ModuloNMAP).ServiceVersionIntensity;}
+                                                    <label>
+                                                        <input type="number" asp-for="@mySerVerIntensity" name="nmap" placeholder="Valori da 0 a 9">
+                                                        Intensità con cui provare a scoprire la versione del servizio
+                                                    </label>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    @{ var myOSDet = (Model as webmva.Models.ModuloNMAP).OSdetection;}
+                                                    <label>
+                                                        <input type="checkbox" asp-for="@myOSDet" name="nmap">
+                                                        Scoperta OS tramite fingerprint TCP
+                                                    </label>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-4">
+                                                    @{ var myOsDetAggr = (Model as webmva.Models.ModuloNMAP).OSDetectionAggressive;}
+                                                    <label>
+                                                        <input type="checkbox" asp-for="@myOsDetAggr" name="nmap">
+                                                        Scoperta OS aggressiva
+                                                    </label>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    @{ var myAllDet = (Model as webmva.Models.ModuloNMAP).AllDetections;}
+                                                    <label>
+                                                        <input type="number" asp-for="@myAllDet" name="nmap">
+                                                        Tutte le prove di scoperta possibili
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group" style="padding-left:1em">
+                                            <h4>Timing</h4>
+                                            <div class="row">
+                                                <div class="col-md-4">
+                                                    @{ var myVelocita = (Model as webmva.Models.ModuloNMAP).Velocita;}
+                                                    <label>
+                                                        <input type="number" asp-for="@myVelocita" name="nmap" placeholder="Numeri da 1 a 5">
+                                                        Velocità della scannerizzazione
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <br>
+                                        @{ var comandoNMAP = (Model as webmva.Models.ModuloNMAP).Comando;}
+                                        <input type="text" asp-for="@comandoNMAP" class="form-control">
+                                        <br>
+                                        <div class="col text-right">
+                                            <input type="submit" value="Salva" class="btn btn-default" /> | 
+                                            <a asp-action="Index">Back to List</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <div class="col-md-7">
-                    <div class=" panel-body">
-                        <label>Comando</label>
-                        <input type="text" class="form-control" asp-for="Comando" asp-validation-for="Comando">
+            </form>
+
+        }
+        @* -----NMAP----- *@
+        else if (nessus)
+        {
+            <form asp-action="Edit" name="nessusForm">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <input type="hidden" asp-for="ID" />
+                <div class="panel panel-default col-md-10">
+                    <div class="container">
+                        <div class="form-group col-lg-10 ">
+                            <div class="col-md-7">
+                                <div class="panel-body">
+                                    <label>Nome</label>
+                                    <input type="text" class="form-control" asp-for="Nome" asp-validation-for="Nome">
+                                </div>
+                            </div>
+                            <div class="col-md-7">
+                                <div class=" panel-body">
+                                    <label>Comando</label>
+                                    <input type="text" class="form-control" asp-for="Comando" asp-validation-for="Comando">
+                                </div>
+                            </div>
+
+                            <div class="col-md-9 text-right">
+                                <div class="form-group">
+                                    <input type="submit" value="Save" class="btn btn-default" /> |
+                                    <a asp-action="Index">Back to List</a>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                
-                <div class="col-md-9 text-right">
-                    <div class="form-group">
-                        <input type="submit" value="Save" class="btn btn-default" /> |
-                        <a asp-action="Index">Back to List</a>
-                    </div>
-                </div>
-                </div>
-            </div>
-    </form>
-    </div>
-    
+            </form>
+
+        }
+    }
+
 </div>

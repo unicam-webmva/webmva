@@ -74,18 +74,18 @@ namespace webmva.Models
         public bool AllDetections { get { return _allDet; } set { _allDet = value; } } //-A comprende OS detection, version detection, script scanning e traceroute
 
         // TIMING
-        private int _livParanoia = 3; //default per nmap
-        public int LivelloParanoia
+        private int _velocita = 3; //default per nmap
+        public int Velocita
         {
             get
             {
-                return _livParanoia;
+                return _velocita;
             }
             set
             {
                 if (value > 5 || value < 0) throw new ArgumentOutOfRangeException("value",
-                                  "Il valore di LivelloParanoia deve essere compreso tra 0 e 5");
-                _livParanoia = value;
+                                  "Il valore di Velocita deve essere compreso tra 0 e 5");
+                _velocita = value;
             }
         } //-TNum (Num da 0 a 5)
 
@@ -135,7 +135,7 @@ namespace webmva.Models
                         if (OSdetection) risultato += " -O";
                         if (OSDetectionAggressive) risultato += " --ososcan-guess";
                     }
-                    if (LivelloParanoia != 3) risultato += " -T" + LivelloParanoia;
+                    if (Velocita != 3) risultato += " -T" + Velocita;
                     if (Fragmented) risultato += " -f";
                     if (!string.IsNullOrEmpty(SendScansFromSpoofedIP)) risultato += "-D " + SendScansFromSpoofedIP;
                     if (IPv6Scan) risultato += " -6";
