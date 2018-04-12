@@ -1,35 +1,38 @@
 @model IEnumerable<webmva.Models.Progetto>
 
-    @{ ViewData["Title"] = "Progetti"; }
-    <div class="container">
+@{ ViewData["Title"] = "Progetti"; }
+
+<div class="container">
+    <div class="row">
         <h2>Progetti</h2>
         <p class="lead">
             I progetti presenti sono questi! Per creare un nuovo progetto <a href="/Progetto/Create">clicca qui </a>!
         </p>
         <!--rivedere-->
         <hr />
-            <div class="panel panel-default col-md-9 col-md-offset-1">
-                <table class="table">
-                    <div class="method">
-                        <thead>
-                            <tr>
-                                <th>
-                                    @Html.DisplayNameFor(model => model.Nome)
-                                </th>
-                                 <th>
-                                    @Html.DisplayNameFor(model => model.Data)
-                                </th>
-                                <th></th>
-                            </tr>
-                        </thead>
-                    </div>
-                    <tbody>
-                        @foreach (var item in Model) {
+        <div class="panel panel-default col-md-9 col-md-offset-1">
+            <table class="table">
+                <div class="method">
+                    <thead>
+                        <tr>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Nome)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Data)
+                            </th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                </div>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
                         <tr>
                             <td>
                                 @Html.DisplayFor(modelItem => item.Nome)
                             </td>
-<td>
+                            <td>
                                 @Html.DisplayFor(modelItem => item.Data)
                             </td>
                             <td>
@@ -41,8 +44,9 @@
                             </td>
 
                         </tr>
-                        }
-                    </tbody>
-                </table>
-            </div>
+                    }
+                </tbody>
+            </table>
         </div>
+    </div>
+</div>
