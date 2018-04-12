@@ -47,25 +47,6 @@ namespace webmva.Models
         // SERVIZI E VERSIONI
         private bool _version = false;
         public bool ServiceVersion { get { return _version; } set { _version = value; } } //-sV
-        private int _serviceVerInt = -1;
-        public int ServiceVersionIntensity
-        {
-            get
-            {
-                return _serviceVerInt;
-            }
-            set
-            {
-                if (value == -1) _serviceVerInt = value;
-                else
-                {
-                    if (ServiceVersion.Equals(false)) ServiceVersion = true;
-                    if (value > 9 || value < 0) throw new ArgumentOutOfRangeException("value",
-                                  "Il valore di ServiceVersionIntensity deve essere compreso tra 0 e 9");
-                    _serviceVerInt = value;
-                }
-            }
-        } //--version-intensity NUM (da 0 a 9)
         private bool _osDet = false;
         public bool OSdetection { get { return _osDet; } set { _osDet = value; } } //-O
         private bool _osAggr = false;
@@ -131,7 +112,6 @@ namespace webmva.Models
                     else
                     {
                         if (ServiceVersion) risultato += " -sV";
-                        if (ServiceVersionIntensity != -1) risultato += " --version-intensity " + ServiceVersionIntensity;
                         if (OSdetection) risultato += " -O";
                         if (OSDetectionAggressive) risultato += " --ososcan-guess";
                     }
