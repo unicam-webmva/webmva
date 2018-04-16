@@ -1,43 +1,148 @@
 @model webmva.Models.Progetto 
-@{ ViewData["Title"] = "Delete"; }
+@{ ViewData["Title"] = "Delete"; 
+var contNMAP = 0;
+var contNessus= 0;
+var contOpenVAS = 0;}
 
-
-
-<h3>Sei sicuro di voler cancellare @Html.DisplayFor(model => model.Nome)?</h3>
-<hr/>
-<div class="col-md-8 col-md-offset-2">
-    <form asp-action="Delete">
+<h2>Sei sicuro di voler cancellare il progetto @Html.DisplayFor(model => model.Nome) ? </h2>
+<hr />
+<div class="container">
+<div class="row panel panel-default col-md-9">
+ <form asp-action="Delete">
         <input type="hidden" asp-for="ID" />
-        <div class="panel panel-default col-md-10">
-            <div class="container">
-                <div class="form-group">
-                    <div class="col-md-7">
-                        <dl class="dl-horizontal"><br>
+        <div class="col-10">
+            <div class="form-group">
+                
+                    <dl class="dl-horizontal">
+                        <div class="panel-body">
+
                             <dt>
-                                    <strong> Nome : </strong>
+                                <strong> Nome del Progetto </strong>
                             </dt>
                             <dd>
                                 @Html.DisplayFor(model => model.Nome)
-                            </dd>
+                            </dd><hr>
+                            
+                         <dt>
+                            <strong>  Descrizione </strong>
+                        </dt>
+                         <dd> 
+                       
+                         @Html.DisplayFor(model => model.Descrizione)
+                        
+                    </dd> <hr>
                             <dt>
-                                    <strong> Data : </strong>
+                                <strong> Taget </strong>
                             </dt>
-                            <dt>
-                                    <strong> Codice : </strong>
-                            </dt>
-                            <dt>
-                                    <strong> Descrizione : </strong>
-                            </dt>
-                        </dl>
-                    </div>
-                    <div class="col-xs-6  text-right">
-                        <div class="form-group">
-                            <input type="submit" value="Delete" class="btn btn-default" /> |
-                            <a asp-action="Index">Back to List</a>
+                            <dd>
+                                @Html.DisplayFor(model => model.Target)
+                            </dd><hr>
                         </div>
-                    </div>
+                        <dt>
+                            <strong>  Moduli selezionati </strong>
+                        </dt>
+                        @foreach(var item in Model.ModuliProgetto) {
+                            
+                            if(item.Modulo is webmva.Models.ModuloNMAP) {contNMAP++;}
+                            if(item.Modulo is webmva.Models.ModuloNESSUS) {contNessus++;}
+                            if(item.Modulo is webmva.Models.ModuloNMAP) {contOpenVAS++;}
+                        }
+                        @if(contNMAP!=0){
+                                
+                            <dd>nmap</dd>
+                            <dd>
+                            <table class="table">
+                                <tr>
+                                    <th> </th>
+                                    <th>Modulo</th>
+                                    <th>Comando</th>
+                                </tr>
+                               @foreach (var item in Model.ModuliProgetto) {
+                            
+                                @if(item.Modulo is webmva.Models.ModuloNMAP){
+                                <tr>
+                                <td></td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Modulo.Nome)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Modulo.Comando)
+                                    </td>
+                                </tr>
+                               
+                                }
+                            }
+                                </table>
+                                </dd>    
+                        }  
+                         @if(contNessus!=0){
+                                
+                            <dd>nessus</dd>
+                            <dd>
+                            <table class="table">
+                                <tr>
+                                    <th> </th>
+                                    <th>Modulo</th>
+                                    <th>Comando</th>
+                                </tr>
+                        @foreach (var item in Model.ModuliProgetto) {
+                            
+                                @if(item.Modulo is webmva.Models.ModuloNESSUS){
+                                <tr>
+                                <td></td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Modulo.Nome)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Modulo.Comando)
+                                    </td>
+                                </tr>
+                               
+                                }
+                                }
+                                </table>
+                                </dd>    
+                        }
+                        @if(contOpenVAS!=0){
+                                
+                            <dd>openvas</dd>
+                            <dd>
+                            <table class="table">
+                                <tr>
+                                    <th> </th>
+                                    <th>Modulo</th>
+                                    <th>Comando</th>
+                                </tr>
+                        @foreach (var item in Model.ModuliProgetto) {
+                            
+                                @if(item.Modulo is webmva.Models.ModuloNMAP){
+                                <tr>
+                                <td></td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Modulo.Nome)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Modulo.Comando)
+                                    </td>
+                                </tr>
+                               
+                                }
+                                }
+                                </table>
+                                </dd>    
+                        }  
+                                
+            <div class="container text-right">
+                    <div class="form-group col-sm-6 ">
+                        <input type="submit"  class="btn btn-default"asp-action="Delete" asp-route-id="@Model.ID" value="Cancella"> |
+                        <a asp-action="Index"> Back to List</a>
+                   </div>
                 </div>
             </div>
         </div>
-    </form>
-</div>
+ </form>
+    </div>
+    
+    </div>
+   
+  

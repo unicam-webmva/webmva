@@ -8,14 +8,14 @@ using Microsoft.EntityFrameworkCore.Storage.Internal;
 using Microsoft.EntityFrameworkCore.ValueGeneration;
 using System;
 using webmva.Data;
-using webmva.Models;
 
 namespace webmva.Migrations
 {
     [DbContext(typeof(MyDbContext))]
-    partial class MyDbContextModelSnapshot : ModelSnapshot
+    [Migration("20180416095555_Inheritance")]
+    partial class Inheritance
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -43,8 +43,6 @@ namespace webmva.Migrations
                 {
                     b.Property<int>("ID")
                         .ValueGeneratedOnAdd();
-
-                    b.Property<int>("Applicazione");
 
                     b.Property<string>("Discriminator")
                         .IsRequired();
@@ -91,6 +89,8 @@ namespace webmva.Migrations
                 {
                     b.HasBaseType("webmva.Models.Modulo");
 
+                    b.Property<bool>("ACKScan");
+
                     b.Property<string>("AckDiscoveryPorts");
 
                     b.Property<bool>("AllDetections");
@@ -109,15 +109,23 @@ namespace webmva.Migrations
 
                     b.Property<string>("ListSpecificPort");
 
+                    b.Property<int>("LivelloParanoia");
+
+                    b.Property<bool>("MaimonScan");
+
                     b.Property<bool>("NoDNSResolution");
 
                     b.Property<bool>("NoHostDiscovery");
 
-                    b.Property<int>("NonTCPScan");
+                    b.Property<bool>("NoPortScan");
+
+                    b.Property<bool>("NoScan");
 
                     b.Property<bool>("OSDetectionAggressive");
 
                     b.Property<bool>("OSdetection");
+
+                    b.Property<bool>("SYNScan");
 
                     b.Property<bool>("ScanAllPorts");
 
@@ -125,13 +133,17 @@ namespace webmva.Migrations
 
                     b.Property<bool>("ServiceVersion");
 
+                    b.Property<int>("ServiceVersionIntensity");
+
                     b.Property<string>("SynDiscoveryPorts");
 
-                    b.Property<int>("TCPScan");
+                    b.Property<bool>("TCPConnectScan");
 
-                    b.Property<int>("Tempo");
+                    b.Property<bool>("UDPScan");
 
                     b.Property<string>("UdpDiscoveryPorts");
+
+                    b.Property<bool>("WindowPortScan");
 
                     b.ToTable("ModuloNMAP");
 
