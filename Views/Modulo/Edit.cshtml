@@ -4,19 +4,20 @@
     bool nessus = Model.NESSUS != null;
 }
 
-<h2>Modifica modulo</h2>
-<hr />
+
 @{
     @* -----NMAP----- *@
     if (nmap)
     {
+        <h2>Modifica modulo @(Model.NMAP.Nome)</h2>
+        <hr />
         <form asp-action="Edit" name="nmapForm">
             <div class="row panel panel-default panel-body">
 
                 <div class="col-sm-12">
                     <div class="col-sm-7" style="margin:0 auto; float:none">
                         <div class="form-group">
-                            <h4 asp-for="@(Model.NMAP.Nome)">Nome Modulo</h4>
+                            <h4 asp-for="@(Model.NMAP.Nome)">Nome Modulo  </h4>
                             <input class="form-control" asp-for="@(Model.NMAP.Nome)" />
                         </div>
                         <input type="hidden" asp-for="@Model.NMAP.ID" />
@@ -190,9 +191,10 @@
                                     </div>
                                 </div>
                             </div>
-                        </div> 			                   <div class="col-sm-6 col-sm-offset-6 text-right">
+                        </div> 			                   
+                        <div class="col-md-6">
                             <div class="form-group">
-                                <input type="submit" asp-action="Edit" class="btn btn-default" asp-route-id="@Model.NMAP.ID" value="Salva" />&nbsp;&nbsp;
+                                <input type="submit" asp-action="Edit" class="btn btn-default" asp-route-id="@Model.NMAP.ID" value="Salva" />&nbsp;|&nbsp;
                                 <a asp-action="Index"> Back to List</a>
                             </div>
                         </div>
@@ -203,5 +205,8 @@
     }
     @* -----NESSUS----- *@
     else if (nessus)
-    { }
+    {
+         <h2>Modifica modulo @(Model.NESSUS.Nome)</h2>
+        <hr />
+     }
 }
