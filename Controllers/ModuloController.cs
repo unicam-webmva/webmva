@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using webmva.Data;
 using webmva.Models;
+using webmva.ViewModels;
 
 namespace webmva.Controllers_
 {
@@ -22,7 +23,9 @@ namespace webmva.Controllers_
         // GET: Modulo
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Moduli.ToListAsync());
+            var listaNMAP = await _context.Moduli.Where(modulo => modulo.Applicazione == APPLICAZIONE.NMAP).ToListAsync();
+            var listaNESSUS = await _context.Moduli.Where(modulo => modulo.Applicazione == APPLICAZIONE.NESSUS).ToListAsync();
+            return View(new ListaModuliVM { ModuliNMAP = listaNMAP, ModuliNESSUS= listaNESSUS });
         }
 
         // GET: Modulo/Details/5
@@ -49,16 +52,32 @@ namespace webmva.Controllers_
             return View();
         }
 
-        // POST: Modulo/Create
+        // POST: Modulo/CreateNMAP
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ID,Nome,Comando,Tipo,Applicazione")] Modulo modulo)
+        public async Task<IActionResult> CreateNMAP([Bind("ID,Nome,Applicazione,TCPScan,NonTCPScan,NoHostDiscovery,SynDiscoveryPorts,AckDiscoveryPorts,UdpDiscoveryPorts,ArpDiscovery,NoDNSResolution,ListSpecificPort,ScanAllPorts,FastScan,ServiceVersion,OSdetection,OSDetectionAggressive,AllDetections,Tempo,Fragmented,IPv6Scan,IncreaseVerbosity,ComandoPersonalizzato")] ModuloNMAP modulo)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(modulo);
+                _context.Moduli.Add(modulo);
+                await _context.SaveChangesAsync();
+                return RedirectToAction(nameof(Index));
+            }
+            return View(modulo);
+        }
+
+        // POST: Modulo/CreateNESSUS
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> CreateNESSUS([Bind("ID,Nome,Applicazione,JSON")] ModuloNESSUS modulo)
+        {
+            if (ModelState.IsValid)
+            {
+                _context.Moduli.Add(modulo);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
@@ -78,15 +97,89 @@ namespace webmva.Controllers_
             {
                 return NotFound();
             }
-            return View(modulo);
+            if (modulo is ModuloNMAP)
+                return View(new EditModuloVM { NMAP = (ModuloNMAP)modulo });
+            else if (modulo is ModuloNESSUS)
+                return View(new EditModuloVM { NESSUS = (ModuloNESSUS)modulo });
+            // PROVVISORIO, SOLO PER NON DARE ERRORI DI COMPILAZIONE
+            else return View(new EditModuloVM { NMAP = (ModuloNMAP)modulo });
         }
 
-        // POST: Modulo/Edit/5
+        // POST: Modulo/EditNMAP/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("ID,Nome,Comando,Tipo,Applicazione")] Modulo modulo)
+        public async Task<IActionResult> Edit(int id, EditModuloVM editmodulo)
+        {
+
+            if (editmodulo.NMAP != null)
+            {
+                ModuloNMAP mod = editmodulo.NMAP;
+                if (id != mod.ID)
+                {
+                    return NotFound();
+                }
+
+                if (ModelState.IsValid)
+                {
+                    try
+                    {
+                        _context.Update(mod);
+                        await _context.SaveChangesAsync();
+                    }
+                    catch (DbUpdateConcurrencyException)
+                    {
+                        if (!ModuloExists(mod.ID))
+                        {
+                            return NotFound();
+                        }
+                        else
+                        {
+                            throw;
+                        }
+                    }
+                    return RedirectToAction(nameof(Index));
+                }
+            }
+            else if (editmodulo.NESSUS!= null)
+            {
+                ModuloNESSUS mod = editmodulo.NESSUS;
+                if (id != mod.ID)
+                {
+                    return NotFound();
+                }
+
+                if (ModelState.IsValid)
+                {
+                    try
+                    {
+                        _context.Update(mod);
+                        await _context.SaveChangesAsync();
+                    }
+                    catch (DbUpdateConcurrencyException)
+                    {
+                        if (!ModuloExists(mod.ID))
+                        {
+                            return NotFound();
+                        }
+                        else
+                        {
+                            throw;
+                        }
+                    }
+                    return RedirectToAction(nameof(Index));
+                }
+            }
+            return View(editmodulo);
+        }
+
+        // POST: Modulo/EditNMAP/5
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> EditNESSUS(int id, [Bind("ID,Nome,Applicazione,JSON")] ModuloNESSUS modulo)
         {
             if (id != modulo.ID)
             {
@@ -113,7 +206,7 @@ namespace webmva.Controllers_
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(modulo);
+            return View(new EditModuloVM { NESSUS = modulo });
         }
 
         // GET: Modulo/Delete/5

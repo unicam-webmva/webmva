@@ -14,12 +14,12 @@ namespace webmva.Data
             { return; }
             var moduli = new Modulo[]
             {
-            new ModuloNMAP{Nome="Ping Scan", NonTCPScan=NONTCPSCAN.NOPORT}, //-sn
-            new ModuloNMAP{Nome="Scan Veloce",Tempo = TEMPI.QUATTRO, FastScan=true}, // -T4 -F
-            new ModuloNMAP{Nome="Scan Intenso",Tempo = TEMPI.QUATTRO, AllDetections=true, IncreaseVerbosity=true }, // -T4 -A -v
-            new ModuloNMAP{Nome="Scan Porte UDP", TCPScan=TCPSCAN.SYN, NonTCPScan=NONTCPSCAN.UDP}, //-sS -sU
-            new ModuloNMAP{Nome="Scan All TCP", ListSpecificPort="1-65535"}, // -p 1-65535
-            new ModuloNESSUS{Nome="TestNessus", JSON="prova"}
+            new ModuloNMAP{Applicazione = APPLICAZIONE.NMAP,Nome="Ping Scan", NonTCPScan=NONTCPSCAN.NOPORT}, //-sn
+            new ModuloNMAP{Applicazione = APPLICAZIONE.NMAP,Nome="Scan Veloce",Tempo = TEMPI.QUATTRO, FastScan=true}, // -T4 -F
+            new ModuloNMAP{Applicazione = APPLICAZIONE.NMAP,Nome="Scan Intenso",Tempo = TEMPI.QUATTRO, AllDetections=true, IncreaseVerbosity=true }, // -T4 -A -v
+            new ModuloNMAP{Applicazione = APPLICAZIONE.NMAP,Nome="Scan Porte UDP", TCPScan=TCPSCAN.SYN, NonTCPScan=NONTCPSCAN.UDP}, //-sS -sU
+            new ModuloNMAP{Applicazione = APPLICAZIONE.NMAP,Nome="Scan All TCP", ListSpecificPort="1-65535"}, // -p 1-65535
+            new ModuloNESSUS{Applicazione = APPLICAZIONE.NESSUS,Nome="TestNessus", JSON="prova"}
             };
             foreach (Modulo m in moduli)
             { context.Moduli.Add(m); }
