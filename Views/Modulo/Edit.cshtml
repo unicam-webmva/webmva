@@ -191,11 +191,11 @@
                                     </div>
                                 </div>
                             </div>
-                        </div> 			                   
+                        </div>
                         <div class="col-md-6">
                             <div class="form-group">
                                 <input type="submit" asp-action="Edit" class="btn btn-default" asp-route-id="@Model.NMAP.ID" value="Salva" />&nbsp;|&nbsp;
-                                <a asp-action="Index"> Back to List</a>
+                                <a asp-action="Index"> Torna alla lista</a>
                             </div>
                         </div>
                     </div>
@@ -206,7 +206,8 @@
     @* -----NESSUS----- *@
     else if (nessus)
     {
-         <h2>Modifica modulo @(Model.NESSUS.Nome)</h2>
+        <h2>Modifica modulo @(Model.NESSUS.Nome)</h2>
         <hr />
-     }
+        <a asp-action="Index"> Torna alla lista</a>
+    }
 }
