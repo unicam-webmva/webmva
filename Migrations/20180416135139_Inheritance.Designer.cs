@@ -13,7 +13,7 @@ using webmva.Models;
 namespace webmva.Migrations
 {
     [DbContext(typeof(MyDbContext))]
-    [Migration("20180416092511_Inheritance")]
+    [Migration("20180416135139_Inheritance")]
     partial class Inheritance
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -65,6 +65,8 @@ namespace webmva.Migrations
                         .ValueGeneratedOnAdd();
 
                     b.Property<DateTime>("Data");
+
+                    b.Property<string>("Descrizione");
 
                     b.Property<string>("Nome");
 

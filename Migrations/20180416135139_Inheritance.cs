@@ -52,6 +52,7 @@ namespace webmva.Migrations
                     ID = table.Column<int>(nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
                     Data = table.Column<DateTime>(nullable: false),
+                    Descrizione = table.Column<string>(nullable: true),
                     Nome = table.Column<string>(nullable: true),
                     Target = table.Column<string>(nullable: true)
                 },
