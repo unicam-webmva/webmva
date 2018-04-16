@@ -7,11 +7,11 @@ var contOpenVAS = 0;}
 <h2>Sei sicuro di voler cancellare il progetto @Html.DisplayFor(model => model.Nome) ? </h2>
 <hr />
 <div class="container">
-<div class="row panel panel-default col-md-9">
+<div class="row panel panel-default">
  <form asp-action="Delete">
         <input type="hidden" asp-for="ID" />
         <div class="col-10">
-            <div class="form-group">
+            <div class="form-group col-10">
                 
                     <dl class="dl-horizontal">
                         <div class="panel-body">
@@ -49,7 +49,7 @@ var contOpenVAS = 0;}
                         }
                         @if(contNMAP!=0){
                                 
-                            <dd>nmap</dd>
+                            <dd><strong>Nmap</strong></dd>
                             <dd>
                             <table class="table">
                                 <tr>
@@ -77,7 +77,7 @@ var contOpenVAS = 0;}
                         }  
                          @if(contNessus!=0){
                                 
-                            <dd>nessus</dd>
+                             <dd><strong>Nessus</strong></dd>
                             <dd>
                             <table class="table">
                                 <tr>
@@ -105,7 +105,7 @@ var contOpenVAS = 0;}
                         }
                         @if(contOpenVAS!=0){
                                 
-                            <dd>openvas</dd>
+                             <dd><strong>OpenVAS</strong></dd>
                             <dd>
                             <table class="table">
                                 <tr>
