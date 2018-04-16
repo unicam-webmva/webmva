@@ -132,6 +132,9 @@ namespace webmva.Controllers_
             }
 
             var progetto = await _context.Progetti
+                .Include(list => list.ModuliProgetto)
+                    .ThenInclude(mod => mod.Modulo)
+                .AsNoTracking()
                 .SingleOrDefaultAsync(m => m.ID == id);
             if (progetto == null)
             {
@@ -148,6 +151,8 @@ namespace webmva.Controllers_
         {
             var progetto = await _context.Progetti.SingleOrDefaultAsync(m => m.ID == id);
             _context.Progetti.Remove(progetto);
+            var listaRecord = await _context.ModuliProgetto.Where(riga =>riga.ProgettoID == id).ToListAsync();
+            _context.ModuliProgetto.RemoveRange(listaRecord);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }

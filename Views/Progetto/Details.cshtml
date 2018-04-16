@@ -1,16 +1,16 @@
 @model webmva.Models.Progetto 
 @{ ViewData["Title"] = "Dettagli"; 
 var contNMAP = 0;
-                            var contNessus= 0;
-                            var contOpenVAS = 0;}
-
+var contNessus= 0;
+var contOpenVAS = 0;}
+<form name="modulo">
 <h2>Dettagli @Html.DisplayFor(model => model.Nome)</h2>
 <hr />
 <div class="container">
     <div class="panel panel-default">
-        <div class="col-md-10">
+        <div class="col-10">
             <div class="form-group">
-                <div class="col-md-7">
+                
                     <dl class="dl-horizontal">
                         <div class="panel-body">
 
@@ -20,6 +20,15 @@ var contNMAP = 0;
                             <dd>
                                 @Html.DisplayFor(model => model.Nome)
                             </dd><hr>
+                            
+                         <dt>
+                            <strong>  Descrizione </strong>
+                        </dt>
+                         <dd> 
+                       
+                         @Html.DisplayFor(model => model.Descrizione)
+                        
+                    </dd> <hr>
                             <dt>
                                 <strong> Taget </strong>
                             </dt>
@@ -122,28 +131,15 @@ var contNMAP = 0;
                         }  
                                 
                                 
-                         <dd> 
-                         <dt>
-                            <strong>  Descrizione </strong>
-                        </dt>
-                        
-                       <table class="table">
-                         <td>
-                                        @Html.DisplayFor(model => model.Descrizione)
-                                     </td>
-                                   </table>
-                                   
-                    </dl>
-                    </dd> 
-                </div>
-                <div class="col-md-5 text-right">
-                    <div class="form-group">
-                        <a asp-action="Edit" asp-route-id="@Model.ID">Edit </a>|
+            <div class="container">
+                    <div class="form-group col-sm-6 ">
+                        <a  class="btn btn-default"asp-action="Edit" asp-route-id="@Model.ID"> Modifica </a> |
                         <a asp-action="Index"> Back to List</a>
-                    </div>
+                   </div>
                 </div>
             </div>
         </div>
 
     </div>
     </div>
+    </form>
