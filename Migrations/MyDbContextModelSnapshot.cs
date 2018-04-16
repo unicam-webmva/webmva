@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage;
+using Microsoft.EntityFrameworkCore.Storage.Internal;
 using Microsoft.EntityFrameworkCore.ValueGeneration;
 using System;
 using webmva.Data;
@@ -59,7 +60,13 @@ namespace webmva.Migrations
                     b.Property<int>("ID")
                         .ValueGeneratedOnAdd();
 
+                    b.Property<DateTime>("Data");
+
+                    b.Property<string>("Descrizione");
+
                     b.Property<string>("Nome");
+
+                    b.Property<string>("Target");
 
                     b.HasKey("ID");
 
@@ -88,6 +95,8 @@ namespace webmva.Migrations
                     b.Property<bool>("AllDetections");
 
                     b.Property<bool>("ArpDiscovery");
+
+                    b.Property<string>("ComandoPersonalizzato");
 
                     b.Property<bool>("FastScan");
 

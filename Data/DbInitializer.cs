@@ -29,7 +29,7 @@ namespace webmva.Data
             { return; }
             var progetti = new Progetto[]
             {
-            new Progetto{Nome="Test1", Data=new DateTime(2018,02,07,12,00,34),Target="90.147.0.0"},
+            new Progetto{Nome="Test1", Data=new DateTime(2018,02,07,12,00,34),Target="90.147.0.0", Descrizione="Questo carattere speciale viene chiamato spazio unificatore perché non indica la fine della linea e impedisce il conseguente ritorno a capo. Utilizzando eccessivamente tale simbolo i browser avrebbero delle difficoltà a inserire correttamente le interruzioni al termine delle linee di testo nel tentativo di renderlo ordinato e leggibile"},
             new Progetto{Nome="Test2", Data=new DateTime(2018,02,15,12,00,34),Target="90.147.0.0"},
             };
             foreach (Progetto p in progetti)
@@ -41,6 +41,7 @@ namespace webmva.Data
             var modProg = new ModuliProgetto[]
             {
             new ModuliProgetto{ModuloID=1,ProgettoID=1},
+             new ModuliProgetto{ModuloID=6,ProgettoID=1},
             new ModuliProgetto{ModuloID=2,ProgettoID=1},
             new ModuliProgetto{ModuloID=2,ProgettoID=2},
             };
