@@ -411,16 +411,13 @@ body,html{
   fieldset{
     border-radius: 5px;
     background:#fefefe;
-    border: 50px solid;
+    border: 2px solid;
     padding: 1% 0%;
     margin:10px 0;
   }
   label{
-    position: relative;
+    /*position: relative;*/
     cursor: pointer;
     color: #666;
-    font-size: 30px;
+    
   }
-
-
-

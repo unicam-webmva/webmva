@@ -1,4 +1,4 @@
-@model IEnumerable<webmva.Models.Modulo>
+@model webmva.ViewModels.ListaModuliVM
 
     @{ ViewData["Title"] = "Moduli"; }
     <div class="container">
@@ -78,10 +78,10 @@
                                     <thead>
                                         <tr>
                                             <th>
-                                                @Html.DisplayNameFor(model => model.Nome)
+                                                Nome
                                             </th>
                                             <th>
-                                                @Html.DisplayNameFor(model => model.Comando)
+                                                Comando
                                             </th>
 
                                             <th></th>
@@ -89,9 +89,7 @@
                                     </thead>
                                 </div>
                                 <tbody>
-                                    @foreach (var item in Model) { 
-                                        var tipo = item.GetType(); 
-                                        if(tipo!= typeof(webmva.Models.ModuloNMAP)){continue;}
+                                    @foreach (var item in Model.ModuliNMAP) { 
                                     <tr>
                                         <td>
                                             @Html.DisplayFor(modelItem => item.Nome)
@@ -131,10 +129,10 @@
                                         <thead>
                                             <tr>
                                                 <th>
-                                                    @Html.DisplayNameFor(model => model.Nome)
+                                                    Nome
                                                 </th>
                                                 <th>
-                                                    @Html.DisplayNameFor(model => model.Comando)
+                                                    Comando
                                                 </th>
     
                                                 <th></th>
@@ -142,10 +140,8 @@
                                         </thead>
                                     </div>
                                     <tbody>
-                                        @foreach (var item in Model) { 
-                                            var tipo = item.GetType(); 
-                                            if(tipo!= typeof(webmva.Models.ModuloNESSUS)){continue;}
-                                        <tr>
+                                        @foreach (var item in Model.ModuliNESSUS) { 
+                                            <tr>
                                             <td>
                                                 @Html.DisplayFor(modelItem => item.Nome)
                                             </td>
@@ -185,10 +181,10 @@
                                             <thead>
                                                 <tr>
                                                     <th>
-                                                        @Html.DisplayNameFor(model => model.Nome)
+                                                        Nome
                                                     </th>
                                                     <th>
-                                                        @Html.DisplayNameFor(model => model.Comando)
+                                                        Comando
                                                     </th>
         
                                                     <th></th>
@@ -196,24 +192,40 @@
                                             </thead>
                                         </div>
                                         <tbody>
-                                            @foreach (var item in Model) { 
-                                                var tipo = item.GetType(); 
-                                                if(tipo!= typeof(webmva.Models.ModuloNMAP)){continue;}
-                                            <tr>
-                                                <td>
-                                                    @Html.DisplayFor(modelItem => item.Nome)
-                                                </td>
-                                                <td>
-                                                    @Html.DisplayFor(modelItem => item.Comando)
-                                                </td>
-                                               
-                                                <td>
-                                                    <a asp-action="Edit" asp-route-id="@item.ID">Modifica</a> |
-                                                    <a asp-action="Details" asp-route-id="@item.ID">Dettagli</a> |
-                                                    <a asp-action="Delete" asp-route-id="@item.ID">Cancella</a>
-                                                </td>
-                                            </tr>
-                                            }
+                                            @foreach (var item in Model.ModuliNMAP)
+    {
+                                        <tr>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.Nome)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.Comando)
+                                            </td>
+
+                                            <td>
+                                                <a asp-action="Edit" asp-route-id="@item.ID">Modifica</a> |
+                                                <a asp-action="Details" asp-route-id="@item.ID">Dettagli</a> |
+                                                <a asp-action="Delete" asp-route-id="@item.ID">Cancella</a>
+                                            </td>
+                                        </tr>
+}
+                                            @foreach (var item in Model.ModuliNESSUS)
+    {
+                                        <tr>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.Nome)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.Comando)
+                                            </td>
+
+                                            <td>
+                                                <a asp-action="Edit" asp-route-id="@item.ID">Modifica</a> |
+                                                <a asp-action="Details" asp-route-id="@item.ID">Dettagli</a> |
+                                                <a asp-action="Delete" asp-route-id="@item.ID">Cancella</a>
+                                            </td>
+                                        </tr>
+}
                                         </tbody>
                                     </table>
         

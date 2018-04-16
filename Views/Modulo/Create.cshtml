@@ -1,4 +1,4 @@
-@model webmva.Models.Modulo 
+@model webmva.ViewModels.EditModuloVM
 @{ ViewData["Title"] = "Crea modulo"; }
 <div class="col-md-2 sidebar">
     <div class="row">
@@ -69,53 +69,194 @@
                     </h4>
                     <hr>
                     <form asp-action="Create" name="nmapForm">
-                        <label asp-for="Nome"></label>
-                        <div class="panel panel-default">
-                            <input asp-for="Nome" class="form-control" />
-                            <span asp-validation-for="Nome" class="text-danger"></span>
-                        </div>
-                        <div class="col-6">
-                            <label>Opzioni</label>
-                            <div class="panel panel-default">
-                                <div class="panel-body form-horizontal payment-form">
-                                    <div class="form-check">
-                                        <label>
-                                            <input type="radio" id="pingScan" name="nmap" value="-sn">
-                                            <span class="label-text">Ping scan </span>
-                                        </label>
+                        <div class="row panel panel-default panel-body">
+
+                            <div class="col-sm-12">
+                                <div class="col-sm-7" style="margin:0 auto; float:none">
+                                    <div class="form-group">
+                                        <h4 asp-for="@(Model.NMAP.Nome)">Nome Modulo</h4>
+                                        <input class="form-control" asp-for="@(Model.NMAP.Nome)"/>
                                     </div>
-                                    <div class="form-check">
-                                        <label>
-                                            <input type="radio" id="scanVeloce" name="nmap" value="-T4 -F">
-                                            <span class="label-text"></span>Scan veloce</span>
-                                        </label>
+                                </div>
+                                
+                                <hr />
+                                <div class="col-sm-12">
+                                    <div class="col-sm-6">
+                                        <h4>Scansione</h4>
+                                        <hr />
+                                        <div class="form-group row">
+                                            <div class="col-sm-4">
+                                                <label class="control-label">TCP</label>
+                                            </div>
+                                            <select class="col-sm-5" asp-for="@Model.NMAP.TCPScan">
+                                                <option value=5>Nessuno</option>
+                                                <option value="0">SYN Scan (-sS)</option>
+                                                <option value="1">ACK Scan (-sA)</option>
+                                                <option value="2">TCP Connection Scan (-sT)</option>
+                                                <option value="3">TCP Window Scan (-sW)</option>
+                                                <option value="4">Maimon Scan (-sM)</option>
+                                            </select>
+                                        </div>
+                                        <div class="form-group row">
+                                            <div class="col-sm-4">
+                                                <label class="control-label">Non-TCP</label>
+                                            </div>
+                                            <select class="col-sm-5" asp-for="@Model.NMAP.NonTCPScan">
+                                                <option value="3">Nessuno</option>
+                                                <option value="0">UDP Scan (-sU)</option>
+                                                <option value="1">Elenco Scansione (-sL)</option>
+                                                <option value="2">No Port Scan (-sn)</option>
+                                            </select>
+                                        </div>
+                                        <div class="form-group row">
+                                            <div class="col-sm-4">
+                                                <label class="control-label">Temporizzazione</label>
+                                            </div>
+                                            <select class="col-sm-5" asp-for="@Model.NMAP.Tempo">
+                                                <option value="0">Paranoico (-T0)</option>
+                                                <option value="1">Subdolo (-T1)</option>
+                                                <option value="2">Educato (-T2)</option>
+                                                <option value="3">Normale, default (-T3)</option>
+                                                <option value="4">Aggressivo (-T4)</option>
+                                                <option value="5">Insano (-T5)</option>
+                                            </select>
+                                        </div>
+                                        <div class="form-group row">
+                                            <div class="col-sm-4">
+                                                <label class="control-label">Lista Porte</label>
+                                            </div>
+                                            <input type="text" class="col-sm-5" placeholder="1,2-5,444" asp-for="@Model.NMAP.ListSpecificPort" />
+                                        </div>
                                     </div>
-                                    <div class="form-check">
-                                        <label>
-                                            <input type="radio" id="scanIntenso" name="nmap" value="-T4 -A -v">
-                                            <span class="label-text">Scan intenso</span>
-                                        </label>
+                                    <div class="col-sm-1"></div>
+                                    <div class="col-sm-5">
+                                        <div class="panel panel-default panel-body">
+                                            <div class="col-sm-12">
+                                                <h4>Opzioni</h4>
+                                                <hr />
+                                                <div class="row">
+                                                    <div class="form-group col-sm-6">
+                                                        <label class="control-label">
+                                                            <input type="checkbox" asp-for="@Model.NMAP.AllDetections" /> Tutte le scoperte (-A)
+                                                        </label>
+                                                    </div>
+                                                    <div class="form-group col-sm-6">
+                                                        <label class="control-label">
+                                                            <input type="checkbox" asp-for="@Model.NMAP.OSdetection" /> Scopri OS (-O)
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="form-group col-sm-6">
+                                                        <label class="control-label">
+                                                            <input type="checkbox" asp-for="@Model.NMAP.NoDNSResolution" /> No DNS Resolution (-n)
+                                                        </label>
+                                                    </div>
+                                                    <div class="form-group col-sm-6">
+                                                        <label class="control-label">
+                                                            <input type="checkbox" asp-for="@Model.NMAP.IPv6Scan" /> IPv6 (-6)
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
                                     </div>
-                                    <div class="form-check">
-                                        <label>
-                                            <input type="radio" id="porteUDP" name="nmap" value="-sS -sU">
-                                            <span class="label-text">Porte UDP</span>
-                                        </label>
+                                </div>
+                                <div class="col-sm-12">
+                                    <hr />
+                                    <div class="col-sm-6">
+                                        <div class="col-sm-12">
+                                            <h4>Ping</h4>
+                                            <hr />
+                                            <div class="form-group row">
+                                                <div class="col-sm-5">
+                                                    <label class="control-label">
+                                                        <input type="checkbox" asp-for="@Model.NMAP.NoHostDiscovery" />
+                                                        No Ping Scan (-Pn)
+                                                    </label>
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <div class="col-sm-4">
+                                                    <label class="control-label">
+                                                        <input type="checkbox" value="-PA" />
+                                                        Ping ACK (-PA)
+                                                    </label>
+                                                </div>
+                                                <input type="text" class="col-sm-6 col-sm-offset-1" placeholder="1,2-5,444" asp-for="@Model.NMAP.AckDiscoveryPorts" />
+                                            </div>
+                                            <div class="form-group row">
+                                                <div class="col-sm-4">
+                                                    <label class="control-label">
+                                                        <input type="checkbox" value="-PS" />
+                                                        Ping SYN (-PS)
+                                                    </label>
+                                                </div>
+                                                <input type="text" class="col-sm-6 col-sm-offset-1" placeholder="1,2-5,444" asp-for="@Model.NMAP.SynDiscoveryPorts" />
+                                            </div>
+                                            <div class="form-group row">
+                                                <div class="col-sm-4">
+                                                    <label class="control-label">
+                                                        <input type="checkbox" value="-PU" />
+                                                        Ping UDP (-PU)
+                                                    </label>
+                                                </div>
+                                                <input type="text" class="col-sm-6 col-sm-offset-1" placeholder="1,2-5,444" asp-for="@Model.NMAP.UdpDiscoveryPorts" />
+                                            </div>
+                                        </div>
                                     </div>
-                                    <div class="form-check">
-                                        <label>
-                                            <input type="radio" id="allTCP" name="nmap" value="-p 1-65535">
-                                            <span class="label-text">Tutte le porte TCP</span>
-                                        </label>
-                                    </div>
-                                    <br>
-                                    <input type="text" asp-for="Comando" class="form-control" id="Comando" name="Comando">
-                                    <br>
-                                    <div class="col text-right">
-                                        <input type="submit" value="Create" class="btn btn-default" />
+                                    <div class="col-sm-1"></div>
+                                    <div class="col-sm-5">
+                                        <div class="col-sm-12">
+                                            <h4>Altro</h4>
+                                            <hr />
+                                            <div class="row">
+                                                <div class="form-group col-sm-6">
+                                                    <label class="control-label">
+                                                        <input type="checkbox" asp-for="@Model.NMAP.Fragmented" /> Frammenta pacchetti (-f)
+                                                    </label>
+                                                </div>
+                                                <div class="form-group col-sm-6">
+                                                    <label class="control-label">
+                                                        <input type="checkbox" asp-for="@Model.NMAP.FastScan" /> Fast Scan (-F)
+                                                    </label>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="form-group col-sm-6">
+                                                    <label class="control-label">
+                                                        <input type="checkbox" asp-for="@Model.NMAP.IncreaseVerbosity" /> Verbosit&agrave; aumentata (-vv)
+                                                    </label>
+                                                </div>
+                                                <div class="form-group col-sm-6">
+                                                    <label class="control-label">
+                                                        <input type="checkbox" asp-for="@Model.NMAP.ServiceVersion" /> Scopri Versione Servizi (-sV)
+                                                    </label>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="form-group col-sm-6">
+                                                    <label class="control-label">
+                                                        <input type="checkbox" asp-for="@Model.NMAP.OSDetectionAggressive" /> Aumenta Aggressivit&agrave; Scoperta OS (--osscan-aggressive)
+                                                    </label>
+                                                </div>
+                                                <div class="form-group col-sm-6">
+                                                    <label class="control-label">
+                                                        <input type="checkbox" asp-for="@Model.NMAP.ArpDiscovery" /> ARP Discovery (-PR)
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div> 			                   <div class="col-sm-6 col-sm-offset-6 text-right">
+                                        <div class="form-group">
+                                            <input type="submit" asp-action="Create" asp-route-cosa="nmap" class="btn btn-default" asp-route-id="@Model.NMAP.ID" value="Salva" />&nbsp;&nbsp;
+                                            <a asp-action="Index"> Back to List</a>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
+                        </div>
                     </form>
                     </div>
                 </div>
@@ -139,10 +280,10 @@
                     </h4>
                     <hr>
                     <form asp-action="Create" name="nessusForm">
-                        <label asp-for="Nome"></label>
+                        <label asp-for="@Model.NESSUS.Nome"></label>
                         <div class="panel panel-default">
-                            <input asp-for="Nome" class="form-control" />
-                            <span asp-validation-for="Nome" class="text-danger"></span>
+                            <input asp-for="@Model.NESSUS.Nome" class="form-control" />
+                            <span asp-validation-for="@Model.NESSUS.Nome" class="text-danger"></span>
                         </div>
                         <div class="col-6">
                             <label>Opzioni</label>
@@ -155,10 +296,10 @@
                                         </label>
                                     </div>
                                     <br>
-                                    <input type="text" asp-for="Comando" class="form-control" id="Comando2" name="Comando2">
+                                    <input type="text" asp-for="@Model.NESSUS.JSON" class="form-control">
                                     <br>
                                     <div class="col text-right">
-                                        <input type="submit" value="Create" class="btn btn-default" />
+                                        <input type="submit" asp-action="Create" asp-route-cosa="nessus" value="Create" class="btn btn-default" />
                                     </div>
                                 </div>
                             </div>
@@ -182,31 +323,7 @@
                         <strong> Configura modulo </strong>
                     </h4>
                     <hr>
-                    <form asp-action="Create" name="nmapForm">
-                        <label asp-for="Nome"></label>
-                        <div class="panel panel-default">
-                            <input asp-for="Nome" class="form-control" />
-                            <span asp-validation-for="Nome" class="text-danger"></span>
-                        </div>
-                        <div class="col-6">
-                            <label>Opzioni</label>
-                            <div class="panel panel-default">
-                                <div class="panel-body form-horizontal payment-form">
-                                    <div class="form-check">
-                                        <label>
-                                            <input type="radio" id="scan" name="openvas" value="BOH!">
-                                            <span class="label-text">Scan</span>
-                                        </label>
-                                    </div>
-                                    <br>
-                                    <input type="text" asp-for="Comando" class="form-control" id="Comando3" name="Comando3">
-                                    <br>
-                                    <div class="col text-right">
-                                        <input type="submit" value="Create" class="btn btn-default" />
-                                    </div>
-                                </div>
-                            </div>
-                    </form>
+                    FORM PER OPENVAS
                     </div>
                 </div>
             </div>
@@ -218,32 +335,5 @@
 
 @section scripts{
 <script>
-    $(function () {
-        // Questa funzione va a cambiare il campo del comando ogni volta
-        // che viene cliccato un radio button nel gruppo riguardante nmap    
-        $('input[name=nmap]').change(function () {
-            switch ($('input[name=nmap]:checked').val()) {
-                case '-sn':
-                    $('#Comando').val('-sn');
-                    break;
-                case '-T4 -F':
-                    $('#Comando').val('-T4 -F'); break;
-                case '-T4 -A -v':
-                    $('#Comando').val('-T4 -A -v'); break;
-                case '-sS -sU':
-                    $('#Comando').val('-sS -sU'); break;
-                case '-p 1-65535':
-                    $('#Comando').val('-p 1-65535'); break;
-                case ' ':
-                    break;
-                default:
-                    $('#Comando').val('');
-            };
-        }).change();
-        // Questa funzione ascolta ogni pressione di tastiera nel campo comando
-        // per togliere il valore checked nei radio button nel gruppo di nmap
-        $('#Comando').keyup(function () {
-            $('input[name=nmap]').removeAttr('checked');
-        });
-    });
+
 </script> }
