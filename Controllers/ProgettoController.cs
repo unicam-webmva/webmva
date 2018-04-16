@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using webmva.Data;
 using webmva.Models;
+using webmva.ViewModels;
 
 namespace webmva.Controllers_
 {
@@ -77,11 +78,14 @@ namespace webmva.Controllers_
             }
 
             var progetto = await _context.Progetti.SingleOrDefaultAsync(m => m.ID == id);
+            var listaModuli = await _context.Moduli.ToListAsync();
             if (progetto == null)
             {
                 return NotFound();
             }
-            return View(progetto);
+
+            var progettoVM = new ProgettoVM{Progetto = progetto, TuttiModuli=listaModuli};
+            return View(progettoVM);
         }
 
         // POST: Progetto/Edit/5
@@ -89,9 +93,9 @@ namespace webmva.Controllers_
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("ID,Nome")] Progetto progetto)
+        public async Task<IActionResult> Edit(int id, [Bind("ID,Nome")] ProgettoVM progettoVM)
         {
-            if (id != progetto.ID)
+            if (id != progettoVM.Progetto.ID)
             {
                 return NotFound();
             }
@@ -100,12 +104,12 @@ namespace webmva.Controllers_
             {
                 try
                 {
-                    _context.Update(progetto);
+                    _context.Update(progettoVM.Progetto);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!ProgettoExists(progetto.ID))
+                    if (!ProgettoExists(progettoVM.Progetto.ID))
                     {
                         return NotFound();
                     }
@@ -116,7 +120,7 @@ namespace webmva.Controllers_
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(progetto);
+            return View(progettoVM);
         }
 
         // GET: Progetto/Delete/5
