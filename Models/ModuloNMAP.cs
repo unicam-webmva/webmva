@@ -1,6 +1,18 @@
-using System;
+
+using System.ComponentModel.DataAnnotations;
 namespace webmva.Models
 {
+    public enum TCPSCAN
+    {
+        SYN, ACK, CONNECTION, WINDOW, MAIMON, NESSUNO
+    }
+    public enum NONTCPSCAN
+    {
+        UDP, LIST, NOPORT, NESSUNO
+    }
+    public enum TEMPI
+    { ZERO, UNO, DUE, TRE, QUATTRO, CINQUE}
+    
     public class ModuloNMAP : Modulo
     {
         // https://www.stationx.net/nmap-cheat-sheet/
@@ -8,25 +20,21 @@ namespace webmva.Models
         // VEDIAMO SE SARA' COSI'
 
         // SWITCH
-        private bool _syn = false;
-        public bool SYNScan { get { return _syn; } set { _syn = value; } } //-sS
-        private bool _tcp = false;
-        public bool TCPConnectScan { get { return _tcp; } set { _tcp = value; } } //-sT
-        private bool _udp = false;
-        public bool UDPScan { get { return _udp; } set { _udp = value; } } //-sU
-        private bool _ack = false;
-        public bool ACKScan { get { return _ack; } set { _ack = value; } } //-sA
-        private bool _window = false;
-        public bool WindowPortScan { get { return _window; } set { _window = value; } } //-sW
-        private bool _maimon = false;
-        public bool MaimonScan { get { return _maimon; } set { _maimon = value; } } //-sM
+        private TCPSCAN _tcpscan = TCPSCAN.NESSUNO;
+        public TCPSCAN TCPScan
+        {
+            get { return _tcpscan; }
+            set { _tcpscan = value; }
+        }
+        private NONTCPSCAN _nontcpscan = NONTCPSCAN.NESSUNO;
+        public NONTCPSCAN NonTCPScan
+        {
+            get { return _nontcpscan; }
+            set { _nontcpscan = value; }
+        }
 
         // DISCOVERY
 
-        private bool _noScan = false;
-        public bool NoScan { get { return _noScan; } set { _noScan = value; } } //-sL
-        private bool _noPortScan = false;
-        public bool NoPortScan { get { return _noPortScan; } set { _noPortScan = value; } } //-sn
         private bool _noHost = false;
         public bool NoHostDiscovery { get { return _noHost; } set { _noHost = value; } } //-Pn
         public string SynDiscoveryPorts { get; set; } //-PSlista_porte
@@ -50,25 +58,17 @@ namespace webmva.Models
         private bool _osDet = false;
         public bool OSdetection { get { return _osDet; } set { _osDet = value; } } //-O
         private bool _osAggr = false;
-        public bool OSDetectionAggressive { get { return _osAggr; } set { if (OSdetection.Equals(false)) OSdetection = true; _osAggr = value; } } //--osscan-guess dopo O
+        public bool OSDetectionAggressive { get { return _osAggr; } set { if (OSdetection.Equals(false) && value.Equals(true)) OSdetection = true; _osAggr = value; } } //--osscan-guess dopo O
         private bool _allDet = false;
         public bool AllDetections { get { return _allDet; } set { _allDet = value; } } //-A comprende OS detection, version detection, script scanning e traceroute
 
         // TIMING
-        private int _velocita = 3; //default per nmap
-        public int Velocita
+        private TEMPI _tempo = TEMPI.TRE;
+        public TEMPI Tempo
         {
-            get
-            {
-                return _velocita;
-            }
-            set
-            {
-                if (value > 5 || value < 0) throw new ArgumentOutOfRangeException("value",
-                                  "Il valore di Velocita deve essere compreso tra 0 e 5");
-                _velocita = value;
-            }
-        } //-TNum (Num da 0 a 5)
+            get { return _tempo; }
+            set { _tempo = value; }
+        } // -Tnum
 
         // EVASIONI DAI FIREWALL/IDS
         private bool _fragmented = false;
@@ -92,14 +92,43 @@ namespace webmva.Models
                 if (ComandoPersonalizzato == "" || string.IsNullOrEmpty(ComandoPersonalizzato))
                 {
                     //Costruisco il comando
-                    if (SYNScan) risultato += " -sS";
-                    if (TCPConnectScan) risultato += " -sT";
-                    if (UDPScan) risultato += " -sU";
-                    if (ACKScan) risultato += " -sA";
-                    if (WindowPortScan) risultato += " -sW";
-                    if (MaimonScan) risultato += " -sM";
-                    if (NoScan) risultato += " -sL";
-                    if (NoPortScan) risultato += " -sn";
+                    switch (TCPScan)
+                    {
+                        case TCPSCAN.ACK:
+                            risultato += " -sA";
+                            break;
+                        case TCPSCAN.SYN:
+                            risultato += " -sS";
+                            break;
+                        case TCPSCAN.CONNECTION:
+                            risultato += " -sT";
+                            break;
+                        case TCPSCAN.WINDOW:
+                            risultato += " -sW";
+                            break;
+                        case TCPSCAN.MAIMON:
+                            risultato += " -sM";
+                            break;
+                        case TCPSCAN.NESSUNO:
+                            break;
+                        default:
+                            break;
+                    }
+                    switch (NonTCPScan)
+                    {
+                        case NONTCPSCAN.LIST:
+                            risultato += " -sL";
+                            break;
+                        case NONTCPSCAN.NOPORT:
+                            risultato += " -sn";
+                            break;
+                        case NONTCPSCAN.UDP:
+                            risultato += " -sU";
+                            break;
+                        case NONTCPSCAN.NESSUNO:
+                            break;
+                        default: break;
+                    }
                     if (!string.IsNullOrEmpty(SynDiscoveryPorts)) risultato += " -PS" + SynDiscoveryPorts;
                     if (!string.IsNullOrEmpty(AckDiscoveryPorts)) risultato += " -PA" + AckDiscoveryPorts;
                     if (!string.IsNullOrEmpty(UdpDiscoveryPorts)) risultato += " -PU" + UdpDiscoveryPorts;
@@ -112,10 +141,30 @@ namespace webmva.Models
                     else
                     {
                         if (ServiceVersion) risultato += " -sV";
-                        if (OSdetection) risultato += " -O";
-                        if (OSDetectionAggressive) risultato += " --ososcan-guess";
+                        if (OSdetection)
+                        {
+                            risultato += " -O";
+                            if (OSDetectionAggressive) risultato += " --osscan-guess";
+                        }
                     }
-                    if (Velocita != 3) risultato += " -T" + Velocita;
+                    if(Tempo != TEMPI.TRE) switch (Tempo) {
+                            case TEMPI.ZERO:
+                                risultato += " -T0";
+                                break;
+                            case TEMPI.UNO:
+                                risultato += " -T1";
+                                break;
+                            case TEMPI.DUE:
+                                risultato += " -T2";
+                                break;
+                            case TEMPI.QUATTRO:
+                                risultato += " -T4";
+                                break;
+                            case TEMPI.CINQUE:
+                                risultato += " -T5";
+                                break;
+                            default: break;
+                        }
                     if (Fragmented) risultato += " -f";
                     if (!string.IsNullOrEmpty(SendScansFromSpoofedIP)) risultato += "-D " + SendScansFromSpoofedIP;
                     if (IPv6Scan) risultato += " -6";
