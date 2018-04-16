@@ -49,7 +49,7 @@ namespace webmva.Controllers_
         // GET: Modulo/Create
         public IActionResult Create()
         {
-            return View();
+            return View(new EditModuloVM());
         }
 
         // POST: Modulo/CreateNMAP
@@ -57,33 +57,37 @@ namespace webmva.Controllers_
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> CreateNMAP([Bind("ID,Nome,Applicazione,TCPScan,NonTCPScan,NoHostDiscovery,SynDiscoveryPorts,AckDiscoveryPorts,UdpDiscoveryPorts,ArpDiscovery,NoDNSResolution,ListSpecificPort,ScanAllPorts,FastScan,ServiceVersion,OSdetection,OSDetectionAggressive,AllDetections,Tempo,Fragmented,IPv6Scan,IncreaseVerbosity,ComandoPersonalizzato")] ModuloNMAP modulo)
+        public async Task<IActionResult> Create(string cosa, EditModuloVM createmodulo)
         {
-            if (ModelState.IsValid)
+            if (createmodulo.NMAP.Nome != null && cosa.Equals("nmap"))
             {
-                _context.Moduli.Add(modulo);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                if (ModelState.IsValid)
+                {
+                    ModuloNMAP mod = createmodulo.NMAP;
+                    mod.Applicazione = APPLICAZIONE.NMAP;
+                    _context.Moduli.Add(mod);
+                    await _context.SaveChangesAsync();
+                    return RedirectToAction(nameof(Index));
+                }
             }
-            return View(modulo);
-        }
-
-        // POST: Modulo/CreateNESSUS
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> CreateNESSUS([Bind("ID,Nome,Applicazione,JSON")] ModuloNESSUS modulo)
-        {
-            if (ModelState.IsValid)
+            else if (createmodulo.NESSUS.Nome != null && cosa.Equals("nessus"))
             {
-                _context.Moduli.Add(modulo);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                {
+                    if (ModelState.IsValid)
+                    {
+                        ModuloNESSUS mod = createmodulo.NESSUS;
+                        mod.Applicazione = APPLICAZIONE.NESSUS;
+                        _context.Moduli.Add(mod);
+                        await _context.SaveChangesAsync();
+                        return RedirectToAction(nameof(Index));
+                    }
+                }
             }
-            return View(modulo);
-        }
+            else return BadRequest();
 
+            return View(createmodulo);
+
+        }
         // GET: Modulo/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
@@ -105,7 +109,7 @@ namespace webmva.Controllers_
             else return View(new EditModuloVM { NMAP = (ModuloNMAP)modulo });
         }
 
-        // POST: Modulo/EditNMAP/5
+        // POST: Modulo/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
@@ -172,41 +176,6 @@ namespace webmva.Controllers_
                 }
             }
             return View(editmodulo);
-        }
-
-        // POST: Modulo/EditNMAP/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> EditNESSUS(int id, [Bind("ID,Nome,Applicazione,JSON")] ModuloNESSUS modulo)
-        {
-            if (id != modulo.ID)
-            {
-                return NotFound();
-            }
-
-            if (ModelState.IsValid)
-            {
-                try
-                {
-                    _context.Update(modulo);
-                    await _context.SaveChangesAsync();
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                    if (!ModuloExists(modulo.ID))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
-                }
-                return RedirectToAction(nameof(Index));
-            }
-            return View(new EditModuloVM { NESSUS = modulo });
         }
 
         // GET: Modulo/Delete/5
