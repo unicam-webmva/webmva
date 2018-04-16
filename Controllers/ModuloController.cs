@@ -102,11 +102,11 @@ namespace webmva.Controllers_
                 return NotFound();
             }
             if (modulo is ModuloNMAP)
-                return View(new EditModuloVM { NMAP = (ModuloNMAP)modulo });
+                return View(new EditModuloVM((ModuloNMAP) modulo));
             else if (modulo is ModuloNESSUS)
-                return View(new EditModuloVM { NESSUS = (ModuloNESSUS)modulo });
+                return View(new EditModuloVM((ModuloNESSUS) modulo));
             // PROVVISORIO, SOLO PER NON DARE ERRORI DI COMPILAZIONE
-            else return View(new EditModuloVM { NMAP = (ModuloNMAP)modulo });
+            else return View(new EditModuloVM() );
         }
 
         // POST: Modulo/Edit/5
