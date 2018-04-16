@@ -22,12 +22,13 @@
     
                 
                   <br>
-                  <form name="modulo">	
+                <form name="modulo">	
                 <h5><strong>Scegli il modulo</strong></h5>
-                 <div class="col-6 col-md-10">
+                 
                 <div class="panel panel-default">
                     <div class="panel-heading">
 					<a href="#" data-toggle="collapse" data-target="#Nmap">Nmap</a><br>
+                    </div>
                     <div class="collapse" id="Nmap">
                      <div class="panel-body ">
                             <table class="table">
@@ -71,11 +72,12 @@
                         </div>
                         </div>
                       </div>
-                      </div>
+                      
     
 					<div class="panel panel-default">
                     <div class="panel-heading">
 					<a href="#" data-toggle="collapse" data-target="#Nessus">Nessus</a><br>
+                    </div>
                     <div class="collapse" id="Nessus">
                      <div class="panel-body ">
                             <table class="table">
@@ -123,6 +125,7 @@
                       <div class="panel panel-default">
                     <div class="panel-heading">
 					<a href="#" data-toggle="collapse" data-target="#OpenVAS">OpenVAS</a><br>
+                    </div>
                     <div class="collapse" id="OpenVAS">
                      <div class="panel-body ">
                             <table class="table">
@@ -166,24 +169,25 @@
                         </div>
                         </div>
                       </div>
-                      </div>		
+                     
+                     	
                 </form>
             
-            </div>
                 <br>
                 <div class="col-md-12">
                 <label for="descrizione">Descrizione</label>
                 <textarea class="form-control" id="descrizione" placeholder="descrizione del progetto" rows="5" cols="40" style="resize:none"
                     maxlength="1000"></textarea>
             </div>
-            </div>
- <div class="container">
+        
+
             <div class="form-group col-sm-6 "><br>
                 <input type="submit" value="Salva" class="btn btn-default" /> |
                  <a asp-action="Index"> Back to List</a>
                  </div>
+          
+                </form>
             </div>
-        </form>
 
     </div>
 </div>
