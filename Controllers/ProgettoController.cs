@@ -1,5 +1,7 @@
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
@@ -93,9 +95,10 @@ namespace webmva.Controllers_
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("ID,Nome")] ProgettoVM progettoVM)
+        public async Task<IActionResult> Edit(int id, ProgettoVM progettoVM)
         {
-            if (id != progettoVM.Progetto.ID)
+            var progetto = progettoVM.Progetto;
+            if (id != progetto.ID)
             {
                 return NotFound();
             }
@@ -104,12 +107,12 @@ namespace webmva.Controllers_
             {
                 try
                 {
-                    _context.Update(progettoVM.Progetto);
+                    _context.Update(progetto);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!ProgettoExists(progettoVM.Progetto.ID))
+                    if (!ProgettoExists(progetto.ID))
                     {
                         return NotFound();
                     }
@@ -160,6 +163,53 @@ namespace webmva.Controllers_
         private bool ProgettoExists(int id)
         {
             return _context.Progetti.Any(e => e.ID == id);
+        }
+        public async Task<IActionResult> Run(int? id){
+            var progetto = await _context.Progetti
+                .Include(list => list.ModuliProgetto)
+                    .ThenInclude(mod => mod.Modulo)
+                .AsNoTracking()
+                .SingleOrDefaultAsync(m => m.ID == id);
+            string result="";
+            foreach (ModuliProgetto modprog in progetto.ModuliProgetto){
+                Modulo mod = modprog.Modulo;
+                string comando = mod.Comando;
+                // esecuzione
+            ProcessStartInfo info = new ProcessStartInfo();
+            info.FileName = "cmd.exe";
+            info.Arguments = "/C " + comando + " " + progetto.Target;
+            info.UseShellExecute = false;
+            info.RedirectStandardOutput = true;
+            
+            using (Process proc = Process.Start(info))
+            {
+                using (StreamReader reader = proc.StandardOutput)
+                {
+                    result += "\n\n"+ await reader.ReadToEndAsync();
+                }
+            }
+            }
+
+            //string comando = primoModulo.Comando + " " + progetto.Target;
+
+            // esecuzione
+            /*
+            ProcessStartInfo info = new ProcessStartInfo();
+            info.FileName = "cmd.exe";
+            info.Arguments = "/C " + comando;
+            info.UseShellExecute = false;
+            info.RedirectStandardOutput = true;
+            string result;
+            using (Process proc = Process.Start(info))
+            {
+                using (StreamReader reader = proc.StandardOutput)
+                {
+                    result = await reader.ReadToEndAsync();
+                }
+            }
+            */
+            ViewData["output"] = result;
+            return View();
         }
     }
 }

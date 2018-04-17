@@ -41,8 +41,8 @@ namespace webmva.Data
             var modProg = new ModuliProgetto[]
             {
             new ModuliProgetto{ModuloID=1,ProgettoID=1},
-             new ModuliProgetto{ModuloID=6,ProgettoID=1},
             new ModuliProgetto{ModuloID=2,ProgettoID=1},
+            new ModuliProgetto{ModuloID=3,ProgettoID=1},
             new ModuliProgetto{ModuloID=2,ProgettoID=2},
             };
             foreach (ModuliProgetto mp in modProg)

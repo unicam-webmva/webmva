@@ -8,6 +8,7 @@
         <form asp-action="Edit">
            <!-- <div asp-validation-summary="ModelOnly" class="text-danger"></div>--> 
             <input type="hidden" asp-for="@Model.Progetto.ID" />
+            <input type="hidden" asp-for="@Model.Progetto.Data" />
             <div class="form-group">
                 <br>
                 <label asp-for="@Model.Progetto.Nome" class="control-label"></label>
@@ -16,14 +17,13 @@
                 
                 <br>
                 <label asp-for="@Model.Progetto.Target" class="control-label"></label>
-                <input asp-for="@Model.Progetto.Target" class="form-control" onfocusout="checkIP()" name="Target" />
+                <input asp-for="@Model.Progetto.Target" class="form-control" onfocusout="checkIP()" />
                 <!--<span asp-validation-for="@Model.Progetto.Target" class="text-danger"></span>-->
                <span name="TargetValidation" style="font-family: serif;font-size: 14px;color: #FF0000;"></span>
     
                 
                   <br>
-                <form name="modulo">	
-                <h5><strong>Scegli il modulo</strong></h5>
+                  <h5><strong>Scegli il modulo</strong></h5>
                  
                 <div class="panel panel-default">
                     <div class="panel-heading">
@@ -171,18 +171,18 @@
                       </div>
                      
                      	
-                </form>
+                
             
                 <br>
                 <div class="col-md-12">
                 <label for="descrizione">Descrizione</label>
                 <textarea class="form-control" id="descrizione" placeholder="descrizione del progetto" rows="5" cols="40" style="resize:none"
-                    maxlength="1000"></textarea>
+                    maxlength="1000" asp-for="@Model.Progetto.Descrizione"></textarea>
             </div>
         
 
             <div class="form-group col-sm-6 "><br>
-                <input type="submit" value="Salva" class="btn btn-default" /> |
+                <input type="submit" value="Salva" class="btn btn-default" asp-action="Edit" asp-route-id="@Model.Progetto.ID" /> |
                  <a asp-action="Index"> Torna alla lista</a>
                  </div>
           
@@ -195,7 +195,7 @@
 @section scripts{
     <script>
     function checkIP(){
-     var Target = $('input[name=Target]').val().split(".");
+     var Target = $('input[name=*Target]').val().split(".");
     console.log(Target);
     if (Target.length != 4) {
         console.log("INVALIDO: lunghezza sbagliata");
