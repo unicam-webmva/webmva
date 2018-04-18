@@ -10,6 +10,7 @@ using Microsoft.EntityFrameworkCore;
 using webmva.Data;
 using webmva.Models;
 using webmva.ViewModels;
+using webmva.Helpers;
 
 namespace webmva.Controllers_
 {
@@ -165,30 +166,19 @@ namespace webmva.Controllers_
             return _context.Progetti.Any(e => e.ID == id);
         }
         public async Task<IActionResult> Run(int? id){
+
             var progetto = await _context.Progetti
                 .Include(list => list.ModuliProgetto)
                     .ThenInclude(mod => mod.Modulo)
                 .AsNoTracking()
                 .SingleOrDefaultAsync(m => m.ID == id);
-            string result="";
-            foreach (ModuliProgetto modprog in progetto.ModuliProgetto){
-                Modulo mod = modprog.Modulo;
-                string comando = mod.Comando;
-                // esecuzione
-            ProcessStartInfo info = new ProcessStartInfo();
-            info.FileName = "cmd.exe";
-            info.Arguments = "/C " + comando + " " + progetto.Target;
-            info.UseShellExecute = false;
-            info.RedirectStandardOutput = true;
-            
-            using (Process proc = Process.Start(info))
-            {
-                using (StreamReader reader = proc.StandardOutput)
-                {
-                    result += "\n\n"+ await reader.ReadToEndAsync();
-                }
-            }
-            }
+            //List<string> result = new List<string>();
+            Dictionary<string, string> risultati = new Dictionary<string, string>();
+            //foreach (ModuliProgetto modprog in progetto.ModuliProgetto){
+                Modulo modulo = progetto.ModuliProgetto.ElementAt(0).Modulo;
+                string comando = modulo.Comando + " " + progetto.Target;
+                risultati.Add(modulo.Nome, comando.Batch());
+            //}
 
             //string comando = primoModulo.Comando + " " + progetto.Target;
 
@@ -208,8 +198,7 @@ namespace webmva.Controllers_
                 }
             }
             */
-            ViewData["output"] = result;
-            return View();
+            return View(new RisultatoVM{NomeProgetto=progetto.Nome, risultati=risultati});
         }
     }
 }

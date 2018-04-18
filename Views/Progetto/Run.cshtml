@@ -1,5 +1,13 @@
-<h3>Risultati</h3>
+@model webmva.ViewModels.RisultatoVM
+<h3>Risultati per progetto @Model.NomeProgetto</h3>
+
+@foreach(var element in @Model.risultati)
+{
 
 <p>
-    @ViewData["output"]
+    <h4>Modulo @element.Key</h4>
+    <div class="panel panel-default">
+    @element.Value
+    </div>
 </p>
+}
