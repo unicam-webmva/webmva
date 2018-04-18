@@ -61,13 +61,13 @@ namespace webmva.Controllers_
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ID,Nome")] Progetto progetto)
+        public async Task<IActionResult> Create(Progetto progetto)
         {
             if (ModelState.IsValid)
             {
                 _context.Add(progetto);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction(nameof(Edit));
             }
             return View(progetto);
         }
@@ -80,15 +80,32 @@ namespace webmva.Controllers_
                 return NotFound();
             }
 
-            var progetto = await _context.Progetti.SingleOrDefaultAsync(m => m.ID == id);
-            var listaModuli = await _context.Moduli.ToListAsync();
+            var progetto = await _context.Progetti
+                .Include(list => list.ModuliProgetto)
+                    .ThenInclude(mod => mod.Modulo)
+                .AsNoTracking()
+                .SingleOrDefaultAsync(m => m.ID == id);
             if (progetto == null)
             {
                 return NotFound();
             }
-
-            var progettoVM = new ProgettoVM{Progetto = progetto, TuttiModuli=listaModuli};
-            return View(progettoVM);
+            PopolaModuliAssegnati(progetto);
+            return View(progetto);
+        }
+        private void PopolaModuliAssegnati(Progetto progetto){
+            var tuttiModuli = _context.Moduli;
+            var moduliProgetto = new HashSet<int>(progetto.ModuliProgetto.Select(m=>m.ModuloID));
+            var dati= new List<ModuliInseriti>();
+            foreach(var modulo in tuttiModuli){
+                dati.Add(new ModuliInseriti{
+                    ModuloID = modulo.ID,
+                    Nome = modulo.Nome,
+                    Comando = modulo.Comando,
+                    Inserito = moduliProgetto.Contains(modulo.ID),
+                    Applicazione = modulo.Applicazione
+                });
+            }
+            ViewData["Moduli"] = dati;
         }
 
         // POST: Progetto/Edit/5
@@ -96,10 +113,10 @@ namespace webmva.Controllers_
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, ProgettoVM progettoVM)
+        public async Task<IActionResult> Edit(int? id, string[] moduliSelezionati)
         {
-            var progetto = progettoVM.Progetto;
-            if (id != progetto.ID)
+            /*var progettoNuovo = progettoVM.Progetto;
+            if (id != progettoNuovo.ID)
             {
                 return NotFound();
             }
@@ -125,6 +142,79 @@ namespace webmva.Controllers_
                 return RedirectToAction(nameof(Index));
             }
             return View(progettoVM);
+            */
+            
+
+            if (id == null) return NotFound();
+            var progetto = await _context.Progetti
+                        .Include(p => p.ModuliProgetto)
+                        .ThenInclude(m => m.Modulo)
+                        .AsNoTracking()
+                        .SingleOrDefaultAsync(a => a.ID == id);
+
+            if (progetto == null) return NotFound();
+
+            if (await TryUpdateModelAsync<Progetto>(progetto, "",
+                i => i.Nome, i => i.Target, i => i.Data, i => i.Descrizione))
+            {
+                AggiornaModuliInseriti(moduliSelezionati, progetto);
+                try
+                {
+                    await _context.SaveChangesAsync();
+                }
+                catch (DbUpdateException /* ex */)
+                {
+                    //Log the error (uncomment ex variable name and write a log.)
+                    ModelState.AddModelError("", "Unable to save changes. " +
+                        "Try again, and if the problem persists, " +
+                        "see your system administrator.");
+                }
+                return RedirectToAction(nameof(Index));
+            }
+            AggiornaModuliInseriti(moduliSelezionati, progetto);
+            PopolaModuliAssegnati(progetto);
+            return View(progetto);
+        }
+
+        private void AggiornaModuliInseriti(string[] moduliSelezionati, Progetto progettoDaAggiornare)
+        {
+            if (moduliSelezionati == null)
+            {
+                progettoDaAggiornare.ModuliProgetto = new List<ModuliProgetto>();
+                return;
+            }
+
+            var moduliSelezionatiHS = new HashSet<string>(moduliSelezionati);
+            var moduliGiaPresenti = new HashSet<int>(progettoDaAggiornare.ModuliProgetto.Select(i => i.ModuloID));
+            
+            foreach (var modulo in _context.Moduli)
+            {
+                if (moduliSelezionatiHS.Contains(modulo.ID.ToString()))
+                {
+                    if (!moduliGiaPresenti.Contains(modulo.ID))
+                    {
+                        _context.Add(new ModuliProgetto { ModuloID = modulo.ID, ProgettoID = progettoDaAggiornare.ID });
+                    }
+                }
+                else
+                {
+                    if (moduliGiaPresenti.Contains(modulo.ID))
+                    {
+                        ModuliProgetto moduloDaRimuovere = progettoDaAggiornare.ModuliProgetto.SingleOrDefault(m => m.ModuloID == modulo.ID);
+                        _context.Remove(moduloDaRimuovere);
+                    }
+                }
+            }
+            Console.WriteLine();
+            Console.WriteLine();
+            Console.WriteLine();
+            Console.WriteLine();
+            Console.WriteLine();
+            Console.WriteLine();
+            foreach(var elemento in progettoDaAggiornare.ModuliProgetto){
+                Console.WriteLine(elemento.ModuloID);
+                
+            }
         }
 
         // GET: Progetto/Delete/5
@@ -155,7 +245,7 @@ namespace webmva.Controllers_
         {
             var progetto = await _context.Progetti.SingleOrDefaultAsync(m => m.ID == id);
             _context.Progetti.Remove(progetto);
-            var listaRecord = await _context.ModuliProgetto.Where(riga =>riga.ProgettoID == id).ToListAsync();
+            var listaRecord = await _context.ModuliProgetto.Where(riga => riga.ProgettoID == id).ToListAsync();
             _context.ModuliProgetto.RemoveRange(listaRecord);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
@@ -165,7 +255,8 @@ namespace webmva.Controllers_
         {
             return _context.Progetti.Any(e => e.ID == id);
         }
-        public async Task<IActionResult> Run(int? id){
+        public async Task<IActionResult> Run(int? id)
+        {
 
             var progetto = await _context.Progetti
                 .Include(list => list.ModuliProgetto)
@@ -174,7 +265,8 @@ namespace webmva.Controllers_
                 .SingleOrDefaultAsync(m => m.ID == id);
             //List<string> result = new List<string>();
             Dictionary<string, string> risultati = new Dictionary<string, string>();
-            foreach (ModuliProgetto modprog in progetto.ModuliProgetto){
+            foreach (ModuliProgetto modprog in progetto.ModuliProgetto)
+            {
                 Modulo modulo = modprog.Modulo;
                 string comando = modulo.Comando + " " + progetto.Target;
                 risultati.Add(modulo.Nome, comando.EseguiCLI());
@@ -198,7 +290,7 @@ namespace webmva.Controllers_
                 }
             }
             */
-            return View(new RisultatoVM{NomeProgetto=progetto.Nome, risultati=risultati});
+            return View(new RisultatoVM { NomeProgetto = progetto.Nome, risultati = risultati });
         }
     }
 }

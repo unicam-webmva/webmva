@@ -1,24 +1,27 @@
-@model webmva.ViewModels.ProgettoVM;
- @{ ViewData["Title"] = "Edit"; }
+@model webmva.Models.Progetto;
+ @{ ViewData["Title"] = "Edit"; 
+    
+ }
 <div class="container">
     <h2>Modifica Progetto</h2>
     <hr />
     <div class="row panel panel-default col-md-9">
         <!--<div class="col-md-9">-->
-        <form asp-action="Edit">
+            @{List<webmva.ViewModels.ModuliInseriti> listaModuli = ViewBag.Moduli;
+                 <form asp-action="Edit">
            <!-- <div asp-validation-summary="ModelOnly" class="text-danger"></div>--> 
-            <input type="hidden" asp-for="@Model.Progetto.ID" />
-            <input type="hidden" asp-for="@Model.Progetto.Data" />
+            <input type="hidden" asp-for="@Model.ID" />
+            <input type="hidden" asp-for="@Model.Data" />
             <div class="form-group">
                 <br>
-                <label asp-for="@Model.Progetto.Nome" class="control-label"></label>
-                <input asp-for="@Model.Progetto.Nome" class="form-control" />
-               <!-- <span asp-validation-for="@Model.Progetto.Nome" class="text-danger"></span>-->
+                <label asp-for="@Model.Nome" class="control-label"></label>
+                <input asp-for="@Model.Nome" class="form-control" />
+               <!-- <span asp-validation-for="@Model.Nome" class="text-danger"></span>-->
                 
                 <br>
-                <label asp-for="@Model.Progetto.Target" class="control-label"></label>
-                <input asp-for="@Model.Progetto.Target" class="form-control" onfocusout="checkIP()" />
-                <!--<span asp-validation-for="@Model.Progetto.Target" class="text-danger"></span>-->
+                <label asp-for="@Model.Target" class="control-label"></label>
+                <input asp-for="@Model.Target" class="form-control" onfocusout="checkIP()" />
+                <!--<span asp-validation-for="@Model.Target" class="text-danger"></span>-->
                <span name="TargetValidation" style="font-family: serif;font-size: 14px;color: #FF0000;"></span>
     
                 
@@ -35,6 +38,7 @@
                                 <div class="method">
                                     <thead>
                                         <tr>
+                                            <th></th>
                                              <th>
                                         Nome
                                             </th>
@@ -51,20 +55,25 @@
                                     <input type="checkbox" name="selezionaTutto1" onclick="SelezTT1()" > <label> Scegli tutti</label><br>
                                         </td>
                                     </tr>
-                                    @foreach (var item in Model.TuttiModuli) { 
-                                        var tipo = item.GetType(); 
-                                        if(tipo!= typeof(webmva.Models.ModuloNMAP)){continue;}
-                                    <tr>
-                                   
-                                    
+                                    @foreach (var item in listaModuli) {
+                                       
+                                        
+                                            if(item.Applicazione!= webmva.Models.APPLICAZIONE.NMAP){continue;}
+                                             <tr>
+                                                <td>
+                                                    <input type="checkbox"
+                                                        name="moduliSelezionati"
+                                                        value="@item.ModuloID"
+                                                        @(Html.Raw(item.Inserito ? "checked=\"checked\"" : "")) />
+                                                        
+                                                </td>
                                         <td>
-                                        	<input type="checkbox" id="checkNmap" name="checkNmap" >
                                             @Html.DisplayFor(modelItem => item.Nome)
-                                        </td>
-                                        <td>
-                                            @Html.DisplayFor(modelItem => item.Comando)
-                                        </td>
-                                    </tr>
+                                                </td>
+                                                <td>
+                                                    @Html.DisplayFor(modelItem => item.Comando)
+                                                </td>
+                                            </tr>       
                                     }
                                 </tbody>
                             </table>
@@ -100,20 +109,25 @@
                                     <input type="checkbox" name="selezionaTutto2" onclick="SelezTT2()" > <label> Scegli tutti</label><br>
                                         </td>
                                     </tr>
-                                    @foreach (var item in Model.TuttiModuli) { 
-                                        var tipo = item.GetType(); 
-                                        if(tipo!= typeof(webmva.Models.ModuloNESSUS)){continue;}
-                                    <tr>
-                                   
-                                    
-                                        <td>
-                                        	<input type="checkbox" id="checkNessus" name="checkNessus" >
-                                            @Html.DisplayFor(modelItem => item.Nome)
-                                        </td>
-                                        <td>
-                                            @Html.DisplayFor(modelItem => item.Comando)
-                                        </td>
-                                    </tr>
+                                    @foreach (var item in listaModuli) {
+                                        
+                                        
+                                            if(item.Applicazione!= webmva.Models.APPLICAZIONE.NESSUS){continue;}
+                                             
+                                        <tr>
+                                                <td>
+                                                    <input type="checkbox"
+                                                        name="moduliSelezionati"
+                                                        value="@item.ModuloID"
+                                                        @(Html.Raw(item.Inserito ? "checked=\"checked\"" : "")) />
+                                                        
+                                                </td><td>
+                                        @Html.DisplayFor(modelItem => item.Nome)
+                                                </td>
+                                                <td>
+                                                    @Html.DisplayFor(modelItem => item.Comando)
+                                                </td>
+                                            </tr>       
                                     }
                                 </tbody>
                             </table>
@@ -148,20 +162,25 @@
                                     <input type="checkbox" name="selezionaTutto3" onclick="SelezTT3()" > <label> Scegli tutti</label><br>
                                         </td>
                                     </tr>
-                                    @foreach (var item in Model.TuttiModuli) { 
+                                    @foreach (var item in listaModuli) {
+                                        
                                         var tipo = item.GetType(); 
-                                        if(tipo!= typeof(webmva.Models.ModuloNMAP)){continue;}
-                                    <tr>
-                                   
-                                    
-                                        <td>
-                                        	<input type="checkbox" id="checkOpenVAS" name="checkOpenVAS" >
-                                            @Html.DisplayFor(modelItem => item.Nome)
-                                        </td>
-                                        <td>
-                                            @Html.DisplayFor(modelItem => item.Comando)
-                                        </td>
-                                    </tr>
+                                            if(tipo!= typeof(webmva.Models.ModuloNMAP)){continue;}
+                                             <tr>
+                                                <td>
+                                                    <input type="checkbox"
+                                                        name="moduliSelezionati"
+                                                        value="@item.ModuloID"
+                                                        @(Html.Raw(item.Inserito ? "checked=\"checked\"" : "")) />
+                                                        
+                                                </td>
+                                                <td>
+                                                    @Html.DisplayFor(modelItem => item.Nome)
+                                                </td>
+                                                <td>
+                                                    @Html.DisplayFor(modelItem => item.Comando)
+                                                </td>
+                                            </tr>       
                                     }
                                 </tbody>
                             </table>
@@ -177,16 +196,20 @@
                 <div class="col-md-12">
                 <label for="descrizione">Descrizione</label>
                 <textarea class="form-control" id="descrizione" placeholder="descrizione del progetto" rows="5" cols="40" style="resize:none"
-                    maxlength="1000" asp-for="@Model.Progetto.Descrizione"></textarea>
+                    maxlength="1000" asp-for="@Model.Descrizione"></textarea>
             </div>
         
 
             <div class="form-group col-sm-6 "><br>
-                <input type="submit" value="Salva" class="btn btn-default" asp-action="Edit" asp-route-id="@Model.Progetto.ID" /> |
+                <input type="submit" value="Salva" class="btn btn-default" /> |
                  <a asp-action="Index"> Torna alla lista</a>
                  </div>
           
                 </form>
+                 
+                 
+                 }
+        
             </div>
 
     </div>
@@ -270,7 +293,7 @@ $(function(){
       $('input[name=selezionaTutto1]').change(
         function(){
             if( $('input[name=selezionaTutto1]').prop('checked')){
-                var modulo = $('input[name=checkNmap]').each(function(index, element){
+                var modulo = $('input[id=checkNmap]').each(function(index, element){
                     $(element).prop('checked', true);
                     console.log(index);
                    
@@ -278,7 +301,7 @@ $(function(){
                
             }
             else{
-                var modulo = $('input[name=checkNmap]').each(function(index, element){
+                var modulo = $('input[id=checkNmap]').each(function(index, element){
                     $(element).prop('checked', false);
   
                 })
@@ -291,9 +314,9 @@ $(function(){
 
 $(function(){
     var tutticheck=true;
-    $('input[name=checkNmap]').change(
+    $('input[id=checkNmap]').change(
         function(){
-            var check=$('input[name=checkNmap]');
+            var check=$('input[id=checkNmap]');
         for(i=0; i<check.length; i++){
         if(!check[i].checked) {
             tutticheck=false;
@@ -311,7 +334,7 @@ $(function(){
       $('input[name=selezionaTutto2]').change(
         function(){
             if( $('input[name=selezionaTutto2]').prop('checked')){
-                var modulo = $('input[name=checkNessus]').each(function(index, element){
+                var modulo = $('input[id=checkNessus]').each(function(index, element){
                     $(element).prop('checked', true);
                     console.log(index);
                    
@@ -319,7 +342,7 @@ $(function(){
                
             }
             else{
-                var modulo = $('input[name=checkNessus]').each(function(index, element){
+                var modulo = $('input[id=checkNessus]').each(function(index, element){
                     $(element).prop('checked', false);
   
                 })
@@ -332,9 +355,9 @@ $(function(){
 
 $(function(){
     var tutticheck=true;
-    $('input[name=check]').change(
+    $('input[id=checkNessus]').change(
         function(){
-            var check=$('input[name=checkNessus]');
+            var check=$('input[id=checkNessus]');
         for(i=0; i<check.length; i++){
         if(!check[i].checked) {
             tutticheck=false;
@@ -352,7 +375,7 @@ $(function(){
       $('input[name=selezionaTutto]').change(
         function(){
             if( $('input[name=selezionaTutto]').prop('checked')){
-                var modulo = $('input[name=check]').each(function(index, element){
+                var modulo = $('input[id=checkOpenVAS]').each(function(index, element){
                     $(element).prop('checked', true);
                     console.log(index);
                    
@@ -360,7 +383,7 @@ $(function(){
                
             }
             else{
-                var modulo = $('input[name=check]').each(function(index, element){
+                var modulo = $('input[id=checkOpenVAS]').each(function(index, element){
                     $(element).prop('checked', false);
   
                 })
@@ -373,9 +396,9 @@ $(function(){
 
 $(function(){
     var tutticheck=true;
-    $('input[name=checkOpenVAS]').change(
+    $('input[id=checkOpenVAS]').change(
         function(){
-            var check=$('input[name=checkOpenVAS]');
+            var check=$('input[id=checkOpenVAS]');
         for(i=0; i<check.length; i++){
         if(!check[i].checked) {
             tutticheck=false;
