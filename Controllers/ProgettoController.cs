@@ -174,11 +174,11 @@ namespace webmva.Controllers_
                 .SingleOrDefaultAsync(m => m.ID == id);
             //List<string> result = new List<string>();
             Dictionary<string, string> risultati = new Dictionary<string, string>();
-            //foreach (ModuliProgetto modprog in progetto.ModuliProgetto){
-                Modulo modulo = progetto.ModuliProgetto.ElementAt(0).Modulo;
+            foreach (ModuliProgetto modprog in progetto.ModuliProgetto){
+                Modulo modulo = modprog.Modulo;
                 string comando = modulo.Comando + " " + progetto.Target;
                 risultati.Add(modulo.Nome, comando.Batch());
-            //}
+            }
 
             //string comando = primoModulo.Comando + " " + progetto.Target;
 
