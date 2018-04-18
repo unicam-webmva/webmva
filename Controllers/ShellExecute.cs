@@ -62,7 +62,7 @@ private enum OS{
         private static string Bash(string cmd)
         {
             var escapedArgs = cmd.Replace("\"", "\\\"");
-            escapedArgs = escapedArgs.Replace(" ", "\\ ");
+            //escapedArgs = escapedArgs.Replace(" ", "\\ ");
             var process = new Process()
             {
                 StartInfo = new ProcessStartInfo
