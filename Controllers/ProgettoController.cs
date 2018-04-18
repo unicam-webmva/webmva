@@ -177,7 +177,7 @@ namespace webmva.Controllers_
             foreach (ModuliProgetto modprog in progetto.ModuliProgetto){
                 Modulo modulo = modprog.Modulo;
                 string comando = modulo.Comando + " " + progetto.Target;
-                risultati.Add(modulo.Nome, comando.Batch());
+                risultati.Add(modulo.Nome, comando.EseguiCLI());
             }
 
             //string comando = primoModulo.Comando + " " + progetto.Target;
