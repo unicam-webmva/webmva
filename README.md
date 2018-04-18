@@ -1,13 +1,9 @@
-#Specifiche
+**Webmva**
 =======================
 
-##Nome del progetto
-**Webmva**
-
-
 ##Realizzatori del progetto
-*  | Riccardo Cannella  | 096001 |  riccardo.cannella@studenti.unicam.it  |
-*  | Margherita Renieri | 095100 |  margherita.renieri@studenti.unicam.it |
+*  Riccardo Cannella, 096001, riccardo.cannella@studenti.unicam.it 
+*  Margherita Renieri, 095100, margherita.renieri@studenti.unicam.it 
 
 
 ##Ambito
