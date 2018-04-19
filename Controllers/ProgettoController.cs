@@ -269,7 +269,8 @@ namespace webmva.Controllers_
             {
                 Modulo modulo = modprog.Modulo;
                 string comando = modulo.Comando + " " + progetto.Target;
-                risultati.Add(modulo.Nome, comando.EseguiCLI());
+                string cartellaProgetto = progetto.Nome;
+                risultati.Add(modulo.Nome, comando.EseguiCLI(cartellaProgetto));
             }
 
             //string comando = primoModulo.Comando + " " + progetto.Target;
