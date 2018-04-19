@@ -6,25 +6,26 @@
     <div class="row panel panel-default col-md-9">
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <input type="hidden" asp-for="ID" />
             <div class="form-group"><br>
                 <label asp-for="Nome" class="control-label"></label>
                 <input asp-for="Nome" class="form-control"  placeholder="nome"/>
                 <span asp-validation-for="Nome" class="text-danger"></span><br>
                 <div class="col-sm-7 form-group">
-                    <label for="oggi">Data</label>
-                    <input type="text" class="form-control" id="oggi" name="oggi" placeholder="" onclick="dataOggi()"><br>
+                    <label for="Data">Data</label>
+                    <input class="form-control" asp-for="Data"><br>
+                    <span asp-validation-for="Data" class="text-danger"></span><br>
                 </div>
                 <br>
                 <input type="text" class="form-control" id="codice" name="codice" placeholder="codice" onclick="creaCodice()">
                 <br>
                 <label for="descrizione">Descrizione</label>
                 <textarea class="form-control" id="descrizione" placeholder="descrizione" rows="5" cols="40" style="resize:none"
-                    maxlength="1000"></textarea>
+                    maxlength="1000" asp-for="Descrizione"></textarea>
+                    <span asp-validation-for="Descrizione" class="text-danger"></span><br>
             </div>
             <div class="container">
             <div class="form-group col-6 ">
-                <input type="submit" value="Crea" class="btn btn-default" asp-action="Create" /> |
+                <input type="submit" value="Crea" class="btn btn-default" /> |
                   <a asp-action="Index">Torna alla lista</a>
             </div>
             </div>
@@ -41,8 +42,8 @@
 <script>
     function creaCodice() {
 
-        var nome = $('input[name=nome]').val();
-        var oggi = $('input[name=oggi]').val();
+        var nome = $('input[id=nome]').val();
+        var oggi = $('input[id=oggi]').val();
         var codice = oggi + "_" + nome;
 
         $('input[name=codice]').val(codice);
@@ -71,8 +72,8 @@
             ff = '0' + ff
         }
 
-        oggi = mm + '/' + dd + '/' + yyyy + '_' + hh + ':' + ff;
-        $('input[name=oggi]').val(oggi);
+        oggi = dd + '/' + mm + '/' + yyyy + '_' + hh + ':' + ff;
+        $('input[id=oggi]').val(oggi);
         $('input[name=Progetto]').val(oggi);
     };
 

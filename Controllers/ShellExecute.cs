@@ -29,6 +29,7 @@ namespace webmva.Helpers
         }
         private static string Bash(string cmd, string cartellaProgetto)
         {
+            CreaCartellaProgetto(cartellaProgetto);
             var escapedArgs = cmd.Replace("\"", "\\\"");
             //escapedArgs = escapedArgs.Replace(" ", "\\ ");
             var process = new Process()
@@ -50,6 +51,7 @@ namespace webmva.Helpers
         }
         private static string Batch(string cmd, string cartellaProgetto)
         {
+            CreaCartellaProgetto(cartellaProgetto);
             //var escapedArgs = cmd.Replace("\"", "\\\"");
             var process = new Process()
             {
@@ -68,6 +70,12 @@ namespace webmva.Helpers
             string result = process.StandardOutput.ReadToEnd();
             process.WaitForExit();
             return result;
+        }
+        private static void CreaCartellaProgetto(string cartellaProgetto){
+            // mi assicuro che la cartella dedicata al progetto esista
+            // altrimenti la creo
+            if(!Directory.Exists(Path.Combine(Globals.CartellaTuttiProgetti, cartellaProgetto))) 
+                Directory.CreateDirectory(Path.Combine(Globals.CartellaTuttiProgetti, cartellaProgetto));
         }
     }
 }

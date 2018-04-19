@@ -67,7 +67,7 @@ namespace webmva.Controllers_
             {
                 _context.Add(progetto);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Edit));
+                return RedirectToAction(nameof(Edit), new {id = progetto.ID });
             }
             return View(progetto);
         }
@@ -158,6 +158,7 @@ namespace webmva.Controllers_
                 i => i.Nome, i => i.Target, i => i.Data, i => i.Descrizione))
             {
                 AggiornaModuliInseriti(moduliSelezionati, progetto);
+                _context.Update(progetto);
                 try
                 {
                     await _context.SaveChangesAsync();
@@ -204,16 +205,6 @@ namespace webmva.Controllers_
                         _context.Remove(moduloDaRimuovere);
                     }
                 }
-            }
-            Console.WriteLine();
-            Console.WriteLine();
-            Console.WriteLine();
-            Console.WriteLine();
-            Console.WriteLine();
-            Console.WriteLine();
-            foreach(var elemento in progettoDaAggiornare.ModuliProgetto){
-                Console.WriteLine(elemento.ModuloID);
-                
             }
         }
 
@@ -268,7 +259,7 @@ namespace webmva.Controllers_
             foreach (ModuliProgetto modprog in progetto.ModuliProgetto)
             {
                 Modulo modulo = modprog.Modulo;
-                string comando = modulo.Comando + " " + progetto.Target;
+                string comando = CreaComando(modulo, progetto.Target);
                 string cartellaProgetto = progetto.Nome;
                 risultati.Add(modulo.Nome, comando.EseguiCLI(cartellaProgetto));
             }
@@ -292,6 +283,22 @@ namespace webmva.Controllers_
             }
             */
             return View(new RisultatoVM { NomeProgetto = progetto.Nome, risultati = risultati });
+        }
+        private string CreaComando(Modulo mod, string target){
+            //Controllo di che tipo è il modulo
+            if(mod is ModuloNMAP){
+                string timestamp = DateTime.Now.ToString("yyyyMMdd_HHmmss_");
+                string nomeCamelCase = mod.Nome.ToCamelCase();
+                // Inserisco il comando generato dal modulo, il target e la direttiva
+                // per esportare un xml con nome derivato dal timestamp e dal nome del modulo
+                string comando = $"{mod.Comando} -oX {timestamp}nmap_{nomeCamelCase}.xml {target}";
+                return comando;
+            }
+            if(mod is ModuloNESSUS){
+                //TODO: creare JSON?
+                return "";
+            }
+            else return "";
         }
     }
 }
