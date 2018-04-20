@@ -1,0 +1,21 @@
+@model webmva.ViewModels.RisultatoVM
+@{ ViewData["Title"] = "Risultato"; }
+<h3>Risultati per progetto @Model.NomeProgetto</h3><hr>
+<div class="container">
+    
+@foreach(var element in @Model.risultati)
+{
+<div class="panel panel-default">
+  <div class="panel-heading">
+<h4>Modulo @element.Key</h4></div>
+<div class="panel-body">
+    @{string[] risultato= element.Value.Split(Environment.NewLine);}
+    @for(int i=0; i<risultato.Length; i++){
+        @risultato[i]
+        <br />
+    }
+    </div>
+</div>
+}
+
+</div>

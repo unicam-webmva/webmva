@@ -4,7 +4,10 @@ var contNMAP = 0;
 var contNessus= 0;
 var contOpenVAS = 0;}
 <form name="modulo">
+<
 <h2>Dettagli @Html.DisplayFor(model => model.Nome)</h2>
+  <a  class="btn btn-default"asp-action="Run" asp-route-id="@Model.ID"> Avvia scan</a>
+ 
 <hr />
 <div class="container">
     <div class="panel panel-default">
@@ -13,7 +16,7 @@ var contOpenVAS = 0;}
                 
                     <dl class="dl-horizontal">
                         <div class="panel-body">
-
+                            
                             <dt>
                                 <strong> Nome del Progetto </strong>
                             </dt>
@@ -30,7 +33,7 @@ var contOpenVAS = 0;}
                         
                     </dd> <hr>
                             <dt>
-                                <strong> Taget </strong>
+                                <strong> Target </strong>
                             </dt>
                             <dd>
                                 @Html.DisplayFor(model => model.Target)
