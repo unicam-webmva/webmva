@@ -94,9 +94,9 @@
                                 <tbody>
                                     @foreach (var item in Model.ModuliNMAP) { 
                                     <tr>
-                                        <td> <a asp-action="Details" asp-route-id="@item.ID">
-                                            @Html.DisplayFor(modelItem => item.Nome)
-                                        </a></td>
+                                        <td>
+                                           <a asp-action="Details" asp-route-id="@item.ID"> @Html.DisplayFor(modelItem => item.Nome)</a> 
+                                        </td>
                                         <td>
                                             @Html.DisplayFor(modelItem => item.Comando)
                                         </td>
@@ -144,9 +144,9 @@
                                     <tbody>
                                         @foreach (var item in Model.ModuliNESSUS) { 
                                             <tr>
-                                            <td><a asp-action="Details" asp-route-id="@item.ID">
-                                                @Html.DisplayFor(modelItem => item.Nome)
-                                            </a></td>
+                                            <td>
+                                               <a asp-action="Details" asp-route-id="@item.ID">@Html.DisplayFor(modelItem => item.Nome)</a> 
+                                            </td>
                                             <td>
                                                 @Html.DisplayFor(modelItem => item.Comando)
                                             </td>
@@ -196,9 +196,9 @@
                                             @foreach (var item in Model.ModuliNMAP)
     {
                                         <tr>
-                                            <td><a asp-action="Details" asp-route-id="@item.ID">
-                                                @Html.DisplayFor(modelItem => item.Nome)
-                                            </a></td>
+                                            <td>
+                                                  <a asp-action="Details" asp-route-id="@item.ID">@Html.DisplayFor(modelItem => item.Nome)</a>
+                                            </td>
                                             <td>
                                                 @Html.DisplayFor(modelItem => item.Comando)
                                             </td>
@@ -213,7 +213,7 @@
     {
                                         <tr>
                                             <td>
-                                                @Html.DisplayFor(modelItem => item.Nome)
+                                                <a asp-action="Details" asp-route-id="@item.ID">@Html.DisplayFor(modelItem => item.Nome)</a>
                                             </td>
                                             <td>
                                                 @Html.DisplayFor(modelItem => item.Comando)
@@ -221,7 +221,6 @@
 
                                             <td>
                                                 <a asp-action="Edit" asp-route-id="@item.ID">Modifica</a> |
-                                                <a asp-action="Details" asp-route-id="@item.ID">Dettagli</a> |
                                                 <a asp-action="Delete" asp-route-id="@item.ID">Cancella</a>
                                             </td>
                                         </tr>
