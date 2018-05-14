@@ -1,6 +1,7 @@
 @model webmva.ViewModels.ListaModuliVM
 
     @{ ViewData["Title"] = "Moduli"; }
+    
     <div class="container">
         <h2>Moduli</h2>
         <p class="lead">
@@ -8,12 +9,13 @@
             <a href="/Modulo/Create">clicca qui</a> !
         </p>
         <hr/>
+        
+        
         <div class="col-md-2 sidebar">
             <div class="row">
                 <!-- uncomment code for absolute positioning tweek see top comment in css -->
                 <div class="absolute-wrapper"> </div>
                 <!-- Menu -->
-                <br>
                 <div class="side-menu col-6">
                     <nav class="navbar navbar-default" role="navigation">
                         <!-- Main Menu -->
@@ -21,37 +23,153 @@
                             <ul class="nav navbar-nav" style="list-style-type:none">
                                 <!-- Dropdown-->
                                 <a>
-                                    <li class="panel-default" id="progetto">
+                                    <li class="nav-item dropdown" id="progetto">
                                         <span class="glyphicon glyphicon-barcode"></span>
                                         <strong>MODULO</strong>
                                 </a>
-
+                            <li class="nav navbar-nav" id="dropdown">
+                              <a>
+                                  <span class="glyphicon glyphicon-globe"></span>
+                                  <strong> NETWORK</strong>
+                              </a>
                                 <!-- Dropdown level 1-->
-                                <div id="dropdown-lvl1" class="panel-collapse">
-                                    <div class="panel-body">
-                                        <ul class="panel-default" style="list-style-type:none; margin-left:-40px">
+                                <div  class="nav-item dropdown">
+                                    <div class="dropdown">
+        
+                                        <ul class="dropdown" style="list-style-type:none; margin-left:-40px align:center">
+                                           
                                             <li>
                                                 <a href="#" data-toggle="collapse" data-target="#Nmap">Nmap <span class="glyphicon glyphicon-play" style="font-size:65%"></span></a> 
                                             </li>
                                             <li>
                                                 <a href="https://www.stationx.net/nmap-cheat-sheet/" target="_blank">Nmap Cheat Sheet</a>
                                             </li>
-                                            <br>
                                             <li>
                                                 <a href="#" data-toggle="collapse" data-target="#Nessus">Nessus <span class="glyphicon glyphicon-play" style="font-size:65%"></span></a>
                                             </li>
-                                            <br>
                                             <li>
                                                 <a href="#" data-toggle="collapse" data-target="#OpenVAS">OpenVAS <span class="glyphicon glyphicon-play" style="font-size:65%"></span></a>
                                             </li>
-                                            <br>
-
-
                                         </ul>
 
                                     </div>
                                 </div>
                                 </li>
+                                <li class="nav navbar-nav" id="dropdown">
+                              <a >
+                                  <span class="glyphicon glyphicon-signal"></span>
+                                  <strong>WEB </strong>
+                              </a>
+                                <!-- Dropdown level 1-->
+                                <div id="web" class="nav dropdown">
+                                    <div class="dropdown">
+        
+                                        <ul class="dropdown" style="list-style-type:none; margin-left:-40px align:center">
+                                           
+                                            <li>
+                                                <a href="#" data-toggle="collapse" data-target="#Vega">Vega <span class="glyphicon glyphicon-play" style="font-size:65%"></span></a> 
+                                            </li>
+                                            <li>
+                                                <a href="" target="_blank">Rispettiva sitografia</a>
+                                            </li>
+                                            <li>
+                                                <a href="#" data-toggle="collapse" data-target="#">VEDI  <span class="glyphicon glyphicon-play" style="font-size:65%"></span></a>
+                                            </li>
+                                            <li>
+                                                <a href="#" data-toggle="collapse" data-target="#"> VEDI <span class="glyphicon glyphicon-play" style="font-size:65%"></span></a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                </li>
+                                <li class="nav navbar-nav" id="dropdown">
+                              <a>
+                                  <span class="glyphicon glyphicon-wrench"></span>
+                                  <strong> CMS</strong>
+                              </a>
+                                <!-- Dropdown level 1-->
+                                <div id="cms" class="nav-item dropdown">
+                                    <div class="dropdown">
+        
+                                        <ul class="dropdown" style="list-style-type:none; margin-left:-40px align:center">
+                                           
+                                            <li>
+                                                <a href="#" data-toggle="collapse" data-target="#CMSmap">CMSmap <span class="glyphicon glyphicon-play" style="font-size:65%"></span></a> 
+                                            </li>
+                                            <li>
+                                                <a href="" target="_blank">RIspettiva sitografia</a>
+                                            </li>
+                                            <li>
+                                                <a href="#" data-toggle="collapse" data-target="#">VEDI <span class="glyphicon glyphicon-play" style="font-size:65%"></span></a>
+                                            </li>
+                                            <li>
+                                                <a href="#" data-toggle="collapse" data-target="#">VEDI <span class="glyphicon glyphicon-play" style="font-size:65%"></span></a>
+                                            </li>
+                                        </ul>
+
+                                    </div>
+                                </div>
+                                </li>
+                                <li class="nav navbar-nav" id="dropdown">
+                              <a>
+                                  <span class="glyphicon glyphicon-stats"></span>
+                                  <strong> DNS</strong>
+                              </a>
+                                <!-- Dropdown level 1-->
+                                <div id="dns" class="nav-item dropdown">
+                                    <div class="dropdown">
+        
+                                        <ul class="dropdown" style="list-style-type:none; margin-left:-40px align:center">
+                                           
+                                            <li>
+                                                <a href="#" data-toggle="collapse" data-target="#Nmap">Nmap <span class="glyphicon glyphicon-play" style="font-size:65%"></span></a> 
+                                            </li>
+                                            <li>
+                                                <a href="" target="_blank">Risepttiva sitografia</a>
+                                            </li>
+                                            <li>
+                                                <a href="#" data-toggle="collapse" data-target="#">VEDI <span class="glyphicon glyphicon-play" style="font-size:65%"></span></a>
+                                            </li>
+                                            <li>
+                                                <a href="#" data-toggle="collapse" data-target="#">VEDI  <span class="glyphicon glyphicon-play" style="font-size:65%"></span></a>
+                                            </li>
+                                        </ul>
+
+                                    </div>
+                                </div>
+                                </li>
+                                <li class="nav navbar-nav" id="dropdown">
+                              <a>
+                                  <span class="glyphicon glyphicon-list-alt"></span>
+                                  <strong> DATABASE</strong>
+                              </a>
+                                <!-- Dropdown level 1-->
+                                <div id="database" class="nav-item dropdown">
+                                    <div class="dropdown">
+        
+                                        <ul class="dropdown" style="list-style-type:none; margin-left:-40px align:center">
+                                           
+                                            <li>
+                                                <a href="#" data-toggle="collapse" data-target="#"> <span class="glyphicon glyphicon-play" style="font-size:65%"></span></a> 
+                                            </li>
+                                            <li>
+                                                <a href="" target="_blank">RISPETTIVA SITOGRAFIA</a>
+                                            </li>
+                                            <li>
+                                                <a href="#" data-toggle="collapse" data-target="#">VEDI  <span class="glyphicon glyphicon-play" style="font-size:65%"></span></a>
+                                            </li>
+                                            <li>
+                                                <a href="#" data-toggle="collapse" data-target="#">VEDI  <span class="glyphicon glyphicon-play" style="font-size:65%"></span></a>
+                                            </li>
+                                        </ul>
+
+                                    </div>
+                                </div>
+                                </li>
+                                <li >
+                              <a>
+                                
+                              </a>
                             </ul>
                         </div>
                         <!-- /.navbar-collapse -->
@@ -62,9 +180,17 @@
         </div>
 
         <div class="col-6 col-md-10">
-            <br>
+             <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <a href="#network" data-toggle="collapse">
+                            <strong>
+                               NETWORK
+                            </strong>
+                           
+                        </a>
+                    </div>
             <div class="col-5">
-                <div class="panel panel-default">
+                <div class="panel panel-sidebar">
                     <div class="panel-heading">
                         <a href="#" data-toggle="collapse" data-target="#Nmap">
                             <strong>
@@ -114,7 +240,7 @@
                 </div>
             </div>
             <div class="col-5">
-                    <div class="panel panel-default">
+                    <div class="panel panel-sidebar">
                         <div class="panel-heading">
                             <a href="#" data-toggle="collapse" data-target="#Nessus">
                                 <strong>
@@ -165,7 +291,7 @@
                     </div>
                 </div>
                 <div class="col-5">
-                        <div class="panel panel-default">
+                        <div class="panel panel-sidebar">
                             <div class="panel-heading">
                                 <a href="#" data-toggle="collapse" data-target="#OpenVAS">
                                     <strong>
@@ -235,5 +361,322 @@
 
         </div>
         
-            
+        </div>
+         <div class="col-6 col-md-10">
+             <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <a href="#web" data-toggle="collapse">
+                            <strong>
+                               WEB
+                            </strong>
+                           
+                        </a>
+                    </div>
+            <div class="col-5">
+                <div class="panel panel-sidebar">
+                    <div class="panel-heading">
+                        <a href="#" data-toggle="collapse" data-target="#Vega">
+                            <strong>
+                                VEGA
+                            </strong>
+                            <span class="caret"></span>
+                        </a>
+                    </div>
+                    <div class="collapse " >
+                        <div class="panel-body ">
+
+                            <table class="table">
+                                
+                            </table>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-5">
+                    <div class="panel panel-sidebar">
+                        <div class="panel-heading">
+                            <a href="#" data-toggle="collapse" data-target="#">
+                                <strong>
+                                   VEDI
+                                </strong>
+                                <span class="caret"></span>
+                            </a>
+                        </div>
+                        <div class="collapse " >
+                            <div class="panel-body ">
+    
+                                <table class="table" >
+                                    
+                                </table>
+    
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-5">
+                        <div class="panel panel-sidebar">
+                            <div class="panel-heading">
+                                <a href="#" data-toggle="collapse" >
+                                    <strong>
+                                       VEDI
+                                    </strong>
+                                    <span class="caret"></span>
+                                </a>
+                            </div>
+                            <div class="collapse " id="">
+                                <div class="panel-body ">
+        
+                                    <table class="table" >
+                                       
+                                    </table>
+        
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+        </div>
+        
+        </div>
+         <div class="col-6 col-md-10">
+             <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <a href="#cms" data-toggle="collapse">
+                            <strong>
+                               CMS
+                            </strong>
+                           
+                        </a>
+                    </div>
+            <div class="col-5">
+                <div class="panel panel-sidebar">
+                    <div class="panel-heading">
+                        <a href="#" data-toggle="collapse" data-target="#CMSmap">
+                            <strong>
+                                VEDI
+                            </strong>
+                            <span class="caret"></span>
+                        </a>
+                    </div>
+                    <div class="collapse">
+                        <div class="panel-body ">
+
+                            <table class="table">
+                                
+                                   
+                            </table>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-5">
+                    <div class="panel panel-sidebar">
+                        <div class="panel-heading">
+                            <a href="#" data-toggle="collapse" data-target="#">
+                                <strong>
+                                   VEDI
+                                </strong>
+                                <span class="caret"></span>
+                            </a>
+                        </div>
+                        <div class="collapse ">
+                            <div class="panel-body ">
+    
+                                <table class="table" >
+                                
+                                </table>
+    
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-5">
+                        <div class="panel panel-sidebar">
+                            <div class="panel-heading">
+                                <a href="#" data-toggle="collapse" data-target="#">
+                                    <strong>
+                                       VEDI
+                                    </strong>
+                                    <span class="caret"></span>
+                                </a>
+                            </div>
+                            <div class="collapse ">
+                                <div class="panel-body ">
+        
+                                    <table class="table" >
+                                    </table>
+        
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+        </div>
+        
+        </div>
+ <div class="col-md-2 sidebar">
+            <div class="row">
+            </div>
+ </div>
+         <div class="col-6 col-md-10">
+             <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <a href="#dns" data-toggle="collapse">
+                            <strong>
+                               DNS
+                            </strong>
+                           
+                        </a>
+                    </div>
+            <div class="col-5">
+                <div class="panel panel-sidebar">
+                    <div class="panel-heading">
+                        <a href="#" data-toggle="collapse" data-target="#">
+                            <strong>
+                                VEDI
+                            </strong>
+                            <span class="caret"></span>
+                        </a>
+                    </div>
+                    <div class="collapse " >
+                        <div class="panel-body ">
+
+                            <table class="table">
+                                
+                            </table>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-5">
+                    <div class="panel panel-sidebar">
+                        <div class="panel-heading">
+                            <a href="#" data-toggle="collapse" data-target="#">
+                                <strong>
+                                  VEDI
+                                </strong>
+                                <span class="caret"></span>
+                            </a>
+                        </div>
+                        <div class="collapse ">
+                            <div class="panel-body ">
+    
+                                <table class="table" >
+                                    
+                                </table>
+    
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-5">
+                        <div class="panel panel-sidebar">
+                            <div class="panel-heading">
+                                <a href="#" data-toggle="collapse" data-target="#">
+                                    <strong>
+                                       VEDI
+                                    </strong>
+                                    <span class="caret"></span>
+                                </a>
+                            </div>
+                            <div class="collapse ">
+                                <div class="panel-body ">
+        
+                                    <table class="table" >
+                                       
+                                    </table>
+        
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+        </div>
+        
+        </div>
+        <div class="col-md-2 sidebar">
+            <div class="row">
+            </div>
+ </div>
+         <div class="col-6 col-md-10">
+             <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <a href="#database" data-toggle="collapse">
+                            <strong>
+                               DATABASE
+                            </strong>
+                           
+                        </a>
+                    </div>
+            <div class="col-5">
+                <div class="panel panel-sidebar">
+                    <div class="panel-heading">
+                        <a href="#" data-toggle="collapse" data-target="#">
+                            <strong>
+                             VEDI
+                            </strong>
+                            <span class="caret"></span>
+                        </a>
+                    </div>
+                    <div class="collapse ">
+                        <div class="panel-body ">
+
+                            <table class="table">
+                                
+                            </table>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-5">
+                    <div class="panel panel-sidebar">
+                        <div class="panel-heading">
+                            <a href="#" data-toggle="collapse" data-target="#">
+                                <strong>
+                                    VEDI
+                                </strong>
+                                <span class="caret"></span>
+                            </a>
+                        </div>
+                        <div class="collapse">
+                            <div class="panel-body ">
+    
+                                <table class="table" >
+                                    
+                                </table>
+    
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-5">
+                        <div class="panel panel-sidebar">
+                            <div class="panel-heading">
+                                <a href="#" data-toggle="collapse" data-target="#">
+                                    <strong>
+                                        VEDI
+                                    </strong>
+                                    <span class="caret"></span>
+                                </a>
+                            </div>
+                            <div class="collapse " >
+                                <div class="panel-body ">
+        
+                                    <table class="table" >
+                                      
+                                    </table>
+        
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+        </div>
+        
+        </div>
+
     </div>

@@ -1,59 +1,194 @@
 @model webmva.ViewModels.EditModuloVM
 @{ ViewData["Title"] = "Crea modulo"; }
+<div class="container">
+        <h2>Moduli</h2>
+        <p class="lead">
+          Crea il tuo modulo personalizzato
+          
+        </p>
+        <hr/>
+        
+        
 <div class="col-md-2 sidebar">
-    <div class="row">
-        <!-- uncomment code for absolute positioning tweek see top comment in css -->
-        <div class="absolute-wrapper"> </div>
-        <!-- Menu -->
-        <br>
-        <div class="side-menu col-6">
-            <nav class="navbar navbar-default" role="navigation">
-                <!-- Main Menu -->
-                <div class="side-menu-container">
-                    <ul class="nav navbar-nav" style="list-style-type:none">
-                        <!-- Dropdown-->
-                        <a>
-                            <li class="panel-default" id="progetto">
-                                <span class="glyphicon glyphicon-barcode"></span>
-                                <strong>MODULO</strong>
-                        </a>
+            <div class="row">
+                <!-- uncomment code for absolute positioning tweek see top comment in css -->
+                <div class="absolute-wrapper"> </div>
+                <!-- Menu -->
+                <div class="side-menu col-6">
+                    <nav class="navbar navbar-default" role="navigation">
+                        <!-- Main Menu -->
+                        <div class="side-menu-container">
+                            <ul class="nav navbar-nav" style="list-style-type:none">
+                                <!-- Dropdown-->
+                                <a>
+                                    <li class="nav-item dropdown" id="progetto">
+                                        <span class="glyphicon glyphicon-barcode"></span>
+                                        <strong>MODULO</strong>
+                                </a>
+                            <li class="nav navbar-nav" id="dropdown">
+                              <a>
+                                  <span class="glyphicon glyphicon-globe"></span>
+                                  <strong> NETWORK</strong>
+                              </a>
+                                <!-- Dropdown level 1-->
+                                <div  class="nav-item dropdown">
+                                    <div class="dropdown">
+        
+                                        <ul class="dropdown" style="list-style-type:none; margin-left:-40px align:center">
+                                           
+                                            <li>
+                                                <a href="#" data-toggle="collapse" data-target="#Nmap">Nmap <span class="glyphicon glyphicon-play" style="font-size:65%"></span></a> 
+                                            </li>
+                                            <li>
+                                                <a href="https://www.stationx.net/nmap-cheat-sheet/" target="_blank">Nmap Cheat Sheet</a>
+                                            </li>
+                                            <li>
+                                                <a href="#" data-toggle="collapse" data-target="#Nessus">Nessus <span class="glyphicon glyphicon-play" style="font-size:65%"></span></a>
+                                            </li>
+                                            <li>
+                                                <a href="#" data-toggle="collapse" data-target="#OpenVAS">OpenVAS <span class="glyphicon glyphicon-play" style="font-size:65%"></span></a>
+                                            </li>
+                                        </ul>
 
-                        <!-- Dropdown level 1-->
-                        <div id="dropdown-lvl1" class="panel-collapse">
-                            <div class="panel-body">
-                                <ul class="panel-default" style="list-style-type:none; margin-left:-40px">
-                                    <li>
-                                        <a href="#" data-toggle="collapse" data-target="#apriNmap">Nmap scan</a>
-                                    </li>
-                                    <br>
-                                    <li>
-                                        <a href="#" data-toggle="collapse" data-target="#apriNessus">Nessus scan</a>
-                                    </li>
-                                    <br>
-                                    <li>
-                                        <a href="#" data-toggle="collapse" data-target="#apriOpenVAS">OpenVAS scan</a>
-                                    </li>
-                                    <br>
+                                    </div>
+                                </div>
+                                </li>
+                                <li class="nav navbar-nav" id="dropdown">
+                              <a >
+                                  <span class="glyphicon glyphicon-signal"></span>
+                                  <strong>WEB </strong>
+                              </a>
+                                <!-- Dropdown level 1-->
+                                <div id="web" class="nav dropdown">
+                                    <div class="dropdown">
+        
+                                        <ul class="dropdown" style="list-style-type:none; margin-left:-40px align:center">
+                                           
+                                            <li>
+                                                <a href="#" data-toggle="collapse" data-target="#Vega">Vega <span class="glyphicon glyphicon-play" style="font-size:65%"></span></a> 
+                                            </li>
+                                            <li>
+                                                <a href="" target="_blank">Rispettiva sitografia</a>
+                                            </li>
+                                            <li>
+                                                <a href="#" data-toggle="collapse" data-target="#">VEDI  <span class="glyphicon glyphicon-play" style="font-size:65%"></span></a>
+                                            </li>
+                                            <li>
+                                                <a href="#" data-toggle="collapse" data-target="#"> VEDI <span class="glyphicon glyphicon-play" style="font-size:65%"></span></a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                </li>
+                                <li class="nav navbar-nav" id="dropdown">
+                              <a>
+                                  <span class="glyphicon glyphicon-wrench"></span>
+                                  <strong> CMS</strong>
+                              </a>
+                                <!-- Dropdown level 1-->
+                                <div id="cms" class="nav-item dropdown">
+                                    <div class="dropdown">
+        
+                                        <ul class="dropdown" style="list-style-type:none; margin-left:-40px align:center">
+                                           
+                                            <li>
+                                                <a href="#" data-toggle="collapse" data-target="#CMSmap">CMSmap <span class="glyphicon glyphicon-play" style="font-size:65%"></span></a> 
+                                            </li>
+                                            <li>
+                                                <a href="" target="_blank">RIspettiva sitografia</a>
+                                            </li>
+                                            <li>
+                                                <a href="#" data-toggle="collapse" data-target="#">VEDI <span class="glyphicon glyphicon-play" style="font-size:65%"></span></a>
+                                            </li>
+                                            <li>
+                                                <a href="#" data-toggle="collapse" data-target="#">VEDI <span class="glyphicon glyphicon-play" style="font-size:65%"></span></a>
+                                            </li>
+                                        </ul>
 
+                                    </div>
+                                </div>
+                                </li>
+                                <li class="nav navbar-nav" id="dropdown">
+                              <a>
+                                  <span class="glyphicon glyphicon-stats"></span>
+                                  <strong> DNS</strong>
+                              </a>
+                                <!-- Dropdown level 1-->
+                                <div id="dns" class="nav-item dropdown">
+                                    <div class="dropdown">
+        
+                                        <ul class="dropdown" style="list-style-type:none; margin-left:-40px align:center">
+                                           
+                                            <li>
+                                                <a href="#" data-toggle="collapse" data-target="#Nmap">Nmap <span class="glyphicon glyphicon-play" style="font-size:65%"></span></a> 
+                                            </li>
+                                            <li>
+                                                <a href="" target="_blank">Risepttiva sitografia</a>
+                                            </li>
+                                            <li>
+                                                <a href="#" data-toggle="collapse" data-target="#">VEDI <span class="glyphicon glyphicon-play" style="font-size:65%"></span></a>
+                                            </li>
+                                            <li>
+                                                <a href="#" data-toggle="collapse" data-target="#">VEDI  <span class="glyphicon glyphicon-play" style="font-size:65%"></span></a>
+                                            </li>
+                                        </ul>
 
-                                </ul>
+                                    </div>
+                                </div>
+                                </li>
+                                <li class="nav navbar-nav" id="dropdown">
+                              <a>
+                                  <span class="glyphicon glyphicon-list-alt"></span>
+                                  <strong> DATABASE</strong>
+                              </a>
+                                <!-- Dropdown level 1-->
+                                <div id="database" class="nav-item dropdown">
+                                    <div class="dropdown">
+        
+                                        <ul class="dropdown" style="list-style-type:none; margin-left:-40px align:center">
+                                           
+                                            <li>
+                                                <a href="#" data-toggle="collapse" data-target="#"> <span class="glyphicon glyphicon-play" style="font-size:65%"></span></a> 
+                                            </li>
+                                            <li>
+                                                <a href="" target="_blank">RISPETTIVA SITOGRAFIA</a>
+                                            </li>
+                                            <li>
+                                                <a href="#" data-toggle="collapse" data-target="#">VEDI  <span class="glyphicon glyphicon-play" style="font-size:65%"></span></a>
+                                            </li>
+                                            <li>
+                                                <a href="#" data-toggle="collapse" data-target="#">VEDI  <span class="glyphicon glyphicon-play" style="font-size:65%"></span></a>
+                                            </li>
+                                        </ul>
 
-                            </div>
+                                    </div>
+                                </div>
+                                </li>
+                                <li >
+                              <a>
+                                
+                              </a>
+                            </ul>
                         </div>
-                        </li>
-                    </ul>
-                </div>
-                <!-- /.navbar-collapse -->
-            </nav>
+                        <!-- /.navbar-collapse -->
+                    </nav>
 
+                </div>
+            </div>
         </div>
-    </div>
-</div>
 
 <div class="col-6 col-md-10">
-    <br>
+      <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <a href="#network" data-toggle="collapse">
+                            <strong>
+                               NETWORK
+                            </strong>
+                           
+                        </a>
+                    </div>
     <div class="col-5">
-        <div class="panel panel-default">
+        <div class="panel panel-sidebar">
             <div class="panel-heading">
                 <a href="#" data-toggle="collapse" data-target="#apriNmap">
                     <strong>
@@ -264,7 +399,7 @@
         </div>
 
 
-        <div class="panel panel-default">
+        <div class="panel panel-sidebar">
             <div class="panel-heading">
                 <a href="#" data-toggle="collapse" data-target="#apriNessus">
                     <strong>
@@ -308,7 +443,7 @@
                 </div>
             </div>
         </div>
-        <div class="panel panel-default">
+        <div class="panel panel-sidebar">
             <div class="panel-heading">
                 <a href="#" data-toggle="collapse" data-target="#apriOpenVAS">
                     <strong>
@@ -331,7 +466,7 @@
     </div>
 
 </div>
-
+</div>
 
 @section scripts{
 <script>
