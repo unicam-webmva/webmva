@@ -79,7 +79,7 @@ namespace webmva
             // aggiungo l'estensione pdf
             percorsoPdf += ".pdf";
             string comando = $"fop -xml {percorsoXML} -xsl nmap_fo.xsl -pdf {percorsoPdf}";
-            comando.EseguiCLI(Path.Combine(CartellaWEBMVA, "fop"));
+            comando.EseguiCLI(Path.Combine(CartellaWEBMVA,"Programmi", "fop"));
             return false;
         }
 
