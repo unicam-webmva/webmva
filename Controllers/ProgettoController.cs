@@ -260,7 +260,7 @@ namespace webmva.Controllers_
             {
                 Modulo modulo = modprog.Modulo;
                 string comando = CreaComando(modulo, progetto.Target);
-                string cartellaProgetto = progetto.Nome;
+                string cartellaProgetto = Globals.CreaCartellaProgetto(progetto.Nome);
                 risultati.Add(modulo.Nome, comando.EseguiCLI(cartellaProgetto));
             }
 

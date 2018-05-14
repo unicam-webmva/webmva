@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -40,6 +40,11 @@ namespace webmva
             {
                 app.UseExceptionHandler("/Home/Error");
             }
+            // Inizializzo la variabile che conterrà il percorso assoluto
+            // di WebMVA
+            // suggerimento: https://stackoverflow.com/questions/43992261/how-to-get-absolute-path-in-asp-net-core-alternative-way-for-server-mappath
+            
+            webmva.Globals.CartellaWEBMVA = env.ContentRootPath;
 
             app.UseStaticFiles();
 

@@ -1,5 +1,9 @@
 using System;
+using System.Collections.Generic;
 using System.IO;
+using PdfSharp.Pdf;
+using PdfSharp.Pdf.IO;
+using webmva.Helpers;
 
 namespace webmva
 {
@@ -7,6 +11,7 @@ namespace webmva
     {
         public static readonly PlatformID SistemaOperativoAttuale = Environment.OSVersion.Platform;
         public static readonly string CartellaTuttiProgetti = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Personal), "webmvaProjects");
+        public static string CartellaWEBMVA;
 
         /// <summary>
         /// Questo metodo converte una stringa con spazi in CamelCase.
@@ -59,6 +64,32 @@ namespace webmva
                 targetDoc.Save(destinazione);
             }
             return true;
+        }
+
+        public static bool ConvertiReportNMAP(string percorsoXML){
+            string[] file = percorsoXML.Split('.');
+            // aggiungo il primo pezzo di nome, sicuramente ce lo vuole
+            string percorsoPdf = file[0];
+            // se contiene più di un punto, per esempio 'data.nmap.pippo.xml'
+            if (file.Length>2){
+                // ci metto tutti i pezzetti tranne l'ultimo, che sarà l'estensione
+                for(int i = 1; i<file.Length-1; i++)
+                    percorsoPdf += "." + file[i];
+            }
+            // aggiungo l'estensione pdf
+            percorsoPdf += ".pdf";
+            string comando = $"fop -xml {percorsoXML} -xsl nmap_fo.xsl -pdf {percorsoPdf}";
+            comando.EseguiCLI(Path.Combine(CartellaWEBMVA, "fop"));
+            return false;
+        }
+
+        public static string CreaCartellaProgetto(string cartellaProgetto){
+            // mi assicuro che la cartella dedicata al progetto esista
+            // altrimenti la creo
+            string cartellaAssoluta = Path.Combine(CartellaTuttiProgetti, cartellaProgetto);
+            if(!Directory.Exists(cartellaAssoluta))
+                Directory.CreateDirectory(cartellaAssoluta);
+            return cartellaAssoluta;
         }
     }
 }
