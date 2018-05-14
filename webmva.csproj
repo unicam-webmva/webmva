@@ -8,7 +8,9 @@
     <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.5" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.0.0" />
     <PackageReference Include="Microsoft.Composition" Version="1.0.30" ExcludeAssets="All" />
+    <PackageReference Include="PdfSharp" Version="1.50.4845-RC2a" />
     <PackageReference Include="System.Composition" Version="1.0.31" />
+    <PackageReference Include="System.Text.Encoding.CodePages" Version="4.4.0" />
   </ItemGroup>
 
   <ItemGroup>
