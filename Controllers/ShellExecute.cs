@@ -27,16 +27,16 @@ namespace webmva.Helpers
                     throw new ApplicationException("Non so come tu sia finito qui");
             }
         }
-        private static string Bash(string cmd, string cartellaProgetto)
+        private static string Bash(string cmd, string cartellaDiLavoro)
         {
-            CreaCartellaProgetto(cartellaProgetto);
+            //CreaCartellaProgetto(cartellaProgetto);
             var escapedArgs = cmd.Replace("\"", "\\\"");
             //escapedArgs = escapedArgs.Replace(" ", "\\ ");
             var process = new Process()
             {
                 StartInfo = new ProcessStartInfo
                 {
-                    WorkingDirectory = Path.Combine(Globals.CartellaTuttiProgetti,cartellaProgetto),
+                    WorkingDirectory = cartellaDiLavoro,
                     FileName = "/bin/bash",
                     Arguments = $"-c \"{escapedArgs}\"",
                     RedirectStandardOutput = true,
@@ -49,15 +49,15 @@ namespace webmva.Helpers
             process.WaitForExit();
             return result;
         }
-        private static string Batch(string cmd, string cartellaProgetto)
+        private static string Batch(string cmd, string cartellaDiLavoro)
         {
-            CreaCartellaProgetto(cartellaProgetto);
+            //CreaCartellaProgetto(cartellaProgetto);
             //var escapedArgs = cmd.Replace("\"", "\\\"");
             var process = new Process()
             {
                 StartInfo = new ProcessStartInfo
                 {
-                    WorkingDirectory = Path.Combine(Globals.CartellaTuttiProgetti, cartellaProgetto),
+                    WorkingDirectory = cartellaDiLavoro,
                     FileName = "cmd.exe",
                     Arguments = "/c " + cmd,
                     CreateNoWindow = true,
@@ -71,11 +71,6 @@ namespace webmva.Helpers
             process.WaitForExit();
             return result;
         }
-        private static void CreaCartellaProgetto(string cartellaProgetto){
-            // mi assicuro che la cartella dedicata al progetto esista
-            // altrimenti la creo
-            if(!Directory.Exists(Path.Combine(Globals.CartellaTuttiProgetti, cartellaProgetto))) 
-                Directory.CreateDirectory(Path.Combine(Globals.CartellaTuttiProgetti, cartellaProgetto));
-        }
+        
     }
 }
