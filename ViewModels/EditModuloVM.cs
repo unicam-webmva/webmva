@@ -34,7 +34,7 @@ namespace webmva.ViewModels
         {
             NMAP = null;
             NESSUS = null;
-            DNSRECON = new ModuloDNSRECON();
+            DNSRECON = mod;
         }
     }
 }
