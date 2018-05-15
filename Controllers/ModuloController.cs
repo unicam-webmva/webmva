@@ -83,6 +83,19 @@ namespace webmva.Controllers_
                     }
                 }
             }
+            else if (createmodulo.DNSRECON.Nome != null && cosa.Equals("dnsrecon"))
+            {
+                {
+                    if (ModelState.IsValid)
+                    {
+                        ModuloDNSRECON mod = createmodulo.DNSRECON;
+                        mod.Applicazione = APPLICAZIONE.DNSRECON;
+                        _context.Moduli.Add(mod);
+                        await _context.SaveChangesAsync();
+                        return RedirectToAction(nameof(Index));
+                    }
+                }
+            }
             else return BadRequest();
 
             return View(createmodulo);
