@@ -188,7 +188,60 @@
                         </div>
                         </div>
                       </div>
-                     
+                     <div class="panel panel-default">
+                    <div class="panel-heading">
+					<a href="#" data-toggle="collapse" data-target="#DNSRECON">DNSRECON</a><br>
+                    </div>
+                    <div class="collapse" id="DNSRECON">
+                     <div class="panel-body ">
+                            <table class="table">
+                                <div class="method">
+                                    <thead>
+                                        <tr>
+                                            <th></th>
+                                             <th>
+                                        Nome
+                                            </th>
+                                            <th>
+                                        Comando
+                                            </th>
+                                            <th></th>
+                                        </tr>
+                                    </thead>
+                                </div>
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                    <input type="checkbox" name="selezionaTutto1" onclick="SelezTT1()" > <label> Scegli tutti</label><br>
+                                        </td>
+                                    </tr>
+                                    @foreach (var item in listaModuli) {
+                                       
+                                        
+                                            if(item.Applicazione!= webmva.Models.APPLICAZIONE.DNSRECON){continue;}
+                                             <tr>
+                                                <td>
+                                                    <input type="checkbox"
+                                                        name="moduliSelezionati"
+                                                        value="@item.ModuloID"
+                                                        @(Html.Raw(item.Inserito ? "checked=\"checked\"" : "")) />
+                                                        
+                                                </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Nome)
+                                                </td>
+                                                <td>
+                                                    @Html.DisplayFor(modelItem => item.Comando)
+                                                </td>
+                                            </tr>       
+                                    }
+                                </tbody>
+                            </table>
+
+                        </div>
+                        </div>
+                      </div>
+                      
                      	
                 
             
