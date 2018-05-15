@@ -207,15 +207,26 @@
                                 <div class="row panel panel-default panel-body">
 
                                     <div class="col-sm-12">
-                                        <div class="col-sm-7" style="margin:0 auto; float:none">
-                                            <div class="form-group">
+                                    <div class="col-sm-12">
+                                        <div class="col-sm-6" >
+                                            <div class="form-group row">
                                                 <h4 asp-for="@(Model.NMAP.Nome)">Nome Modulo</h4>
                                                 <input class="form-control" asp-for="@(Model.NMAP.Nome)" />
                                             </div>
+                                           
+                                        </div>
+                                           <div class="col-sm-1" ></div>
+                                         <div class="col-sm-5" >
+                                            <div class="form-group row">
+                                                <h4 asp-for="@(Model.NMAP.ComandoPersonalizzato)">Comando Personalizzato</h4>
+                                                <input class="form-control" asp-for="@(Model.NMAP.ComandoPersonalizzato)" />
+                                            </div>
+                                          
                                         </div>
 
-                                        <hr />
-                                        <div class="col-sm-12">
+                                        </div>
+                                      
+                                        <div class="col-sm-12"><hr>
                                             <div class="col-sm-6">
                                                 <h4>Scansione</h4>
                                                 <hr />
