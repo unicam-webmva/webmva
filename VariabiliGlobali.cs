@@ -7,6 +7,7 @@ namespace webmva
     {
         public static readonly PlatformID SistemaOperativoAttuale = Environment.OSVersion.Platform;
         public static readonly string CartellaTuttiProgetti = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Personal), "webmvaProjects");
+        public static readonly string PYTHON = (SistemaOperativoAttuale == PlatformID.Unix) ? "python2" : "py -2";
 
         public static string ToCamelCase(this string stringa){
             if(stringa == null || stringa.Length<2) return stringa;
