@@ -13,8 +13,8 @@ using webmva.Models;
 namespace webmva.Migrations
 {
     [DbContext(typeof(MyDbContext))]
-    [Migration("20180416135139_Inheritance")]
-    partial class Inheritance
+    [Migration("20180515153218_Inheritanc")]
+    partial class Inheritanc
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -77,6 +77,35 @@ namespace webmva.Migrations
                     b.ToTable("Progetti");
                 });
 
+            modelBuilder.Entity("webmva.Models.ModuloDNSRECON", b =>
+                {
+                    b.HasBaseType("webmva.Models.Modulo");
+
+                    b.Property<bool>("AXFREnum");
+
+                    b.Property<bool>("BingEnum");
+
+                    b.Property<string>("ComandoPersonalizzato");
+
+                    b.Property<bool>("CrtShEnum");
+
+                    b.Property<bool>("DeepWhois");
+
+                    b.Property<string>("Dominio");
+
+                    b.Property<bool>("GoogleEnum");
+
+                    b.Property<string>("NameServer");
+
+                    b.Property<bool>("ReverseLookupEnum");
+
+                    b.Property<bool>("ZoneWalk");
+
+                    b.ToTable("ModuloDNSRECON");
+
+                    b.HasDiscriminator().HasValue("ModuloDNSRECON");
+                });
+
             modelBuilder.Entity("webmva.Models.ModuloNESSUS", b =>
                 {
                     b.HasBaseType("webmva.Models.Modulo");
@@ -98,7 +127,8 @@ namespace webmva.Migrations
 
                     b.Property<bool>("ArpDiscovery");
 
-                    b.Property<string>("ComandoPersonalizzato");
+                    b.Property<string>("ComandoPersonalizzato")
+                        .HasColumnName("ModuloNMAP_ComandoPersonalizzato");
 
                     b.Property<bool>("FastScan");
 

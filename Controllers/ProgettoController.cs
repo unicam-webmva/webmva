@@ -285,10 +285,10 @@ namespace webmva.Controllers_
             return View(new RisultatoVM { NomeProgetto = progetto.Nome, risultati = risultati });
         }
         private string CreaComando(Modulo mod, string target){
+            string timestamp = DateTime.Now.ToString("yyyyMMdd_HHmmss_");
+            string nomeCamelCase = mod.Nome.ToCamelCase();
             //Controllo di che tipo è il modulo
-            if(mod is ModuloNMAP){
-                string timestamp = DateTime.Now.ToString("yyyyMMdd_HHmmss_");
-                string nomeCamelCase = mod.Nome.ToCamelCase();
+            if (mod is ModuloNMAP){
                 // Inserisco il comando generato dal modulo, il target e la direttiva
                 // per esportare un xml con nome derivato dal timestamp e dal nome del modulo
                 string comando = $"{mod.Comando} -oX {timestamp}nmap_{nomeCamelCase}.xml {target}";
@@ -297,6 +297,11 @@ namespace webmva.Controllers_
             if(mod is ModuloNESSUS){
                 //TODO: creare JSON?
                 return "";
+            }
+            if(mod is ModuloDNSRECON)
+            {
+                string comando = $"{mod.Comando} -x {timestamp}dnsrecon_{nomeCamelCase}.xml";
+                return comando;
             }
             else return "";
         }
