@@ -13,8 +13,8 @@ using webmva.Models;
 namespace webmva.Migrations
 {
     [DbContext(typeof(MyDbContext))]
-    [Migration("20180515143620_Inheritance")]
-    partial class Inheritance
+    [Migration("20180515153218_Inheritanc")]
+    partial class Inheritanc
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

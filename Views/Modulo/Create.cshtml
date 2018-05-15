@@ -204,6 +204,7 @@
                             </h4>
                             <hr>
                             <form asp-action="Create" name="nmapForm">
+                                <input type="hidden" asp-for="@Model.NMAP.Applicazione" value="@webmva.Models.APPLICAZIONE.NMAP" />
                                 <div class="row panel panel-default panel-body">
 
                                     <div class="col-sm-12">
@@ -426,6 +427,7 @@
                         </h4>
                         <hr>
                         <form asp-action="Create" name="nessusForm">
+                            <input type="hidden" asp-for="@Model.NESSUS.Applicazione" value="@webmva.Models.APPLICAZIONE.NESSUS" />
                             <label asp-for="@Model.NESSUS.Nome"></label>
                             <div class="panel panel-default">
                                 <input asp-for="@Model.NESSUS.Nome" class="form-control" />
@@ -500,6 +502,7 @@
                         </h4>
                         <hr>
                         <form asp-action="Create" name="dnsReconForm">
+                            <input type="hidden" asp-for="@Model.DNSRECON.Applicazione" value="@webmva.Models.APPLICAZIONE.DNSRECON" />
                             <div class="row panel panel-default panel-body">
 
                                 <div class="col-sm-12">

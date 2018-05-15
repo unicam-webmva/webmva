@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace webmva.Migrations
 {
-    public partial class Inheritance : Migration
+    public partial class Inheritanc : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
