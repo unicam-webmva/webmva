@@ -1,0 +1,6 @@
+[submodule "Programmi/Infoga"]
+	url = https://github.com/m4ll0k/Infoga
+[submodule "Programmi/droopescan"]
+	url = https://github.com/droope/droopescan
+[submodule "Programmi/dnsrecon"]
+	url = https://github.com/darkoperator/dnsrecon
