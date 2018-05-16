@@ -4,6 +4,7 @@
     bool nessus = Model.NESSUS != null;
     bool dnsrecon = Model.DNSRECON != null;
     bool droopescan = Model.DROOPE != null;
+    bool infoga = Model.INFOGA != null;
 }
 
 
@@ -393,5 +394,12 @@
                                 </div>
                             </div>
                         </form>
+    }
+     @* -----INFOGA----- *@
+    else if (infoga)
+    {
+        <h2>Modifica modulo @(Model.INFOGA.Nome)</h2>
+        <hr />
+        <a asp-action="Index"> Torna alla lista</a>
     }
 }

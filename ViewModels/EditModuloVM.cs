@@ -12,6 +12,7 @@ namespace webmva.ViewModels
         public ModuloNESSUS NESSUS { get; set; }
         public ModuloDNSRECON DNSRECON { get; set; }
         public ModuloDROOPE DROOPE{get; set;}
+        public ModuloINFOGA INFOGA{get; set;}
 
         public EditModuloVM()
         {
@@ -19,6 +20,8 @@ namespace webmva.ViewModels
             NESSUS = new ModuloNESSUS();
             DNSRECON = new ModuloDNSRECON();
             DROOPE = new ModuloDROOPE();
+            INFOGA = new ModuloINFOGA();
+
         }
         public EditModuloVM(ModuloNMAP mod)
         {
@@ -26,6 +29,7 @@ namespace webmva.ViewModels
             NESSUS = null;
             DNSRECON = null;
             DROOPE = null;
+            INFOGA = null;
         }
         public EditModuloVM(ModuloNESSUS mod)
         {
@@ -33,6 +37,7 @@ namespace webmva.ViewModels
             DNSRECON = null;
             NESSUS = mod;
             DROOPE = null;
+            INFOGA = null;
         }
         public EditModuloVM(ModuloDNSRECON mod)
         {
@@ -40,13 +45,23 @@ namespace webmva.ViewModels
             NESSUS = null;
             DNSRECON = mod;
             DROOPE = null;
+            INFOGA = null;
         }
         public EditModuloVM(ModuloDROOPE mod)
         {
             NMAP = null;
             NESSUS = null;
             DNSRECON = null;
+            INFOGA = null;
             DROOPE = mod;
+        }
+        public EditModuloVM(ModuloINFOGA mod)
+        {
+            NMAP = null;
+            NESSUS = null;
+            DNSRECON = null;
+            INFOGA = mod;
+            DROOPE = null;
         }
     }
 }

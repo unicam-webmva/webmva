@@ -111,6 +111,19 @@ namespace webmva.Controllers_
                     }
                 }
             }
+             else if (createmodulo.INFOGA.Nome != null && cosa.Equals("infoga"))
+            {
+                {
+                    if (ModelState.IsValid)
+                    {
+                        ModuloINFOGA mod = createmodulo.INFOGA;
+                        mod.Applicazione = APPLICAZIONE.INFOGA;
+                        _context.Moduli.Add(mod);
+                        await _context.SaveChangesAsync();
+                        return RedirectToAction(nameof(Index));
+                    }
+                }
+            }
             else return BadRequest();
 
             return View(createmodulo);
@@ -137,6 +150,8 @@ namespace webmva.Controllers_
                 return View(new EditModuloVM((ModuloDNSRECON) modulo));
             else if (modulo is ModuloDROOPE)
                 return View(new EditModuloVM((ModuloDROOPE) modulo));
+                else if (modulo is ModuloINFOGA)
+                return View(new EditModuloVM((ModuloINFOGA) modulo));
             // PROVVISORIO, SOLO PER NON DARE ERRORI DI COMPILAZIONE
             else return View(new EditModuloVM() );
         }
@@ -239,6 +254,35 @@ namespace webmva.Controllers_
              else if (!string.IsNullOrEmpty(editmodulo.DROOPE.Nome))
             {
                 ModuloDROOPE mod = editmodulo.DROOPE;
+                if (id != mod.ID)
+                {
+                    return NotFound();
+                }
+
+                if (ModelState.IsValid)
+                {
+                    try
+                    {
+                        _context.Update(mod);
+                        await _context.SaveChangesAsync();
+                    }
+                    catch (DbUpdateConcurrencyException)
+                    {
+                        if (!ModuloExists(mod.ID))
+                        {
+                            return NotFound();
+                        }
+                        else
+                        {
+                            throw;
+                        }
+                    }
+                    return RedirectToAction(nameof(Index));
+                }
+            }
+             else if (!string.IsNullOrEmpty(editmodulo.INFOGA.Nome))
+            {
+                ModuloINFOGA mod = editmodulo.INFOGA;
                 if (id != mod.ID)
                 {
                     return NotFound();

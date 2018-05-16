@@ -301,13 +301,19 @@ namespace webmva.Controllers_
             if(mod is ModuloDNSRECON)
             {
                 string comandoIniz = Path.Combine(Globals.CartellaWEBMVA, "Programmi", "dnsrecon", mod.Comando);
-                string comando = $"{Globals.PYTHON} {comandoIniz} -x {timestamp}dnsrecon_{nomeCamelCase}.xml";
+                string comando = $"python {comandoIniz} -x {timestamp}dnsrecon_{nomeCamelCase}.xml";
                 return comando;
             }
             if(mod is ModuloDROOPE)
             {
                 string comandoIniz = Path.Combine(Globals.CartellaWEBMVA, "Programmi", "droopescan", mod.Comando);
-                string comando = $"{Globals.PYTHON} {comandoIniz} >> {timestamp}droopescan_{nomeCamelCase}.xml";
+                string comando = $"python {comandoIniz} >> {timestamp}droopescan_{nomeCamelCase}.xml";
+                return comando;
+            }
+             if(mod is ModuloINFOGA)
+            {
+                string comandoIniz = Path.Combine(Globals.CartellaWEBMVA, "Programmi", "infoga", mod.Comando);
+                string comando = $"python {comandoIniz} >> {timestamp}infoga_{nomeCamelCase}.xml";
                 return comando;
             }
             else return "";

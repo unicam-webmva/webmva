@@ -77,7 +77,7 @@ private CHECKS _check= CHECKS.NESSUNO;
                           controlloCheck="";
                           break;
                     }
-                    string risultato = Globals.PYTHON + " droopescan scan " + controlloCMS +" -u "+ URL + controlloCheck ;
+                    string risultato = "droopescan scan " + controlloCMS +" -u "+ URL + controlloCheck ;
 
                    
                    
