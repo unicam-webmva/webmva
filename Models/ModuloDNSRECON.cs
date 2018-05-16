@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -25,7 +26,7 @@ namespace webmva.Models
                 if (string.IsNullOrEmpty(ComandoPersonalizzato))
                 {
                     // cominciamo
-                    string risultato = Globals.PYTHON + " dnsrecon.py -d " + Dominio;
+                    string risultato = "dnsrecon.py -d " + Dominio;
                     if (!string.IsNullOrEmpty(NameServer)) risultato += " -n " + NameServer;
                     if (AXFREnum) risultato += " -a";
                     if (ReverseLookupEnum) risultato += " -s";

@@ -300,7 +300,8 @@ namespace webmva.Controllers_
             }
             if(mod is ModuloDNSRECON)
             {
-                string comando = $"{mod.Comando} -x {timestamp}dnsrecon_{nomeCamelCase}.xml";
+                string comandoIniz = Path.Combine(Globals.CartellaWEBMVA, "Programmi", "dnsrecon", mod.Comando);
+                string comando = $"{Globals.PYTHON} {comandoIniz} -x {timestamp}dnsrecon_{nomeCamelCase}.xml";
                 return comando;
             }
             else return "";
