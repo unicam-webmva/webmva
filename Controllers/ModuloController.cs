@@ -26,7 +26,8 @@ namespace webmva.Controllers_
             var listaNMAP = await _context.Moduli.Where(modulo => modulo.Applicazione == APPLICAZIONE.NMAP).ToListAsync();
             var listaNESSUS = await _context.Moduli.Where(modulo => modulo.Applicazione == APPLICAZIONE.NESSUS).ToListAsync();
             var listaDNSRECON = await _context.Moduli.Where(modulo => modulo.Applicazione == APPLICAZIONE.DNSRECON).ToListAsync();
-            return View(new ListaModuliVM { ModuliNMAP = listaNMAP, ModuliNESSUS= listaNESSUS, ModuliDNSRECON = listaDNSRECON });
+             var listaDROOPE = await _context.Moduli.Where(modulo => modulo.Applicazione == APPLICAZIONE.DROOPE).ToListAsync();
+            return View(new ListaModuliVM { ModuliNMAP = listaNMAP, ModuliNESSUS= listaNESSUS, ModuliDNSRECON = listaDNSRECON, ModuliDROOPE= listaDROOPE});
         }
 
         // GET: Modulo/Details/5
@@ -97,6 +98,19 @@ namespace webmva.Controllers_
                     }
                 }
             }
+            else if (createmodulo.DROOPE.Nome != null && cosa.Equals("droopescan"))
+            {
+                {
+                    if (ModelState.IsValid)
+                    {
+                        ModuloDROOPE mod = createmodulo.DROOPE;
+                        mod.Applicazione = APPLICAZIONE.DROOPE;
+                        _context.Moduli.Add(mod);
+                        await _context.SaveChangesAsync();
+                        return RedirectToAction(nameof(Index));
+                    }
+                }
+            }
             else return BadRequest();
 
             return View(createmodulo);
@@ -121,6 +135,8 @@ namespace webmva.Controllers_
                 return View(new EditModuloVM((ModuloNESSUS) modulo));
             else if (modulo is ModuloDNSRECON)
                 return View(new EditModuloVM((ModuloDNSRECON) modulo));
+            else if (modulo is ModuloDROOPE)
+                return View(new EditModuloVM((ModuloDROOPE) modulo));
             // PROVVISORIO, SOLO PER NON DARE ERRORI DI COMPILAZIONE
             else return View(new EditModuloVM() );
         }
@@ -194,6 +210,35 @@ namespace webmva.Controllers_
             else if (!string.IsNullOrEmpty(editmodulo.DNSRECON.Nome))
             {
                 ModuloDNSRECON mod = editmodulo.DNSRECON;
+                if (id != mod.ID)
+                {
+                    return NotFound();
+                }
+
+                if (ModelState.IsValid)
+                {
+                    try
+                    {
+                        _context.Update(mod);
+                        await _context.SaveChangesAsync();
+                    }
+                    catch (DbUpdateConcurrencyException)
+                    {
+                        if (!ModuloExists(mod.ID))
+                        {
+                            return NotFound();
+                        }
+                        else
+                        {
+                            throw;
+                        }
+                    }
+                    return RedirectToAction(nameof(Index));
+                }
+            }
+             else if (!string.IsNullOrEmpty(editmodulo.DROOPE.Nome))
+            {
+                ModuloDROOPE mod = editmodulo.DROOPE;
                 if (id != mod.ID)
                 {
                     return NotFound();

@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace webmva.Migrations
 {
-    public partial class Inheritanc : Migration
+    public partial class AggiuntoDROOPE : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -27,6 +27,10 @@ namespace webmva.Migrations
                     NameServer = table.Column<string>(nullable: true),
                     ReverseLookupEnum = table.Column<bool>(nullable: true),
                     ZoneWalk = table.Column<bool>(nullable: true),
+                    ModuloDROOPE_ComandoPersonalizzato = table.Column<string>(nullable: true),
+                    URL = table.Column<string>(nullable: true),
+                    check = table.Column<int>(nullable: true),
+                    cms = table.Column<int>(nullable: true),
                     JSON = table.Column<string>(nullable: true),
                     AckDiscoveryPorts = table.Column<string>(nullable: true),
                     AllDetections = table.Column<bool>(nullable: true),

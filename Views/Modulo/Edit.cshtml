@@ -3,6 +3,7 @@
     bool nmap = Model.NMAP != null;
     bool nessus = Model.NESSUS != null;
     bool dnsrecon = Model.DNSRECON != null;
+    bool droopescan = Model.DROOPE != null;
 }
 
 
@@ -320,5 +321,77 @@
                 </div>
             </div>
         </form>
+    }
+     @* -----DROOPE----- *@
+    else if (droopescan)
+    {
+        <h2>Modifica modulo @(Model.DROOPE.Nome)</h2>
+        <hr />
+                            <form asp-action="Edit" name="droopeForm">
+                            <input type="hidden" asp-for="@Model.DROOPE.ID"  />
+                            <input type="hidden" asp-for="@Model.DROOPE.Applicazione" value="@webmva.Models.APPLICAZIONE.DROOPE" />
+                            <div class="row panel panel-default panel-body">
+
+                                <div class="col-sm-12">
+                                    <div class="col-sm-7" style="margin:0 auto; float:none">
+                                        <div class="form-group">
+                                            <h4 asp-for="@(Model.DROOPE.Nome)">Nome Modulo</h4>
+                                            <input class="form-control" asp-for="@(Model.DROOPE.Nome)" />
+                                        </div>
+                                    </div>
+
+                                    <hr />
+                                   <div class="col-sm-12">
+                                        <div class="col-sm-7" style="margin:0 auto; float:none">
+                                            <div class="form-group row">
+                                                <div class="col-sm-3">
+                                                   <h4 asp-for="@(Model.DROOPE.URL)">URL</h4>
+                                                </div>
+                                                <input class="form-control" asp-for="@Model.DROOPE.URL" />
+                                            </div>
+                                            <div class="form-group row">
+                                               
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-12">
+                                        <h4>Tipi di enumerazione</h4>
+                                        <hr />
+                                         <div class="form-group row">
+                                                    <div class="col-sm-4">
+                                                        <label class="control-label">Scegli cms</label>
+                                                    </div>
+                                                    <select class="col-sm-5" asp-for="@Model.DROOPE.cms">
+                                                        <option value="5">nessuno</option>
+                                                        <option value="0">drupal</option>
+                                                        <option value="1">joomla</option>
+                                                        <option value="2">moodle</option>
+                                                        <option value="3">silvestripe</option>
+                                                        <option value="4">wordpress</option>
+                                                       
+                                                    </select>
+                                                </div>
+                                                 <div class="form-group row">
+                                                    <div class="col-sm-4">
+                                                        <label class="control-label">Scegli check</label>
+                                                    </div>
+                                                    <select class="col-sm-5" asp-for="@Model.DROOPE.check">
+                                                        <option value="4">nessuno</option>
+                                                        <option value="0">plugin</option>
+                                                        <option value="1">theme</option>
+                                                        <option value="2">version</option>
+                                                        <option value="3">intersting url</option> 
+                                                    </select>
+                                                </div>
+                                        <div class="col-sm-6 col-sm-offset-6 text-right">
+                            <div class="form-group">
+                                <input type="submit" asp-action="Edit" class="btn btn-default" asp-route-id="@Model.DROOPE.ID" value="Salva" />&nbsp;|&nbsp;
+                                <a asp-action="Index"> Torna alla lista</a>
+                            </div>
+                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
     }
 }

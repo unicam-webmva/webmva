@@ -92,7 +92,7 @@
                                         <ul class="dropdown" style="list-style-type:none; margin-left:-40px align:center">
 
                                             <li>
-                                                <a href="#" data-toggle="collapse" data-target="#CMSmap">CMSmap <span class="glyphicon glyphicon-play" style="font-size:65%"></span></a>
+                                                <a href="#" data-toggle="collapse" data-target="#droopescan">DROOPE <span class="glyphicon glyphicon-play" style="font-size:65%"></span></a>
                                             </li>
                                             <li>
                                                 <a href="" target="_blank">RIspettiva sitografia</a>
@@ -476,6 +476,122 @@
             </div>
         </div>
     </div>
+     <div class="panel panel-default">
+        <div class="panel-heading">
+            <a href="#dns" data-toggle="collapse">
+                <strong>
+                    CMS
+                </strong>
+
+            </a>
+        </div>
+        <div class="col-5">
+            <div class="panel panel-sidebar">
+                <div class="panel-heading">
+                    <a href="#" data-toggle="collapse" data-target="#droopescan">
+                        <strong>
+                           DROOPESCAN
+                        </strong>
+                        <span class="caret"></span>
+                    </a>
+                </div>
+                <div class="collapse col-5" id="droopescan">
+                    <div class="panel-body">
+                        <h4>
+                            <strong> Configura modulo </strong>
+                        </h4>
+                        <hr>
+                        <form asp-action="Create" name="droopeForm">
+                            <input type="hidden" asp-for="@Model.DROOPE.Applicazione" value="@webmva.Models.APPLICAZIONE.DROOPE" />
+                            <div class="row panel panel-default panel-body">
+
+                                <div class="col-sm-12">
+                                    <div class="col-sm-7" style="margin:0 auto; float:none">
+                                        <div class="form-group">
+                                            <h4 asp-for="@(Model.DROOPE.Nome)">Nome Modulo</h4>
+                                            <input class="form-control" asp-for="@(Model.DROOPE.Nome)" />
+                                        </div>
+                                    </div>
+
+                                    <hr />
+                                    <div class="col-sm-12">
+                                        <div class="col-sm-7" style="margin:0 auto; float:none">
+                                            <div class="form-group row">
+                                                <div class="col-sm-3">
+                                                   <h4 asp-for="@(Model.DROOPE.URL)">URL</h4>
+                                                </div>
+                                                <input class="form-control" asp-for="@Model.DROOPE.URL" />
+                                            </div>
+                                            <div class="form-group row">
+                                               
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-12">
+                                        <h4>Tipi di enumerazione</h4>
+                                        <hr />
+                                         <div class="form-group row">
+                                                    <div class="col-sm-4">
+                                                        <label class="control-label">Scegli cms</label>
+                                                    </div>
+                                                    <select class="col-sm-5" asp-for="@Model.DROOPE.cms">
+                                                        <option value="5" >nessuno</option>
+                                                        <option value="0">drupal</option>
+                                                        <option value="1">joomla</option>
+                                                        <option value="2">moodle</option>
+                                                        <option value="3">silvestripe</option>
+                                                        <option value="4">wordpress</option>
+                                                       
+                                                    </select>
+                                                </div>
+                                                 <div class="form-group row">
+                                                    <div class="col-sm-4">
+                                                        <label class="control-label">Scegli check</label>
+                                                    </div>
+                                                    <select class="col-sm-5" asp-for="@Model.DROOPE.check">
+                                                        <option value="4">nessuno</option>
+                                                        <option value="0">plugin</option>
+                                                        <option value="1">theme</option>
+                                                        <option value="2">version</option>
+                                                        <option value="3">intersting url</option> 
+                                                    </select>
+                                                </div>
+                                        <div class="col-sm-6 col-sm-offset-6 text-right">
+                                            <div class="form-group">
+                                                <input type="submit" asp-action="Create" asp-route-cosa="droopescan" class="btn btn-default" asp-route-id="@Model.DROOPE.ID" value="Salva" />&nbsp;&nbsp;
+                                                <a asp-action="Index"> Torna alla lista</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="panel panel-sidebar">
+            <div class="panel-heading">
+                <a href="#" data-toggle="collapse" data-target="#vedi2">
+                    <strong>
+                        vedi
+                    </strong>
+                    <span class="caret"></span>
+                </a>
+            </div>
+            <div class="collapse col-5" id="vedi2">
+                <div class="panel-body">
+                    <h4>
+                        <strong> Configura modulo </strong>
+                    </h4>
+                    <hr>
+
+                </div>
+            </div>
+        </div>
+    </div>
     <div class="panel panel-default">
         <div class="panel-heading">
             <a href="#dns" data-toggle="collapse">
@@ -490,7 +606,7 @@
                 <div class="panel-heading">
                     <a href="#" data-toggle="collapse" data-target="#dnsRecon">
                         <strong>
-                            dnsrecon
+                           DNSRECON
                         </strong>
                         <span class="caret"></span>
                     </a>

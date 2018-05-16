@@ -105,6 +105,24 @@ namespace webmva.Migrations
                     b.HasDiscriminator().HasValue("ModuloDNSRECON");
                 });
 
+            modelBuilder.Entity("webmva.Models.ModuloDROOPE", b =>
+                {
+                    b.HasBaseType("webmva.Models.Modulo");
+
+                    b.Property<string>("ComandoPersonalizzato")
+                        .HasColumnName("ModuloDROOPE_ComandoPersonalizzato");
+
+                    b.Property<string>("URL");
+
+                    b.Property<int>("check");
+
+                    b.Property<int>("cms");
+
+                    b.ToTable("ModuloDROOPE");
+
+                    b.HasDiscriminator().HasValue("ModuloDROOPE");
+                });
+
             modelBuilder.Entity("webmva.Models.ModuloNESSUS", b =>
                 {
                     b.HasBaseType("webmva.Models.Modulo");

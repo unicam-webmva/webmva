@@ -17,6 +17,7 @@ namespace webmva.Data
             modelBuilder.Entity<ModuloNMAP>().HasBaseType<Modulo>();
             modelBuilder.Entity<ModuloNESSUS>().HasBaseType<Modulo>();
             modelBuilder.Entity<ModuloDNSRECON>().HasBaseType<Modulo>();
+            modelBuilder.Entity<ModuloDROOPE>().HasBaseType<Modulo>();
         }
     }
 }
