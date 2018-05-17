@@ -515,17 +515,25 @@
 
                                     <hr />
                                     <div class="col-sm-12">
-                                        <div class="col-sm-7" style="margin:0 auto; float:none">
+                                         <div class="col-sm-12">
+                                        <div class="col-sm-6" >
                                             <div class="form-group row">
-                                                <div class="col-sm-3">
-                                                   <h4 asp-for="@(Model.DROOPE.URL)">URL</h4>
-                                                </div>
-                                                <input class="form-control" asp-for="@Model.DROOPE.URL" />
+                                                <h4 asp-for="@(Model.DROOPE.URL)">URL</h4>
+                                                <input class="form-control" asp-for="@(Model.DROOPE.URL)" />
                                             </div>
-                                            <div class="form-group row">
-                                               
-                                            </div>
+                                           
                                         </div>
+                                           <div class="col-sm-1" ></div>
+                                         <div class="col-sm-5" >
+                                            <div class="form-group row">
+                                                <h5 asp-for="@(Model.DROOPE.ComandoPersonalizzato)">Comando Personalizzato</h5>
+                                                <input class="form-control" asp-for="@(Model.DROOPE.ComandoPersonalizzato)" />
+                                            </div>
+                                          
+                                        </div>
+
+                                        </div>
+                                        
                                     </div>
                                     <div class="col-sm-12">
                                         <h4>Tipi di enumerazione</h4>
@@ -592,7 +600,8 @@
             </div>
         </div>
     </div>
-    <div class="panel panel-default">
+   
+      <div class="panel panel-default">
         <div class="panel-heading">
             <a href="#dns" data-toggle="collapse">
                 <strong>
@@ -631,7 +640,7 @@
 
                                     <hr />
                                     <div class="col-sm-12">
-                                        <div class="col-sm-7" style="margin:0 auto; float:none">
+                                        <div class="col-sm-6">
                                             <div class="form-group row">
                                                 <div class="col-sm-3">
                                                     <label class="control-label" asp-for="@Model.DNSRECON.Dominio"></label>
@@ -643,6 +652,14 @@
                                                     <label class="control-label" asp-for="@Model.DNSRECON.NameServer"></label>
                                                 </div>
                                                 <input class="col-sm-9" asp-for="@Model.DNSRECON.NameServer" />
+                                            </div>
+                                      
+                                        </div>
+                                        <div class="col-sm-1"></div>
+                                        <div class="col-sm-5">
+                                                <div class="form-group row">
+                                                <h5 asp-for="@(Model.DROOPE.ComandoPersonalizzato)">Comando Personalizzato</h5>
+                                                <input class="form-control" asp-for="@(Model.DROOPE.ComandoPersonalizzato)" />
                                             </div>
                                         </div>
                                     </div>
@@ -745,8 +762,130 @@
             </div>
         </div>
     </div>
+     <div class="panel panel-default">
+        <div class="panel-heading">
+            <a href="#ig" data-toggle="collapse">
+                <strong>
+                    INFORMATION GATHERING
+                </strong>
 
+            </a>
+        </div>
+        <div class="col-5">
+            <div class="panel panel-sidebar">
+                <div class="panel-heading">
+                    <a href="#" data-toggle="collapse" data-target="#infoga">
+                        <strong>
+                           INFOGA
+                        </strong>
+                        <span class="caret"></span>
+                    </a>
+                </div>
+                <div class="collapse col-5" id="infoga">
+                    <div class="panel-body">
+                        <h4>
+                            <strong> Configura modulo </strong>
+                        </h4>
+                        <hr>
+                        <form asp-action="Create" name="infogaForm">
+                            <input type="hidden" asp-for="@Model.INFOGA.Applicazione" value="@webmva.Models.APPLICAZIONE.INFOGA" />
+                            <div class="row panel panel-default panel-body">
 
+                                <div class="col-sm-12">
+                                    <div class="col-sm-7" style="margin:0 auto; float:none">
+                                        <div class="form-group">
+                                            <h4 asp-for="@(Model.INFOGA.Nome)">Nome Modulo</h4>
+                                            <input class="form-control" asp-for="@(Model.INFOGA.Nome)" />
+                                        </div>
+                                    </div>
+
+                                    <hr />
+                                    <div class="col-sm-12">
+                                        <div class="col-sm-6">
+                                            <div class="form-group row">
+                                                <div class="col-sm-3">
+                                                    <label class="control-label" asp-for="@Model.INFOGA.Dominio"></label>
+                                                </div>
+                                                <input class="col-sm-9" asp-for="@Model.INFOGA.Dominio" />
+                                            </div>
+                                            <div class="form-group row">
+                                              <div class="col-sm-3">
+                                                    <label class="control-label" asp-for="@Model.INFOGA.Email"></label>
+                                                </div>
+                                                <input class="col-sm-9" asp-for="@Model.INFOGA.Email" />
+                                            </div>  
+                                        </div>
+                                        <div class="col-sm-1" ></div>
+                                         <div class="col-sm-5" >
+                                            <div class="form-group row">
+                                                <h5 asp-for="@(Model.INFOGA.ComandoPersonalizzato)">Comando Personalizzato</h5>
+                                                <input class="form-control" asp-for="@(Model.INFOGA.ComandoPersonalizzato)" />
+                                            </div>
+                                          
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="col-sm-12">
+                                        <h4>Tipi di enumerazione</h4>
+                                        <hr />
+                                         <div class="form-group row">
+                                                    <div class="col-sm-4">
+                                                        <label class="control-label">Scegli source</label>
+                                                    </div>
+                                                    <select class="col-sm-5" asp-for="@Model.INFOGA.source">
+                                                        <option value="8">all</option>
+                                                        <option value="0">google </option>
+                                                        <option value="1">bing </option>
+                                                        <option value="2">yahoo </option>
+                                                        <option value="3">ask </option>
+                                                        <option value="4">baidu </option>
+                                                        <option value="5">dogpile </option>
+                                                        <option value="6">exalead </option>
+                                                        <option value="7">pgp </option>
+                                                    </select>
+                                                </div>
+                                                 <div class="form-group row">
+                                                    <div class="col-sm-4">
+                                                        <label class="control-label">Scegli verbosità</label>
+                                                    </div>
+                                                    <select class="col-sm-5" asp-for="@Model.INFOGA.verbose">
+                                                        <option value="3">nessuno</option>
+                                                        <option value="0">uno </option>
+                                                        <option value="1">due</option>
+                                                        <option value="2">tre</option> 
+                                                    </select>
+                                                </div>
+                                                     <div class="col-sm-12">
+                                                    <h4>Altro</h4>
+                                                    <hr />
+                                                    <div class="row">
+                                                        <div class="form-group col-sm-6">
+                                                            <label class="control-label">
+                                                                <input type="checkbox" asp-for="@Model.INFOGA.Info" /> Info (-i)
+                                                            </label>
+                                                        </div>
+                                                        <div class="form-group col-sm-6">
+                                                            <label class="control-label">
+                                                                <input type="checkbox" asp-for="@Model.INFOGA.Breach" /> Breach (-b)
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                        <div class="col-sm-6 col-sm-offset-6 text-right">
+                                            <div class="form-group">
+                                                <input type="submit" asp-action="Create" asp-route-cosa="infoga" class="btn btn-default" asp-route-id="@Model.INFOGA.ID" value="Salva" />&nbsp;&nbsp;
+                                                <a asp-action="Index"> Torna alla lista</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
     @section scripts{
         <script>

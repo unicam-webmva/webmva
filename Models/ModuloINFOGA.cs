@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 namespace webmva.Models
 {
  public enum SOURCE{
-         ALL, GOOGLE, BING, YAHOO, ASK, BAIDU, DOGPILE, EXALEAD, PGP
+        GOOGLE, BING, YAHOO, ASK, BAIDU, DOGPILE, EXALEAD, PGP, ALL
      }
      public enum VERBOSE{
         UNO, DUE, TRE, NESSUNA
