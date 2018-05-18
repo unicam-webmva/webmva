@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace webmva.Migrations
 {
-    public partial class Inheritance : Migration
+    public partial class AggiuntoDROOPE : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -17,11 +17,31 @@ namespace webmva.Migrations
                     Applicazione = table.Column<int>(nullable: false),
                     Discriminator = table.Column<string>(nullable: false),
                     Nome = table.Column<string>(nullable: true),
+                    AXFREnum = table.Column<bool>(nullable: true),
+                    BingEnum = table.Column<bool>(nullable: true),
+                    ComandoPersonalizzato = table.Column<string>(nullable: true),
+                    CrtShEnum = table.Column<bool>(nullable: true),
+                    DeepWhois = table.Column<bool>(nullable: true),
+                    Dominio = table.Column<string>(nullable: true),
+                    GoogleEnum = table.Column<bool>(nullable: true),
+                    NameServer = table.Column<string>(nullable: true),
+                    ReverseLookupEnum = table.Column<bool>(nullable: true),
+                    ZoneWalk = table.Column<bool>(nullable: true),
+                    ModuloDROOPE_ComandoPersonalizzato = table.Column<string>(nullable: true),
+                    URL = table.Column<string>(nullable: true),
+                    check = table.Column<int>(nullable: true),
+                    cms = table.Column<int>(nullable: true),
+                    Breach = table.Column<bool>(nullable: true),
+                    ModuloINFOGA_ComandoPersonalizzato = table.Column<string>(nullable: true),
+                    ModuloINFOGA_Dominio = table.Column<string>(nullable: true),
+                    Email = table.Column<string>(nullable: true),
+                    Source = table.Column<int>(nullable: true),
+                    Verbose = table.Column<int>(nullable: true),
                     JSON = table.Column<string>(nullable: true),
                     AckDiscoveryPorts = table.Column<string>(nullable: true),
                     AllDetections = table.Column<bool>(nullable: true),
                     ArpDiscovery = table.Column<bool>(nullable: true),
-                    ComandoPersonalizzato = table.Column<string>(nullable: true),
+                    ModuloNMAP_ComandoPersonalizzato = table.Column<string>(nullable: true),
                     FastScan = table.Column<bool>(nullable: true),
                     Fragmented = table.Column<bool>(nullable: true),
                     IPv6Scan = table.Column<bool>(nullable: true),

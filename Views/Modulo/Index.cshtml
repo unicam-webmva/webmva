@@ -94,7 +94,7 @@
                                         <ul class="dropdown" style="list-style-type:none; margin-left:-40px align:center">
                                            
                                             <li>
-                                                <a href="#" data-toggle="collapse" data-target="#CMSmap">CMSmap <span class="glyphicon glyphicon-play" style="font-size:65%"></span></a> 
+                                                <a href="#" data-toggle="collapse" data-target="#droopescan">DroopeScan <span class="glyphicon glyphicon-play" style="font-size:65%"></span></a> 
                                             </li>
                                             <li>
                                                 <a href="" target="_blank">RIspettiva sitografia</a>
@@ -129,6 +129,34 @@
                                             </li>
                                             <li>
                                                 <a href="#" data-toggle="collapse" data-target="#">VEDI <span class="glyphicon glyphicon-play" style="font-size:65%"></span></a>
+                                            </li>
+                                            <li>
+                                                <a href="#" data-toggle="collapse" data-target="#">VEDI  <span class="glyphicon glyphicon-play" style="font-size:65%"></span></a>
+                                            </li>
+                                        </ul>
+
+                                    </div>
+                                </div>
+                                </li>
+                                <li class="nav navbar-nav" id="dropdown">
+                              <a>
+                                  <span class="glyphicon glyphicon-list-alt"></span>
+                                  <strong> INFORMATION GATHERING</strong>
+                              </a>
+                                <!-- Dropdown level 1-->
+                                <div id="database" class="nav-item dropdown">
+                                    <div class="dropdown">
+        
+                                        <ul class="dropdown" style="list-style-type:none; margin-left:-40px align:center">
+                                           
+                                            <li>
+                                                <a href="#" data-toggle="collapse" data-target="#ig"> Infoga <span class="glyphicon glyphicon-play" style="font-size:65%"></span></a> 
+                                            </li>
+                                            <li>
+                                                <a href="" target="_blank">RISPETTIVA SITOGRAFIA</a>
+                                            </li>
+                                            <li>
+                                                <a href="#" data-toggle="collapse" data-target="#">VEDI  <span class="glyphicon glyphicon-play" style="font-size:65%"></span></a>
                                             </li>
                                             <li>
                                                 <a href="#" data-toggle="collapse" data-target="#">VEDI  <span class="glyphicon glyphicon-play" style="font-size:65%"></span></a>
@@ -359,88 +387,9 @@
                         </div>
                     </div>
 
-        </div>
         
         </div>
-         <div class="col-6 col-md-10">
-             <div class="panel panel-default">
-                    <div class="panel-heading">
-                        <a href="#web" data-toggle="collapse">
-                            <strong>
-                               WEB
-                            </strong>
-                           
-                        </a>
-                    </div>
-            <div class="col-5">
-                <div class="panel panel-sidebar">
-                    <div class="panel-heading">
-                        <a href="#" data-toggle="collapse" data-target="#Vega">
-                            <strong>
-                                VEGA
-                            </strong>
-                            <span class="caret"></span>
-                        </a>
-                    </div>
-                    <div class="collapse " >
-                        <div class="panel-body ">
-
-                            <table class="table">
-                                
-                            </table>
-
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-5">
-                    <div class="panel panel-sidebar">
-                        <div class="panel-heading">
-                            <a href="#" data-toggle="collapse" data-target="#">
-                                <strong>
-                                   VEDI
-                                </strong>
-                                <span class="caret"></span>
-                            </a>
-                        </div>
-                        <div class="collapse " >
-                            <div class="panel-body ">
-    
-                                <table class="table" >
-                                    
-                                </table>
-    
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-5">
-                        <div class="panel panel-sidebar">
-                            <div class="panel-heading">
-                                <a href="#" data-toggle="collapse" >
-                                    <strong>
-                                       VEDI
-                                    </strong>
-                                    <span class="caret"></span>
-                                </a>
-                            </div>
-                            <div class="collapse " id="">
-                                <div class="panel-body ">
-        
-                                    <table class="table" >
-                                       
-                                    </table>
-        
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-        </div>
-        
-        </div>
-         <div class="col-6 col-md-10">
-             <div class="panel panel-default">
+         <div class="panel panel-default">
                     <div class="panel-heading">
                         <a href="#cms" data-toggle="collapse">
                             <strong>
@@ -452,19 +401,47 @@
             <div class="col-5">
                 <div class="panel panel-sidebar">
                     <div class="panel-heading">
-                        <a href="#" data-toggle="collapse" data-target="#CMSmap">
+                        <a href="#" data-toggle="collapse" data-target="#droopescan">
                             <strong>
-                                VEDI
+                                 DROOPE
                             </strong>
                             <span class="caret"></span>
                         </a>
                     </div>
-                    <div class="collapse">
+                    <div class="collapse " id="droopescan">
                         <div class="panel-body ">
 
                             <table class="table">
-                                
-                                   
+                                <div class="method">
+                                    <thead>
+                                        <tr>
+                                            <th>
+                                                Nome
+                                            </th>
+                                            <th>
+                                                Comando
+                                            </th>
+
+                                            <th></th>
+                                        </tr>
+                                    </thead>
+                                </div>
+                                <tbody>
+                                    @foreach (var item in Model.ModuliDROOPE) { 
+                                    <tr>
+                                        <td>
+                                           <a asp-action="Details" asp-route-id="@item.ID"> @Html.DisplayFor(modelItem => item.Nome)</a> 
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Comando)
+                                        </td>
+                                        <td>
+                                            <a asp-action="Edit" asp-route-id="@item.ID">Modifica</a> |
+                                            <a asp-action="Delete" asp-route-id="@item.ID">Cancella</a>
+                                        </td>
+                                    </tr>
+                                    }
+                                </tbody>
                             </table>
 
                         </div>
@@ -474,54 +451,29 @@
             <div class="col-5">
                     <div class="panel panel-sidebar">
                         <div class="panel-heading">
-                            <a href="#" data-toggle="collapse" data-target="#">
+                            <a href="#" data-toggle="collapse" data-target="#vedi">
                                 <strong>
-                                   VEDI
+                                  vedi1
                                 </strong>
                                 <span class="caret"></span>
                             </a>
                         </div>
-                        <div class="collapse ">
+                        <div class="collapse " id="vedi">
                             <div class="panel-body ">
     
                                 <table class="table" >
-                                
+                                    <div class="method">
+                                      
                                 </table>
     
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="col-5">
-                        <div class="panel panel-sidebar">
-                            <div class="panel-heading">
-                                <a href="#" data-toggle="collapse" data-target="#">
-                                    <strong>
-                                       VEDI
-                                    </strong>
-                                    <span class="caret"></span>
-                                </a>
-                            </div>
-                            <div class="collapse ">
-                                <div class="panel-body ">
-        
-                                    <table class="table" >
-                                    </table>
-        
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                
 
         </div>
-        
-        </div>
- <div class="col-md-2 sidebar">
-            <div class="row">
-            </div>
- </div>
-         <div class="col-6 col-md-10">
-             <div class="panel panel-default">
+         <div class="panel panel-default">
                     <div class="panel-heading">
                         <a href="#dns" data-toggle="collapse">
                             <strong>
@@ -533,18 +485,47 @@
             <div class="col-5">
                 <div class="panel panel-sidebar">
                     <div class="panel-heading">
-                        <a href="#" data-toggle="collapse" data-target="#">
+                        <a href="#" data-toggle="collapse" data-target="#dnsRecon">
                             <strong>
-                                VEDI
+                                 DNSRECON
                             </strong>
                             <span class="caret"></span>
                         </a>
                     </div>
-                    <div class="collapse " >
+                    <div class="collapse " id="dnsRecon">
                         <div class="panel-body ">
 
                             <table class="table">
-                                
+                                <div class="method">
+                                    <thead>
+                                        <tr>
+                                            <th>
+                                                Nome
+                                            </th>
+                                            <th>
+                                                Comando
+                                            </th>
+
+                                            <th></th>
+                                        </tr>
+                                    </thead>
+                                </div>
+                                <tbody>
+                                    @foreach (var item in Model.ModuliDNSRECON) { 
+                                    <tr>
+                                        <td>
+                                           <a asp-action="Details" asp-route-id="@item.ID"> @Html.DisplayFor(modelItem => item.Nome)</a> 
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Comando)
+                                        </td>
+                                        <td>
+                                            <a asp-action="Edit" asp-route-id="@item.ID">Modifica</a> |
+                                            <a asp-action="Delete" asp-route-id="@item.ID">Cancella</a>
+                                        </td>
+                                    </tr>
+                                    }
+                                </tbody>
                             </table>
 
                         </div>
@@ -554,18 +535,19 @@
             <div class="col-5">
                     <div class="panel panel-sidebar">
                         <div class="panel-heading">
-                            <a href="#" data-toggle="collapse" data-target="#">
+                            <a href="#" data-toggle="collapse" data-target="#vedi">
                                 <strong>
-                                  VEDI
+                                  vedi1
                                 </strong>
                                 <span class="caret"></span>
                             </a>
                         </div>
-                        <div class="collapse ">
+                        <div class="collapse " id="vedi">
                             <div class="panel-body ">
     
                                 <table class="table" >
-                                    
+                                    <div class="method">
+                                      
                                 </table>
     
                             </div>
@@ -575,18 +557,19 @@
                 <div class="col-5">
                         <div class="panel panel-sidebar">
                             <div class="panel-heading">
-                                <a href="#" data-toggle="collapse" data-target="#">
+                                <a href="#" data-toggle="collapse" data-target="#vedi2">
                                     <strong>
-                                       VEDI
+                                        vedi2
                                     </strong>
                                     <span class="caret"></span>
                                 </a>
                             </div>
-                            <div class="collapse ">
+                            <div class="collapse " id="vedi2">
                                 <div class="panel-body ">
         
                                     <table class="table" >
-                                       
+                                        <div class="method">
+                                           
                                     </table>
         
                                 </div>
@@ -595,18 +578,11 @@
                     </div>
 
         </div>
-        
-        </div>
-        <div class="col-md-2 sidebar">
-            <div class="row">
-            </div>
- </div>
-         <div class="col-6 col-md-10">
-             <div class="panel panel-default">
+         <div class="panel panel-default">
                     <div class="panel-heading">
-                        <a href="#database" data-toggle="collapse">
+                        <a href="#ig" data-toggle="collapse">
                             <strong>
-                               DATABASE
+                               INFORMATION GATHERING
                             </strong>
                            
                         </a>
@@ -614,18 +590,47 @@
             <div class="col-5">
                 <div class="panel panel-sidebar">
                     <div class="panel-heading">
-                        <a href="#" data-toggle="collapse" data-target="#">
+                        <a href="#" data-toggle="collapse" data-target="#infoga">
                             <strong>
-                             VEDI
+                                 INFOGA
                             </strong>
                             <span class="caret"></span>
                         </a>
                     </div>
-                    <div class="collapse ">
+                    <div class="collapse " id="infoga">
                         <div class="panel-body ">
 
                             <table class="table">
-                                
+                                <div class="method">
+                                    <thead>
+                                        <tr>
+                                            <th>
+                                                Nome
+                                            </th>
+                                            <th>
+                                                Comando
+                                            </th>
+
+                                            <th></th>
+                                        </tr>
+                                    </thead>
+                                </div>
+                                <tbody>
+                                    @foreach (var item in Model.ModuliINFOGA) { 
+                                    <tr>
+                                        <td>
+                                           <a asp-action="Details" asp-route-id="@item.ID"> @Html.DisplayFor(modelItem => item.Nome)</a> 
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Comando)
+                                        </td>
+                                        <td>
+                                            <a asp-action="Edit" asp-route-id="@item.ID">Modifica</a> |
+                                            <a asp-action="Delete" asp-route-id="@item.ID">Cancella</a>
+                                        </td>
+                                    </tr>
+                                    }
+                                </tbody>
                             </table>
 
                         </div>
@@ -635,48 +640,28 @@
             <div class="col-5">
                     <div class="panel panel-sidebar">
                         <div class="panel-heading">
-                            <a href="#" data-toggle="collapse" data-target="#">
+                            <a href="#" data-toggle="collapse" data-target="#vedi">
                                 <strong>
-                                    VEDI
+                                  vedi1
                                 </strong>
                                 <span class="caret"></span>
                             </a>
                         </div>
-                        <div class="collapse">
+                        <div class="collapse " id="vedi">
                             <div class="panel-body ">
     
                                 <table class="table" >
-                                    
+                                    <div class="method">
+                                      
                                 </table>
     
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="col-5">
-                        <div class="panel panel-sidebar">
-                            <div class="panel-heading">
-                                <a href="#" data-toggle="collapse" data-target="#">
-                                    <strong>
-                                        VEDI
-                                    </strong>
-                                    <span class="caret"></span>
-                                </a>
-                            </div>
-                            <div class="collapse " >
-                                <div class="panel-body ">
-        
-                                    <table class="table" >
-                                      
-                                    </table>
-        
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                
 
         </div>
-        
         </div>
-
+       
     </div>

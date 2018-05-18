@@ -260,7 +260,7 @@ namespace webmva.Controllers_
             {
                 Modulo modulo = modprog.Modulo;
                 string comando = CreaComando(modulo, progetto.Target);
-                string cartellaProgetto = progetto.Nome;
+                string cartellaProgetto = Globals.CreaCartellaProgetto(progetto.Nome);
                 risultati.Add(modulo.Nome, comando.EseguiCLI(cartellaProgetto));
             }
 
@@ -285,10 +285,10 @@ namespace webmva.Controllers_
             return View(new RisultatoVM { NomeProgetto = progetto.Nome, risultati = risultati });
         }
         private string CreaComando(Modulo mod, string target){
+            string timestamp = DateTime.Now.ToString("yyyyMMdd_HHmmss_");
+            string nomeCamelCase = mod.Nome.ToCamelCase();
             //Controllo di che tipo è il modulo
-            if(mod is ModuloNMAP){
-                string timestamp = DateTime.Now.ToString("yyyyMMdd_HHmmss_");
-                string nomeCamelCase = mod.Nome.ToCamelCase();
+            if (mod is ModuloNMAP){
                 // Inserisco il comando generato dal modulo, il target e la direttiva
                 // per esportare un xml con nome derivato dal timestamp e dal nome del modulo
                 string comando = $"{mod.Comando} -oX {timestamp}nmap_{nomeCamelCase}.xml {target}";
@@ -297,6 +297,24 @@ namespace webmva.Controllers_
             if(mod is ModuloNESSUS){
                 //TODO: creare JSON?
                 return "";
+            }
+            if(mod is ModuloDNSRECON)
+            {
+                string percorsoExec = Path.Combine(Globals.CartellaWEBMVA, "Programmi", "dnsrecon");
+                string comando = $"python \"{percorsoExec}\" {mod.Comando} -x {timestamp}dnsrecon_{nomeCamelCase}.xml";
+                return comando;
+            }
+            if(mod is ModuloDROOPE)
+            {
+                string percorsoExec = Path.Combine(Globals.CartellaWEBMVA, "Programmi", "droopescan");
+                string comando = $"python \"{percorsoExec}\" {mod.Comando} >> {timestamp}droopescan_{nomeCamelCase}.txt";
+                return comando;
+            }
+             if(mod is ModuloINFOGA)
+            {
+                string percorsoExec = Path.Combine(Globals.CartellaWEBMVA, "Programmi", "Infoga");
+                string comando = $"python \"{percorsoExec}\" {mod.Comando} >> {timestamp}infoga_{nomeCamelCase}.txt";
+                return comando;
             }
             else return "";
         }

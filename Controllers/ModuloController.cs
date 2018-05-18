@@ -25,7 +25,10 @@ namespace webmva.Controllers_
         {
             var listaNMAP = await _context.Moduli.Where(modulo => modulo.Applicazione == APPLICAZIONE.NMAP).ToListAsync();
             var listaNESSUS = await _context.Moduli.Where(modulo => modulo.Applicazione == APPLICAZIONE.NESSUS).ToListAsync();
-            return View(new ListaModuliVM { ModuliNMAP = listaNMAP, ModuliNESSUS= listaNESSUS });
+            var listaDNSRECON = await _context.Moduli.Where(modulo => modulo.Applicazione == APPLICAZIONE.DNSRECON).ToListAsync();
+            var listaDROOPE = await _context.Moduli.Where(modulo => modulo.Applicazione == APPLICAZIONE.DROOPE).ToListAsync();
+            var listaINFOGA = await _context.Moduli.Where(modulo => modulo.Applicazione == APPLICAZIONE.INFOGA).ToListAsync();
+            return View(new ListaModuliVM { ModuliNMAP = listaNMAP, ModuliNESSUS= listaNESSUS, ModuliDNSRECON = listaDNSRECON, ModuliDROOPE= listaDROOPE, ModuliINFOGA =listaINFOGA});
         }
 
         // GET: Modulo/Details/5
@@ -83,6 +86,45 @@ namespace webmva.Controllers_
                     }
                 }
             }
+            else if (createmodulo.DNSRECON.Nome != null && cosa.Equals("dnsrecon"))
+            {
+                {
+                    if (ModelState.IsValid)
+                    {
+                        ModuloDNSRECON mod = createmodulo.DNSRECON;
+                        mod.Applicazione = APPLICAZIONE.DNSRECON;
+                        _context.Moduli.Add(mod);
+                        await _context.SaveChangesAsync();
+                        return RedirectToAction(nameof(Index));
+                    }
+                }
+            }
+            else if (createmodulo.DROOPE.Nome != null && cosa.Equals("droopescan"))
+            {
+                {
+                    if (ModelState.IsValid)
+                    {
+                        ModuloDROOPE mod = createmodulo.DROOPE;
+                        mod.Applicazione = APPLICAZIONE.DROOPE;
+                        _context.Moduli.Add(mod);
+                        await _context.SaveChangesAsync();
+                        return RedirectToAction(nameof(Index));
+                    }
+                }
+            }
+             else if (createmodulo.INFOGA.Nome != null && cosa.Equals("infoga"))
+            {
+                {
+                    if (ModelState.IsValid)
+                    {
+                        ModuloINFOGA mod = createmodulo.INFOGA;
+                        mod.Applicazione = APPLICAZIONE.INFOGA;
+                        _context.Moduli.Add(mod);
+                        await _context.SaveChangesAsync();
+                        return RedirectToAction(nameof(Index));
+                    }
+                }
+            }
             else return BadRequest();
 
             return View(createmodulo);
@@ -105,6 +147,12 @@ namespace webmva.Controllers_
                 return View(new EditModuloVM((ModuloNMAP) modulo));
             else if (modulo is ModuloNESSUS)
                 return View(new EditModuloVM((ModuloNESSUS) modulo));
+            else if (modulo is ModuloDNSRECON)
+                return View(new EditModuloVM((ModuloDNSRECON) modulo));
+            else if (modulo is ModuloDROOPE)
+                return View(new EditModuloVM((ModuloDROOPE) modulo));
+                else if (modulo is ModuloINFOGA)
+                return View(new EditModuloVM((ModuloINFOGA) modulo));
             // PROVVISORIO, SOLO PER NON DARE ERRORI DI COMPILAZIONE
             else return View(new EditModuloVM() );
         }
@@ -117,7 +165,7 @@ namespace webmva.Controllers_
         public async Task<IActionResult> Edit(int id, EditModuloVM editmodulo)
         {
 
-            if (editmodulo.NMAP != null)
+            if (!string.IsNullOrEmpty(editmodulo.NMAP.Nome))
             {
                 ModuloNMAP mod = editmodulo.NMAP;
                 if (id != mod.ID)
@@ -146,9 +194,96 @@ namespace webmva.Controllers_
                     return RedirectToAction(nameof(Index));
                 }
             }
-            else if (editmodulo.NESSUS!= null)
+            else if (!string.IsNullOrEmpty(editmodulo.NESSUS.Nome))
             {
                 ModuloNESSUS mod = editmodulo.NESSUS;
+                if (id != mod.ID)
+                {
+                    return NotFound();
+                }
+
+                if (ModelState.IsValid)
+                {
+                    try
+                    {
+                        _context.Update(mod);
+                        await _context.SaveChangesAsync();
+                    }
+                    catch (DbUpdateConcurrencyException)
+                    {
+                        if (!ModuloExists(mod.ID))
+                        {
+                            return NotFound();
+                        }
+                        else
+                        {
+                            throw;
+                        }
+                    }
+                    return RedirectToAction(nameof(Index));
+                }
+            }
+            else if (!string.IsNullOrEmpty(editmodulo.DNSRECON.Nome))
+            {
+                ModuloDNSRECON mod = editmodulo.DNSRECON;
+                if (id != mod.ID)
+                {
+                    return NotFound();
+                }
+
+                if (ModelState.IsValid)
+                {
+                    try
+                    {
+                        _context.Update(mod);
+                        await _context.SaveChangesAsync();
+                    }
+                    catch (DbUpdateConcurrencyException)
+                    {
+                        if (!ModuloExists(mod.ID))
+                        {
+                            return NotFound();
+                        }
+                        else
+                        {
+                            throw;
+                        }
+                    }
+                    return RedirectToAction(nameof(Index));
+                }
+            }
+             else if (!string.IsNullOrEmpty(editmodulo.DROOPE.Nome))
+            {
+                ModuloDROOPE mod = editmodulo.DROOPE;
+                if (id != mod.ID)
+                {
+                    return NotFound();
+                }
+
+                if (ModelState.IsValid)
+                {
+                    try
+                    {
+                        _context.Update(mod);
+                        await _context.SaveChangesAsync();
+                    }
+                    catch (DbUpdateConcurrencyException)
+                    {
+                        if (!ModuloExists(mod.ID))
+                        {
+                            return NotFound();
+                        }
+                        else
+                        {
+                            throw;
+                        }
+                    }
+                    return RedirectToAction(nameof(Index));
+                }
+            }
+             else if (!string.IsNullOrEmpty(editmodulo.INFOGA.Nome))
+            {
+                ModuloINFOGA mod = editmodulo.INFOGA;
                 if (id != mod.ID)
                 {
                     return NotFound();
