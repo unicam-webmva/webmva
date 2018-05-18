@@ -401,7 +401,7 @@
         <h2>Modifica modulo @(Model.INFOGA.Nome)</h2>
         <hr />
         <a asp-action="Index"> Torna alla lista</a>
-         <form asp-action="Create" name="infogaForm">
+         <form asp-action="Edit" name="infogaForm">
                             <input type="hidden" asp-for="@Model.INFOGA.Applicazione" value="@webmva.Models.APPLICAZIONE.INFOGA" />
                             <div class="row panel panel-default panel-body">
 
@@ -446,7 +446,7 @@
                                                     <div class="col-sm-4">
                                                         <label class="control-label">Scegli source</label>
                                                     </div>
-                                                    <select class="col-sm-5" asp-for="@Model.INFOGA.source">
+                                                    <select class="col-sm-5" asp-for="@Model.INFOGA.Source">
                                                         <option value="8">all</option>
                                                         <option value="0">google </option>
                                                         <option value="1">bing </option>
@@ -462,7 +462,7 @@
                                                     <div class="col-sm-4">
                                                         <label class="control-label">Scegli verbosità</label>
                                                     </div>
-                                                    <select class="col-sm-5" asp-for="@Model.INFOGA.verbose">
+                                                    <select class="col-sm-5" asp-for="@Model.INFOGA.Verbose">
                                                         <option value="3">nessuno</option>
                                                         <option value="0">uno </option>
                                                         <option value="1">due</option>
@@ -475,11 +475,6 @@
                                                     <div class="row">
                                                         <div class="form-group col-sm-6">
                                                             <label class="control-label">
-                                                                <input type="checkbox" asp-for="@Model.INFOGA.Info" /> Info (-i)
-                                                            </label>
-                                                        </div>
-                                                        <div class="form-group col-sm-6">
-                                                            <label class="control-label">
                                                                 <input type="checkbox" asp-for="@Model.INFOGA.Breach" /> Breach (-b)
                                                             </label>
                                                         </div>
@@ -487,7 +482,7 @@
                                                 </div>
                                         <div class="col-sm-6 col-sm-offset-6 text-right">
                                             <div class="form-group">
-                                                <input type="submit" asp-action="Create" asp-route-cosa="infoga" class="btn btn-default" asp-route-id="@Model.INFOGA.ID" value="Salva" />&nbsp;&nbsp;
+                                                <input type="submit" asp-action="Edit" class="btn btn-default" asp-route-id="@Model.INFOGA.ID" value="Salva" />&nbsp;&nbsp;
                                                 <a asp-action="Index"> Torna alla lista</a>
                                             </div>
                                         </div>
