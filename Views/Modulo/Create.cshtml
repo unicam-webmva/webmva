@@ -397,7 +397,7 @@
                                                 </div>
                                             </div> 			                   <div class="col-sm-6 col-sm-offset-6 text-right">
                                                 <div class="form-group">
-                                                    <input type="submit" asp-action="Create" asp-route-cosa="nmap" class="btn btn-default" asp-route-id="@Model.NMAP.ID" value="Salva" />&nbsp;&nbsp;
+                                                    <input type="submit" asp-action="Create" asp-route-cosa="nmap" class="btn btn-default" value="Create" />&nbsp;&nbsp;
                                                     <a asp-action="Index"> Torna alla lista</a>
                                                 </div>
                                             </div>
@@ -566,7 +566,7 @@
                                                 </div>
                                         <div class="col-sm-6 col-sm-offset-6 text-right">
                                             <div class="form-group">
-                                                <input type="submit" asp-action="Create" asp-route-cosa="droopescan" class="btn btn-default" asp-route-id="@Model.DROOPE.ID" value="Salva" />&nbsp;&nbsp;
+                                                <input type="submit" asp-action="Create" asp-route-cosa="droopescan" class="btn btn-default" value="Create" />&nbsp;&nbsp;
                                                 <a asp-action="Index"> Torna alla lista</a>
                                             </div>
                                         </div>
@@ -728,7 +728,7 @@
                                         </div>
                                         <div class="col-sm-6 col-sm-offset-6 text-right">
                                             <div class="form-group">
-                                                <input type="submit" asp-action="Create" asp-route-cosa="dnsrecon" class="btn btn-default" asp-route-id="@Model.DNSRECON.ID" value="Salva" />&nbsp;&nbsp;
+                                                <input type="submit" asp-action="Create" asp-route-cosa="dnsrecon" class="btn btn-default" value="Create" />&nbsp;&nbsp;
                                                 <a asp-action="Index"> Torna alla lista</a>
                                             </div>
                                         </div>
@@ -832,7 +832,7 @@
                                                     <div class="col-sm-4">
                                                         <label class="control-label">Scegli source</label>
                                                     </div>
-                                                    <select class="col-sm-5" asp-for="@Model.INFOGA.source">
+                                                    <select class="col-sm-5" asp-for="@Model.INFOGA.Source">
                                                         <option value="8">all</option>
                                                         <option value="0">google </option>
                                                         <option value="1">bing </option>
@@ -848,7 +848,7 @@
                                                     <div class="col-sm-4">
                                                         <label class="control-label">Scegli verbosità</label>
                                                     </div>
-                                                    <select class="col-sm-5" asp-for="@Model.INFOGA.verbose">
+                                                    <select class="col-sm-5" asp-for="@Model.INFOGA.Verbose">
                                                         <option value="3">nessuno</option>
                                                         <option value="0">uno </option>
                                                         <option value="1">due</option>
@@ -859,11 +859,7 @@
                                                     <h4>Altro</h4>
                                                     <hr />
                                                     <div class="row">
-                                                        <div class="form-group col-sm-6">
-                                                            <label class="control-label">
-                                                                <input type="checkbox" asp-for="@Model.INFOGA.Info" /> Info (-i)
-                                                            </label>
-                                                        </div>
+                                                        
                                                         <div class="form-group col-sm-6">
                                                             <label class="control-label">
                                                                 <input type="checkbox" asp-for="@Model.INFOGA.Breach" /> Breach (-b)
@@ -873,7 +869,7 @@
                                                 </div>
                                         <div class="col-sm-6 col-sm-offset-6 text-right">
                                             <div class="form-group">
-                                                <input type="submit" asp-action="Create" asp-route-cosa="infoga" class="btn btn-default" asp-route-id="@Model.INFOGA.ID" value="Salva" />&nbsp;&nbsp;
+                                                <input type="submit" asp-action="Create" asp-route-cosa="infoga" class="btn btn-default" value="Create" />&nbsp;&nbsp;
                                                 <a asp-action="Index"> Torna alla lista</a>
                                             </div>
                                         </div>

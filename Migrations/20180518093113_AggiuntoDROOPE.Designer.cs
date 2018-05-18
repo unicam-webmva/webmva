@@ -13,7 +13,7 @@ using webmva.Models;
 namespace webmva.Migrations
 {
     [DbContext(typeof(MyDbContext))]
-    [Migration("20180516092202_AggiuntoDROOPE")]
+    [Migration("20180518093113_AggiuntoDROOPE")]
     partial class AggiuntoDROOPE
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -122,6 +122,29 @@ namespace webmva.Migrations
                     b.ToTable("ModuloDROOPE");
 
                     b.HasDiscriminator().HasValue("ModuloDROOPE");
+                });
+
+            modelBuilder.Entity("webmva.Models.ModuloINFOGA", b =>
+                {
+                    b.HasBaseType("webmva.Models.Modulo");
+
+                    b.Property<bool>("Breach");
+
+                    b.Property<string>("ComandoPersonalizzato")
+                        .HasColumnName("ModuloINFOGA_ComandoPersonalizzato");
+
+                    b.Property<string>("Dominio")
+                        .HasColumnName("ModuloINFOGA_Dominio");
+
+                    b.Property<string>("Email");
+
+                    b.Property<int>("Source");
+
+                    b.Property<int>("Verbose");
+
+                    b.ToTable("ModuloINFOGA");
+
+                    b.HasDiscriminator().HasValue("ModuloINFOGA");
                 });
 
             modelBuilder.Entity("webmva.Models.ModuloNESSUS", b =>

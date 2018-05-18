@@ -123,6 +123,29 @@ namespace webmva.Migrations
                     b.HasDiscriminator().HasValue("ModuloDROOPE");
                 });
 
+            modelBuilder.Entity("webmva.Models.ModuloINFOGA", b =>
+                {
+                    b.HasBaseType("webmva.Models.Modulo");
+
+                    b.Property<bool>("Breach");
+
+                    b.Property<string>("ComandoPersonalizzato")
+                        .HasColumnName("ModuloINFOGA_ComandoPersonalizzato");
+
+                    b.Property<string>("Dominio")
+                        .HasColumnName("ModuloINFOGA_Dominio");
+
+                    b.Property<string>("Email");
+
+                    b.Property<int>("Source");
+
+                    b.Property<int>("Verbose");
+
+                    b.ToTable("ModuloINFOGA");
+
+                    b.HasDiscriminator().HasValue("ModuloINFOGA");
+                });
+
             modelBuilder.Entity("webmva.Models.ModuloNESSUS", b =>
                 {
                     b.HasBaseType("webmva.Models.Modulo");

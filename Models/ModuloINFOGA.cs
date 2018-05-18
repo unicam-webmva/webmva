@@ -14,17 +14,22 @@ namespace webmva.Models
     public class ModuloINFOGA : Modulo
     {
         public string Dominio { get; set; }
+        
         public string Email { get; set; }
-        public bool Info{get; set;}
-        public bool Breach{get; set;}
+        
+        public bool Breach { get; set; }
        
         private SOURCE _source= SOURCE.ALL;
-        public SOURCE source{get {return _source;}
-    set{ _source=value;}}
+        public SOURCE Source{
+            get {return _source;}
+            set{ _source=value;}
+        }
     
- private VERBOSE _verbose= VERBOSE.NESSUNA;
-        public VERBOSE verbose{get {return _verbose;}
-    set{ _verbose=value;}}
+        private VERBOSE _verbose= VERBOSE.NESSUNA;
+        public VERBOSE Verbose{
+            get {return _verbose;}
+            set{ _verbose=value;}
+        }
         public string ComandoPersonalizzato { get; set; }
         public override string Comando
         {
@@ -34,66 +39,62 @@ namespace webmva.Models
                 {
                     
                     string risultato ="infoga.py" ;
-                    string controlloSource="";
+                    
                     // prova
-                    switch (source)
-                    {
-                    case SOURCE.GOOGLE:
-                         controlloSource=" -s google";
-                        break;
-                    case SOURCE.BING:
-                         controlloSource=" -s bing";
-                        break;
-                    case SOURCE.YAHOO:
-                         controlloSource=" -s yahoo";
-                        break;
-                    case SOURCE.ASK:
-                         controlloSource=" -s ask";
-                        break;
-                    case SOURCE.BAIDU:
-                         controlloSource=" -s baidu";
-                        break;
-                    case SOURCE.DOGPILE:
-                         controlloSource=" -s dogpile";
-                        break;
-                    case SOURCE.EXALEAD:
-                         controlloSource=" -s exalead";
-                        break;  
-                    case SOURCE.PGP:
-                         controlloSource=" -s pgp";
-                        break;          
-                    default: 
-                        controlloSource="";
-                        break;
-                    }
-                     string controlloVerbose="";
-                    // prova
-                    switch (verbose)
-                    {
-                    case VERBOSE.UNO:
-                         controlloVerbose=" -v 1";
-                        break;
-                    case VERBOSE.DUE:
-                         controlloVerbose=" -v 2";
-                        break;    
-                    case VERBOSE.TRE:
-                         controlloVerbose=" -v 3";
-                        break;      
-                    default: 
-                        controlloVerbose="";
-                        break;
-                    }
-                    if(Info){
-                    risultato+=" -i "+ Email;
-                    if(Breach)
-                    risultato += " -b";
+                    if(!string.IsNullOrEmpty(Email)){
+                        risultato+=" -i "+ Email;
+                        if(Breach)
+                            risultato += " -b";
                     }else{
                         risultato += " -d " + Dominio;
-                        risultato += controlloSource;
+                        // prova
+                        switch (Source)
+                        {
+                            case SOURCE.GOOGLE:
+                                risultato += " -s google";
+                                break;
+                            case SOURCE.BING:
+                                risultato += " -s bing";
+                                break;
+                            case SOURCE.YAHOO:
+                                risultato += " -s yahoo";
+                                break;
+                            case SOURCE.ASK:
+                                risultato += " -s ask";
+                                break;
+                            case SOURCE.BAIDU:
+                                risultato += " -s baidu";
+                                break;
+                            case SOURCE.DOGPILE:
+                                risultato += " -s dogpile";
+                                break;
+                            case SOURCE.EXALEAD:
+                                risultato += " -s exalead";
+                                break;
+                            case SOURCE.PGP:
+                                risultato += " -s pgp";
+                                break;
+                            default:
+                                break;
+                        }
                     }
-                    risultato += controlloVerbose;
-                   
-                   
+                    switch (Verbose)
+                    {
+                        case VERBOSE.UNO:
+                            risultato += " -v 1";
+                            break;
+                        case VERBOSE.DUE:
+                            risultato += " -v 2";
+                            break;
+                        case VERBOSE.TRE:
+                            risultato += " -v 3";
+                            break;
+                        default:
+                            risultato += "";
+                            break;
+                    }
+
+
                     return risultato;
                 }
                 else return ComandoPersonalizzato;
