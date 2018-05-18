@@ -300,20 +300,20 @@ namespace webmva.Controllers_
             }
             if(mod is ModuloDNSRECON)
             {
-                string comandoIniz = Path.Combine(Globals.CartellaWEBMVA, "Programmi", "dnsrecon", mod.Comando);
-                string comando = $"python {comandoIniz} -x {timestamp}dnsrecon_{nomeCamelCase}.xml";
+                string percorsoExec = Path.Combine(Globals.CartellaWEBMVA, "Programmi", "dnsrecon");
+                string comando = $"python \"{percorsoExec}\" {mod.Comando} -x {timestamp}dnsrecon_{nomeCamelCase}.xml";
                 return comando;
             }
             if(mod is ModuloDROOPE)
             {
-                string comandoIniz = Path.Combine(Globals.CartellaWEBMVA, "Programmi", "droopescan", mod.Comando);
-                string comando = $"python {comandoIniz} >> {timestamp}droopescan_{nomeCamelCase}.xml";
+                string percorsoExec = Path.Combine(Globals.CartellaWEBMVA, "Programmi", "droopescan");
+                string comando = $"python \"{percorsoExec}\" {mod.Comando} >> {timestamp}droopescan_{nomeCamelCase}.txt";
                 return comando;
             }
              if(mod is ModuloINFOGA)
             {
-                string comandoIniz = Path.Combine(Globals.CartellaWEBMVA, "Programmi", "infoga", mod.Comando);
-                string comando = $"python {comandoIniz} >> {timestamp}infoga_{nomeCamelCase}.xml";
+                string percorsoExec = Path.Combine(Globals.CartellaWEBMVA, "Programmi", "Infoga");
+                string comando = $"python \"{percorsoExec}\" {mod.Comando} >> {timestamp}infoga_{nomeCamelCase}.txt";
                 return comando;
             }
             else return "";
