@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace webmva.Migrations
 {
-    public partial class AggiuntoDROOPE : Migration
+    public partial class InseritoWapiti : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -27,10 +27,10 @@ namespace webmva.Migrations
                     NameServer = table.Column<string>(nullable: true),
                     ReverseLookupEnum = table.Column<bool>(nullable: true),
                     ZoneWalk = table.Column<bool>(nullable: true),
+                    Check = table.Column<int>(nullable: true),
+                    Cms = table.Column<int>(nullable: true),
                     ModuloDROOPE_ComandoPersonalizzato = table.Column<string>(nullable: true),
                     URL = table.Column<string>(nullable: true),
-                    check = table.Column<int>(nullable: true),
-                    cms = table.Column<int>(nullable: true),
                     Breach = table.Column<bool>(nullable: true),
                     ModuloINFOGA_ComandoPersonalizzato = table.Column<string>(nullable: true),
                     ModuloINFOGA_Dominio = table.Column<string>(nullable: true),
@@ -58,7 +58,26 @@ namespace webmva.Migrations
                     SynDiscoveryPorts = table.Column<string>(nullable: true),
                     TCPScan = table.Column<int>(nullable: true),
                     Tempo = table.Column<int>(nullable: true),
-                    UdpDiscoveryPorts = table.Column<string>(nullable: true)
+                    UdpDiscoveryPorts = table.Column<string>(nullable: true),
+                    All = table.Column<bool>(nullable: true),
+                    BackUp = table.Column<bool>(nullable: true),
+                    BlindSql = table.Column<bool>(nullable: true),
+                    Buster = table.Column<bool>(nullable: true),
+                    ModuloWAPITI_ComandoPersonalizzato = table.Column<string>(nullable: true),
+                    Crlf = table.Column<bool>(nullable: true),
+                    Exec = table.Column<bool>(nullable: true),
+                    File = table.Column<bool>(nullable: true),
+                    Force = table.Column<int>(nullable: true),
+                    Htaccess = table.Column<bool>(nullable: true),
+                    MaxMinutes = table.Column<int>(nullable: true),
+                    Nikto = table.Column<bool>(nullable: true),
+                    PermanentXss = table.Column<bool>(nullable: true),
+                    Scope = table.Column<int>(nullable: true),
+                    ShellShock = table.Column<bool>(nullable: true),
+                    Sql = table.Column<bool>(nullable: true),
+                    ModuloWAPITI_URL = table.Column<string>(nullable: true),
+                    ModuloWAPITI_Verbose = table.Column<int>(nullable: true),
+                    Xss = table.Column<bool>(nullable: true)
                 },
                 constraints: table =>
                 {

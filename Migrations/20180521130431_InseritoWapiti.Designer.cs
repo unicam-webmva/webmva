@@ -13,8 +13,8 @@ using webmva.Models;
 namespace webmva.Migrations
 {
     [DbContext(typeof(MyDbContext))]
-    [Migration("20180518093113_AggiuntoDROOPE")]
-    partial class AggiuntoDROOPE
+    [Migration("20180521130431_InseritoWapiti")]
+    partial class InseritoWapiti
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -110,14 +110,14 @@ namespace webmva.Migrations
                 {
                     b.HasBaseType("webmva.Models.Modulo");
 
+                    b.Property<int>("Check");
+
+                    b.Property<int>("Cms");
+
                     b.Property<string>("ComandoPersonalizzato")
                         .HasColumnName("ModuloDROOPE_ComandoPersonalizzato");
 
                     b.Property<string>("URL");
-
-                    b.Property<int>("check");
-
-                    b.Property<int>("cms");
 
                     b.ToTable("ModuloDROOPE");
 
@@ -208,6 +208,56 @@ namespace webmva.Migrations
                     b.ToTable("ModuloNMAP");
 
                     b.HasDiscriminator().HasValue("ModuloNMAP");
+                });
+
+            modelBuilder.Entity("webmva.Models.ModuloWAPITI", b =>
+                {
+                    b.HasBaseType("webmva.Models.Modulo");
+
+                    b.Property<bool>("All");
+
+                    b.Property<bool>("BackUp");
+
+                    b.Property<bool>("BlindSql");
+
+                    b.Property<bool>("Buster");
+
+                    b.Property<string>("ComandoPersonalizzato")
+                        .HasColumnName("ModuloWAPITI_ComandoPersonalizzato");
+
+                    b.Property<bool>("Crlf");
+
+                    b.Property<bool>("Exec");
+
+                    b.Property<bool>("File");
+
+                    b.Property<int>("Force");
+
+                    b.Property<bool>("Htaccess");
+
+                    b.Property<int>("MaxMinutes");
+
+                    b.Property<bool>("Nikto");
+
+                    b.Property<bool>("PermanentXss");
+
+                    b.Property<int>("Scope");
+
+                    b.Property<bool>("ShellShock");
+
+                    b.Property<bool>("Sql");
+
+                    b.Property<string>("URL")
+                        .HasColumnName("ModuloWAPITI_URL");
+
+                    b.Property<int>("Verbose")
+                        .HasColumnName("ModuloWAPITI_Verbose");
+
+                    b.Property<bool>("Xss");
+
+                    b.ToTable("ModuloWAPITI");
+
+                    b.HasDiscriminator().HasValue("ModuloWAPITI");
                 });
 
             modelBuilder.Entity("webmva.Models.ModuliProgetto", b =>

@@ -28,7 +28,8 @@ namespace webmva.Controllers_
             var listaDNSRECON = await _context.Moduli.Where(modulo => modulo.Applicazione == APPLICAZIONE.DNSRECON).ToListAsync();
             var listaDROOPE = await _context.Moduli.Where(modulo => modulo.Applicazione == APPLICAZIONE.DROOPE).ToListAsync();
             var listaINFOGA = await _context.Moduli.Where(modulo => modulo.Applicazione == APPLICAZIONE.INFOGA).ToListAsync();
-            return View(new ListaModuliVM { ModuliNMAP = listaNMAP, ModuliNESSUS= listaNESSUS, ModuliDNSRECON = listaDNSRECON, ModuliDROOPE= listaDROOPE, ModuliINFOGA =listaINFOGA});
+            var listaWAPITI = await _context.Moduli.Where(modulo => modulo.Applicazione == APPLICAZIONE.WAPITI).ToListAsync();
+            return View(new ListaModuliVM { ModuliNMAP = listaNMAP, ModuliNESSUS= listaNESSUS, ModuliDNSRECON = listaDNSRECON, ModuliDROOPE= listaDROOPE, ModuliINFOGA =listaINFOGA, ModuliWAPITI = listaWAPITI});
         }
 
         // GET: Modulo/Details/5
@@ -125,6 +126,19 @@ namespace webmva.Controllers_
                     }
                 }
             }
+             else if (createmodulo.WAPITI.Nome != null && cosa.Equals("wapiti"))
+            {
+                {
+                    if (ModelState.IsValid)
+                    {
+                        ModuloWAPITI mod = createmodulo.WAPITI;
+                        mod.Applicazione = APPLICAZIONE.WAPITI;
+                        _context.Moduli.Add(mod);
+                        await _context.SaveChangesAsync();
+                        return RedirectToAction(nameof(Index));
+                    }
+                }
+            }
             else return BadRequest();
 
             return View(createmodulo);
@@ -151,8 +165,10 @@ namespace webmva.Controllers_
                 return View(new EditModuloVM((ModuloDNSRECON) modulo));
             else if (modulo is ModuloDROOPE)
                 return View(new EditModuloVM((ModuloDROOPE) modulo));
-                else if (modulo is ModuloINFOGA)
+            else if (modulo is ModuloINFOGA)
                 return View(new EditModuloVM((ModuloINFOGA) modulo));
+            else if (modulo is ModuloWAPITI)
+                return View(new EditModuloVM((ModuloWAPITI) modulo));
             // PROVVISORIO, SOLO PER NON DARE ERRORI DI COMPILAZIONE
             else return View(new EditModuloVM() );
         }
@@ -310,8 +326,38 @@ namespace webmva.Controllers_
                     return RedirectToAction(nameof(Index));
                 }
             }
+            else if (!string.IsNullOrEmpty(editmodulo.WAPITI.Nome))
+            {
+                ModuloWAPITI mod = editmodulo.WAPITI;
+                if (id != mod.ID)
+                {
+                    return NotFound();
+                }
+
+                if (ModelState.IsValid)
+                {
+                    try
+                    {
+                        _context.Update(mod);
+                        await _context.SaveChangesAsync();
+                    }
+                    catch (DbUpdateConcurrencyException)
+                    {
+                        if (!ModuloExists(mod.ID))
+                        {
+                            return NotFound();
+                        }
+                        else
+                        {
+                            throw;
+                        }
+                    }
+                    return RedirectToAction(nameof(Index));
+                }
+            }
             return View(editmodulo);
         }
+        
 
         // GET: Modulo/Delete/5
         public async Task<IActionResult> Delete(int? id)

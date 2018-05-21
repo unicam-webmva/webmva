@@ -5,6 +5,7 @@
     bool dnsrecon = Model.DNSRECON != null;
     bool droopescan = Model.DROOPE != null;
     bool infoga = Model.INFOGA != null;
+    bool wapiti = Model.WAPITI != null;
 }
 
 
@@ -402,6 +403,7 @@
         <hr />
          <form asp-action="Edit" name="infogaForm">
                             <input type="hidden" asp-for="@Model.INFOGA.Applicazione" value="@webmva.Models.APPLICAZIONE.INFOGA" />
+                            <input type="hidden" asp-for="@Model.INFOGA.ID"  />
                             <div class="row panel panel-default panel-body">
 
                                 <div class="col-sm-12">
@@ -490,4 +492,242 @@
                             </div>
                         </form>
     }
+     @* -----WAPITI----- *@
+    else if (wapiti)
+    {
+        <h2>Modifica modulo @(Model.WAPITI.Nome)</h2>
+        <hr />
+         <form asp-action="Edit" name="wapitiForm">
+            <input type="hidden" asp-for="@Model.WAPITI.Applicazione" value="@webmva.Models.APPLICAZIONE.WAPITI" />
+            <input type="hidden" asp-for="@Model.WAPITI.ID"  />
+                                 <div class="row panel panel-default panel-body">
+
+                                    <div class="col-sm-12">
+                                        <div class="col-sm-7" style="margin:0 auto; float:none">
+                                            <div class="form-group">
+                                                <h4 asp-for="@(Model.WAPITI.Nome)">Nome Modulo</h4>
+                                                <input class="form-control" asp-for="@(Model.WAPITI.Nome)" />
+                                            </div>
+                                        </div>
+
+                                        <hr />
+                                        <div class="col-sm-12">
+                                            <div class="col-sm-12">
+                                                <div class="col-sm-6">
+                                                    <div class="form-group row">
+                                                        <h4 asp-for="@(Model.WAPITI.URL)">URL</h4>
+                                                        <input class="form-control" asp-for="@(Model.WAPITI.URL)" />
+                                                    </div>
+
+                                                </div>
+                                                <div class="col-sm-1"></div>
+                                                <div class="col-sm-5">
+                                                    <div class="form-group row">
+                                                        <h5 asp-for="@(Model.WAPITI.ComandoPersonalizzato)">Comando Personalizzato</h5>
+                                                        <input class="form-control" asp-for="@(Model.WAPITI.ComandoPersonalizzato)" />
+                                                    </div>
+
+                                                </div>
+
+                                            </div>
+
+                                        </div>
+                                        <div class="col-sm-12">
+                                            <h4>Tipi di enumerazione</h4>
+                                            <hr />
+                                            <div class="form-group row">
+                                                <div class="col-sm-4">
+                                                    <label class="control-label">Scegli lo scope</label>
+                                                </div>
+                                                <select class="col-sm-5" asp-for="@Model.WAPITI.Scope">
+                                                    <option value="4">nessuno</option>
+                                                    <option value="0">page</option>
+                                                    <option value="1">folder</option>
+                                                    <option value="2">domain</option>
+                                                    <option value="3">url</option>
+
+
+                                                </select>
+                                            </div>
+                                            <div class="form-group row">
+                                                <div class="col-sm-4">
+                                                    <label class="control-label">Scegli la force</label>
+                                                </div>
+                                                <select class="col-sm-5" asp-for="@Model.WAPITI.Force">
+                                                    <option value="5">Normale</option>
+                                                    <option value="0">Paranoico</option>
+                                                    <option value="1">Subdolo</option>
+                                                    <option value="2">Educato</option>
+                                                    <option value="3">Aggressivo</option>
+                                                    <option value="4">Insano</option>
+                                                </select>
+                                            </div>
+                                            <div class="form-group row">
+                                                <div class="col-sm-4">
+                                                    <label class="control-label">Scegli la verbosità</label>
+                                                </div>
+                                                <select class="col-sm-5" asp-for="@Model.WAPITI.Verbose">
+                                                    <option value="1">uno</option>
+                                                    <option value="0">zero</option>
+                                                    <option value="2">due</option>
+                                                </select>
+                                            </div>
+                                            <div class="form-group row">
+                                                <div class="col-sm-4">
+                                                    <label class="control-label"> Settaggio Minuti</label>
+                                                </div>
+
+                                                <input class="col-sm-5" type="number" asp-for="@Model.WAPITI.MaxMinutes" />
+                                                <div class="col-sm-3"></div>
+                                            </div>
+                                            <div class="col-sm-12">
+                                               
+                                                <h4>Seleziona i moduli desiderati
+                                                </h4>
+                                                <hr />
+                                                <div class="col-sm-6">
+                                                    <div class="col-sm-12">
+                                                            <div class="form-group row">
+                                                                    <div class="col-sm-5">
+                                                                        <label class="control-label">
+                                                                            <input type="checkbox" asp-for="@Model.WAPITI.All" name="selezionaTutto" onclick="SelezTT()" /> Tutto
+                                                                        </label>
+                                                                    </div>
+                                                                </div>
+                                                        <div class="form-group row">
+                                                            <div class="col-sm-5">
+                                                                <label class="control-label">
+                                                                    <input type="checkbox" asp-for="@Model.WAPITI.BackUp" name="check" /> Back Up
+                                                                </label>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group row">
+                                                            <div class="col-sm-4">
+                                                                <label class="control-label">
+                                                                    <input type="checkbox" asp-for="@Model.WAPITI.BlindSql" name="check" /> Blind Sql
+                                                                </label>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group row">
+                                                            <div class="col-sm-4">
+                                                                <label class="control-label">
+                                                                    <input type="checkbox" asp-for="@Model.WAPITI.Crlf" name="check" /> Crlf
+                                                                </label>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group row">
+                                                            <div class="col-sm-4">
+                                                                <label class="control-label">
+                                                                    <input type="checkbox" asp-for="@Model.WAPITI.Exec" name="check" /> Exec
+                                                                </label>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group row">
+                                                            <div class="col-sm-4">
+                                                                <label class="control-label">
+                                                                    <input type="checkbox" asp-for="@Model.WAPITI.File"  name="check"/> File
+                                                                </label>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group row">
+                                                            <div class="col-sm-4">
+                                                                <label class="control-label">
+                                                                    <input type="checkbox" asp-for="@Model.WAPITI.Htaccess" name="check" /> Htaccess
+                                                                </label>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                               
+                                                <div class="col-sm-6">
+                                                        
+                                                        <div class="form-group row">
+                                                            <div class=" col-sm-6">
+                                                                <label class="control-label">
+                                                                    <input type="checkbox" asp-for="@Model.WAPITI.Nikto" name="check" /> Nikto
+                                                                </label>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group row">
+                                                            <div class=" col-sm-6">
+                                                                <label class="control-label">
+                                                                    <input type="checkbox" asp-for="@Model.WAPITI.PermanentXss" name="check"/> Permanet Xss
+                                                                </label>
+                                                            </div>
+                                                        </div>    
+                                                        <div class="form-group row">                                                    
+                                                            <div class="col-sm-6">
+                                                                <label class="control-label">
+                                                                    <input type="checkbox" asp-for="@Model.WAPITI.Sql" name="check"/> Sql
+                                                                </label>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group row">          
+                                                            <div class="col-sm-6">
+                                                                <label class="control-label">
+                                                                    <input type="checkbox" asp-for="@Model.WAPITI.Buster" name="check" /> Buster
+                                                                </label>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group row"> 
+                                                            <div class="col-sm-6">
+                                                                <label class="control-label">
+                                                                    <input type="checkbox" asp-for="@Model.WAPITI.ShellShock" name="check" /> Shell Shock
+                                                                </label>
+                                                                </div>
+                                                            </div>
+                                           <div class="col-sm-6 col-sm-offset-6 text-right">
+                                            <div class="form-group">
+                                                <input type="submit" asp-action="Edit" class="btn btn-default" asp-route-id="@Model.WAPITI.ID" value="Salva" />&nbsp;&nbsp;|
+                                                <a asp-action="Index"> Torna alla lista</a>
+                                            </div>
+                                        </div>
+                                                        </div>
+                            </form>
+
+    }
 }
+ @section scripts{
+        <script>
+
+    function SelezTT(){
+      $('input[name=selezionaTutto]').change(
+        function(){
+            if( $('input[name=selezionaTutto]').prop('checked')){
+                var modulo = $('input[name=check]').each(function(index, element){
+                    $(element).prop('checked', true);
+                    console.log(index);
+                   
+                })
+               
+            }
+            else{
+                var modulo = $('input[name=check]').each(function(index, element){
+                    $(element).prop('checked', false);
+  
+                })
+                
+            }
+        });
+        
+        
+   };
+
+$(function(){
+    var tutticheck=true;
+    $('input[name=check]').change(
+        function(){
+            var check=$('input[name=check]');
+        for(i=0; i<check.length; i++){
+        if(!check[i].checked) {
+            tutticheck=false;
+            $('input[name=selezionaTutto]').prop('checked', false); 
+            break;
+        } else tutticheck=true;
+        if(tutticheck)
+        $('input[name=selezionaTutto]').prop('checked', true);
+    }
+        }
+    ).change();
+    });
+        </script> }

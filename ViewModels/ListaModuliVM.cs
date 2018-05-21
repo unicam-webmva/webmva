@@ -13,6 +13,7 @@ namespace webmva.ViewModels
         public IEnumerable<Modulo> ModuliDNSRECON { get; set; }
         public IEnumerable<Modulo> ModuliDROOPE { get; set; }
         public IEnumerable<Modulo> ModuliINFOGA { get; set; }
+        public IEnumerable<Modulo> ModuliWAPITI { get; set; }
         
 
 
