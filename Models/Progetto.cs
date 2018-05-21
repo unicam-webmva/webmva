@@ -14,7 +14,7 @@ namespace webmva.Models
         public string Target{get;set;}
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString= "{0:dd/MM/yyyy_hh:mm}",ApplyFormatInEditMode=true)]
-        public DateTime Data{get;set;}
+        public DateTime Data{get; set;}
         public ICollection<ModuliProgetto> ModuliProgetto {get; set;}
         public String Descrizione{get; set; }
     }

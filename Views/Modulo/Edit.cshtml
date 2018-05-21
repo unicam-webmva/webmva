@@ -362,7 +362,7 @@
                                                     <div class="col-sm-4">
                                                         <label class="control-label">Scegli cms</label>
                                                     </div>
-                                                    <select class="col-sm-5" asp-for="@Model.DROOPE.cms">
+                                                    <select class="col-sm-5" asp-for="@Model.DROOPE.Cms">
                                                         <option value="5">nessuno</option>
                                                         <option value="0">drupal</option>
                                                         <option value="1">joomla</option>
@@ -376,7 +376,7 @@
                                                     <div class="col-sm-4">
                                                         <label class="control-label">Scegli check</label>
                                                     </div>
-                                                    <select class="col-sm-5" asp-for="@Model.DROOPE.check">
+                                                    <select class="col-sm-5" asp-for="@Model.DROOPE.Check">
                                                         <option value="4">nessuno</option>
                                                         <option value="0">plugin</option>
                                                         <option value="1">theme</option>
@@ -400,7 +400,6 @@
     {
         <h2>Modifica modulo @(Model.INFOGA.Nome)</h2>
         <hr />
-        <a asp-action="Index"> Torna alla lista</a>
          <form asp-action="Edit" name="infogaForm">
                             <input type="hidden" asp-for="@Model.INFOGA.Applicazione" value="@webmva.Models.APPLICAZIONE.INFOGA" />
                             <div class="row panel panel-default panel-body">

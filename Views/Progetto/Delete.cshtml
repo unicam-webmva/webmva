@@ -2,7 +2,10 @@
 @{ ViewData["Title"] = "Delete"; 
 var contNMAP = 0;
 var contNessus= 0;
-var contOpenVAS = 0;}
+var contOpenVAS = 0;
+var contDnsRecon = 0;
+var contDroope = 0;
+var contInfoga = 0;}
 
 <h2>Sei sicuro di voler cancellare il progetto @Html.DisplayFor(model => model.Nome) ? </h2>
 <hr />
@@ -45,7 +48,10 @@ var contOpenVAS = 0;}
                             
                             if(item.Modulo is webmva.Models.ModuloNMAP) {contNMAP++;}
                             if(item.Modulo is webmva.Models.ModuloNESSUS) {contNessus++;}
-                            if(item.Modulo is webmva.Models.ModuloNMAP) {contOpenVAS++;}
+                            if(item.Modulo is webmva.Models.ModuloOPENVAS) {contOpenVAS++;}
+                            if(item.Modulo is webmva.Models.ModuloDNSRECON){contDnsRecon++}
+                            if(item.Modulo is webmva.Models.ModuloDROOPE){contDroope++}
+                            if(item.Modulo is webmva.Models.ModuloINFOGA){contInfoga++}
                         }
                         @if(contNMAP!=0){
                                 
@@ -131,6 +137,90 @@ var contOpenVAS = 0;}
                                 </table>
                                 </dd>    
                         }  
+                         @if(contDnsRecon!=0){
+                                
+                             <dd><strong>DnsRecon</strong></dd>
+                            <dd>
+                            <table class="table">
+                                <tr>
+                                    <th> </th>
+                                    <th>Modulo</th>
+                                    <th>Comando</th>
+                                </tr>
+                        @foreach (var item in Model.ModuliProgetto) {
+                            
+                                @if(item.Modulo is webmva.Models.ModuloDNSRECON){
+                                <tr>
+                                <td></td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Modulo.Nome)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Modulo.Comando)
+                                    </td>
+                                </tr>
+                               
+                                }
+                                }
+                                </table>
+                                </dd>    
+                        }
+                         @if(contDroope!=0){
+                                
+                             <dd><strong>Droope</strong></dd>
+                            <dd>
+                            <table class="table">
+                                <tr>
+                                    <th> </th>
+                                    <th>Modulo</th>
+                                    <th>Comando</th>
+                                </tr>
+                        @foreach (var item in Model.ModuliProgetto) {
+                            
+                                @if(item.Modulo is webmva.Models.ModuloDROOPE){
+                                <tr>
+                                <td></td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Modulo.Nome)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Modulo.Comando)
+                                    </td>
+                                </tr>
+                               
+                                }
+                                }
+                                </table>
+                                </dd>    
+                        }    
+                        @if(contInfoga!=0){
+                                
+                             <dd><strong>Infoga</strong></dd>
+                            <dd>
+                            <table class="table">
+                                <tr>
+                                    <th> </th>
+                                    <th>Modulo</th>
+                                    <th>Comando</th>
+                                </tr>
+                        @foreach (var item in Model.ModuliProgetto) {
+                            
+                                @if(item.Modulo is webmva.Models.ModuloINFOGA){
+                                <tr>
+                                <td></td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Modulo.Nome)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Modulo.Comando)
+                                    </td>
+                                </tr>
+                               
+                                }
+                                }
+                                </table>
+                                </dd>    
+                        }    
                                 
             <div class="container ">
                     <div class="form-group col-sm-6 ">
