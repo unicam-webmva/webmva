@@ -263,28 +263,30 @@
                             <hr>
                             <form asp-action="Create" name="nmapForm">
                                 <input type="hidden" asp-for="@Model.NMAP.Applicazione" value="@webmva.Models.APPLICAZIONE.NMAP" />
-                                <div class="row panel panel-default panel-body">
+                                
 
                                     <div class="col-sm-12">
-                                        <div class="col-sm-12">
-                                            <div class="col-sm-6">
-                                                <div class="form-group row">
-                                                    <h4 asp-for="@(Model.NMAP.Nome)">Nome Modulo</h4>
-                                                    <input class="form-control" asp-for="@(Model.NMAP.Nome)" />
-                                                </div>
-
+                                            <div class="col-sm-7" style="margin:0 auto; float:none">
+                                            <div class="form-group">
+                                                <h4 asp-for="@(Model.NMAP.Nome)">Nome Modulo</h4>
+                                                <input class="form-control" asp-for="@(Model.NMAP.Nome)" />
                                             </div>
-                                            <div class="col-sm-1"></div>
-                                            <div class="col-sm-5">
-                                                <div class="form-group row">
-                                                    <h4 asp-for="@(Model.NMAP.ComandoPersonalizzato)">Comando Personalizzato</h4>
-                                                    <input class="form-control" asp-for="@(Model.NMAP.ComandoPersonalizzato)" />
+                                        </div>
+
+                                        <hr />
+                                        <div class="col-sm-12">
+                                            <div class="col-sm-12">
+                                                <div class="col-sm-7"style="margin:0 auto; float:none">
+                                                    <div class="form-group row">
+                                                        <h4 asp-for="@(Model.NMAP.ComandoPersonalizzato)">Comando Personalizzato</h4>
+                                                        <input class="form-control" asp-for="@(Model.NMAP.ComandoPersonalizzato)" />
+                                                    </div>
+
                                                 </div>
 
                                             </div>
 
                                         </div>
-
                                         <div class="col-sm-12">
                                             <hr>
                                             <div class="col-sm-6">
@@ -459,7 +461,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                </div>
+                                
                             </form>
                         </div>
                     </div>
@@ -589,7 +591,7 @@
                             <hr>
                             <form asp-action="Create" name="wapitiForm">
                                 <input type="hidden" asp-for="@Model.WAPITI.Applicazione" value="@webmva.Models.APPLICAZIONE.WAPITI" />
-                                <div class="row panel panel-default panel-body">
+                               
 
                                     <div class="col-sm-12">
                                         <div class="col-sm-7" style="margin:0 auto; float:none">
@@ -767,7 +769,7 @@
                                                             </div>
 
                                                         </div>
-                                               </form>
+                                               
                                                     </div>
                                                 </div>
                                                 <div class="col-sm-6 col-sm-offset-6 text-right">
@@ -777,8 +779,8 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>
-                            
+                                        
+                            </form>
 
                         </div>
                     </div>
@@ -812,7 +814,7 @@
                             <hr>
                             <form asp-action="Create" name="droopeForm">
                                 <input type="hidden" asp-for="@Model.DROOPE.Applicazione" value="@webmva.Models.APPLICAZIONE.DROOPE" />
-                                <div class="row panel panel-default panel-body">
+                              
 
                                     <div class="col-sm-12">
                                         <div class="col-sm-7" style="margin:0 auto; float:none">
@@ -825,17 +827,17 @@
                                         <hr />
                                         <div class="col-sm-12">
                                             <div class="col-sm-12">
-                                                <div class="col-sm-6">
+                                               
                                                   <!--  <div class="form-group row">
                                                         <h4 asp-for="@(Model.DROOPE.URL)">URL</h4>
                                                         <input class="form-control" asp-for="@(Model.DROOPE.URL)" />
                                                     </div>-->
 
-                                                </div>
-                                                <div class="col-sm-1"></div>
-                                                <div class="col-sm-5">
+                                               
+                                                
+                                                 <div class="col-sm-7" style="margin:0 auto; float:none">
                                                     <div class="form-group row">
-                                                        <h5 asp-for="@(Model.DROOPE.ComandoPersonalizzato)">Comando Personalizzato</h5>
+                                                        <h4 asp-for="@(Model.DROOPE.ComandoPersonalizzato)">Comando Personalizzato</h4>
                                                         <input class="form-control" asp-for="@(Model.DROOPE.ComandoPersonalizzato)" />
                                                     </div>
 
@@ -881,7 +883,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                </div>
+                                
                             </form>
                         </div>
                     </div>
@@ -937,11 +939,11 @@
                             <hr>
                             <form asp-action="Create" name="dnsReconForm">
                                 <input type="hidden" asp-for="@Model.DNSRECON.Applicazione" value="@webmva.Models.APPLICAZIONE.DNSRECON" />
-                                <div class="row panel panel-default panel-body">
+                               
 
                                     <div class="col-sm-12">
                                         <div class="col-sm-7" style="margin:0 auto; float:none">
-                                            <div class="form-group">
+                                            <div class="row form-group">
                                                 <h4 asp-for="@(Model.DNSRECON.Nome)">Nome Modulo</h4>
                                                 <input class="form-control" asp-for="@(Model.DNSRECON.Nome)" />
                                             </div>
@@ -949,7 +951,7 @@
 
                                         <hr />
                                         <div class="col-sm-12">
-                                            <div class="col-sm-6">
+                                           <!-- <div class="col-sm-6">
                                                 <div class="form-group row">
                                                     <div class="col-sm-3">
                                                         <label class="control-label" asp-for="@Model.DNSRECON.Dominio"></label>
@@ -963,11 +965,10 @@
                                                     <input class="col-sm-9" asp-for="@Model.DNSRECON.NameServer" />
                                                 </div>
 
-                                            </div>
-                                            <div class="col-sm-1"></div>
-                                            <div class="col-sm-5">
+                                            </div>-->
+                                            <div class="col-sm-7"  style="margin:0 auto; float:none">
                                                 <div class="form-group row">
-                                                    <h5 asp-for="@(Model.DROOPE.ComandoPersonalizzato)">Comando Personalizzato</h5>
+                                                    <h4 asp-for="@(Model.DROOPE.ComandoPersonalizzato)">Comando Personalizzato</h4>
                                                     <input class="form-control" asp-for="@(Model.DROOPE.ComandoPersonalizzato)" />
                                                 </div>
                                             </div>
@@ -1036,7 +1037,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                </div>
+                                
                             </form>
                         </div>
                     </div>
@@ -1091,7 +1092,7 @@
                             <hr>
                             <form asp-action="Create" name="infogaForm">
                                 <input type="hidden" asp-for="@Model.INFOGA.Applicazione" value="@webmva.Models.APPLICAZIONE.INFOGA" />
-                                <div class="row panel panel-default panel-body">
+                               
 
                                     <div class="col-sm-12">
                                         <div class="col-sm-7" style="margin:0 auto; float:none">
@@ -1103,7 +1104,7 @@
 
                                         <hr />
                                         <div class="col-sm-12">
-                                            <div class="col-sm-6">
+                                            <!--<div class="col-sm-6">
                                                 <div class="form-group row">
                                                     <div class="col-sm-3">
                                                         <label class="control-label" asp-for="@Model.INFOGA.Dominio"></label>
@@ -1116,11 +1117,10 @@
                                                     </div>
                                                     <input class="col-sm-9" asp-for="@Model.INFOGA.Email" />
                                                 </div>
-                                            </div>
-                                            <div class="col-sm-1"></div>
-                                            <div class="col-sm-5">
+                                            </div>-->
+                                            <div class="col-sm-7" style="margin:0 auto; float:none">
                                                 <div class="form-group row">
-                                                    <h5 asp-for="@(Model.INFOGA.ComandoPersonalizzato)">Comando Personalizzato</h5>
+                                                    <h4 asp-for="@(Model.INFOGA.ComandoPersonalizzato)">Comando Personalizzato</h4>
                                                     <input class="form-control" asp-for="@(Model.INFOGA.ComandoPersonalizzato)" />
                                                 </div>
 
@@ -1177,7 +1177,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                </div>
+                                
                             </form>
                         </div>
                     </div>

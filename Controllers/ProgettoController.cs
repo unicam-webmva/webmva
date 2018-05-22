@@ -155,7 +155,7 @@ namespace webmva.Controllers_
             if (progetto == null) return NotFound();
 
             if (await TryUpdateModelAsync<Progetto>(progetto, "",
-                i => i.Nome, i => i.Target, i => i.Data, i => i.Descrizione))
+                i => i.Nome, i => i.Descrizione))
             {
                 AggiornaModuliInseriti(moduliSelezionati, progetto);
                 _context.Update(progetto);

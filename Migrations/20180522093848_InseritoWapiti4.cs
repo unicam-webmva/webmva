@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace webmva.Migrations
 {
-    public partial class InseritoWapiti : Migration
+    public partial class InseritoWapiti4 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -90,7 +90,6 @@ namespace webmva.Migrations
                 {
                     ID = table.Column<int>(nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
-                    Data = table.Column<DateTime>(nullable: false),
                     Descrizione = table.Column<string>(nullable: true),
                     Nome = table.Column<string>(nullable: true),
                     Target = table.Column<string>(nullable: true)
