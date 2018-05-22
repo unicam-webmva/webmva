@@ -437,14 +437,15 @@
                                 <label>Opzioni</label>
                                 <div class="panel panel-default">
                                     <div class="panel-body form-horizontal payment-form">
-                                        <div class="form-check">
-                                            <label>
-                                                <input type="radio" id="simpleScan" name="nessus" value="BOH!">
-                                                <span class="label-text">Scan semplice </span>
-                                            </label>
+                                        <div class="form-group row">
+                                            <div class="col-sm-4">
+                                                <label class="control-label">TCP</label>
+                                            </div>
+                                            <input class="form-control" asp-for="@Model.NESSUS.ServerIP" />
+                                                
                                         </div>
                                         <br>
-                                        <input type="text" asp-for="@Model.NESSUS.JSON" class="form-control">
+                                        <input asp-for="@Model.NESSUS.Porta" class="form-control">
                                         <br>
                                         <div class="col text-right">
                                             <input type="submit" asp-action="Create" asp-route-cosa="nessus" value="Create" class="btn btn-default" />

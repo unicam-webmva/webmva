@@ -19,7 +19,7 @@ namespace webmva.Data
             new ModuloNMAP{Applicazione = APPLICAZIONE.NMAP,Nome="Scan Intenso",Tempo = TEMPI.QUATTRO, AllDetections=true, IncreaseVerbosity=true }, // -T4 -A -v
             new ModuloNMAP{Applicazione = APPLICAZIONE.NMAP,Nome="Scan Porte UDP", TCPScan=TCPSCAN.SYN, NonTCPScan=NONTCPSCAN.UDP}, //-sS -sU
             new ModuloNMAP{Applicazione = APPLICAZIONE.NMAP,Nome="Scan All TCP", ListSpecificPort="1-65535"}, // -p 1-65535
-            new ModuloNESSUS{Applicazione = APPLICAZIONE.NESSUS,Nome="TestNessus", JSON="prova"}
+            //new ModuloNESSUS{Applicazione = APPLICAZIONE.NESSUS,Nome="TestNessus", JSON="prova"}
             };
             foreach (Modulo m in moduli)
             { context.Moduli.Add(m); }
