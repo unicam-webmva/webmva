@@ -714,20 +714,21 @@
    };
 
 $(function(){
-    var tutticheck=true;
+    var selezionaTutto=true;
     $('input[name=check]').change(
         function(){
             var check=$('input[name=check]');
         for(i=0; i<check.length; i++){
         if(!check[i].checked) {
-            tutticheck=false;
+            selezionaTutto=false;
             $('input[name=selezionaTutto]').prop('checked', false); 
             break;
-        } else tutticheck=true;
-        if(tutticheck)
+        } else selezionaTutto=true;
+        if(selezionaTutto)
         $('input[name=selezionaTutto]').prop('checked', true);
     }
         }
     ).change();
+     console.log(index);
     });
         </script> }

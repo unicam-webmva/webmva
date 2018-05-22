@@ -484,11 +484,24 @@
                         <hr>
                         <form asp-action="Create" name="nessusForm">
                             <input type="hidden" asp-for="@Model.NESSUS.Applicazione" value="@webmva.Models.APPLICAZIONE.NESSUS" />
-                            <label asp-for="@Model.NESSUS.Nome"></label>
-                            <div class="panel panel-default">
-                                <input asp-for="@Model.NESSUS.Nome" class="form-control" />
-                                <span asp-validation-for="@Model.NESSUS.Nome" class="text-danger"></span>
-                            </div>
+                            <div class="col-sm-12">
+                                    <div class="col-sm-6">
+                                        <div class="form-group row">
+                                            <h4 asp-for="@(Model.NESSUS.Nome)">Nome Modulo</h4>
+                                            <input class="form-control" asp-for="@(Model.NESSUS.Nome)" />
+                                        </div>
+
+                                    </div>
+                                    <div class="col-sm-1"></div>
+                                    <div class="col-sm-5">
+                                        <div class="form-group row">
+                                            <h4 asp-for="@(Model.NMAP.ComandoPersonalizzato)">Comando Personalizzato</h4>
+                                            <input class="form-control" asp-for="@(Model.NMAP.ComandoPersonalizzato)" />
+                                        </div>
+
+                                    </div>
+
+                                </div>
                             <div class="col-6">
                                 <label>Opzioni</label>
                                 <div class="panel panel-default">
@@ -527,6 +540,24 @@
                             <strong> Configura modulo </strong>
                         </h4>
                         <hr> FORM PER OPENVAS
+                        <div class="col-sm-12">
+                                <div class="col-sm-6">
+                                    <div class="form-group row">
+                                        <h4 asp-for="@(Model.NMAP.Nome)">Nome Modulo</h4>
+                                        <input class="form-control" asp-for="@(Model.NMAP.Nome)" />
+                                    </div>
+
+                                </div>
+                                <div class="col-sm-1"></div>
+                                <div class="col-sm-5">
+                                    <div class="form-group row">
+                                        <h4 asp-for="@(Model.NMAP.ComandoPersonalizzato)">Comando Personalizzato</h4>
+                                        <input class="form-control" asp-for="@(Model.NMAP.ComandoPersonalizzato)" />
+                                    </div>
+
+                                </div>
+
+                            </div>
                     </div>
                 </div>
             </div>
@@ -571,17 +602,17 @@
                                         <hr />
                                         <div class="col-sm-12">
                                             <div class="col-sm-12">
-                                                <div class="col-sm-6">
-                                                    <div class="form-group row">
+                                               
+                                                   <!-- <div class="form-group row">
                                                         <h4 asp-for="@(Model.WAPITI.URL)">URL</h4>
                                                         <input class="form-control" asp-for="@(Model.WAPITI.URL)" />
-                                                    </div>
+                                                    </div>-->
 
-                                                </div>
-                                                <div class="col-sm-1"></div>
-                                                <div class="col-sm-5">
+                                               
+                                               
+                                                <div class="col-sm-7"style="margin:0 auto; float:none">
                                                     <div class="form-group row">
-                                                        <h5 asp-for="@(Model.WAPITI.ComandoPersonalizzato)">Comando Personalizzato</h5>
+                                                        <h4 asp-for="@(Model.WAPITI.ComandoPersonalizzato)">Comando Personalizzato</h4>
                                                         <input class="form-control" asp-for="@(Model.WAPITI.ComandoPersonalizzato)" />
                                                     </div>
 
@@ -648,7 +679,7 @@
                                                             <div class="form-group row">
                                                                     <div class="col-sm-5">
                                                                         <label class="control-label">
-                                                                            <input type="checkbox" asp-for="@Model.WAPITI.All" name="selezionaTutto" onclick="SelezTT()" /> Tutto
+                                                                            <input type="checkbox" asp-for="@Model.WAPITI.All" name="selezionaTutto"  /> Tutto
                                                                         </label>
                                                                     </div>
                                                                 </div>
@@ -795,10 +826,10 @@
                                         <div class="col-sm-12">
                                             <div class="col-sm-12">
                                                 <div class="col-sm-6">
-                                                    <div class="form-group row">
+                                                  <!--  <div class="form-group row">
                                                         <h4 asp-for="@(Model.DROOPE.URL)">URL</h4>
                                                         <input class="form-control" asp-for="@(Model.DROOPE.URL)" />
-                                                    </div>
+                                                    </div>-->
 
                                                 </div>
                                                 <div class="col-sm-1"></div>
@@ -1181,21 +1212,5 @@
         
    };
 
-$(function(){
-    var tutticheck=true;
-    $('input[name=check]').change(
-        function(){
-            var check=$('input[name=check]');
-        for(i=0; i<check.length; i++){
-        if(!check[i].checked) {
-            tutticheck=false;
-            $('input[name=selezionaTutto]').prop('checked', false); 
-            break;
-        } else tutticheck=true;
-        if(tutticheck)
-        $('input[name=selezionaTutto]').prop('checked', true);
-    }
-        }
-    ).change();
-    });
+
         </script> }
