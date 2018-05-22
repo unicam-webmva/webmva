@@ -20,6 +20,7 @@ namespace webmva.Data
             modelBuilder.Entity<ModuloDNSRECON>().HasBaseType<Modulo>();
             modelBuilder.Entity<ModuloDROOPE>().HasBaseType<Modulo>();
             modelBuilder.Entity<ModuloINFOGA>().HasBaseType<Modulo>();
+            modelBuilder.Entity<ModuloINFOGAEMAIL>().HasBaseType<Modulo>();
             modelBuilder.Entity<ModuloWAPITI>().HasBaseType<Modulo>();
         }
     }
