@@ -11,201 +11,265 @@
         <hr/>
         
         
-        <div class="col-md-2 sidebar">
-            <div class="row">
-                <!-- uncomment code for absolute positioning tweek see top comment in css -->
-                <div class="absolute-wrapper"> </div>
-                <!-- Menu -->
-                <div class="side-menu col-6">
-                    <nav class="navbar navbar-default" role="navigation">
-                        <!-- Main Menu -->
-                        <div class="side-menu-container">
-                            <ul class="nav navbar-nav" style="list-style-type:none">
-                                <!-- Dropdown-->
+  <div class="col-md-2 sidebar">
+        <div class="row">
+            <!-- uncomment code for absolute positioning tweek see top comment in css -->
+            <div class="absolute-wrapper"> </div>
+            <!-- Menu -->
+            <div class="side-menu col-6">
+                <nav class="navbar navbar-default" role="navigation">
+                    <!-- Main Menu -->
+                    <div class="side-menu-container">
+                        <ul class="nav navbar-nav" style="list-style-type:none">
+                            <!-- Dropdown-->
+                            <li class="nav-item dropdown" id="progetto">
                                 <a>
-                                    <li class="nav-item dropdown" id="progetto">
-                                        <span class="glyphicon glyphicon-barcode"></span>
-                                        <strong>MODULO</strong>
+                                    <span class="glyphicon glyphicon-barcode"></span>
+                                    <strong>MODULO</strong>
                                 </a>
                             <li class="nav navbar-nav" id="dropdown">
-                              <a>
-                                  <span class="glyphicon glyphicon-globe"></span>
-                                  <strong> NETWORK</strong>
-                              </a>
+                                <a>
+                                    <span class="glyphicon glyphicon-globe"></span>
+                                    <strong> NETWORK</strong>
+                                </a>
                                 <!-- Dropdown level 1-->
-                                <div  class="nav-item dropdown">
+                                <div class="nav-item dropdown">
                                     <div class="dropdown">
-        
+
                                         <ul class="dropdown" style="list-style-type:none; margin-left:-40px align:center">
-                                           
+
                                             <li>
-                                                <a href="#" data-toggle="collapse" data-target="#Nmap">Nmap <span class="glyphicon glyphicon-play" style="font-size:65%"></span></a> 
+                                                <a href="#" data-toggle="collapse" data-target="#Nmap">
+                                                    Nmap
+                                                    <span class="glyphicon glyphicon-play" style="font-size:65%"></span>
+                                                </a>
                                             </li>
                                             <li>
-                                                <a href="https://www.stationx.net/nmap-cheat-sheet/" target="_blank">Nmap Cheat Sheet</a>
+                                                <a href="https://www.stationx.net/nmap-cheat-sheet/" target="_blank">documentation</a>
                                             </li>
                                             <li>
-                                                <a href="#" data-toggle="collapse" data-target="#Nessus">Nessus <span class="glyphicon glyphicon-play" style="font-size:65%"></span></a>
+                                                <a href="#" data-toggle="collapse" data-target="#Nessus">
+                                                    Nessus
+                                                    <span class="glyphicon glyphicon-play" style="font-size:65%"></span>
+                                                </a>
+                                            </li>
+                                             <li>
+                                                <a href="" target="_blank">documentation</a>
                                             </li>
                                             <li>
-                                                <a href="#" data-toggle="collapse" data-target="#OpenVAS">OpenVAS <span class="glyphicon glyphicon-play" style="font-size:65%"></span></a>
+                                                <a href="#" data-toggle="collapse" data-target="#OpenVAS">
+                                                    OpenVAS
+                                                    <span class="glyphicon glyphicon-play" style="font-size:65%"></span>
+                                                </a>
+                                            </li>
+                                             <li>
+                                                <a href="" target="_blank">documentation</a>
                                             </li>
                                         </ul>
 
                                     </div>
                                 </div>
-                                </li>
-                                <li class="nav navbar-nav" id="dropdown">
-                              <a >
-                                  <span class="glyphicon glyphicon-signal"></span>
-                                  <strong>WEB </strong>
-                              </a>
+                            </li>
+                            <li class="nav navbar-nav" id="dropdown">
+                                <a>
+                                    <span class="glyphicon glyphicon-signal"></span>
+                                    <strong>WEB </strong>
+                                </a>
                                 <!-- Dropdown level 1-->
                                 <div id="web" class="nav dropdown">
                                     <div class="dropdown">
-        
+
                                         <ul class="dropdown" style="list-style-type:none; margin-left:-40px align:center">
-                                           
+
                                             <li>
-                                                <a href="#" data-toggle="collapse" data-target="#Vega">Vega <span class="glyphicon glyphicon-play" style="font-size:65%"></span></a> 
+                                                <a href="#" data-toggle="collapse" data-target="#wapiti">
+                                                    Wapiti
+                                                    <span class="glyphicon glyphicon-play" style="font-size:65%"></span>
+                                                </a>
                                             </li>
                                             <li>
-                                                <a href="" target="_blank">Rispettiva sitografia</a>
+                                                <a href="http://wapiti.sourceforge.net/" target="_blank">documentation</a>
                                             </li>
                                             <li>
-                                                <a href="#" data-toggle="collapse" data-target="#">VEDI  <span class="glyphicon glyphicon-play" style="font-size:65%"></span></a>
+                                                <a href="#" data-toggle="collapse" data-target="#vega">
+                                                    Vega
+                                                    <span class="glyphicon glyphicon-play" style="font-size:65%"></span>
+                                                </a>
                                             </li>
-                                            <li>
-                                                <a href="#" data-toggle="collapse" data-target="#"> VEDI <span class="glyphicon glyphicon-play" style="font-size:65%"></span></a>
+                                             <li>
+                                                <a href="https://subgraph.com/vega/documentation/Vega-Scanner/index.en.html" target="_blank">documentation</a>
                                             </li>
                                         </ul>
                                     </div>
                                 </div>
-                                </li>
-                                <li class="nav navbar-nav" id="dropdown">
-                              <a>
-                                  <span class="glyphicon glyphicon-wrench"></span>
-                                  <strong> CMS</strong>
-                              </a>
+                            </li>
+                            <li class="nav navbar-nav" id="dropdown">
+                                <a>
+                                    <span class="glyphicon glyphicon-wrench"></span>
+                                    <strong> CMS</strong>
+                                </a>
                                 <!-- Dropdown level 1-->
                                 <div id="cms" class="nav-item dropdown">
                                     <div class="dropdown">
-        
+
                                         <ul class="dropdown" style="list-style-type:none; margin-left:-40px align:center">
-                                           
+
                                             <li>
-                                                <a href="#" data-toggle="collapse" data-target="#droopescan">DroopeScan <span class="glyphicon glyphicon-play" style="font-size:65%"></span></a> 
+                                                <a href="#" data-toggle="collapse" data-target="#droopescan">
+                                                    Droope
+                                                    <span class="glyphicon glyphicon-play" style="font-size:65%"></span>
+                                                </a>
                                             </li>
                                             <li>
-                                                <a href="" target="_blank">RIspettiva sitografia</a>
+                                                <a href="https://github.com/The404Hacking/Infoga/blob/master/Screenshot.png" target="_blank">documentation</a>
                                             </li>
                                             <li>
-                                                <a href="#" data-toggle="collapse" data-target="#">VEDI <span class="glyphicon glyphicon-play" style="font-size:65%"></span></a>
+                                                <a href="#" data-toggle="collapse" data-target="#">
+                                                    VEDI
+                                                    <span class="glyphicon glyphicon-play" style="font-size:65%"></span>
+                                                </a>
                                             </li>
                                             <li>
-                                                <a href="#" data-toggle="collapse" data-target="#">VEDI <span class="glyphicon glyphicon-play" style="font-size:65%"></span></a>
+                                                <a href="#" data-toggle="collapse" data-target="#">
+                                                    VEDI
+                                                    <span class="glyphicon glyphicon-play" style="font-size:65%"></span>
+                                                </a>
                                             </li>
                                         </ul>
 
                                     </div>
                                 </div>
-                                </li>
-                                <li class="nav navbar-nav" id="dropdown">
-                              <a>
-                                  <span class="glyphicon glyphicon-stats"></span>
-                                  <strong> DNS</strong>
-                              </a>
+                            </li>
+                            <li class="nav navbar-nav" id="dropdown">
+                                <a>
+                                    <span class="glyphicon glyphicon-stats"></span>
+                                    <strong> DNS</strong>
+                                </a>
                                 <!-- Dropdown level 1-->
                                 <div id="dns" class="nav-item dropdown">
                                     <div class="dropdown">
-        
+
                                         <ul class="dropdown" style="list-style-type:none; margin-left:-40px align:center">
-                                           
+
                                             <li>
-                                                <a href="#" data-toggle="collapse" data-target="#Nmap">Nmap <span class="glyphicon glyphicon-play" style="font-size:65%"></span></a> 
+                                                <a href="#" data-toggle="collapse" data-target="#dnsRecon">
+                                                    Dnsrecon
+                                                    <span class="glyphicon glyphicon-play" style="font-size:65%"></span>
+                                                </a>
                                             </li>
                                             <li>
-                                                <a href="" target="_blank">Risepttiva sitografia</a>
+                                                <a href="https://github.com/darkoperator/dnsrecon" target="_blank">documentation</a>
                                             </li>
                                             <li>
-                                                <a href="#" data-toggle="collapse" data-target="#">VEDI <span class="glyphicon glyphicon-play" style="font-size:65%"></span></a>
+                                                <a href="#" data-toggle="collapse" data-target="#">
+                                                    VEDI
+                                                    <span class="glyphicon glyphicon-play" style="font-size:65%"></span>
+                                                </a>
                                             </li>
                                             <li>
-                                                <a href="#" data-toggle="collapse" data-target="#">VEDI  <span class="glyphicon glyphicon-play" style="font-size:65%"></span></a>
+                                                <a href="#" data-toggle="collapse" data-target="#">
+                                                    VEDI
+                                                    <span class="glyphicon glyphicon-play" style="font-size:65%"></span>
+                                                </a>
                                             </li>
                                         </ul>
 
                                     </div>
                                 </div>
-                                </li>
-                                <li class="nav navbar-nav" id="dropdown">
-                              <a>
-                                  <span class="glyphicon glyphicon-list-alt"></span>
-                                  <strong> INFORMATION GATHERING</strong>
-                              </a>
+                            </li>
+                            <li class="nav navbar-nav" id="dropdown">
+                                <a>
+                                    <span class="glyphicon glyphicon-list-alt"></span>
+                                    <strong> INFORMATION GATHERING</strong>
+                                </a>
                                 <!-- Dropdown level 1-->
                                 <div id="database" class="nav-item dropdown">
                                     <div class="dropdown">
-        
+
                                         <ul class="dropdown" style="list-style-type:none; margin-left:-40px align:center">
-                                           
+
                                             <li>
-                                                <a href="#" data-toggle="collapse" data-target="#ig"> Infoga <span class="glyphicon glyphicon-play" style="font-size:65%"></span></a> 
+                                                <a href="#" data-toggle="collapse" data-target="#infoga"> Infoga <span class="glyphicon glyphicon-play" style="font-size:65%"></span></a>
                                             </li>
                                             <li>
-                                                <a href="" target="_blank">RISPETTIVA SITOGRAFIA</a>
+                                                <a href="https://github.com/m4ll0k/Infoga" target="_blank">documentation</a>
                                             </li>
                                             <li>
-                                                <a href="#" data-toggle="collapse" data-target="#">VEDI  <span class="glyphicon glyphicon-play" style="font-size:65%"></span></a>
+                                                <a href="#" data-toggle="collapse" data-target="#infogae">Infoga Email  <span class="glyphicon glyphicon-play" style="font-size:65%"></span></a>
                                             </li>
                                             <li>
-                                                <a href="#" data-toggle="collapse" data-target="#">VEDI  <span class="glyphicon glyphicon-play" style="font-size:65%"></span></a>
+                                                <a href="https://github.com/m4ll0k/Infoga" target="_blank">documentation</a>
                                             </li>
                                         </ul>
 
                                     </div>
                                 </div>
-                                </li>
-                                <li class="nav navbar-nav" id="dropdown">
-                              <a>
-                                  <span class="glyphicon glyphicon-list-alt"></span>
-                                  <strong> DATABASE</strong>
-                              </a>
+                            </li>
+                            <li class="nav navbar-nav" id="dropdown">
+                                <a>
+                                    <span class="glyphicon glyphicon-list-alt"></span>
+                                    <strong> DATABASE</strong>
+                                </a>
                                 <!-- Dropdown level 1-->
                                 <div id="database" class="nav-item dropdown">
                                     <div class="dropdown">
-        
+
                                         <ul class="dropdown" style="list-style-type:none; margin-left:-40px align:center">
-                                           
+
                                             <li>
-                                                <a href="#" data-toggle="collapse" data-target="#"> <span class="glyphicon glyphicon-play" style="font-size:65%"></span></a> 
+                                                <a href="#" data-toggle="collapse" data-target="#">
+                                                    vedi
+                                                    <span class="glyphicon glyphicon-play" style="font-size:65%"></span>
+                                                </a>
                                             </li>
                                             <li>
-                                                <a href="" target="_blank">RISPETTIVA SITOGRAFIA</a>
+                                                <a href="" target="_blank">documentation</a>
+                                            </li>
+                                            
+                                            <li>
+                                                <a href="#" data-toggle="collapse" data-target="#">
+                                                    vedi
+                                                    <span class="glyphicon glyphicon-play" style="font-size:65%"></span>
+                                                </a>
                                             </li>
                                             <li>
-                                                <a href="#" data-toggle="collapse" data-target="#">VEDI  <span class="glyphicon glyphicon-play" style="font-size:65%"></span></a>
-                                            </li>
-                                            <li>
-                                                <a href="#" data-toggle="collapse" data-target="#">VEDI  <span class="glyphicon glyphicon-play" style="font-size:65%"></span></a>
+                                                <a href="" target="_blank">documentation</a>
                                             </li>
                                         </ul>
 
                                     </div>
                                 </div>
-                                </li>
-                                <li >
-                              <a>
-                                
-                              </a>
-                            </ul>
-                        </div>
-                        <!-- /.navbar-collapse -->
-                    </nav>
+                            </li>
+                            <li class="nav navbar-nav" id="dropdown">
+                                <a>
+                                    <span class="glyphicon glyphicon-signal"></span>
+                                    <strong> WIFI</strong>
+                                </a>
+                                <!-- Dropdown level 1-->
+                                <div id="wifi" class="nav-item dropdown">
+                                    <div class="dropdown">
 
-                </div>
+                                        <ul class="dropdown" style="list-style-type:none; margin-left:-40px align:center">
+
+                                            <li>
+                                                <a href="#" data-toggle="collapse" data-target="#wifite"> Wifite <span class="glyphicon glyphicon-play" style="font-size:65%"></span></a>
+                                            </li>
+                                            <li>
+                                                <a href="" target="_blank">documentation</a>
+                                            </li>
+                                        </ul>
+
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    <!-- /.navbar-collapse -->
+                </nav>
+
             </div>
         </div>
+    </div>
 
         <div class="col-6 col-md-10">
              <div class="panel panel-default">
@@ -448,29 +512,6 @@
                     </div>
                 </div>
             </div>
-            <div class="col-5">
-                    <div class="panel panel-sidebar">
-                        <div class="panel-heading">
-                            <a href="#" data-toggle="collapse" data-target="#vedi">
-                                <strong>
-                                  vedi1
-                                </strong>
-                                <span class="caret"></span>
-                            </a>
-                        </div>
-                        <div class="collapse " id="vedi">
-                            <div class="panel-body ">
-    
-                                <table class="table" >
-                                    <div class="method">
-                                      
-                                </table>
-    
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
 
         </div>
          <div class="panel panel-default">
@@ -532,30 +573,6 @@
                     </div>
                 </div>
             </div>
-            <div class="col-5">
-                    <div class="panel panel-sidebar">
-                        <div class="panel-heading">
-                            <a href="#" data-toggle="collapse" data-target="#vedi">
-                                <strong>
-                                  vedi1
-                                </strong>
-                                <span class="caret"></span>
-                            </a>
-                        </div>
-                        <div class="collapse " id="vedi">
-                            <div class="panel-body ">
-    
-                                <table class="table" >
-                                    <div class="method">
-                                      
-                                </table>
-    
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-
         </div>
          <div class="panel panel-default">
                     <div class="panel-heading">
@@ -616,51 +633,6 @@
                     </div>
                 </div>
             </div>
-            <div class="col-5">
-                    <div class="panel panel-sidebar">
-                        <div class="panel-heading">
-                            <a href="#" data-toggle="collapse" data-target="#vedi">
-                                <strong>
-                                  vedi1
-                                </strong>
-                                <span class="caret"></span>
-                            </a>
-                        </div>
-                        <div class="collapse " id="vedi">
-                            <div class="panel-body ">
-    
-                                <table class="table" >
-                                    <div class="method">
-                                      
-                                </table>
-    
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-5">
-                        <div class="panel panel-sidebar">
-                            <div class="panel-heading">
-                                <a href="#" data-toggle="collapse" data-target="#vedi2">
-                                    <strong>
-                                        vedi2
-                                    </strong>
-                                    <span class="caret"></span>
-                                </a>
-                            </div>
-                            <div class="collapse " id="vedi2">
-                                <div class="panel-body ">
-        
-                                    <table class="table" >
-                                        <div class="method">
-                                           
-                                    </table>
-        
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
         </div>
          <div class="panel panel-default">
                     <div class="panel-heading">
@@ -772,6 +744,177 @@
                 </div>
             </div>
 
+        </div>
+          <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <a href="#database" data-toggle="collapse">
+                            <strong>
+                              DATABASE
+                            </strong>
+                           
+                        </a>
+                    </div>
+            <div class="col-5">
+                <div class="panel panel-sidebar">
+                    <div class="panel-heading">
+                        <a href="#" data-toggle="collapse" data-target="#">
+                            <strong>
+                                 SQL
+                            </strong>
+                            <span class="caret"></span>
+                        </a>
+                    </div>
+                    <div class="collapse " id="">
+                        <div class="panel-body ">
+
+                            <table class="table">
+                                <div class="method">
+                                    <thead>
+                                        <tr>
+                                            <th>
+                                                Nome
+                                            </th>
+                                            <th>
+                                                Comando
+                                            </th>
+
+                                            <th></th>
+                                        </tr>
+                                    </thead>
+                                </div>
+                                <tbody>
+                                    @foreach (var item in Model.ModuliINFOGA) { 
+                                    <tr>
+                                        <td>
+                                           <a asp-action="Details" asp-route-id="@item.ID"> @Html.DisplayFor(modelItem => item.Nome)</a> 
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Comando)
+                                        </td>
+                                        <td>
+                                            <a asp-action="Edit" asp-route-id="@item.ID">Modifica</a> |
+                                            <a asp-action="Delete" asp-route-id="@item.ID">Cancella</a>
+                                        </td>
+                                    </tr>
+                                    }
+                                </tbody>
+                            </table>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+             <div class="col-5">
+                <div class="panel panel-sidebar">
+                    <div class="panel-heading">
+                        <a href="#" data-toggle="collapse" data-target="#">
+                            <strong>
+                                 NO SQL
+                            </strong>
+                            <span class="caret"></span>
+                        </a>
+                    </div>
+                    <div class="collapse " id="">
+                        <div class="panel-body ">
+
+                            <table class="table">
+                                <div class="method">
+                                    <thead>
+                                        <tr>
+                                            <th>
+                                                Nome
+                                            </th>
+                                            <th>
+                                                Comando
+                                            </th>
+
+                                            <th></th>
+                                        </tr>
+                                    </thead>
+                                </div>
+                                <tbody>
+                                    @foreach (var item in Model.ModuliINFOGAEMAIL) { 
+                                    <tr>
+                                        <td>
+                                           <a asp-action="Details" asp-route-id="@item.ID"> @Html.DisplayFor(modelItem => item.Nome)</a> 
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Comando)
+                                        </td>
+                                        <td>
+                                            <a asp-action="Edit" asp-route-id="@item.ID">Modifica</a> |
+                                            <a asp-action="Delete" asp-route-id="@item.ID">Cancella</a>
+                                        </td>
+                                    </tr>
+                                    }
+                                </tbody>
+                            </table>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+          <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <a href="#wifi" data-toggle="collapse">
+                            <strong>
+                              WIFI
+                            </strong>
+                           
+                        </a>
+                    </div>
+            <div class="col-5">
+                <div class="panel panel-sidebar">
+                    <div class="panel-heading">
+                        <a href="#" data-toggle="collapse" data-target="#wifite">
+                            <strong>
+                                 WIFITE
+                            </strong>
+                            <span class="caret"></span>
+                        </a>
+                    </div>
+                    <div class="collapse " id="wifite">
+                        <div class="panel-body ">
+
+                            <table class="table">
+                                <div class="method">
+                                    <thead>
+                                        <tr>
+                                            <th>
+                                                Nome
+                                            </th>
+                                            <th>
+                                                Comando
+                                            </th>
+
+                                            <th></th>
+                                        </tr>
+                                    </thead>
+                                </div>
+                                <tbody>
+                                    @foreach (var item in Model.ModuliINFOGA) { 
+                                    <tr>
+                                        <td>
+                                           <a asp-action="Details" asp-route-id="@item.ID"> @Html.DisplayFor(modelItem => item.Nome)</a> 
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Comando)
+                                        </td>
+                                        <td>
+                                            <a asp-action="Edit" asp-route-id="@item.ID">Modifica</a> |
+                                            <a asp-action="Delete" asp-route-id="@item.ID">Cancella</a>
+                                        </td>
+                                    </tr>
+                                    }
+                                </tbody>
+                            </table>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
         </div>
        

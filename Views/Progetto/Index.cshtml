@@ -18,9 +18,7 @@
                             <th>
                                 @Html.DisplayNameFor(model => model.Nome)
                             </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.Data)
-                            </th>
+                            
                             <th></th>
                         </tr>
                     </thead>
@@ -32,9 +30,7 @@
                             <td>
                                  <a asp-action="Details" asp-route-id="@item.ID"> @Html.DisplayFor(modelItem => item.Nome)</a> 
                             </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.Data)
-                            </td>
+                            
                             <td>
                                 <div class="col-sm-8 col-sm-offset-4">
                                     <a asp-action="Edit" asp-route-id="@item.ID">Modifica </a>|

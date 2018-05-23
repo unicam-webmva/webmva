@@ -5,7 +5,7 @@
     bool dnsrecon = Model.DNSRECON != null;
     bool droopescan = Model.DROOPE != null;
     bool infoga = Model.INFOGA != null;
-     bool infogaemail = Model.INFOGAEMAIL != null;
+    bool infogaemail = Model.INFOGAEMAIL != null;
     bool wapiti = Model.WAPITI != null;
 
 }
@@ -770,5 +770,12 @@
             </div>
         </form>
 
+    }
+    @* -----WIFITE----- *@
+    else if (wifite)
+    {
+        <h2>Modifica modulo @(Model.NESSUS.Nome)</h2>
+        <hr />
+        <a asp-action="Index"> Torna alla lista</a>
     }
 }
