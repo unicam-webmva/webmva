@@ -261,7 +261,7 @@ namespace webmva.Controllers_
                 Modulo modulo = modprog.Modulo;
                 string comando = CreaComando(modulo, progetto.Target);
                 string cartellaProgetto = Globals.CreaCartellaProgetto(progetto.Nome);
-                risultati.Add(modulo.Nome, comando.EseguiCLI(cartellaProgetto));
+                risultati.Add(modulo.Nome, $"<h3> {modulo.Applicazione.ToString()}</h3> \r\n <p>{comando.EseguiCLI(cartellaProgetto)}</p>");
             }
 
             //string comando = primoModulo.Comando + " " + progetto.Target;
@@ -295,8 +295,10 @@ namespace webmva.Controllers_
                 return comando;
             }
             if(mod is ModuloNESSUS){
-                //TODO: creare JSON?
-                return "";
+                // Qui non viene usato il comando perché si verrà reindirizzati fuori tramite python, 
+                // soluzione compatibile con quasi tutti i SO
+                
+                return "python -mwebbrowser " + mod.Comando;
             }
             if(mod is ModuloDNSRECON)
             {

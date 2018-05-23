@@ -224,7 +224,38 @@
     {
         <h2>Modifica modulo @(Model.NESSUS.Nome)</h2>
         <hr />
-        <a asp-action="Index"> Torna alla lista</a>
+        <form asp-action="Edit" name="nessusForm">
+            <input type="hidden" asp-for="@Model.NESSUS.Applicazione" value="@webmva.Models.APPLICAZIONE.NESSUS" />
+            <input type="hidden" asp-for="@Model.NESSUS.ID" />
+            <label asp-for="@Model.NESSUS.Nome"></label>
+            <div class="panel panel-default">
+                <input asp-for="@Model.NESSUS.Nome" class="form-control" />
+                <span asp-validation-for="@Model.NESSUS.Nome" class="text-danger"></span>
+            </div>
+            <div class="col-6">
+                <label>Opzioni</label>
+                <div class="panel panel-default">
+                    <div class="panel-body form-horizontal payment-form">
+                        <div class="form-group row">
+                            <div class="col-sm-4">
+                                <label class="control-label">TCP</label>
+                            </div>
+                            <input class="form-control" asp-for="@Model.NESSUS.ServerIP" />
+
+                        </div>
+                        <br>
+                        <input asp-for="@Model.NESSUS.Porta" class="form-control">
+                        <br>
+                        <div class="col-sm-6 col-sm-offset-6 text-right">
+                            <div class="form-group">
+                                <input type="submit" asp-action="Edit" class="btn btn-default" asp-route-id="@Model.NESSUS.ID" value="Salva" />&nbsp;|&nbsp;
+                                <a asp-action="Index"> Torna alla lista</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+        </form>
+        
     }
     @* -----DNSRECON----- *@
     else if (dnsrecon)
