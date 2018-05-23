@@ -124,15 +124,11 @@ namespace webmva.Migrations
                 {
                     b.HasBaseType("webmva.Models.Modulo");
 
-                    b.Property<bool>("Breach");
-
                     b.Property<string>("ComandoPersonalizzato")
                         .HasColumnName("ModuloINFOGA_ComandoPersonalizzato");
 
                     b.Property<string>("Dominio")
                         .HasColumnName("ModuloINFOGA_Dominio");
-
-                    b.Property<string>("Email");
 
                     b.Property<int>("Source");
 
@@ -141,6 +137,25 @@ namespace webmva.Migrations
                     b.ToTable("ModuloINFOGA");
 
                     b.HasDiscriminator().HasValue("ModuloINFOGA");
+                });
+
+            modelBuilder.Entity("webmva.Models.ModuloINFOGAEMAIL", b =>
+                {
+                    b.HasBaseType("webmva.Models.Modulo");
+
+                    b.Property<bool>("Breach");
+
+                    b.Property<string>("ComandoPersonalizzato")
+                        .HasColumnName("ModuloINFOGAEMAIL_ComandoPersonalizzato");
+
+                    b.Property<string>("Email");
+
+                    b.Property<int>("Verbose")
+                        .HasColumnName("ModuloINFOGAEMAIL_Verbose");
+
+                    b.ToTable("ModuloINFOGAEMAIL");
+
+                    b.HasDiscriminator().HasValue("ModuloINFOGAEMAIL");
                 });
 
             modelBuilder.Entity("webmva.Models.ModuloNESSUS", b =>
@@ -221,6 +236,8 @@ namespace webmva.Migrations
                     b.Property<string>("ComandoPersonalizzato")
                         .HasColumnName("ModuloWAPITI_ComandoPersonalizzato");
 
+                    b.Property<bool>("Common");
+
                     b.Property<bool>("Crlf");
 
                     b.Property<bool>("Exec");
@@ -232,6 +249,8 @@ namespace webmva.Migrations
                     b.Property<bool>("Htaccess");
 
                     b.Property<int>("MaxMinutes");
+
+                    b.Property<bool>("Nessuno");
 
                     b.Property<bool>("Nikto");
 

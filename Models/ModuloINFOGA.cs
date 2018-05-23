@@ -15,9 +15,6 @@ namespace webmva.Models
     {
         public string Dominio { get; set; }
         
-        public string Email { get; set; }
-        
-        public bool Breach { get; set; }
        
         private SOURCE _source= SOURCE.ALL;
         public SOURCE Source{
@@ -40,14 +37,10 @@ namespace webmva.Models
                     
                     string risultato ="infoga.py" ;
                     
-                    // prova
-                    if(!string.IsNullOrEmpty(Email)){
-                        risultato+=" -i "+ Email;
-                        if(Breach)
-                            risultato += " -b";
-                    }else{
+                    
+                    
                         risultato += " -d " + Dominio;
-                        // prova
+                        
                         switch (Source)
                         {
                             case SOURCE.GOOGLE:
@@ -77,7 +70,7 @@ namespace webmva.Models
                             default:
                                 break;
                         }
-                    }
+                    
                     switch (Verbose)
                     {
                         case VERBOSE.UNO:

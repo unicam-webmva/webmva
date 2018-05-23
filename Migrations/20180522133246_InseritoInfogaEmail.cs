@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace webmva.Migrations
 {
-    public partial class InseritoWapiti4 : Migration
+    public partial class InseritoInfogaEmail : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -31,12 +31,14 @@ namespace webmva.Migrations
                     Cms = table.Column<int>(nullable: true),
                     ModuloDROOPE_ComandoPersonalizzato = table.Column<string>(nullable: true),
                     URL = table.Column<string>(nullable: true),
-                    Breach = table.Column<bool>(nullable: true),
                     ModuloINFOGA_ComandoPersonalizzato = table.Column<string>(nullable: true),
                     ModuloINFOGA_Dominio = table.Column<string>(nullable: true),
-                    Email = table.Column<string>(nullable: true),
                     Source = table.Column<int>(nullable: true),
                     Verbose = table.Column<int>(nullable: true),
+                    Breach = table.Column<bool>(nullable: true),
+                    ModuloINFOGAEMAIL_ComandoPersonalizzato = table.Column<string>(nullable: true),
+                    Email = table.Column<string>(nullable: true),
+                    ModuloINFOGAEMAIL_Verbose = table.Column<int>(nullable: true),
                     JSON = table.Column<string>(nullable: true),
                     AckDiscoveryPorts = table.Column<string>(nullable: true),
                     AllDetections = table.Column<bool>(nullable: true),
@@ -64,12 +66,14 @@ namespace webmva.Migrations
                     BlindSql = table.Column<bool>(nullable: true),
                     Buster = table.Column<bool>(nullable: true),
                     ModuloWAPITI_ComandoPersonalizzato = table.Column<string>(nullable: true),
+                    Common = table.Column<bool>(nullable: true),
                     Crlf = table.Column<bool>(nullable: true),
                     Exec = table.Column<bool>(nullable: true),
                     File = table.Column<bool>(nullable: true),
                     Force = table.Column<int>(nullable: true),
                     Htaccess = table.Column<bool>(nullable: true),
                     MaxMinutes = table.Column<int>(nullable: true),
+                    Nessuno = table.Column<bool>(nullable: true),
                     Nikto = table.Column<bool>(nullable: true),
                     PermanentXss = table.Column<bool>(nullable: true),
                     Scope = table.Column<int>(nullable: true),

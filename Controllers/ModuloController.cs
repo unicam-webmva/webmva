@@ -28,8 +28,9 @@ namespace webmva.Controllers_
             var listaDNSRECON = await _context.Moduli.Where(modulo => modulo.Applicazione == APPLICAZIONE.DNSRECON).ToListAsync();
             var listaDROOPE = await _context.Moduli.Where(modulo => modulo.Applicazione == APPLICAZIONE.DROOPE).ToListAsync();
             var listaINFOGA = await _context.Moduli.Where(modulo => modulo.Applicazione == APPLICAZIONE.INFOGA).ToListAsync();
+            var listaINFOGAEMAIL = await _context.Moduli.Where(modulo => modulo.Applicazione == APPLICAZIONE.INFOGAEMAIL).ToListAsync();
             var listaWAPITI = await _context.Moduli.Where(modulo => modulo.Applicazione == APPLICAZIONE.WAPITI).ToListAsync();
-            return View(new ListaModuliVM { ModuliNMAP = listaNMAP, ModuliNESSUS= listaNESSUS, ModuliDNSRECON = listaDNSRECON, ModuliDROOPE= listaDROOPE, ModuliINFOGA =listaINFOGA, ModuliWAPITI = listaWAPITI});
+            return View(new ListaModuliVM { ModuliNMAP = listaNMAP, ModuliNESSUS= listaNESSUS, ModuliDNSRECON = listaDNSRECON, ModuliDROOPE= listaDROOPE, ModuliINFOGA =listaINFOGA,ModuliINFOGAEMAIL =listaINFOGAEMAIL, ModuliWAPITI = listaWAPITI});
         }
 
         // GET: Modulo/Details/5
@@ -126,6 +127,19 @@ namespace webmva.Controllers_
                     }
                 }
             }
+            else if (createmodulo.INFOGAEMAIL.Nome != null && cosa.Equals("infogaemail"))
+            {
+                {
+                    if (ModelState.IsValid)
+                    {
+                        ModuloINFOGAEMAIL mod = createmodulo.INFOGAEMAIL;
+                        mod.Applicazione = APPLICAZIONE.INFOGAEMAIL;
+                        _context.Moduli.Add(mod);
+                        await _context.SaveChangesAsync();
+                        return RedirectToAction(nameof(Index));
+                    }
+                }
+            }
              else if (createmodulo.WAPITI.Nome != null && cosa.Equals("wapiti"))
             {
                 {
@@ -167,6 +181,8 @@ namespace webmva.Controllers_
                 return View(new EditModuloVM((ModuloDROOPE) modulo));
             else if (modulo is ModuloINFOGA)
                 return View(new EditModuloVM((ModuloINFOGA) modulo));
+                 else if (modulo is ModuloINFOGAEMAIL)
+                return View(new EditModuloVM((ModuloINFOGAEMAIL) modulo));
             else if (modulo is ModuloWAPITI)
                 return View(new EditModuloVM((ModuloWAPITI) modulo));
             // PROVVISORIO, SOLO PER NON DARE ERRORI DI COMPILAZIONE
@@ -300,6 +316,35 @@ namespace webmva.Controllers_
              else if (!string.IsNullOrEmpty(editmodulo.INFOGA.Nome))
             {
                 ModuloINFOGA mod = editmodulo.INFOGA;
+                if (id != mod.ID)
+                {
+                    return NotFound();
+                }
+
+                if (ModelState.IsValid)
+                {
+                    try
+                    {
+                        _context.Update(mod);
+                        await _context.SaveChangesAsync();
+                    }
+                    catch (DbUpdateConcurrencyException)
+                    {
+                        if (!ModuloExists(mod.ID))
+                        {
+                            return NotFound();
+                        }
+                        else
+                        {
+                            throw;
+                        }
+                    }
+                    return RedirectToAction(nameof(Index));
+                }
+            }
+             else if (!string.IsNullOrEmpty(editmodulo.INFOGAEMAIL.Nome))
+            {
+                ModuloINFOGAEMAIL mod = editmodulo.INFOGAEMAIL;
                 if (id != mod.ID)
                 {
                     return NotFound();
