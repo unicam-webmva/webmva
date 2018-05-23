@@ -4,7 +4,6 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage;
-using Microsoft.EntityFrameworkCore.Storage.Internal;
 using Microsoft.EntityFrameworkCore.ValueGeneration;
 using System;
 using webmva.Data;
@@ -13,8 +12,8 @@ using webmva.Models;
 namespace webmva.Migrations
 {
     [DbContext(typeof(MyDbContext))]
-    [Migration("20180518093113_AggiuntoDROOPE")]
-    partial class AggiuntoDROOPE
+    [Migration("20180522133246_InseritoInfogaEmail")]
+    partial class InseritoInfogaEmail
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -64,8 +63,6 @@ namespace webmva.Migrations
                     b.Property<int>("ID")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<DateTime>("Data");
-
                     b.Property<string>("Descrizione");
 
                     b.Property<string>("Nome");
@@ -110,14 +107,14 @@ namespace webmva.Migrations
                 {
                     b.HasBaseType("webmva.Models.Modulo");
 
+                    b.Property<int>("Check");
+
+                    b.Property<int>("Cms");
+
                     b.Property<string>("ComandoPersonalizzato")
                         .HasColumnName("ModuloDROOPE_ComandoPersonalizzato");
 
                     b.Property<string>("URL");
-
-                    b.Property<int>("check");
-
-                    b.Property<int>("cms");
 
                     b.ToTable("ModuloDROOPE");
 
@@ -128,15 +125,11 @@ namespace webmva.Migrations
                 {
                     b.HasBaseType("webmva.Models.Modulo");
 
-                    b.Property<bool>("Breach");
-
                     b.Property<string>("ComandoPersonalizzato")
                         .HasColumnName("ModuloINFOGA_ComandoPersonalizzato");
 
                     b.Property<string>("Dominio")
                         .HasColumnName("ModuloINFOGA_Dominio");
-
-                    b.Property<string>("Email");
 
                     b.Property<int>("Source");
 
@@ -145,6 +138,25 @@ namespace webmva.Migrations
                     b.ToTable("ModuloINFOGA");
 
                     b.HasDiscriminator().HasValue("ModuloINFOGA");
+                });
+
+            modelBuilder.Entity("webmva.Models.ModuloINFOGAEMAIL", b =>
+                {
+                    b.HasBaseType("webmva.Models.Modulo");
+
+                    b.Property<bool>("Breach");
+
+                    b.Property<string>("ComandoPersonalizzato")
+                        .HasColumnName("ModuloINFOGAEMAIL_ComandoPersonalizzato");
+
+                    b.Property<string>("Email");
+
+                    b.Property<int>("Verbose")
+                        .HasColumnName("ModuloINFOGAEMAIL_Verbose");
+
+                    b.ToTable("ModuloINFOGAEMAIL");
+
+                    b.HasDiscriminator().HasValue("ModuloINFOGAEMAIL");
                 });
 
             modelBuilder.Entity("webmva.Models.ModuloNESSUS", b =>
@@ -208,6 +220,60 @@ namespace webmva.Migrations
                     b.ToTable("ModuloNMAP");
 
                     b.HasDiscriminator().HasValue("ModuloNMAP");
+                });
+
+            modelBuilder.Entity("webmva.Models.ModuloWAPITI", b =>
+                {
+                    b.HasBaseType("webmva.Models.Modulo");
+
+                    b.Property<bool>("All");
+
+                    b.Property<bool>("BackUp");
+
+                    b.Property<bool>("BlindSql");
+
+                    b.Property<bool>("Buster");
+
+                    b.Property<string>("ComandoPersonalizzato")
+                        .HasColumnName("ModuloWAPITI_ComandoPersonalizzato");
+
+                    b.Property<bool>("Common");
+
+                    b.Property<bool>("Crlf");
+
+                    b.Property<bool>("Exec");
+
+                    b.Property<bool>("File");
+
+                    b.Property<int>("Force");
+
+                    b.Property<bool>("Htaccess");
+
+                    b.Property<int>("MaxMinutes");
+
+                    b.Property<bool>("Nessuno");
+
+                    b.Property<bool>("Nikto");
+
+                    b.Property<bool>("PermanentXss");
+
+                    b.Property<int>("Scope");
+
+                    b.Property<bool>("ShellShock");
+
+                    b.Property<bool>("Sql");
+
+                    b.Property<string>("URL")
+                        .HasColumnName("ModuloWAPITI_URL");
+
+                    b.Property<int>("Verbose")
+                        .HasColumnName("ModuloWAPITI_Verbose");
+
+                    b.Property<bool>("Xss");
+
+                    b.ToTable("ModuloWAPITI");
+
+                    b.HasDiscriminator().HasValue("ModuloWAPITI");
                 });
 
             modelBuilder.Entity("webmva.Models.ModuliProgetto", b =>

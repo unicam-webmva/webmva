@@ -11,7 +11,6 @@
                  <form asp-action="Edit">
            <!-- <div asp-validation-summary="ModelOnly" class="text-danger"></div>--> 
             <input type="hidden" asp-for="@Model.ID" />
-            <input type="hidden" asp-for="@Model.Data" />
             <div class="form-group">
                 <br>
                 <label asp-for="@Model.Nome" class="control-label"></label>
@@ -190,9 +189,62 @@
                       </div>
                      <div class="panel panel-default">
                     <div class="panel-heading">
-					<a href="#" data-toggle="collapse" data-target="#DNSRECON">DNSRECON</a><br>
+					<a href="#" data-toggle="collapse" data-target="#DNSRECON">DnsRecon</a><br>
                     </div>
                     <div class="collapse" id="DNSRECON">
+                     <div class="panel-body ">
+                            <table class="table">
+                                <div class="method">
+                                    <thead>
+                                        <tr>
+                                            <th></th>
+                                             <th>
+                                        Nome
+                                            </th>
+                                            <th>
+                                        Comando
+                                            </th>
+                                            <th></th>
+                                        </tr>
+                                    </thead>
+                                </div>
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                    <input type="checkbox" name="selezionaTutto1" onclick="SelezTT4()" > <label> Scegli tutti</label><br>
+                                        </td>
+                                    </tr>
+                                    @foreach (var item in listaModuli) {
+                                       
+                                        
+                                            if(item.Applicazione!= webmva.Models.APPLICAZIONE.DNSRECON){continue;}
+                                             <tr>
+                                                <td>
+                                                    <input type="checkbox"
+                                                        name="moduliSelezionati"
+                                                        value="@item.ModuloID"
+                                                        @(Html.Raw(item.Inserito ? "checked=\"checked\"" : "")) />
+                                                        
+                                                </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Nome)
+                                                </td>
+                                                <td>
+                                                    @Html.DisplayFor(modelItem => item.Comando)
+                                                </td>
+                                            </tr>       
+                                    }
+                                </tbody>
+                            </table>
+
+                        </div>
+                        </div>
+                      </div>
+                      <div class="panel panel-default">
+                    <div class="panel-heading">
+					<a href="#" data-toggle="collapse" data-target="#DROOPE">Droope</a><br>
+                    </div>
+                    <div class="collapse" id="DROOPE">
                      <div class="panel-body ">
                             <table class="table">
                                 <div class="method">
@@ -218,7 +270,113 @@
                                     @foreach (var item in listaModuli) {
                                        
                                         
-                                            if(item.Applicazione!= webmva.Models.APPLICAZIONE.DNSRECON){continue;}
+                                            if(item.Applicazione!= webmva.Models.APPLICAZIONE.DROOPE){continue;}
+                                             <tr>
+                                                <td>
+                                                    <input type="checkbox"
+                                                        name="moduliSelezionati"
+                                                        value="@item.ModuloID"
+                                                        @(Html.Raw(item.Inserito ? "checked=\"checked\"" : "")) />
+                                                        
+                                                </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Nome)
+                                                </td>
+                                                <td>
+                                                    @Html.DisplayFor(modelItem => item.Comando)
+                                                </td>
+                                            </tr>       
+                                    }
+                                </tbody>
+                            </table>
+
+                        </div>
+                        </div>
+                      </div>
+                      <div class="panel panel-default">
+                    <div class="panel-heading">
+					<a href="#" data-toggle="collapse" data-target="#INFOGA">Infoga</a><br>
+                    </div>
+                    <div class="collapse" id="INFOGA">
+                     <div class="panel-body ">
+                            <table class="table">
+                                <div class="method">
+                                    <thead>
+                                        <tr>
+                                            <th></th>
+                                             <th>
+                                        Nome
+                                            </th>
+                                            <th>
+                                        Comando
+                                            </th>
+                                            <th></th>
+                                        </tr>
+                                    </thead>
+                                </div>
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                    <input type="checkbox" name="selezionaTutto1" onclick="SelezTT1()" > <label> Scegli tutti</label><br>
+                                        </td>
+                                    </tr>
+                                    @foreach (var item in listaModuli) {
+                                       
+                                        
+                                            if(item.Applicazione!= webmva.Models.APPLICAZIONE.INFOGA){continue;}
+                                             <tr>
+                                                <td>
+                                                    <input type="checkbox"
+                                                        name="moduliSelezionati"
+                                                        value="@item.ModuloID"
+                                                        @(Html.Raw(item.Inserito ? "checked=\"checked\"" : "")) />
+                                                        
+                                                </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Nome)
+                                                </td>
+                                                <td>
+                                                    @Html.DisplayFor(modelItem => item.Comando)
+                                                </td>
+                                            </tr>       
+                                    }
+                                </tbody>
+                            </table>
+
+                        </div>
+                        </div>
+                      </div>
+                        <div class="panel panel-default">
+                    <div class="panel-heading">
+					<a href="#" data-toggle="collapse" data-target="#INFOGAEMAIL">Infoga Email</a><br>
+                    </div>
+                    <div class="collapse" id="INFOGAEMAIL">
+                     <div class="panel-body ">
+                            <table class="table">
+                                <div class="method">
+                                    <thead>
+                                        <tr>
+                                            <th></th>
+                                             <th>
+                                        Nome
+                                            </th>
+                                            <th>
+                                        Comando
+                                            </th>
+                                            <th></th>
+                                        </tr>
+                                    </thead>
+                                </div>
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                    <input type="checkbox" name="selezionaTutto1" onclick="SelezTT1()" > <label> Scegli tutti</label><br>
+                                        </td>
+                                    </tr>
+                                    @foreach (var item in listaModuli) {
+                                       
+                                        
+                                            if(item.Applicazione!= webmva.Models.APPLICAZIONE.INFOGAEMAIL){continue;}
                                              <tr>
                                                 <td>
                                                     <input type="checkbox"
@@ -268,201 +426,5 @@
     </div>
 </div>
 
-@section scripts{
-    <script>
-    function checkIP(){
-     var Target = $('input[id=Target]').val().split(".");
-    console.log(Target);
-    if (Target.length != 4) {
-        console.log("INVALIDO: lunghezza sbagliata");
-        $('input[id=Target]').val("");
-        $('span[name=TargetValidation]').text('IP inserito non corretto!');
-       // alert("Hai inserito un IP errato!"); 
-        
-        return false;
-    }
-    //Check Numbers
-    for (var i = 0; i < 4; i++) {
-        //Perform Test
-        if ( Target[i] <= -1 || Target[i] > 255 || 
-             isNaN(parseFloat(Target[i])) || 
-             !isFinite(Target[i])  || 
-             Target[i].indexOf(" ") !== -1 ) {
-                 console.log("INVALIDO");
-                // alert ("Hai inserito un IP errato!!");
-         $('input[id=Target]').val("");
-        $('span[name=TargetValidation]').text('IP inserito non corretto!');
-             return false;
-        }
-    }
-    console.log("VALIDO");
-    $('span[name=TargetValidation]').text('');
 
-    return true;
-        
-    };
-   function SelezTT(){
-      $('input[name=selezionaTutto]').change(
-        function(){
-            if( $('input[name=selezionaTutto]').prop('checked')){
-                var modulo = $('input[name=check]').each(function(index, element){
-                    $(element).prop('checked', true);
-                    console.log(index);
-                   
-                })
-               
-            }
-            else{
-                var modulo = $('input[name=check]').each(function(index, element){
-                    $(element).prop('checked', false);
-  
-                })
-                
-            }
-        });
-        
-        
-   };
-
-$(function(){
-    var tutticheck=true;
-    $('input[name=check]').change(
-        function(){
-            var check=$('input[name=check]');
-        for(i=0; i<check.length; i++){
-        if(!check[i].checked) {
-            tutticheck=false;
-            $('input[name=selezionaTutto]').prop('checked', false); 
-            break;
-        } else tutticheck=true;
-        if(tutticheck)
-        $('input[name=selezionaTutto]').prop('checked', true);
-    }
-        }
-    ).change();
-    });
-    //seleziona tutto Nmap
-     function SelezTT1(){
-      $('input[name=selezionaTutto1]').change(
-        function(){
-            if( $('input[name=selezionaTutto1]').prop('checked')){
-                var modulo = $('input[id=checkNmap]').each(function(index, element){
-                    $(element).prop('checked', true);
-                    console.log(index);
-                   
-                })
-               
-            }
-            else{
-                var modulo = $('input[id=checkNmap]').each(function(index, element){
-                    $(element).prop('checked', false);
-  
-                })
-                
-            }
-        });
-        
-        
-   };
-
-$(function(){
-    var tutticheck=true;
-    $('input[id=checkNmap]').change(
-        function(){
-            var check=$('input[id=checkNmap]');
-        for(i=0; i<check.length; i++){
-        if(!check[i].checked) {
-            tutticheck=false;
-            $('input[name=selezionaTutto1]').prop('checked', false); 
-            break;
-        } else tutticheck=true;
-        if(tutticheck)
-        $('input[name=selezionaTutto1]').prop('checked', true);
-    }
-        }
-    ).change();
-    });
-    //seleziona tutto Nessus
-     function SelezTT2(){
-      $('input[name=selezionaTutto2]').change(
-        function(){
-            if( $('input[name=selezionaTutto2]').prop('checked')){
-                var modulo = $('input[id=checkNessus]').each(function(index, element){
-                    $(element).prop('checked', true);
-                    console.log(index);
-                   
-                })
-               
-            }
-            else{
-                var modulo = $('input[id=checkNessus]').each(function(index, element){
-                    $(element).prop('checked', false);
-  
-                })
-                
-            }
-        });
-        
-        
-   };
-
-$(function(){
-    var tutticheck=true;
-    $('input[id=checkNessus]').change(
-        function(){
-            var check=$('input[id=checkNessus]');
-        for(i=0; i<check.length; i++){
-        if(!check[i].checked) {
-            tutticheck=false;
-            $('input[name=selezionaTutto2]').prop('checked', false); 
-            break;
-        } else tutticheck=true;
-        if(tutticheck)
-        $('input[name=selezionaTutto2]').prop('checked', true);
-    }
-        }
-    ).change();
-    });
-    //seleziona tutto OpenVAS
-     function SelezTT3(){
-      $('input[name=selezionaTutto]').change(
-        function(){
-            if( $('input[name=selezionaTutto]').prop('checked')){
-                var modulo = $('input[id=checkOpenVAS]').each(function(index, element){
-                    $(element).prop('checked', true);
-                    console.log(index);
-                   
-                })
-               
-            }
-            else{
-                var modulo = $('input[id=checkOpenVAS]').each(function(index, element){
-                    $(element).prop('checked', false);
-  
-                })
-                
-            }
-        });
-        
-        
-   };
-
-$(function(){
-    var tutticheck=true;
-    $('input[id=checkOpenVAS]').change(
-        function(){
-            var check=$('input[id=checkOpenVAS]');
-        for(i=0; i<check.length; i++){
-        if(!check[i].checked) {
-            tutticheck=false;
-            $('input[name=selezionaTutto3]').prop('checked', false); 
-            break;
-        } else tutticheck=true;
-        if(tutticheck)
-        $('input[name=selezionaTutto3]').prop('checked', true);
-    }
-        }
-    ).change();
-    });
-   </script>
 }

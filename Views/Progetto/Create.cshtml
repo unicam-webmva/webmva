@@ -6,23 +6,25 @@
     <div class="row panel panel-default col-md-9">
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group"><br>
+          <div class="col-sm-12">
+            <div class="col-sm-7" style="margin:0 auto; float:none"><br>
                 <label asp-for="Nome" class="control-label"></label>
                 <input asp-for="Nome" class="form-control"  placeholder="nome"/>
                 <span asp-validation-for="Nome" class="text-danger"></span><br>
-                <div class="col-sm-7 form-group">
-                    <label for="Data">Data</label>
-                    <input class="form-control" asp-for="Data"><br>
-                    <span asp-validation-for="Data" class="text-danger"></span><br>
+            </div>                
+                <div class="form-group col-md-6"><br>
+                    
                 </div>
-                <br>
-                <input type="text" class="form-control" id="codice" name="codice" placeholder="codice" onclick="creaCodice()">
-                <br>
+                </div>
+                
+                <div class="form-group ">
                 <label for="descrizione">Descrizione</label>
                 <textarea class="form-control" id="descrizione" placeholder="descrizione" rows="5" cols="40" style="resize:none"
                     maxlength="1000" asp-for="Descrizione"></textarea>
                     <span asp-validation-for="Descrizione" class="text-danger"></span><br>
             </div>
+            
+           
             <div class="container">
             <div class="form-group col-6 ">
                 <input type="submit" value="Crea" class="btn btn-default" /> |
@@ -34,48 +36,5 @@
         </form>
     </div>
  
-           
-      
+  
 
-
-@section scripts{
-<script>
-    function creaCodice() {
-
-        var nome = $('input[id=nome]').val();
-        var oggi = $('input[id=oggi]').val();
-        var codice = oggi + "_" + nome;
-
-        $('input[name=codice]').val(codice);
-
-    };
-    function dataOggi() {
-        var oggi = new Date();
-        var dd = oggi.getDate();
-        var mm = oggi.getMonth() + 1; //January is 0!
-        var yyyy = oggi.getFullYear();
-        var hh = oggi.getHours();
-        var ff = oggi.getMinutes();
-
-        if (dd < 10) {
-            dd = '0' + dd
-        }
-
-        if (mm < 10) {
-            mm = '0' + mm
-        }
-        if (hh < 10) {
-            hh = '0' + hh
-        }
-        if (ff < 10) {
-
-            ff = '0' + ff
-        }
-
-        oggi = dd + '/' + mm + '/' + yyyy + '_' + hh + ':' + ff;
-        $('input[id=oggi]').val(oggi);
-        $('input[name=Progetto]').val(oggi);
-    };
-
-
-</script> }

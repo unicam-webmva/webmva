@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace webmva.Migrations
 {
-    public partial class AggiuntoDROOPE : Migration
+    public partial class InseritoInfogaEmail : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -27,16 +27,18 @@ namespace webmva.Migrations
                     NameServer = table.Column<string>(nullable: true),
                     ReverseLookupEnum = table.Column<bool>(nullable: true),
                     ZoneWalk = table.Column<bool>(nullable: true),
+                    Check = table.Column<int>(nullable: true),
+                    Cms = table.Column<int>(nullable: true),
                     ModuloDROOPE_ComandoPersonalizzato = table.Column<string>(nullable: true),
                     URL = table.Column<string>(nullable: true),
-                    check = table.Column<int>(nullable: true),
-                    cms = table.Column<int>(nullable: true),
-                    Breach = table.Column<bool>(nullable: true),
                     ModuloINFOGA_ComandoPersonalizzato = table.Column<string>(nullable: true),
                     ModuloINFOGA_Dominio = table.Column<string>(nullable: true),
-                    Email = table.Column<string>(nullable: true),
                     Source = table.Column<int>(nullable: true),
                     Verbose = table.Column<int>(nullable: true),
+                    Breach = table.Column<bool>(nullable: true),
+                    ModuloINFOGAEMAIL_ComandoPersonalizzato = table.Column<string>(nullable: true),
+                    Email = table.Column<string>(nullable: true),
+                    ModuloINFOGAEMAIL_Verbose = table.Column<int>(nullable: true),
                     JSON = table.Column<string>(nullable: true),
                     AckDiscoveryPorts = table.Column<string>(nullable: true),
                     AllDetections = table.Column<bool>(nullable: true),
@@ -58,7 +60,28 @@ namespace webmva.Migrations
                     SynDiscoveryPorts = table.Column<string>(nullable: true),
                     TCPScan = table.Column<int>(nullable: true),
                     Tempo = table.Column<int>(nullable: true),
-                    UdpDiscoveryPorts = table.Column<string>(nullable: true)
+                    UdpDiscoveryPorts = table.Column<string>(nullable: true),
+                    All = table.Column<bool>(nullable: true),
+                    BackUp = table.Column<bool>(nullable: true),
+                    BlindSql = table.Column<bool>(nullable: true),
+                    Buster = table.Column<bool>(nullable: true),
+                    ModuloWAPITI_ComandoPersonalizzato = table.Column<string>(nullable: true),
+                    Common = table.Column<bool>(nullable: true),
+                    Crlf = table.Column<bool>(nullable: true),
+                    Exec = table.Column<bool>(nullable: true),
+                    File = table.Column<bool>(nullable: true),
+                    Force = table.Column<int>(nullable: true),
+                    Htaccess = table.Column<bool>(nullable: true),
+                    MaxMinutes = table.Column<int>(nullable: true),
+                    Nessuno = table.Column<bool>(nullable: true),
+                    Nikto = table.Column<bool>(nullable: true),
+                    PermanentXss = table.Column<bool>(nullable: true),
+                    Scope = table.Column<int>(nullable: true),
+                    ShellShock = table.Column<bool>(nullable: true),
+                    Sql = table.Column<bool>(nullable: true),
+                    ModuloWAPITI_URL = table.Column<string>(nullable: true),
+                    ModuloWAPITI_Verbose = table.Column<int>(nullable: true),
+                    Xss = table.Column<bool>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -71,7 +94,6 @@ namespace webmva.Migrations
                 {
                     ID = table.Column<int>(nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
-                    Data = table.Column<DateTime>(nullable: false),
                     Descrizione = table.Column<string>(nullable: true),
                     Nome = table.Column<string>(nullable: true),
                     Target = table.Column<string>(nullable: true)

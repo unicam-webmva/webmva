@@ -13,6 +13,8 @@ namespace webmva.ViewModels
         public ModuloDNSRECON DNSRECON { get; set; }
         public ModuloDROOPE DROOPE{get; set;}
         public ModuloINFOGA INFOGA{get; set;}
+         public ModuloINFOGAEMAIL INFOGAEMAIL{get; set;}
+        public ModuloWAPITI WAPITI{get; set;}
 
         public EditModuloVM()
         {
@@ -21,6 +23,8 @@ namespace webmva.ViewModels
             DNSRECON = new ModuloDNSRECON();
             DROOPE = new ModuloDROOPE();
             INFOGA = new ModuloINFOGA();
+            INFOGAEMAIL = new ModuloINFOGAEMAIL();
+            WAPITI = new ModuloWAPITI();
 
         }
         public EditModuloVM(ModuloNMAP mod)
@@ -30,6 +34,8 @@ namespace webmva.ViewModels
             DNSRECON = null;
             DROOPE = null;
             INFOGA = null;
+            WAPITI= null;
+            INFOGAEMAIL = null;
         }
         public EditModuloVM(ModuloNESSUS mod)
         {
@@ -38,6 +44,8 @@ namespace webmva.ViewModels
             NESSUS = mod;
             DROOPE = null;
             INFOGA = null;
+            WAPITI= null;
+            INFOGAEMAIL = null;
         }
         public EditModuloVM(ModuloDNSRECON mod)
         {
@@ -46,6 +54,8 @@ namespace webmva.ViewModels
             DNSRECON = mod;
             DROOPE = null;
             INFOGA = null;
+            WAPITI= null;
+            INFOGAEMAIL = null;
         }
         public EditModuloVM(ModuloDROOPE mod)
         {
@@ -54,6 +64,8 @@ namespace webmva.ViewModels
             DNSRECON = null;
             INFOGA = null;
             DROOPE = mod;
+            WAPITI= null;
+            INFOGAEMAIL = null;
         }
         public EditModuloVM(ModuloINFOGA mod)
         {
@@ -62,6 +74,28 @@ namespace webmva.ViewModels
             DNSRECON = null;
             INFOGA = mod;
             DROOPE = null;
+            WAPITI= null;
+            INFOGAEMAIL = null;
+        }
+         public EditModuloVM(ModuloINFOGAEMAIL mod)
+        {
+            NMAP = null;
+            NESSUS = null;
+            DNSRECON = null;
+            INFOGA = null;
+            DROOPE = null;
+            WAPITI= null;
+            INFOGAEMAIL = mod;
+        }
+         public EditModuloVM(ModuloWAPITI mod)
+        {
+            NMAP = null;
+            NESSUS = null;
+            DNSRECON = null;
+            INFOGA = null;
+            DROOPE = null;
+            WAPITI= mod;
+            INFOGAEMAIL = null;
         }
     }
 }

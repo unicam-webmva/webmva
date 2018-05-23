@@ -155,7 +155,7 @@ namespace webmva.Controllers_
             if (progetto == null) return NotFound();
 
             if (await TryUpdateModelAsync<Progetto>(progetto, "",
-                i => i.Nome, i => i.Target, i => i.Data, i => i.Descrizione))
+                i => i.Nome, i => i.Descrizione))
             {
                 AggiornaModuliInseriti(moduliSelezionati, progetto);
                 _context.Update(progetto);
@@ -310,10 +310,16 @@ namespace webmva.Controllers_
                 string comando = $"python \"{percorsoExec}\" {mod.Comando} >> {timestamp}droopescan_{nomeCamelCase}.txt";
                 return comando;
             }
-             if(mod is ModuloINFOGA)
+             if(mod is ModuloINFOGA || mod is ModuloINFOGAEMAIL)
             {
                 string percorsoExec = Path.Combine(Globals.CartellaWEBMVA, "Programmi", "Infoga");
                 string comando = $"python \"{percorsoExec}\" {mod.Comando} >> {timestamp}infoga_{nomeCamelCase}.txt";
+                return comando;
+            }
+            if(mod is ModuloWAPITI)
+            {
+                string percorsoExec = Path.Combine(Globals.CartellaWEBMVA, "Programmi", "Wapiti");
+                string comando = $"python \"{percorsoExec}\" {mod.Comando} -f html -o {timestamp}wapiti_{nomeCamelCase}.html";
                 return comando;
             }
             else return "";

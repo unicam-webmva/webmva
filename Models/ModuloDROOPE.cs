@@ -20,9 +20,9 @@ private CMS _cms = CMS.NESSUNO;
 private CHECKS _check= CHECKS.NESSUNO;
     
 
-        public CMS cms{get {return _cms;}
+        public CMS Cms{get {return _cms;}
     set{_cms=value;}}
-        public CHECKS check{get {return _check;}
+        public CHECKS Check{get {return _check;}
     set{_check=value;}}
         
 
@@ -36,7 +36,7 @@ private CHECKS _check= CHECKS.NESSUNO;
                     string controlloCMS= "";
                     string controlloCheck="";
                     // prova
-                    switch (cms)
+                    switch (Cms)
                     {
                     case CMS.DRUPAL:
                         controlloCMS="drupal";
@@ -58,7 +58,7 @@ private CHECKS _check= CHECKS.NESSUNO;
                         break;
                     }
                     
-                    switch (check)
+                    switch (Check)
                     {
                     case  CHECKS.PLUGIN:  
                           controlloCheck =" -e p";
