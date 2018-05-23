@@ -15,6 +15,7 @@ namespace webmva.ViewModels
         public IEnumerable<Modulo> ModuliINFOGA { get; set; }
         public IEnumerable<Modulo> ModuliINFOGAEMAIL { get; set; }
         public IEnumerable<Modulo> ModuliWAPITI { get; set; }
+        public IEnumerable<Modulo> ModuliSQLMAP { get; set; }
         
 
 

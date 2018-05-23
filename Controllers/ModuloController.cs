@@ -185,6 +185,8 @@ namespace webmva.Controllers_
                 return View(new EditModuloVM((ModuloINFOGAEMAIL) modulo));
             else if (modulo is ModuloWAPITI)
                 return View(new EditModuloVM((ModuloWAPITI) modulo));
+                 else if (modulo is ModuloSQLMAP)
+                return View(new EditModuloVM((ModuloSQLMAP) modulo));
             // PROVVISORIO, SOLO PER NON DARE ERRORI DI COMPILAZIONE
             else return View(new EditModuloVM() );
         }
@@ -374,6 +376,35 @@ namespace webmva.Controllers_
             else if (!string.IsNullOrEmpty(editmodulo.WAPITI.Nome))
             {
                 ModuloWAPITI mod = editmodulo.WAPITI;
+                if (id != mod.ID)
+                {
+                    return NotFound();
+                }
+
+                if (ModelState.IsValid)
+                {
+                    try
+                    {
+                        _context.Update(mod);
+                        await _context.SaveChangesAsync();
+                    }
+                    catch (DbUpdateConcurrencyException)
+                    {
+                        if (!ModuloExists(mod.ID))
+                        {
+                            return NotFound();
+                        }
+                        else
+                        {
+                            throw;
+                        }
+                    }
+                    return RedirectToAction(nameof(Index));
+                }
+            }
+            else if (!string.IsNullOrEmpty(editmodulo.SQLMAP.Nome))
+            {
+                ModuloSQLMAP mod = editmodulo.SQLMAP;
                 if (id != mod.ID)
                 {
                     return NotFound();

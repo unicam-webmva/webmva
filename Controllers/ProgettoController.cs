@@ -320,8 +320,14 @@ namespace webmva.Controllers_
             }
             if(mod is ModuloWAPITI)
             {
-                string percorsoExec = Path.Combine(Globals.CartellaWEBMVA, "Programmi", "Wapiti");
+                string percorsoExec = Path.Combine(Globals.CartellaWEBMVA, "Programmi", "wapiti");
                 string comando = $"python \"{percorsoExec}\" {mod.Comando} -f html -o {timestamp}wapiti_{nomeCamelCase}.html";
+                return comando;
+            }
+            if(mod is ModuloSQLMAP)
+            {
+                string percorsoExec = Path.Combine(Globals.CartellaWEBMVA, "Programmi", "sqlmap");
+                string comando = $"python \"{percorsoExec}\" {mod.Comando} >> {timestamp}sqlmap_{nomeCamelCase}.txt ";
                 return comando;
             }
             else return "";
