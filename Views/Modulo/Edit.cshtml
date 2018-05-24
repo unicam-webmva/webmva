@@ -226,36 +226,49 @@
         <h2>Modifica modulo @(Model.NESSUS.Nome)</h2>
         <hr />
         <form asp-action="Edit" name="nessusForm">
-            <input type="hidden" asp-for="@Model.NESSUS.Applicazione" value="@webmva.Models.APPLICAZIONE.NESSUS" />
-            <input type="hidden" asp-for="@Model.NESSUS.ID" />
-            <label asp-for="@Model.NESSUS.Nome"></label>
-            <div class="panel panel-default">
-                <input asp-for="@Model.NESSUS.Nome" class="form-control" />
-                <span asp-validation-for="@Model.NESSUS.Nome" class="text-danger"></span>
-            </div>
-            <div class="col-6">
-                <label>Opzioni</label>
-                <div class="panel panel-default">
-                    <div class="panel-body form-horizontal payment-form">
-                        <div class="form-group row">
-                            <div class="col-sm-4">
-                                <label class="control-label">TCP</label>
-                            </div>
-                            <input class="form-control" asp-for="@Model.NESSUS.ServerIP" />
+                            <input type="hidden" asp-for="@Model.NESSUS.Applicazione" value="@webmva.Models.APPLICAZIONE.NESSUS" />
+                             <input type="hidden" asp-for="@Model.NESSUS.ID" />
+                              <div class="row panel panel-default panel-body">
+                            <div class="col-sm-12">
+                                  <div class="col-sm-7" style="margin:0 auto; float:none">
+                                    <div class="form-group row">
+                                        <h4 asp-for="@(Model.NESSUS.Nome)">Nome Modulo</h4>
+                                        <input class="form-control" asp-for="@(Model.NESSUS.Nome)" />
+                                    </div>
+                                </div>
+                            <div class="col-sm-12">
+                                 <h4>Opzioni</h4><hr />
+                                        <div class="col-sm-12">
+                                            <div class="col-sm-7" style="margin:0 auto; float:none">
+                                                <div class="form-group row">
+                                                    <h4 asp-for="@(Model.NESSUS.ServerIP)">Server IP</h4>
+                                                    <input class="form-control" asp-for="@(Model.NESSUS.ServerIP)" />
+                                                </div>
 
-                        </div>
-                        <br>
-                        <input asp-for="@Model.NESSUS.Porta" class="form-control">
-                        <br>
-                        <div class="col-sm-6 col-sm-offset-6 text-right">
-                            <div class="form-group">
-                                <input type="submit" asp-action="Edit" class="btn btn-default" asp-route-id="@Model.NESSUS.ID" value="Salva" />&nbsp;|&nbsp;
-                                <a asp-action="Index"> Torna alla lista</a>
+                                            </div>
+                                            <div class="col-sm-7" style="margin:0 auto; float:none">
+                                                <div class="form-group row">
+                                                    <h4 asp-for="@(Model.NESSUS.Porta)">Porta</h4>
+                                                    <input class="form-control" asp-for="@(Model.NESSUS.Porta)" />
+                                                </div>
+
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                     <div class="col-sm-12">
+                                 <hr /></div>
+                           <div class="col-sm-6 col-sm-offset-6 text-right">
+                              
+                                        <div class="form-group">
+                                            <input type="submit" asp-action="Edit"  asp-route-id="@Model.NESSUS.ID" class="btn btn-default" value="Salva" />&nbsp;&nbsp;|
+                                            <a asp-action="Index"> Torna alla lista</a>
+                                        </div>
+                                    </div>   
                             </div>
-                        </div>
-                    </div>
-                </div>
-        </form>
+                            </div>
+                        </form>
+                        
         
     }
     @* -----DNSRECON----- *@
@@ -523,7 +536,7 @@
         <form asp-action="Edit" name="infogaForm">
                                 <input type="hidden" asp-for="@Model.INFOGAEMAIL.Applicazione" value="@webmva.Models.APPLICAZIONE.INFOGAEMAIL" />
                                 <input type="hidden" asp-for="@Model.INFOGAEMAIL.ID" />
-
+ <div class="row panel panel-default panel-body">
                                 <div class="col-sm-12">
                                     <div class="col-sm-7" style="margin:0 auto; float:none">
                                         <div class="form-group">
@@ -586,7 +599,7 @@
                                         </div>
                                     </div>
                                 </div>
-
+</div>
                             </form>
 
     }
@@ -811,6 +824,7 @@
                             <form asp-action="Edit" name="sqlForm">
                                 <input type="hidden" asp-for="@Model.SQLMAP.Applicazione" value="@webmva.Models.APPLICAZIONE.SQLMAP" />
                                  <input type="hidden" asp-for="@Model.SQLMAP.ID" />
+                                  <div class="row panel panel-default panel-body">
                                 <div class="col-sm-12">
                                     <div class="col-sm-7" style="margin:0 auto; float:none">
                                         <div class="form-group">
@@ -1195,6 +1209,7 @@
                                             </div>
                                         </div>
                                     </div>
+                                </div>
                                 </div>
                             </form>
     }
