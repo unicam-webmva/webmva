@@ -301,9 +301,9 @@ namespace webmva.Models
                         risultato += " --search";
                     if (excludesSySdbs)
                         risultato += " --exclude-sysdbs";
-                    if (commonColumns)
-                        risultato += " --common-tables";
                     if (commonTables)
+                        risultato += " --common-tables";
+                    if (commonColumns)
                         risultato += " --common-columns";
 
 

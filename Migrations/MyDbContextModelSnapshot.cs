@@ -162,7 +162,10 @@ namespace webmva.Migrations
                 {
                     b.HasBaseType("webmva.Models.Modulo");
 
-                    b.Property<string>("JSON");
+                    b.Property<int>("Porta");
+
+                    b.Property<string>("ServerIP")
+                        .IsRequired();
 
                     b.ToTable("ModuloNESSUS");
 
@@ -219,6 +222,110 @@ namespace webmva.Migrations
                     b.ToTable("ModuloNMAP");
 
                     b.HasDiscriminator().HasValue("ModuloNMAP");
+                });
+
+            modelBuilder.Entity("webmva.Models.ModuloSQLMAP", b =>
+                {
+                    b.HasBaseType("webmva.Models.Modulo");
+
+                    b.Property<string>("ComandoPersonalizzato")
+                        .HasColumnName("ModuloSQLMAP_ComandoPersonalizzato");
+
+                    b.Property<int>("Detection");
+
+                    b.Property<int>("Rischio");
+
+                    b.Property<int>("TorType");
+
+                    b.Property<string>("URL")
+                        .HasColumnName("ModuloSQLMAP_URL");
+
+                    b.Property<int>("Verbose")
+                        .HasColumnName("ModuloSQLMAP_Verbose");
+
+                    b.Property<bool>("a");
+
+                    b.Property<bool>("allOptimization");
+
+                    b.Property<bool>("b");
+
+                    b.Property<bool>("checkTor");
+
+                    b.Property<bool>("columns");
+
+                    b.Property<bool>("commonColumns");
+
+                    b.Property<bool>("commonTables");
+
+                    b.Property<string>("connectionString");
+
+                    b.Property<bool>("count");
+
+                    b.Property<string>("credenzialiAutenticazione");
+
+                    b.Property<bool>("currentDb");
+
+                    b.Property<bool>("currentUser");
+
+                    b.Property<string>("dbms");
+
+                    b.Property<string>("dbmsCredenziali");
+
+                    b.Property<bool>("dbs");
+
+                    b.Property<int>("delay");
+
+                    b.Property<bool>("dumpAll");
+
+                    b.Property<bool>("excludesSySdbs");
+
+                    b.Property<bool>("forceAggressive");
+
+                    b.Property<bool>("forceSsl");
+
+                    b.Property<string>("header");
+
+                    b.Property<bool>("hostName");
+
+                    b.Property<bool>("keepAlive");
+
+                    b.Property<bool>("nessunaConnessione");
+
+                    b.Property<bool>("passwords");
+
+                    b.Property<int>("porta");
+
+                    b.Property<bool>("predictOutput");
+
+                    b.Property<bool>("privileges");
+
+                    b.Property<int>("retries");
+
+                    b.Property<bool>("roles");
+
+                    b.Property<bool>("schema");
+
+                    b.Property<bool>("search");
+
+                    b.Property<string>("sistemaOperativo");
+
+                    b.Property<bool>("tables");
+
+                    b.Property<string>("tecnique");
+
+                    b.Property<int>("threads");
+
+                    b.Property<int>("timeout");
+
+                    b.Property<int>("timesec");
+
+                    b.Property<bool>("tor");
+
+                    b.Property<bool>("users");
+
+                    b.ToTable("ModuloSQLMAP");
+
+                    b.HasDiscriminator().HasValue("ModuloSQLMAP");
                 });
 
             modelBuilder.Entity("webmva.Models.ModuloWAPITI", b =>

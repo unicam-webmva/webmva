@@ -7,7 +7,8 @@ var contDnsRecon = 0;
 var contDroope = 0;
 var contInfoga = 0;
 var contInfogaEmail = 0;
-var contWapiti = 0; 
+var contWapiti = 0;
+var contSqlmap = 0; 
 }
 <form name="modulo">
 <h2>Dettagli @Html.DisplayFor(model => model.Nome)</h2>
@@ -57,6 +58,7 @@ var contWapiti = 0;
                             if(item.Modulo is webmva.Models.ModuloINFOGA) {contInfoga++;}
                             if(item.Modulo is webmva.Models.ModuloINFOGAEMAIL){contInfogaEmail++;}
                             if(item.Modulo is webmva.Models.ModuloWAPITI) {contWapiti++;}
+                            if(item.Modulo is webmva.Models.ModuloSQLMAP) {contSqlmap++;}
                         }
                         @if(contNMAP!=0){
                                 
@@ -267,6 +269,34 @@ var contWapiti = 0;
                         @foreach (var item in Model.ModuliProgetto) {
                             
                                 @if(item.Modulo is webmva.Models.ModuloWAPITI){
+                                <tr>
+                                <td></td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Modulo.Nome)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Modulo.Comando)
+                                    </td>
+                                </tr>
+                               
+                                }
+                                }
+                                </table>
+                                </dd>    
+                        } 
+                         @if(contSqlmap!=0){
+                                
+                            <dd>wapiti</dd>
+                            <dd>
+                            <table class="table">
+                                <tr>
+                                    <th> </th>
+                                    <th>Modulo</th>
+                                    <th>Comando</th>
+                                </tr>
+                        @foreach (var item in Model.ModuliProgetto) {
+                            
+                                @if(item.Modulo is webmva.Models.ModuloSQLMAP){
                                 <tr>
                                 <td></td>
                                     <td>

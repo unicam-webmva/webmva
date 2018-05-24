@@ -30,7 +30,8 @@ namespace webmva.Controllers_
             var listaINFOGA = await _context.Moduli.Where(modulo => modulo.Applicazione == APPLICAZIONE.INFOGA).ToListAsync();
             var listaINFOGAEMAIL = await _context.Moduli.Where(modulo => modulo.Applicazione == APPLICAZIONE.INFOGAEMAIL).ToListAsync();
             var listaWAPITI = await _context.Moduli.Where(modulo => modulo.Applicazione == APPLICAZIONE.WAPITI).ToListAsync();
-            return View(new ListaModuliVM { ModuliNMAP = listaNMAP, ModuliNESSUS= listaNESSUS, ModuliDNSRECON = listaDNSRECON, ModuliDROOPE= listaDROOPE, ModuliINFOGA =listaINFOGA,ModuliINFOGAEMAIL =listaINFOGAEMAIL, ModuliWAPITI = listaWAPITI});
+            var listaSQLMAP = await _context.Moduli.Where(modulo => modulo.Applicazione == APPLICAZIONE.SQLMAP).ToListAsync();
+            return View(new ListaModuliVM { ModuliNMAP = listaNMAP, ModuliNESSUS= listaNESSUS, ModuliDNSRECON = listaDNSRECON, ModuliDROOPE= listaDROOPE, ModuliINFOGA =listaINFOGA,ModuliINFOGAEMAIL = listaINFOGAEMAIL, ModuliWAPITI = listaWAPITI, ModuliSQLMAP = listaSQLMAP });
         }
 
         // GET: Modulo/Details/5
@@ -147,6 +148,19 @@ namespace webmva.Controllers_
                     {
                         ModuloWAPITI mod = createmodulo.WAPITI;
                         mod.Applicazione = APPLICAZIONE.WAPITI;
+                        _context.Moduli.Add(mod);
+                        await _context.SaveChangesAsync();
+                        return RedirectToAction(nameof(Index));
+                    }
+                }
+            }
+             else if (createmodulo.SQLMAP.Nome != null && cosa.Equals("sqlmap"))
+            {
+                {
+                    if (ModelState.IsValid)
+                    {
+                        ModuloSQLMAP mod = createmodulo.SQLMAP;
+                        mod.Applicazione = APPLICAZIONE.SQLMAP;
                         _context.Moduli.Add(mod);
                         await _context.SaveChangesAsync();
                         return RedirectToAction(nameof(Index));
