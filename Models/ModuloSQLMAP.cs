@@ -60,7 +60,7 @@ namespace webmva.Models
         public bool commonTables { get; set; }
         public bool commonColumns { get; set; }
 
-        public int porta { get; set; }
+        public int portaSql { get; set; }
         public int delay { get; set; }
         private int _timeout = 30;
         public int timeout
@@ -175,8 +175,8 @@ namespace webmva.Models
                         risultato += " --auth-cred=" + credenzialiAutenticazione;
                     if (tor)
                         risultato += " --tor";
-                    if (porta != 0)
-                        risultato += " --tor-port=" + porta;
+                    if (portaSql != 0)
+                        risultato += " --tor-port=" + portaSql;
                     switch (Verbose)
                     {
                         case VERBOSESQLMAP.ZERO:
