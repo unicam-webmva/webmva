@@ -4,3 +4,5 @@
 	url = https://github.com/droope/droopescan
 [submodule "Programmi/dnsrecon"]
 	url = https://github.com/darkoperator/dnsrecon
+[submodule "Programmi/sqlmap"]
+	url = https://github.com/sqlmapproject/sqlmap
