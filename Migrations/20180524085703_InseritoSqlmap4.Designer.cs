@@ -12,8 +12,8 @@ using webmva.Models;
 namespace webmva.Migrations
 {
     [DbContext(typeof(MyDbContext))]
-    [Migration("20180524083152_InseritoSqlmap2")]
-    partial class InseritoSqlmap2
+    [Migration("20180524085703_InseritoSqlmap4")]
+    partial class InseritoSqlmap4
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -294,7 +294,7 @@ namespace webmva.Migrations
 
                     b.Property<bool>("passwords");
 
-                    b.Property<int>("porta");
+                    b.Property<int>("portaSql");
 
                     b.Property<bool>("predictOutput");
 

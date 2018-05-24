@@ -293,7 +293,7 @@ namespace webmva.Migrations
 
                     b.Property<bool>("passwords");
 
-                    b.Property<int>("porta");
+                    b.Property<int>("portaSql");
 
                     b.Property<bool>("predictOutput");
 

@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace webmva.Migrations
 {
-    public partial class InseritoSqlmap2 : Migration
+    public partial class InseritoSqlmap4 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -93,7 +93,7 @@ namespace webmva.Migrations
                     keepAlive = table.Column<bool>(nullable: true),
                     nessunaConnessione = table.Column<bool>(nullable: true),
                     passwords = table.Column<bool>(nullable: true),
-                    porta = table.Column<int>(nullable: true),
+                    portaSql = table.Column<int>(nullable: true),
                     predictOutput = table.Column<bool>(nullable: true),
                     privileges = table.Column<bool>(nullable: true),
                     retries = table.Column<int>(nullable: true),
