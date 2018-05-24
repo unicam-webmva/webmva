@@ -16,6 +16,7 @@ namespace webmva.ViewModels
         public ModuloINFOGAEMAIL INFOGAEMAIL{get; set;}
         public ModuloWAPITI WAPITI{get; set;}
         public ModuloSQLMAP SQLMAP{get; set;}
+         public ModuloWIFITE WIFITE{get; set;}
 
         public EditModuloVM()
         {
@@ -27,6 +28,7 @@ namespace webmva.ViewModels
             INFOGAEMAIL = new ModuloINFOGAEMAIL();
             WAPITI = new ModuloWAPITI();
             SQLMAP = new ModuloSQLMAP();
+            WIFITE = new ModuloWIFITE();
 
         }
         public EditModuloVM(ModuloNMAP mod)
@@ -39,6 +41,7 @@ namespace webmva.ViewModels
             WAPITI= null;
             INFOGAEMAIL = null;
             SQLMAP = null;
+            WIFITE = null;
         }
         public EditModuloVM(ModuloNESSUS mod)
         {
@@ -50,6 +53,7 @@ namespace webmva.ViewModels
             WAPITI= null;
             INFOGAEMAIL = null;
             SQLMAP = null;
+            WIFITE = null;
         }
         public EditModuloVM(ModuloDNSRECON mod)
         {
@@ -61,6 +65,7 @@ namespace webmva.ViewModels
             WAPITI= null;
             INFOGAEMAIL = null;
             SQLMAP = null; 
+            WIFITE = null; 
         }
         public EditModuloVM(ModuloDROOPE mod)
         {
@@ -72,6 +77,7 @@ namespace webmva.ViewModels
             WAPITI= null;
             INFOGAEMAIL = null;
             SQLMAP = null;
+            WIFITE = null; 
         }
         public EditModuloVM(ModuloINFOGA mod)
         {
@@ -82,7 +88,8 @@ namespace webmva.ViewModels
             DROOPE = null;
             WAPITI= null;
             INFOGAEMAIL = null;
-            SQLMAP = null; 
+            SQLMAP = null;
+            WIFITE = null;  
         }
          public EditModuloVM(ModuloINFOGAEMAIL mod)
         {
@@ -94,6 +101,7 @@ namespace webmva.ViewModels
             WAPITI= null;
             INFOGAEMAIL = mod;
             SQLMAP = null;
+            WIFITE = null; 
         }
          public EditModuloVM(ModuloWAPITI mod)
         {
@@ -104,7 +112,8 @@ namespace webmva.ViewModels
             DROOPE = null;
             WAPITI= mod;
             INFOGAEMAIL = null;
-            SQLMAP = null; 
+            SQLMAP = null;
+            WIFITE = null;  
         }
           public EditModuloVM(ModuloSQLMAP mod)
         {
@@ -116,6 +125,20 @@ namespace webmva.ViewModels
             WAPITI= null;
             INFOGAEMAIL = null;
             SQLMAP = mod; 
+            WIFITE = null; 
+        }
+
+          public EditModuloVM(ModuloWIFITE mod)
+        {
+            NMAP = null;
+            NESSUS = null;
+            DNSRECON = null;
+            INFOGA = null;
+            DROOPE = null;
+            WAPITI= null;
+            INFOGAEMAIL = null;
+            SQLMAP = null; 
+            WIFITE = mod; 
         }
     }
 }

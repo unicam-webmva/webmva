@@ -330,6 +330,12 @@ namespace webmva.Controllers_
                 string comando = $"python \"{percorsoExec}\" {mod.Comando} >> {timestamp}sqlmap_{nomeCamelCase}.txt ";
                 return comando;
             }
+            if(mod is ModuloWIFITE)
+            {
+                string percorsoExec = Path.Combine(Globals.CartellaWEBMVA, "Programmi", "wifite");
+                string comando = $"python \"{percorsoExec}\" {mod.Comando} >> {timestamp}wifite_{nomeCamelCase}.txt ";
+                return comando;
+            }
             else return "";
         }
     }

@@ -8,6 +8,7 @@
     bool infogaemail = Model.INFOGAEMAIL != null;
     bool wapiti = Model.WAPITI != null;
     bool sqlmap = Model.SQLMAP != null;
+    bool wifite = Model.WIFITE != null;
 
 }
 
@@ -1213,4 +1214,10 @@
                                 </div>
                             </form>
     }
+     @* -----WIFITE----- *@
+    else if (wifite)
+    {
+        <h2>Modifica modulo @(Model.WIFITE.Nome)</h2>
+        <hr />
+        
 }

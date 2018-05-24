@@ -9,6 +9,7 @@ var contInfoga = 0;
 var contInfogaEmail = 0;
 var contWapiti = 0;
 var contSqlmap = 0; 
+var contWifite = 0;
 }
 <form name="modulo">
 <h2>Dettagli @Html.DisplayFor(model => model.Nome)</h2>
@@ -59,10 +60,11 @@ var contSqlmap = 0;
                             if(item.Modulo is webmva.Models.ModuloINFOGAEMAIL){contInfogaEmail++;}
                             if(item.Modulo is webmva.Models.ModuloWAPITI) {contWapiti++;}
                             if(item.Modulo is webmva.Models.ModuloSQLMAP) {contSqlmap++;}
+                             if(item.Modulo is webmva.Models.ModuloWIFITE) {contWifite++;}
                         }
                         @if(contNMAP!=0){
                                 
-                            <dd>nmap</dd>
+                            <dd>Nmap</dd>
                             <dd>
                             <table class="table">
                                 <tr>
@@ -90,7 +92,7 @@ var contSqlmap = 0;
                         }
                            @if(contNessus!=0){
                                 
-                            <dd>nessus</dd>
+                            <dd>Nessus</dd>
                             <dd>
                             <table class="table">
                                 <tr>
@@ -118,7 +120,7 @@ var contSqlmap = 0;
                         }
                         @if(contOpenVAS!=0){
                                 
-                            <dd>openvas</dd>
+                            <dd>OpenVAS</dd>
                             <dd>
                             <table class="table">
                                 <tr>
@@ -146,7 +148,7 @@ var contSqlmap = 0;
                         } 
                         @if(contDnsRecon!=0){
                                 
-                            <dd>dnsrecon</dd>
+                            <dd>Dnsrecon</dd>
                             <dd>
                             <table class="table">
                                 <tr>
@@ -174,7 +176,7 @@ var contSqlmap = 0;
                         } 
                         @if(contDroope!=0){
                                 
-                            <dd>openvas</dd>
+                            <dd>Droope</dd>
                             <dd>
                             <table class="table">
                                 <tr>
@@ -202,7 +204,7 @@ var contSqlmap = 0;
                         }  
                         @if(contInfoga!=0){
                                 
-                            <dd>openvas</dd>
+                            <dd>Infoga</dd>
                             <dd>
                             <table class="table">
                                 <tr>
@@ -230,7 +232,7 @@ var contSqlmap = 0;
                         } 
                           @if(contInfogaEmail!=0){
                                 
-                            <dd>openvas</dd>
+                            <dd>Infoga Email</dd>
                             <dd>
                             <table class="table">
                                 <tr>
@@ -258,7 +260,7 @@ var contSqlmap = 0;
                         } 
                          @if(contWapiti!=0){
                                 
-                            <dd>wapiti</dd>
+                            <dd>Wapiti</dd>
                             <dd>
                             <table class="table">
                                 <tr>
@@ -286,7 +288,7 @@ var contSqlmap = 0;
                         } 
                          @if(contSqlmap!=0){
                                 
-                            <dd>wapiti</dd>
+                            <dd>Sqlmap</dd>
                             <dd>
                             <table class="table">
                                 <tr>
@@ -297,6 +299,34 @@ var contSqlmap = 0;
                         @foreach (var item in Model.ModuliProgetto) {
                             
                                 @if(item.Modulo is webmva.Models.ModuloSQLMAP){
+                                <tr>
+                                <td></td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Modulo.Nome)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Modulo.Comando)
+                                    </td>
+                                </tr>
+                               
+                                }
+                                }
+                                </table>
+                                </dd>    
+                        } 
+                         @if(contWifite!=0){
+                                
+                            <dd>Wifite</dd>
+                            <dd>
+                            <table class="table">
+                                <tr>
+                                    <th> </th>
+                                    <th>Modulo</th>
+                                    <th>Comando</th>
+                                </tr>
+                        @foreach (var item in Model.ModuliProgetto) {
+                            
+                                @if(item.Modulo is webmva.Models.ModuloWIFITE){
                                 <tr>
                                 <td></td>
                                     <td>
