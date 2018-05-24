@@ -7,7 +7,6 @@ namespace webmva.Models
 
     public class ModuloNESSUS : Modulo
     {
-        [Required]
         public string ServerIP { get; set; }
         private int _porta = 8834;
         public int Porta
