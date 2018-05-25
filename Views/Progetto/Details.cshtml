@@ -11,44 +11,53 @@ var contWapiti = 0;
 var contSqlmap = 0; 
 var contWifite = 0;
 }
-<form name="modulo">
+<br>
+<div class="container">
 <h2>Dettagli @Html.DisplayFor(model => model.Nome)</h2>
   <a  class="btn btn-default"asp-action="Run" asp-route-id="@Model.ID"> Avvia scan</a>
- 
 <hr />
-<div class="container">
-    <div class="panel panel-default">
-        <div class="col-10">
-            <div class="form-group">
+<div class="col-md-12">
+    <form name="progetto">
+    <div class="row panel panel panel-default panel-body">
+        <div class="col-md-12">
+           
                 
                     <dl class="dl-horizontal">
-                        <div class="panel-body">
-                            
-                            <dt>
-                                <strong> Nome del Progetto </strong>
-                            </dt>
-                            <dd>
-                                @Html.DisplayFor(model => model.Nome)
-                            </dd><hr>
-                            
-                         <dt>
-                            <strong>  Descrizione </strong>
-                        </dt>
-                         <dd> 
-                       
-                         @Html.DisplayFor(model => model.Descrizione)
-                        
-                    </dd> <hr>
-                            <dt>
+                        <div class="col-sm-9"style="margin:5ex; float:none">
+                         <div class="form-group row">
+                                                <h4>Nome Progetto</h4><hr />
+                                                <dd>  @Html.DisplayFor(model => model.Nome)
+                                            </dd>
+
+                            </div>
+                            </div>
+                            <div class="col-sm-9"style="margin:5ex; float:none">
+                         <div class="form-group row">
+                                                <h4>ID Progetto</h4><hr />
+                                                <dd>  @Html.DisplayFor(model => model.ID)
+                                            </dd>
+
+                            </div>
+                            </div>
+                           <div class="col-sm-9"style="margin:5ex; float:none">
+                         <div class="form-group row">
+                                                <h4>Descrizione</h4><hr />
+                                                <dd>  @Html.DisplayFor(model => model.Descrizione)
+                                            </dd>
+
+                            </div>
+                            </div> 
+                            <!--<dt>
                                 <strong> Target </strong>
                             </dt>
                             <dd>
                                 @Html.DisplayFor(model => model.Target)
                             </dd><hr>
-                        </div>
-                        <dt>
-                            <strong>  Moduli selezionati </strong>
-                        </dt>
+                        </div>-->
+                        <div class="col-sm-9"style="margin:5ex; float:none">
+                         <div class="form-group row">
+                                                <h4>Moduli Selezionati</h4><hr />
+                                
                         @foreach(var item in Model.ModuliProgetto) {
                             
                             if(item.Modulo is webmva.Models.ModuloNMAP) {contNMAP++;}
@@ -290,6 +299,7 @@ var contWifite = 0;
                                 
                             <dd>Sqlmap</dd>
                             <dd>
+                                
                             <table class="table">
                                 <tr>
                                     <th> </th>
@@ -328,6 +338,7 @@ var contWifite = 0;
                             
                                 @if(item.Modulo is webmva.Models.ModuloWIFITE){
                                 <tr>
+                                  
                                 <td></td>
                                     <td>
                                         @Html.DisplayFor(modelItem => item.Modulo.Nome)
@@ -335,6 +346,7 @@ var contWifite = 0;
                                     <td>
                                         @Html.DisplayFor(modelItem => item.Modulo.Comando)
                                     </td>
+                                   
                                 </tr>
                                
                                 }
@@ -343,16 +355,17 @@ var contWifite = 0;
                                 </dd>    
                         } 
                                 
-                                
-            <div class="container">
-                    <div class="form-group col-sm-6 ">
-                        <a  class="btn btn-default"asp-action="Edit" asp-route-id="@Model.ID"> Modifica </a> |
-                        <a asp-action="Index"> Torna alla lista</a>
-                   </div>
-                </div>
-            </div>
+            <div class="col-xs-6 col-sm-offset-9 text-right">
+                     <br>
+                    <div class="form-group">
+                        <input type="submit" class="btn btn-default" asp-action="Edit" asp-route-id="@Model.ID" value="Modifica"> </a>&nbsp;&nbsp;&nbsp; | &nbsp;
+                        <input type="submit" class="btn btn-default" asp-action="Cancel" asp-route-id="@Model.ID" value="Cancella"> </a>&nbsp;&nbsp;&nbsp; | &nbsp;
+                        <a asp-action="Index">  Torna alla lista</a>
+                    </div>
+                </div>                    
         </div>
 
     </div>
-    </div>
     </form>
+    </div>
+</div>

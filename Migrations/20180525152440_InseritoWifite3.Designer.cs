@@ -12,8 +12,8 @@ using webmva.Models;
 namespace webmva.Migrations
 {
     [DbContext(typeof(MyDbContext))]
-    [Migration("20180524085703_InseritoSqlmap4")]
-    partial class InseritoSqlmap4
+    [Migration("20180525152440_InseritoWifite3")]
+    partial class InseritoWifite3
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -165,8 +165,7 @@ namespace webmva.Migrations
 
                     b.Property<int>("Porta");
 
-                    b.Property<string>("ServerIP")
-                        .IsRequired();
+                    b.Property<string>("ServerIP");
 
                     b.ToTable("ModuloNESSUS");
 
@@ -381,6 +380,51 @@ namespace webmva.Migrations
                     b.ToTable("ModuloWAPITI");
 
                     b.HasDiscriminator().HasValue("ModuloWAPITI");
+                });
+
+            modelBuilder.Entity("webmva.Models.ModuloWIFITE", b =>
+                {
+                    b.HasBaseType("webmva.Models.Modulo");
+
+                    b.Property<string>("ComandoPersonalizzato")
+                        .HasColumnName("ModuloWIFITE_ComandoPersonalizzato");
+
+                    b.Property<int>("Verbose")
+                        .HasColumnName("ModuloWIFITE_Verbose");
+
+                    b.Property<int>("Wps");
+
+                    b.Property<bool>("accessPoint");
+
+                    b.Property<bool>("bully");
+
+                    b.Property<int>("channel");
+
+                    b.Property<bool>("client");
+
+                    b.Property<bool>("crack");
+
+                    b.Property<bool>("fakeAutenticazione");
+
+                    b.Property<string>("interfaccia");
+
+                    b.Property<bool>("keepIvs");
+
+                    b.Property<bool>("mac");
+
+                    b.Property<bool>("newHs");
+
+                    b.Property<int>("scanTime");
+
+                    b.Property<bool>("wep");
+
+                    b.Property<bool>("wpa");
+
+                    b.Property<bool>("wpsSetting");
+
+                    b.ToTable("ModuloWIFITE");
+
+                    b.HasDiscriminator().HasValue("ModuloWIFITE");
                 });
 
             modelBuilder.Entity("webmva.Models.ModuliProgetto", b =>

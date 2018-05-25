@@ -17,10 +17,11 @@
     @* -----NMAP----- *@
     if (nmap)
     {
-        <h2>Modifica modulo @(Model.NMAP.Nome)</h2>
+        <h2><em>Modifica modulo</em><strong> @(Model.NMAP.Nome)</strong></h2>
         <hr />
         <form asp-action="Edit" name="nmapForm">
             <input type="hidden" asp-for="@Model.NMAP.Applicazione" value="@webmva.Models.APPLICAZIONE.NMAP" />
+            <input type="hidden" asp-for="@Model.NMAP.ID" />
             <div class="row panel panel-default panel-body">
 
                 <div class="col-sm-12">
@@ -28,8 +29,7 @@
                         <div class="form-group">
                             <h4 asp-for="@(Model.NMAP.Nome)">Nome Modulo  </h4>
                             <input class="form-control" asp-for="@(Model.NMAP.Nome)" />
-                        </div>
-                        <input type="hidden" asp-for="@Model.NMAP.ID" />
+                        </div>   
                     </div>
                     <div class="col-sm-12">
                         <div class="col-sm-7" style="margin:0 auto; float:none">
@@ -224,7 +224,7 @@
     @* -----NESSUS----- *@
     else if (nessus)
     {
-        <h2>Modifica modulo @(Model.NESSUS.Nome)</h2>
+         <h2><em>Modifica modulo</em><strong> @(Model.NESSUS.Nome)</strong></h2>
         <hr />
         <form asp-action="Edit" name="nessusForm">
                             <input type="hidden" asp-for="@Model.NESSUS.Applicazione" value="@webmva.Models.APPLICAZIONE.NESSUS" />
@@ -275,7 +275,7 @@
     @* -----DNSRECON----- *@
     else if (dnsrecon)
     {
-        <h2>Modifica modulo @(Model.DNSRECON.Nome)</h2>
+        <h2><em>Modifica modulo</em><strong> @(Model.DNSRECON.Nome)</strong></h2>
         <hr />
         <form asp-action="Edit" name="dnsReconForm">
             <input type="hidden" asp-for="@Model.DNSRECON.Applicazione" value="@webmva.Models.APPLICAZIONE.DNSRECON" />
@@ -380,7 +380,7 @@
     @* -----DROOPE----- *@
     else if (droopescan)
     {
-        <h2>Modifica modulo @(Model.DROOPE.Nome)</h2>
+         <h2><em>Modifica modulo</em><strong> @(Model.DROOPE.Nome)</strong></h2>
         <hr />
         <form asp-action="Edit" name="droopeForm">
             <input type="hidden" asp-for="@Model.DROOPE.ID" />
@@ -452,7 +452,7 @@
     @* -----INFOGA----- *@
     else if (infoga)
     {
-        <h2>Modifica modulo @(Model.INFOGA.Nome)</h2>
+        <h2><em>Modifica modulo</em><strong> @(Model.INFOGA.Nome)</strong></h2>
         <hr />
         <form asp-action="Edit" name="infogaForm">
             <input type="hidden" asp-for="@Model.INFOGA.Applicazione" value="@webmva.Models.APPLICAZIONE.INFOGA" />
@@ -532,7 +532,7 @@
      @* -----INFOGAEMAIL----- *@
     else if (infogaemail)
     {
-        <h2>Modifica modulo @(Model.INFOGAEMAIL.Nome)</h2>
+        <h2><em>Modifica modulo</em><strong> @(Model.INFOGAEMAIL.Nome)</strong></h2>
         <hr />
         <form asp-action="Edit" name="infogaForm">
                                 <input type="hidden" asp-for="@Model.INFOGAEMAIL.Applicazione" value="@webmva.Models.APPLICAZIONE.INFOGAEMAIL" />
@@ -607,7 +607,7 @@
     @* -----WAPITI----- *@
     else if (wapiti)
     {
-        <h2>Modifica modulo @(Model.WAPITI.Nome)</h2>
+        <h2><em>Modifica modulo</em><strong> @(Model.WAPITI.Nome)</strong></h2>
         <hr />
         <form asp-action="Edit" name="wapitiForm">
             <input type="hidden" asp-for="@Model.WAPITI.Applicazione" value="@webmva.Models.APPLICAZIONE.WAPITI" />
@@ -820,7 +820,7 @@
     @* -----SQLMAP----- *@
     else if (sqlmap)
     {
-        <h2>Modifica modulo @(Model.SQLMAP.Nome)</h2>
+        <h2><em>Modifica modulo</em><strong> @(Model.SQLMAP.Nome)</strong></h2>
         <hr />
                             <form asp-action="Edit" name="sqlForm">
                                 <input type="hidden" asp-for="@Model.SQLMAP.Applicazione" value="@webmva.Models.APPLICAZIONE.SQLMAP" />
@@ -1217,7 +1217,151 @@
      @* -----WIFITE----- *@
     else if (wifite)
     {
-        <h2>Modifica modulo @(Model.WIFITE.Nome)</h2>
+        <h2><em>Modifica modulo</em><strong> @(Model.WIFITE.Nome)</strong></h2>
         <hr />
-        
+          <form asp-action="Edit" name="wifiteForm">
+                                <input type="hidden" asp-for="@Model.WIFITE.Applicazione" value="@webmva.Models.APPLICAZIONE.WIFITE" />
+ <input type="hidden" asp-for="@Model.WIFITE.ID" />
+                                  <div class="row panel panel-default panel-body">
+
+                                <div class="col-sm-12">
+                                    <div class="col-sm-7" style="margin:0 auto; float:none">
+                                        <div class="form-group">
+                                            <h4 asp-for="@(Model.WIFITE.Nome)">Nome Modulo</h4>
+                                            <input class="form-control" asp-for="@(Model.WIFITE.Nome)" />
+                                        </div>
+                                    </div>
+
+                                    <hr />
+                                    <div class="col-sm-12">
+                                       
+                                        <div class="col-sm-7" style="margin:0 auto; float:none">
+                                            <div class="form-group row">
+                                                <h4 asp-for="@(Model.WIFITE.ComandoPersonalizzato)">Comando Personalizzato</h4>
+                                                <input class="form-control" asp-for="@(Model.WIFITE.ComandoPersonalizzato)" />
+                                            </div>
+
+                                        </div>
+                                    </div>
+
+                                    <div class="col-sm-12">
+                                        <h4>Setting</h4>
+                                        <hr />
+                                        <div class="form-group row">
+                                            <div class="col-sm-5">
+                                                <label class="control-label">Scegli la verbosità</label>
+                                            </div>
+                                            <select class="col-sm-5" asp-for="@Model.WIFITE.Verbose">
+                                                <option value="0">zero </option>
+                                                <option value="1">quiet </option>
+                                                <option value="2">deep </option>
+                                            </select>
+                                        </div>
+                                        <div class="form-group row">
+                                                <div class="col-sm-6">
+                                                    <label class="control-label">
+                                                        <input type="checkbox" asp-for="@Model.WIFITE.interfaccia" /> Interface (-i)
+                                                    </label>
+                                                </div>
+                                            </div>
+                                              <div class="form-group row">
+                                            <div class="col-sm-4">
+                                                <label class="control-label">Setta il canale (-1 indica che tutti i canali sono settati)</label>
+                                            </div>
+                                             <div class="col-sm-1"></div>
+                                            <input type="number" class="col-sm-5" asp-for="@Model.WIFITE.channel" />
+                                        </div>
+                                             <div class="form-group row">
+                                                <div class="col-sm-6">
+                                                    <label class="control-label">
+                                                        <input type="checkbox" asp-for="@Model.WIFITE.mac" /> MAC (-i)
+                                                    </label>
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                            <div class="col-sm-4">
+                                                <label class="control-label">Setta lo scantime</label>
+                                            </div>
+                                             <div class="col-sm-1"></div>
+                                            <input type="number" class="col-sm-5" asp-for="@Model.WIFITE.scanTime" />
+                                        </div>
+                                        <div class="form-group row">
+                                                <div class="col-sm-6">
+                                                    <label class="control-label">
+                                                        <input type="checkbox" asp-for="@Model.WIFITE.client" /> Client(-i)
+                                                    </label>
+                                                </div>
+                                            </div>
+                                            <br>
+                                            <h4>Wpa</h4>
+                                        <hr />
+                                        <div class="form-group row">
+                                                <div class="col-sm-6">
+                                                    <label class="control-label">
+                                                        <input type="checkbox" asp-for="@Model.WIFITE.wpa" /> Wpa (--wpa)
+                                                    </label>
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <div class="col-sm-6">
+                                                    <label class="control-label">
+                                                        <input type="checkbox" asp-for="@Model.WIFITE.newHs" /> New Hs (--new-hs)
+                                                    </label>
+                                                </div>
+                                            </div>
+                                            <br>
+                                            <h4>WPS</h4>
+                                        <hr />
+                                        <div class="form-group row">
+                                                <div class="col-sm-6">
+                                                    <label class="control-label">
+                                                        <input type="checkbox" asp-for="@Model.WIFITE.wpsSetting" /> WPS (-wps)
+                                                    </label>
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <div class="col-sm-6">
+                                                    <label class="control-label">
+                                                        <input type="checkbox" asp-for="@Model.WIFITE.bully" /> Bully (--bully)
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        <div class="form-group row">
+                                            <div class="col-sm-4">
+                                                <label class="control-label">WPS</label>
+                                            </div>
+                                            <select class="col-sm-5" asp-for="@Model.WIFITE.Wps">
+                                                <option value="0">no </option>
+                                                <option value="1">only</option>
+                                                <option value="2">default</option>
+                                            </select>
+                                        </div>
+                                        <br>
+                                         <h4>Altri Comandi</h4>
+                                        <hr />
+                                         <div class="form-group row">
+                                                <div class="col-sm-6">
+                                                    <label class="control-label">
+                                                        <input type="checkbox" asp-for="@Model.WIFITE.accessPoint" /> Cracked (-cracked)
+                                                    </label>
+                                                </div>
+                                            </div>
+                                             <div class="form-group row">
+                                                <div class="col-sm-6">
+                                                    <label class="control-label">
+                                                        <input type="checkbox" asp-for="@Model.WIFITE.crack" /> Crack (--crack)
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        <div class="col-sm-6 col-sm-offset-6 text-right">
+                                            <div class="form-group">
+                                                <input type="submit" asp-action="Edit" asp-route-id="@Model.WIFITE.ID" class="btn btn-default" value="Modifica" />&nbsp;&nbsp;|
+                                                <a asp-action="Index">  Torna alla lista</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            </form>
+}
 }

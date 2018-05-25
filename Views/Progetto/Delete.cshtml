@@ -11,59 +11,69 @@ var contWapiti = 0;
 var contSqlmap = 0;
 var contWifite = 0;}
 
-<h2>Sei sicuro di voler cancellare il progetto @Html.DisplayFor(model => model.Nome) ? </h2>
-<hr />
+<
+<br>
 <div class="container">
-<div class="row panel panel-default">
- <form asp-action="Delete">
-        <input type="hidden" asp-for="ID" />
-        <div class="col-10">
-            <div class="form-group col-10">
+<h2><em>Sei sicuro di voler cancellare il progetto</em><strong> @Html.DisplayFor(model => model.Nome) ?</strong></h2>
+<hr />
+<div class="col-md-12">
+    <form name="progetto">
+    <div class="row panel panel panel-default panel-body">
+        <div class="col-md-12">
+           
                 
                     <dl class="dl-horizontal">
-                        <div class="panel-body">
+                        <div class="col-sm-9"style="margin:5ex; float:none">
+                         <div class="form-group row">
+                                                <h4>Nome Progetto</h4><hr />
+                                                <dd>  @Html.DisplayFor(model => model.Nome)
+                                            </dd>
 
-                            <dt>
-                                <strong> Nome del Progetto </strong>
-                            </dt>
-                            <dd>
-                                @Html.DisplayFor(model => model.Nome)
-                            </dd><hr>
-                            
-                         <dt>
-                            <strong>  Descrizione </strong>
-                        </dt>
-                         <dd> 
-                       
-                         @Html.DisplayFor(model => model.Descrizione)
-                        
-                    </dd> <hr>
-                            <dt>
-                                <strong> Taget </strong>
+                            </div>
+                            </div>
+                            <div class="col-sm-9"style="margin:5ex; float:none">
+                         <div class="form-group row">
+                                                <h4>ID Progetto</h4><hr />
+                                                <dd>  @Html.DisplayFor(model => model.ID)
+                                            </dd>
+
+                            </div>
+                            </div>
+                           <div class="col-sm-9"style="margin:5ex; float:none">
+                         <div class="form-group row">
+                                                <h4>Descrizione</h4><hr />
+                                                <dd>  @Html.DisplayFor(model => model.Descrizione)
+                                            </dd>
+
+                            </div>
+                            </div> 
+                            <!--<dt>
+                                <strong> Target </strong>
                             </dt>
                             <dd>
                                 @Html.DisplayFor(model => model.Target)
                             </dd><hr>
-                        </div>
-                        <dt>
-                            <strong>  Moduli selezionati </strong>
-                        </dt>
+                        </div>-->
+                        <div class="col-sm-9"style="margin:5ex; float:none">
+                         <div class="form-group row">
+                                                <h4>Moduli Selezionati</h4><hr />
+                                
                         @foreach(var item in Model.ModuliProgetto) {
                             
                             if(item.Modulo is webmva.Models.ModuloNMAP) {contNMAP++;}
                             if(item.Modulo is webmva.Models.ModuloNESSUS) {contNessus++;}
-                            //if(item.Modulo is webmva.Models.ModuloOPENVAS) {contOpenVAS++;}
-                            if(item.Modulo is webmva.Models.ModuloDNSRECON){contDnsRecon++;}
-                            if(item.Modulo is webmva.Models.ModuloDROOPE){contDroope++;}
-                            if(item.Modulo is webmva.Models.ModuloINFOGA){contInfoga++;}
+                            if(item.Modulo is webmva.Models.ModuloNMAP) {contOpenVAS++;}
+                            if(item.Modulo is webmva.Models.ModuloDNSRECON) {contDnsRecon++;}
+                            if(item.Modulo is webmva.Models.ModuloDROOPE) {contDroope++;}
+                            if(item.Modulo is webmva.Models.ModuloINFOGA) {contInfoga++;}
                             if(item.Modulo is webmva.Models.ModuloINFOGAEMAIL){contInfogaEmail++;}
-                            if(item.Modulo is webmva.Models.ModuloWAPITI){contWapiti++;}
-                             if(item.Modulo is webmva.Models.ModuloSQLMAP){contSqlmap++;}
-                             if(item.Modulo is webmva.Models.ModuloWIFITE){contWifite++;}
+                            if(item.Modulo is webmva.Models.ModuloWAPITI) {contWapiti++;}
+                            if(item.Modulo is webmva.Models.ModuloSQLMAP) {contSqlmap++;}
+                             if(item.Modulo is webmva.Models.ModuloWIFITE) {contWifite++;}
                         }
                         @if(contNMAP!=0){
                                 
-                            <dd><strong>Nmap</strong></dd>
+                            <dd>Nmap</dd>
                             <dd>
                             <table class="table">
                                 <tr>
@@ -71,7 +81,7 @@ var contWifite = 0;}
                                     <th>Modulo</th>
                                     <th>Comando</th>
                                 </tr>
-                               @foreach (var item in Model.ModuliProgetto) {
+                        @foreach (var item in Model.ModuliProgetto) {
                             
                                 @if(item.Modulo is webmva.Models.ModuloNMAP){
                                 <tr>
@@ -85,13 +95,13 @@ var contWifite = 0;}
                                 </tr>
                                
                                 }
-                            }
+                                }
                                 </table>
                                 </dd>    
-                        }  
-                         @if(contNessus!=0){
+                        }
+                           @if(contNessus!=0){
                                 
-                             <dd><strong>Nessus</strong></dd>
+                            <dd>Nessus</dd>
                             <dd>
                             <table class="table">
                                 <tr>
@@ -119,7 +129,7 @@ var contWifite = 0;}
                         }
                         @if(contOpenVAS!=0){
                                 
-                             <dd><strong>OpenVAS</strong></dd>
+                            <dd>OpenVAS</dd>
                             <dd>
                             <table class="table">
                                 <tr>
@@ -144,10 +154,10 @@ var contWifite = 0;}
                                 }
                                 </table>
                                 </dd>    
-                        }  
-                         @if(contDnsRecon!=0){
+                        } 
+                        @if(contDnsRecon!=0){
                                 
-                             <dd><strong>DnsRecon</strong></dd>
+                            <dd>Dnsrecon</dd>
                             <dd>
                             <table class="table">
                                 <tr>
@@ -172,10 +182,10 @@ var contWifite = 0;}
                                 }
                                 </table>
                                 </dd>    
-                        }
-                         @if(contDroope!=0){
+                        } 
+                        @if(contDroope!=0){
                                 
-                             <dd><strong>Droope</strong></dd>
+                            <dd>Droope</dd>
                             <dd>
                             <table class="table">
                                 <tr>
@@ -200,10 +210,10 @@ var contWifite = 0;}
                                 }
                                 </table>
                                 </dd>    
-                        }    
+                        }  
                         @if(contInfoga!=0){
                                 
-                             <dd><strong>Infoga</strong></dd>
+                            <dd>Infoga</dd>
                             <dd>
                             <table class="table">
                                 <tr>
@@ -228,10 +238,10 @@ var contWifite = 0;}
                                 }
                                 </table>
                                 </dd>    
-                        }  
-                        @if(contInfogaEmail!=0){
+                        } 
+                          @if(contInfogaEmail!=0){
                                 
-                             <dd><strong>Infoga</strong></dd>
+                            <dd>Infoga Email</dd>
                             <dd>
                             <table class="table">
                                 <tr>
@@ -256,10 +266,10 @@ var contWifite = 0;}
                                 }
                                 </table>
                                 </dd>    
-                        }  
+                        } 
                          @if(contWapiti!=0){
                                 
-                             <dd><strong>Wapiti</strong></dd>
+                            <dd>Wapiti</dd>
                             <dd>
                             <table class="table">
                                 <tr>
@@ -284,10 +294,10 @@ var contWifite = 0;}
                                 }
                                 </table>
                                 </dd>    
-                        }  
-                        @if(contSqlmap!=0){
+                        } 
+                         @if(contSqlmap!=0){
                                 
-                             <dd><strong>Sqlmap</strong></dd>
+                            <dd>Sqlmap</dd>
                             <dd>
                             <table class="table">
                                 <tr>
@@ -315,7 +325,7 @@ var contWifite = 0;}
                         } 
                          @if(contWifite!=0){
                                 
-                             <dd><strong>Wifite</strong></dd>
+                            <dd>Wifite</dd>
                             <dd>
                             <table class="table">
                                 <tr>
@@ -340,19 +350,18 @@ var contWifite = 0;}
                                 }
                                 </table>
                                 </dd>    
-                        }   
+                        } 
                                 
-            <div class="container ">
-                    <div class="form-group col-sm-6 ">
-                        <input type="submit"  class="btn btn-default"asp-action="Delete" asp-route-id="@Model.ID" value="Cancella"> |
-                        <a asp-action="Index"> Torna alla lista</a>
-                   </div>
-                </div>
-            </div>
+            <div class="col-xs-6 col-sm-offset-9 text-right">
+                     <br>
+                    <div class="form-group">
+                        <input type="submit" class="btn btn-default" asp-action="Cancel" asp-route-id="@Model.ID" value="Cancella"> </a>&nbsp;&nbsp;&nbsp; | &nbsp;
+                        <a asp-action="Index">  Torna alla lista</a>
+                    </div>
+                </div>                    
         </div>
- </form>
+
     </div>
-    
+    </form>
     </div>
-   
-  
+</div>

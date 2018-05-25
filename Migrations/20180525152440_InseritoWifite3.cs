@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace webmva.Migrations
 {
-    public partial class InseritoSqlmap4 : Migration
+    public partial class InseritoWifite3 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -128,7 +128,24 @@ namespace webmva.Migrations
                     Sql = table.Column<bool>(nullable: true),
                     ModuloWAPITI_URL = table.Column<string>(nullable: true),
                     ModuloWAPITI_Verbose = table.Column<int>(nullable: true),
-                    Xss = table.Column<bool>(nullable: true)
+                    Xss = table.Column<bool>(nullable: true),
+                    ModuloWIFITE_ComandoPersonalizzato = table.Column<string>(nullable: true),
+                    ModuloWIFITE_Verbose = table.Column<int>(nullable: true),
+                    Wps = table.Column<int>(nullable: true),
+                    accessPoint = table.Column<bool>(nullable: true),
+                    bully = table.Column<bool>(nullable: true),
+                    channel = table.Column<int>(nullable: true),
+                    client = table.Column<bool>(nullable: true),
+                    crack = table.Column<bool>(nullable: true),
+                    fakeAutenticazione = table.Column<bool>(nullable: true),
+                    interfaccia = table.Column<string>(nullable: true),
+                    keepIvs = table.Column<bool>(nullable: true),
+                    mac = table.Column<bool>(nullable: true),
+                    newHs = table.Column<bool>(nullable: true),
+                    scanTime = table.Column<int>(nullable: true),
+                    wep = table.Column<bool>(nullable: true),
+                    wpa = table.Column<bool>(nullable: true),
+                    wpsSetting = table.Column<bool>(nullable: true)
                 },
                 constraints: table =>
                 {

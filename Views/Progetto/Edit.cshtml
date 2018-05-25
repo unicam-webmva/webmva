@@ -3,33 +3,41 @@
     
  }
 <div class="container">
-    <h2>Modifica Progetto</h2>
+    <h2><em>Modifica Progetto</em><strong> @Model.Nome</strong></h2>
     <hr />
-    <div class="row panel panel-default col-md-9">
-        <!--<div class="col-md-9">-->
             @{List<webmva.ViewModels.ModuliInseriti> listaModuli = ViewBag.Moduli;
-                 <form asp-action="Edit">
+            <form asp-action="Edit" name="modificaProgetto">
            <!-- <div asp-validation-summary="ModelOnly" class="text-danger"></div>--> 
             <input type="hidden" asp-for="@Model.ID" />
-            <div class="form-group">
-                <br>
-                <label asp-for="@Model.Nome" class="control-label"></label>
-                <input asp-for="@Model.Nome" class="form-control" />
-               <!-- <span asp-validation-for="@Model.Nome" class="text-danger"></span>-->
-                
-                <br>
-                <label asp-for="@Model.Target" id="Target" class="control-label"></label>
+             <div class="row panel panel-default panel-body">
+             <div class="col-sm-12">
+             <br>
+            <div class="col-sm-7" style="margin:0 auto; float:none">
+                        <div class="form-group">
+                            <h4 asp-for="@Model.Nome">Nome Modulo  </h4><hr/>
+                            <input class="form-control" asp-for="@Model.Nome" />
+                        </div>
+                    </div>
+               <!-- <label asp-for="@Model.Target" id="Target" class="control-label"></label>
                 <input asp-for="@Model.Target" class="form-control" onfocusout="checkIP()" />
-                <!--<span asp-validation-for="@Model.Target" class="text-danger"></span>-->
-               <span name="TargetValidation" style="font-family: serif;font-size: 14px;color: #FF0000;"></span>
-    
-                
+                <!--<span asp-validation-for="@Model.Target" class="text-danger"></span>
+               <span name="TargetValidation" style="font-family: serif;font-size: 14px;color: #FF0000;"></span>-->
                   <br>
-                  <h5><strong>Scegli il modulo</strong></h5>
+                  <h4><strong>Scegli il modulo</strong></h4><hr/>
                  
                 <div class="panel panel-default">
                     <div class="panel-heading">
-					<a   data-toggle="collapse"  href="#Nmap">Nmap</a><br>
+                     <a href="#network" data-toggle="collapse">
+                    <strong>
+                        NETWORK
+                    </strong>
+
+                </a></div>
+                 <div class="col-5">
+                <div class="panel panel-sidebar">
+                    <div class="panel-heading">
+					<a data-toggle="collapse" href="#Nmap"><strong>NMAP</strong>
+                     <span class="caret"></span></a><br>
                     </div>
                     <div class="collapse" id="Nmap">
                      <div class="panel-body ">
@@ -82,9 +90,10 @@
                       </div>
                       
     
-					<div class="panel panel-default">
+					<div class="panel panel-sidebar">
                     <div class="panel-heading">
-					<a   data-toggle="collapse"  href="#Nessus">Nessus</a><br>
+					<a  data-toggle="collapse" href="#Nessus"><strong>NESSUS</strong>
+                    <span class="caret"></span></a><br>
                     </div>
                     <div class="collapse" id="Nessus">
                      <div class="panel-body ">
@@ -134,10 +143,11 @@
                         </div>
                         </div>
                       </div>
-                      </div>
-                      <div class="panel panel-default">
+                     
+                     <div class="panel panel-sidebar">
                     <div class="panel-heading">
-					<a   data-toggle="collapse"  href="#OpenVAS">OpenVAS</a><br>
+					<a data-toggle="collapse" href="#OpenVAS"><strong>OPENVAS</strong>
+                    <span class="caret"></span></a><br>
                     </div>
                     <div class="collapse" id="OpenVAS">
                      <div class="panel-body ">
@@ -187,221 +197,21 @@
                         </div>
                         </div>
                       </div>
+                      </div>
+                      </div>
                      <div class="panel panel-default">
                     <div class="panel-heading">
-					<a   data-toggle="collapse"  href="#DNSRECON">DnsRecon</a><br>
-                    </div>
-                    <div class="collapse" id="DNSRECON">
-                     <div class="panel-body ">
-                            <table class="table">
-                                <div class="method">
-                                    <thead>
-                                        <tr>
-                                            <th></th>
-                                             <th>
-                                        Nome
-                                            </th>
-                                            <th>
-                                        Comando
-                                            </th>
-                                            <th></th>
-                                        </tr>
-                                    </thead>
-                                </div>
-                                <tbody>
-                                    <tr>
-                                        <td>
-                                    <input type="checkbox" name="selezionaTutto1" onclick="SelezTT4()" > <label> Scegli tutti</label><br>
-                                        </td>
-                                    </tr>
-                                    @foreach (var item in listaModuli) {
-                                       
-                                        
-                                            if(item.Applicazione!= webmva.Models.APPLICAZIONE.DNSRECON){continue;}
-                                             <tr>
-                                                <td>
-                                                    <input type="checkbox"
-                                                        name="moduliSelezionati"
-                                                        value="@item.ModuloID"
-                                                        @(Html.Raw(item.Inserito ? "checked=\"checked\"" : "")) />
-                                                        
-                                                </td>
-                                        <td>
-                                            @Html.DisplayFor(modelItem => item.Nome)
-                                                </td>
-                                                <td>
-                                                    @Html.DisplayFor(modelItem => item.Comando)
-                                                </td>
-                                            </tr>       
-                                    }
-                                </tbody>
-                            </table>
+                    <a href="#web" data-toggle="collapse">
+                    <strong>
+                        WEB
+                    </strong>
 
-                        </div>
-                        </div>
-                      </div>
-                      <div class="panel panel-default">
+                </a>
+            </div>
+             <div class="panel panel-sidebar">
                     <div class="panel-heading">
-					<a   data-toggle="collapse"  href="#DROOPE">Droope</a><br>
-                    </div>
-                    <div class="collapse" id="DROOPE">
-                     <div class="panel-body ">
-                            <table class="table">
-                                <div class="method">
-                                    <thead>
-                                        <tr>
-                                            <th></th>
-                                             <th>
-                                        Nome
-                                            </th>
-                                            <th>
-                                        Comando
-                                            </th>
-                                            <th></th>
-                                        </tr>
-                                    </thead>
-                                </div>
-                                <tbody>
-                                    <tr>
-                                        <td>
-                                    <input type="checkbox" name="selezionaTutto1" onclick="SelezTT1()" > <label> Scegli tutti</label><br>
-                                        </td>
-                                    </tr>
-                                    @foreach (var item in listaModuli) {
-                                       
-                                        
-                                            if(item.Applicazione!= webmva.Models.APPLICAZIONE.DROOPE){continue;}
-                                             <tr>
-                                                <td>
-                                                    <input type="checkbox"
-                                                        name="moduliSelezionati"
-                                                        value="@item.ModuloID"
-                                                        @(Html.Raw(item.Inserito ? "checked=\"checked\"" : "")) />
-                                                        
-                                                </td>
-                                        <td>
-                                            @Html.DisplayFor(modelItem => item.Nome)
-                                                </td>
-                                                <td>
-                                                    @Html.DisplayFor(modelItem => item.Comando)
-                                                </td>
-                                            </tr>       
-                                    }
-                                </tbody>
-                            </table>
-
-                        </div>
-                        </div>
-                      </div>
-                      <div class="panel panel-default">
-                    <div class="panel-heading">
-					<a   data-toggle="collapse"  href="#INFOGA">Infoga</a><br>
-                    </div>
-                    <div class="collapse" id="INFOGA">
-                     <div class="panel-body ">
-                            <table class="table">
-                                <div class="method">
-                                    <thead>
-                                        <tr>
-                                            <th></th>
-                                             <th>
-                                        Nome
-                                            </th>
-                                            <th>
-                                        Comando
-                                            </th>
-                                            <th></th>
-                                        </tr>
-                                    </thead>
-                                </div>
-                                <tbody>
-                                    <tr>
-                                        <td>
-                                    <input type="checkbox" name="selezionaTutto1" onclick="SelezTT1()" > <label> Scegli tutti</label><br>
-                                        </td>
-                                    </tr>
-                                    @foreach (var item in listaModuli) {
-                                       
-                                        
-                                            if(item.Applicazione!= webmva.Models.APPLICAZIONE.INFOGA){continue;}
-                                             <tr>
-                                                <td>
-                                                    <input type="checkbox"
-                                                        name="moduliSelezionati"
-                                                        value="@item.ModuloID"
-                                                        @(Html.Raw(item.Inserito ? "checked=\"checked\"" : "")) />
-                                                        
-                                                </td>
-                                        <td>
-                                            @Html.DisplayFor(modelItem => item.Nome)
-                                                </td>
-                                                <td>
-                                                    @Html.DisplayFor(modelItem => item.Comando)
-                                                </td>
-                                            </tr>       
-                                    }
-                                </tbody>
-                            </table>
-
-                        </div>
-                        </div>
-                      </div>
-                        <div class="panel panel-default">
-                    <div class="panel-heading">
-					<a   data-toggle="collapse"  href="#INFOGAEMAIL">Infoga Email</a><br>
-                    </div>
-                    <div class="collapse" id="INFOGAEMAIL">
-                     <div class="panel-body ">
-                            <table class="table">
-                                <div class="method">
-                                    <thead>
-                                        <tr>
-                                            <th></th>
-                                             <th>
-                                        Nome
-                                            </th>
-                                            <th>
-                                        Comando
-                                            </th>
-                                            <th></th>
-                                        </tr>
-                                    </thead>
-                                </div>
-                                <tbody>
-                                    <tr>
-                                        <td>
-                                    <input type="checkbox" name="selezionaTutto1" onclick="SelezTT1()" > <label> Scegli tutti</label><br>
-                                        </td>
-                                    </tr>
-                                    @foreach (var item in listaModuli) {
-                                       
-                                        
-                                            if(item.Applicazione!= webmva.Models.APPLICAZIONE.INFOGAEMAIL){continue;}
-                                             <tr>
-                                                <td>
-                                                    <input type="checkbox"
-                                                        name="moduliSelezionati"
-                                                        value="@item.ModuloID"
-                                                        @(Html.Raw(item.Inserito ? "checked=\"checked\"" : "")) />
-                                                        
-                                                </td>
-                                        <td>
-                                            @Html.DisplayFor(modelItem => item.Nome)
-                                                </td>
-                                                <td>
-                                                    @Html.DisplayFor(modelItem => item.Comando)
-                                                </td>
-                                            </tr>       
-                                    }
-                                </tbody>
-                            </table>
-
-                        </div>
-                        </div>
-                      </div>
-                          <div class="panel panel-default">
-                    <div class="panel-heading">
-					<a   data-toggle="collapse"  href="#WAPITI">Wapiti</a><br>
+					<a  data-toggle="collapse" href="#WAPITI"><strong>WAPITI</strong>
+                      <span class="caret"></span></a><br>
                     </div>
                     <div class="collapse" id="WAPITI">
                      <div class="panel-body ">
@@ -452,11 +262,94 @@
                         </div>
                         </div>
                       </div>
-                          <div class="panel panel-default">
+                      </div>
+                    <div class="panel panel-default">
                     <div class="panel-heading">
-					<a   data-toggle="collapse"  href="#SQLMAP">Sqlmap</a><br>
+                <a href="#dns" data-toggle="collapse">
+                    <strong>
+                        CMS
+                    </strong>
+
+                </a>
+            </div>
+             <div class="panel panel-sidebar">
+                    <div class="panel-heading">
+                    <a   data-toggle="collapse" href="#droopescan">
+                            <strong>
+                                DROOPESCAN
+                            </strong>
+                            <span class="caret"></span>
+                        </a>
                     </div>
-                    <div class="collapse" id="SQLMAP">
+                    <div class="collapse" id="droopescan">
+                     <div class="panel-body " >
+                            <table class="table">
+                                <div class="method">
+                                    <thead>
+                                        <tr>
+                                            <th></th>
+                                             <th>
+                                        Nome
+                                            </th>
+                                            <th>
+                                        Comando
+                                            </th>
+                                            <th></th>
+                                        </tr>
+                                    </thead>
+                                </div>
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                    <input type="checkbox" name="selezionaTutto1" onclick="SelezTT1()" > <label> Scegli tutti</label><br>
+                                        </td>
+                                    </tr>
+                                    @foreach (var item in listaModuli) {
+                                       
+                                        
+                                            if(item.Applicazione!= webmva.Models.APPLICAZIONE.DROOPE){continue;}
+                                             <tr>
+                                                <td>
+                                                    <input type="checkbox"
+                                                        name="moduliSelezionati"
+                                                        value="@item.ModuloID"
+                                                        @(Html.Raw(item.Inserito ? "checked=\"checked\"" : "")) />
+                                                        
+                                                </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Nome)
+                                                </td>
+                                                <td>
+                                                    @Html.DisplayFor(modelItem => item.Comando)
+                                                </td>
+                                            </tr>       
+                                    }
+                                </tbody>
+                            </table>
+
+                        </div>
+                        </div>
+                        </div>
+                      </div>
+       <div class="panel panel-default">
+                    <div class="panel-heading">
+					<a href="#dns" data-toggle="collapse">
+                    <strong>
+                        DNS
+                    </strong>
+
+                </a>
+            </div>
+            <div class="panel panel-sidebar">
+                    <div class="panel-heading">
+                        <a data-toggle="collapse" href="#dnsRecon">
+                            <strong>
+                                DNSRECON
+                            </strong>
+                            <span class="caret"></span>
+                        </a>
+                    </div>
+                    <div class="collapse" id="dnsRecon">
                      <div class="panel-body ">
                             <table class="table">
                                 <div class="method">
@@ -477,6 +370,197 @@
                                     <tr>
                                         <td>
                                     <input type="checkbox" name="selezionaTutto1" onclick="SelezTT1()" > <label> Scegli tutti</label><br>
+                                        </td>
+                                    </tr>
+                                    @foreach (var item in listaModuli) {
+                                       
+                                        
+                                            if(item.Applicazione!= webmva.Models.APPLICAZIONE.DNSRECON){continue;}
+                                             <tr>
+                                                <td>
+                                                    <input type="checkbox"
+                                                        name="moduliSelezionati"
+                                                        value="@item.ModuloID"
+                                                        @(Html.Raw(item.Inserito ? "checked=\"checked\"" : "")) />
+                                                        
+                                                </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Nome)
+                                                </td>
+                                                <td>
+                                                    @Html.DisplayFor(modelItem => item.Comando)
+                                                </td>
+                                            </tr>       
+                                    }
+                                </tbody>
+                            </table>
+
+                        </div>
+                        </div>
+                      </div>
+                      </div>
+                      <div class="panel panel-default">
+                    <div class="panel-heading">
+				 <a href="#ig" data-toggle="collapse">
+                    <strong>
+                        INFORMATION GATHERING
+                    </strong>
+
+                </a>
+                    </div>
+                    <div class="panel panel-sidebar">
+                    <div class="panel-heading">
+                    <a data-toggle="collapse"  href="#infoga">
+                    <strong>
+                                INFOGA
+                            </strong>
+                            <span class="caret"></span>
+                        </a>
+                    </div>
+                    <div class="collapse " id="infoga">
+                     <div class="panel-body ">
+                            <table class="table">
+                                <div class="method">
+                                    <thead>
+                                        <tr>
+                                            <th></th>
+                                             <th>
+                                        Nome
+                                            </th>
+                                            <th>
+                                        Comando
+                                            </th>
+                                            <th></th>
+                                        </tr>
+                                    </thead>
+                                </div>
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                    <input type="checkbox" name="selezionaTutto1" onclick="SelezTT1()" > <label> Scegli tutti</label><br>
+                                        </td>
+                                    </tr>
+                                    @foreach (var item in listaModuli) {
+                                       
+                                        
+                                            if(item.Applicazione!= webmva.Models.APPLICAZIONE.INFOGA){continue;}
+                                             <tr>
+                                                <td>
+                                                    <input type="checkbox"
+                                                        name="moduliSelezionati"
+                                                        value="@item.ModuloID"
+                                                        @(Html.Raw(item.Inserito ? "checked=\"checked\"" : "")) />
+                                                        
+                                                </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Nome)
+                                                </td>
+                                                <td>
+                                                    @Html.DisplayFor(modelItem => item.Comando)
+                                                </td>
+                                            </tr>       
+                                    }
+                                </tbody>
+                            </table>
+
+                        </div>
+                        </div>
+                        </div>
+                        
+                      
+                        <div class="panel panel-sidebar">
+                    <div class="panel-heading">
+					<a   data-toggle="collapse"  href="#INFOGAEMAIL"><strong>INFOGA EMAIL</strong>
+                     <span class="caret"></span></a><br>
+                    </div>
+                    <div class="collapse" id="INFOGAEMAIL">
+                     <div class="panel-body ">
+                            <table class="table">
+                                <div class="method">
+                                    <thead>
+                                        <tr>
+                                            <th></th>
+                                             <th>
+                                        Nome
+                                            </th>
+                                            <th>
+                                        Comando
+                                            </th>
+                                            <th></th>
+                                        </tr>
+                                    </thead>
+                                </div>
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                    <input type="checkbox" name="selezionaTutto1" onclick="SelezTT1()" > <label> Scegli tutti</label><br>
+                                        </td>
+                                    </tr>
+                                    @foreach (var item in listaModuli) {
+                                       
+                                        
+                                            if(item.Applicazione!= webmva.Models.APPLICAZIONE.INFOGAEMAIL){continue;}
+                                             <tr>
+                                                <td>
+                                                    <input type="checkbox"
+                                                        name="moduliSelezionati"
+                                                        value="@item.ModuloID"
+                                                        @(Html.Raw(item.Inserito ? "checked=\"checked\"" : "")) />
+                                                        
+                                                </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Nome)
+                                                </td>
+                                                <td>
+                                                    @Html.DisplayFor(modelItem => item.Comando)
+                                                </td>
+                                            </tr>       
+                                    }
+                                </tbody>
+                            </table>
+
+                        </div>
+                        </div>
+                      </div>
+                      </div>
+                     <div class="panel panel-default">
+                    <div class="panel-heading">
+					<a href="#database" data-toggle="collapse">
+                    <strong>
+                        DATABASE
+                    </strong>
+                </a>
+                    </div>
+                    <div class="panel panel-sidebar">
+                    <div class="panel-heading">
+                        <a   data-toggle="collapse" href="#sqlmap">
+                            <strong>
+                                SQLMAP
+                            </strong>
+                            <span class="caret"></span>
+                        </a>
+                    </div>
+                    <div class="collapse" id="sqlmap">
+                     <div class="panel-body ">
+                            <table class="table">
+                                <div class="method">
+                                    <thead>
+                                        <tr>
+                                            <th></th>
+                                             <th>
+                                        Nome
+                                            </th>
+                                            <th>
+                                        Comando
+                                            </th>
+                                            <th></th>
+                                        </tr>
+                                    </thead>
+                                </div>
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                    <input type="checkbox" name="selezionaTutto1" onclick="SelezTT4()" > <label> Scegli tutti</label><br>
                                         </td>
                                     </tr>
                                     @foreach (var item in listaModuli) {
@@ -505,11 +589,28 @@
                         </div>
                         </div>
                       </div>
-                          <div class="panel panel-default">
+   </div>
+                 
+                   
+                    <div class="panel panel-default">
                     <div class="panel-heading">
-					<a   data-toggle="collapse"  href="#WIFITE">Wifite</a><br>
+                     <a href="#wifi" data-toggle="collapse">
+                    <strong>
+                       WIFI
+                    </strong>
+
+                </a>
+                </div>
+                <div class="panel panel-sidebar">
+                    <div class="panel-heading">
+					<a data-toggle="collapse" href="#wifite">
+                            <strong>
+                                WIFITE
+                            </strong>
+                            <span class="caret"></span>
+                        </a>
                     </div>
-                    <div class="collapse" id="WIFITE">
+                    <div class="collapse" id="wifite">
                      <div class="panel-body ">
                             <table class="table">
                                 <div class="method">
@@ -558,32 +659,30 @@
                         </div>
                         </div>
                       </div>
-                      
+                      </div>
                      	
                 
             
                 <br>
                 <div class="col-md-12">
-                <label for="descrizione">Descrizione</label>
+                <h4 for="descrizione" asp-for="@Model.Descrizione">Descrizione</h4><hr/>
                 <textarea class="form-control" id="descrizione" placeholder="descrizione del progetto" rows="5" cols="40" style="resize:none"
                     maxlength="1000" asp-for="@Model.Descrizione"></textarea>
             </div>
-        
-
-            <div class="form-group col-sm-6 "><br>
-                <input type="submit" value="Salva" class="btn btn-default" /> |
-                 <a asp-action="Index"> Torna alla lista</a>
-                 </div>
-          
+        <div class="col-sm-6 col-sm-offset-6 text-right"><br>
+                                        <div class="form-group">
+                                            <input type="submit"class="btn btn-default" value="Salva" />&nbsp;&nbsp;|
+                                            <a asp-action="Index"> Torna alla lista</a>
+                                        </div>
+                                    </div>
+          </div>
                 </form>
-                 
+                
                  
                  }
-        
-            </div>
-
-    </div>
-</div>
+                 </div>
+        </div>
+          
 
 
-}
+

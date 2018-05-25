@@ -489,7 +489,7 @@
                                         </div>
                                         <div class="col-sm-6 col-sm-offset-6 text-right">
                                             <div class="form-group">
-                                                <input type="submit" asp-action="Create" asp-route-cosa="nmap" class="btn btn-default" value="Crea" />&nbsp;&nbsp;
+                                                <input type="submit" asp-action="Create" asp-route-cosa="nmap" class="btn btn-default" value="Crea" />&nbsp;&nbsp; |
                                                 <a asp-action="Index"> Torna alla lista</a>
                                             </div>
                                         </div>
@@ -924,7 +924,7 @@
                                         </div>
                                         <div class="col-sm-6 col-sm-offset-6 text-right">
                                             <div class="form-group">
-                                                <input type="submit" asp-action="Create" asp-route-cosa="droopescan" class="btn btn-default" value="Crea" />&nbsp;&nbsp;
+                                                <input type="submit" asp-action="Create" asp-route-cosa="droopescan" class="btn btn-default" value="Crea" />&nbsp;&nbsp; |
                                                 <a asp-action="Index"> Torna alla lista</a>
                                             </div>
                                         </div>
@@ -1078,7 +1078,7 @@
                                         </div>
                                         <div class="col-sm-6 col-sm-offset-6 text-right">
                                             <div class="form-group">
-                                                <input type="submit" asp-action="Create" asp-route-cosa="dnsrecon" class="btn btn-default" value="Crea" />&nbsp;&nbsp;
+                                                <input type="submit" asp-action="Create" asp-route-cosa="dnsrecon" class="btn btn-default" value="Crea" />&nbsp;&nbsp; |
                                                 <a asp-action="Index"> Torna alla lista</a>
                                             </div>
                                         </div>
@@ -1193,7 +1193,7 @@
                                         </div>
                                         <div class="col-sm-6 col-sm-offset-6 text-right">
                                             <div class="form-group">
-                                                <input type="submit" asp-action="Create" asp-route-cosa="infoga" class="btn btn-default" value="Crea" />&nbsp;&nbsp;
+                                                <input type="submit" asp-action="Create" asp-route-cosa="infoga" class="btn btn-default" value="Crea" />&nbsp;&nbsp; |
                                                 <a asp-action="Index"> Torna alla lista</a>
                                             </div>
                                         </div>
@@ -1281,7 +1281,7 @@
                                         </div>
                                         <div class="col-sm-6 col-sm-offset-6 text-right">
                                             <div class="form-group">
-                                                <input type="submit" asp-action="Create" asp-route-cosa="infogaemail" class="btn btn-default" value="Crea" />&nbsp;&nbsp;
+                                                <input type="submit" asp-action="Create" asp-route-cosa="infogaemail" class="btn btn-default" value="Crea" />&nbsp;&nbsp; |
                                                 <a asp-action="Index"> Torna alla lista</a>
                                             </div>
                                         </div>
@@ -1700,7 +1700,7 @@
                                     
                                         <div class="col-sm-6 col-sm-offset-6 text-right">
                                             <div class="form-group">
-                                                <input type="submit" asp-action="Create" asp-route-cosa="sqlmap" class="btn btn-default" value="Crea" />&nbsp;&nbsp;
+                                                <input type="submit" asp-action="Create" asp-route-cosa="sqlmap" class="btn btn-default" value="Crea" />&nbsp;&nbsp; |
                                                 <a asp-action="Index"> Torna alla lista</a>
                                             </div>
                                         </div>
@@ -1787,7 +1787,7 @@
                                         </div>
                                         <div class="col-sm-6 col-sm-offset-6 text-right">
                                             <div class="form-group">
-                                                <input type="submit" asp-action="Create" asp-route-cosa="infogaemail" class="btn btn-default" value="Crea" />&nbsp;&nbsp;
+                                                <input type="submit" asp-action="Create" asp-route-cosa="infogaemail" class="btn btn-default" value="Crea" />&nbsp;&nbsp; |
                                                 <a asp-action="Index"> Torna alla lista</a>
                                             </div>
                                         </div>
@@ -1821,19 +1821,19 @@
                     </div>
                     <div class="collapse col-5" id="wifite">
                         <div class="panel-body">
-                            <h4>
-                                <strong> Configura modulo </strong>
-                            </h4>
+                            <h3>
+                                <strong> Configura modulo  </strong>
+                            </h3>
                             <hr>
-                            <form asp-action="Create" name="">
-                                <input type="hidden" asp-for="@Model.INFOGA.Applicazione" value="@webmva.Models.APPLICAZIONE.INFOGA" />
+                            <form asp-action="Create" name="wifiteForm">
+                                <input type="hidden" asp-for="@Model.WIFITE.Applicazione" value="@webmva.Models.APPLICAZIONE.WIFITE" />
 
 
                                 <div class="col-sm-12">
                                     <div class="col-sm-7" style="margin:0 auto; float:none">
                                         <div class="form-group">
-                                            <h4 asp-for="@(Model.INFOGA.Nome)">Nome Modulo</h4>
-                                            <input class="form-control" asp-for="@(Model.INFOGA.Nome)" />
+                                            <h4 asp-for="@(Model.WIFITE.Nome)">Nome Modulo</h4>
+                                            <input class="form-control" asp-for="@(Model.WIFITE.Nome)" />
                                         </div>
                                     </div>
 
@@ -1842,47 +1842,127 @@
                                        
                                         <div class="col-sm-7" style="margin:0 auto; float:none">
                                             <div class="form-group row">
-                                                <h4 asp-for="@(Model.INFOGA.ComandoPersonalizzato)">Comando Personalizzato</h4>
-                                                <input class="form-control" asp-for="@(Model.INFOGA.ComandoPersonalizzato)" />
+                                                <h4 asp-for="@(Model.WIFITE.ComandoPersonalizzato)">Comando Personalizzato</h4>
+                                                <input class="form-control" asp-for="@(Model.WIFITE.ComandoPersonalizzato)" />
                                             </div>
 
                                         </div>
                                     </div>
 
                                     <div class="col-sm-12">
-                                        <h4>Tipi di enumerazione</h4>
+                                        <hr />
+                                        <h4>Setting</h4>
                                         <hr />
                                         <div class="form-group row">
-                                            <div class="col-sm-4">
-                                                <label class="control-label">Scegli source</label>
+                                            <div class="col-sm-5">
+                                                <label class="control-label">Scegli la verbosità</label>
                                             </div>
-                                            <select class="col-sm-5" asp-for="@Model.INFOGA.Source">
-                                                <option value="8">all</option>
-                                                <option value="0">google </option>
-                                                <option value="1">bing </option>
-                                                <option value="2">yahoo </option>
-                                                <option value="3">ask </option>
-                                                <option value="4">baidu </option>
-                                                <option value="5">dogpile </option>
-                                                <option value="6">exalead </option>
-                                                <option value="7">pgp </option>
+                                            <select class="col-sm-5" asp-for="@Model.WIFITE.Verbose">
+                                                <option value="0">zero </option>
+                                                <option value="1">quiet </option>
+                                                <option value="2">deep </option>
                                             </select>
                                         </div>
                                         <div class="form-group row">
-                                            <div class="col-sm-4">
-                                                <label class="control-label">Scegli verbosità</label>
+                                                <div class="col-sm-6">
+                                                    <label class="control-label">
+                                                        <input type="checkbox" asp-for="@Model.WIFITE.interfaccia" /> Interface (-i)
+                                                    </label>
+                                                </div>
                                             </div>
-                                            <select class="col-sm-5" asp-for="@Model.INFOGA.Verbose">
-                                                <option value="3">nessuno</option>
-                                                <option value="0">uno </option>
-                                                <option value="1">due</option>
-                                                <option value="2">tre</option>
+                                              <div class="form-group row">
+                                            <div class="col-sm-4">
+                                                <label class="control-label">Setta il canale (-1 indica che tutti i canali sono settati)</label>
+                                            </div>
+                                             <div class="col-sm-1"></div>
+                                            <input type="number" class="col-sm-5" asp-for="@Model.WIFITE.channel" />
+                                        </div>
+                                             <div class="form-group row">
+                                                <div class="col-sm-6">
+                                                    <label class="control-label">
+                                                        <input type="checkbox" asp-for="@Model.WIFITE.mac" /> MAC (-i)
+                                                    </label>
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                            <div class="col-sm-4">
+                                                <label class="control-label">Setta lo scantime</label>
+                                            </div>
+                                             <div class="col-sm-1"></div>
+                                            <input type="number" class="col-sm-5" asp-for="@Model.WIFITE.scanTime" />
+                                        </div>
+                                        <div class="form-group row">
+                                                <div class="col-sm-6">
+                                                    <label class="control-label">
+                                                        <input type="checkbox" asp-for="@Model.WIFITE.client" /> Client(-i)
+                                                    </label>
+                                                </div>
+                                            </div>
+                                            <hr />
+                                            <h4>Wpa</h4>
+                                        <hr />
+                                        <div class="form-group row">
+                                                <div class="col-sm-6">
+                                                    <label class="control-label">
+                                                        <input type="checkbox" asp-for="@Model.WIFITE.wpa" /> Wpa (--wpa)
+                                                    </label>
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <div class="col-sm-6">
+                                                    <label class="control-label">
+                                                        <input type="checkbox" asp-for="@Model.WIFITE.newHs" /> New Hs (--new-hs)
+                                                    </label>
+                                                </div>
+                                            </div>
+                                            <hr />
+                                            <h4>WPS</h4>
+                                        <hr />
+                                        <div class="form-group row">
+                                                <div class="col-sm-6">
+                                                    <label class="control-label">
+                                                        <input type="checkbox" asp-for="@Model.WIFITE.wpsSetting"  /> WPS (-wps)
+                                                    </label>
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <div class="col-sm-6">
+                                                    <label class="control-label">
+                                                        <input type="checkbox" asp-for="@Model.WIFITE.bully" /> Bully (--bully)
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        <div class="form-group row">
+                                            <div class="col-sm-4">
+                                                <label class="control-label">WPS</label>
+                                            </div>
+                                            <select class="col-sm-5" asp-for="@Model.WIFITE.Wps" >
+                                                <option value="0">no </option>
+                                                <option value="1">only</option>
+                                                <option value="2">default</option>
                                             </select>
                                         </div>
+                                        <hr />
+                                         <h4>Altri Comandi</h4>
+                                        <hr />
+                                         <div class="form-group row">
+                                                <div class="col-sm-6">
+                                                    <label class="control-label">
+                                                        <input type="checkbox" asp-for="@Model.WIFITE.accessPoint" /> Cracked (-cracked)
+                                                    </label>
+                                                </div>
+                                            </div>
+                                             <div class="form-group row">
+                                                <div class="col-sm-6">
+                                                    <label class="control-label">
+                                                        <input type="checkbox" asp-for="@Model.WIFITE.crack" /> Crack (--crack)
+                                                    </label>
+                                                </div>
+                                            </div>
                                         <div class="col-sm-6 col-sm-offset-6 text-right">
                                             <div class="form-group">
-                                                <input type="submit" asp-action="Create" asp-route-cosa="infoga" class="btn btn-default" value="Crea" />&nbsp;&nbsp;
-                                                <a asp-action="Index"> Torna alla lista</a>
+                                                <input type="submit" asp-action="Create" asp-route-cosa="wifite" class="btn btn-default" value="Crea" />&nbsp;&nbsp; |
+                                                <a asp-action="Index">  Torna alla lista</a>
                                             </div>
                                         </div>
                                     </div>
@@ -1896,3 +1976,5 @@
         </div>
     </div>
 </div>
+
+  
