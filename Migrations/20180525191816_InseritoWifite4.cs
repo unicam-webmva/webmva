@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace webmva.Migrations
 {
-    public partial class InseritoWifite3 : Migration
+    public partial class InseritoWifite4 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

@@ -155,9 +155,9 @@ namespace webmva.Models
                         if (string.IsNullOrEmpty(interfaccia))
                             risultato += " -i" + interfaccia;
                         if (mac)
-                            risultato += " -mac, --random-mac";
+                            risultato += " -mac";
                         if (client)
-                            risultato += " --client-only, -co";
+                            risultato += " -co";
                         if (wep)
                             risultato += " --wep";
                         if (fakeAutenticazione)

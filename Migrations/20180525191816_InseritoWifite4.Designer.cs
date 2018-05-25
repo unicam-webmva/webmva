@@ -12,8 +12,8 @@ using webmva.Models;
 namespace webmva.Migrations
 {
     [DbContext(typeof(MyDbContext))]
-    [Migration("20180525152440_InseritoWifite3")]
-    partial class InseritoWifite3
+    [Migration("20180525191816_InseritoWifite4")]
+    partial class InseritoWifite4
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
