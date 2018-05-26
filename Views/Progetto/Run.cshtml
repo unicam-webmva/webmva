@@ -1,7 +1,9 @@
 @model webmva.ViewModels.RisultatoVM
 @{ ViewData["Title"] = "Risultato"; }
-<h3>Risultati per progetto @Model.NomeProgetto</h3><hr>
+<br>
 <div class="container">
+<h3><em>Report</em> @Model.NomeProgetto</h3><hr>
+<a  class="btn btn-default"asp-action="Scarica" asp-route-id="@Model.ID" value="Scarica"></a>
     
 @foreach(var element in @Model.risultati)
 {
