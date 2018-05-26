@@ -18,10 +18,6 @@
                             <input class="form-control" asp-for="@Model.Nome" />
                         </div>
                     </div>
-               <!-- <label asp-for="@Model.Target" id="Target" class="control-label"></label>
-                <input asp-for="@Model.Target" class="form-control" onfocusout="checkIP()" />
-                <!--<span asp-validation-for="@Model.Target" class="text-danger"></span>
-               <span name="TargetValidation" style="font-family: serif;font-size: 14px;color: #FF0000;"></span>-->
                   <br>
                   <h4><strong>Scegli il modulo</strong></h4><hr/>
                  
@@ -41,8 +37,18 @@
                     </div>
                     <div class="collapse" id="Nmap">
                      <div class="panel-body ">
+                       <div class="col-sm-7">
+                                        <div class="form-group">
+                                            <h4 asp-for="@Model.Target">Target</h4><hr/>
+                                            <input class="form-control" asp-for="@Model.Target" />
+                                        </div>
+                                    </div><br>
+                                    <div class="col-sm-12">
+                                     <h4>Seleziona i moduli NMAP</h4><hr/>
+                                    </div>
                             <table class="table">
                                 <div class="method">
+                               
                                     <thead>
                                         <tr>
                                             <th></th>
@@ -56,12 +62,14 @@
                                         </tr>
                                     </thead>
                                 </div>
+                                
                                 <tbody>
                                     <tr>
                                         <td>
                                     <input type="checkbox" name="selezionaTutto1" onclick="SelezTT1()" > <label> Scegli tutti</label><br>
                                         </td>
                                     </tr>
+                                    
                                     @foreach (var item in listaModuli) {
                                        
                                         
@@ -97,6 +105,15 @@
                     </div>
                     <div class="collapse" id="Nessus">
                      <div class="panel-body ">
+                     <div class="col-sm-7">
+                                        <div class="form-group">
+                                            <h4 asp-for="@Model.Target">Target</h4><hr/>
+                                            <input class="form-control" asp-for="@Model.Target" />
+                                        </div>
+                                    </div><br>
+                                    <div class="col-sm-12">
+                                     <h4>Seleziona i moduli NESSUS</h4><hr/>
+                                    </div>
                             <table class="table">
                                 <div class="method">
                                     <thead>
@@ -151,6 +168,15 @@
                     </div>
                     <div class="collapse" id="OpenVAS">
                      <div class="panel-body ">
+                     <div class="col-sm-7">
+                                        <div class="form-group">
+                                            <h4 asp-for="@Model.Target">Target</h4><hr/>
+                                            <input class="form-control" asp-for="@Model.Target" />
+                                        </div>
+                                    </div><br>
+                                    <div class="col-sm-12">
+                                     <h4>Seleziona i moduli OpenVAS</h4><hr/>
+                                    </div>
                             <table class="table">
                                 <div class="method">
                                     <thead>
@@ -215,6 +241,16 @@
                     </div>
                     <div class="collapse" id="WAPITI">
                      <div class="panel-body ">
+                     <div class="col-sm-7">
+                                        <div class="form-group">
+                                            <h4 asp-for="@Model.Target">Url</h4><hr/>
+                                            <input class="form-control" asp-for="@Model.Target" />
+                                        </div>
+                                    </div><br>
+                                     
+                                    <div class="col-sm-12">
+                                     <h4>Seleziona i moduli WAPITI</h4><hr/>
+                                    </div>
                             <table class="table">
                                 <div class="method">
                                     <thead>
@@ -283,6 +319,16 @@
                     </div>
                     <div class="collapse" id="droopescan">
                      <div class="panel-body " >
+                      <div class="col-sm-7">
+                                        <div class="form-group">
+                                            <h4 asp-for="@Model.Target">Target</h4><hr/>
+                                            <input class="form-control" asp-for="@Model.Target" />
+                                        </div>
+                                    </div><br>
+                                    
+                                    <div class="col-sm-12">
+                                     <h4>Seleziona i moduli DROOPE</h4><hr/>
+                                    </div>
                             <table class="table">
                                 <div class="method">
                                     <thead>
@@ -351,6 +397,15 @@
                     </div>
                     <div class="collapse" id="dnsRecon">
                      <div class="panel-body ">
+                      <div class="col-sm-7">
+                                        <div class="form-group">
+                                            <h4 asp-for="@Model.Target">Target</h4><hr/>
+                                            <input class="form-control" asp-for="@Model.Target" />
+                                        </div>
+                                    </div><br>
+                                    <div class="col-sm-12">
+                                     <h4>Seleziona i moduli DNSRECON</h4><hr/>
+                                    </div>
                             <table class="table">
                                 <div class="method">
                                     <thead>
@@ -419,6 +474,15 @@
                     </div>
                     <div class="collapse " id="infoga">
                      <div class="panel-body ">
+                     <div class="col-sm-7">
+                                        <div class="form-group">
+                                            <h4 asp-for="@Model.Target">Dominio</h4><hr/>
+                                            <input class="form-control" asp-for="@Model.Target" />
+                                        </div>
+                                    </div><br>
+                                    <div class="col-sm-12">
+                                     <h4>Seleziona i moduli INFOGA</h4><hr/>
+                                    </div>
                             <table class="table">
                                 <div class="method">
                                     <thead>
@@ -475,6 +539,15 @@
                     </div>
                     <div class="collapse" id="INFOGAEMAIL">
                      <div class="panel-body ">
+                     <div class="col-sm-7">
+                                        <div class="form-group">
+                                            <h4 asp-for="@Model.Target">Email</h4><hr/>
+                                            <input class="form-control" asp-for="@Model.Target" />
+                                        </div>
+                                    </div><br>
+                                    <div class="col-sm-12">
+                                     <h4>Seleziona i moduli INFOGA EMAIL</h4><hr/>
+                                    </div>
                             <table class="table">
                                 <div class="method">
                                     <thead>
@@ -542,6 +615,15 @@
                     </div>
                     <div class="collapse" id="sqlmap">
                      <div class="panel-body ">
+                      <div class="col-sm-7">
+                                        <div class="form-group">
+                                            <h4 asp-for="@Model.Target">Url</h4><hr/>
+                                            <input class="form-control" asp-for="@Model.Target" />
+                                        </div>
+                                    </div><br>
+                                    <div class="col-sm-12">
+                                     <h4>Seleziona i moduli SQLMAP</h4><hr/>
+                                    </div>
                             <table class="table">
                                 <div class="method">
                                     <thead>
@@ -612,6 +694,15 @@
                     </div>
                     <div class="collapse" id="wifite">
                      <div class="panel-body ">
+                     <div class="col-sm-7">
+                                        <div class="form-group">
+                                            <h4 asp-for="@Model.Target">Interfaccia??</h4><hr/>
+                                            <input class="form-control" asp-for="@Model.Target" />
+                                        </div>
+                                    </div><br>
+                                    <div class="col-sm-12">
+                                     <h4>Seleziona i moduli WIFITE</h4><hr/>
+                                    </div>
                             <table class="table">
                                 <div class="method">
                                     <thead>
@@ -664,6 +755,7 @@
                 
             
                 <br>
+            
                 <div class="col-md-12">
                 <h4 for="descrizione" asp-for="@Model.Descrizione">Descrizione</h4><hr/>
                 <textarea class="form-control" id="descrizione" placeholder="descrizione del progetto" rows="5" cols="40" style="resize:none"
