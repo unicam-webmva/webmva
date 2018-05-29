@@ -19,7 +19,7 @@ namespace webmva.Models
     }
     public class ModuloWAPITI : Modulo
     {
-        public string URL { get; set; }
+       
 
         public bool All { get; set; }
         private bool _common = true;

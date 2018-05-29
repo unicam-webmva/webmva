@@ -6,9 +6,8 @@ using System.Threading.Tasks;
 
 namespace webmva.Models
 {
-    public class ModuloDNSRECON : Modulo
-    {
-        public string Dominio { get; set; }
+    public class ModuloDNSRECON : Modulo{
+    
         public string NameServer { get; set; }
         public bool AXFREnum { get; set; }
         public bool ReverseLookupEnum { get; set; }
@@ -26,7 +25,8 @@ namespace webmva.Models
                 if (string.IsNullOrEmpty(ComandoPersonalizzato))
                 {
                     // cominciamo
-                    string risultato = "dnsrecon.py -d " + Dominio;
+                    //string risultato = "dnsrecon.py -d " + Dominio;
+                    string risultato ="dnsrecon.py";
                     if (!string.IsNullOrEmpty(NameServer)) risultato += " -n " + NameServer;
                     if (AXFREnum) risultato += " -a";
                     if (ReverseLookupEnum) risultato += " -s";

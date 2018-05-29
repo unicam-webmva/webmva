@@ -14,7 +14,7 @@ namespace webmva.Models
 
     public class ModuloDROOPE : Modulo
     {
-        public string URL { get; set; } 
+       
 private CMS _cms = CMS.NESSUNO;
 
 private CHECKS _check= CHECKS.NESSUNO;
@@ -77,8 +77,8 @@ private CHECKS _check= CHECKS.NESSUNO;
                           controlloCheck="";
                           break;
                     }
-                    string risultato = "droopescan scan " + controlloCMS +" -u "+ URL + controlloCheck ;
-
+                    string risultato = "droopescan scan " + controlloCMS + controlloCheck ;
+// TODOOOO"-u" + url
                    
                    
                     return risultato;

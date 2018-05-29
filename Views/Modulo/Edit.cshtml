@@ -209,12 +209,22 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-sm-6 col-sm-offset-6 text-right">
-                            <div class="form-group">
-                                <input type="submit" asp-action="Edit" class="btn btn-default" asp-route-id="@Model.NMAP.ID" value="Salva" />&nbsp;|&nbsp;
-                                <a asp-action="Index"> Torna alla lista</a>
-                            </div>
-                        </div>
+                      <div class="col-sm-12">
+                                            <hr/>
+                                                <div class="col-sm-5">
+                                                <div clas="form-group row">
+                                                 <a href="https://svn.nmap.org/nmap/docs/nmap.usage.txt" target="_blank"><span class="glyphicon glyphicon-info-sign" style="font-size:90%"></span>
+                                        consulta la documentazione di Nmap</a>
+                                        </div>
+                                    </div>
+                                        <div class="col-sm-1"></div>
+                                        <div class="col-sm-6 text-right">
+                                            <div class="form-group row">
+                                                <input type="submit" asp-action="Edit" asp-route-id="@Model.NMAP.ID" class="btn btn-default" value="Salva" />&nbsp;&nbsp; |
+                                                <a asp-action="Index"> Torna alla lista</a>
+                                            </div>
+                                        </div>
+                                        </div>
                     </div>
                 </div>
             </div>
@@ -1267,8 +1277,8 @@
                                             <hr/>
                                             <div class="col-sm-5">
                                                 <div clas="form-group row">
-                                                 <a href="https://svn.nmap.org/nmap/docs/nmap.usage.txt" target="_blank"><span class="glyphicon glyphicon-info-sign" style="font-size:90%"></span>
-                                        consulta la documentazione di Nmap</a>
+                                                 <a href="https://github.com/sqlmapproject/sqlmap" target="_blank"><span class="glyphicon glyphicon-info-sign" style="font-size:90%"></span>
+                                        consulta la documentazione di Sqlmap</a>
                                         
                                         </div>
                                         </div>
@@ -1424,11 +1434,22 @@
                                                     </label>
                                                 </div>
                                             </div>
-                                        <div class="col-sm-6 col-sm-offset-6 text-right">
-                                            <div class="form-group">
-                                                <input type="submit" asp-action="Edit" asp-route-id="@Model.WIFITE.ID" class="btn btn-default" value="Modifica" />&nbsp;&nbsp;|
-                                                <a asp-action="Index">  Torna alla lista</a>
+                                        <div class="col-sm-12">
+                                            <hr/>
+                                            <div class="col-sm-5">
+                                                <div clas="form-group row">
+                                                 <a href="https://github.com/derv82/wifite2" target="_blank"><span class="glyphicon glyphicon-info-sign" style="font-size:90%"></span>
+                                        consulta la documentazione di Wifite</a>
+                                        
+                                        </div>
+                                        </div>
+                                        <div class="col-sm-1"></div>
+                                        <div class="col-sm-6 text-right">
+                                            <div class="form-group row">
+                                                <input type="submit" asp-action="Edit" class="btn btn-default"  asp-route-id="@Model.WIFITE.ID" value="Salva" />&nbsp;&nbsp;|
+                                                <a asp-action="Index"> Torna alla lista</a>
                                             </div>
+                                        </div>
                                         </div>
                                     </div>
                                 </div>
