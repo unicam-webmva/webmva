@@ -164,6 +164,9 @@
                                             <li>
                                                 <a   data-toggle="collapse" href="#Infogae">Infoga Email  <span class="glyphicon glyphicon-play" style="font-size:65%"></span></a>
                                             </li>
+                                            <li>
+                                                <a   data-toggle="collapse" href="#Infogae">Sublist3r <span class="glyphicon glyphicon-play" style="font-size:65%"></span></a>
+                                            </li>
                                         </ul>
                                     </div>
                                 </div>
@@ -1234,6 +1237,7 @@
                                              <div class="col-sm-1"></div>
                                             <input type="text" class="col-sm-5" asp-for="@Model.WPSCAN.Cookie" />  
                                         </div>
+                                        
                                     
                                         <div class="col-sm-12">
                                             <hr/>
@@ -1690,6 +1694,202 @@
                                 </div>
 
                             </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+             <div class="col-5">
+                <div class="panel panel-sidebar">
+                    <div class="panel-heading">
+                        <a   data-toggle="collapse" href="#sublist3r">
+                            <strong>
+                                SUBLIST3R
+                            </strong>
+                            <span class="caret"></span>
+                        </a>
+                    </div>
+                    <div class="collapse col-5" id="sublist3r">
+                        <div class="panel-body">
+                            <h4>
+                                <strong> Configura modulo </strong>
+                            </h4>
+                            <hr>
+                            <form asp-action="Create" name="sublist3rForm">
+                                <input type="hidden" asp-for="@Model.SUBLIST3R.Applicazione" value="@webmva.Models.APPLICAZIONE.SUBLIST3R" />
+
+
+                                <div class="col-sm-12">
+                                    <div class="col-sm-7" style="margin:0 auto; float:none">
+                                        <div class="form-group">
+                                            <h4 asp-for="@(Model.SUBLIST3R.Nome)">Nome Modulo</h4>
+                                            <input class="form-control" asp-for="@(Model.SUBLIST3R.Nome)" />
+                                        </div>
+                                    </div>
+
+                                    <hr />
+                                    <div class="col-sm-12">
+                                        <div class="col-sm-12">
+                                            <div class="col-sm-7" style="margin:0 auto; float:none">
+                                                <div class="form-group row">
+                                                    <h4 asp-for="@(Model.SUBLIST3R.ComandoPersonalizzato)">Comando Personalizzato</h4>
+                                                    <input class="form-control" asp-for="@(Model.SUBLIST3R.ComandoPersonalizzato)" />
+                                                </div>
+
+                                            </div>
+<hr/>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-12">
+                                        <h4>Tipi di enumerazione</h4>
+                                        <hr />
+                                        <div class="form-group row">
+                                                   <div class="col-sm-6">
+                                                        <label class="control-label">
+                                                            <input type="checkbox" asp-for="@Model.SUBLIST3R.VerbositàSUB" /> Verbosità (-v)
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row">
+                                                     <div class="col-sm-6">
+                                                        <label class="control-label">
+                                                            <input type="checkbox" asp-for="@Model.SUBLIST3R.BruteforceSUB" /> Bruteforce (-b)
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                        <div class="form-group row">
+                                            <div class="col-sm-5">
+                                                <label class="control-label"> Settaggio Thread</label>
+                                            </div>
+                                            <input class="col-sm-5" type="number" asp-for="@Model.SUBLIST3R.ThreadSUB" />
+                                            <div class="col-sm-3"></div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <div class="col-sm-4">
+                                                <label class="control-label">Scegli la/le porta/e </label>
+                                            </div>
+                                             <div class="col-sm-1"></div>
+                                            <input type="text" class="col-sm-5" asp-for="@Model.SUBLIST3R.PorteSUB" />  
+                                        </div>
+                                        <div class="col-sm-12">
+                                            <h4>
+                                                Seleziona i moduli desiderati
+                                            </h4>
+                                            <hr />
+                                             <div class="col-sm-6">
+                                                <div class="col-sm-12">
+                                                    <div class="form-group row">
+                                                        <div class="col-sm-6">
+                                                            <label class="control-label">
+                                                                <input type="checkbox" asp-for="@Model.SUBLIST3R.All" /> Tutto
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group row">
+                                                        <div class="col-sm-6">
+                                                            <label class="control-label">
+                                                                <input type="checkbox" asp-for="@Model.SUBLIST3R.BaiduSUB" /> Baidu 
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group row">
+                                                        <div class="col-sm-6">
+                                                            <label class="control-label">
+                                                                <input type="checkbox" asp-for="@Model.SUBLIST3R.YahooSUB" /> Yahoo
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group row">
+                                                        <div class="col-sm-6">
+                                                            <label class="control-label">
+                                                                <input type="checkbox" asp-for="@Model.SUBLIST3R.GoogleSUB" /> Google
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group row">
+                                                        <div class="col-sm-6">
+                                                            <label class="control-label">
+                                                                <input type="checkbox" asp-for="@Model.SUBLIST3R.BingSUB" /> Bing
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group row">
+                                                    <div class="col-sm-6">
+                                                        <label class="control-label">
+                                                            <input type="checkbox" asp-for="@Model.SUBLIST3R.AskSUB" /> Ask
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                                </div>
+                                                </div>
+                                            <div class="col-sm-6">
+                                                
+                                                <div class="form-group row">
+                                                    <div class="col-sm-6">
+                                                        <label class="control-label">
+                                                            <input type="checkbox" asp-for="@Model.SUBLIST3R.NetcraftSUB" /> Netcraft
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <div class=" col-sm-6">
+                                                        <label class="control-label">
+                                                            <input type="checkbox" asp-for="@Model.SUBLIST3R.DNSdumpsterSUB" /> DNSdumpster
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <div class=" col-sm-6">
+                                                        <label class="control-label">
+                                                            <input type="checkbox" asp-for="@Model.SUBLIST3R.VirustotalSUB" /> Virustotal
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <div class="col-sm-6">
+                                                        <label class="control-label">
+                                                            <input type="checkbox" asp-for="@Model.SUBLIST3R.ThreatCrowdSUB" /> ThreatCrowd
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <div class="col-sm-6">
+                                                        <label class="control-label">
+                                                            <input type="checkbox" asp-for="@Model.SUBLIST3R.SSLCertificatesSUB" /> SSL Certificates
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <div class="col-sm-6">
+                                                        <label class="control-label">
+                                                            <input type="checkbox" asp-for="@Model.SUBLIST3R.PassiveDNSSUB" /> PassiveDNS
+                                                        </label>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                   <div class="col-sm-12">
+                                            <hr/>
+                                            <div class="col-sm-5">
+                                                <div clas="form-group row">
+                                                 <a href="https://github.com/aboul3la/Sublist3r"target="_blank"><span class="glyphicon glyphicon-info-sign" style="font-size:90%"></span>
+                                        consulta il documentazione di Sublist3r</a>
+                                        </div>
+                                        </div>
+                                        <div class="col-sm-1"></div>
+                                        <div class="col-sm-6 text-right">
+                                            <div class="form-group row">
+                                                <input type="submit" asp-action="Create" asp-route-cosa="sublist3r" class="btn btn-default" value="Crea" />&nbsp;&nbsp; |
+                                                <a asp-action="Index"> Torna alla lista</a>
+                                            </div>
+                                        </div>
+                                        </div>
+                                </div>
+
+                            </form>
+
                         </div>
                     </div>
                 </div>

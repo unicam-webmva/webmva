@@ -324,6 +324,12 @@ namespace webmva.Controllers_
                 string comando = $"python \"{percorsoExec}\" {mod.Comando} >> {timestamp}infoga_{nomeCamelCase}.txt";
                 return comando;
             }
+             if(mod is ModuloSUBLIST3R)
+            {
+                string percorsoExec = Path.Combine(Globals.CartellaWEBMVA, "Programmi", "sublist3r");
+                string comando = $"python \"{percorsoExec}\" {mod.Comando}  -o {timestamp}sublist3r_{nomeCamelCase}.txt";
+                return comando;
+            }
             if(mod is ModuloWAPITI)
             {
                 string percorsoExec = Path.Combine(Globals.CartellaWEBMVA, "Programmi", "wapiti");

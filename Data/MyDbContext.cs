@@ -25,6 +25,7 @@ namespace webmva.Data
             modelBuilder.Entity<ModuloINFOGA>().HasBaseType<Modulo>();
             modelBuilder.Entity<ModuloOPENDOOR>().HasBaseType<Modulo>();
             modelBuilder.Entity<ModuloINFOGAEMAIL>().HasBaseType<Modulo>();
+            modelBuilder.Entity<ModuloSUBLIST3R>().HasBaseType<Modulo>();
             modelBuilder.Entity<ModuloWAPITI>().HasBaseType<Modulo>();
             modelBuilder.Entity<ModuloSQLMAP>().HasBaseType<Modulo>();
             modelBuilder.Entity<ModuloWIFITE>().HasBaseType<Modulo>();

@@ -10,6 +10,7 @@ var contJoomscan = 0;
 var contWpscan = 0;
 var contInfoga = 0;
 var contInfogaEmail = 0;
+var contSublist3r = 0;
 var contWapiti = 0;
 var contSqlmap = 0; 
 var contWifite = 0;
@@ -75,6 +76,7 @@ var contOpendoor = 0;
                             if(item.Modulo is webmva.Models.ModuloWPSCAN){contWpscan++}
                             if(item.Modulo is webmva.Models.ModuloINFOGA) {contInfoga++;}
                             if(item.Modulo is webmva.Models.ModuloINFOGAEMAIL){contInfogaEmail++;}
+                            if(item.Modulo is webmva.Models.ModuloSUBLIST3R) {contSublist3r++;}
                             if(item.Modulo is webmva.Models.ModuloWAPITI) {contWapiti++;}
                             if(item.Modulo is webmva.Models.ModuloSQLMAP) {contSqlmap++;}
                             if(item.Modulo is webmva.Models.ModuloWIFITE) {contWifite++;}
@@ -346,6 +348,34 @@ var contOpendoor = 0;
                         @foreach (var item in Model.ModuliProgetto) {
                             
                                 @if(item.Modulo is webmva.Models.ModuloINFOGAEMAIL){
+                                <tr>
+                                <td></td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Modulo.Nome)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Modulo.Comando)
+                                    </td>
+                                </tr>
+                               
+                                }
+                                }
+                                </table>
+                                </dd>    
+                        } 
+                         @if(contSublist3r!=0){
+                                
+                            <dd>Sublist3r</dd>
+                            <dd>
+                            <table class="table">
+                                <tr>
+                                    <th> </th>
+                                    <th>Modulo</th>
+                                    <th>Comando</th>
+                                </tr>
+                        @foreach (var item in Model.ModuliProgetto) {
+                            
+                                @if(item.Modulo is webmva.Models.SUBLIST3R){
                                 <tr>
                                 <td></td>
                                     <td>

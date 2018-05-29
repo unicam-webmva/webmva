@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace webmva.Migrations
 {
-    public partial class InseritoOPENDOOR7 : Migration
+    public partial class InseritoSUB3 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -119,6 +119,23 @@ namespace webmva.Migrations
                     tor = table.Column<bool>(nullable: true),
                     users = table.Column<bool>(nullable: true),
                     All = table.Column<bool>(nullable: true),
+                    AskSUB = table.Column<bool>(nullable: true),
+                    BaiduSUB = table.Column<bool>(nullable: true),
+                    BingSUB = table.Column<bool>(nullable: true),
+                    BruteforceSUB = table.Column<bool>(nullable: true),
+                    ModuloSUBLIST3R_ComandoPersonalizzato = table.Column<string>(nullable: true),
+                    DNSdumpsterSUB = table.Column<bool>(nullable: true),
+                    GoogleSUB = table.Column<bool>(nullable: true),
+                    NetcraftSUB = table.Column<bool>(nullable: true),
+                    PassiveDNSSUB = table.Column<bool>(nullable: true),
+                    PorteSUB = table.Column<string>(nullable: true),
+                    SSLCertificatesSUB = table.Column<bool>(nullable: true),
+                    ThreadSUB = table.Column<int>(nullable: true),
+                    ThreatCrowdSUB = table.Column<bool>(nullable: true),
+                    VerbositàSUB = table.Column<bool>(nullable: true),
+                    VirustotalSUB = table.Column<bool>(nullable: true),
+                    YahooSUB = table.Column<bool>(nullable: true),
+                    ModuloWAPITI_All = table.Column<bool>(nullable: true),
                     BackUp = table.Column<bool>(nullable: true),
                     BlindSql = table.Column<bool>(nullable: true),
                     Buster = table.Column<bool>(nullable: true),

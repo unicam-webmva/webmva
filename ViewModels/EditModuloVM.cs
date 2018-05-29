@@ -18,6 +18,7 @@ namespace webmva.ViewModels
         public ModuloINFOGA INFOGA{get; set;}
         public ModuloOPENDOOR OPENDOOR{get; set;}
         public ModuloINFOGAEMAIL INFOGAEMAIL{get; set;}
+         public ModuloSUBLIST3R SUBLIST3R{get; set;}
         public ModuloWAPITI WAPITI{get; set;}
         public ModuloSQLMAP SQLMAP{get; set;}
          public ModuloWIFITE WIFITE{get; set;}
@@ -33,6 +34,7 @@ namespace webmva.ViewModels
             WPSCAN = new ModuloWPSCAN();
             INFOGA = new ModuloINFOGA();
             INFOGAEMAIL = new ModuloINFOGAEMAIL();
+            SUBLIST3R = new ModuloSUBLIST3R();
             WAPITI = new ModuloWAPITI();
             SQLMAP = new ModuloSQLMAP();
             WIFITE = new ModuloWIFITE();
@@ -51,6 +53,7 @@ namespace webmva.ViewModels
             INFOGA = null;
             WAPITI= null;
             INFOGAEMAIL = null;
+            SUBLIST3R = null;
             SQLMAP = null;
             WIFITE = null;
             FIERCE = null;
@@ -67,6 +70,7 @@ namespace webmva.ViewModels
             INFOGA = null;
             WAPITI= null;
             INFOGAEMAIL = null;
+            SUBLIST3R = null;
             SQLMAP = null;
             FIERCE = null;
             WIFITE = null;
@@ -83,6 +87,7 @@ namespace webmva.ViewModels
             INFOGA = null;
             WAPITI= null;
             INFOGAEMAIL = null;
+            SUBLIST3R = null; 
             SQLMAP = null; 
             WIFITE = null;
             FIERCE = null; 
@@ -99,6 +104,7 @@ namespace webmva.ViewModels
             WPSCAN = null;
             WAPITI= null;
             INFOGAEMAIL = null;
+            SUBLIST3R = null; 
             SQLMAP = null;
             WIFITE = null; 
             FIERCE = null;
@@ -115,6 +121,7 @@ namespace webmva.ViewModels
             WPSCAN = null;
             WAPITI= null;
             INFOGAEMAIL = null;
+            SUBLIST3R = null; 
             SQLMAP = null;
             WIFITE = null; 
             FIERCE = null;
@@ -131,6 +138,7 @@ namespace webmva.ViewModels
             WPSCAN = null; 
             WAPITI= null;
             INFOGAEMAIL = null;
+            SUBLIST3R = null; 
             SQLMAP = null;
             WIFITE = null; 
             FIERCE = null; 
@@ -147,6 +155,24 @@ namespace webmva.ViewModels
             WPSCAN = null; 
             WAPITI= null;
             INFOGAEMAIL = mod;
+            SUBLIST3R = null;
+            SQLMAP = null;
+            WIFITE = null; 
+            FIERCE = null;
+            OPENDOOR = null;
+        }
+         public EditModuloVM(ModuloSUBLIST3R mod)
+        {
+            NMAP = null;
+            NESSUS = null;
+            DNSRECON = null;
+            INFOGA = null;
+            DROOPE = null;
+            JOOMSCAN = null;
+            WPSCAN = null; 
+            WAPITI= null;
+            INFOGAEMAIL = null;
+            SUBLIST3R = mod;
             SQLMAP = null;
             WIFITE = null; 
             FIERCE = null;
@@ -163,6 +189,7 @@ namespace webmva.ViewModels
              WPSCAN = null;
             WAPITI= mod;
             INFOGAEMAIL = null;
+            SUBLIST3R = null; 
             SQLMAP = null;
             WIFITE = null;
             FIERCE = null;  
@@ -179,6 +206,7 @@ namespace webmva.ViewModels
             WPSCAN = null; 
             WAPITI= null;
             INFOGAEMAIL = null;
+            SUBLIST3R = null; 
             SQLMAP = mod; 
             WIFITE = null;
             FIERCE = null;
@@ -196,6 +224,7 @@ namespace webmva.ViewModels
             WPSCAN = null;
             WAPITI= null;
             INFOGAEMAIL = null;
+            SUBLIST3R = null; 
             SQLMAP = null; 
             WIFITE = mod; 
             FIERCE = null;
@@ -213,6 +242,7 @@ namespace webmva.ViewModels
             WPSCAN = mod;
             WAPITI= null;
             INFOGAEMAIL = null;
+            SUBLIST3R = null;
             SQLMAP = null; 
             WIFITE = null;
             FIERCE = null; 
@@ -230,6 +260,7 @@ namespace webmva.ViewModels
             WPSCAN = null;
             WAPITI= null;
             INFOGAEMAIL = null;
+            SUBLIST3R = null; 
             SQLMAP = null; 
             WIFITE = null;
             FIERCE = mod; 
@@ -247,6 +278,7 @@ namespace webmva.ViewModels
             WPSCAN = null;
             WAPITI= null;
             INFOGAEMAIL = null;
+            SUBLIST3R = null; 
             SQLMAP = null; 
             WIFITE = null;
             FIERCE = null; 
