@@ -12,8 +12,8 @@ using webmva.Models;
 namespace webmva.Migrations
 {
     [DbContext(typeof(MyDbContext))]
-    [Migration("20180529140550_InseritoFierce4")]
-    partial class InseritoFierce4
+    [Migration("20180529193806_InseritoOPENDOOR7")]
+    partial class InseritoOPENDOOR7
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -253,6 +253,30 @@ namespace webmva.Migrations
                     b.ToTable("ModuloNMAP");
 
                     b.HasDiscriminator().HasValue("ModuloNMAP");
+                });
+
+            modelBuilder.Entity("webmva.Models.ModuloOPENDOOR", b =>
+                {
+                    b.HasBaseType("webmva.Models.Modulo");
+
+                    b.Property<bool>("AcceptCookies");
+
+                    b.Property<string>("ComandoPersonalizzato")
+                        .HasColumnName("ModuloOPENDOOR_ComandoPersonalizzato");
+
+                    b.Property<int>("DelayO");
+
+                    b.Property<string>("Metodo");
+
+                    b.Property<int>("PortaO");
+
+                    b.Property<int>("RetriesO");
+
+                    b.Property<int>("TimeoutO");
+
+                    b.ToTable("ModuloOPENDOOR");
+
+                    b.HasDiscriminator().HasValue("ModuloOPENDOOR");
                 });
 
             modelBuilder.Entity("webmva.Models.ModuloSQLMAP", b =>

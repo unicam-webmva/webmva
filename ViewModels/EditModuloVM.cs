@@ -11,11 +11,12 @@ namespace webmva.ViewModels
         public ModuloNMAP NMAP { get; set; }
         public ModuloNESSUS NESSUS { get; set; }
         public ModuloDNSRECON DNSRECON { get; set; }
-         public ModuloFIERCE FIERCE { get; set; }
+        public ModuloFIERCE FIERCE { get; set; }
         public ModuloDROOPE DROOPE{get; set;}
         public ModuloJOOMSCAN JOOMSCAN{get; set;}
         public ModuloWPSCAN WPSCAN{get; set;} 
         public ModuloINFOGA INFOGA{get; set;}
+        public ModuloOPENDOOR OPENDOOR{get; set;}
         public ModuloINFOGAEMAIL INFOGAEMAIL{get; set;}
         public ModuloWAPITI WAPITI{get; set;}
         public ModuloSQLMAP SQLMAP{get; set;}
@@ -35,6 +36,7 @@ namespace webmva.ViewModels
             WAPITI = new ModuloWAPITI();
             SQLMAP = new ModuloSQLMAP();
             WIFITE = new ModuloWIFITE();
+            OPENDOOR = new ModuloOPENDOOR();
 
 
         }
@@ -52,6 +54,7 @@ namespace webmva.ViewModels
             SQLMAP = null;
             WIFITE = null;
             FIERCE = null;
+            OPENDOOR = null;
         }
         public EditModuloVM(ModuloNESSUS mod)
         {
@@ -67,6 +70,7 @@ namespace webmva.ViewModels
             SQLMAP = null;
             FIERCE = null;
             WIFITE = null;
+            OPENDOOR = null;
         }
         public EditModuloVM(ModuloDNSRECON mod)
         {
@@ -82,6 +86,7 @@ namespace webmva.ViewModels
             SQLMAP = null; 
             WIFITE = null;
             FIERCE = null; 
+            OPENDOOR = null;
         }
         public EditModuloVM(ModuloDROOPE mod)
         {
@@ -97,6 +102,7 @@ namespace webmva.ViewModels
             SQLMAP = null;
             WIFITE = null; 
             FIERCE = null;
+            OPENDOOR = null;
         }
         public EditModuloVM(ModuloJOOMSCAN mod)
         {
@@ -112,6 +118,7 @@ namespace webmva.ViewModels
             SQLMAP = null;
             WIFITE = null; 
             FIERCE = null;
+            OPENDOOR = null;
         }
         public EditModuloVM(ModuloINFOGA mod)
         {
@@ -127,6 +134,7 @@ namespace webmva.ViewModels
             SQLMAP = null;
             WIFITE = null; 
             FIERCE = null; 
+            OPENDOOR = null;
         }
          public EditModuloVM(ModuloINFOGAEMAIL mod)
         {
@@ -142,6 +150,7 @@ namespace webmva.ViewModels
             SQLMAP = null;
             WIFITE = null; 
             FIERCE = null;
+            OPENDOOR = null;
         }
          public EditModuloVM(ModuloWAPITI mod)
         {
@@ -157,6 +166,7 @@ namespace webmva.ViewModels
             SQLMAP = null;
             WIFITE = null;
             FIERCE = null;  
+            OPENDOOR = null;
         }
           public EditModuloVM(ModuloSQLMAP mod)
         {
@@ -171,7 +181,8 @@ namespace webmva.ViewModels
             INFOGAEMAIL = null;
             SQLMAP = mod; 
             WIFITE = null;
-            FIERCE = null; 
+            FIERCE = null;
+            OPENDOOR = null; 
         }
 
           public EditModuloVM(ModuloWIFITE mod)
@@ -188,6 +199,7 @@ namespace webmva.ViewModels
             SQLMAP = null; 
             WIFITE = mod; 
             FIERCE = null;
+            OPENDOOR = null;
         }
 
           public EditModuloVM(ModuloWPSCAN mod)
@@ -204,6 +216,7 @@ namespace webmva.ViewModels
             SQLMAP = null; 
             WIFITE = null;
             FIERCE = null; 
+            OPENDOOR = null;
         }
 
           public EditModuloVM(ModuloFIERCE mod)
@@ -220,6 +233,24 @@ namespace webmva.ViewModels
             SQLMAP = null; 
             WIFITE = null;
             FIERCE = mod; 
+            OPENDOOR = null;
+        }
+
+          public EditModuloVM(ModuloOPENDOOR mod)
+        {
+            NMAP = null;
+            NESSUS = null;
+            DNSRECON = null;
+            INFOGA = null;
+            DROOPE = null;
+            JOOMSCAN = null;
+            WPSCAN = null;
+            WAPITI= null;
+            INFOGAEMAIL = null;
+            SQLMAP = null; 
+            WIFITE = null;
+            FIERCE = null; 
+            OPENDOOR = mod;
         }
     }
 }

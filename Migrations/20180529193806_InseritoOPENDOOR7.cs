@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace webmva.Migrations
 {
-    public partial class InseritoFierce4 : Migration
+    public partial class InseritoOPENDOOR7 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -67,6 +67,13 @@ namespace webmva.Migrations
                     TCPScan = table.Column<int>(nullable: true),
                     Tempo = table.Column<int>(nullable: true),
                     UdpDiscoveryPorts = table.Column<string>(nullable: true),
+                    AcceptCookies = table.Column<bool>(nullable: true),
+                    ModuloOPENDOOR_ComandoPersonalizzato = table.Column<string>(nullable: true),
+                    DelayO = table.Column<int>(nullable: true),
+                    Metodo = table.Column<string>(nullable: true),
+                    PortaO = table.Column<int>(nullable: true),
+                    RetriesO = table.Column<int>(nullable: true),
+                    TimeoutO = table.Column<int>(nullable: true),
                     ModuloSQLMAP_ComandoPersonalizzato = table.Column<string>(nullable: true),
                     Detection = table.Column<int>(nullable: true),
                     Rischio = table.Column<int>(nullable: true),

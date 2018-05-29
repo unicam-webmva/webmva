@@ -298,6 +298,70 @@
                         </div>
                         </div>
                       </div>
+                        <div class="panel panel-sidebar">
+                    <div class="panel-heading">
+					<a  data-toggle="collapse" href="#OPENDOOR"><strong>OPENDOOR</strong>
+                      <span class="caret"></span></a><br>
+                    </div>
+                    <div class="collapse" id="OPENDOOR">
+                     <div class="panel-body ">
+                     <div class="col-sm-7">
+                                        <div class="form-group">
+                                            <h4 asp-for="@Model.Target">Url</h4><hr/>
+                                            <input class="form-control" asp-for="@Model.Target" />
+                                        </div>
+                                    </div><br>
+                                     
+                                    <div class="col-sm-12">
+                                     <h4>Seleziona i moduli OPENDOOR</h4><hr/>
+                                    </div>
+                            <table class="table">
+                                <div class="method">
+                                    <thead>
+                                        <tr>
+                                            <th></th>
+                                             <th>
+                                        Nome
+                                            </th>
+                                            <th>
+                                        Comando
+                                            </th>
+                                            <th></th>
+                                        </tr>
+                                    </thead>
+                                </div>
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                    <input type="checkbox" name="selezionaTutto1" onclick="SelezTT1()" > <label> Scegli tutti</label><br>
+                                        </td>
+                                    </tr>
+                                    @foreach (var item in listaModuli) {
+                                       
+                                        
+                                            if(item.Applicazione!= webmva.Models.APPLICAZIONE.OPENDOOR){continue;}
+                                             <tr>
+                                                <td>
+                                                    <input type="checkbox"
+                                                        name="moduliSelezionati"
+                                                        value="@item.ModuloID"
+                                                        @(Html.Raw(item.Inserito ? "checked=\"checked\"" : "")) />
+                                                        
+                                                </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Nome)
+                                                </td>
+                                                <td>
+                                                    @Html.DisplayFor(modelItem => item.Comando)
+                                                </td>
+                                            </tr>       
+                                    }
+                                </tbody>
+                            </table>
+
+                        </div>
+                        </div>
+                      </div>
                       </div>
                     <div class="panel panel-default">
                     <div class="panel-heading">

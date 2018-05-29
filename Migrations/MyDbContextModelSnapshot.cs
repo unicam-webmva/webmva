@@ -254,6 +254,30 @@ namespace webmva.Migrations
                     b.HasDiscriminator().HasValue("ModuloNMAP");
                 });
 
+            modelBuilder.Entity("webmva.Models.ModuloOPENDOOR", b =>
+                {
+                    b.HasBaseType("webmva.Models.Modulo");
+
+                    b.Property<bool>("AcceptCookies");
+
+                    b.Property<string>("ComandoPersonalizzato")
+                        .HasColumnName("ModuloOPENDOOR_ComandoPersonalizzato");
+
+                    b.Property<int>("DelayO");
+
+                    b.Property<string>("Metodo");
+
+                    b.Property<int>("PortaO");
+
+                    b.Property<int>("RetriesO");
+
+                    b.Property<int>("TimeoutO");
+
+                    b.ToTable("ModuloOPENDOOR");
+
+                    b.HasDiscriminator().HasValue("ModuloOPENDOOR");
+                });
+
             modelBuilder.Entity("webmva.Models.ModuloSQLMAP", b =>
                 {
                     b.HasBaseType("webmva.Models.Modulo");

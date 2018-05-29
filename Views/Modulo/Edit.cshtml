@@ -12,7 +12,7 @@
     bool wapiti = Model.WAPITI != null;
     bool sqlmap = Model.SQLMAP != null;
     bool wifite = Model.WIFITE != null;
-
+    bool opendoor = Model.OPENDOOR != null;
 }
 
 
@@ -1689,4 +1689,106 @@
 </div>
                             </form>
 }
+ @* -----OPENDOOR----- *@
+    else if (opendoor)
+    {
+        <h2><em>Modifica modulo</em><strong> @(Model.OPENDOOR.Nome)</strong></h2>
+        <hr />
+  <form asp-action="Edit" name="opendoorForm">
+                                <input type="hidden" asp-for="@Model.OPENDOOR.Applicazione" value="@webmva.Models.APPLICAZIONE.OPENDOOR" />
+<input type="hidden" asp-for="@Model.OPENDOOR.ID" />
+                                  <div class="row panel panel-default panel-body">
+
+                                <div class="col-sm-12">
+                                    <div class="col-sm-7" style="margin:0 auto; float:none">
+                                        <div class="form-group">
+                                            <h4 asp-for="@(Model.OPENDOOR.Nome)">Nome Modulo</h4>
+                                            <input class="form-control" asp-for="@(Model.OPENDOOR.Nome)" />
+                                        </div>
+                                    </div>
+
+                                    <hr />
+                                    <div class="col-sm-12">
+                                        <div class="col-sm-12">
+                                            <div class="col-sm-7" style="margin:0 auto; float:none">
+                                                <div class="form-group row">
+                                                    <h4 asp-for="@(Model.OPENDOOR.ComandoPersonalizzato)">Comando Personalizzato</h4>
+                                                    <input class="form-control" asp-for="@(Model.OPENDOOR.ComandoPersonalizzato)" />
+                                                </div>
+
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+                                    <div class="col-sm-12">
+                                        <h4>Tipi di enumerazione</h4>
+                                        <hr />
+                                        <div class="form-group row">
+                                            <div class="col-sm-5">
+                                                <label class="control-label"> Settaggio Delay</label>
+                                            </div>
+
+                                            <input class="col-sm-5" type="number" asp-for="@Model.OPENDOOR.DelayO" />
+                                            <div class="col-sm-3"></div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <div class="col-sm-5">
+                                                <label class="control-label"> Settaggio Timeout</label>
+                                            </div>
+
+                                            <input class="col-sm-5" type="number" asp-for="@Model.OPENDOOR.TimeoutO" />
+                                            <div class="col-sm-3"></div>
+                                        </div>
+                                          <div class="form-group row">
+                                            <div class="col-sm-5">
+                                                <label class="control-label"> Settaggio Porta</label>
+                                            </div>
+
+                                            <input class="col-sm-5" type="number" asp-for="@Model.OPENDOOR.PortaO" />
+                                            <div class="col-sm-3"></div>
+                                        </div>
+                                          <div class="form-group row">
+                                            <div class="col-sm-5">
+                                                <label class="control-label"> Settaggio Retries</label>
+                                            </div>
+
+                                            <input class="col-sm-5" type="number" asp-for="@Model.OPENDOOR.RetriesO" />
+                                            <div class="col-sm-3"></div>
+                                        </div>
+                                        <div class="col-sm-12">
+                                                    <div class="form-group row">
+                                                        <div class="col-sm-6">
+                                                            <label class="control-label">
+                                                                <input type="checkbox" asp-for="@Model.OPENDOOR.AcceptCookies" /> AcceptCookies (--accept-cookies)
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group row">
+                                            <div class="col-sm-4">
+                                                <label class="control-label">Scegli il metodo </label>
+                                            </div>
+                                             <div class="col-sm-1"></div>
+                                            <input type="text" class="col-sm-5" asp-for="@Model.OPENDOOR.Metodo" />  
+                                        </div>  
+                                    </div>
+                                   <div class="col-sm-12">
+                                            <hr/>
+                                            <div class="col-sm-5">
+                                                <div clas="form-group row">
+                                                 <a href="https://github.com/stanislav-web/OpenDoor"target="_blank"><span class="glyphicon glyphicon-info-sign" style="font-size:90%"></span>
+                                        consulta il documentazione di Opendoor</a>
+                                        </div>
+                                        </div>
+                                        <div class="col-sm-1"></div>
+                                        <div class="col-sm-6 text-right">
+                                            <div class="form-group row">
+                                                <input type="submit" asp-action="Edit" asp-route-id="@Model.OPENDOOR.ID" class="btn btn-default" value="Salva" />&nbsp;&nbsp; |
+                                                <a asp-action="Index"> Torna alla lista</a>
+                                            </div>
+                                        </div>
+                                        </div>
+                                </div>
+</div>
+                            </form>}
 }

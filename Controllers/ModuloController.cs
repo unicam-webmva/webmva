@@ -29,13 +29,14 @@ namespace webmva.Controllers_
             var listaFIERCE = await _context.Moduli.Where(modulo => modulo.Applicazione == APPLICAZIONE.FIERCE).ToListAsync();
             var listaDROOPE = await _context.Moduli.Where(modulo => modulo.Applicazione == APPLICAZIONE.DROOPE).ToListAsync();
             var listaJOOMSCAN = await _context.Moduli.Where(modulo => modulo.Applicazione == APPLICAZIONE.JOOMSCAN).ToListAsync();
+            var listaOPENDOOR = await _context.Moduli.Where(modulo => modulo.Applicazione == APPLICAZIONE.OPENDOOR).ToListAsync();
             var listaWPSCAN = await _context.Moduli.Where(modulo => modulo.Applicazione == APPLICAZIONE.WPSCAN).ToListAsync();
             var listaINFOGA = await _context.Moduli.Where(modulo => modulo.Applicazione == APPLICAZIONE.INFOGA).ToListAsync();
             var listaINFOGAEMAIL = await _context.Moduli.Where(modulo => modulo.Applicazione == APPLICAZIONE.INFOGAEMAIL).ToListAsync();
             var listaWAPITI = await _context.Moduli.Where(modulo => modulo.Applicazione == APPLICAZIONE.WAPITI).ToListAsync();
             var listaSQLMAP = await _context.Moduli.Where(modulo => modulo.Applicazione == APPLICAZIONE.SQLMAP).ToListAsync();
             var listaWIFITE = await _context.Moduli.Where(modulo => modulo.Applicazione == APPLICAZIONE.WIFITE).ToListAsync();
-            return View(new ListaModuliVM { ModuliNMAP = listaNMAP, ModuliNESSUS= listaNESSUS, ModuliDNSRECON = listaDNSRECON, ModuliFIERCE= listaFIERCE, ModuliDROOPE= listaDROOPE,ModuliJOOMSCAN=listaJOOMSCAN,ModuliWPSCAN=listaWPSCAN, ModuliINFOGA =listaINFOGA,ModuliINFOGAEMAIL = listaINFOGAEMAIL, ModuliWAPITI = listaWAPITI, ModuliSQLMAP = listaSQLMAP, ModuliWIFITE = listaWIFITE });
+            return View(new ListaModuliVM { ModuliNMAP = listaNMAP, ModuliNESSUS= listaNESSUS,ModuliOPENDOOR= listaOPENDOOR, ModuliDNSRECON = listaDNSRECON, ModuliFIERCE= listaFIERCE, ModuliDROOPE= listaDROOPE,ModuliJOOMSCAN=listaJOOMSCAN,ModuliWPSCAN=listaWPSCAN, ModuliINFOGA =listaINFOGA,ModuliINFOGAEMAIL = listaINFOGAEMAIL, ModuliWAPITI = listaWAPITI, ModuliSQLMAP = listaSQLMAP, ModuliWIFITE = listaWIFITE });
         }
 
         // GET: Modulo/Details/5
@@ -223,6 +224,19 @@ namespace webmva.Controllers_
                     }
                 }
             }
+            else if (createmodulo.OPENDOOR.Nome != null && cosa.Equals("opendoor"))
+            {
+                {
+                    if (ModelState.IsValid)
+                    {
+                        ModuloOPENDOOR mod = createmodulo.OPENDOOR;
+                        mod.Applicazione = APPLICAZIONE.OPENDOOR;
+                        _context.Moduli.Add(mod);
+                        await _context.SaveChangesAsync();
+                        return RedirectToAction(nameof(Index));
+                    }
+                }
+            }
             else return BadRequest();
 
             return View(createmodulo);
@@ -264,7 +278,9 @@ namespace webmva.Controllers_
             else if (modulo is ModuloSQLMAP)
                 return View(new EditModuloVM((ModuloSQLMAP) modulo));
             else if (modulo is ModuloWIFITE)
-                return View(new EditModuloVM((ModuloWIFITE) modulo));    
+                return View(new EditModuloVM((ModuloWIFITE) modulo));
+            else if (modulo is ModuloOPENDOOR)
+                return View(new EditModuloVM((ModuloOPENDOOR) modulo));    
             // PROVVISORIO, SOLO PER NON DARE ERRORI DI COMPILAZIONE
             else return View(new EditModuloVM() );
         }
@@ -512,6 +528,35 @@ namespace webmva.Controllers_
              else if (!string.IsNullOrEmpty(editmodulo.INFOGAEMAIL.Nome))
             {
                 ModuloINFOGAEMAIL mod = editmodulo.INFOGAEMAIL;
+                if (id != mod.ID)
+                {
+                    return NotFound();
+                }
+
+                if (ModelState.IsValid)
+                {
+                    try
+                    {
+                        _context.Update(mod);
+                        await _context.SaveChangesAsync();
+                    }
+                    catch (DbUpdateConcurrencyException)
+                    {
+                        if (!ModuloExists(mod.ID))
+                        {
+                            return NotFound();
+                        }
+                        else
+                        {
+                            throw;
+                        }
+                    }
+                    return RedirectToAction(nameof(Index));
+                }
+            }
+            else if (!string.IsNullOrEmpty(editmodulo.OPENDOOR.Nome))
+            {
+                ModuloOPENDOOR mod = editmodulo.OPENDOOR;
                 if (id != mod.ID)
                 {
                     return NotFound();

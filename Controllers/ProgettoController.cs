@@ -330,6 +330,12 @@ namespace webmva.Controllers_
                 string comando = $"python \"{percorsoExec}\" {mod.Comando} -f html -o {timestamp}wapiti_{nomeCamelCase}.html";
                 return comando;
             }
+             if(mod is ModuloOPENDOOR)
+            {
+                 string percorsoExec = Path.Combine(Globals.CartellaWEBMVA, "Programmi", "opendoor");
+                string comando = $"python \"{percorsoExec}\" {mod.Comando} >> {timestamp}opendoor_{nomeCamelCase}.txt ";
+                return comando;
+            }
             if(mod is ModuloSQLMAP)
             {
                 string percorsoExec = Path.Combine(Globals.CartellaWEBMVA, "Programmi", "sqlmap");
@@ -354,6 +360,8 @@ namespace webmva.Controllers_
                 string comando = $"ruby \"{percorsoExec}\" {mod.Comando} --log {timestamp}wpscan_{nomeCamelCase}.txt ";
                 return comando;
             }
+             
+             
             else return "";
         }
     }
