@@ -225,7 +225,7 @@ namespace webmva.Controllers_
             {
                 return NotFound();
             }
-
+            PopolaModuliAssegnati(progetto);
             return View(progetto);
         }
 

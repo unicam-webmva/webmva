@@ -209,7 +209,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-6">
+                        <div class="col-sm-6 col-sm-offset-6 text-right">
                             <div class="form-group">
                                 <input type="submit" asp-action="Edit" class="btn btn-default" asp-route-id="@Model.NMAP.ID" value="Salva" />&nbsp;|&nbsp;
                                 <a asp-action="Index"> Torna alla lista</a>
@@ -219,7 +219,6 @@
                 </div>
             </div>
         </form>
-        <a asp-action="Index"> Torna alla lista</a>
     }
     @* -----NESSUS----- *@
     else if (nessus)
@@ -258,14 +257,21 @@
                                         </div>
                                     </div>
                                      <div class="col-sm-12">
-                                 <hr /></div>
-                           <div class="col-sm-6 col-sm-offset-6 text-right">
-                              
-                                        <div class="form-group">
-                                            <input type="submit" asp-action="Edit"  asp-route-id="@Model.NESSUS.ID" class="btn btn-default" value="Salva" />&nbsp;&nbsp;|
-                                            <a asp-action="Index"> Torna alla lista</a>
+                                            <hr/>
+                                            <div class="col-sm-5">
+                                                <div clas="form-group row">
+                                                 <a href="http://static.tenable.com/documentation/nessus_6.8_command_line_reference.pdf" target="_blank"><span class="glyphicon glyphicon-info-sign" style="font-size:90%"></span>
+                                        consulta la documentazione di Nessus</a>
+                                        
                                         </div>
-                                    </div>   
+                                        </div>
+                                        <div class="col-sm-1"></div>
+                                        <div class="col-sm-6 text-right">
+                                            <div class="form-group row">
+                                                <input type="submit" asp-action="Edit" class="btn btn-default"  asp-route-id="@Model.NESSUS.ID" value="Salva" />&nbsp;&nbsp;|
+                                                <a asp-action="Index"> Torna alla lista</a>
+                                            </div>
+                                        </div>
                             </div>
                             </div>
                         </form>
@@ -366,12 +372,23 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-sm-6 col-sm-offset-6 text-right">
-                            <div class="form-group">
-                                <input type="submit" asp-action="Edit" class="btn btn-default" asp-route-id="@Model.DNSRECON.ID" value="Salva" />&nbsp;|&nbsp;
-                                <a asp-action="Index"> Torna alla lista</a>
-                            </div>
-                        </div>
+                         <div class="col-sm-12">
+                                            <hr/>
+                                            <div class="col-sm-5">
+                                                <div clas="form-group row">
+                                                 <a href="https://tools.kali.org/information-gathering/dnsrecon" target="_blank"><span class="glyphicon glyphicon-info-sign" style="font-size:90%"></span>
+                                        consulta la documentazione di Dnsrecon</a>
+                                        
+                                        </div>
+                                        </div>
+                                        <div class="col-sm-1"></div>
+                                        <div class="col-sm-6 text-right">
+                                            <div class="form-group row">
+                                                <input type="submit" asp-action="Edit" class="btn btn-default"  asp-route-id="@Model.DNSRECON.ID" value="Salva" />&nbsp;&nbsp;|
+                                                <a asp-action="Index"> Torna alla lista</a>
+                                            </div>
+                                        </div>
+                                        </div>
                     </div>
                 </div>
             </div>
@@ -438,12 +455,23 @@
                                 <option value="3">intersting url</option>
                             </select>
                         </div>
-                        <div class="col-sm-6 col-sm-offset-6 text-right">
-                            <div class="form-group">
-                                <input type="submit" asp-action="Edit" class="btn btn-default" asp-route-id="@Model.DROOPE.ID" value="Salva" />&nbsp;|&nbsp;
-                                <a asp-action="Index"> Torna alla lista</a>
-                            </div>
-                        </div>
+                         <div class="col-sm-12">
+                                            <hr/>
+                                            <div class="col-sm-5">
+                                                <div clas="form-group row">
+                                                 <a href="https://github.com/droope/droopescan" target="_blank"><span class="glyphicon glyphicon-info-sign" style="font-size:90%"></span>
+                                        consulta la documentazione di Droopescan</a>
+                                        
+                                        </div>
+                                        </div>
+                                        <div class="col-sm-1"></div>
+                                        <div class="col-sm-6 text-right">
+                                            <div class="form-group row">
+                                                <input type="submit" asp-action="Edit" class="btn btn-default"  asp-route-id="@Model.DROOPE.ID" value="Salva" />&nbsp;&nbsp;|
+                                                <a asp-action="Index"> Torna alla lista</a>
+                                            </div>
+                                        </div>
+                                        </div>
                     </div>
                 </div>
             </div>
@@ -517,13 +545,23 @@
                                 <option value="2">tre</option>
                             </select>
                         </div>
-                        
-                        <div class="col-sm-6 col-sm-offset-6 text-right">
-                            <div class="form-group">
-                                <input type="submit" asp-action="Edit" class="btn btn-default" asp-route-id="@Model.INFOGA.ID" value="Salva" />&nbsp;&nbsp;
-                                <a asp-action="Index"> Torna alla lista</a>
-                            </div>
-                        </div>
+                        <div class="col-sm-12">
+                                            <hr/>
+                                            <div class="col-sm-5">
+                                                <div clas="form-group row">
+                                                 <a href="https://github.com/m4ll0k/Infoga" target="_blank"><span class="glyphicon glyphicon-info-sign" style="font-size:90%"></span>
+                                        consulta la documentazione di Infoga</a>
+                                        
+                                        </div>
+                                        </div>
+                                        <div class="col-sm-1"></div>
+                                        <div class="col-sm-6 text-right">
+                                            <div class="form-group row">
+                                                <input type="submit" asp-action="Edit" class="btn btn-default"  asp-route-id="@Model.INFOGA.ID" value="Salva" />&nbsp;&nbsp;|
+                                                <a asp-action="Index"> Torna alla lista</a>
+                                            </div>
+                                        </div>
+                                        </div>
                     </div>
                 </div>
             </div>
@@ -534,7 +572,7 @@
     {
         <h2><em>Modifica modulo</em><strong> @(Model.INFOGAEMAIL.Nome)</strong></h2>
         <hr />
-        <form asp-action="Edit" name="infogaForm">
+        <form asp-action="Edit" name="infogaeForm">
                                 <input type="hidden" asp-for="@Model.INFOGAEMAIL.Applicazione" value="@webmva.Models.APPLICAZIONE.INFOGAEMAIL" />
                                 <input type="hidden" asp-for="@Model.INFOGAEMAIL.ID" />
  <div class="row panel panel-default panel-body">
@@ -592,11 +630,22 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="col-sm-6 col-sm-offset-6 text-right">
-                                            <div class="form-group">
-                                                <input type="submit" asp-action="Edit"asp-route-id="@Model.INFOGAEMAIL.ID" class="btn btn-default" value="Salva" />&nbsp;&nbsp;
+                                          <div class="col-sm-12">
+                                            <hr/>
+                                            <div class="col-sm-5">
+                                                <div clas="form-group row">
+                                                 <a href="https://github.com/m4ll0k/Infoga" target="_blank"><span class="glyphicon glyphicon-info-sign" style="font-size:90%"></span>
+                                        consulta la documentazione di Infoga</a>
+                                        
+                                        </div>
+                                        </div>
+                                        <div class="col-sm-1"></div>
+                                        <div class="col-sm-6 text-right">
+                                            <div class="form-group row">
+                                                <input type="submit" asp-action="Edit" class="btn btn-default"  asp-route-id="@Model.INFOGAEMAIL.ID" value="Salva" />&nbsp;&nbsp;|
                                                 <a asp-action="Index"> Torna alla lista</a>
                                             </div>
+                                        </div>
                                         </div>
                                     </div>
                                 </div>
@@ -805,12 +854,23 @@
                             </div>
 
                         </div>
-                        <div class="col-sm-6 col-sm-offset-6 text-right">
-                            <div class="form-group">
-                                <input type="submit" asp-action="Edit" class="btn btn-default" asp-route-id="@Model.WAPITI.ID" value="Salva" />&nbsp;&nbsp;|
-                                <a asp-action="Index"> Torna alla lista</a>
-                            </div>
-                        </div>
+                          <div class="col-sm-12">
+                                            <hr/>
+                                            <div class="col-sm-5">
+                                                <div clas="form-group row">
+                                                 <a href="http://wapiti.sourceforge.net/wapiti.1.html" target="_blank"><span class="glyphicon glyphicon-info-sign" style="font-size:90%"></span>
+                                        consulta la documentazione di Wapiti</a>
+                                        
+                                        </div>
+                                        </div>
+                                        <div class="col-sm-1"></div>
+                                        <div class="col-sm-6 text-right">
+                                            <div class="form-group row">
+                                                <input type="submit" asp-action="Edit" class="btn btn-default"  asp-route-id="@Model.WAPITI.ID" value="Salva" />&nbsp;&nbsp;|
+                                                <a asp-action="Index"> Torna alla lista</a>
+                                            </div>
+                                        </div>
+                                        </div>
                     </div>
                 </div>
             </div>
@@ -1157,6 +1217,7 @@
                                                     </label>
                                                 </div>
                                             </div>
+                                            <hr/>
                                             <h4>Tecniche</h4>
                                         <hr />
                                         <div class="form-group row">
@@ -1202,14 +1263,24 @@
                                                     </label>
                                                 </div>
                                             </div>
-                                    
-                                        <div class="col-sm-6 col-sm-offset-6 text-right">
-                                            <div class="form-group">
-                                                <input type="submit" asp-action="Edit" class="btn btn-default"  asp-route-id="@Model.SQLMAP.ID" value="Salva" />&nbsp;&nbsp;
+                                             <div class="col-sm-12">
+                                            <hr/>
+                                            <div class="col-sm-5">
+                                                <div clas="form-group row">
+                                                 <a href="https://svn.nmap.org/nmap/docs/nmap.usage.txt" target="_blank"><span class="glyphicon glyphicon-info-sign" style="font-size:90%"></span>
+                                        consulta la documentazione di Nmap</a>
+                                        
+                                        </div>
+                                        </div>
+                                        <div class="col-sm-1"></div>
+                                        <div class="col-sm-6 text-right">
+                                            <div class="form-group row">
+                                                <input type="submit" asp-action="Edit" class="btn btn-default"  asp-route-id="@Model.SQLMAP.ID" value="Salva" />&nbsp;&nbsp;|
                                                 <a asp-action="Index"> Torna alla lista</a>
                                             </div>
                                         </div>
-                                    </div>
+                                        </div>
+                                            
                                 </div>
                                 </div>
                             </form>

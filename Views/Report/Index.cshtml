@@ -16,7 +16,7 @@
                     <thead>
                         <tr>
                             <th>
-                             Nome Progetto
+                               @Html.DisplayNameFor(model => model.NomeProgetto)
                             </th>
                             <th>
                                 Scan avvenuto
@@ -29,12 +29,12 @@
                     </thead>
                 </div>
                 <tbody>
-                   
-                        <tr>
+                      @foreach (var item in Model.moduliInseriti)
+                    {
+                       
+                        <tr> 
                             <td>
-                               
-                            <td>
-                               
+                                <a> @Html.DisplayFor(modelItem => item.NomeProgetto)</a> 
                             </td>
                             <td>
                                 <div class="col-sm-10 col-sm-offset-3">
@@ -45,7 +45,7 @@
                             </td>
 
                         </tr>
-                    
+                    }
                 </tbody>
             </table>
         </div>

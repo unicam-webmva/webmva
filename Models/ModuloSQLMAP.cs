@@ -24,9 +24,6 @@ namespace webmva.Models
     }
     public class ModuloSQLMAP : Modulo
     {
-        public string URL { get; set; }
-        public string connectionString { get; set; }
-
         public string header { get; set; }
         public string credenzialiAutenticazione { get; set; }
         public string dbms { get; set; }
@@ -156,17 +153,6 @@ namespace webmva.Models
                 if (string.IsNullOrEmpty(ComandoPersonalizzato))
                 {
                     string risultato = "sqlmap --batch";
-
-                    if (!string.IsNullOrEmpty(connectionString))
-                        risultato += " -d " + connectionString;
-                    else if (!string.IsNullOrEmpty(URL))
-                    {
-                        risultato += " -u " + URL;
-                    }
-                    else
-                    {
-                        return "Non hai inserito i parametri nel modo giusto!";
-                    }
                     if (forceAggressive)
                         risultato += " -f";
                     if (!string.IsNullOrEmpty(header))

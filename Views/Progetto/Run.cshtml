@@ -2,9 +2,9 @@
 @{ ViewData["Title"] = "Risultato"; }
 <br>
 <div class="container">
-<h3><em>Report</em> @Model.NomeProgetto</h3><hr>
-<a  class="btn btn-default"asp-action="Scarica" asp-route-id="@Model.ID" value="Scarica"></a>
-    
+<h2><em>Report</em><strong>  @Html.DisplayFor(model => model.NomeProgetto)</strong></h2>
+  <a  class="btn btn-default" > Scarica formato</a>   
+  <hr/>
 @foreach(var element in @Model.risultati)
 {
 <div class="panel panel-default">

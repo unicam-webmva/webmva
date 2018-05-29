@@ -17,7 +17,8 @@ var contWifite = 0;
   <a  class="btn btn-default"asp-action="Run" asp-route-id="@Model.ID"> Avvia scan</a>
 <hr />
 <div class="col-md-12">
-    <form name="progetto">
+    <form asp-action="Edit">
+        <input type="hidden" asp-for="ID" />
     <div class="row panel panel panel-default panel-body">
         <div class="col-md-12">
            
@@ -358,8 +359,8 @@ var contWifite = 0;
             <div class="col-xs-6 col-sm-offset-9 text-right">
                      <br>
                     <div class="form-group">
-                        <input type="submit" class="btn btn-default" asp-action="Edit" asp-route-id="@Model.ID" value="Modifica"> </a>&nbsp;&nbsp;&nbsp; | &nbsp;
-                        <input type="submit" class="btn btn-default" asp-action="Cancel" asp-route-id="@Model.ID" value="Cancella"> </a>&nbsp;&nbsp;&nbsp; | &nbsp;
+                        <input type="submit" class="btn btn-default" asp-action="Edit" asp-route-id="@Model.ID" value="Modifica">&nbsp;&nbsp;&nbsp; |&nbsp;
+                        <input type="submit" class="btn btn-default" asp-action="Cancel" asp-route-id="@Model.ID" value="Cancella">&nbsp;&nbsp;&nbsp; |&nbsp;
                         <a asp-action="Index">  Torna alla lista</a>
                     </div>
                 </div>                    

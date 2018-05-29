@@ -10,31 +10,20 @@ var contInfogaEmail = 0;
 var contWapiti = 0;
 var contSqlmap = 0;
 var contWifite = 0;}
-
-<
 <br>
 <div class="container">
 <h2><em>Sei sicuro di voler cancellare il progetto</em><strong> @Html.DisplayFor(model => model.Nome) ?</strong></h2>
 <hr />
 <div class="col-md-12">
-    <form name="progetto">
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="ID" />
     <div class="row panel panel panel-default panel-body">
         <div class="col-md-12">
-           
-                
                     <dl class="dl-horizontal">
                         <div class="col-sm-9"style="margin:5ex; float:none">
                          <div class="form-group row">
                                                 <h4>Nome Progetto</h4><hr />
                                                 <dd>  @Html.DisplayFor(model => model.Nome)
-                                            </dd>
-
-                            </div>
-                            </div>
-                            <div class="col-sm-9"style="margin:5ex; float:none">
-                         <div class="form-group row">
-                                                <h4>ID Progetto</h4><hr />
-                                                <dd>  @Html.DisplayFor(model => model.ID)
                                             </dd>
 
                             </div>
@@ -69,7 +58,7 @@ var contWifite = 0;}
                             if(item.Modulo is webmva.Models.ModuloINFOGAEMAIL){contInfogaEmail++;}
                             if(item.Modulo is webmva.Models.ModuloWAPITI) {contWapiti++;}
                             if(item.Modulo is webmva.Models.ModuloSQLMAP) {contSqlmap++;}
-                             if(item.Modulo is webmva.Models.ModuloWIFITE) {contWifite++;}
+                            if(item.Modulo is webmva.Models.ModuloWIFITE) {contWifite++;}
                         }
                         @if(contNMAP!=0){
                                 
@@ -355,7 +344,7 @@ var contWifite = 0;}
             <div class="col-xs-6 col-sm-offset-9 text-right">
                      <br>
                     <div class="form-group">
-                        <input type="submit" class="btn btn-default" asp-action="Cancel" asp-route-id="@Model.ID" value="Cancella"> </a>&nbsp;&nbsp;&nbsp; | &nbsp;
+                        <input type="submit" class="btn btn-default" asp-action="Delete" asp-route-id="@Model.ID" value="Cancella">&nbsp;&nbsp;&nbsp; |&nbsp;
                         <a asp-action="Index">  Torna alla lista</a>
                     </div>
                 </div>                    
