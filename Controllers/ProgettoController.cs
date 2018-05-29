@@ -306,6 +306,12 @@ namespace webmva.Controllers_
                 string comando = $"python \"{percorsoExec}\" {mod.Comando} -x {timestamp}dnsrecon_{nomeCamelCase}.xml";
                 return comando;
             }
+            if(mod is ModuloFIERCE)
+            {
+                string percorsoExec = Path.Combine(Globals.CartellaWEBMVA, "Programmi", "fierce");
+                string comando = $"python \"{percorsoExec}\" {mod.Comando} >> {timestamp}fierce_{nomeCamelCase}.txt";
+                return comando;
+            }
             if(mod is ModuloDROOPE)
             {
                 string percorsoExec = Path.Combine(Globals.CartellaWEBMVA, "Programmi", "droopescan");
@@ -340,6 +346,12 @@ namespace webmva.Controllers_
             {
                  string percorsoExec = Path.Combine(Globals.CartellaWEBMVA, "Programmi", "joomscan");
                 string comando = $"perl \"{percorsoExec}\" {mod.Comando} >> {timestamp}joomsan_{nomeCamelCase}.txt ";
+                return comando;
+            }
+              if(mod is ModuloWPSCAN)
+            {
+                 string percorsoExec = Path.Combine(Globals.CartellaWEBMVA, "Programmi", "wpscan");
+                string comando = $"ruby \"{percorsoExec}\" {mod.Comando} --log {timestamp}wpscan_{nomeCamelCase}.txt ";
                 return comando;
             }
             else return "";

@@ -4,8 +4,10 @@ var contNMAP = 0;
 var contNessus= 0;
 var contOpenVAS = 0;
 var contDnsRecon = 0;
+var contFierce = 0;
 var contDroope = 0;
 var contJoomscan = 0;
+var contWpscan = 0;
 var contInfoga = 0;
 var contInfogaEmail = 0;
 var contWapiti = 0;
@@ -66,8 +68,10 @@ var contWifite = 0;
                             if(item.Modulo is webmva.Models.ModuloNESSUS) {contNessus++;}
                             if(item.Modulo is webmva.Models.ModuloNMAP) {contOpenVAS++;}
                             if(item.Modulo is webmva.Models.ModuloDNSRECON) {contDnsRecon++;}
+                            if(item.Modulo is webmva.Models.ModuloFIERCE) {contFierce++;}
                             if(item.Modulo is webmva.Models.ModuloDROOPE) {contDroope++;}
                             if(item.Modulo is webmva.Models.ModuloJOOMSCAN){contJoomscan++}
+                            if(item.Modulo is webmva.Models.ModuloWPSCAN){contWpscan++}
                             if(item.Modulo is webmva.Models.ModuloINFOGA) {contInfoga++;}
                             if(item.Modulo is webmva.Models.ModuloINFOGAEMAIL){contInfogaEmail++;}
                             if(item.Modulo is webmva.Models.ModuloWAPITI) {contWapiti++;}
@@ -186,6 +190,34 @@ var contWifite = 0;
                                 </table>
                                 </dd>    
                         } 
+                          @if(contFierce!=0){
+                                
+                            <dd>Fierce</dd>
+                            <dd>
+                            <table class="table">
+                                <tr>
+                                    <th> </th>
+                                    <th>Modulo</th>
+                                    <th>Comando</th>
+                                </tr>
+                        @foreach (var item in Model.ModuliProgetto) {
+                            
+                                @if(item.Modulo is webmva.Models.ModuloFIERCE){
+                                <tr>
+                                <td></td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Modulo.Nome)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Modulo.Comando)
+                                    </td>
+                                </tr>
+                               
+                                }
+                                }
+                                </table>
+                                </dd>    
+                        } 
                         @if(contDroope!=0){
                                 
                             <dd>Droope</dd>
@@ -228,6 +260,34 @@ var contWifite = 0;
                         @foreach (var item in Model.ModuliProgetto) {
                             
                                 @if(item.Modulo is webmva.Models.ModuloJOOMSCAN){
+                                <tr>
+                                <td></td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Modulo.Nome)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Modulo.Comando)
+                                    </td>
+                                </tr>
+                               
+                                }
+                                }
+                                </table>
+                                </dd>   
+                        }  
+                        @if(contWpscan!=0){
+                                
+                            <dd>Wpscan</dd>
+                            <dd>
+                            <table class="table">
+                                <tr>
+                                    <th> </th>
+                                    <th>Modulo</th>
+                                    <th>Comando</th>
+                                </tr>
+                        @foreach (var item in Model.ModuliProgetto) {
+                            
+                                @if(item.Modulo is webmva.Models.ModuloWPSCAN){
                                 <tr>
                                 <td></td>
                                     <td>

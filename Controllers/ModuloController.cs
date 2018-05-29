@@ -26,14 +26,16 @@ namespace webmva.Controllers_
             var listaNMAP = await _context.Moduli.Where(modulo => modulo.Applicazione == APPLICAZIONE.NMAP).ToListAsync();
             var listaNESSUS = await _context.Moduli.Where(modulo => modulo.Applicazione == APPLICAZIONE.NESSUS).ToListAsync();
             var listaDNSRECON = await _context.Moduli.Where(modulo => modulo.Applicazione == APPLICAZIONE.DNSRECON).ToListAsync();
+            var listaFIERCE = await _context.Moduli.Where(modulo => modulo.Applicazione == APPLICAZIONE.FIERCE).ToListAsync();
             var listaDROOPE = await _context.Moduli.Where(modulo => modulo.Applicazione == APPLICAZIONE.DROOPE).ToListAsync();
             var listaJOOMSCAN = await _context.Moduli.Where(modulo => modulo.Applicazione == APPLICAZIONE.JOOMSCAN).ToListAsync();
+            var listaWPSCAN = await _context.Moduli.Where(modulo => modulo.Applicazione == APPLICAZIONE.WPSCAN).ToListAsync();
             var listaINFOGA = await _context.Moduli.Where(modulo => modulo.Applicazione == APPLICAZIONE.INFOGA).ToListAsync();
             var listaINFOGAEMAIL = await _context.Moduli.Where(modulo => modulo.Applicazione == APPLICAZIONE.INFOGAEMAIL).ToListAsync();
             var listaWAPITI = await _context.Moduli.Where(modulo => modulo.Applicazione == APPLICAZIONE.WAPITI).ToListAsync();
             var listaSQLMAP = await _context.Moduli.Where(modulo => modulo.Applicazione == APPLICAZIONE.SQLMAP).ToListAsync();
             var listaWIFITE = await _context.Moduli.Where(modulo => modulo.Applicazione == APPLICAZIONE.WIFITE).ToListAsync();
-            return View(new ListaModuliVM { ModuliNMAP = listaNMAP, ModuliNESSUS= listaNESSUS, ModuliDNSRECON = listaDNSRECON, ModuliDROOPE= listaDROOPE,ModuliJOOMSCAN=listaJOOMSCAN, ModuliINFOGA =listaINFOGA,ModuliINFOGAEMAIL = listaINFOGAEMAIL, ModuliWAPITI = listaWAPITI, ModuliSQLMAP = listaSQLMAP, ModuliWIFITE = listaWIFITE });
+            return View(new ListaModuliVM { ModuliNMAP = listaNMAP, ModuliNESSUS= listaNESSUS, ModuliDNSRECON = listaDNSRECON, ModuliFIERCE= listaFIERCE, ModuliDROOPE= listaDROOPE,ModuliJOOMSCAN=listaJOOMSCAN,ModuliWPSCAN=listaWPSCAN, ModuliINFOGA =listaINFOGA,ModuliINFOGAEMAIL = listaINFOGAEMAIL, ModuliWAPITI = listaWAPITI, ModuliSQLMAP = listaSQLMAP, ModuliWIFITE = listaWIFITE });
         }
 
         // GET: Modulo/Details/5
@@ -104,6 +106,19 @@ namespace webmva.Controllers_
                     }
                 }
             }
+             else if (createmodulo.FIERCE.Nome != null && cosa.Equals("fierce"))
+            {
+                {
+                    if (ModelState.IsValid)
+                    {
+                        ModuloFIERCE mod = createmodulo.FIERCE;
+                        mod.Applicazione = APPLICAZIONE.FIERCE;
+                        _context.Moduli.Add(mod);
+                        await _context.SaveChangesAsync();
+                        return RedirectToAction(nameof(Index));
+                    }
+                }
+            }
             else if (createmodulo.DROOPE.Nome != null && cosa.Equals("droopescan"))
             {
                 {
@@ -124,6 +139,19 @@ namespace webmva.Controllers_
                     {
                         ModuloJOOMSCAN mod = createmodulo.JOOMSCAN;
                         mod.Applicazione = APPLICAZIONE.JOOMSCAN;
+                        _context.Moduli.Add(mod);
+                        await _context.SaveChangesAsync();
+                        return RedirectToAction(nameof(Index));
+                    }
+                }
+            }
+             else if (createmodulo.WPSCAN.Nome != null && cosa.Equals("wpscan"))
+            {
+                {
+                    if (ModelState.IsValid)
+                    {
+                        ModuloWPSCAN mod = createmodulo.WPSCAN;
+                        mod.Applicazione = APPLICAZIONE.WPSCAN;
                         _context.Moduli.Add(mod);
                         await _context.SaveChangesAsync();
                         return RedirectToAction(nameof(Index));
@@ -221,8 +249,12 @@ namespace webmva.Controllers_
                 return View(new EditModuloVM((ModuloDNSRECON) modulo));
             else if (modulo is ModuloDROOPE)
                 return View(new EditModuloVM((ModuloDROOPE) modulo));
+             else if (modulo is ModuloFIERCE)
+                return View(new EditModuloVM((ModuloFIERCE) modulo));    
             else if (modulo is ModuloJOOMSCAN)
                 return View(new EditModuloVM((ModuloJOOMSCAN) modulo));
+             else if (modulo is ModuloWPSCAN)
+                return View(new EditModuloVM((ModuloWPSCAN) modulo));    
             else if (modulo is ModuloINFOGA)
                 return View(new EditModuloVM((ModuloINFOGA) modulo));
             else if (modulo is ModuloINFOGAEMAIL)
@@ -332,6 +364,35 @@ namespace webmva.Controllers_
                     return RedirectToAction(nameof(Index));
                 }
             }
+             else if (!string.IsNullOrEmpty(editmodulo.FIERCE.Nome))
+            {
+                ModuloFIERCE mod = editmodulo.FIERCE;
+                if (id != mod.ID)
+                {
+                    return NotFound();
+                }
+
+                if (ModelState.IsValid)
+                {
+                    try
+                    {
+                        _context.Update(mod);
+                        await _context.SaveChangesAsync();
+                    }
+                    catch (DbUpdateConcurrencyException)
+                    {
+                        if (!ModuloExists(mod.ID))
+                        {
+                            return NotFound();
+                        }
+                        else
+                        {
+                            throw;
+                        }
+                    }
+                    return RedirectToAction(nameof(Index));
+                }
+            }
              else if (!string.IsNullOrEmpty(editmodulo.DROOPE.Nome))
             {
                 ModuloDROOPE mod = editmodulo.DROOPE;
@@ -364,6 +425,35 @@ namespace webmva.Controllers_
              else if (!string.IsNullOrEmpty(editmodulo.JOOMSCAN.Nome))
             {
                 ModuloJOOMSCAN mod = editmodulo.JOOMSCAN;
+                if (id != mod.ID)
+                {
+                    return NotFound();
+                }
+
+                if (ModelState.IsValid)
+                {
+                    try
+                    {
+                        _context.Update(mod);
+                        await _context.SaveChangesAsync();
+                    }
+                    catch (DbUpdateConcurrencyException)
+                    {
+                        if (!ModuloExists(mod.ID))
+                        {
+                            return NotFound();
+                        }
+                        else
+                        {
+                            throw;
+                        }
+                    }
+                    return RedirectToAction(nameof(Index));
+                }
+            }
+             else if (!string.IsNullOrEmpty(editmodulo.WPSCAN.Nome))
+            {
+                ModuloWPSCAN mod = editmodulo.WPSCAN;
                 if (id != mod.ID)
                 {
                     return NotFound();

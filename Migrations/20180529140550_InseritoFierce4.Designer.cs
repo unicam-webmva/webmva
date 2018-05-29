@@ -12,8 +12,8 @@ using webmva.Models;
 namespace webmva.Migrations
 {
     [DbContext(typeof(MyDbContext))]
-    [Migration("20180529093505_InseritoJoomscan3")]
-    partial class InseritoJoomscan3
+    [Migration("20180529140550_InseritoFierce4")]
+    partial class InseritoFierce4
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -117,6 +117,26 @@ namespace webmva.Migrations
                     b.ToTable("ModuloDROOPE");
 
                     b.HasDiscriminator().HasValue("ModuloDROOPE");
+                });
+
+            modelBuilder.Entity("webmva.Models.ModuloFIERCE", b =>
+                {
+                    b.HasBaseType("webmva.Models.Modulo");
+
+                    b.Property<string>("ComandoPersonalizzato")
+                        .HasColumnName("ModuloFIERCE_ComandoPersonalizzato");
+
+                    b.Property<bool>("Connect");
+
+                    b.Property<string>("DnServer");
+
+                    b.Property<string>("SubDomain");
+
+                    b.Property<bool>("Wide");
+
+                    b.ToTable("ModuloFIERCE");
+
+                    b.HasDiscriminator().HasValue("ModuloFIERCE");
                 });
 
             modelBuilder.Entity("webmva.Models.ModuloINFOGA", b =>
@@ -428,6 +448,33 @@ namespace webmva.Migrations
                     b.ToTable("ModuloWIFITE");
 
                     b.HasDiscriminator().HasValue("ModuloWIFITE");
+                });
+
+            modelBuilder.Entity("webmva.Models.ModuloWPSCAN", b =>
+                {
+                    b.HasBaseType("webmva.Models.Modulo");
+
+                    b.Property<string>("ComandoPersonalizzato")
+                        .HasColumnName("ModuloWPSCAN_ComandoPersonalizzato");
+
+                    b.Property<string>("Cookie")
+                        .HasColumnName("ModuloWPSCAN_Cookie");
+
+                    b.Property<bool>("DisableChecks");
+
+                    b.Property<bool>("Force")
+                        .HasColumnName("ModuloWPSCAN_Force");
+
+                    b.Property<bool>("RandomAgent");
+
+                    b.Property<string>("UserAgent")
+                        .HasColumnName("ModuloWPSCAN_UserAgent");
+
+                    b.Property<bool>("VerbositàWP");
+
+                    b.ToTable("ModuloWPSCAN");
+
+                    b.HasDiscriminator().HasValue("ModuloWPSCAN");
                 });
 
             modelBuilder.Entity("webmva.Models.ModuliProgetto", b =>

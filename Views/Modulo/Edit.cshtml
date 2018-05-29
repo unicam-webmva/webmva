@@ -3,8 +3,10 @@
     bool nmap = Model.NMAP != null;
     bool nessus = Model.NESSUS != null;
     bool dnsrecon = Model.DNSRECON != null;
+    bool fierce = Model.FIERCE != null;
     bool droopescan = Model.DROOPE != null;
     bool joomscan = Model.JOOMSCAN != null;
+    bool wpscan = Model.WPSCAN != null;
     bool infoga = Model.INFOGA != null;
     bool infogaemail = Model.INFOGAEMAIL != null;
     bool wapiti = Model.WAPITI != null;
@@ -1502,5 +1504,189 @@
 </div>
                             </form>
 }
+ @* -----WPSCAN----- *@
+    else if (wpscan)
+    {
+        <h2><em>Modifica modulo</em><strong> @(Model.WPSCAN.Nome)</strong></h2>
+        <hr />
+<form asp-action="Edit" name="wpscanForm">
+                                <input type="hidden" asp-for="@Model.WPSCAN.Applicazione" value="@webmva.Models.APPLICAZIONE.WPSCAN" />
+<input type="hidden" asp-for="@Model.WPSCAN.ID" />
+                                  <div class="row panel panel-default panel-body">
 
+                                <div class="col-sm-12">
+                                    <div class="col-sm-7" style="margin:0 auto; float:none">
+                                        <div class="form-group">
+                                            <h4 asp-for="@(Model.WPSCAN.Nome)">Nome Modulo</h4>
+                                            <input class="form-control" asp-for="@(Model.WPSCAN.Nome)" />
+                                        </div>
+                                    </div>
+
+                                    <hr />
+                                    <div class="col-sm-12">
+                                        <div class="col-sm-12">
+                                            <div class="col-sm-7" style="margin:0 auto; float:none">
+                                                <div class="form-group row">
+                                                    <h4 asp-for="@(Model.WPSCAN.ComandoPersonalizzato)">Comando Personalizzato</h4>
+                                                    <input class="form-control" asp-for="@(Model.WPSCAN.ComandoPersonalizzato)" />
+                                                </div>
+
+                                            </div>
+ <hr/>
+                                        </div>
+
+                                    </div>
+                                   
+                                    <div class="col-sm-12">
+                                        <h4>Tipi di enumerazione</h4>
+                                        <hr />
+                                       <div class="form-group row">
+                                                    <div class="col-sm-6">
+                                                        <label class="control-label">
+                                                            <input type="checkbox" asp-for="@Model.WPSCAN.Force" /> Force (-f)
+                                                        </label>
+                                                    </div>
+                                                     <div class="col-sm-6">
+                                                        <label class="control-label">
+                                                            <input type="checkbox" asp-for="@Model.WPSCAN.RandomAgent" /> Random Agent (-r)
+                                                        </label>
+                                                    </div>
+                                                     <div class="col-sm-6">
+                                                        <label class="control-label">
+                                                            <input type="checkbox" asp-for="@Model.WPSCAN.VerbositàWP" />  Verbosità (-v)
+                                                        </label>
+                                                    </div>
+                                                     <div class="col-sm-6">
+                                                        <label class="control-label">
+                                                            <input type="checkbox" asp-for="@Model.WPSCAN.DisableChecks" /> Disable Checks ( --disable-tls-checks)
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                          <div class="form-group row">
+                                            <div class="col-sm-4">
+                                                <label class="control-label">Scegli il cookie </label>
+                                            </div>
+                                             <div class="col-sm-1"></div>
+                                            <input type="text" class="col-sm-5" asp-for="@Model.WPSCAN.Cookie" />  
+                                        </div>
+                                          <div class="form-group row">
+                                            <div class="col-sm-4">
+                                                <label class="control-label">Scegli lo user agent </label>
+                                            </div>
+                                             <div class="col-sm-1"></div>
+                                            <input type="text" class="col-sm-5" asp-for="@Model.WPSCAN.UserAgent" />  
+                                        </div>
+                                        <div class="col-sm-12">
+                                            <hr/>
+                                            <div class="col-sm-5">
+                                                <div clas="form-group row">
+                                                 <a href="https://github.com/wpscanteam/wpscan"target="_blank"><span class="glyphicon glyphicon-info-sign" style="font-size:90%"></span>
+                                        consulta il documentazione di Wpscan</a>
+                                        </div>
+                                        </div>
+                                        <div class="col-sm-1"></div>
+                                        <div class="col-sm-6 text-right">
+                                            <div class="form-group row">
+                                                <input type="submit" asp-action="Edit" asp-route-id="@Model.WPSCAN.ID" class="btn btn-default" value="Salva" />&nbsp;&nbsp; |
+                                                <a asp-action="Index"> Torna alla lista</a>
+                                            </div>
+                                        </div>
+                                        </div>
+                                    </div>
+                                </div>
+</div>
+                            </form>
+
+}
+
+
+
+ @* -----FIERCE----- *@
+    else if (fierce)
+    {
+        <h2><em>Modifica modulo</em><strong> @(Model.FIERCE.Nome)</strong></h2>
+        <hr />
+        <form asp-action="Edit" name="fierceForm">
+                                <input type="hidden" asp-for="@Model.FIERCE.Applicazione" value="@webmva.Models.APPLICAZIONE.FIERCE" />
+<input type="hidden" asp-for="@Model.FIERCE.ID" />
+                                  <div class="row panel panel-default panel-body">
+
+                                <div class="col-sm-12">
+                                    <div class="col-sm-7" style="margin:0 auto; float:none">
+                                        <div class="form-group">
+                                            <h4 asp-for="@(Model.FIERCE.Nome)">Nome Modulo</h4>
+                                            <input class="form-control" asp-for="@(Model.FIERCE.Nome)" />
+                                        </div>
+                                    </div>
+
+                                    <hr />
+                                    <div class="col-sm-12">
+                                        <div class="col-sm-12">
+                                            <div class="col-sm-7" style="margin:0 auto; float:none">
+                                                <div class="form-group row">
+                                                    <h4 asp-for="@(Model.FIERCE.ComandoPersonalizzato)">Comando Personalizzato</h4>
+                                                    <input class="form-control" asp-for="@(Model.FIERCE.ComandoPersonalizzato)" />
+                                                </div>
+
+                                            </div>
+ <hr/>
+                                        </div>
+
+                                    </div>
+                                   
+                                    <div class="col-sm-12">
+                                        <h4>Tipi di enumerazione</h4>
+                                        <hr />
+                                        <div class=col-sm-6>
+                                        <div class="form-group row">
+                                                   
+                                                        <label class="control-label">
+                                                            <input type="checkbox" asp-for="@Model.FIERCE.Connect" /> Connect (--connect)
+                                                        </label>
+                                                    
+                                                </div>
+                                                <div class="form-group row">
+                                                    
+                                                        <label class="control-label">
+                                                            <input type="checkbox" asp-for="@Model.FIERCE.Wide" /> Wide (--wide)
+
+                                                        </label>
+                                                    
+                                                </div>
+                                                </div>
+                                          <div class="form-group row">
+                                            <div class="col-sm-4">
+                                                <label class="control-label">Scegli il DnsServer </label>
+                                            </div>
+                                             <div class="col-sm-1"></div>
+                                            <input type="text" class="col-sm-5" asp-for="@Model.FIERCE.DnServer" />  
+                                        </div>
+                                          <div class="form-group row">
+                                            <div class="col-sm-4">
+                                                <label class="control-label">Scegli il SubDomain </label>
+                                            </div>
+                                             <div class="col-sm-1"></div>
+                                            <input type="text" class="col-sm-5" asp-for="@Model.FIERCE.SubDomain" />  
+                                        </div>
+                                        <div class="col-sm-12">
+                                            <hr/>
+                                            <div class="col-sm-5">
+                                                <div clas="form-group row">
+                                                 <a href="https://github.com/mschwager/fierce"target="_blank"><span class="glyphicon glyphicon-info-sign" style="font-size:90%"></span>
+                                        consulta il documentazione di Fierce</a>
+                                        </div>
+                                        </div>
+                                        <div class="col-sm-1"></div>
+                                        <div class="col-sm-6 text-right">
+                                            <div class="form-group row">
+                                                <input type="submit" asp-action="Edit" asp-route-id="@Model.FIERCE.ID" class="btn btn-default" value="Salva" />&nbsp;&nbsp; |
+                                                <a asp-action="Index"> Torna alla lista</a>
+                                            </div>
+                                        </div>
+                                        </div>
+                                    </div>
+                                </div>
+</div>
+                            </form>
+}
 }

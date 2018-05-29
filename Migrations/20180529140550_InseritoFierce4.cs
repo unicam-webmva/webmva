@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace webmva.Migrations
 {
-    public partial class InseritoJoomscan3 : Migration
+    public partial class InseritoFierce4 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -29,6 +29,11 @@ namespace webmva.Migrations
                     Check = table.Column<int>(nullable: true),
                     Cms = table.Column<int>(nullable: true),
                     ModuloDROOPE_ComandoPersonalizzato = table.Column<string>(nullable: true),
+                    ModuloFIERCE_ComandoPersonalizzato = table.Column<string>(nullable: true),
+                    Connect = table.Column<bool>(nullable: true),
+                    DnServer = table.Column<string>(nullable: true),
+                    SubDomain = table.Column<string>(nullable: true),
+                    Wide = table.Column<bool>(nullable: true),
                     ModuloINFOGA_ComandoPersonalizzato = table.Column<string>(nullable: true),
                     Source = table.Column<int>(nullable: true),
                     Verbose = table.Column<int>(nullable: true),
@@ -142,7 +147,14 @@ namespace webmva.Migrations
                     scanTime = table.Column<int>(nullable: true),
                     wep = table.Column<bool>(nullable: true),
                     wpa = table.Column<bool>(nullable: true),
-                    wpsSetting = table.Column<bool>(nullable: true)
+                    wpsSetting = table.Column<bool>(nullable: true),
+                    ModuloWPSCAN_ComandoPersonalizzato = table.Column<string>(nullable: true),
+                    ModuloWPSCAN_Cookie = table.Column<string>(nullable: true),
+                    DisableChecks = table.Column<bool>(nullable: true),
+                    ModuloWPSCAN_Force = table.Column<bool>(nullable: true),
+                    RandomAgent = table.Column<bool>(nullable: true),
+                    ModuloWPSCAN_UserAgent = table.Column<string>(nullable: true),
+                    VerbositàWP = table.Column<bool>(nullable: true)
                 },
                 constraints: table =>
                 {

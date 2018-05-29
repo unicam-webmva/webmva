@@ -109,6 +109,12 @@
                                                     <span class="glyphicon glyphicon-play" style="font-size:65%"></span>
                                                 </a>
                                             </li>
+                                            <li>
+                                                <a   data-toggle="collapse" href="#WPSCAN">
+                                                    Wpscan
+                                                    <span class="glyphicon glyphicon-play" style="font-size:65%"></span>
+                                                </a>
+                                            </li>
                                         </ul>
 
                                     </div>
@@ -127,6 +133,12 @@
                                             <li>
                                                 <a   data-toggle="collapse" href="#DnsRecon">
                                                     Dnsrecon
+                                                    <span class="glyphicon glyphicon-play" style="font-size:65%"></span>
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a   data-toggle="collapse" href="#feirce">
+                                                    Fierce
                                                     <span class="glyphicon glyphicon-play" style="font-size:65%"></span>
                                                 </a>
                                             </li>
@@ -871,14 +883,6 @@
                                         </div>
 
                                     </div>
-                                     <div class="col-sm-12">
-                                        <div class="col-sm-7" style="margin:0 auto; float:none">
-                                            <div class="form-group row">
-                                                <h4 asp-for="@(Model.DNSRECON.NameServer)">Name Server</h4>
-                                                <input class="form-control" asp-for="@(Model.DNSRECON.NameServer)" />
-                                            </div>
-                                        </div>
-                                    </div>
                                     <div class="col-sm-12">
                                         <h4>Tipi di enumerazione</h4>
                                         <hr />
@@ -933,7 +937,7 @@
                 </div>
             </div>
 
-
+<div class="col-5">
             <div class="panel panel-sidebar">
                 <div class="panel-heading">
                     <a   data-toggle="collapse" href="#JOOMSCAN">
@@ -1024,13 +1028,132 @@
                     </div>
                 </div>
             </div>
-        </div>
+            </div>
+            <div class="col-5">
+               <div class="panel panel-sidebar">
+                <div class="panel-heading">
+                    <a   data-toggle="collapse" href="#WPSCAN">
+                        <strong>
+                            WPSCAN
+                        </strong>
+                        <span class="caret"></span>
+                    </a>
+                </div>
+                <div class="collapse col-5" id="WPSCAN">
+                    <div class="panel-body">
+                        <h4>
+                            <strong> Configura modulo </strong>
+                        </h4>
+                         <hr>
+                            <form asp-action="Create" name="wpscanForm">
+                                <input type="hidden" asp-for="@Model.WPSCAN.Applicazione" value="@webmva.Models.APPLICAZIONE.WPSCAN" />
 
-        <div class="panel panel-default">
+
+                                <div class="col-sm-12">
+                                    <div class="col-sm-7" style="margin:0 auto; float:none">
+                                        <div class="form-group">
+                                            <h4 asp-for="@(Model.WPSCAN.Nome)">Nome Modulo</h4>
+                                            <input class="form-control" asp-for="@(Model.WPSCAN.Nome)" />
+                                        </div>
+                                    </div>
+
+                                    <hr />
+                                    <div class="col-sm-12">
+                                        <div class="col-sm-12">
+                                            <div class="col-sm-7" style="margin:0 auto; float:none">
+                                                <div class="form-group row">
+                                                    <h4 asp-for="@(Model.WPSCAN.ComandoPersonalizzato)">Comando Personalizzato</h4>
+                                                    <input class="form-control" asp-for="@(Model.WPSCAN.ComandoPersonalizzato)" />
+                                                </div>
+
+                                            </div>
+ <hr/>
+                                        </div>
+
+                                    </div>
+                                   
+                                    <div class="col-sm-12">
+                                        <h4>Tipi di enumerazione</h4>
+                                        <hr />
+                                        <div class=col-sm-6>
+                                        <div class="form-group row">
+                                                   
+                                                        <label class="control-label">
+                                                            <input type="checkbox" asp-for="@Model.WPSCAN.Force" /> Force (-f)
+                                                        </label>
+                                                    
+                                                </div>
+                                                <div class="form-group row">
+                                                    
+                                                        <label class="control-label">
+                                                            <input type="checkbox" asp-for="@Model.WPSCAN.RandomAgent" /> Random Agent (-r)
+                                                        </label>
+                                                    
+                                                </div>
+                                                </div>
+                                                 <div class=col-sm-6>
+                                                <div class="form-group row">
+                                                   
+                                                        <label class="control-label">
+                                                            <input type="checkbox" asp-for="@Model.WPSCAN.VerbositàWP" /> Verbosità (-v)
+                                                    
+                                                </div>
+                                                <div class="form-group row">
+                                                    
+                                                        <label class="control-label">
+                                                            <input type="checkbox" asp-for="@Model.WPSCAN.DisableChecks" /> Disable Checks ( --disable-tls-checks)
+                                                   
+                                                </div>
+                                                </div>
+                                       
+                                          <div class="form-group row">
+                                            <div class="col-sm-4">
+                                                <label class="control-label">Scegli il cookie </label>
+                                            </div>
+                                             <div class="col-sm-1"></div>
+                                            <input type="text" class="col-sm-5" asp-for="@Model.WPSCAN.Cookie" />  
+                                        </div>
+                                          <div class="form-group row">
+                                            <div class="col-sm-4">
+                                                <label class="control-label">Scegli lo user agent </label>
+                                            </div>
+                                             <div class="col-sm-1"></div>
+                                            <input type="text" class="col-sm-5" asp-for="@Model.WPSCAN.UserAgent" />  
+                                        </div>
+                                        <div class="col-sm-12">
+                                            <hr/>
+                                            <div class="col-sm-5">
+                                                <div clas="form-group row">
+                                                 <a href="https://github.com/wpscanteam/wpscan"target="_blank"><span class="glyphicon glyphicon-info-sign" style="font-size:90%"></span>
+                                        consulta il documentazione di Wpscan</a>
+                                        </div>
+                                        </div>
+                                        <div class="col-sm-1"></div>
+                                        <div class="col-sm-6 text-right">
+                                            <div class="form-group row">
+                                                <input type="submit" asp-action="Create" asp-route-cosa="wpscan" class="btn btn-default" value="Crea" />&nbsp;&nbsp; |
+                                                <a asp-action="Index"> Torna alla lista</a>
+                                            </div>
+                                        </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </form>
+
+                    </div>
+                </div>
+            </div>
+            </div>
+
+
+
+        </div>
+ <div class="panel panel-default">
             <div class="panel-heading">
                 <a href="#dns" data-toggle="collapse">
                     <strong>
-                        DNS
+                       DNS
                     </strong>
 
                 </a>
@@ -1047,9 +1170,9 @@
                     </div>
                     <div class="collapse col-5" id="DnsRecon">
                         <div class="panel-body">
-                            <h4>
-                                <strong> Configura modulo </strong>
-                            </h4>
+                            <h3>
+                                <strong> Configura modulo  </strong>
+                            </h3>
                             <hr>
                             <form asp-action="Create" name="dnsReconForm">
                                 <input type="hidden" asp-for="@Model.DNSRECON.Applicazione" value="@webmva.Models.APPLICAZIONE.DNSRECON" />
@@ -1155,32 +1278,115 @@
                                 </div>
 
                             </form>
+</div>
                         </div>
                     </div>
                 </div>
-            </div>
-
-
-            <div class="panel panel-sidebar">
+                 <div class="col-5">
+             <div class="panel panel-sidebar">
                 <div class="panel-heading">
-                    <a   data-toggle="collapse" href="#vedi2">
+                    <a   data-toggle="collapse" href="#fierce">
                         <strong>
-                            vedi
+                            FIERCE
                         </strong>
                         <span class="caret"></span>
                     </a>
                 </div>
-                <div class="collapse col-5" id="vedi2">
+                <div class="collapse col-5" id="fierce">
                     <div class="panel-body">
                         <h4>
                             <strong> Configura modulo </strong>
                         </h4>
-                        <hr>
+                         <hr>
+                            <form asp-action="Create" name="fierceForm">
+                                <input type="hidden" asp-for="@Model.FIERCE.Applicazione" value="@webmva.Models.APPLICAZIONE.FIERCE" />
 
+
+                                <div class="col-sm-12">
+                                    <div class="col-sm-7" style="margin:0 auto; float:none">
+                                        <div class="form-group">
+                                            <h4 asp-for="@(Model.FIERCE.Nome)">Nome Modulo</h4>
+                                            <input class="form-control" asp-for="@(Model.FIERCE.Nome)" />
+                                        </div>
+                                    </div>
+
+                                    <hr />
+                                    <div class="col-sm-12">
+                                        <div class="col-sm-12">
+                                            <div class="col-sm-7" style="margin:0 auto; float:none">
+                                                <div class="form-group row">
+                                                    <h4 asp-for="@(Model.FIERCE.ComandoPersonalizzato)">Comando Personalizzato</h4>
+                                                    <input class="form-control" asp-for="@(Model.FIERCE.ComandoPersonalizzato)" />
+                                                </div>
+
+                                            </div>
+ <hr/>
+                                        </div>
+
+                                    </div>
+                                   
+                                    <div class="col-sm-12">
+                                        <h4>Tipi di enumerazione</h4>
+                                        <hr />
+                                      
+                                        <div class="form-group row">
+                                                   <div class="col-sm-6">
+                                                        <label class="control-label">
+                                                            <input type="checkbox" asp-for="@Model.FIERCE.Connect" /> Connect (--connect)
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row">
+                                                     <div class="col-sm-6">
+                                                        <label class="control-label">
+                                                            <input type="checkbox" asp-for="@Model.FIERCE.Wide" /> Wide (--wide)
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                                
+                                          <div class="form-group row">
+                                            <div class="col-sm-4">
+                                                <label class="control-label">Scegli il DnsServer </label>
+                                            </div>
+                                               <div class="col-sm-1"></div>
+                                            <input type="text" class="col-sm-5" asp-for="@Model.FIERCE.DnServer" />  
+                                        </div>
+                                          <div class="form-group row">
+                                            <div class="col-sm-4">
+                                                <label class="control-label">Scegli il SubDomain </label>
+                                            </div>
+                                            <div class="col-sm-1"></div>
+                                            <input type="text" class="col-sm-5" asp-for="@Model.FIERCE.SubDomain" />  
+                                        </div>
+                                        
+                                        <div class="col-sm-12">
+                                            <hr/>
+                                            <div class="col-sm-5">
+                                                <div clas="form-group row">
+                                                 <a href="https://github.com/mschwager/fierce"target="_blank"><span class="glyphicon glyphicon-info-sign" style="font-size:90%"></span>
+                                        consulta il documentazione di Fierce</a>
+                                        </div>
+                                        </div>
+                                        <div class="col-sm-1"></div>
+                                        <div class="col-sm-6 text-right">
+                                            <div class="form-group row">
+                                                <input type="submit" asp-action="Create" asp-route-cosa="fierce" class="btn btn-default" value="Crea" />&nbsp;&nbsp; |
+                                                <a asp-action="Index"> Torna alla lista</a>
+                                            </div>
+                                        </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </form>
                     </div>
                 </div>
             </div>
+            
         </div>
+            </div>
+        </div>
+    
         <div class="panel panel-default">
             <div class="panel-heading">
                 <a href="#ig" data-toggle="collapse">
@@ -1794,85 +2000,7 @@
                     </div>
                 </div>
             </div>
-             <div class="col-5">
-                <div class="panel panel-sidebar">
-                    <div class="panel-heading">
-                        <a   data-toggle="collapse" href="#Nosql">
-                            <strong>
-                                NoSql
-                            </strong>
-                            <span class="caret"></span>
-                        </a>
-                    </div>
-                    <div class="collapse col-5" id="Nosql">
-                        <div class="panel-body">
-                            <h4>
-                                <strong> Configura modulo </strong>
-                            </h4>
-                            <hr>
-                            <form asp-action="Create" name="noSqlForm">
-                                <input type="hidden" asp-for="@Model.INFOGAEMAIL.Applicazione" value="@webmva.Models.APPLICAZIONE.INFOGAEMAIL" />
-
-
-                                <div class="col-sm-12">
-                                    <div class="col-sm-7" style="margin:0 auto; float:none">
-                                        <div class="form-group">
-                                            <h4 asp-for="@(Model.INFOGAEMAIL.Nome)">Nome Modulo</h4>
-                                            <input class="form-control" asp-for="@(Model.INFOGAEMAIL.Nome)" />
-                                        </div>
-                                    </div>
-
-                                    <hr />
-                                    <div class="col-sm-12">
-                                        <div class="col-sm-7" style="margin:0 auto; float:none">
-                                            <div class="form-group row">
-                                                <h4 asp-for="@(Model.INFOGAEMAIL.ComandoPersonalizzato)">Comando Personalizzato</h4>
-                                                <input class="form-control" asp-for="@(Model.INFOGAEMAIL.ComandoPersonalizzato)" />
-                                            </div>
-
-                                        </div>
-                                    </div>
-
-                                    <div class="col-sm-12">
-                                        <h4>Tipi di enumerazione</h4>
-                                        <hr />
-                                       
-                                        <div class="form-group row">
-                                            <div class="col-sm-4">
-                                                <label class="control-label">Scegli verbosità</label>
-                                            </div>
-                                            <select class="col-sm-5" asp-for="@Model.INFOGAEMAIL.Verbose">
-                                                <option value="3">nessuno</option>
-                                                <option value="0">uno </option>
-                                                <option value="1">due</option>
-                                                <option value="2">tre</option>
-                                            </select>
-                                        </div>
-                                        <div class="col-sm-12">
-                                        <hr />
-                                            <div class="row">
-
-                                                <div class="form-group col-sm-6">
-                                                    <label class="control-label">
-                                                        <input type="checkbox" asp-for="@Model.INFOGAEMAIL.Breach" /> Breach (-b)
-                                                    </label>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-sm-6 col-sm-offset-6 text-right">
-                                            <div class="form-group">
-                                                <input type="submit" asp-action="Create" asp-route-cosa="infogaemail" class="btn btn-default" value="Crea" />&nbsp;&nbsp; |
-                                                <a asp-action="Index"> Torna alla lista</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </div>
+           
         </div>
          <div class="panel panel-default">
             <div class="panel-heading">
@@ -2035,6 +2163,12 @@
                                             </div>
                                         <div class="col-sm-12">
                                             <hr/>
+                                             <div class="col-sm-5">
+                                                <div clas="form-group row">
+                                                 <a href="https://en.kali.tools/?p=18..c%27%C3%A8"target="_blank"><span class="glyphicon glyphicon-info-sign" style="font-size:90%"></span>
+                                        sito</a>
+                                        </div>
+                                        </div>
                                             <div class="col-sm-5">
                                                 <div clas="form-group row">
                                                  <a href="https://github.com/derv82/wifite2"target="_blank"><span class="glyphicon glyphicon-info-sign" style="font-size:90%"></span>
