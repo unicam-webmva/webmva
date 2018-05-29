@@ -12,6 +12,7 @@ namespace webmva.ViewModels
         public ModuloNESSUS NESSUS { get; set; }
         public ModuloDNSRECON DNSRECON { get; set; }
         public ModuloDROOPE DROOPE{get; set;}
+        public ModuloJOOMSCAN JOOMSCAN{get; set;}
         public ModuloINFOGA INFOGA{get; set;}
         public ModuloINFOGAEMAIL INFOGAEMAIL{get; set;}
         public ModuloWAPITI WAPITI{get; set;}
@@ -24,11 +25,13 @@ namespace webmva.ViewModels
             NESSUS = new ModuloNESSUS();
             DNSRECON = new ModuloDNSRECON();
             DROOPE = new ModuloDROOPE();
+            JOOMSCAN = new ModuloJOOMSCAN();
             INFOGA = new ModuloINFOGA();
             INFOGAEMAIL = new ModuloINFOGAEMAIL();
             WAPITI = new ModuloWAPITI();
             SQLMAP = new ModuloSQLMAP();
             WIFITE = new ModuloWIFITE();
+
 
         }
         public EditModuloVM(ModuloNMAP mod)
@@ -37,6 +40,7 @@ namespace webmva.ViewModels
             NESSUS = null;
             DNSRECON = null;
             DROOPE = null;
+            JOOMSCAN = null;
             INFOGA = null;
             WAPITI= null;
             INFOGAEMAIL = null;
@@ -49,6 +53,7 @@ namespace webmva.ViewModels
             DNSRECON = null;
             NESSUS = mod;
             DROOPE = null;
+            JOOMSCAN = null;
             INFOGA = null;
             WAPITI= null;
             INFOGAEMAIL = null;
@@ -61,6 +66,7 @@ namespace webmva.ViewModels
             NESSUS = null;
             DNSRECON = mod;
             DROOPE = null;
+            JOOMSCAN = null;
             INFOGA = null;
             WAPITI= null;
             INFOGAEMAIL = null;
@@ -74,6 +80,20 @@ namespace webmva.ViewModels
             DNSRECON = null;
             INFOGA = null;
             DROOPE = mod;
+            JOOMSCAN = null;
+            WAPITI= null;
+            INFOGAEMAIL = null;
+            SQLMAP = null;
+            WIFITE = null; 
+        }
+        public EditModuloVM(ModuloJOOMSCAN mod)
+        {
+            NMAP = null;
+            NESSUS = null;
+            DNSRECON = null;
+            INFOGA = null;
+            DROOPE = null;
+            JOOMSCAN = mod;
             WAPITI= null;
             INFOGAEMAIL = null;
             SQLMAP = null;
@@ -86,6 +106,7 @@ namespace webmva.ViewModels
             DNSRECON = null;
             INFOGA = mod;
             DROOPE = null;
+            JOOMSCAN = null; 
             WAPITI= null;
             INFOGAEMAIL = null;
             SQLMAP = null;
@@ -98,6 +119,7 @@ namespace webmva.ViewModels
             DNSRECON = null;
             INFOGA = null;
             DROOPE = null;
+            JOOMSCAN = null;
             WAPITI= null;
             INFOGAEMAIL = mod;
             SQLMAP = null;
@@ -110,6 +132,7 @@ namespace webmva.ViewModels
             DNSRECON = null;
             INFOGA = null;
             DROOPE = null;
+            JOOMSCAN = null;
             WAPITI= mod;
             INFOGAEMAIL = null;
             SQLMAP = null;
@@ -122,6 +145,7 @@ namespace webmva.ViewModels
             DNSRECON = null;
             INFOGA = null;
             DROOPE = null;
+            JOOMSCAN = null;
             WAPITI= null;
             INFOGAEMAIL = null;
             SQLMAP = mod; 
@@ -135,6 +159,7 @@ namespace webmva.ViewModels
             DNSRECON = null;
             INFOGA = null;
             DROOPE = null;
+            JOOMSCAN = null;
             WAPITI= null;
             INFOGAEMAIL = null;
             SQLMAP = null; 

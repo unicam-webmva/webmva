@@ -336,6 +336,12 @@ namespace webmva.Controllers_
                 string comando = $"python \"{percorsoExec}\" {mod.Comando} >> {timestamp}wifite_{nomeCamelCase}.txt ";
                 return comando;
             }
+             if(mod is ModuloJOOMSCAN)
+            {
+                 string percorsoExec = Path.Combine(Globals.CartellaWEBMVA, "Programmi", "joomscan");
+                string comando = $"perl \"{percorsoExec}\" {mod.Comando} >> {timestamp}joomsan_{nomeCamelCase}.txt ";
+                return comando;
+            }
             else return "";
         }
     }

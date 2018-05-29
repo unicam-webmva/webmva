@@ -24,6 +24,7 @@ namespace webmva.Models
     }
     public class ModuloSQLMAP : Modulo
     {
+       
         public string header { get; set; }
         public string credenzialiAutenticazione { get; set; }
         public string dbms { get; set; }

@@ -12,8 +12,8 @@ using webmva.Models;
 namespace webmva.Migrations
 {
     [DbContext(typeof(MyDbContext))]
-    [Migration("20180528133214_prova6")]
-    partial class prova6
+    [Migration("20180529093505_InseritoJoomscan3")]
+    partial class InseritoJoomscan3
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -29,6 +29,8 @@ namespace webmva.Migrations
                     b.Property<int>("ModuloID");
 
                     b.Property<int>("ProgettoID");
+
+                    b.Property<string>("Taget");
 
                     b.HasKey("ID");
 
@@ -88,8 +90,6 @@ namespace webmva.Migrations
 
                     b.Property<bool>("DeepWhois");
 
-                    b.Property<string>("Dominio");
-
                     b.Property<bool>("GoogleEnum");
 
                     b.Property<string>("NameServer");
@@ -114,8 +114,6 @@ namespace webmva.Migrations
                     b.Property<string>("ComandoPersonalizzato")
                         .HasColumnName("ModuloDROOPE_ComandoPersonalizzato");
 
-                    b.Property<string>("URL");
-
                     b.ToTable("ModuloDROOPE");
 
                     b.HasDiscriminator().HasValue("ModuloDROOPE");
@@ -127,9 +125,6 @@ namespace webmva.Migrations
 
                     b.Property<string>("ComandoPersonalizzato")
                         .HasColumnName("ModuloINFOGA_ComandoPersonalizzato");
-
-                    b.Property<string>("Dominio")
-                        .HasColumnName("ModuloINFOGA_Dominio");
 
                     b.Property<int>("Source");
 
@@ -149,14 +144,30 @@ namespace webmva.Migrations
                     b.Property<string>("ComandoPersonalizzato")
                         .HasColumnName("ModuloINFOGAEMAIL_ComandoPersonalizzato");
 
-                    b.Property<string>("Email");
-
                     b.Property<int>("Verbose")
                         .HasColumnName("ModuloINFOGAEMAIL_Verbose");
 
                     b.ToTable("ModuloINFOGAEMAIL");
 
                     b.HasDiscriminator().HasValue("ModuloINFOGAEMAIL");
+                });
+
+            modelBuilder.Entity("webmva.Models.ModuloJOOMSCAN", b =>
+                {
+                    b.HasBaseType("webmva.Models.Modulo");
+
+                    b.Property<string>("ComandoPersonalizzato")
+                        .HasColumnName("ModuloJOOMSCAN_ComandoPersonalizzato");
+
+                    b.Property<string>("Cookie");
+
+                    b.Property<bool>("EnumerateComponents");
+
+                    b.Property<string>("UserAgent");
+
+                    b.ToTable("ModuloJOOMSCAN");
+
+                    b.HasDiscriminator().HasValue("ModuloJOOMSCAN");
                 });
 
             modelBuilder.Entity("webmva.Models.ModuloNESSUS", b =>
@@ -237,9 +248,6 @@ namespace webmva.Migrations
 
                     b.Property<int>("TorType");
 
-                    b.Property<string>("URL")
-                        .HasColumnName("ModuloSQLMAP_URL");
-
                     b.Property<int>("Verbose")
                         .HasColumnName("ModuloSQLMAP_Verbose");
 
@@ -256,8 +264,6 @@ namespace webmva.Migrations
                     b.Property<bool>("commonColumns");
 
                     b.Property<bool>("commonTables");
-
-                    b.Property<string>("connectionString");
 
                     b.Property<bool>("count");
 
@@ -368,9 +374,6 @@ namespace webmva.Migrations
                     b.Property<bool>("ShellShock");
 
                     b.Property<bool>("Sql");
-
-                    b.Property<string>("URL")
-                        .HasColumnName("ModuloWAPITI_URL");
 
                     b.Property<int>("Verbose")
                         .HasColumnName("ModuloWAPITI_Verbose");

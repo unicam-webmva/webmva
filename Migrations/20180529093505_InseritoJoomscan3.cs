@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace webmva.Migrations
 {
-    public partial class prova6 : Migration
+    public partial class InseritoJoomscan3 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -22,7 +22,6 @@ namespace webmva.Migrations
                     ComandoPersonalizzato = table.Column<string>(nullable: true),
                     CrtShEnum = table.Column<bool>(nullable: true),
                     DeepWhois = table.Column<bool>(nullable: true),
-                    Dominio = table.Column<string>(nullable: true),
                     GoogleEnum = table.Column<bool>(nullable: true),
                     NameServer = table.Column<string>(nullable: true),
                     ReverseLookupEnum = table.Column<bool>(nullable: true),
@@ -30,15 +29,16 @@ namespace webmva.Migrations
                     Check = table.Column<int>(nullable: true),
                     Cms = table.Column<int>(nullable: true),
                     ModuloDROOPE_ComandoPersonalizzato = table.Column<string>(nullable: true),
-                    URL = table.Column<string>(nullable: true),
                     ModuloINFOGA_ComandoPersonalizzato = table.Column<string>(nullable: true),
-                    ModuloINFOGA_Dominio = table.Column<string>(nullable: true),
                     Source = table.Column<int>(nullable: true),
                     Verbose = table.Column<int>(nullable: true),
                     Breach = table.Column<bool>(nullable: true),
                     ModuloINFOGAEMAIL_ComandoPersonalizzato = table.Column<string>(nullable: true),
-                    Email = table.Column<string>(nullable: true),
                     ModuloINFOGAEMAIL_Verbose = table.Column<int>(nullable: true),
+                    ModuloJOOMSCAN_ComandoPersonalizzato = table.Column<string>(nullable: true),
+                    Cookie = table.Column<string>(nullable: true),
+                    EnumerateComponents = table.Column<bool>(nullable: true),
+                    UserAgent = table.Column<string>(nullable: true),
                     Porta = table.Column<int>(nullable: true),
                     ServerIP = table.Column<string>(nullable: true),
                     AckDiscoveryPorts = table.Column<string>(nullable: true),
@@ -66,7 +66,6 @@ namespace webmva.Migrations
                     Detection = table.Column<int>(nullable: true),
                     Rischio = table.Column<int>(nullable: true),
                     TorType = table.Column<int>(nullable: true),
-                    ModuloSQLMAP_URL = table.Column<string>(nullable: true),
                     ModuloSQLMAP_Verbose = table.Column<int>(nullable: true),
                     a = table.Column<bool>(nullable: true),
                     allOptimization = table.Column<bool>(nullable: true),
@@ -75,7 +74,6 @@ namespace webmva.Migrations
                     columns = table.Column<bool>(nullable: true),
                     commonColumns = table.Column<bool>(nullable: true),
                     commonTables = table.Column<bool>(nullable: true),
-                    connectionString = table.Column<string>(nullable: true),
                     count = table.Column<bool>(nullable: true),
                     credenzialiAutenticazione = table.Column<string>(nullable: true),
                     currentDb = table.Column<bool>(nullable: true),
@@ -126,7 +124,6 @@ namespace webmva.Migrations
                     Scope = table.Column<int>(nullable: true),
                     ShellShock = table.Column<bool>(nullable: true),
                     Sql = table.Column<bool>(nullable: true),
-                    ModuloWAPITI_URL = table.Column<string>(nullable: true),
                     ModuloWAPITI_Verbose = table.Column<int>(nullable: true),
                     Xss = table.Column<bool>(nullable: true),
                     ModuloWIFITE_ComandoPersonalizzato = table.Column<string>(nullable: true),
@@ -174,7 +171,8 @@ namespace webmva.Migrations
                     ID = table.Column<int>(nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
                     ModuloID = table.Column<int>(nullable: false),
-                    ProgettoID = table.Column<int>(nullable: false)
+                    ProgettoID = table.Column<int>(nullable: false),
+                    Taget = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
