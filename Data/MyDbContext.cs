@@ -30,6 +30,7 @@ namespace webmva.Data
             modelBuilder.Entity<ModuloWAPITI>().HasBaseType<Modulo>();
             modelBuilder.Entity<ModuloSQLMAP>().HasBaseType<Modulo>();
             modelBuilder.Entity<ModuloWIFITE>().HasBaseType<Modulo>();
+             modelBuilder.Entity<ModuloSUBLIST3R>().HasBaseType<Modulo>();
         }
     }
 }
