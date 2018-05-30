@@ -338,7 +338,7 @@ namespace webmva.Controllers_
             }
              if(mod is ModuloOPENDOOR)
             {
-                 string percorsoExec = Path.Combine(Globals.CartellaWEBMVA, "Programmi", "opendoor");
+                 string percorsoExec = Path.Combine(Globals.CartellaWEBMVA, "Programmi", "OpenDoor");
                 string comando = $"python \"{percorsoExec}\" {mod.Comando} >> {timestamp}opendoor_{nomeCamelCase}.txt ";
                 return comando;
             }
@@ -350,8 +350,8 @@ namespace webmva.Controllers_
             }
             if(mod is ModuloWIFITE)
             {
-                string percorsoExec = Path.Combine(Globals.CartellaWEBMVA, "Programmi", "wifite");
-                string comando = $"python \"{percorsoExec}\" {mod.Comando} >> {timestamp}wifite_{nomeCamelCase}.txt ";
+                string percorsoExec = Path.Combine(Globals.CartellaWEBMVA, "Programmi", "wifite2");
+                string comando = $"python \"{percorsoExec}\" {mod.Comando} >> {timestamp}wifite2_{nomeCamelCase}.txt ";
                 return comando;
             }
              if(mod is ModuloJOOMSCAN)
