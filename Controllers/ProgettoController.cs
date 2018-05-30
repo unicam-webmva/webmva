@@ -303,12 +303,12 @@ namespace webmva.Controllers_
             if(mod is ModuloDNSRECON)
             {
                 string percorsoExec = Path.Combine(Globals.CartellaWEBMVA, "Programmi", "dnsrecon");
-                string comando = $"python \"{percorsoExec}\" {mod.Comando} -x {timestamp}dnsrecon_{nomeCamelCase}.xml";
+                string comando = $"python \"{percorsoExec}\" {mod.Comando} --xml {timestamp}dnsrecon_{nomeCamelCase}.xml";
                 return comando;
             }
             if(mod is ModuloFIERCE)
             {
-                string percorsoExec = Path.Combine(Globals.CartellaWEBMVA, "Programmi", "fierce");
+                string percorsoExec = Path.Combine(Globals.CartellaWEBMVA, "Programmi", "fierce", "fierce");
                 string comando = $"python \"{percorsoExec}\" {mod.Comando} >> {timestamp}fierce_{nomeCamelCase}.txt";
                 return comando;
             }
@@ -326,7 +326,7 @@ namespace webmva.Controllers_
             }
              if(mod is ModuloSUBLIST3R)
             {
-                string percorsoExec = Path.Combine(Globals.CartellaWEBMVA, "Programmi", "sublist3r");
+                string percorsoExec = Path.Combine(Globals.CartellaWEBMVA, "Programmi", "Sublist3r");
                 string comando = $"python \"{percorsoExec}\" {mod.Comando}  -o {timestamp}sublist3r_{nomeCamelCase}.txt";
                 return comando;
             }
@@ -364,6 +364,12 @@ namespace webmva.Controllers_
             {
                  string percorsoExec = Path.Combine(Globals.CartellaWEBMVA, "Programmi", "wpscan");
                 string comando = $"ruby \"{percorsoExec}\" {mod.Comando} --log {timestamp}wpscan_{nomeCamelCase}.txt ";
+                return comando;
+            }
+            if(mod is ModuloWASCAN)
+            {
+                 string percorsoExec = Path.Combine(Globals.CartellaWEBMVA, "Programmi", "WAScan");
+                string comando = $"python \"{percorsoExec}\" {mod.Comando} >> {timestamp}wascan_{nomeCamelCase}.txt ";
                 return comando;
             }
              
