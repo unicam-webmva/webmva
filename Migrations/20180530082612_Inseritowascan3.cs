@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace webmva.Migrations
 {
-    public partial class InseritoSUB3 : Migration
+    public partial class Inseritowascan3 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -119,23 +119,6 @@ namespace webmva.Migrations
                     tor = table.Column<bool>(nullable: true),
                     users = table.Column<bool>(nullable: true),
                     All = table.Column<bool>(nullable: true),
-                    AskSUB = table.Column<bool>(nullable: true),
-                    BaiduSUB = table.Column<bool>(nullable: true),
-                    BingSUB = table.Column<bool>(nullable: true),
-                    BruteforceSUB = table.Column<bool>(nullable: true),
-                    ModuloSUBLIST3R_ComandoPersonalizzato = table.Column<string>(nullable: true),
-                    DNSdumpsterSUB = table.Column<bool>(nullable: true),
-                    GoogleSUB = table.Column<bool>(nullable: true),
-                    NetcraftSUB = table.Column<bool>(nullable: true),
-                    PassiveDNSSUB = table.Column<bool>(nullable: true),
-                    PorteSUB = table.Column<string>(nullable: true),
-                    SSLCertificatesSUB = table.Column<bool>(nullable: true),
-                    ThreadSUB = table.Column<int>(nullable: true),
-                    ThreatCrowdSUB = table.Column<bool>(nullable: true),
-                    VerbositàSUB = table.Column<bool>(nullable: true),
-                    VirustotalSUB = table.Column<bool>(nullable: true),
-                    YahooSUB = table.Column<bool>(nullable: true),
-                    ModuloWAPITI_All = table.Column<bool>(nullable: true),
                     BackUp = table.Column<bool>(nullable: true),
                     BlindSql = table.Column<bool>(nullable: true),
                     Buster = table.Column<bool>(nullable: true),
@@ -155,6 +138,22 @@ namespace webmva.Migrations
                     Sql = table.Column<bool>(nullable: true),
                     ModuloWAPITI_Verbose = table.Column<int>(nullable: true),
                     Xss = table.Column<bool>(nullable: true),
+                    Attacks = table.Column<bool>(nullable: true),
+                    Audit = table.Column<bool>(nullable: true),
+                    AutenticazioneW = table.Column<string>(nullable: true),
+                    Bruteforce = table.Column<bool>(nullable: true),
+                    ModuloWASCAN_ComandoPersonalizzato = table.Column<string>(nullable: true),
+                    CookiesW = table.Column<string>(nullable: true),
+                    Disclosure = table.Column<bool>(nullable: true),
+                    Fingerprint = table.Column<bool>(nullable: true),
+                    FullScanW = table.Column<bool>(nullable: true),
+                    HeadersW = table.Column<string>(nullable: true),
+                    MethodsW = table.Column<int>(nullable: true),
+                    ReagentW = table.Column<bool>(nullable: true),
+                    RedirectW = table.Column<bool>(nullable: true),
+                    TimeoutW = table.Column<int>(nullable: true),
+                    UserAgentW = table.Column<string>(nullable: true),
+                    VerbositàW = table.Column<bool>(nullable: true),
                     ModuloWIFITE_ComandoPersonalizzato = table.Column<string>(nullable: true),
                     ModuloWIFITE_Verbose = table.Column<int>(nullable: true),
                     Wps = table.Column<int>(nullable: true),

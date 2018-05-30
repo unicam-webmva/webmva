@@ -377,56 +377,11 @@ namespace webmva.Migrations
                     b.HasDiscriminator().HasValue("ModuloSQLMAP");
                 });
 
-            modelBuilder.Entity("webmva.Models.ModuloSUBLIST3R", b =>
-                {
-                    b.HasBaseType("webmva.Models.Modulo");
-
-                    b.Property<bool>("All");
-
-                    b.Property<bool>("AskSUB");
-
-                    b.Property<bool>("BaiduSUB");
-
-                    b.Property<bool>("BingSUB");
-
-                    b.Property<bool>("BruteforceSUB");
-
-                    b.Property<string>("ComandoPersonalizzato")
-                        .HasColumnName("ModuloSUBLIST3R_ComandoPersonalizzato");
-
-                    b.Property<bool>("DNSdumpsterSUB");
-
-                    b.Property<bool>("GoogleSUB");
-
-                    b.Property<bool>("NetcraftSUB");
-
-                    b.Property<bool>("PassiveDNSSUB");
-
-                    b.Property<string>("PorteSUB");
-
-                    b.Property<bool>("SSLCertificatesSUB");
-
-                    b.Property<int>("ThreadSUB");
-
-                    b.Property<bool>("ThreatCrowdSUB");
-
-                    b.Property<bool>("VerbositàSUB");
-
-                    b.Property<bool>("VirustotalSUB");
-
-                    b.Property<bool>("YahooSUB");
-
-                    b.ToTable("ModuloSUBLIST3R");
-
-                    b.HasDiscriminator().HasValue("ModuloSUBLIST3R");
-                });
-
             modelBuilder.Entity("webmva.Models.ModuloWAPITI", b =>
                 {
                     b.HasBaseType("webmva.Models.Modulo");
 
-                    b.Property<bool>("All")
-                        .HasColumnName("ModuloWAPITI_All");
+                    b.Property<bool>("All");
 
                     b.Property<bool>("BackUp");
 
@@ -471,6 +426,48 @@ namespace webmva.Migrations
                     b.ToTable("ModuloWAPITI");
 
                     b.HasDiscriminator().HasValue("ModuloWAPITI");
+                });
+
+            modelBuilder.Entity("webmva.Models.ModuloWASCAN", b =>
+                {
+                    b.HasBaseType("webmva.Models.Modulo");
+
+                    b.Property<bool>("Attacks");
+
+                    b.Property<bool>("Audit");
+
+                    b.Property<string>("AutenticazioneW");
+
+                    b.Property<bool>("Bruteforce");
+
+                    b.Property<string>("ComandoPersonalizzato")
+                        .HasColumnName("ModuloWASCAN_ComandoPersonalizzato");
+
+                    b.Property<string>("CookiesW");
+
+                    b.Property<bool>("Disclosure");
+
+                    b.Property<bool>("Fingerprint");
+
+                    b.Property<bool>("FullScanW");
+
+                    b.Property<string>("HeadersW");
+
+                    b.Property<int>("MethodsW");
+
+                    b.Property<bool>("ReagentW");
+
+                    b.Property<bool>("RedirectW");
+
+                    b.Property<int>("TimeoutW");
+
+                    b.Property<string>("UserAgentW");
+
+                    b.Property<bool>("VerbositàW");
+
+                    b.ToTable("ModuloWASCAN");
+
+                    b.HasDiscriminator().HasValue("ModuloWASCAN");
                 });
 
             modelBuilder.Entity("webmva.Models.ModuloWIFITE", b =>

@@ -37,7 +37,8 @@ namespace webmva.Controllers_
             var listaWAPITI = await _context.Moduli.Where(modulo => modulo.Applicazione == APPLICAZIONE.WAPITI).ToListAsync();
             var listaSQLMAP = await _context.Moduli.Where(modulo => modulo.Applicazione == APPLICAZIONE.SQLMAP).ToListAsync();
             var listaWIFITE = await _context.Moduli.Where(modulo => modulo.Applicazione == APPLICAZIONE.WIFITE).ToListAsync();
-            return View(new ListaModuliVM { ModuliNMAP = listaNMAP, ModuliNESSUS= listaNESSUS,ModuliOPENDOOR= listaOPENDOOR, ModuliDNSRECON = listaDNSRECON, ModuliFIERCE= listaFIERCE, ModuliDROOPE= listaDROOPE,ModuliJOOMSCAN=listaJOOMSCAN,ModuliWPSCAN=listaWPSCAN, ModuliINFOGA =listaINFOGA,ModuliINFOGAEMAIL = listaINFOGAEMAIL, ModuliSUBLIST3R = listaSUBLIST3R, ModuliWAPITI = listaWAPITI, ModuliSQLMAP = listaSQLMAP, ModuliWIFITE = listaWIFITE });
+            var listaWASCAN = await _context.Moduli.Where(modulo => modulo.Applicazione == APPLICAZIONE.WASCAN).ToListAsync();
+            return View(new ListaModuliVM { ModuliNMAP = listaNMAP, ModuliNESSUS= listaNESSUS,ModuliOPENDOOR= listaOPENDOOR, ModuliDNSRECON = listaDNSRECON, ModuliFIERCE= listaFIERCE, ModuliDROOPE= listaDROOPE,ModuliJOOMSCAN=listaJOOMSCAN,ModuliWPSCAN=listaWPSCAN, ModuliINFOGA =listaINFOGA,ModuliINFOGAEMAIL = listaINFOGAEMAIL, ModuliSUBLIST3R = listaSUBLIST3R, ModuliWAPITI = listaWAPITI, ModuliSQLMAP = listaSQLMAP, ModuliWIFITE = listaWIFITE, ModuliWASCAN =listaWASCAN });
         }
 
         // GET: Modulo/Details/5
@@ -212,6 +213,19 @@ namespace webmva.Controllers_
                     }
                 }
             }
+            else if (createmodulo.WASCAN.Nome != null && cosa.Equals("wascan"))
+            {
+                {
+                    if (ModelState.IsValid)
+                    {
+                        ModuloWASCAN mod = createmodulo.WASCAN;
+                        mod.Applicazione = APPLICAZIONE.WASCAN;
+                        _context.Moduli.Add(mod);
+                        await _context.SaveChangesAsync();
+                        return RedirectToAction(nameof(Index));
+                    }
+                }
+            }
              else if (createmodulo.SQLMAP.Nome != null && cosa.Equals("sqlmap"))
             {
                 {
@@ -296,7 +310,9 @@ namespace webmva.Controllers_
             else if (modulo is ModuloWIFITE)
                 return View(new EditModuloVM((ModuloWIFITE) modulo));
             else if (modulo is ModuloOPENDOOR)
-                return View(new EditModuloVM((ModuloOPENDOOR) modulo));    
+                return View(new EditModuloVM((ModuloOPENDOOR) modulo));
+            else if (modulo is ModuloWASCAN)
+                return View(new EditModuloVM((ModuloWASCAN) modulo));     
             // PROVVISORIO, SOLO PER NON DARE ERRORI DI COMPILAZIONE
             else return View(new EditModuloVM() );
         }
@@ -573,6 +589,35 @@ namespace webmva.Controllers_
              else if (!string.IsNullOrEmpty(editmodulo.SUBLIST3R.Nome))
             {
                 ModuloSUBLIST3R mod = editmodulo.SUBLIST3R;
+                if (id != mod.ID)
+                {
+                    return NotFound();
+                }
+
+                if (ModelState.IsValid)
+                {
+                    try
+                    {
+                        _context.Update(mod);
+                        await _context.SaveChangesAsync();
+                    }
+                    catch (DbUpdateConcurrencyException)
+                    {
+                        if (!ModuloExists(mod.ID))
+                        {
+                            return NotFound();
+                        }
+                        else
+                        {
+                            throw;
+                        }
+                    }
+                    return RedirectToAction(nameof(Index));
+                }
+            }
+             else if (!string.IsNullOrEmpty(editmodulo.WASCAN.Nome))
+            {
+                ModuloWASCAN mod = editmodulo.WASCAN;
                 if (id != mod.ID)
                 {
                     return NotFound();

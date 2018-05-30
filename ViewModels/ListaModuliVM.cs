@@ -16,6 +16,7 @@ namespace webmva.ViewModels
         public IEnumerable<Modulo> ModuliDROOPE { get; set; }
         public IEnumerable<Modulo> ModuliJOOMSCAN { get; set; }
         public IEnumerable<Modulo> ModuliWPSCAN { get; set; }
+        public IEnumerable<Modulo> ModuliWASCAN { get; set; }
         public IEnumerable<Modulo> ModuliINFOGA { get; set; }
         public IEnumerable<Modulo> ModuliINFOGAEMAIL { get; set; }
         public IEnumerable<Modulo> ModuliSUBLIST3R { get; set; }

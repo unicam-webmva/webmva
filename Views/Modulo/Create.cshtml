@@ -956,6 +956,174 @@
                     </div>
                 </div>
             </div>
+             <div class="col-5">
+                <div class="panel panel-sidebar">
+                    <div class="panel-heading">
+                        <a   data-toggle="collapse" href="#Wascan">
+                            <strong>
+                                WASCAN
+                            </strong>
+                            <span class="caret"></span>
+                        </a>
+                    </div>
+                    <div class="collapse col-5" id="Wascan">
+                        <div class="panel-body">
+                            <h4>
+                                <strong> Configura modulo </strong>
+                            </h4>
+                            <hr>
+                            <form asp-action="Create" name="wascanForm">
+                                <input type="hidden" asp-for="@Model.WASCAN.Applicazione" value="@webmva.Models.APPLICAZIONE.WASCAN" />
+
+
+                                <div class="col-sm-12">
+                                    <div class="col-sm-7" style="margin:0 auto; float:none">
+                                        <div class="form-group">
+                                            <h4 asp-for="@(Model.WASCAN.Nome)">Nome Modulo</h4>
+                                            <input class="form-control" asp-for="@(Model.WASCAN.Nome)" />
+                                        </div>
+                                    </div>
+
+                                    <hr />
+                                    <div class="col-sm-12">
+                                        <div class="col-sm-12">
+                                            <div class="col-sm-7" style="margin:0 auto; float:none">
+                                                <div class="form-group row">
+                                                    <h4 asp-for="@(Model.WASCAN.ComandoPersonalizzato)">Comando Personalizzato</h4>
+                                                    <input class="form-control" asp-for="@(Model.WASCAN.ComandoPersonalizzato)" />
+                                                </div>
+
+                                            </div>
+<hr/>
+                                        </div>
+
+                                    </div>
+                                    <div class="col-sm-12">
+                                        <h4>Tipi di enumerazione</h4>
+                                        <hr />
+                                       
+                                         <div class="col-sm-12">
+                                          
+                                                        <div class="col-sm-4">
+                                                            <label class="control-label">
+                                                                <input type="checkbox" asp-for="@Model.WASCAN.ReagentW" /> Reagent (-r)
+                                                            </label>
+                                                        </div>
+                                                    
+                                                   
+                                                        <div class="col-sm-4">
+                                                            <label class="control-label">
+                                                                <input type="checkbox" asp-for="@Model.WASCAN.VerbositàW" /> Verbosità (-v)
+                                                            </label>
+                                                        </div>
+                                                    
+                                                   
+                                                        <div class="col-sm-4">
+                                                            <label class="control-label">
+                                                                <input type="checkbox" asp-for="@Model.WASCAN.RedirectW" /> Redirect (-n)
+                                                            </label>
+                                                        </div>
+                                                    
+                                                    </div>
+                                                    <br><br><br>
+                                                  
+                                                    <div class="form-group row">
+                                            <div class="col-sm-5">
+                                                <label class="control-label">Scegli il metodo</label>
+                                            </div>
+                                            <select class="col-sm-5" asp-for="@Model.WASCAN.MethodsW">
+                                                <option value="1">POST</option>
+                                                <option value="0">GET</option> 
+                                            </select>
+                                        </div>
+                                        <div class="form-group row">
+                                            
+                                            <div class="col-sm-5">
+                                                <label class="control-label"> Settaggio Timeout</label>
+                                            </div>
+
+                                            <input class="col-sm-5" type="number" asp-for="@Model.WASCAN.TimeoutW" />
+                                            <div class="col-sm-3"></div>
+                                        </div>
+                                        
+                                         <div class="col-sm-12">
+<hr />
+                                            <h4>
+                                                Seleziona i moduli desiderati (esempi: [1] or [2,3])
+                                            </h4>
+                                            <hr />
+                                           
+                                                <div class="col-sm-12">
+                                                    <div class="col-sm-6">
+                                                    <div class="form-group row">
+                                                        <div class="col-sm-6">
+                                                            <label class="control-label">
+                                                                <input type="checkbox" asp-for="@Model.WASCAN.Fingerprint"/> Fingerprint (0)
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group row">
+                                                        <div class="col-sm-6">
+                                                            <label class="control-label">
+                                                                <input type="checkbox" asp-for="@Model.WASCAN.Attacks"  /> Attacks (1)
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                    
+                                                </div>
+                                            
+                                            <div class="col-sm-6">
+                                               <div class="form-group row">
+                                                        <div class="col-sm-6">
+                                                            <label class="control-label">
+                                                                <input type="checkbox" asp-for="@Model.WASCAN.Audit"  /> Audit (2)
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group row">
+                                                        <div class="col-sm-6">
+                                                            <label class="control-label">
+                                                                <input type="checkbox" asp-for="@Model.WASCAN.Bruteforce"  />  Bruteforce (3)
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group row">
+                                                        <div class="col-sm-6">
+                                                            <label class="control-label">
+                                                                <input type="checkbox" asp-for="@Model.WASCAN.Disclosure" /> Disclosure (4)
+                                                            </label>
+                                                        </div>
+                                                    </div>
+
+                                            </div>
+                                            </div>
+
+                                        
+                                   
+                                   <div class="col-sm-12">
+                                            <hr/>
+                                            <div class="col-sm-5">
+                                                <div clas="form-group row">
+                                                 <a href="https://github.com/m4ll0k/WAScan"target="_blank"><span class="glyphicon glyphicon-info-sign" style="font-size:90%"></span>
+                                        consulta il documentazione di WASCAN</a>
+                                        </div>
+                                        </div>
+                                        <div class="col-sm-1"></div>
+                                        <div class="col-sm-6 text-right">
+                                            <div class="form-group row">
+                                                <input type="submit" asp-action="Create" asp-route-cosa="wascan" class="btn btn-default" value="Crea" />&nbsp;&nbsp; |
+                                                <a asp-action="Index"> Torna alla lista</a>
+                                            </div>
+                                        </div>
+                                        </div>
+                                </div>
+</div>
+                            </form>
+</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
         <div class="panel panel-default">
             <div class="panel-heading">
@@ -1007,6 +1175,7 @@
                                         </div>
 
                                     </div>
+                                     
                                     <div class="col-sm-12">
                                         <h4>Tipi di enumerazione</h4>
                                         <hr />
@@ -1199,6 +1368,34 @@
                                     <div class="col-sm-12">
                                         <h4>Tipi di enumerazione</h4>
                                         <hr />
+                                           <div class="form-group row">
+                                            <div class="col-sm-4">
+                                                <label class="control-label">Scegli gli extra headers (esempio:site.com)  </label>
+                                            </div>
+                                             <div class="col-sm-1"></div>
+                                            <input type="text" class="col-sm-5" asp-for="@Model.WASCAN.HeadersW" />  
+                                        </div>  
+                                            <div class="form-group row">
+                                            <div class="col-sm-4">
+                                                <label class="control-label">Setta i parametri di autenticazione (user:pass) </label>
+                                            </div>
+                                             <div class="col-sm-1"></div>
+                                            <input type="text" class="col-sm-5" asp-for="@Model.WASCAN.AutenticazioneW" />  
+                                        </div>  
+                                            <div class="form-group row">
+                                            <div class="col-sm-4">
+                                                <label class="control-label">Setta i parametri dello User-Agent </label>
+                                            </div>
+                                             <div class="col-sm-1"></div>
+                                            <input type="text" class="col-sm-5" asp-for="@Model.WASCAN.UserAgentW" />  
+                                        </div>  
+                                            <div class="form-group row">
+                                            <div class="col-sm-4">
+                                                <label class="control-label">Scegli i cookies </label>
+                                            </div>
+                                             <div class="col-sm-1"></div>
+                                            <input type="text" class="col-sm-5" asp-for="@Model.WASCAN.CookiesW" />  
+                                        </div>  
                                         <div class=col-sm-6>
                                         <div class="form-group row">
                                                    
@@ -1230,13 +1427,7 @@
                                                 </div>
                                                 </div>
                                        
-                                          <div class="form-group row">
-                                            <div class="col-sm-4">
-                                                <label class="control-label">Scegli il cookie </label>
-                                            </div>
-                                             <div class="col-sm-1"></div>
-                                            <input type="text" class="col-sm-5" asp-for="@Model.WPSCAN.Cookie" />  
-                                        </div>
+                                          
                                         
                                     
                                         <div class="col-sm-12">
@@ -2511,3 +2702,5 @@
 </div>
 
   
+      
+   

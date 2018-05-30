@@ -40,20 +40,27 @@ namespace webmva.Models
                 risultato += " -b";
                 if (!All)
                     {
-                        risultato += " -e ";
-                        if (BaiduSUB) risultato += ",baidu";
-                        if (YahooSUB) risultato += ",yahoo";
-                        if (GoogleSUB) risultato += ",google";
-                        if (BingSUB) risultato += ",bing";
-                        if (AskSUB) risultato += ",ask";
-                        if (NetcraftSUB) risultato += ",netcraft";
-                        if (DNSdumpsterSUB) risultato += ",dnsdumpster";
-                        if (VirustotalSUB) risultato += ",virustotal";
-                        if (ThreatCrowdSUB) risultato += ",threatcrowd";
-                        if (SSLCertificatesSUB) risultato += ",sslcertificates";
-                        if (PassiveDNSSUB) risultato += ",passivedns";
+                        string appoggio = " -e ";
+                        if (BaiduSUB) appoggio += "baidu ";
+                        if (YahooSUB) appoggio += "yahoo ";
+                        if (GoogleSUB) appoggio += "google ";
+                        if (BingSUB) appoggio += "bing ";
+                        if (AskSUB) appoggio += "ask ";
+                        if (NetcraftSUB) appoggio += "netcraft ";
+                        if (DNSdumpsterSUB) appoggio += "dnsdumpster ";
+                        if (VirustotalSUB) appoggio += "virustotal ";
+                        if (ThreatCrowdSUB) appoggio += "threatcrowd ";
+                        if (SSLCertificatesSUB) appoggio += "sslcertificates ";
+                        if (PassiveDNSSUB) appoggio += "passivedns ";
+                        string[] appoggio2= appoggio.Split(' ');
+                        appoggio = "";
+                        for(int i=0; i < appoggio2.Length-1; i++){
+                            if(i<3)
+                            appoggio += " "+ appoggio2[i];
+                            else appoggio += "," +appoggio2[i];
+                        }
+                        risultato +=appoggio;
                         
-                        risultato += " ";
                     }
                     if (ThreadSUB != 0)
                     {
