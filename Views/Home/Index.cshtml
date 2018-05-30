@@ -116,6 +116,46 @@
               <div class="panel panel-default">
                   <div class="panel-heading">
                       <strong>
+                          Dipendenze
+                      </strong>
+                  </div>
+                  <div class="panel-body">
+
+                    WebMVA dipende da alcuni pacchetti che devono essere installati, ovvero:
+                    <ul>
+                        <li>nmap</li>
+                        <li>ruby</li>
+                        <li>Python 2 e 3 più pip per entrambi</li>
+                        <li>perl</li>
+                        <li>dotnet (se questo sito sta partendo è difficile non averlo! =)</li>
+                        <li>aircrack-ng, cowpatty, bully, reaver, pyrit, tshark per Wifite2</li>
+                    </ul>
+
+                    @{
+                        string[] dips = ViewBag.Dipendenze;
+                        
+                        @if(dips.Length == 1)
+                        {
+                            @Html.Raw("In questo sistema sono tutti installati!")
+                        }
+                        else
+                        {
+                            @Html.Raw("E' necessario installare: <ul>")
+                            @foreach(string itm in dips){
+                                    <li>@itm</li>
+                            }
+                            @Html.Raw("</ul>")
+                        }
+                    }
+                        
+                    
+
+
+                  </div>
+              </div>
+              <div class="panel panel-default">
+                  <div class="panel-heading">
+                      <strong>
                           Contatti
                       </strong>
                   </div>
