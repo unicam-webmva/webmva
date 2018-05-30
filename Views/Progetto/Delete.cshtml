@@ -15,7 +15,8 @@ var contWapiti = 0;
 var contWascan = 0;
 var contSqlmap = 0;
 var contWifite = 0;
-var contOpendoor =0;}
+var contOpendoor =0;
+var contNosql = 0;}
 <br>
 <div class="container">
 <h2><em>Sei sicuro di voler cancellare il progetto</em><strong> @Html.DisplayFor(model => model.Nome) ?</strong></h2>
@@ -71,6 +72,7 @@ var contOpendoor =0;}
                             if(item.Modulo is webmva.Models.ModuloSQLMAP) {contSqlmap++;}
                             if(item.Modulo is webmva.Models.ModuloWIFITE) {contWifite++;}
                             if(item.Modulo is webmva.Models.ModuloOPENDOOR) {contOpendoor++;}
+                            if(item.Modulo is webmva.Models.ModuloNOSQL) {contNosql++;}
                         }
                         @if(contNMAP!=0){
                                 
@@ -505,6 +507,34 @@ var contOpendoor =0;}
                         @foreach (var item in Model.ModuliProgetto) {
                             
                                 @if(item.Modulo is webmva.Models.ModuloWIFITE){
+                                <tr>
+                                <td></td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Modulo.Nome)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Modulo.Comando)
+                                    </td>
+                                </tr>
+                               
+                                }
+                                }
+                                </table>
+                                </dd>    
+                        } 
+                        @if(contNosql!=0){
+                                
+                            <dd>Nosqlmap</dd>
+                            <dd>
+                            <table class="table">
+                                <tr>
+                                    <th> </th>
+                                    <th>Modulo</th>
+                                    <th>Comando</th>
+                                </tr>
+                        @foreach (var item in Model.ModuliProgetto) {
+                            
+                                @if(item.Modulo is webmva.Models.ModuloNOSQL){
                                 <tr>
                                 <td></td>
                                     <td>

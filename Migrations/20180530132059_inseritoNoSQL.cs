@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace webmva.Migrations
 {
-    public partial class prova : Migration
+    public partial class inseritoNoSQL : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

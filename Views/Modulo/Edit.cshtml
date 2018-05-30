@@ -15,6 +15,7 @@
     bool wifite = Model.WIFITE != null;
     bool opendoor = Model.OPENDOOR != null;
     bool wascan = Model.WASCAN != null;
+    bool nosql = Model.NOSQL != null;
 }
 
 
@@ -2134,4 +2135,44 @@
                             </form>
 
 }
+@* -----NOSQL----- *@
+    if (nosql)
+    {
+        <h2><em>Modifica modulo</em><strong> @(Model.NOSQL.Nome)</strong></h2>
+        <hr />
+
+
+   <form asp-action="Edit" name="nosqlForm">
+                                <input type="hidden" asp-for="@Model.NOSQL.Applicazione" value="@webmva.Models.APPLICAZIONE.NOSQL" />
+                                <input type="hidden" asp-for="@Model.NOSQL.ID" />
+                                  <div class="row panel panel-default panel-body">
+
+                                <div class="col-sm-12">
+                                    <div class="col-sm-7" style="margin:0 auto; float:none">
+                                        <div class="form-group">
+                                            <h4 asp-for="@(Model.NOSQL.Nome)">Nome Modulo</h4>
+                                            <input class="form-control" asp-for="@(Model.NOSQL.Nome)" />
+                                        </div>
+                                    </div>
+                                    <hr />
+                                       <div class="col-sm-12">
+                                            <hr/>
+                                            <div class="col-sm-5">
+                                                <div clas="form-group row">
+                                                 <a href="https://github.com/codingo/NoSQLMap"target="_blank"><span class="glyphicon glyphicon-info-sign" style="font-size:90%"></span>
+                                        consulta il documentazione di NoSQLMap </a>
+                                        </div>
+                                        </div>
+                                        <div class="col-sm-1"></div>
+                                        <div class="col-sm-6 text-right">
+                                            <div class="form-group row">
+                                                <input type="submit" asp-action="Edit" asp-route-id="@Model.NOSQL.ID"class="btn btn-default" value="Salva" />&nbsp;&nbsp; |
+                                                <a asp-action="Index"> Torna alla lista</a>
+                                            </div>
+                                        </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+} 
 }

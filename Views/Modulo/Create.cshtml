@@ -2506,6 +2506,54 @@
                     </div>
                 </div>
             </div>
+             <div class="col-5">
+                <div class="panel panel-sidebar">
+                    <div class="panel-heading">
+                        <a   data-toggle="collapse" href="#noSqlmap">
+                            <strong>
+                                NOSQLMAP
+                            </strong>
+                            <span class="caret"></span>
+                        </a>
+                    </div>
+                    <div class="collapse col-5" id="noSqlmap">
+                        <div class="panel-body">
+                            <h4>
+                                <strong> Configura modulo </strong>
+                            </h4>
+                            <hr>
+                            <form asp-action="Create" name="nosqlForm">
+                                <input type="hidden" asp-for="@Model.NOSQL.Applicazione" value="@webmva.Models.APPLICAZIONE.NOSQL" />
+                                <div class="col-sm-12">
+                                    <div class="col-sm-7" style="margin:0 auto; float:none">
+                                        <div class="form-group">
+                                            <h4 asp-for="@(Model.NOSQL.Nome)">Nome Modulo</h4>
+                                            <input class="form-control" asp-for="@(Model.NOSQL.Nome)" />
+                                        </div>
+                                    </div>
+                                   <div class="col-sm-12">
+                                            <hr/>
+                                            <div class="col-sm-5">
+                                                <div clas="form-group row">
+                                                 <a href="https://github.com/codingo/NoSQLMap"target="_blank"><span class="glyphicon glyphicon-info-sign" style="font-size:90%"></span>
+                                        consulta il documentazione di NoSQLMap </a>
+                                        </div>
+                                        </div>
+                                        <div class="col-sm-1"></div>
+                                        <div class="col-sm-6 text-right">
+                                            <div class="form-group row">
+                                                <input type="submit" asp-action="Create" asp-route-cosa="nosql" class="btn btn-default" value="Crea" />&nbsp;&nbsp; |
+                                                <a asp-action="Index"> Torna alla lista</a>
+                                            </div>
+                                        </div>
+                                        </div>
+                                    </div>
+                                
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
            
         </div>
          <div class="panel panel-default">

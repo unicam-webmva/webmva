@@ -254,6 +254,16 @@ namespace webmva.Migrations
                     b.HasDiscriminator().HasValue("ModuloNMAP");
                 });
 
+            modelBuilder.Entity("webmva.Models.ModuloNOSQL", b =>
+                {
+                    b.HasBaseType("webmva.Models.Modulo");
+
+
+                    b.ToTable("ModuloNOSQL");
+
+                    b.HasDiscriminator().HasValue("ModuloNOSQL");
+                });
+
             modelBuilder.Entity("webmva.Models.ModuloOPENDOOR", b =>
                 {
                     b.HasBaseType("webmva.Models.Modulo");

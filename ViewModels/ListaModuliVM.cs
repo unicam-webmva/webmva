@@ -23,6 +23,8 @@ namespace webmva.ViewModels
         public IEnumerable<Modulo> ModuliWAPITI { get; set; }
         public IEnumerable<Modulo> ModuliSQLMAP { get; set; }
         public IEnumerable<Modulo> ModuliWIFITE { get; set; }
+        public IEnumerable<Modulo> ModuliNOSQL { get; set; }
+        
         
 
 

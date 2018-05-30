@@ -12,8 +12,8 @@ using webmva.Models;
 namespace webmva.Migrations
 {
     [DbContext(typeof(MyDbContext))]
-    [Migration("20180530091232_prova")]
-    partial class prova
+    [Migration("20180530132059_inseritoNoSQL")]
+    partial class inseritoNoSQL
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -253,6 +253,16 @@ namespace webmva.Migrations
                     b.ToTable("ModuloNMAP");
 
                     b.HasDiscriminator().HasValue("ModuloNMAP");
+                });
+
+            modelBuilder.Entity("webmva.Models.ModuloNOSQL", b =>
+                {
+                    b.HasBaseType("webmva.Models.Modulo");
+
+
+                    b.ToTable("ModuloNOSQL");
+
+                    b.HasDiscriminator().HasValue("ModuloNOSQL");
                 });
 
             modelBuilder.Entity("webmva.Models.ModuloOPENDOOR", b =>
