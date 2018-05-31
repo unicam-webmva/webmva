@@ -151,6 +151,12 @@
                                                     <span class="glyphicon glyphicon-play" style="font-size:65%"></span>
                                                 </a>
                                             </li>
+                                             <li>
+                                                <a   data-toggle="collapse" href="#dnsEnum">
+                                                    DnsEnum
+                                                    <span class="glyphicon glyphicon-play" style="font-size:65%"></span>
+                                                </a>
+                                            </li>
                                         </ul>
 
                                     </div>
@@ -198,6 +204,12 @@
                                             <li>
                                                 <a   data-toggle="collapse" href="#Nosql">
                                                     Nosql
+                                                    <span class="glyphicon glyphicon-play" style="font-size:65%"></span>
+                                                </a>
+                                            </li>
+                                             <li>
+                                                <a   data-toggle="collapse" href="#odat">
+                                                    Odat
                                                     <span class="glyphicon glyphicon-play" style="font-size:65%"></span>
                                                 </a>
                                             </li>
@@ -1096,6 +1108,56 @@
                                 </div>
                                 <tbody>
                                     @foreach (var item in Model.ModuliNOSQL) { 
+                                    <tr>
+                                        <td>
+                                           <a asp-action="Details" asp-route-id="@item.ID"> @Html.DisplayFor(modelItem => item.Nome)</a> 
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Comando)
+                                        </td>
+                                        <td>
+                                            <a asp-action="Edit" asp-route-id="@item.ID">Modifica</a> |
+                                            <a asp-action="Delete" asp-route-id="@item.ID">Cancella</a>
+                                        </td>
+                                    </tr>
+                                    }
+                                </tbody>
+                            </table>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+             <div class="col-5">
+                <div class="panel panel-sidebar">
+                    <div class="panel-heading">
+                        <a   data-toggle="collapse"  href="#odat">
+                            <strong>
+                                 ODAT
+                            </strong>
+                            <span class="caret"></span>
+                        </a>
+                    </div>
+                    <div class="collapse " id="odat">
+                        <div class="panel-body ">
+
+                            <table class="table">
+                                <div class="method">
+                                    <thead>
+                                        <tr>
+                                            <th>
+                                                Nome
+                                            </th>
+                                            <th>
+                                                Comando
+                                            </th>
+
+                                            <th></th>
+                                        </tr>
+                                    </thead>
+                                </div>
+                                <tbody>
+                                    @foreach (var item in Model.ModuliODAT) { 
                                     <tr>
                                         <td>
                                            <a asp-action="Details" asp-route-id="@item.ID"> @Html.DisplayFor(modelItem => item.Nome)</a> 

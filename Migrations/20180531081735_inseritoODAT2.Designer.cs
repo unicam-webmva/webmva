@@ -12,8 +12,8 @@ using webmva.Models;
 namespace webmva.Migrations
 {
     [DbContext(typeof(MyDbContext))]
-    [Migration("20180530132059_inseritoNoSQL")]
-    partial class inseritoNoSQL
+    [Migration("20180531081735_inseritoODAT2")]
+    partial class inseritoODAT2
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -263,6 +263,42 @@ namespace webmva.Migrations
                     b.ToTable("ModuloNOSQL");
 
                     b.HasDiscriminator().HasValue("ModuloNOSQL");
+                });
+
+            modelBuilder.Entity("webmva.Models.ModuloODAT", b =>
+                {
+                    b.HasBaseType("webmva.Models.Modulo");
+
+                    b.Property<bool>("AllOdat");
+
+                    b.Property<string>("ComandoPersonalizzato")
+                        .HasColumnName("ModuloODAT_ComandoPersonalizzato");
+
+                    b.Property<bool>("PasswordGuesser");
+
+                    b.Property<string>("PasswordOdat");
+
+                    b.Property<bool>("PasswordStealer");
+
+                    b.Property<int>("PortaOdat");
+
+                    b.Property<string>("SID");
+
+                    b.Property<bool>("SmbOdat");
+
+                    b.Property<bool>("TestOdat");
+
+                    b.Property<bool>("Tnscmd");
+
+                    b.Property<bool>("Tnspoison");
+
+                    b.Property<string>("UtenteOdat");
+
+                    b.Property<int>("VerboseOdat");
+
+                    b.ToTable("ModuloODAT");
+
+                    b.HasDiscriminator().HasValue("ModuloODAT");
                 });
 
             modelBuilder.Entity("webmva.Models.ModuloOPENDOOR", b =>

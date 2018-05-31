@@ -17,6 +17,7 @@ var contSqlmap = 0;
 var contWifite = 0;
 var contOpendoor = 0;
 var contNosql = 0;
+var contOdat = 0;
 }
 <br>
 <div class="container">
@@ -74,8 +75,8 @@ var contNosql = 0;
                             if(item.Modulo is webmva.Models.ModuloDNSRECON) {contDnsRecon++;}
                             if(item.Modulo is webmva.Models.ModuloFIERCE) {contFierce++;}
                             if(item.Modulo is webmva.Models.ModuloDROOPE) {contDroope++;}
-                            if(item.Modulo is webmva.Models.ModuloJOOMSCAN){contJoomscan++}
-                            if(item.Modulo is webmva.Models.ModuloWPSCAN){contWpscan++}
+                            if(item.Modulo is webmva.Models.ModuloJOOMSCAN){contJoomscan++;}
+                            if(item.Modulo is webmva.Models.ModuloWPSCAN){contWpscan++;}
                             if(item.Modulo is webmva.Models.ModuloINFOGA) {contInfoga++;}
                             if(item.Modulo is webmva.Models.ModuloINFOGAEMAIL){contInfogaEmail++;}
                             if(item.Modulo is webmva.Models.ModuloSUBLIST3R) {contSublist3r++;}
@@ -85,6 +86,7 @@ var contNosql = 0;
                             if(item.Modulo is webmva.Models.ModuloWIFITE) {contWifite++;}
                             if(item.Modulo is webmva.Models.ModuloOPENDOOR) {contOpendoor++;}
                             if(item.Modulo is webmva.Models.ModuloNOSQL) {contNosql++;}
+                            if(item.Modulo is webmva.Models.ModuloODAT) {contOdat++;}
                         }
                         @if(contNMAP!=0){
                                 
@@ -254,7 +256,7 @@ var contNosql = 0;
                                 </table>
                                 </dd>
                                 }   
-                                 } 
+                                 
                         @if(contJoomscan!=0){
                                 
                             <dd>Joomscan</dd>
@@ -379,7 +381,7 @@ var contNosql = 0;
                                 </tr>
                         @foreach (var item in Model.ModuliProgetto) {
                             
-                                @if(item.Modulo is webmva.Models.SUBLIST3R){
+                                @if(item.Modulo is webmva.Models.ModuloSUBLIST3R){
                                 <tr>
                                 <td></td>
                                     <td>
@@ -532,7 +534,6 @@ var contNosql = 0;
                                     </td>
                                    
                                 </tr>
-                               
                                 }
                                 }
                                 </table>
@@ -566,13 +567,43 @@ var contNosql = 0;
                                 }
                                 </table>
                                 </dd>    
-                        } 
+                        }
+                        @if(contOdat!=0){
+                                
+                            <dd>Odat</dd>
+                            <dd>
+                            <table class="table">
+                                <tr>
+                                    <th> </th>
+                                    <th>Modulo</th>
+                                    <th>Comando</th>
+                                </tr>
+                        @foreach (var item in Model.ModuliProgetto) {
+                            
+                                @if(item.Modulo is webmva.Models.ModuloODAT){
+                                <tr>
+                                  
+                                <td></td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Modulo.Nome)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Modulo.Comando)
+                                    </td>
+                                   
+                                </tr>
+                               
+                                }
+                                }
+                                </table>
+                                </dd>    
+                        }
                                 
             <div class="col-xs-6 col-sm-offset-9 text-right">
                      <br>
                     <div class="form-group">
                         <input type="submit" class="btn btn-default" asp-action="Edit" asp-route-id="@Model.ID" value="Modifica">&nbsp;&nbsp;&nbsp; |&nbsp;
-                        <input type="submit" class="btn btn-default" asp-action="Cancel" asp-route-id="@Model.ID" value="Cancella">&nbsp;&nbsp;&nbsp; |&nbsp;
+                        <input type="submit" class="btn btn-default" asp-action="Delete" asp-route-id="@Model.ID" value="Cancella">&nbsp;&nbsp;&nbsp; |&nbsp;
                         <a asp-action="Index">  Torna alla lista</a>
                     </div>
                 </div>                    

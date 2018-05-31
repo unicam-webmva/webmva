@@ -32,6 +32,7 @@ namespace webmva.Data
             modelBuilder.Entity<ModuloWIFITE>().HasBaseType<Modulo>();
             modelBuilder.Entity<ModuloSUBLIST3R>().HasBaseType<Modulo>();
             modelBuilder.Entity<ModuloNOSQL>().HasBaseType<Modulo>();
+            modelBuilder.Entity<ModuloODAT>().HasBaseType<Modulo>();
         }
     }
 }

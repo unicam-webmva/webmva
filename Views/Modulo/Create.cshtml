@@ -142,6 +142,12 @@
                                                     <span class="glyphicon glyphicon-play" style="font-size:65%"></span>
                                                 </a>
                                             </li>
+                                             <li>
+                                                <a   data-toggle="collapse" href="#dnsEnum">
+                                                    DnsEnum
+                                                    <span class="glyphicon glyphicon-play" style="font-size:65%"></span>
+                                                </a>
+                                            </li>
                                         </ul>
 
                                     </div>
@@ -189,6 +195,12 @@
                                             <li>
                                                 <a   data-toggle="collapse" href="#Nosql">
                                                     Nosql
+                                                    <span class="glyphicon glyphicon-play" style="font-size:65%"></span>
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a   data-toggle="collapse" href="#odat">
+                                                    Odat
                                                     <span class="glyphicon glyphicon-play" style="font-size:65%"></span>
                                                 </a>
                                             </li>
@@ -1455,9 +1467,6 @@
                 </div>
             </div>
             </div>
-
-
-
         </div>
  <div class="panel panel-default">
             <div class="panel-heading">
@@ -1694,8 +1703,56 @@
             </div>
             
         </div>
+            <div class="col-5">
+                <div class="panel panel-sidebar">
+                    <div class="panel-heading">
+                        <a   data-toggle="collapse" href="#dnsEnum">
+                            <strong>
+                                DNSENUM
+                            </strong>
+                            <span class="caret"></span>
+                        </a>
+                    </div>
+                    <div class="collapse col-5" id="dnsEnum">
+                        <div class="panel-body">
+                            <h4>
+                                <strong> Configura modulo </strong>
+                            </h4>
+                            <hr>
+                            <form asp-action="Create" name="dnsEnumForm">
+                                <input type="hidden" asp-for="@Model.FIERCE.Applicazione" value="@webmva.Models.APPLICAZIONE.FIERCE" />
+                                <div class="col-sm-12">
+                                    <div class="col-sm-7" style="margin:0 auto; float:none">
+                                        <div class="form-group">
+                                            <h4 asp-for="@(Model.FIERCE.Nome)">Nome Modulo</h4>
+                                            <input class="form-control" asp-for="@(Model.FIERCE.Nome)" />
+                                        </div>
+                                    </div>
+                                   <div class="col-sm-12">
+                                            <hr/>
+                                            <div class="col-sm-5">
+                                                <div clas="form-group row">
+                                                 <a href=""target="_blank"><span class="glyphicon glyphicon-info-sign" style="font-size:90%"></span>
+                                        consulta il documentazione di DnsEnum </a>
+                                        </div>
+                                        </div>
+                                        <div class="col-sm-1"></div>
+                                        <div class="col-sm-6 text-right">
+                                            <div class="form-group row">
+                                                <input type="submit" asp-action="Create" asp-route-cosa="dnsEnum" class="btn btn-default" value="Crea" />&nbsp;&nbsp; |
+                                                <a asp-action="Index"> Torna alla lista</a>
+                                            </div>
+                                        </div>
+                                        </div>
+                                    </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
+        </div>
+       
     
         <div class="panel panel-default">
             <div class="panel-heading">
@@ -2549,6 +2606,168 @@
                                         </div>
                                     </div>
                                 
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-5">
+                <div class="panel panel-sidebar">
+                    <div class="panel-heading">
+                        <a   data-toggle="collapse" href="#odat">
+                            <strong>
+                                ODAT
+                            </strong>
+                            <span class="caret"></span>
+                        </a>
+                    </div>
+                    <div class="collapse col-5" id="odat">
+                        <div class="panel-body">
+                            <h4>
+                                <strong> Configura modulo </strong>
+                            </h4>
+                            <hr>
+                            <form asp-action="Create" name="odatForm">
+                                <input type="hidden" asp-for="@Model.ODAT.Applicazione" value="@webmva.Models.APPLICAZIONE.ODAT" />
+                                <div class="col-sm-12">
+                                    <div class="col-sm-7" style="margin:0 auto; float:none">
+                                        <div class="form-group">
+                                            <h4 asp-for="@(Model.ODAT.Nome)">Nome Modulo</h4>
+                                            <input class="form-control" asp-for="@(Model.ODAT.Nome)" />
+                                        </div>
+                                    </div>
+                                     <div class="col-sm-12">
+                                       <hr/>
+                                        <div class="col-sm-7" style="margin:0 auto; float:none">
+                                            <div class="form-group row">
+                                                <h4 asp-for="@(Model.ODAT.ComandoPersonalizzato)">Comando Personalizzato</h4>
+                                                <input class="form-control" asp-for="@(Model.ODAT.ComandoPersonalizzato)" />
+                                            </div>
+
+                                        </div>
+                                    </div>
+
+                                    <div class="col-sm-12">
+                                        <hr />
+                                        <h4>Seleziona i comandi</h4>
+                                        <hr />
+                                        <div class="form-group row">
+                                            <div class="col-sm-4">
+                                                <label class="control-label">Scegli la porta</label>
+                                            </div>
+                                             <div class="col-sm-1"></div>
+                                            <input type="number" class="col-sm-5" asp-for="@Model.ODAT.PortaOdat" />
+                                        </div>
+                                        <div class="form-group row">
+                                            <div class="col-sm-4">
+                                                <label class="control-label">Scegli la verbosità</label>
+                                            </div>
+                                             <div class="col-sm-1"></div>
+                                            <select class="col-sm-5" asp-for="@Model.ODAT.VerboseOdat">
+                                                <option value="0">1</option>
+                                                <option value="1">2 </option>
+                                                <option value="2">3</option>
+                                            </select>
+                                        </div>
+                                         <div class="form-group row">
+                                            <div class="col-sm-4">
+                                                <label class="control-label">Scegli SID</label>
+                                            </div>
+                                             <div class="col-sm-1"></div>
+                                            <input type="text" class="col-sm-5" asp-for="@Model.ODAT.SID">
+                                        </div>
+                                        <div class="form-group row">
+                                            <div class="col-sm-4">
+                                                <label class="control-label">Setta l'Utente</label>
+                                            </div>
+                                             <div class="col-sm-1"></div>
+                                            <input type="text" class="col-sm-5" asp-for="@Model.ODAT.UtenteOdat">
+                                        </div>
+                                         <div class="form-group row">
+                                            <div class="col-sm-4">
+                                                <label class="control-label">Scegli la Password</label>
+                                            </div>
+                                             <div class="col-sm-1"></div>
+                                            <input type="text" class="col-sm-5" asp-for="@Model.ODAT.PasswordOdat">
+                                        </div>
+                                       <br>
+                                        <div class="col-sm-12">
+                                            <div class="col-sm-6">
+                                                <div class0"col-sm-12">
+                                        <div class="form-group row">
+                                                <div class="col-sm-6">
+                                                    <label class="control-label">
+                                                        <input type="checkbox" asp-for="@Model.ODAT.AllOdat" /> All (all)
+                                                    </label>
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <div class="col-sm-6">
+                                                    <label class="control-label">
+                                                        <input type="checkbox" asp-for="@Model.ODAT.Tnspoison" /> Tnspoison (tnspoison)
+                                                    </label>
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <div class="col-sm-6">
+                                                    <label class="control-label">
+                                                        <input type="checkbox" asp-for="@Model.ODAT.Tnscmd" /> Tnscmd (tnscmd)
+                                                    </label>
+                                                </div>
+                                            </div>
+                                            </div>
+                                            </div>
+                                        <div class="col-sm-6">
+                                            <div clas="col-sm-12">
+                                        <div class="form-group row">
+                                                <div class="col-sm-9">
+                                                    <label class="control-label">
+                                                        <input type="checkbox" asp-for="@Model.ODAT.PasswordStealer" /> Passwordstealer (passwordstealer)
+                                                    </label>
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <div class="col-sm-9">
+                                                    <label class="control-label">
+                                                        <input type="checkbox" asp-for="@Model.ODAT.PasswordGuesser" /> PasswordGuesser (passwordguesser)
+                                                    </label>
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <div class="col-sm-6">
+                                                    <label class="control-label">
+                                                        <input type="checkbox" asp-for="@Model.ODAT.SmbOdat" /> Smb (smb)
+                                                    </label>
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <div class="col-sm-6">
+                                                    <label class="control-label">
+                                                        <input type="checkbox" asp-for="@Model.ODAT.TestOdat" /> Test (--test-module)
+                                                    </label>
+                                                </div>
+                                            </div>
+                                            </div>
+                                            </div>
+                                            </div>
+                                   <div class="col-sm-12">
+                                            <hr/>
+                                            <div class="col-sm-5">
+                                                <div clas="form-group row">
+                                                 <a href="https://github.com/quentinhardy/odat/wiki"target="_blank"><span class="glyphicon glyphicon-info-sign" style="font-size:90%"></span>
+                                        consulta il documentazione di ODAT </a>
+                                        </div>
+                                        </div>
+                                        <div class="col-sm-1"></div>
+                                        <div class="col-sm-6 text-right">
+                                            <div class="form-group row">
+                                                <input type="submit" asp-action="Create" asp-route-cosa="odat" class="btn btn-default" value="Crea" />&nbsp;&nbsp; |
+                                                <a asp-action="Index"> Torna alla lista</a>
+                                            </div>
+                                        </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </form>
                         </div>
                     </div>

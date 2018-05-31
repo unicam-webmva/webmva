@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace webmva.Migrations
 {
-    public partial class inseritoNoSQL : Migration
+    public partial class inseritoODAT2 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -67,6 +67,19 @@ namespace webmva.Migrations
                     TCPScan = table.Column<int>(nullable: true),
                     Tempo = table.Column<int>(nullable: true),
                     UdpDiscoveryPorts = table.Column<string>(nullable: true),
+                    AllOdat = table.Column<bool>(nullable: true),
+                    ModuloODAT_ComandoPersonalizzato = table.Column<string>(nullable: true),
+                    PasswordGuesser = table.Column<bool>(nullable: true),
+                    PasswordOdat = table.Column<string>(nullable: true),
+                    PasswordStealer = table.Column<bool>(nullable: true),
+                    PortaOdat = table.Column<int>(nullable: true),
+                    SID = table.Column<string>(nullable: true),
+                    SmbOdat = table.Column<bool>(nullable: true),
+                    TestOdat = table.Column<bool>(nullable: true),
+                    Tnscmd = table.Column<bool>(nullable: true),
+                    Tnspoison = table.Column<bool>(nullable: true),
+                    UtenteOdat = table.Column<string>(nullable: true),
+                    VerboseOdat = table.Column<int>(nullable: true),
                     AcceptCookies = table.Column<bool>(nullable: true),
                     ModuloOPENDOOR_ComandoPersonalizzato = table.Column<string>(nullable: true),
                     DelayO = table.Column<int>(nullable: true),
