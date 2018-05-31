@@ -17,6 +17,7 @@
     bool wascan = Model.WASCAN != null;
     bool nosql = Model.NOSQL != null;
     bool odat = Model.ODAT != null;
+    bool dnsEnum = Model.DNSENUM != null;
 }
 
 
@@ -2328,4 +2329,45 @@
                                 </div>
                             </form>
 }
+@* -----DNSENUM----- *@
+    if (dnsEnum)
+    {
+        <h2><em>Modifica modulo</em><strong> @(Model.DNSENUM.Nome)</strong></h2>
+        <hr />
+
+
+   <form asp-action="Edit" name="dnsEnumForm">
+                                <input type="hidden" asp-for="@Model.DNSENUM.Applicazione" value="@webmva.Models.APPLICAZIONE.DNSENUM" />
+                                <input type="hidden" asp-for="@Model.DNSENUM.ID" />
+                                  <div class="row panel panel-default panel-body">
+
+                                <div class="col-sm-12">
+                                    <div class="col-sm-7" style="margin:0 auto; float:none">
+                                        <div class="form-group">
+                                            <h4 asp-for="@(Model.DNSENUM.Nome)">Nome Modulo</h4>
+                                            <input class="form-control" asp-for="@(Model.DNSENUM.Nome)" />
+                                        </div>
+                                    </div>
+                                    <hr />
+                                       <div class="col-sm-12">
+                                            <hr/>
+                                            <div class="col-sm-5">
+                                                <div clas="form-group row">
+                                                 <a href=""target="_blank"><span class="glyphicon glyphicon-info-sign" style="font-size:90%"></span>
+                                        consulta il documentazione di DnsEnum </a>
+                                        </div>
+                                        </div>
+                                        <div class="col-sm-1"></div>
+                                        <div class="col-sm-6 text-right">
+                                            <div class="form-group row">
+                                                <input type="submit" asp-action="Edit" asp-route-id="@Model.DNSENUM.ID"class="btn btn-default" value="Salva" />&nbsp;&nbsp; |
+                                                <a asp-action="Index"> Torna alla lista</a>
+                                            </div>
+                                        </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+} 
+
 }

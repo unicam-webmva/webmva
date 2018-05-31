@@ -18,6 +18,7 @@ var contWifite = 0;
 var contOpendoor = 0;
 var contNosql = 0;
 var contOdat = 0;
+var contDnsEnum = 0;
 }
 <br>
 <div class="container">
@@ -87,6 +88,7 @@ var contOdat = 0;
                             if(item.Modulo is webmva.Models.ModuloOPENDOOR) {contOpendoor++;}
                             if(item.Modulo is webmva.Models.ModuloNOSQL) {contNosql++;}
                             if(item.Modulo is webmva.Models.ModuloODAT) {contOdat++;}
+                            if(item.Modulo is webmva.Models.ModuloDNSENUM) {contDnsEnum++;}
                         }
                         @if(contNMAP!=0){
                                 
@@ -581,6 +583,36 @@ var contOdat = 0;
                         @foreach (var item in Model.ModuliProgetto) {
                             
                                 @if(item.Modulo is webmva.Models.ModuloODAT){
+                                <tr>
+                                  
+                                <td></td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Modulo.Nome)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Modulo.Comando)
+                                    </td>
+                                   
+                                </tr>
+                               
+                                }
+                                }
+                                </table>
+                                </dd>    
+                        }
+                         @if(contDnsEnum!=0){
+                                
+                            <dd>DnsEnum</dd>
+                            <dd>
+                            <table class="table">
+                                <tr>
+                                    <th> </th>
+                                    <th>Modulo</th>
+                                    <th>Comando</th>
+                                </tr>
+                        @foreach (var item in Model.ModuliProgetto) {
+                            
+                                @if(item.Modulo is webmva.Models.ModuloDNSENUM){
                                 <tr>
                                   
                                 <td></td>

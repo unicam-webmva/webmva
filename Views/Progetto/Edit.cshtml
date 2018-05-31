@@ -729,6 +729,68 @@
                         </div>
                         </div>
                       </div>
+                         <div class="panel panel-sidebar">
+                    <div class="panel-heading">
+                        <a data-toggle="collapse" href="#dnsEnum">
+                            <strong>
+                                DNSENUM
+                            </strong>
+                            <span class="caret"></span>
+                        </a>
+                    </div>
+                    <div class="collapse" id="dnsEnum">
+                     <div class="panel-body ">
+                      <div class="col-sm-7">
+                                        <div class="form-group">
+                                            <h4 asp-for="@Model.Target">Target</h4><hr/>
+                                            <input class="form-control" asp-for="@Model.Target" />
+                                        </div>
+                                    </div><br>
+                                    <div class="col-sm-12">
+                                     <h4>Seleziona i moduli DNSENUM</h4><hr/>
+                                    </div>
+                            <table class="table">
+                                <div class="method">
+                                    <thead>
+                                        <tr>
+                                            <th></th>
+                                             <th>
+                                        Nome
+                                            </th>
+                                            <th>
+                                        Comando
+                                            </th>
+                                            <th></th>
+                                        </tr>
+                                    </thead>
+                                </div>
+                                <tbody>
+                                    @foreach (var item in listaModuli) {
+                                       
+                                        
+                                            if(item.Applicazione!= webmva.Models.APPLICAZIONE.DNSENUM){continue;}
+                                             <tr>
+                                                <td>
+                                                    <input type="checkbox"
+                                                        name="moduliSelezionati"
+                                                        value="@item.ModuloID"
+                                                        @(Html.Raw(item.Inserito ? "checked=\"checked\"" : "")) />
+                                                        
+                                                </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Nome)
+                                                </td>
+                                                <td>
+                                                    @Html.DisplayFor(modelItem => item.Comando)
+                                                </td>
+                                            </tr>       
+                                    }
+                                </tbody>
+                            </table>
+
+                        </div>
+                        </div>
+                      </div>
                     </div>
                       <div class="panel panel-default">
                     <div class="panel-heading">
