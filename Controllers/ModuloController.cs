@@ -942,6 +942,10 @@ namespace webmva.Controllers_
             {
                 return NotFound();
             }
+            var progetti = _context.ModuliProgetto.Where(m=>m.ModuloID==modulo.ID).Select(x =>x.Progetto.Nome).ToList();
+            
+            ViewData["Progetti"]= progetti;
+
             return View(modulo);
         }
 

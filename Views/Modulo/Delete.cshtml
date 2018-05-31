@@ -1,9 +1,25 @@
 @model webmva.Models.Modulo 
-@{ ViewData["Title"] = "Delete"; }
+@{ ViewData["Title"] = "Delete"; 
+List<string> progetti = ViewBag.Progetti;
+System.Console.WriteLine(progetti.Count.ToString());
+}
 <br>
   <div class="container">
 <h2><em>Sei sicuro di voler cancellare </em><strong>@Html.DisplayFor(model => model.Nome)?</strong></h2>
 <hr />
+@if(progetti.Count != 0)
+{
+<div class="col-md-12">
+  <h3  style="color: red"><strong>@Html.DisplayFor(model => model.Nome)</strong><em> si trova in: </em>
+  @foreach(var item in progetti){
+   <strong>
+    @item 
+   </strong>                                
+  } </h3>
+</div>
+<hr />  
+
+}
 <div class="col-md-12">
     <form asp-action="Delete">
        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
