@@ -25,6 +25,8 @@ if ! hash pyrit >/dev/null 2>&1 ; then MANCANTI="${MANCANTI}pyrit " ; fi
 if ! hash dotnet >/dev/null 2>&1 ; then MANCANTI="${MANCANTI}dotnet " ; fi
 if ! hash perl >/dev/null 2>&1 ; then MANCANTI="${MANCANTI}perl " ; fi
 if ! hash ruby >/dev/null 2>&1 ; then MANCANTI="${MANCANTI}ruby " ; fi
+if [ ! -d Programmi/odat ] ; then MANCANTI="${MANCANTI}odat " ; fi
+
 
 EXIT=0
 if [[ ${MANCANTI} -eq "" ]] ; then EXIT=1 ; else EXIT=0 ; fi
