@@ -274,7 +274,7 @@ namespace webmva.Controllers_
             foreach (ModuliProgetto modprog in progetto.ModuliProgetto)
             {
                 Modulo modulo = modprog.Modulo;
-                string comando = CreaComando(modulo, progetto.Target);
+                string comando = CreaComando(modulo, modprog.Target);
                 string cartellaProgetto = Globals.CreaCartellaProgetto(progetto.Nome);
                 risultati.Add(modulo.Nome, $"<h3> {modulo.Applicazione.ToString()}</h3> \r\n <p>{comando.EseguiCLI(cartellaProgetto)}</p>");
             }
