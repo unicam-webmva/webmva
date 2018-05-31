@@ -318,12 +318,12 @@ namespace webmva.Controllers_
             if(mod is ModuloDNSRECON)
             {
                 string percorsoExec = Path.Combine(Globals.CartellaWEBMVA, "Programmi", "dnsrecon");
-                string comando = $"python \"{percorsoExec}\" {mod.Comando} -x {timestamp}dnsrecon_{nomeCamelCase}.xml";
+                string comando = $"python \"{percorsoExec}\" {mod.Comando} --xml {timestamp}dnsrecon_{nomeCamelCase}.xml";
                 return comando;
             }
             if(mod is ModuloFIERCE)
             {
-                string percorsoExec = Path.Combine(Globals.CartellaWEBMVA, "Programmi", "fierce");
+                string percorsoExec = Path.Combine(Globals.CartellaWEBMVA, "Programmi", "fierce", "fierce");
                 string comando = $"python \"{percorsoExec}\" {mod.Comando} >> {timestamp}fierce_{nomeCamelCase}.txt";
                 return comando;
             }
@@ -339,10 +339,22 @@ namespace webmva.Controllers_
                 string comando = $"python \"{percorsoExec}\" {mod.Comando} >> {timestamp}infoga_{nomeCamelCase}.txt";
                 return comando;
             }
+             if(mod is ModuloSUBLIST3R)
+            {
+                string percorsoExec = Path.Combine(Globals.CartellaWEBMVA, "Programmi", "Sublist3r");
+                string comando = $"python \"{percorsoExec}\" {mod.Comando}  -o {timestamp}sublist3r_{nomeCamelCase}.txt";
+                return comando;
+            }
             if(mod is ModuloWAPITI)
             {
                 string percorsoExec = Path.Combine(Globals.CartellaWEBMVA, "Programmi", "wapiti");
                 string comando = $"python \"{percorsoExec}\" {mod.Comando} -f html -o {timestamp}wapiti_{nomeCamelCase}.html";
+                return comando;
+            }
+             if(mod is ModuloOPENDOOR)
+            {
+                 string percorsoExec = Path.Combine(Globals.CartellaWEBMVA, "Programmi", "OpenDoor");
+                string comando = $"python \"{percorsoExec}\" {mod.Comando} >> {timestamp}opendoor_{nomeCamelCase}.txt ";
                 return comando;
             }
             if(mod is ModuloSQLMAP)
@@ -353,8 +365,8 @@ namespace webmva.Controllers_
             }
             if(mod is ModuloWIFITE)
             {
-                string percorsoExec = Path.Combine(Globals.CartellaWEBMVA, "Programmi", "wifite");
-                string comando = $"python \"{percorsoExec}\" {mod.Comando} >> {timestamp}wifite_{nomeCamelCase}.txt ";
+                string percorsoExec = Path.Combine(Globals.CartellaWEBMVA, "Programmi", "wifite2");
+                string comando = $"python \"{percorsoExec}\" {mod.Comando} >> {timestamp}wifite2_{nomeCamelCase}.txt ";
                 return comando;
             }
              if(mod is ModuloJOOMSCAN)
@@ -369,6 +381,14 @@ namespace webmva.Controllers_
                 string comando = $"ruby \"{percorsoExec}\" {mod.Comando} --log {timestamp}wpscan_{nomeCamelCase}.txt ";
                 return comando;
             }
+            if(mod is ModuloWASCAN)
+            {
+                 string percorsoExec = Path.Combine(Globals.CartellaWEBMVA, "Programmi", "WAScan");
+                string comando = $"python \"{percorsoExec}\" {mod.Comando} >> {timestamp}wascan_{nomeCamelCase}.txt ";
+                return comando;
+            }
+             
+             
             else return "";
         }
     }

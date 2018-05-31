@@ -23,10 +23,16 @@ namespace webmva.Data
             modelBuilder.Entity<ModuloJOOMSCAN>().HasBaseType<Modulo>();
             modelBuilder.Entity<ModuloWPSCAN>().HasBaseType<Modulo>();
             modelBuilder.Entity<ModuloINFOGA>().HasBaseType<Modulo>();
+            modelBuilder.Entity<ModuloOPENDOOR>().HasBaseType<Modulo>();
+            modelBuilder.Entity<ModuloWASCAN>().HasBaseType<Modulo>();
+            modelBuilder.Entity<ModuloINFOGAEMAIL>().HasBaseType<Modulo>();
             modelBuilder.Entity<ModuloINFOGAEMAIL>().HasBaseType<Modulo>();
             modelBuilder.Entity<ModuloWAPITI>().HasBaseType<Modulo>();
             modelBuilder.Entity<ModuloSQLMAP>().HasBaseType<Modulo>();
             modelBuilder.Entity<ModuloWIFITE>().HasBaseType<Modulo>();
+            modelBuilder.Entity<ModuloSUBLIST3R>().HasBaseType<Modulo>();
+            modelBuilder.Entity<ModuloNOSQL>().HasBaseType<Modulo>();
+            modelBuilder.Entity<ModuloODAT>().HasBaseType<Modulo>();
         }
     }
 }

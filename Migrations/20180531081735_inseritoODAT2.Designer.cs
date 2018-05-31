@@ -12,9 +12,10 @@ using webmva.Models;
 namespace webmva.Migrations
 {
     [DbContext(typeof(MyDbContext))]
-    partial class MyDbContextModelSnapshot : ModelSnapshot
+    [Migration("20180531081735_inseritoODAT2")]
+    partial class inseritoODAT2
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -29,7 +30,7 @@ namespace webmva.Migrations
 
                     b.Property<int>("ProgettoID");
 
-                    b.Property<string>("Target");
+                    b.Property<string>("Taget");
 
                     b.HasKey("ID");
 

@@ -29,13 +29,19 @@ namespace webmva.Controllers_
             var listaFIERCE = await _context.Moduli.Where(modulo => modulo.Applicazione == APPLICAZIONE.FIERCE).ToListAsync();
             var listaDROOPE = await _context.Moduli.Where(modulo => modulo.Applicazione == APPLICAZIONE.DROOPE).ToListAsync();
             var listaJOOMSCAN = await _context.Moduli.Where(modulo => modulo.Applicazione == APPLICAZIONE.JOOMSCAN).ToListAsync();
+            var listaOPENDOOR = await _context.Moduli.Where(modulo => modulo.Applicazione == APPLICAZIONE.OPENDOOR).ToListAsync();
             var listaWPSCAN = await _context.Moduli.Where(modulo => modulo.Applicazione == APPLICAZIONE.WPSCAN).ToListAsync();
             var listaINFOGA = await _context.Moduli.Where(modulo => modulo.Applicazione == APPLICAZIONE.INFOGA).ToListAsync();
             var listaINFOGAEMAIL = await _context.Moduli.Where(modulo => modulo.Applicazione == APPLICAZIONE.INFOGAEMAIL).ToListAsync();
+            var listaSUBLIST3R = await _context.Moduli.Where(modulo => modulo.Applicazione == APPLICAZIONE.SUBLIST3R).ToListAsync();
             var listaWAPITI = await _context.Moduli.Where(modulo => modulo.Applicazione == APPLICAZIONE.WAPITI).ToListAsync();
             var listaSQLMAP = await _context.Moduli.Where(modulo => modulo.Applicazione == APPLICAZIONE.SQLMAP).ToListAsync();
             var listaWIFITE = await _context.Moduli.Where(modulo => modulo.Applicazione == APPLICAZIONE.WIFITE).ToListAsync();
-            return View(new ListaModuliVM { ModuliNMAP = listaNMAP, ModuliNESSUS= listaNESSUS, ModuliDNSRECON = listaDNSRECON, ModuliFIERCE= listaFIERCE, ModuliDROOPE= listaDROOPE,ModuliJOOMSCAN=listaJOOMSCAN,ModuliWPSCAN=listaWPSCAN, ModuliINFOGA =listaINFOGA,ModuliINFOGAEMAIL = listaINFOGAEMAIL, ModuliWAPITI = listaWAPITI, ModuliSQLMAP = listaSQLMAP, ModuliWIFITE = listaWIFITE });
+            var listaWASCAN = await _context.Moduli.Where(modulo => modulo.Applicazione == APPLICAZIONE.WASCAN).ToListAsync();
+            var listaNOSQL = await _context.Moduli.Where(modulo => modulo.Applicazione == APPLICAZIONE.NOSQL).ToListAsync();
+            var listaODAT = await _context.Moduli.Where(modulo => modulo.Applicazione == APPLICAZIONE.ODAT).ToListAsync(); 
+            var listaDNSENUM = await _context.Moduli.Where(modulo => modulo.Applicazione == APPLICAZIONE.DNSENUM).ToListAsync();              
+            return View(new ListaModuliVM { ModuliNMAP = listaNMAP, ModuliNESSUS= listaNESSUS,ModuliOPENDOOR= listaOPENDOOR, ModuliDNSRECON = listaDNSRECON, ModuliFIERCE= listaFIERCE, ModuliDROOPE= listaDROOPE,ModuliJOOMSCAN=listaJOOMSCAN,ModuliWPSCAN=listaWPSCAN, ModuliINFOGA =listaINFOGA,ModuliINFOGAEMAIL = listaINFOGAEMAIL, ModuliSUBLIST3R = listaSUBLIST3R, ModuliWAPITI = listaWAPITI, ModuliSQLMAP = listaSQLMAP, ModuliWIFITE = listaWIFITE, ModuliWASCAN =listaWASCAN, ModuliNOSQL = listaNOSQL, ModuliODAT = listaODAT, ModuliDNSENUM = listaDNSENUM });
         }
 
         // GET: Modulo/Details/5
@@ -184,6 +190,19 @@ namespace webmva.Controllers_
                     }
                 }
             }
+             else if (createmodulo.SUBLIST3R.Nome != null && cosa.Equals("sublist3r"))
+            {
+                {
+                    if (ModelState.IsValid)
+                    {
+                        ModuloSUBLIST3R mod = createmodulo.SUBLIST3R;
+                        mod.Applicazione = APPLICAZIONE.SUBLIST3R;
+                        _context.Moduli.Add(mod);
+                        await _context.SaveChangesAsync();
+                        return RedirectToAction(nameof(Index));
+                    }
+                }
+            }
              else if (createmodulo.WAPITI.Nome != null && cosa.Equals("wapiti"))
             {
                 {
@@ -191,6 +210,19 @@ namespace webmva.Controllers_
                     {
                         ModuloWAPITI mod = createmodulo.WAPITI;
                         mod.Applicazione = APPLICAZIONE.WAPITI;
+                        _context.Moduli.Add(mod);
+                        await _context.SaveChangesAsync();
+                        return RedirectToAction(nameof(Index));
+                    }
+                }
+            }
+            else if (createmodulo.WASCAN.Nome != null && cosa.Equals("wascan"))
+            {
+                {
+                    if (ModelState.IsValid)
+                    {
+                        ModuloWASCAN mod = createmodulo.WASCAN;
+                        mod.Applicazione = APPLICAZIONE.WASCAN;
                         _context.Moduli.Add(mod);
                         await _context.SaveChangesAsync();
                         return RedirectToAction(nameof(Index));
@@ -217,6 +249,58 @@ namespace webmva.Controllers_
                     {
                         ModuloWIFITE mod = createmodulo.WIFITE;
                         mod.Applicazione = APPLICAZIONE.WIFITE;
+                        _context.Moduli.Add(mod);
+                        await _context.SaveChangesAsync();
+                        return RedirectToAction(nameof(Index));
+                    }
+                }
+            }
+            else if (createmodulo.OPENDOOR.Nome != null && cosa.Equals("opendoor"))
+            {
+                {
+                    if (ModelState.IsValid)
+                    {
+                        ModuloOPENDOOR mod = createmodulo.OPENDOOR;
+                        mod.Applicazione = APPLICAZIONE.OPENDOOR;
+                        _context.Moduli.Add(mod);
+                        await _context.SaveChangesAsync();
+                        return RedirectToAction(nameof(Index));
+                    }
+                }
+            }
+            else if (createmodulo.NOSQL.Nome != null && cosa.Equals("nosql"))
+            {
+                {
+                    if (ModelState.IsValid)
+                    {
+                        ModuloNOSQL mod = createmodulo.NOSQL;
+                        mod.Applicazione = APPLICAZIONE.NOSQL;
+                        _context.Moduli.Add(mod);
+                        await _context.SaveChangesAsync();
+                        return RedirectToAction(nameof(Index));
+                    }
+                }
+            }
+            else if (createmodulo.ODAT.Nome != null && cosa.Equals("odat"))
+            {
+                {
+                    if (ModelState.IsValid)
+                    {
+                        ModuloODAT mod = createmodulo.ODAT;
+                        mod.Applicazione = APPLICAZIONE.ODAT;
+                        _context.Moduli.Add(mod);
+                        await _context.SaveChangesAsync();
+                        return RedirectToAction(nameof(Index));
+                    }
+                }
+            }
+            else if (createmodulo.DNSENUM.Nome != null && cosa.Equals("dnsEnum"))
+            {
+                {
+                    if (ModelState.IsValid)
+                    {
+                        ModuloDNSENUM mod = createmodulo.DNSENUM;
+                        mod.Applicazione = APPLICAZIONE.DNSENUM;
                         _context.Moduli.Add(mod);
                         await _context.SaveChangesAsync();
                         return RedirectToAction(nameof(Index));
@@ -259,12 +343,24 @@ namespace webmva.Controllers_
                 return View(new EditModuloVM((ModuloINFOGA) modulo));
             else if (modulo is ModuloINFOGAEMAIL)
                 return View(new EditModuloVM((ModuloINFOGAEMAIL) modulo));
+             else if (modulo is ModuloSUBLIST3R)
+                return View(new EditModuloVM((ModuloSUBLIST3R) modulo));    
             else if (modulo is ModuloWAPITI)
                 return View(new EditModuloVM((ModuloWAPITI) modulo));
             else if (modulo is ModuloSQLMAP)
                 return View(new EditModuloVM((ModuloSQLMAP) modulo));
             else if (modulo is ModuloWIFITE)
-                return View(new EditModuloVM((ModuloWIFITE) modulo));    
+                return View(new EditModuloVM((ModuloWIFITE) modulo));
+            else if (modulo is ModuloOPENDOOR)
+                return View(new EditModuloVM((ModuloOPENDOOR) modulo));
+            else if (modulo is ModuloWASCAN)
+                return View(new EditModuloVM((ModuloWASCAN) modulo));
+            else if (modulo is ModuloNOSQL)
+                return View(new EditModuloVM((ModuloNOSQL) modulo));
+            else if (modulo is ModuloODAT)
+                return View(new EditModuloVM((ModuloODAT) modulo)); 
+            else if (modulo is ModuloDNSENUM)
+                return View(new EditModuloVM((ModuloDNSENUM) modulo));             
             // PROVVISORIO, SOLO PER NON DARE ERRORI DI COMPILAZIONE
             else return View(new EditModuloVM() );
         }
@@ -538,9 +634,125 @@ namespace webmva.Controllers_
                     return RedirectToAction(nameof(Index));
                 }
             }
+             else if (!string.IsNullOrEmpty(editmodulo.SUBLIST3R.Nome))
+            {
+                ModuloSUBLIST3R mod = editmodulo.SUBLIST3R;
+                if (id != mod.ID)
+                {
+                    return NotFound();
+                }
+
+                if (ModelState.IsValid)
+                {
+                    try
+                    {
+                        _context.Update(mod);
+                        await _context.SaveChangesAsync();
+                    }
+                    catch (DbUpdateConcurrencyException)
+                    {
+                        if (!ModuloExists(mod.ID))
+                        {
+                            return NotFound();
+                        }
+                        else
+                        {
+                            throw;
+                        }
+                    }
+                    return RedirectToAction(nameof(Index));
+                }
+            }
+             else if (!string.IsNullOrEmpty(editmodulo.WASCAN.Nome))
+            {
+                ModuloWASCAN mod = editmodulo.WASCAN;
+                if (id != mod.ID)
+                {
+                    return NotFound();
+                }
+
+                if (ModelState.IsValid)
+                {
+                    try
+                    {
+                        _context.Update(mod);
+                        await _context.SaveChangesAsync();
+                    }
+                    catch (DbUpdateConcurrencyException)
+                    {
+                        if (!ModuloExists(mod.ID))
+                        {
+                            return NotFound();
+                        }
+                        else
+                        {
+                            throw;
+                        }
+                    }
+                    return RedirectToAction(nameof(Index));
+                }
+            }
+            else if (!string.IsNullOrEmpty(editmodulo.OPENDOOR.Nome))
+            {
+                ModuloOPENDOOR mod = editmodulo.OPENDOOR;
+                if (id != mod.ID)
+                {
+                    return NotFound();
+                }
+
+                if (ModelState.IsValid)
+                {
+                    try
+                    {
+                        _context.Update(mod);
+                        await _context.SaveChangesAsync();
+                    }
+                    catch (DbUpdateConcurrencyException)
+                    {
+                        if (!ModuloExists(mod.ID))
+                        {
+                            return NotFound();
+                        }
+                        else
+                        {
+                            throw;
+                        }
+                    }
+                    return RedirectToAction(nameof(Index));
+                }
+            }
             else if (!string.IsNullOrEmpty(editmodulo.WAPITI.Nome))
             {
                 ModuloWAPITI mod = editmodulo.WAPITI;
+                if (id != mod.ID)
+                {
+                    return NotFound();
+                }
+
+                if (ModelState.IsValid)
+                {
+                    try
+                    {
+                        _context.Update(mod);
+                        await _context.SaveChangesAsync();
+                    }
+                    catch (DbUpdateConcurrencyException)
+                    {
+                        if (!ModuloExists(mod.ID))
+                        {
+                            return NotFound();
+                        }
+                        else
+                        {
+                            throw;
+                        }
+                    }
+                    return RedirectToAction(nameof(Index));
+                }
+            }
+             else if (!string.IsNullOrEmpty(editmodulo.SUBLIST3R.Nome))
+            {
+                ModuloSUBLIST3R mod = editmodulo.SUBLIST3R;
                 if (id != mod.ID)
                 {
                     return NotFound();
@@ -599,6 +811,93 @@ namespace webmva.Controllers_
             else if (!string.IsNullOrEmpty(editmodulo.WIFITE.Nome))
             {
                 ModuloWIFITE mod = editmodulo.WIFITE;
+                if (id != mod.ID)
+                {
+                    return NotFound();
+                }
+
+                if (ModelState.IsValid)
+                {
+                    try
+                    {
+                        _context.Update(mod);
+                        await _context.SaveChangesAsync();
+                    }
+                    catch (DbUpdateConcurrencyException)
+                    {
+                        if (!ModuloExists(mod.ID))
+                        {
+                            return NotFound();
+                        }
+                        else
+                        {
+                            throw;
+                        }
+                    }
+                    return RedirectToAction(nameof(Index));
+                }
+            }
+            else if (!string.IsNullOrEmpty(editmodulo.NOSQL.Nome))
+            {
+                ModuloNOSQL mod = editmodulo.NOSQL;
+                if (id != mod.ID)
+                {
+                    return NotFound();
+                }
+
+                if (ModelState.IsValid)
+                {
+                    try
+                    {
+                        _context.Update(mod);
+                        await _context.SaveChangesAsync();
+                    }
+                    catch (DbUpdateConcurrencyException)
+                    {
+                        if (!ModuloExists(mod.ID))
+                        {
+                            return NotFound();
+                        }
+                        else
+                        {
+                            throw;
+                        }
+                    }
+                    return RedirectToAction(nameof(Index));
+                }
+            }
+              else if (!string.IsNullOrEmpty(editmodulo.ODAT.Nome))
+            {
+                ModuloODAT mod = editmodulo.ODAT;
+                if (id != mod.ID)
+                {
+                    return NotFound();
+                }
+
+                if (ModelState.IsValid)
+                {
+                    try
+                    {
+                        _context.Update(mod);
+                        await _context.SaveChangesAsync();
+                    }
+                    catch (DbUpdateConcurrencyException)
+                    {
+                        if (!ModuloExists(mod.ID))
+                        {
+                            return NotFound();
+                        }
+                        else
+                        {
+                            throw;
+                        }
+                    }
+                    return RedirectToAction(nameof(Index));
+                }
+            }
+            else if (!string.IsNullOrEmpty(editmodulo.DNSENUM.Nome))
+            {
+                ModuloDNSENUM mod = editmodulo.DNSENUM;
                 if (id != mod.ID)
                 {
                     return NotFound();

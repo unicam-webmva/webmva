@@ -4,7 +4,7 @@ namespace webmva.Models
 {
     public enum APPLICAZIONE
     {
-        NMAP, NESSUS, DNSRECON, FIERCE, DROOPE, JOOMSCAN, WPSCAN, INFOGA, INFOGAEMAIL, WAPITI, SQLMAP, WIFITE
+        NMAP, NESSUS, DNSRECON, FIERCE, DROOPE, JOOMSCAN, WPSCAN, OPENDOOR, INFOGA, INFOGAEMAIL, SUBLIST3R, WAPITI, SQLMAP, WIFITE, WASCAN, NOSQL, ODAT, DNSENUM
     }
     /// <summary>
     /// Questo modello rappresenta un Modulo, usabile in più Progetti.

@@ -9,10 +9,15 @@
     bool wpscan = Model.WPSCAN != null;
     bool infoga = Model.INFOGA != null;
     bool infogaemail = Model.INFOGAEMAIL != null;
+     bool sublist3r = Model.SUBLIST3R != null;
     bool wapiti = Model.WAPITI != null;
     bool sqlmap = Model.SQLMAP != null;
     bool wifite = Model.WIFITE != null;
-
+    bool opendoor = Model.OPENDOOR != null;
+    bool wascan = Model.WASCAN != null;
+    bool nosql = Model.NOSQL != null;
+    bool odat = Model.ODAT != null;
+    bool dnsEnum = Model.DNSENUM != null;
 }
 
 
@@ -1689,4 +1694,680 @@
 </div>
                             </form>
 }
+ @* -----OPENDOOR----- *@
+    else if (opendoor)
+    {
+        <h2><em>Modifica modulo</em><strong> @(Model.OPENDOOR.Nome)</strong></h2>
+        <hr />
+  <form asp-action="Edit" name="opendoorForm">
+                                <input type="hidden" asp-for="@Model.OPENDOOR.Applicazione" value="@webmva.Models.APPLICAZIONE.OPENDOOR" />
+<input type="hidden" asp-for="@Model.OPENDOOR.ID" />
+                                  <div class="row panel panel-default panel-body">
+
+                                <div class="col-sm-12">
+                                    <div class="col-sm-7" style="margin:0 auto; float:none">
+                                        <div class="form-group">
+                                            <h4 asp-for="@(Model.OPENDOOR.Nome)">Nome Modulo</h4>
+                                            <input class="form-control" asp-for="@(Model.OPENDOOR.Nome)" />
+                                        </div>
+                                    </div>
+
+                                    <hr />
+                                    <div class="col-sm-12">
+                                        <div class="col-sm-12">
+                                            <div class="col-sm-7" style="margin:0 auto; float:none">
+                                                <div class="form-group row">
+                                                    <h4 asp-for="@(Model.OPENDOOR.ComandoPersonalizzato)">Comando Personalizzato</h4>
+                                                    <input class="form-control" asp-for="@(Model.OPENDOOR.ComandoPersonalizzato)" />
+                                                </div>
+
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+                                    <div class="col-sm-12">
+                                        <h4>Tipi di enumerazione</h4>
+                                        <hr />
+                                        <div class="form-group row">
+                                            <div class="col-sm-5">
+                                                <label class="control-label"> Settaggio Delay</label>
+                                            </div>
+
+                                            <input class="col-sm-5" type="number" asp-for="@Model.OPENDOOR.DelayO" />
+                                            <div class="col-sm-3"></div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <div class="col-sm-5">
+                                                <label class="control-label"> Settaggio Timeout</label>
+                                            </div>
+
+                                            <input class="col-sm-5" type="number" asp-for="@Model.OPENDOOR.TimeoutO" />
+                                            <div class="col-sm-3"></div>
+                                        </div>
+                                          <div class="form-group row">
+                                            <div class="col-sm-5">
+                                                <label class="control-label"> Settaggio Porta</label>
+                                            </div>
+
+                                            <input class="col-sm-5" type="number" asp-for="@Model.OPENDOOR.PortaO" />
+                                            <div class="col-sm-3"></div>
+                                        </div>
+                                          <div class="form-group row">
+                                            <div class="col-sm-5">
+                                                <label class="control-label"> Settaggio Retries</label>
+                                            </div>
+
+                                            <input class="col-sm-5" type="number" asp-for="@Model.OPENDOOR.RetriesO" />
+                                            <div class="col-sm-3"></div>
+                                        </div>
+                                        <div class="col-sm-12">
+                                                    <div class="form-group row">
+                                                        <div class="col-sm-6">
+                                                            <label class="control-label">
+                                                                <input type="checkbox" asp-for="@Model.OPENDOOR.AcceptCookies" /> AcceptCookies (--accept-cookies)
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group row">
+                                            <div class="col-sm-4">
+                                                <label class="control-label">Scegli il metodo </label>
+                                            </div>
+                                             <div class="col-sm-1"></div>
+                                            <input type="text" class="col-sm-5" asp-for="@Model.OPENDOOR.Metodo" />  
+                                        </div>  
+                                    </div>
+                                   <div class="col-sm-12">
+                                            <hr/>
+                                            <div class="col-sm-5">
+                                                <div clas="form-group row">
+                                                 <a href="https://github.com/stanislav-web/OpenDoor"target="_blank"><span class="glyphicon glyphicon-info-sign" style="font-size:90%"></span>
+                                        consulta il documentazione di Opendoor</a>
+                                        </div>
+                                        </div>
+                                        <div class="col-sm-1"></div>
+                                        <div class="col-sm-6 text-right">
+                                            <div class="form-group row">
+                                                <input type="submit" asp-action="Edit" asp-route-id="@Model.OPENDOOR.ID" class="btn btn-default" value="Salva" />&nbsp;&nbsp; |
+                                                <a asp-action="Index"> Torna alla lista</a>
+                                            </div>
+                                        </div>
+                                        </div>
+                                </div>
+</div>
+                            </form>
+                            }
+
+
+ @* -----SUBLIST3R----- *@
+    if (sublist3r)
+    {
+        <h2><em>Modifica modulo</em><strong> @(Model.SUBLIST3R.Nome)</strong></h2>
+        <hr />
+        <form asp-action="Edit" name="sublist3rForm">
+                                <input type="hidden" asp-for="@Model.SUBLIST3R.Applicazione" value="@webmva.Models.APPLICAZIONE.SUBLIST3R" />
+<input type="hidden" asp-for="@Model.SUBLIST3R.ID" />
+                                  <div class="row panel panel-default panel-body">
+
+                                <div class="col-sm-12">
+                                    <div class="col-sm-7" style="margin:0 auto; float:none">
+                                        <div class="form-group">
+                                            <h4 asp-for="@(Model.SUBLIST3R.Nome)">Nome Modulo</h4>
+                                            <input class="form-control" asp-for="@(Model.SUBLIST3R.Nome)" />
+                                        </div>
+                                    </div>
+
+                                    <hr />
+                                    <div class="col-sm-12">
+                                        <div class="col-sm-12">
+                                            <div class="col-sm-7" style="margin:0 auto; float:none">
+                                                <div class="form-group row">
+                                                    <h4 asp-for="@(Model.SUBLIST3R.ComandoPersonalizzato)">Comando Personalizzato</h4>
+                                                    <input class="form-control" asp-for="@(Model.SUBLIST3R.ComandoPersonalizzato)" />
+                                                </div>
+
+                                            </div>
+<hr/>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-12">
+                                        <h4>Tipi di enumerazione</h4>
+                                        <hr />
+                                        <div class="form-group row">
+                                                   <div class="col-sm-6">
+                                                        <label class="control-label">
+                                                            <input type="checkbox" asp-for="@Model.SUBLIST3R.VerbositàSUB" /> Verbosità (-v)
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row">
+                                                     <div class="col-sm-6">
+                                                        <label class="control-label">
+                                                            <input type="checkbox" asp-for="@Model.SUBLIST3R.BruteforceSUB" /> Bruteforce (-b)
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                        <div class="form-group row">
+                                            <div class="col-sm-5">
+                                                <label class="control-label"> Settaggio Thread</label>
+                                            </div>
+                                            <input class="col-sm-5" type="number" asp-for="@Model.SUBLIST3R.ThreadSUB" />
+                                            <div class="col-sm-3"></div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <div class="col-sm-4">
+                                                <label class="control-label">Scegli la/le porta/e </label>
+                                            </div>
+                                             <div class="col-sm-1"></div>
+                                            <input type="text" class="col-sm-5" asp-for="@Model.SUBLIST3R.PorteSUB" />  
+                                        </div>
+                                        <div class="col-sm-12">
+                                            <h4>
+                                                Seleziona i moduli desiderati
+                                            </h4>
+                                            <hr />
+                                             <div class="col-sm-6">
+                                                <div class="col-sm-12">
+                                                    <div class="form-group row">
+                                                        <div class="col-sm-6">
+                                                            <label class="control-label">
+                                                                <input type="checkbox" asp-for="@Model.SUBLIST3R.All" /> Tutto
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group row">
+                                                        <div class="col-sm-6">
+                                                            <label class="control-label">
+                                                                <input type="checkbox" asp-for="@Model.SUBLIST3R.BaiduSUB" /> Baidu 
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group row">
+                                                        <div class="col-sm-6">
+                                                            <label class="control-label">
+                                                                <input type="checkbox" asp-for="@Model.SUBLIST3R.YahooSUB" /> Yahoo
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group row">
+                                                        <div class="col-sm-6">
+                                                            <label class="control-label">
+                                                                <input type="checkbox" asp-for="@Model.SUBLIST3R.GoogleSUB" /> Google
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group row">
+                                                        <div class="col-sm-6">
+                                                            <label class="control-label">
+                                                                <input type="checkbox" asp-for="@Model.SUBLIST3R.BingSUB" /> Bing
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group row">
+                                                    <div class="col-sm-6">
+                                                        <label class="control-label">
+                                                            <input type="checkbox" asp-for="@Model.SUBLIST3R.AskSUB" /> Ask
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                                </div>
+                                                </div>
+                                            <div class="col-sm-6">
+                                                
+                                                <div class="form-group row">
+                                                    <div class="col-sm-6">
+                                                        <label class="control-label">
+                                                            <input type="checkbox" asp-for="@Model.SUBLIST3R.NetcraftSUB" /> Netcraft
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <div class=" col-sm-6">
+                                                        <label class="control-label">
+                                                            <input type="checkbox" asp-for="@Model.SUBLIST3R.DNSdumpsterSUB" /> DNSdumpster
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <div class=" col-sm-6">
+                                                        <label class="control-label">
+                                                            <input type="checkbox" asp-for="@Model.SUBLIST3R.VirustotalSUB" /> Virustotal
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <div class="col-sm-6">
+                                                        <label class="control-label">
+                                                            <input type="checkbox" asp-for="@Model.SUBLIST3R.ThreatCrowdSUB" /> ThreatCrowd
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <div class="col-sm-6">
+                                                        <label class="control-label">
+                                                            <input type="checkbox" asp-for="@Model.SUBLIST3R.SSLCertificatesSUB" /> SSL Certificates
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <div class="col-sm-6">
+                                                        <label class="control-label">
+                                                            <input type="checkbox" asp-for="@Model.SUBLIST3R.PassiveDNSSUB" /> PassiveDNS
+                                                        </label>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                   <div class="col-sm-12">
+                                            <hr/>
+                                            <div class="col-sm-5">
+                                                <div clas="form-group row">
+                                                 <a href="https://github.com/aboul3la/Sublist3r"target="_blank"><span class="glyphicon glyphicon-info-sign" style="font-size:90%"></span>
+                                        consulta il documentazione di Sublist3r</a>
+                                        </div>
+                                        </div>
+                                        <div class="col-sm-1"></div>
+                                        <div class="col-sm-6 text-right">
+                                            <div class="form-group row">
+                                                <input type="submit" asp-action="Edit" asp-route-id="@Model.SUBLIST3R.ID" class="btn btn-default" value="Salva" />&nbsp;&nbsp; |
+                                                <a asp-action="Index"> Torna alla lista</a>
+                                            </div>
+                                        </div>
+                                        </div>
+                                </div>
+ </div>
+                            </form>
+}
+@* -----WASCAN----- *@
+    if (wascan)
+    {
+        <h2><em>Modifica modulo</em><strong> @(Model.WASCAN.Nome)</strong></h2>
+        <hr />
+         <form asp-action="Edit" name="wascanForm">
+                                <input type="hidden" asp-for="@Model.WASCAN.Applicazione" value="@webmva.Models.APPLICAZIONE.WASCAN" />
+<input type="hidden" asp-for="@Model.WASCAN.ID" />
+                                  <div class="row panel panel-default panel-body">
+
+                                <div class="col-sm-12">
+                                    <div class="col-sm-7" style="margin:0 auto; float:none">
+                                        <div class="form-group">
+                                            <h4 asp-for="@(Model.WASCAN.Nome)">Nome Modulo</h4>
+                                            <input class="form-control" asp-for="@(Model.WASCAN.Nome)" />
+                                        </div>
+                                    </div>
+
+                                    <hr />
+                                    <div class="col-sm-12">
+                                        <div class="col-sm-12">
+                                            <div class="col-sm-7" style="margin:0 auto; float:none">
+                                                <div class="form-group row">
+                                                    <h4 asp-for="@(Model.WASCAN.ComandoPersonalizzato)">Comando Personalizzato</h4>
+                                                    <input class="form-control" asp-for="@(Model.WASCAN.ComandoPersonalizzato)" />
+                                                </div>
+
+                                            </div>
+<hr/>
+                                        </div>
+
+                                    </div>
+                                    <div class="col-sm-12">
+                                        <h4>Tipi di enumerazione</h4>
+                                        <hr />
+                                       
+                                         <div class="col-sm-12">
+                                          
+                                                        <div class="col-sm-4">
+                                                            <label class="control-label">
+                                                                <input type="checkbox" asp-for="@Model.WASCAN.ReagentW" /> Reagent (-r)
+                                                            </label>
+                                                        </div>
+                                                    
+                                                   
+                                                        <div class="col-sm-4">
+                                                            <label class="control-label">
+                                                                <input type="checkbox" asp-for="@Model.WASCAN.VerbositàW" /> Verbosità (-v)
+                                                            </label>
+                                                        </div>
+                                                    
+                                                   
+                                                        <div class="col-sm-4">
+                                                            <label class="control-label">
+                                                                <input type="checkbox" asp-for="@Model.WASCAN.RedirectW" /> Redirect (-n)
+                                                            </label>
+                                                        </div>
+                                                    
+                                                    </div>
+                                                    <br><br><br>
+                                                  
+                                                    <div class="form-group row">
+                                            <div class="col-sm-5">
+                                                <label class="control-label">Scegli il metodo</label>
+                                            </div>
+                                            <select class="col-sm-5" asp-for="@Model.WASCAN.MethodsW">
+                                                <option value="1">POST</option>
+                                                <option value="0">GET</option> 
+                                            </select>
+                                        </div>
+                                        <div class="form-group row">
+                                            
+                                            <div class="col-sm-5">
+                                                <label class="control-label"> Settaggio Timeout</label>
+                                            </div>
+
+                                            <input class="col-sm-5" type="number" asp-for="@Model.WASCAN.TimeoutW" />
+                                            <div class="col-sm-3"></div>
+                                        </div>
+                                        
+                                         <div class="col-sm-12">
+<hr />
+                                            <h4>
+                                                Seleziona i moduli desiderati (esempi: [1] or [2,3])
+                                            </h4>
+                                            <hr />
+                                           
+                                                <div class="col-sm-12">
+                                                    <div class="col-sm-6">
+                                                    <div class="form-group row">
+                                                        <div class="col-sm-6">
+                                                            <label class="control-label">
+                                                                <input type="checkbox" asp-for="@Model.WASCAN.Fingerprint" /> Fingerprint (0)
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group row">
+                                                        <div class="col-sm-6">
+                                                            <label class="control-label">
+                                                                <input type="checkbox" asp-for="@Model.WASCAN.Attacks" /> Attacks (1)
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                    
+                                                </div>
+                                            
+                                            <div class="col-sm-6">
+                                               <div class="form-group row">
+                                                        <div class="col-sm-6">
+                                                            <label class="control-label">
+                                                                <input type="checkbox" asp-for="@Model.WASCAN.Audit" /> Audit (2)
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group row">
+                                                        <div class="col-sm-6">
+                                                            <label class="control-label">
+                                                                <input type="checkbox" asp-for="@Model.WASCAN.Bruteforce" />  Bruteforce (3)
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group row">
+                                                        <div class="col-sm-6">
+                                                            <label class="control-label">
+                                                                <input type="checkbox" asp-for="@Model.WASCAN.Disclosure" /> Disclosure (4)
+                                                            </label>
+                                                        </div>
+                                                    </div>
+
+                                            </div>
+                                            </div>
+
+                                        
+                                   
+                                   <div class="col-sm-12">
+                                            <hr/>
+                                            <div class="col-sm-5">
+                                                <div clas="form-group row">
+                                                 <a href="https://github.com/m4ll0k/WAScan"target="_blank"><span class="glyphicon glyphicon-info-sign" style="font-size:90%"></span>
+                                        consulta il documentazione di WASCAN</a>
+                                        </div>
+                                        </div>
+                                        <div class="col-sm-1"></div>
+                                        <div class="col-sm-6 text-right">
+                                            <div class="form-group row">
+                                                <input type="submit" asp-action="Edit" asp-route-id="@Model.WASCAN.ID" class="btn btn-default" value="Salva" />&nbsp;&nbsp; |
+                                                <a asp-action="Index"> Torna alla lista</a>
+                                            </div>
+                                        </div>
+                                        </div>
+                                </div>
+</div>
+</div>
+                            </form>
+
+}
+@* -----NOSQL----- *@
+    if (nosql)
+    {
+        <h2><em>Modifica modulo</em><strong> @(Model.NOSQL.Nome)</strong></h2>
+        <hr />
+
+
+   <form asp-action="Edit" name="nosqlForm">
+                                <input type="hidden" asp-for="@Model.NOSQL.Applicazione" value="@webmva.Models.APPLICAZIONE.NOSQL" />
+                                <input type="hidden" asp-for="@Model.NOSQL.ID" />
+                                  <div class="row panel panel-default panel-body">
+
+                                <div class="col-sm-12">
+                                    <div class="col-sm-7" style="margin:0 auto; float:none">
+                                        <div class="form-group">
+                                            <h4 asp-for="@(Model.NOSQL.Nome)">Nome Modulo</h4>
+                                            <input class="form-control" asp-for="@(Model.NOSQL.Nome)" />
+                                        </div>
+                                    </div>
+                                    <hr />
+                                       <div class="col-sm-12">
+                                            <hr/>
+                                            <div class="col-sm-5">
+                                                <div clas="form-group row">
+                                                 <a href="https://github.com/codingo/NoSQLMap"target="_blank"><span class="glyphicon glyphicon-info-sign" style="font-size:90%"></span>
+                                        consulta il documentazione di NoSQLMap </a>
+                                        </div>
+                                        </div>
+                                        <div class="col-sm-1"></div>
+                                        <div class="col-sm-6 text-right">
+                                            <div class="form-group row">
+                                                <input type="submit" asp-action="Edit" asp-route-id="@Model.NOSQL.ID"class="btn btn-default" value="Salva" />&nbsp;&nbsp; |
+                                                <a asp-action="Index"> Torna alla lista</a>
+                                            </div>
+                                        </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+} 
+
+    @* -----ODAT----- *@
+    if (odat)
+    {
+        <h2><em>Modifica modulo</em><strong> @(Model.ODAT.Nome)</strong></h2>
+        <hr />
+ <form asp-action="Edit" name="odatForm">
+                                <input type="hidden" asp-for="@Model.ODAT.Applicazione" value="@webmva.Models.APPLICAZIONE.ODAT" />
+                                <input type="hidden" asp-for="@Model.ODAT.ID" />
+                                <div class="row panel panel-default panel-body">
+                                <div class="col-sm-12">
+                                    <div class="col-sm-7" style="margin:0 auto; float:none">
+                                        <div class="form-group">
+                                            <h4 asp-for="@(Model.ODAT.Nome)">Nome Modulo</h4>
+                                            <input class="form-control" asp-for="@(Model.ODAT.Nome)" />
+                                        </div>
+                                    </div>
+                                     <div class="col-sm-12">
+                                       <hr/>
+                                        <div class="col-sm-7" style="margin:0 auto; float:none">
+                                            <div class="form-group row">
+                                                <h4 asp-for="@(Model.ODAT.ComandoPersonalizzato)">Comando Personalizzato</h4>
+                                                <input class="form-control" asp-for="@(Model.ODAT.ComandoPersonalizzato)" />
+                                            </div>
+
+                                        </div>
+                                    </div>
+
+                                    <div class="col-sm-12">
+                                        <hr />
+                                        <h4>Seleziona i comandi</h4>
+                                        <hr />
+                                        <div class="form-group row">
+                                            <div class="col-sm-4">
+                                                <label class="control-label">Scegli la porta</label>
+                                            </div>
+                                             <div class="col-sm-1"></div>
+                                            <input type="number" class="col-sm-5" asp-for="@Model.ODAT.PortaOdat" />
+                                        </div>
+                                        <div class="form-group row">
+                                            <div class="col-sm-4">
+                                                <label class="control-label">Scegli la verbosità</label>
+                                            </div>
+                                             <div class="col-sm-1"></div>
+                                            <select class="col-sm-5" asp-for="@Model.ODAT.VerboseOdat">
+                                                <option value="0">1</option>
+                                                <option value="1">2 </option>
+                                                <option value="2">3</option>
+                                            </select>
+                                        </div>
+                                         <div class="form-group row">
+                                            <div class="col-sm-4">
+                                                <label class="control-label">Scegli SID</label>
+                                            </div>
+                                             <div class="col-sm-1"></div>
+                                            <input type="text" class="col-sm-5" asp-for="@Model.ODAT.SID">
+                                        </div>
+                                        <div class="form-group row">
+                                            <div class="col-sm-4">
+                                                <label class="control-label">Setta Utente</label>
+                                            </div>
+                                             <div class="col-sm-1"></div>
+                                            <input type="text" class="col-sm-5" asp-for="@Model.ODAT.UtenteOdat">
+                                        </div>
+                                         <div class="form-group row">
+                                            <div class="col-sm-4">
+                                                <label class="control-label">Scegli la Password</label>
+                                            </div>
+                                             <div class="col-sm-1"></div>
+                                            <input type="text" class="col-sm-5" asp-for="@Model.ODAT.PasswordOdat">
+                                        </div>
+                                       <br>
+                                        <div class="col-sm-12">
+                                            <div class="col-sm-6">
+                                                <div class0"col-sm-12">
+                                        <div class="form-group row">
+                                                <div class="col-sm-6">
+                                                    <label class="control-label">
+                                                        <input type="checkbox" asp-for="@Model.ODAT.AllOdat" /> All (all)
+                                                    </label>
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <div class="col-sm-6">
+                                                    <label class="control-label">
+                                                        <input type="checkbox" asp-for="@Model.ODAT.Tnspoison" /> Tnspoison (tnspoison)
+                                                    </label>
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <div class="col-sm-6">
+                                                    <label class="control-label">
+                                                        <input type="checkbox" asp-for="@Model.ODAT.Tnscmd" /> Tnscmd (tnscmd)
+                                                    </label>
+                                                </div>
+                                            </div>
+                                            </div>
+                                            </div>
+                                        <div class="col-sm-6">
+                                            <div clas="col-sm-12">
+                                        <div class="form-group row">
+                                                <div class="col-sm-9">
+                                                    <label class="control-label">
+                                                        <input type="checkbox" asp-for="@Model.ODAT.PasswordStealer" /> Passwordstealer (passwordstealer)
+                                                    </label>
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <div class="col-sm-9">
+                                                    <label class="control-label">
+                                                        <input type="checkbox" asp-for="@Model.ODAT.PasswordGuesser" /> PasswordGuesser (passwordguesser)
+                                                    </label>
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <div class="col-sm-6">
+                                                    <label class="control-label">
+                                                        <input type="checkbox" asp-for="@Model.ODAT.SmbOdat" /> Smb (smb)
+                                                    </label>
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <div class="col-sm-6">
+                                                    <label class="control-label">
+                                                        <input type="checkbox" asp-for="@Model.ODAT.TestOdat" /> Test (--test-module)
+                                                    </label>
+                                                </div>
+                                            </div>
+                                            </div>
+                                            </div>
+                                            </div>
+                                   <div class="col-sm-12">
+                                            <hr/>
+                                            <div class="col-sm-5">
+                                                <div clas="form-group row">
+                                                 <a href="https://github.com/quentinhardy/odat/wiki"target="_blank"><span class="glyphicon glyphicon-info-sign" style="font-size:90%"></span>
+                                        consulta il documentazione di ODAT </a>
+                                        </div>
+                                        </div>
+                                        <div class="col-sm-1"></div>
+                                        <div class="col-sm-6 text-right">
+                                            <div class="form-group row">
+                                                <input type="submit" asp-action="Edit" asp-route-id="@Model.ODAT.ID" class="btn btn-default" value="Salva" />&nbsp;&nbsp; |
+                                                <a asp-action="Index"> Torna alla lista</a>
+                                            </div>
+                                        </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                </div>
+                            </form>
+}
+@* -----DNSENUM----- *@
+    if (dnsEnum)
+    {
+        <h2><em>Modifica modulo</em><strong> @(Model.DNSENUM.Nome)</strong></h2>
+        <hr />
+
+
+   <form asp-action="Edit" name="dnsEnumForm">
+                                <input type="hidden" asp-for="@Model.DNSENUM.Applicazione" value="@webmva.Models.APPLICAZIONE.DNSENUM" />
+                                <input type="hidden" asp-for="@Model.DNSENUM.ID" />
+                                  <div class="row panel panel-default panel-body">
+
+                                <div class="col-sm-12">
+                                    <div class="col-sm-7" style="margin:0 auto; float:none">
+                                        <div class="form-group">
+                                            <h4 asp-for="@(Model.DNSENUM.Nome)">Nome Modulo</h4>
+                                            <input class="form-control" asp-for="@(Model.DNSENUM.Nome)" />
+                                        </div>
+                                    </div>
+                                    <hr />
+                                       <div class="col-sm-12">
+                                            <hr/>
+                                            <div class="col-sm-5">
+                                                <div clas="form-group row">
+                                                 <a href=""target="_blank"><span class="glyphicon glyphicon-info-sign" style="font-size:90%"></span>
+                                        consulta il documentazione di DnsEnum </a>
+                                        </div>
+                                        </div>
+                                        <div class="col-sm-1"></div>
+                                        <div class="col-sm-6 text-right">
+                                            <div class="form-group row">
+                                                <input type="submit" asp-action="Edit" asp-route-id="@Model.DNSENUM.ID"class="btn btn-default" value="Salva" />&nbsp;&nbsp; |
+                                                <a asp-action="Index"> Torna alla lista</a>
+                                            </div>
+                                        </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+} 
+
 }

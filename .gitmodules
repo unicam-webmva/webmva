@@ -6,3 +6,17 @@
 	url = https://github.com/darkoperator/dnsrecon
 [submodule "Programmi/sqlmap"]
 	url = https://github.com/sqlmapproject/sqlmap
+[submodule "Programmi/OpenDoor"]
+	url = https://github.com/stanislav-web/OpenDoor
+[submodule "Programmi/Sublist3r"]
+	url = https://github.com/aboul3la/Sublist3r
+[submodule "Programmi/WAScan"]
+	url = https://github.com/m4ll0k/WAScan
+[submodule "Programmi/fierce"]
+	url = https://github.com/mschwager/fierce
+[submodule "Programmi/joomscan"]
+	url = https://github.com/rezasp/joomscan
+[submodule "Programmi/wifite2"]
+	url = https://github.com/derv82/wifite2
+[submodule "Programmi/wpscan"]
+	url = https://github.com/wpscanteam/wpscan
