@@ -89,23 +89,27 @@ namespace webmva.Controllers_
             {
                 return NotFound();
             }
-            PopolaModuliAssegnati(progetto);
-            return View(progetto);
+            var view = PopolaModuliAssegnati(progetto);
+            return View(view);
         }
-        private void PopolaModuliAssegnati(Progetto progetto){
+        private ModuliInseriti PopolaModuliAssegnati(Progetto progetto){
             var tuttiModuli = _context.Moduli;
-            var moduliProgetto = new HashSet<int>(progetto.ModuliProgetto.Select(m=>m.ModuloID));
-            var dati= new List<ModuliInseriti>();
+            var moduliProgetto = new HashSet<ModuliProgetto>(progetto.ModuliProgetto);
+            var dati= new List<ModuliInProgetto>();
             foreach(var modulo in tuttiModuli){
-                dati.Add(new ModuliInseriti{
+                bool inserito = moduliProgetto.Any(m=>m.ModuloID == modulo.ID);
+                dati.Add(new ModuliInProgetto{
                     ModuloID = modulo.ID,
                     Nome = modulo.Nome,
                     Comando = modulo.Comando,
-                    Inserito = moduliProgetto.Contains(modulo.ID),
-                    Applicazione = modulo.Applicazione
+                    Inserito = inserito,
+                    Target = ((inserito) ? progetto.ModuliProgetto.SingleOrDefault(m=>m.ModuloID == modulo.ID).Target : ""),
+                    Applicazione = modulo.Applicazione,
                 });
             }
-            ViewData["Moduli"] = dati;
+            var viewmodel = new ModuliInseriti{Progetto = progetto, ListaModuliConTarget = dati};
+            //ViewData["Moduli"] = dati;
+            return viewmodel;
         }
 
         // POST: Progetto/Edit/5
@@ -113,7 +117,7 @@ namespace webmva.Controllers_
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int? id, string[] moduliSelezionati)
+        public async Task<IActionResult> Edit(int? id, ModuliInseriti moduliInseriti, string[] moduliSelezionati)
         {
             /*var progettoNuovo = progettoVM.Progetto;
             if (id != progettoNuovo.ID)
@@ -157,7 +161,7 @@ namespace webmva.Controllers_
             if (await TryUpdateModelAsync<Progetto>(progetto, "",
                 i => i.Nome, i => i.Descrizione))
             {
-                AggiornaModuliInseriti(moduliSelezionati, progetto);
+                AggiornaModuliInseriti(moduliInseriti.ListaModuliConTarget, progetto);
                 _context.Update(progetto);
                 try
                 {
@@ -172,36 +176,47 @@ namespace webmva.Controllers_
                 }
                 return RedirectToAction(nameof(Index));
             }
-            AggiornaModuliInseriti(moduliSelezionati, progetto);
+            AggiornaModuliInseriti(moduliInseriti.ListaModuliConTarget, progetto);
             PopolaModuliAssegnati(progetto);
             return View(progetto);
         }
 
-        private void AggiornaModuliInseriti(string[] moduliSelezionati, Progetto progettoDaAggiornare)
+        private void AggiornaModuliInseriti(List<ModuliInProgetto> moduliDaAggiornare, Progetto progetto)
         {
-            if (moduliSelezionati == null)
+            if (!moduliDaAggiornare.Any(m=>m.Inserito == true))
             {
-                progettoDaAggiornare.ModuliProgetto = new List<ModuliProgetto>();
+                progetto.ModuliProgetto = new List<ModuliProgetto>();
                 return;
             }
 
-            var moduliSelezionatiHS = new HashSet<string>(moduliSelezionati);
-            var moduliGiaPresenti = new HashSet<int>(progettoDaAggiornare.ModuliProgetto.Select(i => i.ModuloID));
+            var moduliSelezionatiHS = moduliDaAggiornare.Where(m=>m.Inserito == true);
+            var moduliGiaPresenti = new HashSet<ModuliProgetto>(progetto.ModuliProgetto);
             
             foreach (var modulo in _context.Moduli)
             {
-                if (moduliSelezionatiHS.Contains(modulo.ID.ToString()))
+                if (moduliSelezionatiHS.Any(m=>m.ModuloID==modulo.ID))
                 {
-                    if (!moduliGiaPresenti.Contains(modulo.ID))
+                    // Se nei moduli già presenti nel progetto non c'è quello che sto guardando:
+                    if (!moduliGiaPresenti.Any(m=>m.ModuloID==modulo.ID))
                     {
-                        _context.Add(new ModuliProgetto { ModuloID = modulo.ID, ProgettoID = progettoDaAggiornare.ID });
+                        // Creo l'associazione tra progetto e modulo col relativo target
+                        _context.Add(new ModuliProgetto { ModuloID = modulo.ID, ProgettoID = progetto.ID, Target = moduliDaAggiornare.SingleOrDefault(m=>m.ModuloID==modulo.ID).Target });
+                    }
+                    // altrimenti, se il modulo era presente ma il target è stato cambiato
+                    else if(moduliGiaPresenti.SingleOrDefault(m=>m.ModuloID==modulo.ID).Target != moduliDaAggiornare.SingleOrDefault(m=>m.ModuloID==modulo.ID).Target)
+                    {
+                        // lo aggiorno col nuovo target
+                        var associazioneDaAggiornare = moduliGiaPresenti.SingleOrDefault(m=>m.ModuloID==modulo.ID);
+                        associazioneDaAggiornare.Target = moduliDaAggiornare.SingleOrDefault(m=>m.ModuloID==modulo.ID).Target;
+                        _context.Update(associazioneDaAggiornare);
                     }
                 }
+                // se sono qui il modulo va eliminato
                 else
                 {
-                    if (moduliGiaPresenti.Contains(modulo.ID))
+                    if (moduliGiaPresenti.Any(m=>m.ModuloID == modulo.ID))
                     {
-                        ModuliProgetto moduloDaRimuovere = progettoDaAggiornare.ModuliProgetto.SingleOrDefault(m => m.ModuloID == modulo.ID);
+                        ModuliProgetto moduloDaRimuovere = progetto.ModuliProgetto.SingleOrDefault(m => m.ModuloID == modulo.ID);
                         _context.Remove(moduloDaRimuovere);
                     }
                 }

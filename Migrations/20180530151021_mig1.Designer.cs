@@ -12,9 +12,10 @@ using webmva.Models;
 namespace webmva.Migrations
 {
     [DbContext(typeof(MyDbContext))]
-    partial class MyDbContextModelSnapshot : ModelSnapshot
+    [Migration("20180530151021_mig1")]
+    partial class mig1
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -254,76 +255,6 @@ namespace webmva.Migrations
                     b.HasDiscriminator().HasValue("ModuloNMAP");
                 });
 
-            modelBuilder.Entity("webmva.Models.ModuloNOSQL", b =>
-                {
-                    b.HasBaseType("webmva.Models.Modulo");
-
-
-                    b.ToTable("ModuloNOSQL");
-
-                    b.HasDiscriminator().HasValue("ModuloNOSQL");
-                });
-
-            modelBuilder.Entity("webmva.Models.ModuloODAT", b =>
-                {
-                    b.HasBaseType("webmva.Models.Modulo");
-
-                    b.Property<bool>("AllOdat");
-
-                    b.Property<string>("ComandoPersonalizzato")
-                        .HasColumnName("ModuloODAT_ComandoPersonalizzato");
-
-                    b.Property<bool>("PasswordGuesser");
-
-                    b.Property<string>("PasswordOdat");
-
-                    b.Property<bool>("PasswordStealer");
-
-                    b.Property<int>("PortaOdat");
-
-                    b.Property<string>("SID");
-
-                    b.Property<bool>("SmbOdat");
-
-                    b.Property<bool>("TestOdat");
-
-                    b.Property<bool>("Tnscmd");
-
-                    b.Property<bool>("Tnspoison");
-
-                    b.Property<string>("UtenteOdat");
-
-                    b.Property<int>("VerboseOdat");
-
-                    b.ToTable("ModuloODAT");
-
-                    b.HasDiscriminator().HasValue("ModuloODAT");
-                });
-
-            modelBuilder.Entity("webmva.Models.ModuloOPENDOOR", b =>
-                {
-                    b.HasBaseType("webmva.Models.Modulo");
-
-                    b.Property<bool>("AcceptCookies");
-
-                    b.Property<string>("ComandoPersonalizzato")
-                        .HasColumnName("ModuloOPENDOOR_ComandoPersonalizzato");
-
-                    b.Property<int>("DelayO");
-
-                    b.Property<string>("Metodo");
-
-                    b.Property<int>("PortaO");
-
-                    b.Property<int>("RetriesO");
-
-                    b.Property<int>("TimeoutO");
-
-                    b.ToTable("ModuloOPENDOOR");
-
-                    b.HasDiscriminator().HasValue("ModuloOPENDOOR");
-                });
-
             modelBuilder.Entity("webmva.Models.ModuloSQLMAP", b =>
                 {
                     b.HasBaseType("webmva.Models.Modulo");
@@ -423,56 +354,11 @@ namespace webmva.Migrations
                     b.HasDiscriminator().HasValue("ModuloSQLMAP");
                 });
 
-            modelBuilder.Entity("webmva.Models.ModuloSUBLIST3R", b =>
-                {
-                    b.HasBaseType("webmva.Models.Modulo");
-
-                    b.Property<bool>("All");
-
-                    b.Property<bool>("AskSUB");
-
-                    b.Property<bool>("BaiduSUB");
-
-                    b.Property<bool>("BingSUB");
-
-                    b.Property<bool>("BruteforceSUB");
-
-                    b.Property<string>("ComandoPersonalizzato")
-                        .HasColumnName("ModuloSUBLIST3R_ComandoPersonalizzato");
-
-                    b.Property<bool>("DNSdumpsterSUB");
-
-                    b.Property<bool>("GoogleSUB");
-
-                    b.Property<bool>("NetcraftSUB");
-
-                    b.Property<bool>("PassiveDNSSUB");
-
-                    b.Property<string>("PorteSUB");
-
-                    b.Property<bool>("SSLCertificatesSUB");
-
-                    b.Property<int>("ThreadSUB");
-
-                    b.Property<bool>("ThreatCrowdSUB");
-
-                    b.Property<bool>("VerbositàSUB");
-
-                    b.Property<bool>("VirustotalSUB");
-
-                    b.Property<bool>("YahooSUB");
-
-                    b.ToTable("ModuloSUBLIST3R");
-
-                    b.HasDiscriminator().HasValue("ModuloSUBLIST3R");
-                });
-
             modelBuilder.Entity("webmva.Models.ModuloWAPITI", b =>
                 {
                     b.HasBaseType("webmva.Models.Modulo");
 
-                    b.Property<bool>("All")
-                        .HasColumnName("ModuloWAPITI_All");
+                    b.Property<bool>("All");
 
                     b.Property<bool>("BackUp");
 
@@ -517,48 +403,6 @@ namespace webmva.Migrations
                     b.ToTable("ModuloWAPITI");
 
                     b.HasDiscriminator().HasValue("ModuloWAPITI");
-                });
-
-            modelBuilder.Entity("webmva.Models.ModuloWASCAN", b =>
-                {
-                    b.HasBaseType("webmva.Models.Modulo");
-
-                    b.Property<bool>("Attacks");
-
-                    b.Property<bool>("Audit");
-
-                    b.Property<string>("AutenticazioneW");
-
-                    b.Property<bool>("Bruteforce");
-
-                    b.Property<string>("ComandoPersonalizzato")
-                        .HasColumnName("ModuloWASCAN_ComandoPersonalizzato");
-
-                    b.Property<string>("CookiesW");
-
-                    b.Property<bool>("Disclosure");
-
-                    b.Property<bool>("Fingerprint");
-
-                    b.Property<bool>("FullScanW");
-
-                    b.Property<string>("HeadersW");
-
-                    b.Property<int>("MethodsW");
-
-                    b.Property<bool>("ReagentW");
-
-                    b.Property<bool>("RedirectW");
-
-                    b.Property<int>("TimeoutW");
-
-                    b.Property<string>("UserAgentW");
-
-                    b.Property<bool>("VerbositàW");
-
-                    b.ToTable("ModuloWASCAN");
-
-                    b.HasDiscriminator().HasValue("ModuloWASCAN");
                 });
 
             modelBuilder.Entity("webmva.Models.ModuloWIFITE", b =>
