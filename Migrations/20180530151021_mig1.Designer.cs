@@ -12,8 +12,8 @@ using webmva.Models;
 namespace webmva.Migrations
 {
     [DbContext(typeof(MyDbContext))]
-    [Migration("20180529140550_InseritoFierce4")]
-    partial class InseritoFierce4
+    [Migration("20180530151021_mig1")]
+    partial class mig1
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -30,7 +30,7 @@ namespace webmva.Migrations
 
                     b.Property<int>("ProgettoID");
 
-                    b.Property<string>("Taget");
+                    b.Property<string>("Target");
 
                     b.HasKey("ID");
 

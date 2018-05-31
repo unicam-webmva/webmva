@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace webmva.Migrations
 {
-    public partial class InseritoFierce4 : Migration
+    public partial class mig1 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -184,7 +184,7 @@ namespace webmva.Migrations
                         .Annotation("Sqlite:Autoincrement", true),
                     ModuloID = table.Column<int>(nullable: false),
                     ProgettoID = table.Column<int>(nullable: false),
-                    Taget = table.Column<string>(nullable: true)
+                    Target = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {

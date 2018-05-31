@@ -29,7 +29,7 @@ namespace webmva.Migrations
 
                     b.Property<int>("ProgettoID");
 
-                    b.Property<string>("Taget");
+                    b.Property<string>("Target");
 
                     b.HasKey("ID");
 

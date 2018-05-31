@@ -70,8 +70,8 @@ var contWifite = 0;
                             if(item.Modulo is webmva.Models.ModuloDNSRECON) {contDnsRecon++;}
                             if(item.Modulo is webmva.Models.ModuloFIERCE) {contFierce++;}
                             if(item.Modulo is webmva.Models.ModuloDROOPE) {contDroope++;}
-                            if(item.Modulo is webmva.Models.ModuloJOOMSCAN){contJoomscan++}
-                            if(item.Modulo is webmva.Models.ModuloWPSCAN){contWpscan++}
+                            if(item.Modulo is webmva.Models.ModuloJOOMSCAN){contJoomscan++;}
+                            if(item.Modulo is webmva.Models.ModuloWPSCAN){contWpscan++;}
                             if(item.Modulo is webmva.Models.ModuloINFOGA) {contInfoga++;}
                             if(item.Modulo is webmva.Models.ModuloINFOGAEMAIL){contInfogaEmail++;}
                             if(item.Modulo is webmva.Models.ModuloWAPITI) {contWapiti++;}
@@ -87,6 +87,7 @@ var contWifite = 0;
                                     <th> </th>
                                     <th>Modulo</th>
                                     <th>Comando</th>
+                                    <th>Target</th>
                                 </tr>
                         @foreach (var item in Model.ModuliProgetto) {
                             
@@ -98,6 +99,9 @@ var contWifite = 0;
                                     </td>
                                     <td>
                                         @Html.DisplayFor(modelItem => item.Modulo.Comando)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Target)
                                     </td>
                                 </tr>
                                
@@ -115,6 +119,7 @@ var contWifite = 0;
                                     <th> </th>
                                     <th>Modulo</th>
                                     <th>Comando</th>
+                                    <th>Target</th>
                                 </tr>
                         @foreach (var item in Model.ModuliProgetto) {
                             
@@ -126,6 +131,9 @@ var contWifite = 0;
                                     </td>
                                     <td>
                                         @Html.DisplayFor(modelItem => item.Modulo.Comando)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Target)
                                     </td>
                                 </tr>
                                
@@ -143,6 +151,7 @@ var contWifite = 0;
                                     <th> </th>
                                     <th>Modulo</th>
                                     <th>Comando</th>
+                                    <th>Target</th>
                                 </tr>
                         @foreach (var item in Model.ModuliProgetto) {
                             
@@ -154,6 +163,9 @@ var contWifite = 0;
                                     </td>
                                     <td>
                                         @Html.DisplayFor(modelItem => item.Modulo.Comando)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Target)
                                     </td>
                                 </tr>
                                
@@ -171,6 +183,7 @@ var contWifite = 0;
                                     <th> </th>
                                     <th>Modulo</th>
                                     <th>Comando</th>
+                                    <th>Target</th>
                                 </tr>
                         @foreach (var item in Model.ModuliProgetto) {
                             
@@ -182,6 +195,9 @@ var contWifite = 0;
                                     </td>
                                     <td>
                                         @Html.DisplayFor(modelItem => item.Modulo.Comando)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Target)
                                     </td>
                                 </tr>
                                
@@ -199,6 +215,7 @@ var contWifite = 0;
                                     <th> </th>
                                     <th>Modulo</th>
                                     <th>Comando</th>
+                                    <th>Target</th>
                                 </tr>
                         @foreach (var item in Model.ModuliProgetto) {
                             
@@ -210,6 +227,9 @@ var contWifite = 0;
                                     </td>
                                     <td>
                                         @Html.DisplayFor(modelItem => item.Modulo.Comando)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Target)
                                     </td>
                                 </tr>
                                
@@ -227,6 +247,7 @@ var contWifite = 0;
                                     <th> </th>
                                     <th>Modulo</th>
                                     <th>Comando</th>
+                                    <th>Target</th>
                                 </tr>
                         @foreach (var item in Model.ModuliProgetto) {
                             
@@ -239,6 +260,9 @@ var contWifite = 0;
                                     <td>
                                         @Html.DisplayFor(modelItem => item.Modulo.Comando)
                                     </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Target)
+                                    </td>
                                 </tr>
                                
                                 }
@@ -246,7 +270,7 @@ var contWifite = 0;
                                 </table>
                                 </dd>
                                 }   
-                                 } 
+                                  
                         @if(contJoomscan!=0){
                                 
                             <dd>Joomscan</dd>
@@ -256,6 +280,7 @@ var contWifite = 0;
                                     <th> </th>
                                     <th>Modulo</th>
                                     <th>Comando</th>
+                                    <th>Target</th>
                                 </tr>
                         @foreach (var item in Model.ModuliProgetto) {
                             
@@ -267,6 +292,9 @@ var contWifite = 0;
                                     </td>
                                     <td>
                                         @Html.DisplayFor(modelItem => item.Modulo.Comando)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Target)
                                     </td>
                                 </tr>
                                
@@ -284,6 +312,7 @@ var contWifite = 0;
                                     <th> </th>
                                     <th>Modulo</th>
                                     <th>Comando</th>
+                                    <th>Target</th>
                                 </tr>
                         @foreach (var item in Model.ModuliProgetto) {
                             
@@ -295,6 +324,9 @@ var contWifite = 0;
                                     </td>
                                     <td>
                                         @Html.DisplayFor(modelItem => item.Modulo.Comando)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Target)
                                     </td>
                                 </tr>
                                
@@ -312,6 +344,7 @@ var contWifite = 0;
                                     <th> </th>
                                     <th>Modulo</th>
                                     <th>Comando</th>
+                                    <th>Target</th>
                                 </tr>
                         @foreach (var item in Model.ModuliProgetto) {
                             
@@ -323,6 +356,9 @@ var contWifite = 0;
                                     </td>
                                     <td>
                                         @Html.DisplayFor(modelItem => item.Modulo.Comando)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Target)
                                     </td>
                                 </tr>
                                
@@ -340,6 +376,7 @@ var contWifite = 0;
                                     <th> </th>
                                     <th>Modulo</th>
                                     <th>Comando</th>
+                                    <th>Target</th>
                                 </tr>
                         @foreach (var item in Model.ModuliProgetto) {
                             
@@ -351,6 +388,9 @@ var contWifite = 0;
                                     </td>
                                     <td>
                                         @Html.DisplayFor(modelItem => item.Modulo.Comando)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Target)
                                     </td>
                                 </tr>
                                
@@ -368,6 +408,7 @@ var contWifite = 0;
                                     <th> </th>
                                     <th>Modulo</th>
                                     <th>Comando</th>
+                                    <th>Target</th>
                                 </tr>
                         @foreach (var item in Model.ModuliProgetto) {
                             
@@ -379,6 +420,9 @@ var contWifite = 0;
                                     </td>
                                     <td>
                                         @Html.DisplayFor(modelItem => item.Modulo.Comando)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Target)
                                     </td>
                                 </tr>
                                
@@ -397,6 +441,7 @@ var contWifite = 0;
                                     <th> </th>
                                     <th>Modulo</th>
                                     <th>Comando</th>
+                                    <th>Target</th>
                                 </tr>
                         @foreach (var item in Model.ModuliProgetto) {
                             
@@ -408,6 +453,9 @@ var contWifite = 0;
                                     </td>
                                     <td>
                                         @Html.DisplayFor(modelItem => item.Modulo.Comando)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Target)
                                     </td>
                                 </tr>
                                
@@ -425,6 +473,7 @@ var contWifite = 0;
                                     <th> </th>
                                     <th>Modulo</th>
                                     <th>Comando</th>
+                                    <th>Target</th>
                                 </tr>
                         @foreach (var item in Model.ModuliProgetto) {
                             
@@ -437,6 +486,9 @@ var contWifite = 0;
                                     </td>
                                     <td>
                                         @Html.DisplayFor(modelItem => item.Modulo.Comando)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Target)
                                     </td>
                                    
                                 </tr>
