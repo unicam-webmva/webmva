@@ -387,6 +387,19 @@ namespace webmva.Controllers_
                 string comando = $"python \"{percorsoExec}\" {mod.Comando} >> {timestamp}wascan_{nomeCamelCase}.txt ";
                 return comando;
             }
+            if(mod is ModuloDNSENUM)
+            {
+                 string percorsoExec = Path.Combine(Globals.CartellaWEBMVA, "Programmi", "dnsenum");
+                string comando = $"perl \"{percorsoExec}\" {mod.Comando} -o {timestamp}dnsenum_{nomeCamelCase}.xml ";
+                return comando;
+            }
+            if(mod is ModuloODAT)
+            {
+                 string percorsoExec = Path.Combine(Globals.CartellaWEBMVA, "Programmi", "odat");
+                string comando = $"python \"{percorsoExec}\" {mod.Comando} >> {timestamp}odat_{nomeCamelCase}.txt ";
+                return comando;
+            }
+             
              
              
             else return "";

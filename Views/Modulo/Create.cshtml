@@ -489,7 +489,7 @@
                 <div class="panel-heading">
                     <a   data-toggle="collapse" href="#Nessus">
                         <strong>
-                            NESSUS SCAN
+                            NESSUS 
                         </strong>
                         <span class="caret"></span>
                     </a>
@@ -555,57 +555,68 @@
                     </div>
                 </div>
             </div>
-            <div class="panel panel-sidebar">
+     <div class="panel panel-sidebar">
                 <div class="panel-heading">
-                    <a   data-toggle="collapse" href="#OpenVAS">
+                    <a   data-toggle="collapse" href="#Openvas">
                         <strong>
-                            OPENVAS SCAN
+                            OPENVAS 
                         </strong>
                         <span class="caret"></span>
                     </a>
                 </div>
-                <div class="collapse col-5" id="OpenVAS">
+                <div class="collapse col-5" id="Openvas">
                     <div class="panel-body">
                         <h4>
                             <strong> Configura modulo </strong>
                         </h4>
-                        <hr> FORM PER OPENVAS
-                        <div class="col-sm-12">
-                            <div class="col-sm-6">
-                                <div class="form-group row">
-                                    <h4 asp-for="@(Model.NMAP.Nome)">Nome Modulo</h4>
-                                    <input class="form-control" asp-for="@(Model.NMAP.Nome)" />
+                        <hr>
+                        <form asp-action="Create" name="nessusForm">
+                            <input type="hidden" asp-for="@Model.OPENVAS.Applicazione" value="@webmva.Models.APPLICAZIONE.OPENVAS" />
+                            <div class="col-sm-12">
+                                  <div class="col-sm-7" style="margin:0 auto; float:none">
+                                    <div class="form-group row">
+                                        <h4 asp-for="@(Model.OPENVAS.Nome)">Nome Modulo</h4>
+                                        <input class="form-control" asp-for="@(Model.OPENVAS.Nome)" />
+                                    </div>
                                 </div>
+                            <div class="col-sm-12">
+                                 <h4>Opzioni</h4><hr />
+                                        <div class="col-sm-12">
+                                            <div class="col-sm-7" style="margin:0 auto; float:none">
+                                                <div class="form-group row">
+                                                    <h4 asp-for="@(Model.OPENVAS.ServerIP)">Server IP</h4>
+                                                    <input class="form-control" asp-for="@(Model.OPENVAS.ServerIP)" />
+                                                </div>
 
-                            </div>
-                            <div class="col-sm-1"></div>
-                            <div class="col-sm-5">
-                                <div class="form-group row">
-                                    <h4 asp-for="@(Model.NMAP.ComandoPersonalizzato)">Comando Personalizzato</h4>
-                                    <input class="form-control" asp-for="@(Model.NMAP.ComandoPersonalizzato)" />
-                                </div>
+                                            </div>
+                                            <div class="col-sm-7" style="margin:0 auto; float:none">
+                                                <div class="form-group row">
+                                                    <h4 asp-for="@(Model.OPENVAS.Porta)">Porta</h4>
+                                                    <input class="form-control" asp-for="@(Model.OPENVAS.Porta)" />
+                                                </div>
 
-                            </div>
+                                            </div>
 
-                        </div>
-                        <div class="col-sm-12">
+                                        </div>
+                                    </div>
+                                     <div class="col-sm-12">
                                             <hr/>
                                             <div class="col-sm-5">
-                                                 <div clas="form-group row"><a href="https://www.tenable.com/products/nessus/nessus-professional" target="_blank"><span class="glyphicon glyphicon-info-sign" style="font-size:90%"></span>
-                                        sito</a></div>
                                                 <div clas="form-group row">
-                                                 <a href="http://www.openvas.org/" target="_blank"><span class="glyphicon glyphicon-info-sign" style="font-size:90%"></span>
+                                                 <a href="http://www.openvas.org/src-doc/openvas-scanner/index.html" target="_blank"><span class="glyphicon glyphicon-info-sign" style="font-size:90%"></span>
                                         consulta il documentazione di OpenVAS</a>
                                         </div>
                                         </div>
                                         <div class="col-sm-1"></div>
                                         <div class="col-sm-6 text-right">
                                             <div class="form-group row">
-                                                <input type="submit" asp-action="Create" asp-route-cosa="opneVAS" class="btn btn-default" value="Crea" />&nbsp;&nbsp; |
+                                                <input type="submit" asp-action="Create" asp-route-cosa="openvas" class="btn btn-default" value="Crea" />&nbsp;&nbsp; |
                                                 <a asp-action="Index"> Torna alla lista</a>
                                             </div>
                                         </div>
                                         </div>
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>
@@ -1189,8 +1200,7 @@
                                     </div>
                                      
                                     <div class="col-sm-12">
-                                        <h4>Tipi di enumerazione</h4>
-                                        <hr />
+                                        <h4>Tipi di enumerazione</h4>                                        <hr />
                                         <div class="form-group row">
                                             <div class="col-sm-4">
                                                 <label class="control-label">Scegli cms</label>
@@ -1720,19 +1730,104 @@
                             </h4>
                             <hr>
                             <form asp-action="Create" name="dnsEnumForm">
-                                <input type="hidden" asp-for="@Model.FIERCE.Applicazione" value="@webmva.Models.APPLICAZIONE.FIERCE" />
+                                <input type="hidden" asp-for="@Model.DNSENUM.Applicazione" value="@webmva.Models.APPLICAZIONE.DNSENUM" />
                                 <div class="col-sm-12">
                                     <div class="col-sm-7" style="margin:0 auto; float:none">
                                         <div class="form-group">
-                                            <h4 asp-for="@(Model.FIERCE.Nome)">Nome Modulo</h4>
-                                            <input class="form-control" asp-for="@(Model.FIERCE.Nome)" />
+                                            <h4 asp-for="@(Model.DNSENUM.Nome)">Nome Modulo</h4>
+                                            <input class="form-control" asp-for="@(Model.DNSENUM.Nome)" />
                                         </div>
                                     </div>
+                                    <hr />
+                                    <div class="col-sm-12">
+                                        <div class="col-sm-12">
+                                            <div class="col-sm-7" style="margin:0 auto; float:none">
+                                                <div class="form-group row">
+                                                    <h4 asp-for="@(Model.DNSENUM.ComandoPersonalizzato)">Comando Personalizzato</h4>
+                                                    <input class="form-control" asp-for="@(Model.DNSENUM.ComandoPersonalizzato)" />
+                                                </div>
+
+                                            </div>
+ <hr/>
+                                        </div>
+
+                                    </div>
+                                    <div class="form-group row">
+                                            <div class="col-sm-5">
+                                                <label class="control-label"> Settaggio Timeout</label>
+                                            </div>
+                                            <input class="col-sm-5" type="number" asp-for="@Model.DNSENUM.TimeoutDNS" />
+                                            <div class="col-sm-3"></div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <div class="col-sm-5">
+                                                <label class="control-label"> Settaggio Delay</label>
+                                            </div>
+                                            <input class="col-sm-5" type="number" asp-for="@Model.DNSENUM.DelayDNS" />
+                                            <div class="col-sm-3"></div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <div class="col-sm-5">
+                                                <label class="control-label"> Settaggio Page</label>
+                                          </div>
+                                            <input class="col-sm-5" type="number" asp-for="@Model.DNSENUM.PagesDNS" />
+                                            <div class="col-sm-3"></div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <div class="col-sm-5">
+                                                <label class="control-label"> Settaggio Scrap</label>
+                                            </div>
+                                            <input class="col-sm-5" type="number" asp-for="@Model.DNSENUM.ScrapDNS" />
+                                            <div class="col-sm-3"></div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <div class="col-sm-5">
+                                                <label class="control-label"> Settaggio Thread</label>
+                                            </div>
+                                            <input class="col-sm-5" type="number" asp-for="@Model.DNSENUM.ThreadsDNS" />
+                                            <div class="col-sm-3"></div>
+                                        </div>
+                                        <div class="col-sm-12">
+                                            <div class="col-sm-6">
+                                        <div class="form-group row">
+                                                     <div class="col-sm-6">
+                                                        <label class="control-label">
+                                                            <input type="checkbox" asp-for="@Model.DNSENUM.VerboseDNS" /> Verbose (-v)
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row">
+                                                     <div class="col-sm-6">
+                                                        <label class="control-label">
+                                                            <input type="checkbox" asp-for="@Model.DNSENUM.RecursionDNS" /> Recursion (-r)
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                                </div>
+                                                <div class="col-sm-6">
+                                                <div class="form-group row">
+                                                     <div class="col-sm-6">
+                                                        <label class="control-label">
+                                                            <input type="checkbox" asp-for="@Model.DNSENUM.Whois" /> Whois (-w)
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row">
+                                                     <div class="col-sm-8">
+                                                        <label class="control-label">
+                                                            <input type="checkbox" asp-for="@Model.DNSENUM.NoReverseDNS" /> No Reverse (-noreverse)
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                                </div>
+                                                </div>
+
+
                                    <div class="col-sm-12">
                                             <hr/>
                                             <div class="col-sm-5">
                                                 <div clas="form-group row">
-                                                 <a href=""target="_blank"><span class="glyphicon glyphicon-info-sign" style="font-size:90%"></span>
+                                                 <a href="https://github.com/fwaeytens/dnsenum"target="_blank"><span class="glyphicon glyphicon-info-sign" style="font-size:90%"></span>
                                         consulta il documentazione di DnsEnum </a>
                                         </div>
                                         </div>

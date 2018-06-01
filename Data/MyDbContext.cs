@@ -33,6 +33,8 @@ namespace webmva.Data
             modelBuilder.Entity<ModuloSUBLIST3R>().HasBaseType<Modulo>();
             modelBuilder.Entity<ModuloNOSQL>().HasBaseType<Modulo>();
             modelBuilder.Entity<ModuloODAT>().HasBaseType<Modulo>();
+            modelBuilder.Entity<ModuloDNSENUM>().HasBaseType<Modulo>();
+            modelBuilder.Entity<ModuloOPENVAS>().HasBaseType<Modulo>();
         }
     }
 }

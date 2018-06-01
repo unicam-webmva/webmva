@@ -1,11 +1,12 @@
 @model webmva.ViewModels.ModuliInseriti;
  @{ ViewData["Title"] = "Edit"; 
-    
+ 
  }
 <div class="container">
     <h2><em>Modifica Progetto</em><strong> @Model.Progetto.Nome</strong></h2>
     <hr />
             @{List<webmva.ViewModels.ModuliInProgetto> listaModuli = Model.ListaModuliConTarget;
+           
             <form asp-action="Edit" name="modificaProgetto">
            <!-- <div asp-validation-summary="ModelOnly" class="text-danger"></div>--> 
             <input type="hidden" asp-for="@Model.Progetto.ID" />
@@ -173,7 +174,7 @@
                                     @for (int i=0; i<Model.ListaModuliConTarget.Count; i++) {
                                         
                                        
-                                            if(Model.ListaModuliConTarget[i].Applicazione!= webmva.Models.APPLICAZIONE.NMAP){continue;}
+                                            if(Model.ListaModuliConTarget[i].Applicazione!= webmva.Models.APPLICAZIONE.OPENVAS){continue;}
                                              <tr>
                                                 <td>
                                                     @Html.CheckBoxFor(model => model.ListaModuliConTarget[i].Inserito)
@@ -340,7 +341,7 @@
                                             <th>
                                         Comando
                                             </th>
-                                            <th>URL</th>
+                                            <th>Target</th>
                                         </tr>
                                     </thead>
                                 </div>
@@ -376,7 +377,7 @@
                       </div>
                     <div class="panel panel-default">
                     <div class="panel-heading">
-                <a href="#dns" data-toggle="collapse">
+                <a href="#cms" data-toggle="collapse">
                     <strong>
                         CMS
                     </strong>

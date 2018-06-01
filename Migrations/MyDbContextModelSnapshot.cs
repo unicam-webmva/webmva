@@ -75,6 +75,35 @@ namespace webmva.Migrations
                     b.ToTable("Progetti");
                 });
 
+            modelBuilder.Entity("webmva.Models.ModuloDNSENUM", b =>
+                {
+                    b.HasBaseType("webmva.Models.Modulo");
+
+                    b.Property<string>("ComandoPersonalizzato");
+
+                    b.Property<int>("DelayDNS");
+
+                    b.Property<bool>("NoReverseDNS");
+
+                    b.Property<int>("PagesDNS");
+
+                    b.Property<bool>("RecursionDNS");
+
+                    b.Property<int>("ScrapDNS");
+
+                    b.Property<int>("ThreadsDNS");
+
+                    b.Property<int>("TimeoutDNS");
+
+                    b.Property<bool>("VerboseDNS");
+
+                    b.Property<bool>("Whois");
+
+                    b.ToTable("ModuloDNSENUM");
+
+                    b.HasDiscriminator().HasValue("ModuloDNSENUM");
+                });
+
             modelBuilder.Entity("webmva.Models.ModuloDNSRECON", b =>
                 {
                     b.HasBaseType("webmva.Models.Modulo");
@@ -83,7 +112,8 @@ namespace webmva.Migrations
 
                     b.Property<bool>("BingEnum");
 
-                    b.Property<string>("ComandoPersonalizzato");
+                    b.Property<string>("ComandoPersonalizzato")
+                        .HasColumnName("ModuloDNSRECON_ComandoPersonalizzato");
 
                     b.Property<bool>("CrtShEnum");
 
@@ -322,6 +352,21 @@ namespace webmva.Migrations
                     b.ToTable("ModuloOPENDOOR");
 
                     b.HasDiscriminator().HasValue("ModuloOPENDOOR");
+                });
+
+            modelBuilder.Entity("webmva.Models.ModuloOPENVAS", b =>
+                {
+                    b.HasBaseType("webmva.Models.Modulo");
+
+                    b.Property<int>("Porta")
+                        .HasColumnName("ModuloOPENVAS_Porta");
+
+                    b.Property<string>("ServerIP")
+                        .HasColumnName("ModuloOPENVAS_ServerIP");
+
+                    b.ToTable("ModuloOPENVAS");
+
+                    b.HasDiscriminator().HasValue("ModuloOPENVAS");
                 });
 
             modelBuilder.Entity("webmva.Models.ModuloSQLMAP", b =>

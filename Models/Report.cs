@@ -8,7 +8,10 @@ namespace webmva.Models
     /// </summary>
     public class Report
     {
-   
-        
+        public int ID { get; set; }
+        public int ProgettoID { get; set; }
+        public Progetto Progetto { get; set; }
+        public List<string> Percorsi { get; set; }
+
     }
 }

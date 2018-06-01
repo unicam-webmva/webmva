@@ -26,6 +26,8 @@ namespace webmva.ViewModels
         public ModuloNOSQL NOSQL{get; set;}
         public ModuloODAT ODAT{get; set;}
         public ModuloDNSENUM DNSENUM{get; set;}
+        public ModuloOPENVAS OPENVAS{get; set;}
+
 
         public EditModuloVM()
         {
@@ -47,6 +49,7 @@ namespace webmva.ViewModels
             NOSQL = new ModuloNOSQL();
             ODAT = new ModuloODAT();
             DNSENUM = new ModuloDNSENUM();
+            OPENVAS = new ModuloOPENVAS();
 
 
         }
@@ -70,6 +73,7 @@ namespace webmva.ViewModels
             NOSQL = null;
             ODAT = null;
             DNSENUM = null;
+            OPENVAS = null;
 
         }
         public EditModuloVM(ModuloNESSUS mod)
@@ -92,6 +96,7 @@ namespace webmva.ViewModels
             NOSQL = null;
             ODAT = null;
             DNSENUM = null;
+            OPENVAS = null;
 
 
         }
@@ -115,6 +120,7 @@ namespace webmva.ViewModels
             NOSQL = null;
             ODAT = null;
             DNSENUM = null;
+            OPENVAS = null;
 
         }
         public EditModuloVM(ModuloDROOPE mod)
@@ -137,6 +143,7 @@ namespace webmva.ViewModels
             NOSQL = null;
             ODAT = null;
             DNSENUM = null;
+            OPENVAS = null;
 
         }
         public EditModuloVM(ModuloJOOMSCAN mod)
@@ -159,6 +166,7 @@ namespace webmva.ViewModels
             NOSQL = null;
             ODAT = null;
             DNSENUM = null;
+            OPENVAS = null;
 
         }
         public EditModuloVM(ModuloINFOGA mod)
@@ -181,6 +189,7 @@ namespace webmva.ViewModels
             NOSQL = null;
             ODAT = null;
             DNSENUM = null;
+            OPENVAS = null;
 
         }
          public EditModuloVM(ModuloINFOGAEMAIL mod)
@@ -203,6 +212,7 @@ namespace webmva.ViewModels
             NOSQL = null;
             ODAT = null;
             DNSENUM = null;
+            OPENVAS = null;
 
         }
          public EditModuloVM(ModuloSUBLIST3R mod)
@@ -225,6 +235,7 @@ namespace webmva.ViewModels
             NOSQL = null;
             ODAT = null;
             DNSENUM = null;
+            OPENVAS = null;
         }
          public EditModuloVM(ModuloWAPITI mod)
         {
@@ -246,6 +257,7 @@ namespace webmva.ViewModels
             NOSQL = null;
             ODAT = null;
             DNSENUM = null;
+            OPENVAS = null;
 
         }
           public EditModuloVM(ModuloSQLMAP mod)
@@ -268,6 +280,7 @@ namespace webmva.ViewModels
             NOSQL = null;
             ODAT = null;
             DNSENUM = null;
+            OPENVAS = null;
 
         }
 
@@ -291,6 +304,7 @@ namespace webmva.ViewModels
             NOSQL = null;
             ODAT = null;
             DNSENUM = null;
+            OPENVAS = null;
 
         }
 
@@ -314,6 +328,7 @@ namespace webmva.ViewModels
             NOSQL = null;
             ODAT = null;
             DNSENUM = null;
+            OPENVAS = null;
 
         }
 
@@ -337,6 +352,7 @@ namespace webmva.ViewModels
             NOSQL = null;
             ODAT = null;
             DNSENUM = null;
+            OPENVAS = null;
 
         }
 
@@ -360,6 +376,7 @@ namespace webmva.ViewModels
             NOSQL = null;
             ODAT = null;
             DNSENUM = null;
+            OPENVAS = null;
 
         }
           public EditModuloVM(ModuloWASCAN mod)
@@ -382,6 +399,7 @@ namespace webmva.ViewModels
             NOSQL = null;
             ODAT = null;
             DNSENUM = null;
+            OPENVAS = null;
 
         }
           public EditModuloVM(ModuloNOSQL mod)
@@ -404,6 +422,7 @@ namespace webmva.ViewModels
             NOSQL = mod;
             ODAT = null;
             DNSENUM = null;
+            OPENVAS = null;
 
         }
 
@@ -427,6 +446,7 @@ namespace webmva.ViewModels
             NOSQL = null;
             ODAT = mod;
             DNSENUM = null;
+            OPENVAS = null;
 
         }
 
@@ -450,6 +470,30 @@ namespace webmva.ViewModels
             NOSQL = null;
             ODAT = null;
             DNSENUM = mod;
+            OPENVAS = null;
+
+        }
+           public EditModuloVM(ModuloOPENVAS mod)
+        {
+            NMAP = null;
+            NESSUS = null;
+            DNSRECON = null;
+            INFOGA = null;
+            DROOPE = null;
+            JOOMSCAN = null;
+            WPSCAN = null;
+            WAPITI= null;
+            INFOGAEMAIL = null;
+            SUBLIST3R = null; 
+            SQLMAP = null; 
+            WIFITE = null;
+            FIERCE = null; 
+            OPENDOOR = null;
+            WASCAN = null;
+            NOSQL = null;
+            ODAT = null;
+            DNSENUM = null;
+            OPENVAS = mod;
 
         }
     }

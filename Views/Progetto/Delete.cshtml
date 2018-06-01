@@ -19,6 +19,7 @@ var contOpendoor =0;
 var contNosql = 0;
 var contOdat = 0;
 var contDnsEnum = 0;
+var contOpenVAS = 0;
 }
 <br>
 <div class="container">
@@ -78,6 +79,7 @@ var contDnsEnum = 0;
                             if(item.Modulo is webmva.Models.ModuloNOSQL) {contNosql++;}
                             if(item.Modulo is webmva.Models.ModuloODAT) {contOdat++;}
                             if(item.Modulo is webmva.Models.ModuloDNSENUM) {contDnsEnum++;}
+                            if(item.Modulo is webmva.Models.ModuloOPENVAS) {contOpenVAS++;}
                         }
                         @if(contNMAP!=0){
                                 
@@ -147,7 +149,7 @@ var contDnsEnum = 0;
                                 </tr>
                         @foreach (var item in Model.ModuliProgetto) {
                             
-                                @if(item.Modulo is webmva.Models.ModuloNMAP){
+                                @if(item.Modulo is webmva.Models.ModuloOPENVAS){
                                 <tr>
                                 <td></td>
                                     <td>

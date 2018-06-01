@@ -40,8 +40,9 @@ namespace webmva.Controllers_
             var listaWASCAN = await _context.Moduli.Where(modulo => modulo.Applicazione == APPLICAZIONE.WASCAN).ToListAsync();
             var listaNOSQL = await _context.Moduli.Where(modulo => modulo.Applicazione == APPLICAZIONE.NOSQL).ToListAsync();
             var listaODAT = await _context.Moduli.Where(modulo => modulo.Applicazione == APPLICAZIONE.ODAT).ToListAsync(); 
-            var listaDNSENUM = await _context.Moduli.Where(modulo => modulo.Applicazione == APPLICAZIONE.DNSENUM).ToListAsync();              
-            return View(new ListaModuliVM { ModuliNMAP = listaNMAP, ModuliNESSUS= listaNESSUS,ModuliOPENDOOR= listaOPENDOOR, ModuliDNSRECON = listaDNSRECON, ModuliFIERCE= listaFIERCE, ModuliDROOPE= listaDROOPE,ModuliJOOMSCAN=listaJOOMSCAN,ModuliWPSCAN=listaWPSCAN, ModuliINFOGA =listaINFOGA,ModuliINFOGAEMAIL = listaINFOGAEMAIL, ModuliSUBLIST3R = listaSUBLIST3R, ModuliWAPITI = listaWAPITI, ModuliSQLMAP = listaSQLMAP, ModuliWIFITE = listaWIFITE, ModuliWASCAN =listaWASCAN, ModuliNOSQL = listaNOSQL, ModuliODAT = listaODAT, ModuliDNSENUM = listaDNSENUM });
+            var listaDNSENUM = await _context.Moduli.Where(modulo => modulo.Applicazione == APPLICAZIONE.DNSENUM).ToListAsync(); 
+            var listaOPENVAS = await _context.Moduli.Where(modulo => modulo.Applicazione == APPLICAZIONE.OPENVAS).ToListAsync();             
+            return View(new ListaModuliVM { ModuliNMAP = listaNMAP, ModuliNESSUS= listaNESSUS,ModuliOPENDOOR= listaOPENDOOR, ModuliDNSRECON = listaDNSRECON, ModuliFIERCE= listaFIERCE, ModuliDROOPE= listaDROOPE,ModuliJOOMSCAN=listaJOOMSCAN,ModuliWPSCAN=listaWPSCAN, ModuliINFOGA =listaINFOGA,ModuliINFOGAEMAIL = listaINFOGAEMAIL, ModuliSUBLIST3R = listaSUBLIST3R, ModuliWAPITI = listaWAPITI, ModuliSQLMAP = listaSQLMAP, ModuliWIFITE = listaWIFITE, ModuliWASCAN =listaWASCAN, ModuliNOSQL = listaNOSQL, ModuliODAT = listaODAT, ModuliDNSENUM = listaDNSENUM, ModuliOPENVAS = listaOPENVAS });
         }
 
         // GET: Modulo/Details/5
@@ -307,6 +308,19 @@ namespace webmva.Controllers_
                     }
                 }
             }
+            else if (createmodulo.OPENVAS.Nome != null && cosa.Equals("openvas"))
+            {
+                {
+                    if (ModelState.IsValid)
+                    {
+                        ModuloOPENVAS mod = createmodulo.OPENVAS;
+                        mod.Applicazione = APPLICAZIONE.OPENVAS;
+                        _context.Moduli.Add(mod);
+                        await _context.SaveChangesAsync();
+                        return RedirectToAction(nameof(Index));
+                    }
+                }
+            }
             else return BadRequest();
 
             return View(createmodulo);
@@ -360,7 +374,9 @@ namespace webmva.Controllers_
             else if (modulo is ModuloODAT)
                 return View(new EditModuloVM((ModuloODAT) modulo)); 
             else if (modulo is ModuloDNSENUM)
-                return View(new EditModuloVM((ModuloDNSENUM) modulo));             
+                return View(new EditModuloVM((ModuloDNSENUM) modulo)); 
+            else if (modulo is ModuloOPENVAS)
+                return View(new EditModuloVM((ModuloOPENVAS) modulo));                
             // PROVVISORIO, SOLO PER NON DARE ERRORI DI COMPILAZIONE
             else return View(new EditModuloVM() );
         }
@@ -898,6 +914,35 @@ namespace webmva.Controllers_
             else if (!string.IsNullOrEmpty(editmodulo.DNSENUM.Nome))
             {
                 ModuloDNSENUM mod = editmodulo.DNSENUM;
+                if (id != mod.ID)
+                {
+                    return NotFound();
+                }
+
+                if (ModelState.IsValid)
+                {
+                    try
+                    {
+                        _context.Update(mod);
+                        await _context.SaveChangesAsync();
+                    }
+                    catch (DbUpdateConcurrencyException)
+                    {
+                        if (!ModuloExists(mod.ID))
+                        {
+                            return NotFound();
+                        }
+                        else
+                        {
+                            throw;
+                        }
+                    }
+                    return RedirectToAction(nameof(Index));
+                }
+            }
+             else if (!string.IsNullOrEmpty(editmodulo.OPENVAS.Nome))
+            {
+                ModuloOPENVAS mod = editmodulo.OPENVAS;
                 if (id != mod.ID)
                 {
                     return NotFound();

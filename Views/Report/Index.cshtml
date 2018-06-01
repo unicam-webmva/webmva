@@ -1,4 +1,4 @@
-@model IEnumerable<webmva.Models.Report>
+@model webmva.Models.Report
 
     @{ ViewData["Title"] = "Report"; }
     <div class="container">
@@ -13,34 +13,30 @@
         <div class="panel panel-default col-lg-10 col-md-offset-1">
             <table class="table">
                 <div class="method">
-                    <thead>
+                   <thead>
                         <tr>
+                            
                             <th>
-                               @Html.DisplayNameFor(model => model.NomeProgetto)
-                            </th>
-                            <th>
-                                Scan avvenuto
-                            </th>
-                            <th> 
+                                @Html.DisplayFor(model => model.Progetto.Nome)
                             </th>
                             
                             <th></th>
                         </tr>
                     </thead>
                 </div>
-                <tbody>
-                      @foreach (var item in Model.moduliInseriti)
+            <tbody>
+                    @foreach (var item in Model.Percorsi)
                     {
-                       
-                        <tr> 
+                        <tr>
                             <td>
-                                <a> @Html.DisplayFor(modelItem => item.NomeProgetto)</a> 
+                               checkbox 
                             </td>
                             <td>
-                                <div class="col-sm-10 col-sm-offset-3">
-                                    <a asp-action="Edit" >Scarica</a> |
-                                   
-                                     <a asp-action="Edit" >Importa scan</a>
+                              @Html.DisplayFor(model => model.Percorsi)
+                            </td>
+                            <td>
+                                <div class="col-sm-8 col-sm-offset-6">
+                                    <a href="Scarica" >Cancella </a>
                                 </div>
                             </td>
 
