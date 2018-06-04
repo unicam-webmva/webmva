@@ -12,6 +12,8 @@ namespace webmva.Data
 
         public DbSet<Progetto> Progetti { get; set; }
         public DbSet<ModuliProgetto> ModuliProgetto { get; set; }
+        public DbSet<Report> Report { get; set; }
+        public DbSet<PercorsiReport> PercorsiReport { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

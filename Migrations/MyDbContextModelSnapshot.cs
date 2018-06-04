@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage;
+using Microsoft.EntityFrameworkCore.Storage.Internal;
 using Microsoft.EntityFrameworkCore.ValueGeneration;
 using System;
 using webmva.Data;
@@ -59,6 +60,22 @@ namespace webmva.Migrations
                     b.HasDiscriminator<string>("Discriminator").HasValue("Modulo");
                 });
 
+            modelBuilder.Entity("webmva.Models.PercorsiReport", b =>
+                {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("Percorso");
+
+                    b.Property<int>("ReportID");
+
+                    b.HasKey("ID");
+
+                    b.HasIndex("ReportID");
+
+                    b.ToTable("PercorsiReport");
+                });
+
             modelBuilder.Entity("webmva.Models.Progetto", b =>
                 {
                     b.Property<int>("ID")
@@ -73,6 +90,22 @@ namespace webmva.Migrations
                     b.HasKey("ID");
 
                     b.ToTable("Progetti");
+                });
+
+            modelBuilder.Entity("webmva.Models.Report", b =>
+                {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<DateTime>("Data");
+
+                    b.Property<int>("ProgettoID");
+
+                    b.HasKey("ID");
+
+                    b.HasIndex("ProgettoID");
+
+                    b.ToTable("Report");
                 });
 
             modelBuilder.Entity("webmva.Models.ModuloDNSENUM", b =>
@@ -687,6 +720,22 @@ namespace webmva.Migrations
 
                     b.HasOne("webmva.Models.Progetto", "Progetto")
                         .WithMany("ModuliProgetto")
+                        .HasForeignKey("ProgettoID")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("webmva.Models.PercorsiReport", b =>
+                {
+                    b.HasOne("webmva.Models.Report", "Report")
+                        .WithMany("Percorsi")
+                        .HasForeignKey("ReportID")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("webmva.Models.Report", b =>
+                {
+                    b.HasOne("webmva.Models.Progetto", "Progetto")
+                        .WithMany()
                         .HasForeignKey("ProgettoID")
                         .OnDelete(DeleteBehavior.Cascade);
                 });

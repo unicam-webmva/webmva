@@ -1,13 +1,13 @@
 @model webmva.Models.Report
 
-    @{ ViewData["Title"] = "Report"; }
-    <div class="container">
-        <h2>Report</h2>
-        <p class="lead">
-            Per importare un report <a href="/Report/Import">clicca qui</a> !
-        </p>
-        <hr/>
-        <div class="panel panel-default col-lg-10 col-md-offset-1">
+@{ ViewData["Title"] = "Dettagli Report";
+List<webmva.Models.PercorsiReport> lista = ViewBag.Lista; }
+
+<div class="container">
+    <h2>Dettagli Report</h2>
+    <h3>Progetto: @Model.Progetto.Nome</h3>
+
+    <div class="panel panel-default col-lg-10 col-md-offset-1">
             <table class="table">
                 <div class="method">
                    <thead>
@@ -22,14 +22,14 @@
                     </thead>
                 </div>
             <tbody>
-                    @foreach (var item in Model.Percorsi)
+                    @for(int i=0;i<lista.Count; i++)
                     {
                         <tr>
                             <td>
                                checkbox 
                             </td>
                             <td>
-                              @Html.DisplayFor(model => model.Percorsi)
+                              @Html.Raw(lista[i].Percorso)
                             </td>
                             <td>
                                 <div class="col-sm-8 col-sm-offset-6">
@@ -42,4 +42,5 @@
                 </tbody>
             </table>
         </div>
-    </div>
+</div>
+

@@ -10,7 +10,7 @@ using webmva.Data;
 using webmva.Models;
 using webmva.ViewModels;
 
-namespace webmva.Controllers_
+namespace webmva.Controllers
 {
     public class ModuloController : Controller
     {

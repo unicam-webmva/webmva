@@ -12,7 +12,7 @@ using webmva.Models;
 using webmva.ViewModels;
 using webmva.Helpers;
 
-namespace webmva.Controllers_
+namespace webmva.Controllers
 {
     public class ProgettoController : Controller
     {
@@ -274,13 +274,21 @@ namespace webmva.Controllers_
                 .AsNoTracking()
                 .SingleOrDefaultAsync(m => m.ID == id);
             //List<string> result = new List<string>();
+            var data = DateTime.Now;
+            Report report = new Report{
+                ProgettoID=progetto.ID,
+                Data = data
+            };
+            List<string> percorsi = new List<string>();
             Dictionary<string, string> risultati = new Dictionary<string, string>();
             foreach (ModuliProgetto modprog in progetto.ModuliProgetto)
             {
                 Modulo modulo = modprog.Modulo;
-                string comando = CreaComando(modulo, modprog.Target);
+                string nomeFile = CreaNomeFile(modulo.Comando, modulo.Nome);
+                string comando = CreaComando(modulo, modprog.Target, nomeFile, percorsi);
                 string cartellaProgetto = Globals.CreaCartellaProgetto(progetto.Nome);
                 risultati.Add(modulo.Nome, $"<h3> {modulo.Applicazione.ToString()}</h3> \r\n <p>{comando.EseguiCLI(cartellaProgetto)}</p>");
+                
             }
 
             //string comando = primoModulo.Comando + " " + progetto.Target;
@@ -301,16 +309,53 @@ namespace webmva.Controllers_
                 }
             }
             */
-            return View(new RisultatoVM { NomeProgetto = progetto.Nome, risultati = risultati });
+            _context.Report.Add(report);
+            try{
+                await _context.SaveChangesAsync();
+            }
+            
+            catch (DbUpdateException /* ex */)
+                {
+                    //Log the error (uncomment ex variable name and write a log.)
+                    ModelState.AddModelError("", "Unable to save changes. " +
+                        "Try again, and if the problem persists, " +
+                        "see your system administrator.");
+                }
+                var ID = _context.Report.SingleOrDefault(x=>x.ProgettoID==progetto.ID && x.Data==data).ID;
+            foreach(var percorso in percorsi){
+                _context.PercorsiReport.Add(new PercorsiReport{
+                    ReportID=ID,
+                    Percorso = percorso
+                });
+            }
+            try{
+                await _context.SaveChangesAsync();
+            }
+            
+            catch (DbUpdateException /* ex */)
+                {
+                    //Log the error (uncomment ex variable name and write a log.)
+                    ModelState.AddModelError("", "Unable to save changes. " +
+                        "Try again, and if the problem persists, " +
+                        "see your system administrator.");
+                }
+            //return View(new RisultatoVM { NomeProgetto = progetto.Nome, risultati = risultati });
+            return Redirect(Url.Action($"Details/{report.ID}", "Report").Replace("%2F","/"));
         }
-        private string CreaComando(Modulo mod, string target){
+        private string CreaNomeFile(string comandoModulo, string nomeModulo){
+            string timestamp = DateTime.Now.ToString("yyyyMMdd_HHmmss_");
+            string nomeCamelCase = nomeModulo.ToCamelCase();
+            return $"{timestamp}{nomeCamelCase}_";
+        }
+        private string CreaComando(Modulo mod, string target, string nomeFile, List<string> percorsi){
             string timestamp = DateTime.Now.ToString("yyyyMMdd_HHmmss_");
             string nomeCamelCase = mod.Nome.ToCamelCase();
             //Controllo di che tipo è il modulo
             if (mod is ModuloNMAP){
                 // Inserisco il comando generato dal modulo, il target e la direttiva
                 // per esportare un xml con nome derivato dal timestamp e dal nome del modulo
-                string comando = $"{mod.Comando} -oX {timestamp}nmap_{nomeCamelCase}.xml {target}";
+                string comando = $"{mod.Comando} -oX {nomeFile}nmap.xml {target}";
+                percorsi.Add(nomeFile+"nmap.xml");
                 return comando;
             }
             if(mod is ModuloNESSUS){
@@ -322,85 +367,99 @@ namespace webmva.Controllers_
             if(mod is ModuloDNSRECON)
             {
                 string percorsoExec = Path.Combine(Globals.CartellaWEBMVA, "Programmi", "dnsrecon");
-                string comando = $"python \"{percorsoExec}\" {mod.Comando} --xml {timestamp}dnsrecon_{nomeCamelCase}.xml";
+                string comando = $"python \"{percorsoExec}\" {mod.Comando} --xml {nomeFile}dnsrecon.xml";
+                percorsi.Add(nomeFile+"dnsrecon.xml");
                 return comando;
             }
             if(mod is ModuloFIERCE)
             {
                 string percorsoExec = Path.Combine(Globals.CartellaWEBMVA, "Programmi", "fierce", "fierce");
-                string comando = $"python \"{percorsoExec}\" {mod.Comando} >> {timestamp}fierce_{nomeCamelCase}.txt";
+                string comando = $"python \"{percorsoExec}\" {mod.Comando} >> {nomeFile}fierce.txt";
+                percorsi.Add(nomeFile+"fierce.txt");
                 return comando;
             }
             if(mod is ModuloDROOPE)
             {
                 string percorsoExec = Path.Combine(Globals.CartellaWEBMVA, "Programmi", "droopescan");
-                string comando = $"python \"{percorsoExec}\" {mod.Comando} >> {timestamp}droopescan_{nomeCamelCase}.txt";
+                string comando = $"python \"{percorsoExec}\" {mod.Comando} >> {nomeFile}droopescan.txt";
+                percorsi.Add(nomeFile+"droopescan.txt");
                 return comando;
             }
              if(mod is ModuloINFOGA || mod is ModuloINFOGAEMAIL)
             {
                 string percorsoExec = Path.Combine(Globals.CartellaWEBMVA, "Programmi", "Infoga");
-                string comando = $"python \"{percorsoExec}\" {mod.Comando} >> {timestamp}infoga_{nomeCamelCase}.txt";
+                string comando = $"python \"{percorsoExec}\" {mod.Comando} >> {nomeFile}infoga.txt";
+                percorsi.Add(nomeFile+"infoga.txt");
                 return comando;
             }
              if(mod is ModuloSUBLIST3R)
             {
                 string percorsoExec = Path.Combine(Globals.CartellaWEBMVA, "Programmi", "Sublist3r");
-                string comando = $"python \"{percorsoExec}\" {mod.Comando}  -o {timestamp}sublist3r_{nomeCamelCase}.txt";
+                string comando = $"python \"{percorsoExec}\" {mod.Comando}  -o {nomeFile}sublist3r.txt";
+                percorsi.Add(nomeFile+"sublist3r.txt");
                 return comando;
             }
             if(mod is ModuloWAPITI)
             {
                 string percorsoExec = Path.Combine(Globals.CartellaWEBMVA, "Programmi", "wapiti");
-                string comando = $"python \"{percorsoExec}\" {mod.Comando} -f html -o {timestamp}wapiti_{nomeCamelCase}.html";
+                string comando = $"python \"{percorsoExec}\" {mod.Comando} -f html -o {nomeFile}wapiti.html";
+                percorsi.Add(nomeFile+"wapiti.html");
                 return comando;
             }
              if(mod is ModuloOPENDOOR)
             {
                  string percorsoExec = Path.Combine(Globals.CartellaWEBMVA, "Programmi", "OpenDoor");
-                string comando = $"python \"{percorsoExec}\" {mod.Comando} >> {timestamp}opendoor_{nomeCamelCase}.txt ";
+                string comando = $"python \"{percorsoExec}\" {mod.Comando} >> {nomeFile}opendoor.txt ";
+                percorsi.Add(nomeFile+"opendoor.txt");
                 return comando;
             }
             if(mod is ModuloSQLMAP)
             {
                 string percorsoExec = Path.Combine(Globals.CartellaWEBMVA, "Programmi", "sqlmap");
-                string comando = $"python \"{percorsoExec}\" {mod.Comando} >> {timestamp}sqlmap_{nomeCamelCase}.txt ";
+                string comando = $"python \"{percorsoExec}\" {mod.Comando} >> {nomeFile}sqlmap.txt ";
+                percorsi.Add(nomeFile+"sqlmap.txt");
                 return comando;
             }
             if(mod is ModuloWIFITE)
             {
                 string percorsoExec = Path.Combine(Globals.CartellaWEBMVA, "Programmi", "wifite2");
-                string comando = $"python \"{percorsoExec}\" {mod.Comando} >> {timestamp}wifite2_{nomeCamelCase}.txt ";
+                string comando = $"python \"{percorsoExec}\" {mod.Comando} >> {nomeFile}wifite2.txt ";
+                percorsi.Add(nomeFile+"wifite2.txt");
                 return comando;
             }
              if(mod is ModuloJOOMSCAN)
             {
-                 string percorsoExec = Path.Combine(Globals.CartellaWEBMVA, "Programmi", "joomscan");
-                string comando = $"perl \"{percorsoExec}\" {mod.Comando} >> {timestamp}joomsan_{nomeCamelCase}.txt ";
+                string percorsoExec = Path.Combine(Globals.CartellaWEBMVA, "Programmi", "joomscan");
+                string comando = $"perl \"{percorsoExec}\" {mod.Comando} >> {nomeFile}joomscan.txt ";
+                percorsi.Add(nomeFile+"joomscan.txt");
                 return comando;
             }
               if(mod is ModuloWPSCAN)
             {
-                 string percorsoExec = Path.Combine(Globals.CartellaWEBMVA, "Programmi", "wpscan");
-                string comando = $"ruby \"{percorsoExec}\" {mod.Comando} --log {timestamp}wpscan_{nomeCamelCase}.txt ";
+                string percorsoExec = Path.Combine(Globals.CartellaWEBMVA, "Programmi", "wpscan");
+                string comando = $"ruby \"{percorsoExec}\" {mod.Comando} --log {nomeFile}wpscan.txt ";
+                percorsi.Add(nomeFile+"wpscan.txt");
                 return comando;
             }
             if(mod is ModuloWASCAN)
             {
-                 string percorsoExec = Path.Combine(Globals.CartellaWEBMVA, "Programmi", "WAScan");
-                string comando = $"python \"{percorsoExec}\" {mod.Comando} >> {timestamp}wascan_{nomeCamelCase}.txt ";
+                string percorsoExec = Path.Combine(Globals.CartellaWEBMVA, "Programmi", "WAScan");
+                string comando = $"python \"{percorsoExec}\" {mod.Comando} >> {nomeFile}wascan.txt ";
+                percorsi.Add(nomeFile+"wascan.txt");
                 return comando;
             }
             if(mod is ModuloDNSENUM)
             {
-                 string percorsoExec = Path.Combine(Globals.CartellaWEBMVA, "Programmi", "dnsenum");
-                string comando = $"perl \"{percorsoExec}\" {mod.Comando} -o {timestamp}dnsenum_{nomeCamelCase}.xml ";
+                string percorsoExec = Path.Combine(Globals.CartellaWEBMVA, "Programmi", "dnsenum");
+                string comando = $"perl \"{percorsoExec}\" {mod.Comando} -o {nomeFile}dnsenum.xml ";
+                percorsi.Add(nomeFile+"dnsenum.xml");
                 return comando;
             }
             if(mod is ModuloODAT)
             {
-                 string percorsoExec = Path.Combine(Globals.CartellaWEBMVA, "Programmi", "odat");
-                string comando = $"python \"{percorsoExec}\" {mod.Comando} >> {timestamp}odat_{nomeCamelCase}.txt ";
+                string percorsoExec = Path.Combine(Globals.CartellaWEBMVA, "Programmi", "odat");
+                string comando = $"python \"{percorsoExec}\" {mod.Comando} >> {nomeFile}odat.txt ";
+                percorsi.Add(nomeFile+"odat.txt");
                 return comando;
             }
              

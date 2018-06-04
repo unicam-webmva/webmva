@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace webmva.Migrations
 {
-    public partial class InseritoControlloSuProgetto : Migration
+    public partial class AggiuntaTabellaReport : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -268,6 +268,46 @@ namespace webmva.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
+            migrationBuilder.CreateTable(
+                name: "Report",
+                columns: table => new
+                {
+                    ID = table.Column<int>(nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    Data = table.Column<DateTime>(nullable: false),
+                    ProgettoID = table.Column<int>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Report", x => x.ID);
+                    table.ForeignKey(
+                        name: "FK_Report_Progetti_ProgettoID",
+                        column: x => x.ProgettoID,
+                        principalTable: "Progetti",
+                        principalColumn: "ID",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "PercorsiReport",
+                columns: table => new
+                {
+                    ID = table.Column<int>(nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    Percorso = table.Column<string>(nullable: true),
+                    ReportID = table.Column<int>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_PercorsiReport", x => x.ID);
+                    table.ForeignKey(
+                        name: "FK_PercorsiReport_Report_ReportID",
+                        column: x => x.ReportID,
+                        principalTable: "Report",
+                        principalColumn: "ID",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
             migrationBuilder.CreateIndex(
                 name: "IX_ModuliProgetto_ModuloID",
                 table: "ModuliProgetto",
@@ -277,6 +317,16 @@ namespace webmva.Migrations
                 name: "IX_ModuliProgetto_ProgettoID",
                 table: "ModuliProgetto",
                 column: "ProgettoID");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_PercorsiReport_ReportID",
+                table: "PercorsiReport",
+                column: "ReportID");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Report_ProgettoID",
+                table: "Report",
+                column: "ProgettoID");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -285,7 +335,13 @@ namespace webmva.Migrations
                 name: "ModuliProgetto");
 
             migrationBuilder.DropTable(
+                name: "PercorsiReport");
+
+            migrationBuilder.DropTable(
                 name: "Moduli");
+
+            migrationBuilder.DropTable(
+                name: "Report");
 
             migrationBuilder.DropTable(
                 name: "Progetti");
