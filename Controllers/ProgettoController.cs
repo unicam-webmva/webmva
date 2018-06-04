@@ -133,8 +133,7 @@ namespace webmva.Controllers_
             {
                   if(!moduliInseriti.ListaModuliConTarget.Any(l => l.Inserito == true)){
                   ViewData["errori"] = "Non è stato selezionato alcun modulo!";
-                   PopolaModuliAssegnati(progetto);
-                  return View(progetto);
+                  return View(PopolaModuliAssegnati(progetto));
                   }
                 AggiornaModuliInseriti(moduliInseriti.ListaModuliConTarget, progetto);
                 _context.Update(progetto);
@@ -153,9 +152,8 @@ namespace webmva.Controllers_
             }
             
             AggiornaModuliInseriti(moduliInseriti.ListaModuliConTarget, progetto);
-            PopolaModuliAssegnati(progetto);
             ViewData["errori"] = "Non è stato selezionato alcun modulo!";
-            return View(progetto);
+            return View(PopolaModuliAssegnati(progetto));
         }
 
         private void AggiornaModuliInseriti(List<ModuliInProgetto> moduliDaAggiornare, Progetto progetto)

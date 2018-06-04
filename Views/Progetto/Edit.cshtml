@@ -8,7 +8,7 @@
     @{
         if(ViewData["errori"] != "")
         {
-            <h3>@ViewData["errori"]</h3>
+            <h3 style="color:red"><strong>@ViewData["errori"]</strong></h3>
         }
     }
             @{List<webmva.ViewModels.ModuliInProgetto> listaModuli = Model.ListaModuliConTarget;
