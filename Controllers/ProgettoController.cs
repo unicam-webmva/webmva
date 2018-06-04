@@ -92,18 +92,21 @@ namespace webmva.Controllers_
             var view = PopolaModuliAssegnati(progetto);
             return View(view);
         }
-        private ModuliInseriti PopolaModuliAssegnati(Progetto progetto){
+        private ModuliInseriti PopolaModuliAssegnati(Progetto progetto, bool nulloTuttiITarget=false){
             var tuttiModuli = _context.Moduli;
             var moduliProgetto = new HashSet<ModuliProgetto>(progetto.ModuliProgetto);
             var dati= new List<ModuliInProgetto>();
             foreach(var modulo in tuttiModuli){
                 bool inserito = moduliProgetto.Any(m=>m.ModuloID == modulo.ID);
+                string target="";
+                if(nulloTuttiITarget) target = null;
+                else if(inserito) target = progetto.ModuliProgetto.SingleOrDefault(m=>m.ModuloID==modulo.ID).Target;
                 dati.Add(new ModuliInProgetto{
                     ModuloID = modulo.ID,
                     Nome = modulo.Nome,
                     Comando = modulo.Comando,
                     Inserito = inserito,
-                    Target = ((inserito) ? progetto.ModuliProgetto.SingleOrDefault(m=>m.ModuloID == modulo.ID).Target : ""),
+                    Target = target,
                     Applicazione = modulo.Applicazione,
                 });
             }
@@ -133,21 +136,38 @@ namespace webmva.Controllers_
             {
                   if(!moduliInseriti.ListaModuliConTarget.Any(l => l.Inserito == true)){
                   ViewData["errori"] = "Non è stato selezionato alcun modulo!";
-                  return View(PopolaModuliAssegnati(progetto));
+                  var view = PopolaModuliAssegnati(progetto);
+                  Dictionary<string, string> lista = new Dictionary<string, string>();
+                  foreach(var it in view.ListaModuliConTarget.Where(x=>!string.IsNullOrEmpty(x.Target))){
+                    lista.Add(it.Nome, it.Target);
+                    }
+                    ViewData["MessaggiTarget"] = lista;
+                  return View(view);
                   }
-                AggiornaModuliInseriti(moduliInseriti.ListaModuliConTarget, progetto);
-                _context.Update(progetto);
-                try
-                {
-                    await _context.SaveChangesAsync();
+                if(AggiornaModuliInseriti(moduliInseriti.ListaModuliConTarget, progetto)){
+                    _context.Update(progetto);
+                    try
+                    {
+                        await _context.SaveChangesAsync();
+                    }
+                    catch (DbUpdateException /* ex */)
+                    {
+                        //Log the error (uncomment ex variable name and write a log.)
+                        ModelState.AddModelError("", "Unable to save changes. " +
+                            "Try again, and if the problem persists, " +
+                            "see your system administrator.");
+                    }
                 }
-                catch (DbUpdateException /* ex */)
-                {
-                    //Log the error (uncomment ex variable name and write a log.)
-                    ModelState.AddModelError("", "Unable to save changes. " +
-                        "Try again, and if the problem persists, " +
-                        "see your system administrator.");
+                else{
+                    var idStronzi = moduliInseriti.ListaModuliConTarget.Where(m=>string.IsNullOrEmpty(m.Target) && m.Inserito==true).Select(x=>x.ModuloID).ToArray();
+                    List<string> nomiStronzi = new List<string>();
+                    for(int i = 0; i<idStronzi.Length; i++){
+                        nomiStronzi.Add(_context.Moduli.SingleOrDefault(m=>m.ID == idStronzi[i]).Nome);
+                    }
+                    ViewData["moduliStronzi"]=nomiStronzi;
+                    return View(PopolaModuliAssegnati(progetto));
                 }
+                
                 return RedirectToAction(nameof(Index));
             }
             
@@ -156,13 +176,13 @@ namespace webmva.Controllers_
             return View(PopolaModuliAssegnati(progetto));
         }
 
-        private void AggiornaModuliInseriti(List<ModuliInProgetto> moduliDaAggiornare, Progetto progetto)
+        private bool AggiornaModuliInseriti(List<ModuliInProgetto> moduliDaAggiornare, Progetto progetto)
         {
           
             if (!moduliDaAggiornare.Any(m=>m.Inserito == true))
             {
                 progetto.ModuliProgetto = new List<ModuliProgetto>();
-                return;
+                return true;
             }
 
             var moduliSelezionatiHS = moduliDaAggiornare.Where(m=>m.Inserito == true);
@@ -175,8 +195,13 @@ namespace webmva.Controllers_
                     // Se nei moduli già presenti nel progetto non c'è quello che sto guardando:
                     if (!moduliGiaPresenti.Any(m=>m.ModuloID==modulo.ID))
                     {
+                        var mod = moduliDaAggiornare.SingleOrDefault(m=>m.ModuloID==modulo.ID);
+                        if(string.IsNullOrEmpty(mod.Target)){
+                            return false;
+                        }
                         // Creo l'associazione tra progetto e modulo col relativo target
-                        _context.Add(new ModuliProgetto { ModuloID = modulo.ID, ProgettoID = progetto.ID, Target = moduliDaAggiornare.SingleOrDefault(m=>m.ModuloID==modulo.ID).Target });
+                        _context.Add(new ModuliProgetto { ModuloID = modulo.ID, ProgettoID = progetto.ID, Target = mod.Target });
+                        return true;
                     }
                     // altrimenti, se il modulo era presente ma il target è stato cambiato
                     else if(moduliGiaPresenti.SingleOrDefault(m=>m.ModuloID==modulo.ID).Target != moduliDaAggiornare.SingleOrDefault(m=>m.ModuloID==modulo.ID).Target)
@@ -185,6 +210,7 @@ namespace webmva.Controllers_
                         var associazioneDaAggiornare = moduliGiaPresenti.SingleOrDefault(m=>m.ModuloID==modulo.ID);
                         associazioneDaAggiornare.Target = moduliDaAggiornare.SingleOrDefault(m=>m.ModuloID==modulo.ID).Target;
                         _context.Update(associazioneDaAggiornare);
+                        return true;
                     }
                 }
                 // se sono qui il modulo va eliminato
@@ -194,9 +220,11 @@ namespace webmva.Controllers_
                     {
                         ModuliProgetto moduloDaRimuovere = progetto.ModuliProgetto.SingleOrDefault(m => m.ModuloID == modulo.ID);
                         _context.Remove(moduloDaRimuovere);
+                        return true;
                     }
                 }
             }
+            return true;
         }
 
         // GET: Progetto/Delete/5

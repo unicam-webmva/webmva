@@ -9,7 +9,26 @@
         if(ViewData["errori"] != "")
         {
             <h3 style="color:red"><strong>@ViewData["errori"]</strong></h3>
+            if(ViewData["MessaggiTarget"]!=null)
+            {
+                Dictionary<string, string> lista = ViewBag.MessaggiTarget;
+                @Html.Raw("Controlla:<br> Nome Modulo - Target <br>");
+                foreach(var itm in lista){
+                    @Html.Raw(itm.Key + " " + itm.Value + "<br>");
+                }
+            }
         }
+        List<string> moduliStronzi = ViewBag.moduliStronzi;
+            if(moduliStronzi != null && moduliStronzi.Count!=0)
+            {
+
+                @Html.Raw("<h3 style='color:red'><strong>Inserisci il target in: ");
+                @Html.Raw(moduliStronzi.ElementAt(0));
+                @for(int i = 1; i< moduliStronzi.Count; i++){
+                    @Html.Raw(", " + moduliStronzi.ElementAt(i));
+                }
+                @Html.Raw("</strong></h3>");
+            }
     }
             @{List<webmva.ViewModels.ModuliInProgetto> listaModuli = Model.ListaModuliConTarget;
            
@@ -1195,8 +1214,4 @@
                 </form>
                  }
 </div>
-        
-          
-
-
-
+}
