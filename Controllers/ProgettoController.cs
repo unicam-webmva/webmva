@@ -119,36 +119,6 @@ namespace webmva.Controllers_
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int? id, ModuliInseriti moduliInseriti, string[] moduliSelezionati)
         {
-            /*var progettoNuovo = progettoVM.Progetto;
-            if (id != progettoNuovo.ID)
-            {
-                return NotFound();
-            }
-
-            if (ModelState.IsValid)
-            {
-                try
-                {
-                    _context.Update(progetto);
-                    await _context.SaveChangesAsync();
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                    if (!ProgettoExists(progetto.ID))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
-                }
-                return RedirectToAction(nameof(Index));
-            }
-            return View(progettoVM);
-            */
-            
-
             if (id == null) return NotFound();
             var progetto = await _context.Progetti
                         .Include(p => p.ModuliProgetto)
@@ -161,6 +131,11 @@ namespace webmva.Controllers_
             if (await TryUpdateModelAsync<Progetto>(progetto, "",
                 i => i.Nome, i => i.Descrizione))
             {
+                  if(!moduliInseriti.ListaModuliConTarget.Any(l => l.Inserito == true)){
+                  ViewData["errori"] = "Non è stato selezionato alcun modulo!";
+                   PopolaModuliAssegnati(progetto);
+                  return View(progetto);
+                  }
                 AggiornaModuliInseriti(moduliInseriti.ListaModuliConTarget, progetto);
                 _context.Update(progetto);
                 try
@@ -176,13 +151,16 @@ namespace webmva.Controllers_
                 }
                 return RedirectToAction(nameof(Index));
             }
+            
             AggiornaModuliInseriti(moduliInseriti.ListaModuliConTarget, progetto);
             PopolaModuliAssegnati(progetto);
+            ViewData["errori"] = "Non è stato selezionato alcun modulo!";
             return View(progetto);
         }
 
         private void AggiornaModuliInseriti(List<ModuliInProgetto> moduliDaAggiornare, Progetto progetto)
         {
+          
             if (!moduliDaAggiornare.Any(m=>m.Inserito == true))
             {
                 progetto.ModuliProgetto = new List<ModuliProgetto>();

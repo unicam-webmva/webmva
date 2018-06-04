@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace webmva.Migrations
 {
-    public partial class InseritoReport2 : Migration
+    public partial class InseritoControlloSuProgetto : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

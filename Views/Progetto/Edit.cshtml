@@ -5,6 +5,12 @@
 <div class="container">
     <h2><em>Modifica Progetto</em><strong> @Model.Progetto.Nome</strong></h2>
     <hr />
+    @{
+        if(ViewData["errori"] != "")
+        {
+            <h3>@ViewData["errori"]</h3>
+        }
+    }
             @{List<webmva.ViewModels.ModuliInProgetto> listaModuli = Model.ListaModuliConTarget;
            
             <form asp-action="Edit" name="modificaProgetto">
