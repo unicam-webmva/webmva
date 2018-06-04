@@ -135,7 +135,7 @@
                     @{
                         string[] dips = ViewBag.Dipendenze;
                         
-                        @if(dips.Length == 0)
+                        @if(dips.Length == 0 || dips[0].Equals(Environment.NewLine))
                         {
                             @Html.Raw("<p style=\"color:red\"><strong>In questo sistema sono tutti installati!</strong></p>")
                         }
@@ -147,6 +147,13 @@
                                     @(itm + " ")
                             }
                             @Html.Raw("</strong></p>")
+                            <form asp-action="Installa">
+                            <div class="col-sm-6 col-sm-offset-6 text-right">
+                                            <div class="form-group">
+                                                <input type="submit" asp-action="Installa" class="btn btn-default" value="Installa dipendenze" />
+                                            </div>
+                                        </div>
+                                        </form>
                         }
                     }
                         

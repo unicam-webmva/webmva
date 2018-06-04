@@ -1,5 +1,8 @@
 #!/bin/bash
-
+if [[ $EUID > 0 ]]
+  then echo "Bisogna farmi partire come root."
+  exit
+fi
 echo "-------------------------------------------------------"
 echo "Installazione dipendenze WEBMVA"
 echo "-------------------------------------------------------"
@@ -8,9 +11,8 @@ echo "Ultima modifica: 29 maggio 2018"
 echo "-------------------------------------------------------"
 echo " "
 echo " "
-echo "Verra' richiesta la password per sudo. Avverra' solo una volta."
 
-sudo apt-get update > /dev/null
+apt-get update > /dev/null
 
 echo "-------------------------------------------------------"
 echo "INSTALLAZIONE NMAP"
@@ -21,8 +23,33 @@ then
 	echo "nmap è già installato.";
 else {
 	echo "Sto installando nmap..."
-	sudo apt-get install nmap -y > /dev/null
+	apt-get install nmap -y > /dev/null
 	echo "Fine installazione NMAP."
+	}
+fi
+echo " "
+echo " "
+echo " "
+echo "-------------------------------------------------------"
+echo "INSTALLAZIONE RUBY E PERL"
+echo "-------------------------------------------------------"
+
+if hash ruby >/dev/null 2>&1 ; 
+then
+	echo "ruby è già installato.";
+else {
+	echo "Sto installando ruby..."
+	apt-get install ruby -y > /dev/null
+	echo "Fine installazione ruby."
+	}
+fi
+if hash perl >/dev/null 2>&1 ; 
+then
+	echo "perl è già installato.";
+else {
+	echo "Sto installando perl..."
+	apt-get install perl -y > /dev/null
+	echo "Fine installazione perl."
 	}
 fi
 echo " "
@@ -40,12 +67,12 @@ else {
 	then {
 		echo "Python è installato ma pip no."
 		echo "Sto installando pip..."
-		sudo apt-get install python2.7-dev python3-dev python-pip python3-pip -y > /dev/null
+		apt-get install python2.7-dev python3-dev python-pip python3-pip -y > /dev/null
 		echo "Fine installazione pip."
 	}
 	else {
 		echo "Sto installando Python versione 2.7 e 3 e pip..."
-		sudo apt-get install python2.7 python2.7-dev python-pip python3 python3-dev python3-pip -y > /dev/null
+		apt-get install python2.7 python2.7-dev python-pip python3 python3-dev python3-pip -y > /dev/null
 		echo "Fine installazione Python e pip."
 	};
 	fi;
@@ -79,14 +106,14 @@ else {
 	then echo "I repository di Kali sono già in questo sistema, non li aggiungo.";
 	else {
 		echo "Aggiungo i repository di Kali Linux per installare alcuni programmi non presenti in quelli di Ubuntu..."
-		echo "deb http://http.kali.org/kali kali-rolling main non-free contrib" | sudo tee -a /etc/apt/sources.list > /dev/null
-		sudo apt-key adv --keyserver hkp://keys.gnupg.net --recv-keys ED444FF07D8D0BF6  > /dev/null
-		sudo apt-get update > /dev/null
+		echo "deb http://http.kali.org/kali kali-rolling main non-free contrib" | tee -a /etc/apt/sources.list > /dev/null
+		apt-key adv --keyserver hkp://keys.gnupg.net --recv-keys ED444FF07D8D0BF6  > /dev/null
+		apt-get update > /dev/null
 	};
 	fi
 	echo "Sto installando aircrack-ng, reaver, cowpatty, bully e tshark tramite i repository di Kali Linux..."
-	sudo apt-get install aircrack-ng reaver cowpatty bully pyrit -y > /dev/null
-	DEBIAN_FRONTEND=noninteractive sudo apt-get -y install tshark > /dev/null
+	apt-get install aircrack-ng reaver cowpatty bully pyrit -y > /dev/null
+	DEBIAN_FRONTEND=noninteractive apt-get -y install tshark > /dev/null
 	echo "Fine installazione dipendenze per Wifite2."
 };
 fi
@@ -103,12 +130,12 @@ then echo ".NET Core 2 SDK è già installato." ;
 else {
 	echo "Sto installando il kit di sviluppo di .NET Core 2..."
 	wget -qO- https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > microsoft.asc.gpg  > /dev/null
-	sudo mv microsoft.asc.gpg /etc/apt/trusted.gpg.d/ > /dev/null
+	mv microsoft.asc.gpg /etc/apt/trusted.gpg.d/ > /dev/null
 	wget -q https://packages.microsoft.com/config/ubuntu/18.04/prod.list > /dev/null
-	sudo mv prod.list /etc/apt/sources.list.d/microsoft-prod.list > /dev/null
-	sudo apt-get install apt-transport-https > /dev/null
-	sudo apt-get update > /dev/null
-	sudo apt-get install -y dotnet-sdk-2.1.200 > /dev/null
+	mv prod.list /etc/apt/sources.list.d/microsoft-prod.list > /dev/null
+	apt-get install apt-transport-https > /dev/null
+	apt-get update > /dev/null
+	apt-get install -y dotnet-sdk-2.1.200 > /dev/null
 	echo "Fine installazione DOTNET SDK."
 };
 fi
@@ -124,15 +151,23 @@ if hash cpanm >/dev/null 2>&1 ;
 then echo "cpanm è già installato, procedo con l'installazione delle dipendenze..." ;
 else {
 	echo "Sto installando cpanm..."
-	sudo apt-get install cpanminus -y > /dev/null
+	apt-get install cpanminus -y > /dev/null
 	echo "Fine installazione cpanm, procedo con l'installazione delle dipendenze..."
 };
 fi
-sudo cpanm String::Random Net::IP Net::DNS Net::Netmask Net::Whois::IP HTML::Parser WWW::Mechanize XML::Writer > /dev/null
+cpanm String::Random Net::IP Net::DNS Net::Netmask Net::Whois::IP HTML::Parser WWW::Mechanize XML::Writer > /dev/null
 echo "Fine installazione dipendenze di DnsEnum."
 echo " "
 echo " "
 echo " "
 
+echo "-------------------------------------------------------"
+echo "INSTALLAZIONE ODAT"
+echo "-------------------------------------------------------"
+bash Script/Odat/installOdat.sh
+echo "Fine installazione Odat."
+echo " "
+echo " "
+echo " "
 
-
+exit 0
