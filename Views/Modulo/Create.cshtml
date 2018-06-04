@@ -489,9 +489,8 @@
                     </div>
                 </div>
             </div>
-
-        <div class="col-5">
-            <div class="panel panel-sidebar">
+<div class="col-5">
+     <div class="panel panel-sidebar">
                 <div class="panel-heading">
                     <a   data-toggle="collapse" href="#Nessus">
                         <strong>
@@ -518,19 +517,12 @@
                             <div class="col-sm-12">
                                  <h4>Opzioni</h4><hr />
                                         <div class="col-sm-12">
-                                            <div class="col-sm-12">
                                             <div class="col-sm-7" style="margin:0 auto; float:none">
                                                 <div class="form-group row">
                                                     <h4 asp-for="@(Model.NESSUS.ServerIP)">Server IP</h4>
                                                     <input class="form-control" asp-for="@(Model.NESSUS.ServerIP)" />
                                                 </div>
-                                            </div>
-                                            <div class="col-xs-6 col-sm-offset-9 ">
-                                            <div class="form-group">
-                                                <input type="submit" class="btn btn-default" value="Test" />
-                                               
-                                            </div>
-                                        </div>
+
                                             </div>
                                             <div class="col-sm-7" style="margin:0 auto; float:none">
                                                 <div class="form-group row">
@@ -539,19 +531,45 @@
                                                 </div>
 
                                             </div>
-
                                         </div>
+                                        <div class="col-sm-12">
+                                        @if(ViewData["Test"] != null)
+                                        {
+                                            <div class="col-sm-6">
+                                                <h4 style="color:red">
+                                                    <strong>
+                                                @{
+                                                    bool check = ViewBag.Test;
+                                                    if(check)
+                                                    {
+                                                        @Html.Raw("Il server specificato è attivo");
+                                                    }
+                                                    else
+                                                    {
+                                                        @Html.Raw("Il server specificato è spento");
+                                                    }
+                                                }
+                                                    </strong>
+                                                </h4>
+                                            </div>
+                                        }
+                                        <div class="col-sm-6 text-right ">
+                                                <form asp-action="Test">
+                                            <div class="form-group">
+                                                <input type="submit" asp-action="Test" class="btn btn-default" value="Test" asp-route-cosa="nessus" />
+                                                </div>
+                                                </form>
+                                               
+                                            </div>
+                                            </div>
                                     </div>
                                      <div class="col-sm-12">
                                             <hr/>
-                                          
-                                            
                                             <div class="col-sm-5">
-
-                                                <div clas="form-group row"><a href="https://www.tenable.com/products/nessus/nessus-professional" target="_blank"><span class="glyphicon glyphicon-info-sign" style="font-size:90%"></span>
+                                                 <div clas="form-group row"><a href="https://www.tenable.com/products/nessus/nessus-professional" target="_blank"><span class="glyphicon glyphicon-info-sign" style="font-size:90%"></span>
                                         sito</a></div>
                                                 <div clas="form-group row">
-                                                 <a href=" https://docs.tenable.com/nessus/Content/BasicSettings.htm#General" target="_blank"><span class="glyphicon glyphicon-info-sign" style="font-size:90%"></span>
+                                                 <a href="https://docs.tenable.com/nessus/Content/BasicSettings.htm#General" target="_blank"><span class="glyphicon glyphicon-info-sign" style="font-size:90%"></span>
                                         consulta il documentazione di Nessus</a>
                                         </div>
                                         </div>

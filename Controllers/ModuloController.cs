@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -325,6 +326,16 @@ namespace webmva.Controllers_
 
             return View(createmodulo);
 
+        }
+        // POST: Modulo/Test
+        [HttpPost]
+        public async Task<IActionResult>Test(EditModuloVM createmodulo, string cosa){
+            if(cosa== "nessus"){
+                ViewData["Test"] = await CheckServer(createmodulo.NESSUS.ServerIP, createmodulo.NESSUS.Porta);
+                
+            }
+            return View(nameof(Create),createmodulo);
+            
         }
         // GET: Modulo/Edit/5
         public async Task<IActionResult> Edit(int? id)
@@ -1008,6 +1019,38 @@ namespace webmva.Controllers_
         private bool ModuloExists(int id)
         {
             return _context.Moduli.Any(e => e.ID == id);
+        }
+        private async Task<bool> CheckServer(string ip, int port)
+        {
+            using (var handler = new HttpClientHandler())
+            {
+                handler.ServerCertificateCustomValidationCallback =
+                HttpClientHandler.DangerousAcceptAnyServerCertificateValidator;
+
+                using (var client = new HttpClient(handler)){
+                    // timeout per la richiesta
+                    client.Timeout = new TimeSpan(0,0,5);
+                    Uri ppp = new Uri($"https://{ip}:{port}");
+                    Console.WriteLine(ppp.ToString());
+                    try{
+                        var result = await client.GetAsync(ppp);
+                        return result.IsSuccessStatusCode;
+                    }
+                    // se finisco qui sono passati più di 5 secondi e il server non ha risposto, lo do per morto
+                    catch(System.Threading.Tasks.TaskCanceledException /*e*/){
+                        return false;
+                    }
+                    catch(Exception e){
+                        Console.WriteLine(e.Message);
+                        return false;
+                    }
+                    finally{
+                        client.Dispose();
+                    }
+                }
+            }
+
+
         }
     }
 }
