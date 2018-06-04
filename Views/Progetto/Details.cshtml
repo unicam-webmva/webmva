@@ -19,7 +19,7 @@ var contOpendoor = 0;
 var contNosql = 0;
 var contOdat = 0;
 var contDnsEnum = 0;
-var contOpenVAS = 0;
+
 }
 <br>
 <div class="container">
@@ -90,7 +90,7 @@ var contOpenVAS = 0;
                             if(item.Modulo is webmva.Models.ModuloNOSQL) {contNosql++;}
                             if(item.Modulo is webmva.Models.ModuloODAT) {contOdat++;}
                             if(item.Modulo is webmva.Models.ModuloDNSENUM) {contDnsEnum++;}
-                            if(item.Modulo is webmva.Models.ModuloOPENVAS) {contOpenvas++;}
+                            if(item.Modulo is webmva.Models.ModuloOPENVAS) {contOpenVAS++;}
                         }
                         @if(contNMAP!=0){
                                 
@@ -711,7 +711,8 @@ var contOpenVAS = 0;
             <div class="col-xs-6 col-sm-offset-9 text-right">
                      <br>
                     <div class="form-group">
-                        <input type="submit" class="btn btn-default" asp-action="Edit" asp-route-id="@Model.ID" value="Modifica">&nbsp;&nbsp;&nbsp; |&nbsp;
+                        <!--rivedi-->
+                       
                         <input type="submit" class="btn btn-default" asp-action="Delete" asp-route-id="@Model.ID" value="Cancella">&nbsp;&nbsp;&nbsp; |&nbsp;
                         <a asp-action="Index">  Torna alla lista</a>
                     </div>
