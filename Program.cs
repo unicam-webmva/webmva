@@ -54,7 +54,7 @@ namespace webmva
         public static IWebHost BuildWebHost(string[] args) =>
             WebHost.CreateDefaultBuilder(args)
                 .UseStartup<Startup>()
-                .UseUrls("http://0.0.0.0:5000")
+                .UseUrls("http://0.0.0.0:80")
                 .ConfigureLogging((context, logging)=> {
                     var env = context.HostingEnvironment;
                     var config = context.Configuration.GetSection("Logging");
