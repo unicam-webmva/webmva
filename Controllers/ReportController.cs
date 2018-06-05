@@ -23,7 +23,9 @@ namespace webmva.Controllers
         }
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Report.ToListAsync());
+            return View(await _context.Report
+            .Include(x=>x.Progetto)
+            .ToListAsync());
         }
         public async Task<IActionResult> Details(int? id){
 {

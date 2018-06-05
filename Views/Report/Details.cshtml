@@ -12,9 +12,9 @@ List<webmva.Models.PercorsiReport> lista = ViewBag.Lista; }
                 <div class="method">
                    <thead>
                         <tr>
-                            
+                            <th></th>
                             <th>
-                                @Html.DisplayFor(model => model.Progetto.Nome)
+                                Percorso
                             </th>
                             
                             <th></th>
@@ -26,14 +26,15 @@ List<webmva.Models.PercorsiReport> lista = ViewBag.Lista; }
                     {
                         <tr>
                             <td>
-                               checkbox 
+                               <input type="checkbox" value="@lista[i].ID" name="selezionati" />
                             </td>
                             <td>
                               @Html.Raw(lista[i].Percorso)
                             </td>
                             <td>
                                 <div class="col-sm-8 col-sm-offset-6">
-                                    <a href="Scarica" >Cancella </a>
+                                    <a href="../../Report/@lista[i].Percorso" download >Scarica </a>
+                                    <a href="file:///home/rick/Scrivania/prova.xml"> prova</a>
                                 </div>
                             </td>
 

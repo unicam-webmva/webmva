@@ -1,39 +1,46 @@
-@model webmva.Models.Report
+@model IEnumerable<webmva.Models.Report>
 
-    @{ ViewData["Title"] = "Report"; }
-    <div class="container">
-        <h2>Report</h2>
+@{ ViewData["Title"] = "Report"; }
+
+<div class="container">
+    <div class="row">
+        <h2><em>Report</em></h2>
         <p class="lead">
-            Per importare un report <a href="/Report/Import">clicca qui</a> !
+            I report presenti sono questi! Per importare un report in un progetto <a href="/Report/Import">clicca qui </a>!
         </p>
-        <hr/>
-        <div class="panel panel-default col-lg-10 col-md-offset-1">
+        <!--rivedere-->
+        <hr />
+        <div class="panel panel-default col-md-9 col-md-offset-1">
             <table class="table">
                 <div class="method">
-                   <thead>
+                    <thead>
                         <tr>
-                            
                             <th>
-                                @Html.DisplayFor(model => model.Progetto.Nome)
+                                Nome Progetto
+                            </th>
+                            <th>
+                                Data svolgimento
                             </th>
                             
                             <th></th>
                         </tr>
                     </thead>
                 </div>
-            <tbody>
-                    @foreach (var item in Model.Percorsi)
+                <tbody>
+                    @foreach (var item in Model)
                     {
                         <tr>
                             <td>
-                               checkbox 
+                                @Html.DisplayFor(modelItem => item.Progetto.Nome)
                             </td>
                             <td>
-                              @Html.DisplayFor(model => model.Percorsi)
+                                @Html.Raw(item.Data.ToString("dd/MM/yyyy HH:ss"))
                             </td>
+                            
                             <td>
                                 <div class="col-sm-8 col-sm-offset-6">
-                                    <a href="Scarica" >Cancella </a>
+                                    <a asp-action="Details" asp-route-id="@item.ID">Dettagli</a> | 
+                                    <a asp-action="Delete" asp-route-id="@item.ID">Cancella </a>
                                 </div>
                             </td>
 
@@ -43,3 +50,4 @@
             </table>
         </div>
     </div>
+</div>
