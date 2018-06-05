@@ -66,7 +66,7 @@ namespace webmva.Models
                     if (Whois) 
                     risultato += " -w";
                      if (NoReverseDNS) 
-                    risultato += " -noreverse";
+                    risultato += " --noreverse";
                     
                     return risultato;
                 }
