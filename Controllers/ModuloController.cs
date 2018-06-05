@@ -331,8 +331,11 @@ namespace webmva.Controllers
         [HttpPost]
         public async Task<IActionResult>Test(EditModuloVM createmodulo, string cosa){
             if(cosa== "nessus"){
-                ViewData["Test"] = await CheckServer(createmodulo.NESSUS.ServerIP, createmodulo.NESSUS.Porta);
+                ViewData["TestN"] = await CheckServer(createmodulo.NESSUS.ServerIP, createmodulo.NESSUS.Porta);
                 
+            } 
+            else if(cosa == "openvas"){
+  ViewData["TestO"] = await CheckServer(createmodulo.OPENVAS.ServerIPOpenvas, createmodulo.OPENVAS.PortaOpenvas);
             }
             return View(nameof(Create),createmodulo);
             

@@ -533,13 +533,13 @@
                                             </div>
                                         </div>
                                         <div class="col-sm-12">
-                                        @if(ViewData["Test"] != null)
+                                        @if(ViewData["Testn"] != null)
                                         {
                                             <div class="col-sm-6">
                                                 <h4 style="color:red">
                                                     <strong>
                                                 @{
-                                                    bool check = ViewBag.Test;
+                                                    bool check = ViewBag.TestN;
                                                     if(check)
                                                     {
                                                         @Html.Raw("Il server specificato è attivo");
@@ -554,9 +554,9 @@
                                             </div>
                                         }
                                         <div class="col-sm-6 text-right ">
-                                                <form asp-action="Test">
+                                                <form asp-action="TestN">
                                             <div class="form-group">
-                                                <input type="submit" asp-action="Test" class="btn btn-default" value="Test" asp-route-cosa="nessus" />
+                                                <input type="submit" asp-action="Testn" class="btn btn-default" value="Test" asp-route-cosa="nessus" />
                                                 </div>
                                                 </form>
                                                
@@ -617,20 +617,50 @@
                                         <div class="col-sm-12">
                                             <div class="col-sm-7" style="margin:0 auto; float:none">
                                                 <div class="form-group row">
-                                                    <h4 asp-for="@(Model.OPENVAS.ServerIP)">Server IP</h4>
-                                                    <input class="form-control" asp-for="@(Model.OPENVAS.ServerIP)" />
+                                                    <h4 asp-for="@(Model.OPENVAS.ServerIPOpenvas)">Server IP</h4>
+                                                    <input class="form-control" asp-for="@(Model.OPENVAS.ServerIPOpenvas)" />
                                                 </div>
 
                                             </div>
                                             <div class="col-sm-7" style="margin:0 auto; float:none">
                                                 <div class="form-group row">
-                                                    <h4 asp-for="@(Model.OPENVAS.Porta)">Porta</h4>
-                                                    <input class="form-control" asp-for="@(Model.OPENVAS.Porta)" />
+                                                    <h4 asp-for="@(Model.OPENVAS.PortaOpenvas)">Porta</h4>
+                                                    <input class="form-control" asp-for="@(Model.OPENVAS.PortaOpenvas)" />
                                                 </div>
 
                                             </div>
 
                                         </div>
+                                         <div class="col-sm-12">
+                                        @if(ViewData["TestO"] != null)
+                                        {
+                                            <div class="col-sm-6">
+                                                <h4 style="color:red">
+                                                    <strong>
+                                                @{
+                                                    bool check = ViewBag.Test0;
+                                                    if(check)
+                                                    {
+                                                        @Html.Raw("Il server specificato è attivo");
+                                                    }
+                                                    else
+                                                    {
+                                                        @Html.Raw("Il server specificato è spento");
+                                                    }
+                                                }
+                                                    </strong>
+                                                </h4>
+                                            </div>
+                                        }
+                                        <div class="col-sm-6 text-right ">
+                                                <form asp-action="Test">
+                                            <div class="form-group">
+                                                <input type="submit" asp-action="TestO" class="btn btn-default" value="Test" asp-route-cosa="openvas" />
+                                                </div>
+                                                </form>
+                                               
+                                            </div>
+                                            </div>
                                     </div>
                                      <div class="col-sm-12">
                                             <hr/>
