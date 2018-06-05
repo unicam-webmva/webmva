@@ -6,29 +6,26 @@
     <h2><em>Modifica Progetto</em><strong> @Model.Progetto.Nome</strong></h2>
     <hr />
     @{
-        if(ViewData["errori"] != "")
-        {
-            <h3 style="color:red"><strong>@ViewData["errori"]</strong></h3>
-            if(ViewData["MessaggiTarget"]!=null)
-            {
-                Dictionary<string, string> lista = ViewBag.MessaggiTarget;
-                @Html.Raw("Controlla:<br> Nome Modulo - Target <br>");
-                foreach(var itm in lista){
-                    @Html.Raw(itm.Key + " " + itm.Value + "<br>");
-                }
+        List<string> ListaModuliSenzaTarget = ViewBag.ListaSenzaTarget;
+        List<string> ListaModuliSenzaInserito = ViewBag.ListaSenzaInserito;
+        string messaggio = ViewBag.ProgettoSenzaModuli;
+        if(ListaModuliSenzaTarget!= null && ListaModuliSenzaTarget.Count!=0){
+            @Html.Raw("<h3 style=\"color:red\"><em>Inserire il target in:</em> <strong>" + ListaModuliSenzaTarget[0]);
+            for(int i=1; i<ListaModuliSenzaTarget.Count; i++){
+                @Html.Raw(", " + ListaModuliSenzaTarget[i]);
             }
+            @Html.Raw("</strong></h3>");
         }
-        List<string> moduliStronzi = ViewBag.moduliStronzi;
-            if(moduliStronzi != null && moduliStronzi.Count!=0)
-            {
-
-                @Html.Raw("<h3 style='color:red'><strong>Inserisci il target in: ");
-                @Html.Raw(moduliStronzi.ElementAt(0));
-                @for(int i = 1; i< moduliStronzi.Count; i++){
-                    @Html.Raw(", " + moduliStronzi.ElementAt(i));
-                }
-                @Html.Raw("</strong></h3>");
+        if(ListaModuliSenzaInserito!= null && ListaModuliSenzaInserito.Count!=0){
+            @Html.Raw("<h3 style=\"color:red\"><em>Inserire il check in:</em> <strong>" + ListaModuliSenzaInserito[0]);
+            for(int i=1; i<ListaModuliSenzaInserito.Count; i++){
+                @Html.Raw(", " + ListaModuliSenzaInserito[i]);
             }
+            @Html.Raw("</strong></h3>");
+        }
+        if(!string.IsNullOrEmpty(messaggio)){
+            @Html.Raw("<h3 style=\"color:red\"><em>"+messaggio+"</em></h3>");
+        }
     }
             @{List<webmva.ViewModels.ModuliInProgetto> listaModuli = Model.ListaModuliConTarget;
            

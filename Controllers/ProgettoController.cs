@@ -92,15 +92,42 @@ namespace webmva.Controllers
             var view = PopolaModuliAssegnati(progetto);
             return View(view);
         }
-        private ModuliInseriti PopolaModuliAssegnati(Progetto progetto, bool nulloTuttiITarget=false){
+        private ModuliInseriti PopolaModuliAssegnati(Progetto progetto){
             var tuttiModuli = _context.Moduli;
             var moduliProgetto = new HashSet<ModuliProgetto>(progetto.ModuliProgetto);
             var dati= new List<ModuliInProgetto>();
             foreach(var modulo in tuttiModuli){
                 bool inserito = moduliProgetto.Any(m=>m.ModuloID == modulo.ID);
                 string target="";
-                if(nulloTuttiITarget) target = null;
-                else if(inserito) target = progetto.ModuliProgetto.SingleOrDefault(m=>m.ModuloID==modulo.ID).Target;
+                if(inserito) target = progetto.ModuliProgetto.SingleOrDefault(m=>m.ModuloID==modulo.ID).Target;
+                dati.Add(new ModuliInProgetto{
+                    ModuloID = modulo.ID,
+                    Nome = modulo.Nome,
+                    Comando = modulo.Comando,
+                    Inserito = inserito,
+                    Target = target,
+                    Applicazione = modulo.Applicazione,
+                });
+            }
+            var viewmodel = new ModuliInseriti{Progetto = progetto, ListaModuliConTarget = dati};
+            //ViewData["Moduli"] = dati;
+            return viewmodel;
+        }
+
+        private ModuliInseriti PopolaModuliAssegnatiErrore(Progetto progetto, List<ModuliInProgetto> listaModuliAggiornati, List<string> ModuliSenzaTarget,List<string> ModuliSenzaInserito){
+            var tuttiModuli = _context.Moduli;
+            var dati= new List<ModuliInProgetto>();
+            foreach(var modulo in tuttiModuli){
+                bool inserito = listaModuliAggiornati.Any(m=>m.ModuloID == modulo.ID && m.Inserito);
+                string target = listaModuliAggiornati.SingleOrDefault(m=>m.ModuloID==modulo.ID).Target;
+                if(inserito && string.IsNullOrEmpty(target)){
+                    //guardo se c'è il target, sennò lo metto nella lista dei moduli senza target
+                    ModuliSenzaTarget.Add(modulo.Nome);
+                }
+                else if(!inserito && !string.IsNullOrEmpty(target)){
+                    // il target è non vuoto ma non è stato inserito, quindi lo metto nella lista dei moduli senza inserito
+                    ModuliSenzaInserito.Add(modulo.Nome);
+                }
                 dati.Add(new ModuliInProgetto{
                     ModuloID = modulo.ID,
                     Nome = modulo.Nome,
@@ -134,16 +161,6 @@ namespace webmva.Controllers
             if (await TryUpdateModelAsync<Progetto>(progetto, "",
                 i => i.Nome, i => i.Descrizione))
             {
-                  if(!moduliInseriti.ListaModuliConTarget.Any(l => l.Inserito == true)){
-                  ViewData["errori"] = "Non è stato selezionato alcun modulo!";
-                  var view = PopolaModuliAssegnati(progetto);
-                  Dictionary<string, string> lista = new Dictionary<string, string>();
-                  foreach(var it in view.ListaModuliConTarget.Where(x=>!string.IsNullOrEmpty(x.Target))){
-                    lista.Add(it.Nome, it.Target);
-                    }
-                    ViewData["MessaggiTarget"] = lista;
-                  return View(view);
-                  }
                 if(AggiornaModuliInseriti(moduliInseriti.ListaModuliConTarget, progetto)){
                     _context.Update(progetto);
                     try
@@ -159,30 +176,45 @@ namespace webmva.Controllers
                     }
                 }
                 else{
-                    var idStronzi = moduliInseriti.ListaModuliConTarget.Where(m=>string.IsNullOrEmpty(m.Target) && m.Inserito==true).Select(x=>x.ModuloID).ToArray();
-                    List<string> nomiStronzi = new List<string>();
-                    for(int i = 0; i<idStronzi.Length; i++){
-                        nomiStronzi.Add(_context.Moduli.SingleOrDefault(m=>m.ID == idStronzi[i]).Nome);
+                    List<string> ModuliSenzaTarget = new List<string>();
+                    List<string> ModuliSenzaInserito = new List<string>();
+                    var view = PopolaModuliAssegnatiErrore(progetto, moduliInseriti.ListaModuliConTarget, ModuliSenzaTarget, ModuliSenzaInserito);
+                    ViewData["ListaSenzaTarget"] = ModuliSenzaTarget;
+                    ViewData["ListaSenzaInserito"] = ModuliSenzaInserito;
+                    if (!moduliInseriti.ListaModuliConTarget.Any(m=>m.Inserito && string.IsNullOrEmpty(m.Target))){
+                        ViewData["ProgettoSenzaModuli"] = "Inserire almeno un modulo col relativo target";
                     }
-                    ViewData["moduliStronzi"]=nomiStronzi;
-                    return View(PopolaModuliAssegnati(progetto));
+                    return View(view);
                 }
-                
                 return RedirectToAction(nameof(Index));
             }
-            
-            AggiornaModuliInseriti(moduliInseriti.ListaModuliConTarget, progetto);
-            ViewData["errori"] = "Non è stato selezionato alcun modulo!";
-            return View(PopolaModuliAssegnati(progetto));
+            List<string> ModuliSenzaTarget1 = new List<string>();
+            List<string> ModuliSenzaInserito1 = new List<string>();
+            var view1 = PopolaModuliAssegnatiErrore(progetto, moduliInseriti.ListaModuliConTarget, ModuliSenzaTarget1, ModuliSenzaInserito1);
+            ViewData["ListaSenzaTarget"] = ModuliSenzaTarget1;
+            ViewData["ListaSenzaInserito"] = ModuliSenzaInserito1;
+            if (!moduliInseriti.ListaModuliConTarget.Any(m=>m.Inserito && string.IsNullOrEmpty(m.Target))){
+                ViewData["ProgettoSenzaModuli"] = "Inserire almeno un modulo col relativo target";
+            }
+            return View(view1);
         }
 
         private bool AggiornaModuliInseriti(List<ModuliInProgetto> moduliDaAggiornare, Progetto progetto)
         {
           
-            if (!moduliDaAggiornare.Any(m=>m.Inserito == true))
+            if (!moduliDaAggiornare.Any(m=>m.Inserito && string.IsNullOrEmpty(m.Target)))
             {
                 progetto.ModuliProgetto = new List<ModuliProgetto>();
-                return true;
+                Console.WriteLine("Inserire almeno un modulo col relativo target");
+                return false;
+            }
+            if(moduliDaAggiornare.Any(m=>!m.Inserito && !string.IsNullOrEmpty(m.Target))){
+                //Console.WriteLine("Ci sono dei moduli non inseriti ma col target");
+                return false;
+            }
+            if(moduliDaAggiornare.Any(m=>m.Inserito && string.IsNullOrEmpty(m.Target))){
+                //Console.WriteLine("Ci sono dei moduli inseriti ma senza target");
+                return false;
             }
 
             var moduliSelezionatiHS = moduliDaAggiornare.Where(m=>m.Inserito == true);
