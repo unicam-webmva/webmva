@@ -181,7 +181,7 @@ namespace webmva.Controllers
                     var view = PopolaModuliAssegnatiErrore(progetto, moduliInseriti.ListaModuliConTarget, ModuliSenzaTarget, ModuliSenzaInserito);
                     ViewData["ListaSenzaTarget"] = ModuliSenzaTarget;
                     ViewData["ListaSenzaInserito"] = ModuliSenzaInserito;
-                    if (!moduliInseriti.ListaModuliConTarget.Any(m=>m.Inserito && string.IsNullOrEmpty(m.Target))){
+                    if (!moduliInseriti.ListaModuliConTarget.Any(m=>m.Inserito && !string.IsNullOrEmpty(m.Target))){
                         ViewData["ProgettoSenzaModuli"] = "Inserire almeno un modulo col relativo target";
                     }
                     return View(view);
@@ -193,7 +193,7 @@ namespace webmva.Controllers
             var view1 = PopolaModuliAssegnatiErrore(progetto, moduliInseriti.ListaModuliConTarget, ModuliSenzaTarget1, ModuliSenzaInserito1);
             ViewData["ListaSenzaTarget"] = ModuliSenzaTarget1;
             ViewData["ListaSenzaInserito"] = ModuliSenzaInserito1;
-            if (!moduliInseriti.ListaModuliConTarget.Any(m=>m.Inserito && string.IsNullOrEmpty(m.Target))){
+            if (!moduliInseriti.ListaModuliConTarget.Any(m=>m.Inserito && !string.IsNullOrEmpty(m.Target))){
                 ViewData["ProgettoSenzaModuli"] = "Inserire almeno un modulo col relativo target";
             }
             return View(view1);
@@ -202,7 +202,7 @@ namespace webmva.Controllers
         private bool AggiornaModuliInseriti(List<ModuliInProgetto> moduliDaAggiornare, Progetto progetto)
         {
           
-            if (!moduliDaAggiornare.Any(m=>m.Inserito && string.IsNullOrEmpty(m.Target)))
+            if (!moduliDaAggiornare.Any(m=>m.Inserito && !string.IsNullOrEmpty(m.Target)))
             {
                 progetto.ModuliProgetto = new List<ModuliProgetto>();
                 Console.WriteLine("Inserire almeno un modulo col relativo target");
