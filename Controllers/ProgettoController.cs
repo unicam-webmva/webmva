@@ -309,8 +309,7 @@ namespace webmva.Controllers
             var data = DateTime.Now;
             Report report = new Report{
                 ProgettoID=progetto.ID,
-                Data = data
-            };
+                Data = data};
             List<string> percorsi = new List<string>();
             Dictionary<string, string> risultati = new Dictionary<string, string>();
             foreach (ModuliProgetto modprog in progetto.ModuliProgetto)

@@ -5,6 +5,8 @@ namespace webmva.Data
 {
     public class MyDbContext : DbContext
     {
+        
+
         public MyDbContext(DbContextOptions<MyDbContext> options) : base(options) { }
 
         //QUI CI VANNO LE TABELLE DEL DB

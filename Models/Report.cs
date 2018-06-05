@@ -12,8 +12,10 @@ namespace webmva.Models
     {
         public int ID { get; set; }
         [DataType(DataType.Date)]
+        public DateTime Data { get; internal set; }        
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd-HH-mm-ss}", ApplyFormatInEditMode = true)]
-        public DateTime Data {get; set;}
+       
+       
         public int ProgettoID { get; set; }
         public Progetto Progetto { get; set; }
         public IEnumerable<PercorsiReport> Percorsi { get; set; }
