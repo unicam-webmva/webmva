@@ -535,8 +535,8 @@
                                         <div class="col-sm-12">
                                         @if(ViewData["TestN"] != null)
                                         {
-                                            <div class="col-sm-6">
-                                                <h4 style="color:red">
+                                            <div class="col-sm-8">
+                                                <h5 style="color:red">
                                                     <strong>
                                                 @{
                                                     bool check = ViewBag.TestN;
@@ -546,14 +546,19 @@
                                                     }
                                                     else
                                                     {
-                                                        @Html.Raw("Il server specificato è spento");
+                                                     
+                                                    @Html.Raw("Il server specificato è spento<br>");
+                                                    @Html.Raw("Per farlo partire inserire nella shell: '/etc/init.d/nessusd start'");
+
+                                                         
+
                                                     }
                                                 }
                                                     </strong>
-                                                </h4>
+                                                </h5>
                                             </div>
                                         }
-                                        <div class="col-sm-6 text-right ">
+                                        <div class="col-sm-4  text-right ">
                                                 <form asp-action="Test">
                                             <div class="form-group">
                                                 <input type="submit" asp-action="Test" class="btn btn-default" value="Test" asp-route-cosa="nessus" />
@@ -634,8 +639,8 @@
                                          <div class="col-sm-12">
                                         @if(ViewData["TestO"] != null)
                                         {
-                                            <div class="col-sm-6">
-                                                <h4 style="color:red">
+                                            <div class="col-sm-8">
+                                                <h5 style="color:red">
                                                     <strong>
                                                 @{
                                                     bool check = ViewBag.TestO;
@@ -645,14 +650,19 @@
                                                     }
                                                     else
                                                     {
-                                                        @Html.Raw("Il server specificato è spento");
+                                                     
+                                                    @Html.Raw("Il server specificato è spento<br>");
+                                                    @Html.Raw("Per farlo partire inserire nella shell: 'openvas-start'");
+
+                                                         
+
                                                     }
                                                 }
                                                     </strong>
-                                                </h4>
+                                                </h5>
                                             </div>
                                         }
-                                        <div class="col-sm-6 text-right ">
+                                        <div class="col-sm-4 text-right ">
                                                 <form asp-action="Test">
                                             <div class="form-group">
                                                 <input type="submit" asp-action="Test" class="btn btn-default" value="Test" asp-route-cosa="openvas" />
