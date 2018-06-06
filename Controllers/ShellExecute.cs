@@ -17,12 +17,14 @@ namespace webmva.Helpers
         
         
             
-        public static string EseguiCLI(this string cmd, string cartellaProgetto){
+        public static string EseguiCLI(this string cmd, string cartellaProgetto, bool finestra = false){
             switch (Globals.SistemaOperativoAttuale){
                 case Win32NT:
                     return Batch(cmd, cartellaProgetto);
                 case Unix:
-                    return Bash(cmd, cartellaProgetto);
+                if(finestra)
+                    return BashConShell(cmd, cartellaProgetto);
+                    else return Bash(cmd,cartellaProgetto);
                 default:
                     throw new ApplicationException("Non so come tu sia finito qui");
             }
@@ -48,6 +50,29 @@ namespace webmva.Helpers
             string result = process.StandardOutput.ReadToEnd();
             process.WaitForExit();
             return result;
+        }
+        private static string BashConShell(string cmd, string cartellaDiLavoro)
+        {
+            //CreaCartellaProgetto(cartellaProgetto);
+            var escapedArgs = cmd.Replace("\"", "\\\"");
+            //escapedArgs = escapedArgs.Replace(" ", "\\ ");
+            var process = new Process()
+            {
+                StartInfo = new ProcessStartInfo
+                {
+                    WorkingDirectory = cartellaDiLavoro,
+                    FileName = "/bin/bash",
+                    Arguments = $"-c \"{escapedArgs}\"",
+                    RedirectStandardOutput = false,
+                    UseShellExecute = true,
+                    CreateNoWindow = false,
+                }
+            };
+            process.Start();
+            
+            process.WaitForExit();
+            
+            return process.ExitCode.ToString();
         }
         private static string Batch(string cmd, string cartellaDiLavoro)
         {

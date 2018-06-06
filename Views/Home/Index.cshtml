@@ -130,21 +130,30 @@
                         <li>dotnet (se questo sito sta partendo è difficile non averlo! =)</li>
                         <li>aircrack-ng, cowpatty, bully, reaver, pyrit, tshark per Wifite2</li>
                     </ul>
+                    Inoltre, per installare ODAT è necessario effettuare alcuni passaggi aggiuntivi.
 
                     @{
                         string[] dips = ViewBag.Dipendenze;
                         
-                        @if(dips.Length == 1)
+                        @if(dips.Length == 0 || dips[0].Equals(Environment.NewLine))
                         {
-                            @Html.Raw("In questo sistema sono tutti installati!")
+                            @Html.Raw("<p style=\"color:red\"><strong>In questo sistema sono tutti installati!</strong></p>")
                         }
                         else
                         {
-                            @Html.Raw("E' necessario installare: <ul>")
-                            @foreach(string itm in dips){
-                                    <li>@itm</li>
+                            @Html.Raw("<p style=\"color:red\"><strong>E' necessario installare: ")
+                            @foreach(string itm in dips)
+                            {
+                                    @(itm + " ")
                             }
-                            @Html.Raw("</ul>")
+                            @Html.Raw("</strong></p>")
+                            <form asp-action="Installa">
+                            <div class="col-sm-6 col-sm-offset-6 text-right">
+                                            <div class="form-group">
+                                                <input type="submit" asp-action="Installa" class="btn btn-default" value="Installa dipendenze" />
+                                            </div>
+                                        </div>
+                                        </form>
                         }
                     }
                         

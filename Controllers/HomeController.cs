@@ -14,7 +14,7 @@ namespace webmva.Controllers
     {
         public IActionResult Index()
         {
-            string checkDipendenze = Path.Combine(Globals.CartellaWEBMVA, "testDipendenzeBase.sh").EseguiCLI(Globals.CartellaWEBMVA);
+            string checkDipendenze = Path.Combine(Globals.CartellaWEBMVA, "Script", "testDipendenzeBase.sh").EseguiCLI(Globals.CartellaWEBMVA);
             string[] dips = checkDipendenze.Split(' ');
             ViewData["Dipendenze"] = dips;
             return View();
@@ -23,6 +23,12 @@ namespace webmva.Controllers
         public IActionResult Error()
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+        }
+        [HttpPost]
+        public IActionResult Installa()
+        {
+            string installa = Path.Combine(Globals.CartellaWEBMVA, "Script", "installazionedepsWEBMVA.sh").EseguiCLI(Globals.CartellaWEBMVA, true);
+            return RedirectToAction(nameof(Index));
         }
        
     }
