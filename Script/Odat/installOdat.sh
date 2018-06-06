@@ -25,7 +25,6 @@ apt-get install alien -y > /dev/null ; fi
 if [ ! -f /lib/x86_64-linux-gnu/libaio.so.1 ] ; then
 apt-get install libaio1 -y > /dev/null ; fi
 
-echo "fase alien"
 if [ ! -f oracle-instantclient12.2-basic_12.2.0.1.0-2_amd64.deb ] ; then
 alien --to-deb oracle-instantclient12.2-basic-12.2.0.1.0-1.x86_64.rpm ;
 fi
@@ -35,19 +34,15 @@ fi
 if [ ! -f oracle-instantclient12.2-devel_12.2.0.1.0-2_amd64.deb ] ; then
 alien --to-deb oracle-instantclient12.2-devel-12.2.0.1.0-1.x86_64.rpm
 fi
-echo "fase dpkg"
 if [ ! -f /usr/lib/oracle/12.2/client64/bin/genezi ] ; then
 dpkg -i oracle-instantclient12.2-basic_12.2.0.1.0-2_amd64.deb ;
 fi
-echo "dpkg 2"
 if [ ! -f /usr/lib/oracle/12.2/client64/bin/sqlplus ] ; then 
 dpkg -i oracle-instantclient12.2-sqlplus_12.2.0.1.0-2_amd64.deb ; 
 fi
-echo "dpkg 3"
 if [ ! -d /usr/lib/oracle/12.2/client64/lib ] ; then
 dpkg -i oracle-instantclient12.2-devel_12.2.0.1.0-2_amd64.deb ;
 fi
-echo "fase path"
 if ! grep -q "LD_LIBRARY_PATH" /etc/profile ; then
 echo "export LD_LIBRARY_PATH=/opt/oracle/instantclient_12_2:$LD_LIBRARY_PATH" | tee -a /etc/profile
 echo "export PATH=/usr/lib/oracle/12.2/client64/bin:$PATH" | tee -a /etc/profile ;

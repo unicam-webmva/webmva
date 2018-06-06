@@ -6,6 +6,19 @@
 *  Riccardo Cannella, 096001, riccardo.cannella@studenti.unicam.it 
 *  Margherita Renieri, 095100, margherita.renieri@studenti.unicam.it 
 
+**Installazione**
+```
+git clone https://github.com/unicam-webmva/webmva
+cd webmva
+git submodule init
+git submodule update
+```
+
+**Avvio**
+```
+sudo dotnet run
+```
+
 
 **Ambito**
 

@@ -3,6 +3,8 @@ if [[ $EUID > 0 ]]
   then echo "Bisogna farmi partire come root."
   exit
 fi
+
+
 echo "-------------------------------------------------------"
 echo "Installazione dipendenze WEBMVA"
 echo "-------------------------------------------------------"
@@ -87,8 +89,8 @@ echo "INSTALLAZIONE DIPENDENZE PER SCRIPT PYTHON"
 echo "-------------------------------------------------------"
 echo "Sto installando alcune dipendenze tramite pip e pip3 per i vari programmi usati all'interno di WEBMVA..."
 
-pip install requests beautifulsoup4 yaswfp tld html5lib cement pystache futures dnspython netaddr lxml argparse mako pysocks requests_ntlm requests_kerberos > /dev/null
-pip3 install requests beautifulsoup4 yaswfp tld html5lib cement pystache futures dnspython netaddr lxml argparse mako pysocks requests_ntlm requests_kerberos > /dev/null
+pip install tabulate json2html urllib3 requests beautifulsoup4 yaswfp tld html5lib cement pystache futures dnspython netaddr lxml argparse mako pysocks requests_ntlm requests_kerberos > /dev/null
+pip3 install tabulate json2html urllib3 requests beautifulsoup4 yaswfp tld html5lib cement pystache futures dnspython netaddr lxml argparse mako pysocks requests_ntlm requests_kerberos > /dev/null
 
 echo "Fine installazione dipendenze script PYTHON."
 echo " "
@@ -157,6 +159,20 @@ else {
 fi
 cpanm String::Random Net::IP Net::DNS Net::Netmask Net::Whois::IP HTML::Parser WWW::Mechanize XML::Writer > /dev/null
 echo "Fine installazione dipendenze di DnsEnum."
+echo " "
+echo " "
+echo " "
+
+echo "-------------------------------------------------------"
+echo "INSTALLAZIONE WPScan"
+echo "-------------------------------------------------------"
+cd Programmi/WPScan
+sudo apt install ruby-all-dev ruby-dev libffi-dev build-essential patch ruby-dev zlib1g-dev liblzma-dev
+sudo gem install bundler && bundle install --without test
+if [ ! -d ~/.wpscan/data ] >/dev/null 2>&1 ; then 
+unzip data.zip -d ~/.wpscan/
+cd ../..
+echo "Fine installazione WPScan."
 echo " "
 echo " "
 echo " "
