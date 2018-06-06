@@ -1,5 +1,5 @@
 @model webmva.ViewModels.EditModuloVM
-@{ ViewData["Title"] = "Crea modulo"; }
+@{ ViewData["Title"] = "Crea modulo"; string ancora = ViewBag.Anchor; }
 <div class="container">
     <h2>Moduli</h2>
     <p class="lead">
@@ -539,8 +539,8 @@
                                                 <h5 style="color:red">
                                                     <strong>
                                                 @{
-                                                    bool check = ViewBag.TestN;
-                                                    if(check)
+                                                    string check = ViewBag.TestN;
+                                                    if(check=="True")
                                                     {
                                                         @Html.Raw("Il server specificato è attivo");
                                                     }
@@ -643,8 +643,8 @@
                                                 <h5 style="color:red">
                                                     <strong>
                                                 @{
-                                                    bool check = ViewBag.TestO;
-                                                    if(check)
+                                                    string check = ViewBag.TestO;
+                                                    if(check=="True")
                                                     {
                                                         @Html.Raw("Il server specificato è attivo");
                                                     }
@@ -3148,6 +3148,19 @@
     </div>
 </div>
 
-  
-      
+@section Scripts{
+    @if (!string.IsNullOrEmpty(ancora))
+{
+    <script>
+        $(function () {              
+                window.location.hash = '#@ViewBag.Anchor';
+        });
+        $(document).ready(function () {
+            var anchor = $('#@ViewBag.Anchor');
+            anchor.collapse();
+            anchor.scrollIntoView(true);
+        });
+    </script>
+}
+}
    

@@ -67,6 +67,23 @@ namespace webmva.Controllers
         // GET: Modulo/Create
         public IActionResult Create()
         {
+            var model = TempData.Peek<EditModuloVM>("Model");
+            if (model!=null){
+                TempData.Remove("Model");
+                var anchor = TempData.Peek<string>("Anchor");
+                TempData.Remove("Anchor");
+                ViewData["Anchor"] = anchor;
+                if(anchor=="Nessus"){
+                    ViewData["TestN"] = TempData.Peek<string>("TestN");
+                    TempData.Remove("TestN");
+                }
+                else if(anchor=="Openvas"){
+                    ViewData["TestO"] = TempData.Peek<string>("TestO");
+                    TempData.Remove("TestO");
+                }
+                return View(model);
+            }
+            else
             return View(new EditModuloVM());
         }
 
@@ -331,13 +348,21 @@ namespace webmva.Controllers
         [HttpPost]
         public async Task<IActionResult>Test(EditModuloVM createmodulo, string cosa){
             if(cosa== "nessus"){
-                ViewData["TestN"] = await CheckServer(createmodulo.NESSUS.ServerIP, createmodulo.NESSUS.Porta);
+                bool check = await CheckServer(createmodulo.NESSUS.ServerIP, createmodulo.NESSUS.Porta);
+                TempData.Put("TestN", check.ToString());
+                TempData.Put("Anchor", "Nessus");
+                
                 
             } 
             else if(cosa == "openvas"){
-                ViewData["TestO"] = await CheckServer(createmodulo.OPENVAS.ServerIPOpenvas, createmodulo.OPENVAS.PortaOpenvas);
+                bool check = await CheckServer(createmodulo.OPENVAS.ServerIPOpenvas, createmodulo.OPENVAS.PortaOpenvas);
+                TempData.Put("TestO", check.ToString());
+                TempData.Put("Anchor", "Openvas");
+                
             }
-            return View(nameof(Create),createmodulo);
+            TempData.Put("Model", createmodulo);
+            //return View(nameof(Create),createmodulo);
+            return RedirectToAction("Create", "Modulo");
             
         }
         // GET: Modulo/Edit/5
