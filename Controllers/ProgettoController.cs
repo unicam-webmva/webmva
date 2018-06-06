@@ -185,7 +185,7 @@ namespace webmva.Controllers
                     var view = PopolaModuliAssegnatiErrore(progetto, moduliInseriti.ListaModuliConTarget, ModuliSenzaTarget, ModuliSenzaInserito);
                     ViewData["ListaSenzaTarget"] = ModuliSenzaTarget;
                     ViewData["ListaSenzaInserito"] = ModuliSenzaInserito;
-                    if (!moduliInseriti.ListaModuliConTarget.Any(m=>m.Inserito && !string.IsNullOrEmpty(m.Target))){
+                    if (moduliInseriti.ListaModuliConTarget.All(m=>m.Inserito==false && string.IsNullOrEmpty(m.Target))){
                         ViewData["ProgettoSenzaModuli"] = "Inserire almeno un modulo col relativo target";
                     }
                     return View(view);
@@ -197,7 +197,7 @@ namespace webmva.Controllers
             var view1 = PopolaModuliAssegnatiErrore(progetto, moduliInseriti.ListaModuliConTarget, ModuliSenzaTarget1, ModuliSenzaInserito1);
             ViewData["ListaSenzaTarget"] = ModuliSenzaTarget1;
             ViewData["ListaSenzaInserito"] = ModuliSenzaInserito1;
-            if (!moduliInseriti.ListaModuliConTarget.Any(m=>m.Inserito && !string.IsNullOrEmpty(m.Target))){
+            if (moduliInseriti.ListaModuliConTarget.All(m=>m.Inserito==false && string.IsNullOrEmpty(m.Target))){
                 ViewData["ProgettoSenzaModuli"] = "Inserire almeno un modulo col relativo target";
             }
             return View(view1);
@@ -206,7 +206,7 @@ namespace webmva.Controllers
         private bool AggiornaModuliInseriti(List<ModuliInProgetto> moduliDaAggiornare, Progetto progetto)
         {
           
-            if (!moduliDaAggiornare.Any(m=>m.Inserito && !string.IsNullOrEmpty(m.Target)))
+            if (moduliDaAggiornare.All(m=>m.Inserito==false && string.IsNullOrEmpty(m.Target)))
             {
                 progetto.ModuliProgetto = new List<ModuliProgetto>();
                 //Console.WriteLine("Inserire almeno un modulo col relativo target");
@@ -217,10 +217,13 @@ namespace webmva.Controllers
                 return false;
             } 
             if(moduliDaAggiornare.Any(m=>m.Inserito && string.IsNullOrEmpty(m.Target))){
-                //I moduli WIFITE e NOSQLMAP non hanno bisogno del target
+                //I moduli WIFITE, NOSQLMAP, NESSUS e OPENVAS non hanno bisogno del target
                 List<ModuliInProgetto> ModuliEccezioni = moduliDaAggiornare.Where(m=>m.Inserito && string.IsNullOrEmpty(m.Target)).ToList();
                 foreach(var itm in ModuliEccezioni){
-                    if(itm.Applicazione == webmva.Models.APPLICAZIONE.WIFITE ||itm.Applicazione == webmva.Models.APPLICAZIONE.NOSQL ){
+                    if(itm.Applicazione == webmva.Models.APPLICAZIONE.WIFITE ||
+                        itm.Applicazione == webmva.Models.APPLICAZIONE.NOSQL ||
+                        itm.Applicazione == webmva.Models.APPLICAZIONE.NESSUS ||
+                        itm.Applicazione == webmva.Models.APPLICAZIONE.OPENVAS ){
                         continue;
                     }else{
                         return false;
@@ -246,7 +249,6 @@ namespace webmva.Controllers
                         }
                         // Creo l'associazione tra progetto e modulo col relativo target
                         _context.Add(new ModuliProgetto { ModuloID = modulo.ID, ProgettoID = progetto.ID, Target = mod.Target });
-                        return true;
                     }
                     // altrimenti, se il modulo era presente ma il target è stato cambiato
                     else if(moduliGiaPresenti.SingleOrDefault(m=>m.ModuloID==modulo.ID).Target != moduliDaAggiornare.SingleOrDefault(m=>m.ModuloID==modulo.ID).Target)
@@ -255,7 +257,6 @@ namespace webmva.Controllers
                         var associazioneDaAggiornare = progetto.ModuliProgetto.SingleOrDefault(m=>m.ModuloID==modulo.ID && m.ProgettoID == progetto.ID);
                         associazioneDaAggiornare.Target = moduliDaAggiornare.SingleOrDefault(m=>m.ModuloID == modulo.ID).Target;
                         _context.Update(associazioneDaAggiornare);
-                        return true;
                     }
                 }
                 // se sono qui il modulo va eliminato
@@ -265,7 +266,6 @@ namespace webmva.Controllers
                     {
                         ModuliProgetto moduloDaRimuovere = progetto.ModuliProgetto.SingleOrDefault(m => m.ModuloID == modulo.ID && m.ProgettoID == progetto.ID);
                         _context.Remove(moduloDaRimuovere);
-                        return true;
                     }
                 }
             }
