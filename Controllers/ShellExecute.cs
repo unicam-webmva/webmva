@@ -43,15 +43,15 @@ namespace webmva.Helpers
                     WorkingDirectory = cartellaDiLavoro,
                     FileName = "/bin/bash",
                     Arguments = $"-c \"exec xterm -e '{escapedArgs}'\"",
-                    RedirectStandardOutput = true,
+                    RedirectStandardOutput = false,
                     UseShellExecute = false,
                     CreateNoWindow = false,
                 }
             };
             process.Start();
-            string result = process.StandardOutput.ReadToEnd();
+            //string result = process.StandardOutput.ReadToEnd();
             process.WaitForExit();
-            return result;
+            return "";
         }
         private static string BashConShell(string cmd, string cartellaDiLavoro)
         {

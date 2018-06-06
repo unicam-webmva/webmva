@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace webmva.Migrations
 {
-    public partial class Inserito4 : Migration
+    public partial class ModificaWifite : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -197,7 +197,6 @@ namespace webmva.Migrations
                     UserAgentW = table.Column<string>(nullable: true),
                     VerbositàW = table.Column<bool>(nullable: true),
                     ModuloWIFITE_ComandoPersonalizzato = table.Column<string>(nullable: true),
-                    ModuloWIFITE_Verbose = table.Column<int>(nullable: true),
                     Wps = table.Column<int>(nullable: true),
                     accessPoint = table.Column<bool>(nullable: true),
                     bully = table.Column<bool>(nullable: true),
@@ -205,11 +204,10 @@ namespace webmva.Migrations
                     client = table.Column<bool>(nullable: true),
                     crack = table.Column<bool>(nullable: true),
                     fakeAutenticazione = table.Column<bool>(nullable: true),
-                    interfaccia = table.Column<string>(nullable: true),
                     keepIvs = table.Column<bool>(nullable: true),
-                    mac = table.Column<bool>(nullable: true),
                     newHs = table.Column<bool>(nullable: true),
                     scanTime = table.Column<int>(nullable: true),
+                    verbositaWifite = table.Column<bool>(nullable: true),
                     wep = table.Column<bool>(nullable: true),
                     wpa = table.Column<bool>(nullable: true),
                     wpsSetting = table.Column<bool>(nullable: true),

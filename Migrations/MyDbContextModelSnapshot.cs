@@ -644,9 +644,6 @@ namespace webmva.Migrations
                     b.Property<string>("ComandoPersonalizzato")
                         .HasColumnName("ModuloWIFITE_ComandoPersonalizzato");
 
-                    b.Property<int>("Verbose")
-                        .HasColumnName("ModuloWIFITE_Verbose");
-
                     b.Property<int>("Wps");
 
                     b.Property<bool>("accessPoint");
@@ -661,15 +658,13 @@ namespace webmva.Migrations
 
                     b.Property<bool>("fakeAutenticazione");
 
-                    b.Property<string>("interfaccia");
-
                     b.Property<bool>("keepIvs");
-
-                    b.Property<bool>("mac");
 
                     b.Property<bool>("newHs");
 
                     b.Property<int>("scanTime");
+
+                    b.Property<bool>("verbositaWifite");
 
                     b.Property<bool>("wep");
 

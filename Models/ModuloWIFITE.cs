@@ -124,7 +124,8 @@ namespace webmva.Models
                             default:
                                 break;
                         }
-                        
+                        if (verbositaWifite)
+                            risultato += " -v";
                         if (client)
                             risultato += " -co";
                         if (wep)

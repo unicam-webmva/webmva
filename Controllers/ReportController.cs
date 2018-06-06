@@ -11,6 +11,8 @@ using webmva.Data;
 using webmva.Models;
 using webmva.ViewModels;
 using webmva.Helpers;
+using Microsoft.Extensions.FileProviders;
+
 namespace webmva.Controllers
 {
     public class ReportController : Controller
@@ -55,5 +57,26 @@ namespace webmva.Controllers
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
        
+        [HttpPost]
+       public FileResult Download(string filePath)
+        {
+            var dir = Path.Combine(Globals.CartellaWEBMVA, "wwwroot", Path.GetDirectoryName(filePath));
+            var fileName = Path.GetFileName(filePath);
+            var extension = Path.GetExtension(fileName).ToLower();
+            IFileProvider provider = new PhysicalFileProvider(dir);
+            IFileInfo fileInfo = provider.GetFileInfo(fileName);
+            var readStream = fileInfo.CreateReadStream();
+            string mimetype="text/plain";
+            switch(extension){
+                case ".html":
+                    mimetype="text/html";
+                    break;
+                case ".xml":
+                    mimetype="application/xml";
+                    break;
+                default: break;
+            }
+            return File(readStream, mimetype, fileName);
+        }
     }
 }

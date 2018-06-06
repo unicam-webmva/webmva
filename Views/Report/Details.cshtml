@@ -33,8 +33,9 @@ List<webmva.Models.PercorsiReport> lista = ViewBag.Lista; }
                             </td>
                             <td>
                                 <div class="col-sm-8 col-sm-offset-6">
-                                    <a href="../../Report/@lista[i].Percorso" download >Scarica </a>
-                                   
+                                <form asp-action="Download">
+                                    <input type="submit" value="Scarica" asp-action="Download" asp-route-filePath="Report/@lista[i].Percorso" class="btn btn-default" />
+                                </form>
                                 </div>
                             </td>
 

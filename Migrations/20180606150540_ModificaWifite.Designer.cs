@@ -13,8 +13,8 @@ using webmva.Models;
 namespace webmva.Migrations
 {
     [DbContext(typeof(MyDbContext))]
-    [Migration("20180604203713_Inserito4")]
-    partial class Inserito4
+    [Migration("20180606150540_ModificaWifite")]
+    partial class ModificaWifite
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -645,9 +645,6 @@ namespace webmva.Migrations
                     b.Property<string>("ComandoPersonalizzato")
                         .HasColumnName("ModuloWIFITE_ComandoPersonalizzato");
 
-                    b.Property<int>("Verbose")
-                        .HasColumnName("ModuloWIFITE_Verbose");
-
                     b.Property<int>("Wps");
 
                     b.Property<bool>("accessPoint");
@@ -662,15 +659,13 @@ namespace webmva.Migrations
 
                     b.Property<bool>("fakeAutenticazione");
 
-                    b.Property<string>("interfaccia");
-
                     b.Property<bool>("keepIvs");
-
-                    b.Property<bool>("mac");
 
                     b.Property<bool>("newHs");
 
                     b.Property<int>("scanTime");
+
+                    b.Property<bool>("verbositaWifite");
 
                     b.Property<bool>("wep");
 

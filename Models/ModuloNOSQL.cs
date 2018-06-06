@@ -8,7 +8,11 @@ namespace webmva.Models
 
     public class ModuloNOSQL : Modulo
     {
-
+        public override string Comando{
+            get{
+                return "nosqlmap.py";
+            }
+        }
         
     }
 }
