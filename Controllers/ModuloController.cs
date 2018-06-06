@@ -335,7 +335,7 @@ namespace webmva.Controllers
                 
             } 
             else if(cosa == "openvas"){
-  ViewData["TestO"] = await CheckServer(createmodulo.OPENVAS.ServerIPOpenvas, createmodulo.OPENVAS.PortaOpenvas);
+                ViewData["TestO"] = await CheckServer(createmodulo.OPENVAS.ServerIPOpenvas, createmodulo.OPENVAS.PortaOpenvas);
             }
             return View(nameof(Create),createmodulo);
             

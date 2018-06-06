@@ -533,7 +533,7 @@
                                             </div>
                                         </div>
                                         <div class="col-sm-12">
-                                        @if(ViewData["Testn"] != null)
+                                        @if(ViewData["TestN"] != null)
                                         {
                                             <div class="col-sm-6">
                                                 <h4 style="color:red">
@@ -554,9 +554,9 @@
                                             </div>
                                         }
                                         <div class="col-sm-6 text-right ">
-                                                <form asp-action="TestN">
+                                                <form asp-action="Test">
                                             <div class="form-group">
-                                                <input type="submit" asp-action="Testn" class="btn btn-default" value="Test" asp-route-cosa="nessus" />
+                                                <input type="submit" asp-action="Test" class="btn btn-default" value="Test" asp-route-cosa="nessus" />
                                                 </div>
                                                 </form>
                                                
@@ -638,7 +638,7 @@
                                                 <h4 style="color:red">
                                                     <strong>
                                                 @{
-                                                    bool check = ViewBag.Test0;
+                                                    bool check = ViewBag.TestO;
                                                     if(check)
                                                     {
                                                         @Html.Raw("Il server specificato è attivo");
@@ -655,7 +655,7 @@
                                         <div class="col-sm-6 text-right ">
                                                 <form asp-action="Test">
                                             <div class="form-group">
-                                                <input type="submit" asp-action="TestO" class="btn btn-default" value="Test" asp-route-cosa="openvas" />
+                                                <input type="submit" asp-action="Test" class="btn btn-default" value="Test" asp-route-cosa="openvas" />
                                                 </div>
                                                 </form>
                                                
@@ -1591,8 +1591,8 @@
                                     <div class="col-sm-12">
                                         <div class="col-sm-7" style="margin:0 auto; float:none">
                                             <div class="form-group row">
-                                                <h4 asp-for="@(Model.DROOPE.ComandoPersonalizzato)">Comando Personalizzato</h4>
-                                                <input class="form-control" asp-for="@(Model.DROOPE.ComandoPersonalizzato)" />
+                                                <h4 asp-for="@(Model.DNSRECON.ComandoPersonalizzato)">Comando Personalizzato</h4>
+                                                <input class="form-control" asp-for="@(Model.DNSRECON.ComandoPersonalizzato)" />
                                             </div>
                                         </div>
                                     </div>
@@ -1674,7 +1674,7 @@
                                         <div class="col-sm-1"></div>
                                         <div class="col-sm-6 text-right">
                                             <div class="form-group row">
-                                                <input type="submit" asp-action="Create" asp-route-cosa="wpscan" class="btn btn-default" value="Crea" />&nbsp;&nbsp; |
+                                                <input type="submit" asp-action="Create" asp-route-cosa="dnsrecon" class="btn btn-default" value="Crea" />&nbsp;&nbsp; |
                                                 <a asp-action="Index"> Torna alla lista</a>
                                             </div>
                                         </div>

@@ -470,7 +470,7 @@ namespace webmva.Controllers
               if(mod is ModuloWPSCAN)
             {
                 string percorsoExec = Path.Combine(Globals.CartellaWEBMVA, "Programmi", "wpscan");
-                string comando = $"ruby \"{percorsoExec}\" {mod.Comando} --log {nomeFile}wpscan.txt ";
+                string comando = $"ruby \"{percorsoExec}\" {mod.Comando} -u {target} --log {nomeFile}wpscan.txt ";
                 percorsi.Add(Path.Combine(cartella, nomeFile+"wpscan.txt"));
                 return comando;
             }
