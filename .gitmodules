@@ -20,3 +20,7 @@
 	url = https://github.com/derv82/wifite2
 [submodule "Programmi/wpscan"]
 	url = https://github.com/wpscanteam/wpscan
+[submodule "Programmi/dnsenum"]
+	url = https://github.com/fwaeytens/dnsenum
+[submodule "Programmi/NoSQLMap"]
+	url = https://github.com/codingo/NoSQLMap
