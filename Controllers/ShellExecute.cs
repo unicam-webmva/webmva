@@ -29,6 +29,8 @@ namespace webmva.Helpers
                     throw new ApplicationException("Non so come tu sia finito qui");
             }
         }
+
+        //https://askubuntu.com/questions/46627/how-can-i-make-a-script-that-opens-terminal-windows-and-executes-commands-in-the
         private static string Bash(string cmd, string cartellaDiLavoro)
         {
             //CreaCartellaProgetto(cartellaProgetto);
@@ -40,10 +42,10 @@ namespace webmva.Helpers
                 {
                     WorkingDirectory = cartellaDiLavoro,
                     FileName = "/bin/bash",
-                    Arguments = $"-c \"{escapedArgs}\"",
+                    Arguments = $"-c \"exec xterm -e '{escapedArgs}'\"",
                     RedirectStandardOutput = true,
                     UseShellExecute = false,
-                    CreateNoWindow = true,
+                    CreateNoWindow = false,
                 }
             };
             process.Start();

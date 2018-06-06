@@ -1,8 +1,10 @@
 @model webmva.ViewModels.RisultatoVM
 @{ ViewData["Title"] = "Risultato"; }
-<h3>Risultati per progetto @Model.NomeProgetto</h3><hr>
+<br>
 <div class="container">
-    
+<h2><em>Report</em><strong>  @Html.DisplayFor(model => model.NomeProgetto)</strong></h2>
+  <a  class="btn btn-default" > Scarica formato</a>   
+  <hr/>
 @foreach(var element in @Model.risultati)
 {
 <div class="panel panel-default">

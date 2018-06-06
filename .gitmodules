@@ -1,6 +1,39 @@
 [submodule "Programmi/Infoga"]
+	path = Programmi/Infoga
 	url = https://github.com/m4ll0k/Infoga
-[submodule "Programmi/droopescan"]
-	url = https://github.com/droope/droopescan
+[submodule "Programmi/NoSQLMap"]
+	path = Programmi/NoSQLMap
+	url = https://github.com/codingo/NoSQLMap
+[submodule "Programmi/OpenDoor"]
+	path = Programmi/OpenDoor
+	url = https://github.com/stanislav-web/OpenDoor
+[submodule "Programmi/Sublist3r"]
+	path = Programmi/Sublist3r
+	url = https://github.com/aboul3la/Sublist3r
+[submodule "Programmi/dnsenum"]
+	path = Programmi/dnsenum
+	url = https://github.com/fwaeytens/dnsenum
 [submodule "Programmi/dnsrecon"]
+	path = Programmi/dnsrecon
 	url = https://github.com/darkoperator/dnsrecon
+[submodule "Programmi/droopescan"]
+	path = Programmi/droopescan
+	url = https://github.com/droope/droopescan
+[submodule "Programmi/fierce"]
+	path = Programmi/fierce
+	url = https://github.com/mschwager/fierce
+[submodule "Programmi/joomscan"]
+	path = Programmi/joomscan
+	url = https://github.com/rezasp/joomscan
+[submodule "Programmi/sqlmap"]
+	path = Programmi/sqlmap
+	url = https://github.com/sqlmapproject/sqlmap
+[submodule "Programmi/wifite2"]
+	path = Programmi/wifite2
+	url = https://github.com/derv82/wifite2
+[submodule "Programmi/wpscan"]
+	path = Programmi/wpscan
+	url = https://github.com/wpscanteam/wpscan
+[submodule "Programmi/WAScan"]
+	path = Programmi/WAScan
+	url = https://github.com/m4ll0k/WAScan

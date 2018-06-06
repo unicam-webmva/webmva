@@ -84,13 +84,16 @@ namespace webmva
             return false;
         }
 
-        public static string CreaCartellaProgetto(string cartellaProgetto){
+        public static string CreaCartellaProgetto(string cartellaProgetto, DateTime data){
             // mi assicuro che la cartella dedicata al progetto esista
             // altrimenti la creo
-            string cartellaAssoluta = Path.Combine(CartellaTuttiProgetti, cartellaProgetto);
+            string cartellaAssoluta = Path.Combine(CartellaWEBMVA, "wwwroot", "Report", cartellaProgetto);
             if(!Directory.Exists(cartellaAssoluta))
                 Directory.CreateDirectory(cartellaAssoluta);
-            return cartellaAssoluta;
+            string cartellaConData = Path.Combine(cartellaAssoluta, data.ToString("dd-MM-yyyy_HH-mm"));
+            if(!Directory.Exists(cartellaConData))
+                Directory.CreateDirectory(cartellaConData);
+            return cartellaConData;
         }
     }
 }

@@ -9,7 +9,7 @@ namespace webmva.Models
     {
 
 
-        public string Email { get; set; }
+        
 
         public bool Breach { get; set; }
 
@@ -29,8 +29,8 @@ namespace webmva.Models
                 if (string.IsNullOrEmpty(ComandoPersonalizzato))
                 {
 
-                    string risultato = "infoga.py -i " + Email;
-
+                    string risultato = "infoga.py ";
+  //risultato += " -i " + Email;
                     // prova
 
                     switch (Verbose)

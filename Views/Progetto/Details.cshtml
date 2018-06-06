@@ -4,69 +4,103 @@ var contNMAP = 0;
 var contNessus= 0;
 var contOpenVAS = 0;
 var contDnsRecon = 0;
+var contFierce = 0;
 var contDroope = 0;
+var contJoomscan = 0;
+var contWpscan = 0;
 var contInfoga = 0;
 var contInfogaEmail = 0;
-var contWapiti = 0; 
+var contSublist3r = 0;
+var contWapiti = 0;
+var contWascan = 0;
+var contSqlmap = 0; 
+var contWifite = 0;
+var contOpendoor = 0;
+var contNosql = 0;
+var contOdat = 0;
+var contDnsEnum = 0;
+
 }
-<form name="modulo">
-<h2>Dettagli @Html.DisplayFor(model => model.Nome)</h2>
-  <a  class="btn btn-default"asp-action="Run" asp-route-id="@Model.ID"> Avvia scan</a>
- 
-<hr />
+<br>
 <div class="container">
-    <div class="panel panel-default">
-        <div class="col-10">
-            <div class="form-group">
+<h2><em>Dettagli</em><strong>  @Html.DisplayFor(model => model.Nome)</strong></h2>
+  <a  class="btn btn-default"asp-action="Run" asp-route-id="@Model.ID"> Avvia scan</a>
+<hr />
+<div class="col-md-12">
+    <form asp-action="Edit">
+        <input type="hidden" asp-for="ID" />
+    <div class="row panel panel panel-default panel-body">
+        <div class="col-md-12">
+           
                 
                     <dl class="dl-horizontal">
-                        <div class="panel-body">
-                            
-                            <dt>
-                                <strong> Nome del Progetto </strong>
-                            </dt>
-                            <dd>
-                                @Html.DisplayFor(model => model.Nome)
-                            </dd><hr>
-                            
-                         <dt>
-                            <strong>  Descrizione </strong>
-                        </dt>
-                         <dd> 
-                       
-                         @Html.DisplayFor(model => model.Descrizione)
-                        
-                    </dd> <hr>
-                            <dt>
+                        <div class="col-sm-9"style="margin:5ex; float:none">
+                         <div class="form-group row">
+                                                <h4>Nome Progetto</h4><hr />
+                                                <dd>  @Html.DisplayFor(model => model.Nome)
+                                            </dd>
+
+                            </div>
+                            </div>
+                            <div class="col-sm-9"style="margin:5ex; float:none">
+                         <div class="form-group row">
+                                                <h4>ID Progetto</h4><hr />
+                                                <dd>  @Html.DisplayFor(model => model.ID)
+                                            </dd>
+
+                            </div>
+                            </div>
+                           <div class="col-sm-9"style="margin:5ex; float:none">
+                         <div class="form-group row">
+                                                <h4>Descrizione</h4><hr />
+                                                <dd>  @Html.DisplayFor(model => model.Descrizione)
+                                            </dd>
+
+                            </div>
+                            </div> 
+                            <!--<dt>
                                 <strong> Target </strong>
                             </dt>
                             <dd>
                                 @Html.DisplayFor(model => model.Target)
                             </dd><hr>
-                        </div>
-                        <dt>
-                            <strong>  Moduli selezionati </strong>
-                        </dt>
+                        </div>-->
+                        <div class="col-sm-9"style="margin:5ex; float:none">
+                         <div class="form-group row">
+                                                <h4>Moduli Selezionati</h4><hr />
+                                
                         @foreach(var item in Model.ModuliProgetto) {
                             
                             if(item.Modulo is webmva.Models.ModuloNMAP) {contNMAP++;}
                             if(item.Modulo is webmva.Models.ModuloNESSUS) {contNessus++;}
-                            if(item.Modulo is webmva.Models.ModuloNMAP) {contOpenVAS++;}
                             if(item.Modulo is webmva.Models.ModuloDNSRECON) {contDnsRecon++;}
+                            if(item.Modulo is webmva.Models.ModuloFIERCE) {contFierce++;}
                             if(item.Modulo is webmva.Models.ModuloDROOPE) {contDroope++;}
+                            if(item.Modulo is webmva.Models.ModuloJOOMSCAN){contJoomscan++;}
+                            if(item.Modulo is webmva.Models.ModuloWPSCAN){contWpscan++;}
                             if(item.Modulo is webmva.Models.ModuloINFOGA) {contInfoga++;}
                             if(item.Modulo is webmva.Models.ModuloINFOGAEMAIL){contInfogaEmail++;}
+                            if(item.Modulo is webmva.Models.ModuloSUBLIST3R) {contSublist3r++;}
                             if(item.Modulo is webmva.Models.ModuloWAPITI) {contWapiti++;}
+                            if(item.Modulo is webmva.Models.ModuloWASCAN) {contWascan++;} 
+                            if(item.Modulo is webmva.Models.ModuloSQLMAP) {contSqlmap++;}
+                            if(item.Modulo is webmva.Models.ModuloWIFITE) {contWifite++;}
+                            if(item.Modulo is webmva.Models.ModuloOPENDOOR) {contOpendoor++;}
+                            if(item.Modulo is webmva.Models.ModuloNOSQL) {contNosql++;}
+                            if(item.Modulo is webmva.Models.ModuloODAT) {contOdat++;}
+                            if(item.Modulo is webmva.Models.ModuloDNSENUM) {contDnsEnum++;}
+                            if(item.Modulo is webmva.Models.ModuloOPENVAS) {contOpenVAS++;}
                         }
                         @if(contNMAP!=0){
                                 
-                            <dd>nmap</dd>
+                            <dd>Nmap</dd>
                             <dd>
                             <table class="table">
                                 <tr>
                                     <th> </th>
                                     <th>Modulo</th>
                                     <th>Comando</th>
+                                    <th>Target</th>
                                 </tr>
                         @foreach (var item in Model.ModuliProgetto) {
                             
@@ -79,6 +113,9 @@ var contWapiti = 0;
                                     <td>
                                         @Html.DisplayFor(modelItem => item.Modulo.Comando)
                                     </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Target)
+                                    </td>
                                 </tr>
                                
                                 }
@@ -88,13 +125,14 @@ var contWapiti = 0;
                         }
                            @if(contNessus!=0){
                                 
-                            <dd>nessus</dd>
+                            <dd>Nessus</dd>
                             <dd>
                             <table class="table">
                                 <tr>
                                     <th> </th>
                                     <th>Modulo</th>
                                     <th>Comando</th>
+                                    <th>Target</th>
                                 </tr>
                         @foreach (var item in Model.ModuliProgetto) {
                             
@@ -107,6 +145,9 @@ var contWapiti = 0;
                                     <td>
                                         @Html.DisplayFor(modelItem => item.Modulo.Comando)
                                     </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Target)
+                                    </td>
                                 </tr>
                                
                                 }
@@ -116,17 +157,18 @@ var contWapiti = 0;
                         }
                         @if(contOpenVAS!=0){
                                 
-                            <dd>openvas</dd>
+                            <dd>OpenVAS</dd>
                             <dd>
                             <table class="table">
                                 <tr>
                                     <th> </th>
                                     <th>Modulo</th>
                                     <th>Comando</th>
+                                    <th>Target</th>
                                 </tr>
                         @foreach (var item in Model.ModuliProgetto) {
                             
-                                @if(item.Modulo is webmva.Models.ModuloNMAP){
+                                @if(item.Modulo is webmva.Models.ModuloOPENVAS){
                                 <tr>
                                 <td></td>
                                     <td>
@@ -134,6 +176,9 @@ var contWapiti = 0;
                                     </td>
                                     <td>
                                         @Html.DisplayFor(modelItem => item.Modulo.Comando)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Target)
                                     </td>
                                 </tr>
                                
@@ -144,13 +189,14 @@ var contWapiti = 0;
                         } 
                         @if(contDnsRecon!=0){
                                 
-                            <dd>dnsrecon</dd>
+                            <dd>Dnsrecon</dd>
                             <dd>
                             <table class="table">
                                 <tr>
                                     <th> </th>
                                     <th>Modulo</th>
                                     <th>Comando</th>
+                                    <th>Target</th>
                                 </tr>
                         @foreach (var item in Model.ModuliProgetto) {
                             
@@ -163,6 +209,41 @@ var contWapiti = 0;
                                     <td>
                                         @Html.DisplayFor(modelItem => item.Modulo.Comando)
                                     </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Target)
+                                    </td>
+                                </tr>
+                               
+                                }
+                                }
+                                </table>
+                                </dd>    
+                        } 
+                          @if(contFierce!=0){
+                                
+                            <dd>Fierce</dd>
+                            <dd>
+                            <table class="table">
+                                <tr>
+                                    <th> </th>
+                                    <th>Modulo</th>
+                                    <th>Comando</th>
+                                    <th>Target</th>
+                                </tr>
+                        @foreach (var item in Model.ModuliProgetto) {
+                            
+                                @if(item.Modulo is webmva.Models.ModuloFIERCE){
+                                <tr>
+                                <td></td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Modulo.Nome)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Modulo.Comando)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Target)
+                                    </td>
                                 </tr>
                                
                                 }
@@ -172,13 +253,14 @@ var contWapiti = 0;
                         } 
                         @if(contDroope!=0){
                                 
-                            <dd>openvas</dd>
+                            <dd>Droope</dd>
                             <dd>
                             <table class="table">
                                 <tr>
                                     <th> </th>
                                     <th>Modulo</th>
                                     <th>Comando</th>
+                                    <th>Target</th>
                                 </tr>
                         @foreach (var item in Model.ModuliProgetto) {
                             
@@ -191,22 +273,90 @@ var contWapiti = 0;
                                     <td>
                                         @Html.DisplayFor(modelItem => item.Modulo.Comando)
                                     </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Target)
+                                    </td>
                                 </tr>
                                
                                 }
                                 }
                                 </table>
-                                </dd>    
-                        }  
-                        @if(contInfoga!=0){
+                                </dd>
+                                }   
+                        @if(contJoomscan!=0){
                                 
-                            <dd>openvas</dd>
+                            <dd>Joomscan</dd>
                             <dd>
                             <table class="table">
                                 <tr>
                                     <th> </th>
                                     <th>Modulo</th>
                                     <th>Comando</th>
+                                    <th>Target</th>
+                                </tr>
+                        @foreach (var item in Model.ModuliProgetto) {
+                            
+                                @if(item.Modulo is webmva.Models.ModuloJOOMSCAN){
+                                <tr>
+                                <td></td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Modulo.Nome)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Modulo.Comando)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Target)
+                                    </td>
+                                </tr>
+                               
+                                }
+                                }
+                                </table>
+                                </dd>   
+                        }  
+                        @if(contWpscan!=0){
+                                
+                            <dd>Wpscan</dd>
+                            <dd>
+                            <table class="table">
+                                <tr>
+                                    <th> </th>
+                                    <th>Modulo</th>
+                                    <th>Comando</th>
+                                    <th>Target</th>
+                                </tr>
+                        @foreach (var item in Model.ModuliProgetto) {
+                            
+                                @if(item.Modulo is webmva.Models.ModuloWPSCAN){
+                                <tr>
+                                <td></td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Modulo.Nome)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Modulo.Comando)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Target)
+                                    </td>
+                                </tr>
+                               
+                                }
+                                }
+                                </table>
+                                </dd>   
+                        }  
+                        @if(contInfoga!=0){
+                                
+                            <dd>Infoga</dd>
+                            <dd>
+                            <table class="table">
+                                <tr>
+                                    <th> </th>
+                                    <th>Modulo</th>
+                                    <th>Comando</th>
+                                    <th>Target</th>
                                 </tr>
                         @foreach (var item in Model.ModuliProgetto) {
                             
@@ -219,6 +369,9 @@ var contWapiti = 0;
                                     <td>
                                         @Html.DisplayFor(modelItem => item.Modulo.Comando)
                                     </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Target)
+                                    </td>
                                 </tr>
                                
                                 }
@@ -228,13 +381,14 @@ var contWapiti = 0;
                         } 
                           @if(contInfogaEmail!=0){
                                 
-                            <dd>openvas</dd>
+                            <dd>Infoga Email</dd>
                             <dd>
                             <table class="table">
                                 <tr>
                                     <th> </th>
                                     <th>Modulo</th>
                                     <th>Comando</th>
+                                    <th>Target</th>
                                 </tr>
                         @foreach (var item in Model.ModuliProgetto) {
                             
@@ -247,6 +401,41 @@ var contWapiti = 0;
                                     <td>
                                         @Html.DisplayFor(modelItem => item.Modulo.Comando)
                                     </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Target)
+                                    </td>
+                                </tr>
+                               
+                                }
+                                }
+                                </table>
+                                </dd>    
+                        } 
+                         @if(contSublist3r!=0){
+                                
+                            <dd>Sublist3r</dd>
+                            <dd>
+                            <table class="table">
+                                <tr>
+                                    <th> </th>
+                                    <th>Modulo</th>
+                                    <th>Comando</th>
+                                    <th>Target</th>
+                                </tr>
+                        @foreach (var item in Model.ModuliProgetto) {
+                            
+                                @if(item.Modulo is webmva.Models.ModuloSUBLIST3R){
+                                <tr>
+                                <td></td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Modulo.Nome)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Modulo.Comando)
+                                    </td>
+                                  <td>
+                                        @Html.DisplayFor(modelItem => item.Target)
+                                    </td>
                                 </tr>
                                
                                 }
@@ -256,13 +445,14 @@ var contWapiti = 0;
                         } 
                          @if(contWapiti!=0){
                                 
-                            <dd>wapiti</dd>
+                            <dd>Wapiti</dd>
                             <dd>
                             <table class="table">
                                 <tr>
                                     <th> </th>
                                     <th>Modulo</th>
                                     <th>Comando</th>
+                                    <th>Target</th>
                                 </tr>
                         @foreach (var item in Model.ModuliProgetto) {
                             
@@ -275,6 +465,9 @@ var contWapiti = 0;
                                     <td>
                                         @Html.DisplayFor(modelItem => item.Modulo.Comando)
                                     </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Target)
+                                    </td>
                                 </tr>
                                
                                 }
@@ -282,17 +475,250 @@ var contWapiti = 0;
                                 </table>
                                 </dd>    
                         } 
+                         @if(contWascan!=0){
                                 
+                            <dd>Wascan</dd>
+                            <dd>
+                            <table class="table">
+                                <tr>
+                                    <th> </th>
+                                    <th>Modulo</th>
+                                    <th>Comando</th>
+                                    <th>Target</th>
+                                </tr>
+                        @foreach (var item in Model.ModuliProgetto) {
+                            
+                                @if(item.Modulo is webmva.Models.ModuloWASCAN){
+                                <tr>
+                                <td></td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Modulo.Nome)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Modulo.Comando)
+                                    </td>
+                                  <td>
+                                        @Html.DisplayFor(modelItem => item.Target)
+                                    </td>
+                                </tr>
+                               
+                                }
+                                }
+                                </table>
+                                </dd>    
+                        } 
+                         @if(contOpendoor!=0){
                                 
-            <div class="container">
-                    <div class="form-group col-sm-6 ">
-                        <a  class="btn btn-default"asp-action="Edit" asp-route-id="@Model.ID"> Modifica </a> |
-                        <a asp-action="Index"> Torna alla lista</a>
-                   </div>
-                </div>
-            </div>
+                            <dd>Opendoor</dd>
+                            <dd>
+                            <table class="table">
+                                <tr>
+                                    <th> </th>
+                                    <th>Modulo</th>
+                                    <th>Comando</th>
+                                    <th>Target</th>
+                                </tr>
+                        @foreach (var item in Model.ModuliProgetto) {
+                            
+                                @if(item.Modulo is webmva.Models.ModuloOPENDOOR){
+                                <tr>
+                                <td></td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Modulo.Nome)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Modulo.Comando)
+                                    </td>
+                                  <td>
+                                        @Html.DisplayFor(modelItem => item.Target)
+                                    </td>
+                                </tr>
+                               
+                                }
+                                }
+                                </table>
+                                </dd>    
+                        } 
+                         @if(contSqlmap!=0){
+                                
+                            <dd>Sqlmap</dd>
+                            <dd>
+                                
+                            <table class="table">
+                                <tr>
+                                    <th> </th>
+                                    <th>Modulo</th>
+                                    <th>Comando</th>
+                                    <th>Target</th>
+                                </tr>
+                        @foreach (var item in Model.ModuliProgetto) {
+                            
+                                @if(item.Modulo is webmva.Models.ModuloSQLMAP){
+                                <tr>
+                                <td></td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Modulo.Nome)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Modulo.Comando)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Target)
+                                    </td>
+                                </tr>
+                               
+                                }
+                                }
+                                </table>
+                                </dd>    
+                        } 
+                         @if(contWifite!=0){
+                                
+                            <dd>Wifite</dd>
+                            <dd>
+                            <table class="table">
+                                <tr>
+                                    <th> </th>
+                                    <th>Modulo</th>
+                                    <th>Comando</th>
+                                    <th>Target</th>
+                                </tr>
+                        @foreach (var item in Model.ModuliProgetto) {
+                            
+                                @if(item.Modulo is webmva.Models.ModuloWIFITE){
+                                <tr>
+                                  
+                                <td></td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Modulo.Nome)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Modulo.Comando)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Target)
+                                    </td>
+                                   
+                                </tr>
+                                }
+                                }
+                                </table>
+                                </dd>    
+                        } @if(contNosql!=0){
+                                
+                            <dd>Nosqlmap</dd>
+                            <dd>
+                            <table class="table">
+                                <tr>
+                                    <th> </th>
+                                    <th>Modulo</th>
+                                    <th>Comando</th>
+                                    <th>Target</th>
+                                </tr>
+                        @foreach (var item in Model.ModuliProgetto) {
+                            
+                                @if(item.Modulo is webmva.Models.ModuloNOSQL){
+                                <tr>
+                                  
+                                <td></td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Modulo.Nome)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Modulo.Comando)
+                                    </td>
+                                  <td>
+                                        @Html.DisplayFor(modelItem => item.Target)
+                                    </td>
+                                   
+                                </tr>
+                               
+                                }
+                                }
+                                </table>
+                                </dd>    
+                        }
+                        @if(contOdat!=0){
+                                
+                            <dd>Odat</dd>
+                            <dd>
+                            <table class="table">
+                                <tr>
+                                    <th> </th>
+                                    <th>Modulo</th>
+                                    <th>Comando</th>
+                                    <th>Target</th>
+                                </tr>
+                        @foreach (var item in Model.ModuliProgetto) {
+                            
+                                @if(item.Modulo is webmva.Models.ModuloODAT){
+                                <tr>
+                                  
+                                <td></td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Modulo.Nome)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Modulo.Comando)
+                                    </td>
+                                  <td>
+                                        @Html.DisplayFor(modelItem => item.Target)
+                                    </td>
+                                   
+                                </tr>
+                               
+                                }
+                                }
+                                </table>
+                                </dd>    
+                        }
+                         @if(contDnsEnum!=0){
+                                
+                            <dd>DnsEnum</dd>
+                            <dd>
+                            <table class="table">
+                                <tr>
+                                    <th> </th>
+                                    <th>Modulo</th>
+                                    <th>Comando</th>
+                                    <th>Target</th>
+                                </tr>
+                        @foreach (var item in Model.ModuliProgetto) {
+                            
+                                @if(item.Modulo is webmva.Models.ModuloDNSENUM){
+                                <tr>
+                                  
+                                <td></td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Modulo.Nome)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Modulo.Comando)
+                                    </td>
+                                  <td>
+                                        @Html.DisplayFor(modelItem => item.Target)
+                                    </td>
+                                   
+                                </tr>
+                               
+                                }
+                                }
+                                </table>
+                                </dd>    
+                        }
+                                
+            <div class="col-xs-6 col-sm-offset-9 text-right">
+                     <br>
+                    <div class="form-group">
+                        <!--rivedi-->
+                       
+                        <input type="submit" class="btn btn-default" asp-action="Delete" asp-route-id="@Model.ID" value="Cancella">&nbsp;&nbsp;&nbsp; |&nbsp;
+                        <a asp-action="Index">  Torna alla lista</a>
+                    </div>
+                </div>                    
         </div>
 
     </div>
-    </div>
     </form>
+    </div>
+</div>

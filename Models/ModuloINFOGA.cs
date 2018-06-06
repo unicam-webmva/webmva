@@ -13,7 +13,7 @@ namespace webmva.Models
      }
     public class ModuloINFOGA : Modulo
     {
-        public string Dominio { get; set; }
+       
         
        
         private SOURCE _source= SOURCE.ALL;
@@ -39,8 +39,7 @@ namespace webmva.Models
                     
                     
                     
-                        risultato += " -d " + Dominio;
-                        
+                        //risultato += " -d " + Dominio;
                         switch (Source)
                         {
                             case SOURCE.GOOGLE:

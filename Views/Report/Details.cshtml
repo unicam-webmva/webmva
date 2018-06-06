@@ -1,0 +1,47 @@
+@model webmva.Models.Report
+
+@{ ViewData["Title"] = "Dettagli Report";
+List<webmva.Models.PercorsiReport> lista = ViewBag.Lista; }
+
+<div class="container">
+    <h2><em>Dettagli Report</em></h2>
+    <h3><em>Progetto:</em><strong> @Model.Progetto.Nome</strong></h3>
+
+    <div class="panel panel-default col-lg-10 col-md-offset-1">
+            <table class="table">
+                <div class="method">
+                   <thead>
+                        <tr>
+                            <th></th>
+                            <th>
+                                Percorso
+                            </th>
+                            
+                            <th></th>
+                        </tr>
+                    </thead>
+                </div>
+            <tbody>
+                    @for(int i=0;i<lista.Count; i++)
+                    {
+                        <tr>
+                            <td>
+                               <input type="checkbox" value="@lista[i].ID" name="selezionati" />
+                            </td>
+                            <td>
+                              @Html.Raw(lista[i].Percorso)
+                            </td>
+                            <td>
+                                <div class="col-sm-8 col-sm-offset-6">
+                                    <a href="../../Report/@lista[i].Percorso" download >Scarica </a>
+                                   
+                                </div>
+                            </td>
+
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+</div>
+

@@ -45,9 +45,23 @@ namespace webmva
             host.Run();   
         }
 
+        /*
+        
+        https://stackoverflow.com/questions/42079956/suppress-sql-queries-logging-in-entity-framework-core
+        
+         */
+
         public static IWebHost BuildWebHost(string[] args) =>
             WebHost.CreateDefaultBuilder(args)
                 .UseStartup<Startup>()
+                .UseUrls("http://0.0.0.0:80")
+                .ConfigureLogging((context, logging)=> {
+                    var env = context.HostingEnvironment;
+                    var config = context.Configuration.GetSection("Logging");
+                    logging.AddConfiguration(config);
+                    logging.AddConsole();
+                    logging.AddFilter("Microsoft.EntityFrameworkCore.Database.Command", LogLevel.Warning);
+                })
                 .Build();
     }
 }

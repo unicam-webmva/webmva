@@ -4,7 +4,7 @@
 
 <div class="container">
     <div class="row">
-        <h2>Progetti</h2>
+        <h2><em>Progetti</em></h2>
         <p class="lead">
             I progetti presenti sono questi! Per creare un nuovo progetto <a href="/Progetto/Create">clicca qui </a>!
         </p>
@@ -32,8 +32,9 @@
                             </td>
                             
                             <td>
-                                <div class="col-sm-8 col-sm-offset-4">
-                                    <a asp-action="Edit" asp-route-id="@item.ID">Modifica </a>|
+                                <div class="col-sm-8 col-sm-offset-6">
+                                    <a asp-action="Edit" asp-route-id="@item.ID">Modifica </a> |
+                                     <a asp-action="Run" asp-route-id="@item.ID"> Avvia scan</a> |
                                     <a asp-action="Delete" asp-route-id="@item.ID">Cancella </a>
                                 </div>
                             </td>
