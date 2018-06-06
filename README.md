@@ -12,6 +12,7 @@ git clone https://github.com/unicam-webmva/webmva
 cd webmva
 git submodule init
 git submodule update
+sudo dotnet restore
 ```
 
 **Avvio**
