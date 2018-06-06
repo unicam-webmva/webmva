@@ -1361,23 +1361,8 @@
                                     <div class="col-sm-12">
                                         <h4>Setting</h4>
                                         <hr />
-                                        <div class="form-group row">
-                                            <div class="col-sm-5">
-                                                <label class="control-label">Scegli la verbosità</label>
-                                            </div>
-                                            <select class="col-sm-5" asp-for="@Model.WIFITE.Verbose">
-                                                <option value="0">zero </option>
-                                                <option value="1">quiet </option>
-                                                <option value="2">deep </option>
-                                            </select>
-                                        </div>
-                                        <div class="form-group row">
-                                                <div class="col-sm-6">
-                                                    <label class="control-label">
-                                                        <input type="checkbox" asp-for="@Model.WIFITE.interfaccia" /> Interface (-i)
-                                                    </label>
-                                                </div>
-                                            </div>
+                                        
+                                        
                                               <div class="form-group row">
                                             <div class="col-sm-4">
                                                 <label class="control-label">Setta il canale (-1 indica che tutti i canali sono settati)</label>
@@ -1388,7 +1373,7 @@
                                              <div class="form-group row">
                                                 <div class="col-sm-6">
                                                     <label class="control-label">
-                                                        <input type="checkbox" asp-for="@Model.WIFITE.mac" /> MAC (-i)
+                                                        <input type="checkbox" asp-for="@Model.WIFITE.verbositaWifite" /> Verbosità (-v)
                                                     </label>
                                                 </div>
                                             </div>
@@ -1471,7 +1456,7 @@
                                             <hr/>
                                             <div class="col-sm-5">
                                                 <div clas="form-group row">
-                                                 <a href="https://github.com/derv82/wifite2" target="_blank"><span class="glyphicon glyphicon-info-sign" style="font-size:90%"></span>
+                                                 <a href="https://en.kali.tools/?p=18..c%27%C3%A8" target="_blank"><span class="glyphicon glyphicon-info-sign" style="font-size:90%"></span>
                                         consulta la documentazione di Wifite</a>
                                         
                                         </div>

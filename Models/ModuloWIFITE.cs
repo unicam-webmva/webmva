@@ -5,29 +5,15 @@ using System.Threading.Tasks;
 
 namespace webmva.Models
 {
-    public enum VERBOSEWIFITE
-    {
-        ZERO, QUIET, DEEP
-    }
+    
     public enum WPS
     {
         NO, ONLY, DEFAULT
     }
     public class ModuloWIFITE : Modulo
     {
-        public string interfaccia { get; set; }
-        private bool _mac = false;
-        public bool mac
-        {
-            get
-            {
-                return _mac;
-            }
-            set
-            {
-                _mac = value;
-            }
-        }
+        
+       
         private bool _client = false;
         public bool client
         {
@@ -88,6 +74,7 @@ namespace webmva.Models
                 _newhs = value;
             }
         }
+        public bool verbositaWifite { get; set; }
         public bool wpa { get; set; }
         public bool accessPoint { get; set; }
         public bool crack { get; set; }
@@ -108,12 +95,7 @@ namespace webmva.Models
                 _channel = value;
             }
         }
-        private VERBOSEWIFITE _verbose = VERBOSEWIFITE.QUIET;
-        public VERBOSEWIFITE Verbose
-        {
-            get { return _verbose; }
-            set { _verbose = value; }
-        }
+       
         private WPS _wps = WPS.DEFAULT;
         public WPS Wps
         {
@@ -129,18 +111,8 @@ namespace webmva.Models
                 if (string.IsNullOrEmpty(ComandoPersonalizzato))
                 {
 
-                    string risultato = "wifite.py";
-                    switch (Verbose)
-                    {
-                        case VERBOSEWIFITE.ZERO:
-                            risultato += " -v 0";
-                            break;
-                        case VERBOSEWIFITE.DEEP:
-                            risultato += " -v 2";
-                            break;
-                        default:
-                            break;
-                    }
+                    string risultato = "Wifite.py";
+                  
                         switch (Wps)
                         {
                             case WPS.ONLY:
@@ -152,10 +124,7 @@ namespace webmva.Models
                             default:
                                 break;
                         }
-                        if (string.IsNullOrEmpty(interfaccia))
-                            risultato += " -i" + interfaccia;
-                        if (mac)
-                            risultato += " -mac";
+                        
                         if (client)
                             risultato += " -co";
                         if (wep)
@@ -173,13 +142,13 @@ namespace webmva.Models
                         if (accessPoint)
                             risultato += " --cracked";
                         if (crack)
-                            risultato += "--crack";
+                            risultato += " --crack";
                         if (bully ){
-                            risultato += "--bully";
+                            risultato += " --bully";
                         if (channel != 0 && channel <= 14)
-                            risultato += "-c" + channel;
+                            risultato += " -c " + channel;
                         if (scanTime != 0)
-                            risultato += "-p" + scanTime;
+                            risultato += " -p " + scanTime;
                         }
                         return risultato;
                     }
