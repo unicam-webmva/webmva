@@ -141,12 +141,11 @@
                         <li>dotnet (se questo sito sta partendo è difficile non averlo! =)</li>
                         <li>aircrack-ng, cowpatty, bully, reaver, pyrit, tshark per Wifite2</li>
                     </ul>
-                    Inoltre, per installare ODAT è necessario effettuare alcuni passaggi aggiuntivi.
+                    Inoltre, per installare ODAT e WPScan è necessario effettuare alcuni passaggi aggiuntivi.
 
                     @{
                         string[] dips = ViewBag.Dipendenze;
-                        
-                        @if(dips.Length == 0 || dips[0].Equals(Environment.NewLine))
+                        @if(dips.Length == 0 || dips[0].Equals(Environment.NewLine) || dips[0].Equals(string.Empty))
                         {
                             @Html.Raw("<p style=\"color:red\"><strong>In questo sistema sono tutti installati!</strong></p>")
                         }
