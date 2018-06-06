@@ -412,14 +412,14 @@ namespace webmva.Controllers
             if(mod is ModuloDNSRECON)
             {
                 string percorsoExec = Path.Combine(Globals.CartellaWEBMVA, "Programmi", "dnsrecon");
-                string comando = $"python \"{percorsoExec}\" {mod.Comando} -d {target} --xml {nomeFile}dnsrecon.xml";
+                string comando = $"python3 \"{percorsoExec}\" {mod.Comando} -d {target} --xml {nomeFile}dnsrecon.xml";
                 percorsi.Add(Path.Combine(cartella, nomeFile+"dnsrecon.xml"));
                 return comando;
             }
             if(mod is ModuloFIERCE)
             {
                 string percorsoExec = Path.Combine(Globals.CartellaWEBMVA, "Programmi", "fierce", "fierce");
-                string comando = $"python \"{percorsoExec}\" {mod.Comando} --domain {target} >> {nomeFile}fierce.txt";
+                string comando = $"python3 \"{percorsoExec}\" {mod.Comando} --domain {target} >> {nomeFile}fierce.txt";
                 percorsi.Add(Path.Combine(cartella, nomeFile+"fierce.txt"));
                 return comando;
             }
@@ -433,14 +433,14 @@ namespace webmva.Controllers
              if(mod is ModuloINFOGA )
             {
                 string percorsoExec = Path.Combine(Globals.CartellaWEBMVA, "Programmi", "Infoga");
-                string comando = $"python \"{percorsoExec}\" {mod.Comando} -d {target} >> {nomeFile}infoga.txt";
+                string comando = $"python3 \"{percorsoExec}\" {mod.Comando} -d {target} >> {nomeFile}infoga.txt";
                 percorsi.Add(Path.Combine(cartella, nomeFile+"infoga.txt"));
                 return comando;
             }
             if(mod is ModuloINFOGAEMAIL)
             {
                 string percorsoExec = Path.Combine(Globals.CartellaWEBMVA, "Programmi", "Infoga");
-                string comando = $"python \"{percorsoExec}\" {mod.Comando} --info {target} >> {nomeFile}infogaEmail.txt";
+                string comando = $"python3 \"{percorsoExec}\" {mod.Comando} --info {target} >> {nomeFile}infogaEmail.txt";
                 percorsi.Add(nomeFile+"infogaEmail.txt");
                 return comando;
             }
@@ -454,7 +454,7 @@ namespace webmva.Controllers
             if(mod is ModuloWAPITI)
             {
                 string percorsoExec = Path.Combine(Globals.CartellaWEBMVA, "Programmi", "wapiti");
-                string comando = $"python \"{percorsoExec}\" {mod.Comando} -u {target} -f html -o {nomeFile}wapiti.html";
+                string comando = $"python3 \"{percorsoExec}\" {mod.Comando} -u {target} -f html -o {nomeFile}wapiti.html";
                 percorsi.Add(Path.Combine(cartella, nomeFile+"wapiti.html"));
                 return comando;
             }
