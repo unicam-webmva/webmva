@@ -4,8 +4,8 @@
 List<webmva.Models.PercorsiReport> lista = ViewBag.Lista; }
 
 <div class="container">
-    <h2>Dettagli Report</h2>
-    <h3>Progetto: @Model.Progetto.Nome</h3>
+    <h2><em>Dettagli Report</em></h2>
+    <h3><em>Progetto:</em><strong> @Model.Progetto.Nome</strong></h3>
 
     <div class="panel panel-default col-lg-10 col-md-offset-1">
             <table class="table">
@@ -34,7 +34,7 @@ List<webmva.Models.PercorsiReport> lista = ViewBag.Lista; }
                             <td>
                                 <div class="col-sm-8 col-sm-offset-6">
                                     <a href="../../Report/@lista[i].Percorso" download >Scarica </a>
-                                    <a href="file:///home/rick/Scrivania/prova.xml"> prova</a>
+                                   
                                 </div>
                             </td>
 

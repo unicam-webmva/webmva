@@ -391,11 +391,9 @@ namespace webmva.Migrations
                 {
                     b.HasBaseType("webmva.Models.Modulo");
 
-                    b.Property<int>("Porta")
-                        .HasColumnName("ModuloOPENVAS_Porta");
+                    b.Property<int>("PortaOpenvas");
 
-                    b.Property<string>("ServerIP")
-                        .HasColumnName("ModuloOPENVAS_ServerIP");
+                    b.Property<string>("ServerIPOpenvas");
 
                     b.ToTable("ModuloOPENVAS");
 

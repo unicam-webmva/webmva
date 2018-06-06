@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace webmva.Migrations
 {
-    public partial class AggiuntaTabellaReport : Migration
+    public partial class Inserito4 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -97,8 +97,8 @@ namespace webmva.Migrations
                     PortaO = table.Column<int>(nullable: true),
                     RetriesO = table.Column<int>(nullable: true),
                     TimeoutO = table.Column<int>(nullable: true),
-                    ModuloOPENVAS_Porta = table.Column<int>(nullable: true),
-                    ModuloOPENVAS_ServerIP = table.Column<string>(nullable: true),
+                    PortaOpenvas = table.Column<int>(nullable: true),
+                    ServerIPOpenvas = table.Column<string>(nullable: true),
                     ModuloSQLMAP_ComandoPersonalizzato = table.Column<string>(nullable: true),
                     Detection = table.Column<int>(nullable: true),
                     Rischio = table.Column<int>(nullable: true),

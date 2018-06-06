@@ -8,7 +8,7 @@ namespace webmva.Models
     public class ModuloOPENVAS : Modulo
     {
         public string ServerIPOpenvas { get; set; }
-        private int _portaOpenvas = 8834;
+        private int _portaOpenvas = 9391;
         public int PortaOpenvas
         {
             get { return _portaOpenvas; }

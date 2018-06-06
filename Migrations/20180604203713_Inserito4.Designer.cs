@@ -13,8 +13,8 @@ using webmva.Models;
 namespace webmva.Migrations
 {
     [DbContext(typeof(MyDbContext))]
-    [Migration("20180604182838_AggiuntaTabellaReport")]
-    partial class AggiuntaTabellaReport
+    [Migration("20180604203713_Inserito4")]
+    partial class Inserito4
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -392,11 +392,9 @@ namespace webmva.Migrations
                 {
                     b.HasBaseType("webmva.Models.Modulo");
 
-                    b.Property<int>("Porta")
-                        .HasColumnName("ModuloOPENVAS_Porta");
+                    b.Property<int>("PortaOpenvas");
 
-                    b.Property<string>("ServerIP")
-                        .HasColumnName("ModuloOPENVAS_ServerIP");
+                    b.Property<string>("ServerIPOpenvas");
 
                     b.ToTable("ModuloOPENVAS");
 
