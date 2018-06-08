@@ -26,7 +26,10 @@ namespace webmva.Controllers
         // GET: Progetto
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Progetti.ToListAsync());
+            return View(await _context.Progetti
+                .Include(list=>list.ListaReport)
+                .AsNoTracking()
+                .ToListAsync());
         }
 
         // GET: Progetto/Details/5
@@ -40,6 +43,7 @@ namespace webmva.Controllers
             var progetto = await _context.Progetti
                 .Include(list => list.ModuliProgetto)
                     .ThenInclude(mod => mod.Modulo)
+                .Include(list=>list.ListaReport)
                 .AsNoTracking()
                 .SingleOrDefaultAsync(m => m.ID == id);
             if (progetto == null)
@@ -332,25 +336,6 @@ namespace webmva.Controllers
                 risultati.Add(modulo.Nome, $"<h3> {modulo.Applicazione.ToString()}</h3> \r\n <p>{comando.EseguiCLI(cartellaProgetto)}</p>");
                 
             }
-
-            //string comando = primoModulo.Comando + " " + progetto.Target;
-
-            // esecuzione
-            /*
-            ProcessStartInfo info = new ProcessStartInfo();
-            info.FileName = "cmd.exe";
-            info.Arguments = "/C " + comando;
-            info.UseShellExecute = false;
-            info.RedirectStandardOutput = true;
-            string result;
-            using (Process proc = Process.Start(info))
-            {
-                using (StreamReader reader = proc.StandardOutput)
-                {
-                    result = await reader.ReadToEndAsync();
-                }
-            }
-            */
             _context.Report.Add(report);
             try{
                 await _context.SaveChangesAsync();
@@ -449,7 +434,7 @@ namespace webmva.Controllers
             if(mod is ModuloWAPITI)
             {
                 string percorsoExec = Path.Combine(Globals.CartellaWEBMVA, "Programmi", "wapiti");
-                string comando = $"python3 \"{percorsoExec}\"/{mod.Comando} -u {target} -f html -o {nomeFile}.html";
+                string comando = $"python3 {percorsoExec}/{mod.Comando} -u {target} -f html -o {nomeFile}.html";
                 percorsi.Add(Path.Combine(cartella, nomeFile+".html"));
                 return comando;
             }

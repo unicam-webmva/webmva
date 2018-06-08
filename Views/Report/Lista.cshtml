@@ -1,0 +1,40 @@
+@model ICollection<webmva.Models.Report>
+
+@{ ViewData["Title"] = "Lista Report"; }
+
+<div class="container">
+    <h2><em>Lista Report</em></h2>
+    <h3><em>Progetto:</em><strong> @Model.ElementAt(0).Progetto.Nome</strong></h3>
+
+    <div class="panel panel-default col-md-7" style="margin:0 auto; float:none;">
+            <table class="table">
+                <div class="method">
+                   <thead>
+                        <tr>
+                            <th>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Data</th>
+                            <th>
+                                &nbsp;&nbsp;&nbsp;&nbsp;Link
+                            </th>
+                        </tr>
+                    </thead>
+                </div>
+            <tbody>
+                @for(int i=0;i<@Model.Count; i++)
+                {
+                    <tr>
+                        <td>
+                          @Html.Raw(@Model.ElementAt(i).Data)
+                        </td>
+                        <td>
+                            <form asp-action="Details">
+                                <input type="submit" value="Dettagli" asp-action="Details" asp-route-id="@Model.ElementAt(i).ID" class="btn btn-default" />
+                            </form>
+                        </td>
+
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+

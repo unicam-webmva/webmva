@@ -728,7 +728,7 @@ namespace webmva.Migrations
             modelBuilder.Entity("webmva.Models.Report", b =>
                 {
                     b.HasOne("webmva.Models.Progetto", "Progetto")
-                        .WithMany()
+                        .WithMany("ListaReport")
                         .HasForeignKey("ProgettoID")
                         .OnDelete(DeleteBehavior.Cascade);
                 });

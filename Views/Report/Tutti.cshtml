@@ -1,0 +1,50 @@
+@model ICollection<webmva.Models.Report>
+
+@{ ViewData["Title"] = "Report"; }
+
+<div class="container">
+    <h2><em>Tutti i report del progetto @Model.ElementAt(0).Progetto.Nome</em></h2>
+    <div class="panel panel-default col-lg-10 col-md-offset-1">
+            <table class="table">
+                <div class="method">
+                   <thead>
+                        <tr>
+                            <th> <input type="checkbox" name="selezionati" /></th>
+                          
+                            <th>
+                                Percorso
+                            </th>
+                            
+                            <th>Scarica nativo </th>
+                            <th>Scarica pdf</th>
+                        </tr>
+                    </thead>
+                </div>
+            <tbody>
+@foreach(var itm in @Model)
+{
+
+                    @for(int i=0;i < itm.Percorsi.Count(); i++)
+                    {
+                        <tr>
+                            <td>
+                               <!--<input type="checkbox" value="@itm.Percorsi.ElementAt(0).ID" name="selezionati" />-->
+                            </td>
+                            <td>
+                              @Html.Raw(itm.Percorsi.ElementAt(0).Percorso)
+                            </td>
+                            <td>
+                                <div class="col-sm-8 col-sm-offset-6">
+                                <form asp-action="Download">
+                                    <input type="submit" value="Scarica" asp-action="Download" asp-route-filePath="Report/@itm.Percorsi.ElementAt(0).Percorso" class="btn btn-default" />
+                                </form>
+                                </div>
+                            </td>
+
+                        </tr>
+                    }
+}
+</tbody>
+            </table>
+        </div>
+</div>

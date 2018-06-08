@@ -36,6 +36,12 @@
                                     <a asp-action="Edit" asp-route-id="@item.ID">Modifica </a> |
                                      <a asp-action="Run" asp-route-id="@item.ID"> Avvia scan</a> |
                                     <a asp-action="Delete" asp-route-id="@item.ID">Cancella </a>
+                                    @if(@item.ListaReport.Count != 0){
+                                            @Html.Raw(" | <a href=\"/Report/Lista/"+@item.ID+"\" >Lista report</a> <span class=\"glyphicon glyphicon-ok-sign\" style=\"color:green\"></span>")
+                                        }
+                                        else {
+                                            @Html.Raw(" | Lista report <span class=\"glyphicon glyphicon-remove-sign\" style=\"color:red\" ></span>")
+                                        }
                                 </div>
                             </td>
 

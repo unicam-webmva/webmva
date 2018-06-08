@@ -4,22 +4,25 @@
 List<webmva.Models.PercorsiReport> lista = ViewBag.Lista; }
 
 <div class="container">
+    <form asp-action="Download">
+
     <h2><em>Dettagli Report</em></h2>
     <h3><em>Progetto:</em><strong> @Model.Progetto.Nome</strong></h3>
 
-    <div class="panel panel-default col-lg-111 col-md-offset-1">
+    <div class="panel panel-default col-lg-12">
             <table class="table">
                 <div class="method">
                    <thead>
                         <tr>
-                            <th> <input type="checkbox" name="selezionati" /></th>
+                            <th> <input type="checkbox" name="selezionaTutto" onclick="SelezTT()"/></th>
                           
                             <th>
                                 Percorso
                             </th>
                             
-                            <th>Scarica nativo </th>
-                            <th>Scarica pdf</th>
+                            <th class="text-center">Scarica nativo </th>
+                            <th class="text-center">Scarica pdf</th>
+                            <th class="text-center"></th>
                         </tr>
                     </thead>
                 </div>
@@ -29,38 +32,89 @@ List<webmva.Models.PercorsiReport> lista = ViewBag.Lista; }
                     {
                         <tr>
                             <td>
-                               <!--<input type="checkbox" value="@lista[i].ID" name="selezionati" />-->
+                               <input type="checkbox" value="@lista[i].ID" name="check" />
                             </td>
                             <td>
-                              @Html.Raw(lista[i].Percorso)
-                            </td>
-                            <td>
-                                <div class="form-group row ">
                                 <form asp-action="Download">
-                                    <input type="submit" value="Scarica Nativo" asp-action="Download" asp-route-filePath="Report/@lista[i].Percorso" class="btn btn-default" />  |
-                                    <input type="submit" value="Scarica PDF" class="btn btn-default" />  |
-                                    <a >Cancella </a>
+                                <input type="submit" asp-action="Download" asp-route-filePath="Report/@lista[i].Percorso" value="@lista[i].Percorso" class="btn btn-link">
                                 </form>
-                                </div>
                             </td>
+                            
+                                <div class="form-group row ">
+                                <td class="text-center">
+                                    <input type="checkbox" value="Report/@lista[i].Percorso" name="nativo" />
+                                    </td>
+                                    <td class="text-center">
+                                    <input type="checkbox" value="Report/@lista[i].Percorso" name="pdf" />
+                                    </td>
+                                    <td class="text-center">
+                                    <a >Cancella </a>
+                                    </td>
+                                </div>
 
                         </tr>
                     }
                     
                 </tbody>
             </table>
-          
-            <div class="col-lg-12">
+        </div>
+            <div class="col-sm-12">
                 <br>
                 <div class="form-group row">
-                <div class="col-lg-6">
-                <input type="submit"  class="btn btn-default" value="Scarica tutto in PDF" />&nbsp;&nbsp; 
-                </div> 
-                 <div class="col-lg-6">                      
-                <input type="submit"  class="btn btn-default" value="Scarica" />&nbsp;&nbsp; 
-                </div>                      
+                    <div class="col-sm-6">
+                        <input type="submit"  class="btn btn-default" value="Scarica tutto in PDF" />&nbsp;&nbsp; 
+                    </div> 
+                    <div class="col-sm-6 text-right">                      
+                        <input type="submit"  class="btn btn-default" value="Scarica" />&nbsp;&nbsp; 
+                    </div>                      
                 </div>
-                </div>
-        </div>
+            </div>
+    </form>
 </div>
+
+
+@section scripts{
+	        <script>
+	
+	    function SelezTT(){
+	      $('input[name=selezionaTutto]').change(
+	        function(){
+	            if( $('input[name=selezionaTutto]').prop('checked')){
+	                var modulo = $('input[name=check]').each(function(index, element){
+	                    $(element).prop('checked', true);
+	                    console.log(index);
+	                   
+	                })
+	               
+	            }
+	            else{
+	                var modulo = $('input[name=check]').each(function(index, element){
+	                    $(element).prop('checked', false);
+	  
+	                })
+	                
+	            }
+	        });
+	        
+	        
+	   };
+	
+	$(function(){
+	    var tutticheck=true;
+	    $('input[name=check]').change(
+	        function(){
+	            var check=$('input[name=check]');
+	        for(i=0; i<check.length; i++){
+	        if(!check[i].checked) {
+	            tutticheck=false;
+	            $('input[name=selezionaTutto]').prop('checked', false); 
+	            break;
+	        } else tutticheck=true;
+	        if(tutticheck)
+	        $('input[name=selezionaTutto]').prop('checked', true);
+	    }
+	        }
+	    ).change();
+	    });
+	        </script> }
 

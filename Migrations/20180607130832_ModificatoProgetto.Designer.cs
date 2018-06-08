@@ -13,8 +13,8 @@ using webmva.Models;
 namespace webmva.Migrations
 {
     [DbContext(typeof(MyDbContext))]
-    [Migration("20180606150540_ModificaWifite")]
-    partial class ModificaWifite
+    [Migration("20180607130832_ModificatoProgetto")]
+    partial class ModificatoProgetto
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -729,7 +729,7 @@ namespace webmva.Migrations
             modelBuilder.Entity("webmva.Models.Report", b =>
                 {
                     b.HasOne("webmva.Models.Progetto", "Progetto")
-                        .WithMany()
+                        .WithMany("ListaReport")
                         .HasForeignKey("ProgettoID")
                         .OnDelete(DeleteBehavior.Cascade);
                 });

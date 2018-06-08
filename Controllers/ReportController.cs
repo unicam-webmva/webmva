@@ -25,9 +25,37 @@ namespace webmva.Controllers
         }
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Report
-            .Include(x=>x.Progetto)
+            return View(await _context.Progetti
+            .Include(x=>x.ListaReport)
+            .AsNoTracking()
             .ToListAsync());
+        }
+        public async Task<IActionResult> Lista(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+            var lista = await _context.Report
+                .Where(m=>m.ProgettoID==id)
+                .Include(p=>p.Progetto)
+                .AsNoTracking()
+                .ToListAsync();
+            return View(lista);
+        }
+        public async Task<IActionResult> Tutti(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+            var lista = await _context.Report
+                .Where(m=>m.ProgettoID==id)
+                .Include(p=>p.Progetto)
+                .Include(m=>m.Percorsi)
+                .AsNoTracking()
+                .ToListAsync();
+            return View(lista);
         }
         public async Task<IActionResult> Details(int? id){
 {
@@ -56,10 +84,10 @@ namespace webmva.Controllers
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
-       
-        [HttpPost]
+       [HttpPost]
        public FileResult Download(string filePath)
         {
+            if(string.IsNullOrEmpty(filePath)){return null;}
             var dir = Path.Combine(Globals.CartellaWEBMVA, "wwwroot", Path.GetDirectoryName(filePath));
             var fileName = Path.GetFileName(filePath);
             var extension = Path.GetExtension(fileName).ToLower();
