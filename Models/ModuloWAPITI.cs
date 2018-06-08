@@ -80,11 +80,12 @@ namespace webmva.Models
                 if (string.IsNullOrEmpty(ComandoPersonalizzato))
                 {
 
-                    string risultato = "wapiti.py" + " --color";
+                    string risultato = "wapiti --color";
                     if (Nessuno) risultato += " -m \"\"";
                     else if (!All)
                     {
-                        risultato += " -m \"-all";
+                        risultato += " -m ";
+                        // ho visto che con la virgola anche all'inzio funziona
                         if (Common) risultato += ",common";
                         if (BackUp) risultato += ",backup";
                         if (BlindSql) risultato += ",blindsql";
@@ -98,11 +99,10 @@ namespace webmva.Models
                         if (Xss) risultato += ",xss";
                         if (Buster) risultato += ",buster";
                         if (ShellShock) risultato += ",shellshock";
-                        risultato += "\"";
                     }
                     if (_max != -1)
                     {
-                        risultato += "--max-scan-time " + MaxMinutes;
+                        risultato += " --max-scan-time " + MaxMinutes;
                     }
                     switch (Force)
                     {

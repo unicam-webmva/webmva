@@ -1,28 +1,26 @@
-@model IEnumerable<webmva.Models.Report>
+@model IEnumerable<webmva.Models.Progetto>
 
-@{ ViewData["Title"] = "Report"; }
+@{ ViewData["Title"] = "Resoconto Progetti"; }
 
 <div class="container">
     <div class="row">
-        <h2><em>Report</em></h2>
+        <h2><em>Resoconto Progetti</em></h2>
         <p class="lead">
             I report presenti sono questi! Per importare un report in un progetto <a href="/Report/Import">clicca qui </a>!
         </p>
         <!--rivedere-->
         <hr />
-        <div class="panel panel-default col-md-9 col-md-offset-1">
+        <div class="panel panel-default col-md-7" style="margin:0 auto; float:none;">
             <table class="table">
                 <div class="method">
                     <thead>
                         <tr>
+                            <th></th>
                             <th>
                                 Nome Progetto
                             </th>
                             <th>
-                                Data svolgimento
                             </th>
-                            
-                            <th></th>
                         </tr>
                     </thead>
                 </div>
@@ -30,20 +28,18 @@
                     @foreach (var item in Model)
                     {
                         <tr>
+                        <td></td>
                             <td>
-                                @Html.DisplayFor(modelItem => item.Progetto.Nome)
+                                @Html.DisplayFor(modelItem => item.Nome)
                             </td>
                             <td>
-                                @Html.Raw(item.Data.ToString("dd/MM/yyyy HH:ss"))
+                                @if(@item.ListaReport.Count != 0){
+                                            @Html.Raw("<a href=\"/Report/Lista/"+@item.ID+"\" >Lista report</a> <span class=\"glyphicon glyphicon-ok-sign\" style=\"color:green\"></span>")
+                                        }
+                                        else {
+                                            @Html.Raw("Lista report <span class=\"glyphicon glyphicon-remove-sign\" style=\"color:red\" ></span>")
+                                        }
                             </td>
-                            
-                            <td>
-                                <div class="col-sm-8 col-sm-offset-6">
-                                    <a asp-action="Details" asp-route-id="@item.ID">Dettagli</a> | 
-                                    <a asp-action="Delete" asp-route-id="@item.ID">Cancella </a>
-                                </div>
-                            </td>
-
                         </tr>
                     }
                 </tbody>

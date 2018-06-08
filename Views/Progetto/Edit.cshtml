@@ -101,7 +101,7 @@
                                                     @Html.DisplayFor(model => model.ListaModuliConTarget[i].Comando)
                                                 </td>
                                                 <td>
-                                                    @Html.TextBoxFor(model => model.ListaModuliConTarget[i].Target)
+                                                    @Html.TextBoxFor(model => model.ListaModuliConTarget[i].Target, new {placeholder="es: 90.147.42.2", @class="col-md-10"})
                                                     @Html.HiddenFor(model => model.ListaModuliConTarget[i].ModuloID)
                                                     @Html.HiddenFor(model => model.ListaModuliConTarget[i].Applicazione)
                                                 </td>
@@ -156,7 +156,7 @@
                                                     @Html.DisplayFor(model => model.ListaModuliConTarget[i].Comando)
                                                 </td>
                                                 <td>
-                                                    @Html.TextBoxFor(model => model.ListaModuliConTarget[i].Target)
+                                                    @Html.TextBoxFor(model => model.ListaModuliConTarget[i].Target, new {placeholder="Per i moduli NESSUS non è necessario", @class="col-md-10", disabled="true"})
                                                     @Html.HiddenFor(model => model.ListaModuliConTarget[i].ModuloID)
                                                     @Html.HiddenFor(model => model.ListaModuliConTarget[i].Applicazione)
                                                 </td>
@@ -211,7 +211,7 @@
                                                     @Html.DisplayFor(model => model.ListaModuliConTarget[i].Comando)
                                                 </td>
                                                 <td>
-                                                    @Html.TextBoxFor(model => model.ListaModuliConTarget[i].Target)
+                                                    @Html.TextBoxFor(model => model.ListaModuliConTarget[i].Target, new {placeholder="Per i moduli OPENVAS non è necessario", @class="col-md-10", disabled="true"})
                                                     @Html.HiddenFor(model => model.ListaModuliConTarget[i].ModuloID)
                                                     @Html.HiddenFor(model => model.ListaModuliConTarget[i].Applicazione)
                                                 </td>
@@ -277,7 +277,7 @@
                                                     @Html.DisplayFor(model => model.ListaModuliConTarget[i].Comando)
                                                 </td>
                                                 <td>
-                                                    @Html.TextBoxFor(model => model.ListaModuliConTarget[i].Target)
+                                                    @Html.TextBoxFor(model => model.ListaModuliConTarget[i].Target, new {placeholder="es: https://www.example.org/", @class="col-md-10"})
                                                     @Html.HiddenFor(model => model.ListaModuliConTarget[i].ModuloID)
                                                     @Html.HiddenFor(model => model.ListaModuliConTarget[i].Applicazione)
                                                 </td>
@@ -334,7 +334,7 @@
                                                     @Html.DisplayFor(model => model.ListaModuliConTarget[i].Comando)
                                                 </td>
                                                 <td>
-                                                    @Html.TextBoxFor(model => model.ListaModuliConTarget[i].Target)
+                                                    @Html.TextBoxFor(model => model.ListaModuliConTarget[i].Target, new {placeholder="es: https://www.example.org", @class="col-md-10"})
                                                     @Html.HiddenFor(model => model.ListaModuliConTarget[i].ModuloID)
                                                     @Html.HiddenFor(model => model.ListaModuliConTarget[i].Applicazione)
                                                 </td>
@@ -390,7 +390,7 @@
                                                     @Html.DisplayFor(model => model.ListaModuliConTarget[i].Comando)
                                                 </td>
                                                 <td>
-                                                    @Html.TextBoxFor(model => model.ListaModuliConTarget[i].Target)
+                                                    @Html.TextBoxFor(model => model.ListaModuliConTarget[i].Target, new {placeholder="es: https://www.example.org/", @class="col-md-10"})
                                                     @Html.HiddenFor(model => model.ListaModuliConTarget[i].ModuloID)
                                                     @Html.HiddenFor(model => model.ListaModuliConTarget[i].Applicazione)
                                                 </td>
@@ -459,7 +459,7 @@
                                                     @Html.DisplayFor(model => model.ListaModuliConTarget[i].Comando)
                                                 </td>
                                                 <td>
-                                                    @Html.TextBoxFor(model => model.ListaModuliConTarget[i].Target)
+                                                    @Html.TextBoxFor(model => model.ListaModuliConTarget[i].Target, new {placeholder="es: https://www.example.org/", @class="col-md-10"})
                                                     @Html.HiddenFor(model => model.ListaModuliConTarget[i].ModuloID)
                                                     @Html.HiddenFor(model => model.ListaModuliConTarget[i].Applicazione)
                                                 </td>
@@ -517,7 +517,7 @@
                                                     @Html.DisplayFor(model => model.ListaModuliConTarget[i].Comando)
                                                 </td>
                                                 <td>
-                                                    @Html.TextBoxFor(model => model.ListaModuliConTarget[i].Target)
+                                                    @Html.TextBoxFor(model => model.ListaModuliConTarget[i].Target, new {placeholder="es: www.example.org", @class="col-md-10"})
                                                     @Html.HiddenFor(model => model.ListaModuliConTarget[i].ModuloID)
                                                     @Html.HiddenFor(model => model.ListaModuliConTarget[i].Applicazione)
                                                 </td>
@@ -574,7 +574,7 @@
                                                     @Html.DisplayFor(model => model.ListaModuliConTarget[i].Comando)
                                                 </td>
                                                 <td>
-                                                    @Html.TextBoxFor(model => model.ListaModuliConTarget[i].Target)
+                                                    @Html.TextBoxFor(model => model.ListaModuliConTarget[i].Target, new {placeholder="es: www.example.org", @class="col-md-10"})
                                                     @Html.HiddenFor(model => model.ListaModuliConTarget[i].ModuloID)
                                                     @Html.HiddenFor(model => model.ListaModuliConTarget[i].Applicazione)
                                                 </td>
@@ -641,7 +641,7 @@
                                                     @Html.DisplayFor(model => model.ListaModuliConTarget[i].Comando)
                                                 </td>
                                                 <td>
-                                                    @Html.TextBoxFor(model => model.ListaModuliConTarget[i].Target)
+                                                    @Html.TextBoxFor(model => model.ListaModuliConTarget[i].Target, new {placeholder="es: https://www.example.org/", @class="col-md-10"})
                                                     @Html.HiddenFor(model => model.ListaModuliConTarget[i].ModuloID)
                                                     @Html.HiddenFor(model => model.ListaModuliConTarget[i].Applicazione)
                                                 </td>

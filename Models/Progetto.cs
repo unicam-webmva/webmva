@@ -15,5 +15,7 @@ namespace webmva.Models
         public string Target{get;set;}
         public ICollection<ModuliProgetto> ModuliProgetto {get; set;}
         public String Descrizione{get; set; }
+
+        public ICollection<Report> ListaReport{get; set;}
     }
 }
