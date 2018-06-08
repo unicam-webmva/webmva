@@ -5,15 +5,13 @@
 <div class="container">
     <div class="row">
         <h2><em>Resoconto Progetti</em></h2>
-        <p class="lead">
-            I report presenti sono questi! Per importare un report in un progetto <a href="/Report/Import">clicca qui </a>!
-        </p>
+ 
         <!--rivedere-->
         <hr />
         <div class="panel panel-default col-md-7" style="margin:0 auto; float:none;">
             <table class="table">
                 <div class="method">
-                    <thead>
+                    
                         <tr>
                             <th></th>
                             <th>
@@ -22,7 +20,7 @@
                             <th>
                             </th>
                         </tr>
-                    </thead>
+                    
                 </div>
                 <tbody>
                     @foreach (var item in Model)
@@ -38,6 +36,14 @@
                                         }
                                         else {
                                             @Html.Raw("Lista report <span class=\"glyphicon glyphicon-remove-sign\" style=\"color:red\" ></span>")
+                                        }
+                            </td>
+                             <td>
+                                @if(@item.ListaReport.Count != 0){
+                                            @Html.Raw("<a href=\"/Report/Import/"+@item.ID+"\" >Lista report Importati</a> <span class=\"glyphicon glyphicon-import\" style=\"color:green\"></span>")
+                                        }
+                                        else {
+                                            @Html.Raw("<a href=\"/Report/Import/"+@item.ID+"\" >Lista report Importati</a> <span class=\"glyphicon glyphicon-import\" style=\"color:red\" ></span>")
                                         }
                             </td>
                         </tr>
