@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace webmva.Migrations
 {
-    public partial class ModificaWifite : Migration
+    public partial class NuovoReport : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

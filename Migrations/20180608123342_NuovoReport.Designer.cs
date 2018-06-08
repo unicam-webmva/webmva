@@ -13,8 +13,8 @@ using webmva.Models;
 namespace webmva.Migrations
 {
     [DbContext(typeof(MyDbContext))]
-    [Migration("20180606150540_ModificaWifite")]
-    partial class ModificaWifite
+    [Migration("20180608123342_NuovoReport")]
+    partial class NuovoReport
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
