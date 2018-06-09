@@ -167,10 +167,15 @@ echo "-------------------------------------------------------"
 echo "INSTALLAZIONE WPScan"
 echo "-------------------------------------------------------"
 cd Programmi/WPScan
-sudo apt install ruby-all-dev ruby-dev libffi-dev build-essential patch ruby-dev zlib1g-dev liblzma-dev
-sudo gem install bundler && bundle install --without test
+if ! hash bundle >/dev/null 2>&1 ; then 
+apt install ruby-all-dev ruby-dev libffi-dev build-essential patch ruby-dev zlib1g-dev liblzma-dev > /dev/null ;
+fi
+bundle check --gemfile=/home/rick/webmva/Programmi/wpscan/Gemfile >/dev/null ;
+if [[ ! $0 -eq 0 ]] ; then 
+sudo gem install bundler && bundle install --without test ;
+fi
 if [ ! -d ~/.wpscan/data ] >/dev/null 2>&1 ; then 
-unzip data.zip -d ~/.wpscan/
+unzip data.zip -d ~/.wpscan/ ; fi
 cd ../..
 echo "Fine installazione WPScan."
 echo " "

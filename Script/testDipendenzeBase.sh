@@ -26,6 +26,11 @@ if ! hash dotnet >/dev/null 2>&1 ; then MANCANTI="${MANCANTI}dotnet " ; fi
 if ! hash perl >/dev/null 2>&1 ; then MANCANTI="${MANCANTI}perl " ; fi
 if ! hash ruby >/dev/null 2>&1 ; then MANCANTI="${MANCANTI}ruby " ; fi
 if [ ! -d Programmi/odat ] ; then MANCANTI="${MANCANTI}odat " ; fi
+if ! hash fop >/dev/null 2>&1 ; then MANCANTI="${MANCANTI}fop " ; fi
+#questo mega if è tutto per wpscan
+if ! hash bundle >/dev/null 2>&1 ; then MANCANTI="${MANCANTI}wpscan " ; 
+else  { bundle check --gemfile=/home/rick/webmva/Programmi/wpscan/Gemfile >/dev/null ; 
+if [[ ! $0 -eq 0 ]] ; then MANCANTI="${MANCANTI}wpscan " ; fi; } fi ;
 
 
 EXIT=0
