@@ -116,6 +116,7 @@ namespace webmva.Controllers
 
             string percorsoAssolutoPDF;
             if(extension.Equals(".xml")) percorsoAssolutoPDF = Globals.ConvertiReportXML(Path.Combine(dir,fileName));
+            else if(extension.Equals(".txt")) percorsoAssolutoPDF = Globals.ConvertiReportTXT(Path.Combine(dir,fileName));
             else return null; //per ora
             fileName=Path.GetFileName(percorsoAssolutoPDF);
             IFileProvider provider = new PhysicalFileProvider(dir);

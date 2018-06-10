@@ -1,11 +1,18 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Text;
 using Microsoft.AspNetCore.Mvc.ViewFeatures;
+using Microsoft.Extensions.FileProviders;
 using Newtonsoft.Json;
+using PdfSharp.Drawing;
 using PdfSharp.Pdf;
 using PdfSharp.Pdf.IO;
+using PdfSharp;
 using webmva.Helpers;
+using System.Drawing;
+using TuesPechkin;
+using System.Drawing.Printing;
 
 namespace webmva
 {
@@ -92,6 +99,46 @@ namespace webmva
                 {"dove", percorsoPdf},
                 {"cosa", software}
             };
+        }
+
+        internal static string ConvertiReportTXT(string percorsoTXTAssoluto)
+        {
+            if (string.IsNullOrEmpty(percorsoTXTAssoluto)) return string.Empty;
+            
+            string percorsoPdf = percorsoTXTAssoluto.Replace(".txt", ".pdf");
+            string filename = Path.GetFileName(percorsoPdf);
+            string[] pezzi = filename.Split('_');
+            string data = DateTime.ParseExact(pezzi[0]+pezzi[1], "yyyyMMddHHmmss",
+                                       System.Globalization.CultureInfo.InvariantCulture).ToString("dd MMMM yyyy HH:mm:ss");
+            string cosa = pezzi[2];
+            string content = System.IO.File.ReadAllText(percorsoPdf);
+            StringBuilder sb = new StringBuilder();
+            sb.Append($"<html><body><h3>Report di {cosa}</h3><h5>Eseguito in data {data}</h5><p>");
+            sb.Append(content);
+            sb.Append("<p></body></html>");
+            content = sb.ToString();
+            var document = new HtmlToPdfDocument
+            {
+                GlobalSettings =
+                {
+                    ProduceOutline = true,
+                    DocumentTitle = "Pretty Websites",
+                    PaperSize = new PechkinPaperSize("210mm", "297mm"), // Implicit conversion to PechkinPaperSize
+                    Margins =
+                    {
+                        All = 1.375,
+                        Unit = Unit.Centimeters
+		            }
+	            },
+                Objects = {
+                    new ObjectSettings { HtmlText = content },
+                }
+            };
+            IConverter converter = new ThreadSafeConverter(new PdfToolset(new StaticDeployment(percorsoPdf)));
+
+            byte[] result = converter.Convert(document);
+            File.WriteAllBytes(percorsoPdf, result);
+            return percorsoPdf;
         }
 
         public static string CreaCartellaProgetto(string cartellaProgetto, DateTime data)
