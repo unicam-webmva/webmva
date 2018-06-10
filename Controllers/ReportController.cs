@@ -106,5 +106,25 @@ namespace webmva.Controllers
             }
             return File(readStream, mimetype, fileName);
         }
+        [HttpPost]
+       public FileResult DownloadPDF(string filePath)
+        {
+            if(string.IsNullOrEmpty(filePath)){return null;}
+            var dir = Path.Combine(Globals.CartellaWEBMVA, "wwwroot", Path.GetDirectoryName(filePath));
+            var fileName = Path.GetFileName(filePath);
+            var extension = Path.GetExtension(fileName).ToLower();
+
+            string percorsoAssolutoPDF;
+            if(extension.Equals(".xml")) percorsoAssolutoPDF = Globals.ConvertiReportXML(Path.Combine(dir,fileName));
+            else return null; //per ora
+            fileName=Path.GetFileName(percorsoAssolutoPDF);
+            IFileProvider provider = new PhysicalFileProvider(dir);
+            IFileInfo fileInfo = provider.GetFileInfo(fileName);
+            
+            var readStream = fileInfo.CreateReadStream();
+            string mimetype="application/pdf";
+            
+            return File(readStream, mimetype, fileName);
+        }
     }
 }

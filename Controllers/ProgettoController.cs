@@ -380,7 +380,11 @@ namespace webmva.Controllers
                 // Inserisco il comando generato dal modulo, il target e la direttiva
                 // per esportare un xml con nome derivato dal timestamp e dal nome del modulo
                 string comando = $"{mod.Comando} -oX {nomeFile}.xml --webxml {target}";
-                percorsi.Add(Path.Combine(cartella, nomeFile+".xml"));
+                var percorsoFile = Path.Combine(cartella, nomeFile+".xml");
+                percorsi.Add(percorsoFile);
+                // Tolgo la dicitura DOCTYPE perché sennò FOP sclera male
+                System.IO.File.WriteAllLines(percorsoFile, 
+                    System.IO.File.ReadLines(percorsoFile).Where(l => !l.Contains("<DOCTYPE")).ToList());
                 return comando;
             }
             if(mod is ModuloNESSUS || mod is ModuloOPENVAS){

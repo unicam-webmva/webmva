@@ -69,23 +69,29 @@ namespace webmva
             return true;
         }
 
-        public static bool ConvertiReportNMAP(string percorsoXML)
+        public static string ConvertiReportXML(string percorsoXMLAssoluto)
         {
-            string[] file = percorsoXML.Split('.');
-            // aggiungo il primo pezzo di nome, sicuramente ce lo vuole
-            string percorsoPdf = file[0];
-            // se contiene più di un punto, per esempio 'data.nmap.pippo.xml'
-            if (file.Length > 2)
-            {
-                // ci metto tutti i pezzetti tranne l'ultimo, che sarà l'estensione
-                for (int i = 1; i < file.Length - 1; i++)
-                    percorsoPdf += "." + file[i];
-            }
-            // aggiungo l'estensione pdf
-            percorsoPdf += ".pdf";
-            string comando = $"fop -xml {percorsoXML} -xsl nmap_fo.xsl -pdf {percorsoPdf}";
-            comando.EseguiCLI(Path.Combine(CartellaWEBMVA, "Programmi", "fop"));
-            return false;
+            if (string.IsNullOrEmpty(percorsoXMLAssoluto)) return string.Empty;
+            Dictionary<string,string> varsPdf = GetPercorsoPDF(percorsoXMLAssoluto);
+            string percorsoPdf = varsPdf.GetValueOrDefault("dove");
+            string cosa = varsPdf.GetValueOrDefault("cosa");
+
+            string comando = $"fop -xml {percorsoXMLAssoluto} -xsl {cosa}-fo.xsl -pdf {percorsoPdf}";
+            comando.EseguiCLI(Path.Combine(CartellaWEBMVA, "Script", "fop"));
+            return percorsoPdf;
+        }
+
+        private static Dictionary<string, string> GetPercorsoPDF(string percorsoXML){
+            string percorsoPdf = percorsoXML.Replace(".xml",".pdf");
+            // cerco di evitare un caso in cui il nome del modulo è nmap o dnsrecon anche se non è davvero quello il software usato, da pazzi ma vabbè
+            string nomeFile = Path.GetFileName(percorsoPdf);
+            string software="";
+            if(nomeFile.Substring(nomeFile.IndexOf('_'),nomeFile.LastIndexOf('_')).Contains("nmap")) software="nmap";
+            else if(nomeFile.Substring(nomeFile.IndexOf('_'),nomeFile.LastIndexOf('_')).Contains("dnsrecon")) software="dnsrecon";
+            return new Dictionary<string,string>{
+                {"dove", percorsoPdf},
+                {"cosa", software}
+            };
         }
 
         public static string CreaCartellaProgetto(string cartellaProgetto, DateTime data)
