@@ -9,8 +9,9 @@ namespace webmva.Models
     {    
     public string PorteSUB{get;set;}
     public bool VerbositàSUB{get;set;} 
-    public bool BruteforceSUB{get;set;} 
-    public bool All { get; set; } 
+    public bool BruteforceSUB{get;set;}
+    private bool _all = true; 
+    public bool All { get {return _all;} set {_all = value;} } 
     public bool BaiduSUB{get;set;}
     public bool YahooSUB{get;set;}
     public bool GoogleSUB{get;set;}

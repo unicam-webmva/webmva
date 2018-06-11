@@ -10,10 +10,6 @@ namespace webmva.Models
     {
         UNO, DUE, TRE, QUATTRO, CINQUE, SEI, ZERO
     }
-    public enum TORTYPE
-    {
-        HTTP, SOCKS4, SOCKS5
-    }
     public enum DETECTIONLEVEL
     {
         UNO, DUE, TRE, QUATTRO, CINQUE
@@ -31,8 +27,6 @@ namespace webmva.Models
         public string dbmsCredenziali { get; set; }
         public string sistemaOperativo { get; set; }
         public bool forceAggressive { get; set; }
-        public bool tor { get; set; }
-        public bool checkTor { get; set; }
         public bool forceSsl { get; set; }
         public bool allOptimization { get; set; }
         public bool predictOutput { get; set; }
@@ -58,7 +52,6 @@ namespace webmva.Models
         public bool commonTables { get; set; }
         public bool commonColumns { get; set; }
 
-        public int portaSql { get; set; }
         public int delay { get; set; }
         private int _timeout = 30;
         public int timeout
@@ -128,12 +121,6 @@ namespace webmva.Models
             get { return _verbose; }
             set { _verbose = value; }
         }
-        private TORTYPE _torType = TORTYPE.SOCKS5;
-        public TORTYPE TorType
-        {
-            get { return _torType; }
-            set { _torType = value; }
-        }
         private DETECTIONLEVEL _detection = DETECTIONLEVEL.UNO;
         public DETECTIONLEVEL Detection
         {
@@ -160,10 +147,6 @@ namespace webmva.Models
                         risultato += " -h " + header;
                     if (!string.IsNullOrEmpty(credenzialiAutenticazione))
                         risultato += " --auth-cred=" + credenzialiAutenticazione;
-                    if (tor)
-                        risultato += " --tor";
-                    if (portaSql != 0)
-                        risultato += " --tor-port=" + portaSql;
                     switch (Verbose)
                     {
                         case VERBOSESQLMAP.ZERO:
@@ -183,17 +166,6 @@ namespace webmva.Models
                             break;
                         case VERBOSESQLMAP.SEI:
                             risultato += " -v 6";
-                            break;
-                        default:
-                            break;
-                    }
-                    switch (TorType)
-                    {
-                        case TORTYPE.HTTP:
-                            risultato += " --tor-type=HTTP";
-                            break;
-                        case TORTYPE.SOCKS4:
-                            risultato += " --tor-type=SOCKS4";
                             break;
                         default:
                             break;
@@ -226,8 +198,6 @@ namespace webmva.Models
                         default:
                             break;
                     }
-                    if (checkTor)
-                        risultato += " --check-tor";
                     if (delay > 0)
                         risultato += " --delay=" + delay;
                     if (timeout != 30 && timeout > 0)

@@ -9,7 +9,7 @@
     bool wpscan = Model.WPSCAN != null;
     bool infoga = Model.INFOGA != null;
     bool infogaemail = Model.INFOGAEMAIL != null;
-     bool sublist3r = Model.SUBLIST3R != null;
+    bool sublist3r = Model.SUBLIST3R != null;
     bool wapiti = Model.WAPITI != null;
     bool sqlmap = Model.SQLMAP != null;
     bool wifite = Model.WIFITE != null;
@@ -277,7 +277,11 @@
                                     </div>
                                      <div class="col-sm-12">
                                             <hr/>
-                                            <div class="col-sm-5">
+                                            <div class="col-sm-6">
+                                            <div clas="form-group row" style="color:red">
+                                                    <span class="glyphicon glyphicon-eye-open" style="font-size:90"></span>&nbsp;Non restituisce un report! Importarlo successivamente!
+                                                </div>
+                                                
                                                 <div clas="form-group row">
                                                  <a href="http://static.tenable.com/documentation/nessus_6.8_command_line_reference.pdf" target="_blank"><span class="glyphicon glyphicon-info-sign" style="font-size:90%"></span>
                                         consulta la documentazione di Nessus</a>
@@ -285,7 +289,7 @@
                                         </div>
                                         </div>
                                         <div class="col-sm-1"></div>
-                                        <div class="col-sm-6 text-right">
+                                        <div class="col-sm-5 text-right">
                                             <div class="form-group row">
                                                 <input type="submit" asp-action="Edit" class="btn btn-default"  asp-route-id="@Model.NESSUS.ID" value="Salva" />&nbsp;&nbsp;|
                                                 <a asp-action="Index"> Torna alla lista</a>
@@ -303,7 +307,7 @@
          <h2><em>Modifica modulo</em><strong> @(Model.OPENVAS.Nome)</strong></h2>
         <hr />
    
-   <form asp-action="Create" name="nessusForm">
+   <form asp-action="Edit" name="openvasForm">
                             <input type="hidden" asp-for="@Model.OPENVAS.Applicazione" value="@webmva.Models.APPLICAZIONE.OPENVAS" />
                               <input type="hidden" asp-for="@Model.NESSUS.ID" />
                               <div class="row panel panel-default panel-body">
@@ -336,16 +340,20 @@
                                     </div>
                                      <div class="col-sm-12">
                                             <hr/>
-                                            <div class="col-sm-5">
+                                            <div class="col-sm-6">
+                                            <div clas="form-group row" style="color:red">
+                                                    <span class="glyphicon glyphicon-eye-open" style="font-size:90"></span>&nbsp;Non restituisce un report! Importarlo successivamente!
+                                                </div>
+                                                
                                                 <div clas="form-group row">
                                                  <a href="http://www.openvas.org/src-doc/openvas-scanner/index.html" target="_blank"><span class="glyphicon glyphicon-info-sign" style="font-size:90%"></span>
                                         consulta il documentazione di OpenVAS</a>
                                         </div>
                                         </div>
                                         <div class="col-sm-1"></div>
-                                        <div class="col-sm-6 text-right">
+                                        <div class="col-sm-5 text-right">
                                             <div class="form-group row">
-                                                <input type="submit" asp-action="Create" asp-route-cosa="openvas" class="btn btn-default" value="Crea" />&nbsp;&nbsp; |
+                                                <input type="submit" asp-action="Edit" asp-route-id="@Model.OPENVAS.ID" class="btn btn-default" value="Salva" />&nbsp;&nbsp; |
                                                 <a asp-action="Index"> Torna alla lista</a>
                                             </div>
                                         </div>
@@ -363,92 +371,87 @@
             <input type="hidden" asp-for="@Model.DNSRECON.Applicazione" value="@webmva.Models.APPLICAZIONE.DNSRECON" />
             <div class="row panel panel-default panel-body">
 
-                <div class="col-sm-12">
-                    <div class="col-sm-7" style="margin:0 auto; float:none">
-                        <div class="form-group">
-                            <h4 asp-for="@(Model.DNSRECON.Nome)">Nome Modulo</h4>
-                            <input class="form-control" asp-for="@(Model.DNSRECON.Nome)" />
-                        </div>
-                    </div>
-                    <input type="hidden" asp-for="@Model.DNSRECON.ID" />
-                    <hr />
-                    <div class="col-sm-12">
-                        <div class="col-sm-7" style="margin:0 auto; float:none">
-                            <div class="form-group row">
-                                <h4 asp-for="@Model.DNSRECON.NameServer">Name Server</h4>
-                                <input class="form-control" asp-for="@Model.DNSRECON.NameServer" />
-                            </div>
-                            <div class="form-group row">
-                                <h4 asp-for="@(Model.DNSRECON.ComandoPersonalizzato)">Comando personalizzato</h4>
-                                <input class="form-control" asp-for="@(Model.DNSRECON.ComandoPersonalizzato)" />
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-12">
-                        <hr />
-                        <h4>Tipi di enumerazione</h4>
-                        <hr />
-                        <div class="col-sm-6">
-                            <div class="form-group row">
-                                <div class="col-6">
-                                    <label class="control-label">
-                                        <input type="checkbox" asp-for="@Model.DNSRECON.AXFREnum" />
-                                        AXFR Enumeration (-a)
-                                    </label>
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <div class="col-6">
-                                    <label class="control-label">
-                                        <input type="checkbox" asp-for="@Model.DNSRECON.ReverseLookupEnum" />
-                                        Reverse Lookup Enumeration (-s)
-                                    </label>
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <div class="col-6">
-                                    <label class="control-label">
-                                        <input type="checkbox" asp-for="@Model.DNSRECON.GoogleEnum" />
-                                        Google Enumeration (-g)
-                                    </label>
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <div class="col-6">
-                                    <label class="control-label">
-                                        <input type="checkbox" asp-for="@Model.DNSRECON.BingEnum" />
-                                        Bing (-b)
-                                    </label>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-sm-6">
-                            <div class="form-group row">
-                                <div class="col-6">
-                                    <label class="control-label">
-                                        <input type="checkbox" asp-for="@Model.DNSRECON.CrtShEnum" />
-                                        Crt.sh Enumeration (-k)
-                                    </label>
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <div class="col-6">
-                                    <label class="control-label">
-                                        <input type="checkbox" asp-for="@Model.DNSRECON.DeepWhois" />
-                                        Deep Whois (-w)
-                                    </label>
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <div class="col-6">
-                                    <label class="control-label">
-                                        <input type="checkbox" asp-for="@Model.DNSRECON.ZoneWalk" />
-                                        DNSSEC Zone Walk (-z)
-                                    </label>
-                                </div>
-                            </div>
-                        </div>
-                         <div class="col-sm-12">
+                 <div class="col-sm-12">
+                                    <div class="col-sm-7" style="margin:0 auto; float:none">
+                                        <div class="row form-group">
+                                            <h4 asp-for="@(Model.DNSRECON.Nome)">Nome Modulo</h4>
+                                            <input class="form-control" asp-for="@(Model.DNSRECON.Nome)" />
+                                        </div>
+                                    </div>
+                                    
+
+                                    <hr />
+                                    <div class="col-sm-12">
+                                        <div class="col-sm-7" style="margin:0 auto; float:none">
+                                            <div class="form-group row">
+                                                <h4 asp-for="@(Model.DNSRECON.ComandoPersonalizzato)">Comando Personalizzato</h4>
+                                                <input class="form-control" asp-for="@(Model.DNSRECON.ComandoPersonalizzato)" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <hr/>
+                                    
+                                   
+                                    
+                                
+                                    <div class="col-sm-12">
+                                        <h4>Tipi di enumerazione</h4>
+                                        <hr />
+                                        <div class="col-sm-6">
+                                            <div class="form-group row">
+                                                <div class="col-6">
+                                                    <label class="control-label">
+                                                        <input type="checkbox" asp-for="@Model.DNSRECON.AXFREnum" /> AXFR Enumeration (-a)
+                                                    </label>
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <div class="col-6">
+                                                    <label class="control-label">
+                                                        <input type="checkbox" asp-for="@Model.DNSRECON.ReverseLookupEnum" /> Reverse Lookup Enumeration (-s)
+                                                    </label>
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <div class="col-6">
+                                                    <label class="control-label">
+                                                        <input type="checkbox" asp-for="@Model.DNSRECON.GoogleEnum" /> Google Enumeration (-g)
+                                                    </label>
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <div class="col-6">
+                                                    <label class="control-label">
+                                                        <input type="checkbox" asp-for="@Model.DNSRECON.BingEnum" /> Bing (-b)
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <div class="form-group row">
+                                                <div class="col-6">
+                                                    <label class="control-label">
+                                                        <input type="checkbox" asp-for="@Model.DNSRECON.CrtShEnum" /> Crt.sh Enumeration (-k)
+                                                    </label>
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <div class="col-6">
+                                                    <label class="control-label">
+                                                        <input type="checkbox" asp-for="@Model.DNSRECON.DeepWhois" /> Deep Whois (-w)
+                                                    </label>
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <div class="col-6">
+                                                    <label class="control-label">
+                                                        <input type="checkbox" asp-for="@Model.DNSRECON.ZoneWalk" /> DNSSEC Zone Walk (-z)
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        </div>
+                                        <div class="col-sm-12">
                                             <hr/>
                                             <div class="col-sm-5">
                                                 <div clas="form-group row">
@@ -467,7 +470,7 @@
                                         </div>
                     </div>
                 </div>
-            </div>
+            
         </form>
     }
     @* -----DROOPE----- *@
@@ -481,57 +484,56 @@
             <div class="row panel panel-default panel-body">
 
                 <div class="col-sm-12">
-                    <div class="col-sm-7" style="margin:0 auto; float:none">
-                        <div class="form-group">
-                            <h4 asp-for="@(Model.DROOPE.Nome)">Nome Modulo</h4>
-                            <input class="form-control" asp-for="@(Model.DROOPE.Nome)" />
-                        </div>
-                    </div>
+                                    <div class="col-sm-7" style="margin:0 auto; float:none">
+                                        <div class="form-group">
+                                            <h4 asp-for="@(Model.DROOPE.Nome)">Nome Modulo</h4>
+                                            <input class="form-control" asp-for="@(Model.DROOPE.Nome)" />
+                                        </div>
+                                    </div>
+                                    <hr />
+                                    <div class="col-sm-12">
+                                        <div class="col-sm-12">
+                                            <div class="col-sm-7" style="margin:0 auto; float:none">
+                                                <div class="form-group row">
+                                                    <h4 asp-for="@(Model.DROOPE.ComandoPersonalizzato)">Comando Personalizzato</h4>
+                                                    <input class="form-control" asp-for="@(Model.DROOPE.ComandoPersonalizzato)" />
+                                                </div>
 
-                    <hr />
-                    <div class="col-sm-12">
-                        <div class="col-sm-7" style="margin:0 auto; float:none">
-                            <div class="form-group row">
-                                
-                                    <h4 asp-for="@(Model.DROOPE.ComandoPersonalizzato)">Comando personalizzato</h4>
-                                
-                                <input class="form-control" asp-for="@Model.DROOPE.ComandoPersonalizzato" />
-                            </div>
-                            <div class="form-group row">
+                                            </div>
 
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-12">
-                        <h4>Tipi di enumerazione</h4>
-                        <hr />
-                        <div class="form-group row">
-                            <div class="col-sm-4">
-                                <label class="control-label">Scegli cms</label>
-                            </div>
-                            <select class="col-sm-5" asp-for="@Model.DROOPE.Cms">
-                                <option value="5">nessuno</option>
-                                <option value="0">drupal</option>
-                                <option value="1">joomla</option>
-                                <option value="2">moodle</option>
-                                <option value="3">silvestripe</option>
-                                <option value="4">wordpress</option>
+                                        </div>
 
-                            </select>
-                        </div>
-                        <div class="form-group row">
-                            <div class="col-sm-4">
-                                <label class="control-label">Scegli check</label>
-                            </div>
-                            <select class="col-sm-5" asp-for="@Model.DROOPE.Check">
-                                <option value="4">nessuno</option>
-                                <option value="0">plugin</option>
-                                <option value="1">theme</option>
-                                <option value="2">version</option>
-                                <option value="3">intersting url</option>
-                            </select>
-                        </div>
-                         <div class="col-sm-12">
+                                    </div>
+                                     
+                                    <div class="col-sm-12">
+                                        <h4>Tipi di enumerazione</h4>                                        <hr />
+                                        <div class="form-group row">
+                                            <div class="col-sm-4">
+                                                <label class="control-label">Scegli cms</label>
+                                            </div>
+                                            <select class="col-sm-5" asp-for="@Model.DROOPE.Cms">
+                                                <option value="5">nessuno</option>
+                                                <option value="0">drupal</option>
+                                                <option value="1">joomla</option>
+                                                <option value="2">moodle</option>
+                                                <option value="3">silvestripe</option>
+                                                <option value="4">wordpress</option>
+
+                                            </select>
+                                        </div>
+                                        <div class="form-group row">
+                                            <div class="col-sm-4">
+                                                <label class="control-label">Scegli check</label>
+                                            </div>
+                                            <select class="col-sm-5" asp-for="@Model.DROOPE.Check">
+                                                <option value="4">tutti</option>
+                                                <option value="0">plugin</option>
+                                                <option value="1">theme</option>
+                                                <option value="2">version</option>
+                                                <option value="3">intersting url</option>
+                                            </select>
+                                        </div>
+                                         <div class="col-sm-12">
                                             <hr/>
                                             <div class="col-sm-5">
                                                 <div clas="form-group row">
@@ -722,188 +724,189 @@
             <div class="row panel panel-default panel-body">
 
                 <div class="col-sm-12">
-                    <div class="col-sm-7" style="margin:0 auto; float:none">
-                        <div class="form-group">
-                            <h4 asp-for="@(Model.WAPITI.Nome)">Nome Modulo</h4>
-                            <input class="form-control" asp-for="@(Model.WAPITI.Nome)" />
-                        </div>
-                    </div>
-
-                    <hr />
-                    <div class="col-sm-12">
-                        <div class="col-sm-12">
-                            <div class="col-sm-7" style="margin:0 auto; float:none">
-                                <div class="form-group row">
-                                    <h5 asp-for="@(Model.WAPITI.ComandoPersonalizzato)">Comando Personalizzato</h5>
-                                    <input class="form-control" asp-for="@(Model.WAPITI.ComandoPersonalizzato)" />
-                                </div>
-
-                            </div>
-
-                        </div>
-
-                    </div>
-                    <div class="col-sm-12">
-                        <h4>Tipi di enumerazione</h4>
-                        <hr />
-                        <div class="form-group row">
-                            <div class="col-sm-4">
-                                <label class="control-label">Scegli lo scope</label>
-                            </div>
-                            <select class="col-sm-5" asp-for="@Model.WAPITI.Scope">
-                                <option value="4">nessuno</option>
-                                <option value="0">page</option>
-                                <option value="1">folder</option>
-                                <option value="2">domain</option>
-                                <option value="3">url</option>
-
-
-                            </select>
-                        </div>
-                        <div class="form-group row">
-                            <div class="col-sm-4">
-                                <label class="control-label">Scegli la force</label>
-                            </div>
-                            <select class="col-sm-5" asp-for="@Model.WAPITI.Force">
-                                <option value="5">Normale</option>
-                                <option value="0">Paranoico</option>
-                                <option value="1">Subdolo</option>
-                                <option value="2">Educato</option>
-                                <option value="3">Aggressivo</option>
-                                <option value="4">Insano</option>
-                            </select>
-                        </div>
-                        <div class="form-group row">
-                            <div class="col-sm-4">
-                                <label class="control-label">Scegli la verbosità</label>
-                            </div>
-                            <select class="col-sm-5" asp-for="@Model.WAPITI.Verbose">
-                                <option value="1">uno</option>
-                                <option value="0">zero</option>
-                                <option value="2">due</option>
-                            </select>
-                        </div>
-                        <div class="form-group row">
-                            <div class="col-sm-4">
-                                <label class="control-label"> Settaggio Minuti</label>
-                            </div>
-
-                            <input class="col-sm-5" type="number" asp-for="@Model.WAPITI.MaxMinutes" />
-                            <div class="col-sm-3"></div>
-                        </div>
-                        <div class="col-sm-12">
-
-                            <h4>
-                                Seleziona i moduli desiderati
-                            </h4>
-                            <hr />
-                            <div class="col-sm-6">
-                                <div class="col-sm-12">
-                                    <div class="form-group row">
-                                        <div class="col-sm-5">
-                                            <label class="control-label">
-                                                <input type="checkbox" asp-for="@Model.WAPITI.Common" /> Common
-                                            </label>
+                                    <div class="col-sm-7" style="margin:0 auto; float:none">
+                                        <div class="form-group">
+                                            <h4 asp-for="@(Model.WAPITI.Nome)">Nome Modulo</h4>
+                                            <input class="form-control" asp-for="@(Model.WAPITI.Nome)" />
                                         </div>
                                     </div>
-                                    <div class="form-group row">
-                                        <div class="col-sm-5">
-                                            <label class="control-label">
-                                                <input type="checkbox" asp-for="@Model.WAPITI.Nessuno" /> Nessuno
-                                            </label>
-                                        </div>
-                                    </div>
-                                    <div class="form-group row">
-                                        <div class="col-sm-5">
-                                            <label class="control-label">
-                                                <input type="checkbox" asp-for="@Model.WAPITI.All" /> Tutto
-                                            </label>
-                                        </div>
-                                    </div>
-                                    <div class="form-group row">
-                                        <div class="col-sm-5">
-                                            <label class="control-label">
-                                                <input type="checkbox" asp-for="@Model.WAPITI.BackUp" /> Back Up
-                                            </label>
-                                        </div>
-                                    </div>
-                                    <div class="form-group row">
-                                        <div class="col-sm-4">
-                                            <label class="control-label">
-                                                <input type="checkbox" asp-for="@Model.WAPITI.BlindSql" /> Blind Sql
-                                            </label>
-                                        </div>
-                                    </div>
-                                    <div class="form-group row">
-                                        <div class="col-sm-4">
-                                            <label class="control-label">
-                                                <input type="checkbox" asp-for="@Model.WAPITI.Crlf" /> Crlf
-                                            </label>
-                                        </div>
-                                    </div>
-                                    <div class="form-group row">
-                                        <div class="col-sm-4">
-                                            <label class="control-label">
-                                                <input type="checkbox" asp-for="@Model.WAPITI.Exec" /> Exec
-                                            </label>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-sm-6">
-                                <div class="form-group row">
-                                    <div class="col-sm-4">
-                                        <label class="control-label">
-                                            <input type="checkbox" asp-for="@Model.WAPITI.File" /> File
-                                        </label>
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <div class="col-sm-4">
-                                        <label class="control-label">
-                                            <input type="checkbox" asp-for="@Model.WAPITI.Htaccess" /> Htaccess
-                                        </label>
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <div class=" col-sm-6">
-                                        <label class="control-label">
-                                            <input type="checkbox" asp-for="@Model.WAPITI.Nikto" /> Nikto
-                                        </label>
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <div class=" col-sm-6">
-                                        <label class="control-label">
-                                            <input type="checkbox" asp-for="@Model.WAPITI.PermanentXss" /> Permanet Xss
-                                        </label>
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <div class="col-sm-6">
-                                        <label class="control-label">
-                                            <input type="checkbox" asp-for="@Model.WAPITI.Sql" /> Sql
-                                        </label>
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <div class="col-sm-6">
-                                        <label class="control-label">
-                                            <input type="checkbox" asp-for="@Model.WAPITI.Buster" /> Buster
-                                        </label>
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <div class="col-sm-6">
-                                        <label class="control-label">
-                                            <input type="checkbox" asp-for="@Model.WAPITI.ShellShock" /> Shell Shock
-                                        </label>
-                                    </div>
-                                </div>
 
-                            </div>
+                                    <hr />
+                                    <div class="col-sm-12">
+                                        <div class="col-sm-12">
+                                            <div class="col-sm-7" style="margin:0 auto; float:none">
+                                                <div class="form-group row">
+                                                    <h4 asp-for="@(Model.WAPITI.ComandoPersonalizzato)">Comando Personalizzato</h4>
+                                                    <input class="form-control" asp-for="@(Model.WAPITI.ComandoPersonalizzato)" />
+                                                </div>
 
-                        </div>
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+                                    <div class="col-sm-12">
+                                        <h4>Tipi di enumerazione</h4>
+                                        <hr />
+                                        <div class="form-group row">
+                                            <div class="col-sm-5">
+                                                <label class="control-label">Scegli lo scope</label>
+                                            </div>
+                                            <select class="col-sm-5" asp-for="@Model.WAPITI.Scope">
+                                                <option value="4">nessuno</option>
+                                                <option value="0">page</option>
+                                                <option value="1">folder</option>
+                                                <option value="2">domain</option>
+                                                <option value="3">url</option>
+
+
+                                            </select>
+                                        </div>
+                                        <div class="form-group row">
+                                            <div class="col-sm-5">
+                                                <label class="control-label">Scegli la force</label>
+                                            </div>
+                                            <select class="col-sm-5" asp-for="@Model.WAPITI.Force">
+                                                <option value="5">Normale</option>
+                                                <option value="0">Paranoico</option>
+                                                <option value="1">Subdolo</option>
+                                                <option value="2">Educato</option>
+                                                <option value="3">Aggressivo</option>
+                                                <option value="4">Insano</option>
+                                            </select>
+                                        </div>
+                                        <div class="form-group row">
+                                            <div class="col-sm-5">
+                                                <label class="control-label">Scegli la verbosità</label>
+                                            </div>
+                                            <select class="col-sm-5" asp-for="@Model.WAPITI.Verbose">
+                                                <option value="1">uno</option>
+                                                <option value="0">zero</option>
+                                                <option value="2">due</option>
+                                            </select>
+                                        </div>
+                                        <div class="form-group row">
+                                            <div class="col-sm-5">
+                                                <label class="control-label"> Settaggio Minuti</label>
+                                            </div>
+
+                                            <input class="col-sm-5" type="number" asp-for="@Model.WAPITI.MaxMinutes" />
+                                            <div class="col-sm-3"></div>
+                                        </div>
+                                        <div class="col-sm-12">
+
+                                            <h4>
+                                                Seleziona i moduli desiderati
+                                            </h4>
+                                            <hr />
+                                            <div class="col-sm-6">
+                                                <div class="col-sm-12">
+                                                    <div class="form-group row">
+                                                        <div class="col-sm-6">
+                                                            <label class="control-label">
+                                                                <input type="checkbox" asp-for="@Model.WAPITI.Common" /> Common
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group row">
+                                                        <div class="col-sm-6">
+                                                            <label class="control-label">
+                                                                <input type="checkbox" asp-for="@Model.WAPITI.Nessuno" /> Nessuno
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group row">
+                                                        <div class="col-sm-6">
+                                                            <label class="control-label">
+                                                                <input type="checkbox" asp-for="@Model.WAPITI.All" /> Tutto
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group row">
+                                                        <div class="col-sm-6">
+                                                            <label class="control-label">
+                                                                <input type="checkbox" asp-for="@Model.WAPITI.BackUp" /> Back Up
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group row">
+                                                        <div class="col-sm-6">
+                                                            <label class="control-label">
+                                                                <input type="checkbox" asp-for="@Model.WAPITI.BlindSql" /> Blind Sql
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group row">
+                                                        <div class="col-sm-6">
+                                                            <label class="control-label">
+                                                                <input type="checkbox" asp-for="@Model.WAPITI.Crlf" /> Crlf
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group row">
+                                                        <div class="col-sm-6">
+                                                            <label class="control-label">
+                                                                <input type="checkbox" asp-for="@Model.WAPITI.Exec" /> Exec
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <div class="form-group row">
+                                                    <div class="col-sm-6">
+                                                        <label class="control-label">
+                                                            <input type="checkbox" asp-for="@Model.WAPITI.File" /> File
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <div class="col-sm-6">
+                                                        <label class="control-label">
+                                                            <input type="checkbox" asp-for="@Model.WAPITI.Htaccess" /> Htaccess
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <div class=" col-sm-6">
+                                                        <label class="control-label">
+                                                            <input type="checkbox" asp-for="@Model.WAPITI.Nikto" /> Nikto
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <div class=" col-sm-6">
+                                                        <label class="control-label">
+                                                            <input type="checkbox" asp-for="@Model.WAPITI.PermanentXss" /> Permanet Xss
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <div class="col-sm-6">
+                                                        <label class="control-label">
+                                                            <input type="checkbox" asp-for="@Model.WAPITI.Sql" /> Sql
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <div class="col-sm-6">
+                                                        <label class="control-label">
+                                                            <input type="checkbox" asp-for="@Model.WAPITI.Buster" /> Buster
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <div class="col-sm-6">
+                                                        <label class="control-label">
+                                                            <input type="checkbox" asp-for="@Model.WAPITI.ShellShock" /> Shell Shock
+                                                        </label>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+
+                                        </div>
+                                    </div>
                           <div class="col-sm-12">
                                             <hr/>
                                             <div class="col-sm-5">
@@ -923,7 +926,6 @@
                                         </div>
                     </div>
                 </div>
-            </div>
         </form>
 
     }
@@ -989,7 +991,7 @@
                                                 <label class="control-label">Setta header</label>
                                             </div>
                                              <div class="col-sm-1"></div>
-                                            <input type="text" class="col-sm-5"  asp-for="@Model.SQLMAP.header" />
+                                            <input type="text" class="col-sm-5"  asp-for="@Model.SQLMAP.header" placeholder="X-Forwarded-For: 127.0.0.1" />
                                             
                                         </div>
                                         <div class="form-group row">
@@ -998,60 +1000,28 @@
                                                 <label class="control-label">Scegli le credenziali di autenticazione</label>
                                             </div>
                                              <div class="col-sm-1"></div>
-                                            <input type="text" class="col-sm-5"  asp-for="@Model.SQLMAP.credenzialiAutenticazione">
+                                            <input type="text" class="col-sm-5"  asp-for="@Model.SQLMAP.credenzialiAutenticazione" placeholder="user:pass">
                                         </div>
                                         <div class="form-group row">
                                             <div class="col-sm-4">
-                                                <label class="control-label">Scegli il delay</label>
+                                                <label class="control-label">Scegli il delay tra richieste</label>
                                             </div>
                                              <div class="col-sm-1"></div>
                                             <input type="number" class="col-sm-5" asp-for="@Model.SQLMAP.delay"/>
                                         </div>
                                         <div class="form-group row">
                                             <div class="col-sm-4">
-                                                <label class="control-label">Scegli il timeout</label>
+                                                <label class="control-label">Scegli il timeout per le richieste</label>
                                             </div>
                                              <div class="col-sm-1"></div>
                                             <input type="number" class="col-sm-5" asp-for="@Model.SQLMAP.timeout"/>
                                         </div>
                                         <div class="form-group row">
                                             <div class="col-sm-4">
-                                                <label class="control-label">Scegli il retries</label>
+                                                <label class="control-label">Scegli il numero di retries</label>
                                             </div>
                                              <div class="col-sm-1"></div>
                                             <input type="number" class="col-sm-5" asp-for="@Model.SQLMAP.retries"/>
-                                        </div>
-                                        <div class="form-group row">
-                                            <div class="col-sm-4">
-                                                <label class="control-label">Scegli tor Type</label>
-                                            </div>
-                                             <div class="col-sm-1"></div>
-                                            <select class="col-sm-5" asp-for="@Model.SQLMAP.TorType">
-                                                <option value="2">SOCKS5</option>
-                                                <option value="0">HTTP </option>
-                                                <option value="1">SOCKS4</option>
-                                            </select>
-                                        </div>
-                                        <div class="form-group row">
-                                                <div class="col-sm-6">
-                                                    <label class="control-label">
-                                                        <input type="checkbox" asp-for="@Model.SQLMAP.tor" /> Tor (--tor)
-                                                    </label>
-                                                </div>
-                                            </div>
-                                            <div class="form-group row">
-                                                <div class="col-sm-6">
-                                                    <label class="control-label">
-                                                        <input type="checkbox" asp-for="@Model.SQLMAP.checkTor" /> Check Tor (--check-tor)
-                                                    </label>
-                                                </div>
-                                            </div>
-                                            <div class="form-group row">
-                                            <div class="col-sm-4">
-                                                <label class="control-label">Scegli la porta</label>
-                                            </div>
-                                             <div class="col-sm-1"></div>
-                                            <input type="number" class="col-sm-5" asp-for="@Model.SQLMAP.portaSql" />
                                         </div>
                                             <div class="form-group row">
                                                 <div class="col-sm-6">
@@ -1068,21 +1038,21 @@
                                                 <label class="control-label">Scegli il dbms</label>
                                             </div>
                                              <div class="col-sm-1"></div>
-                                            <input type="text" class="col-sm-5"  asp-for="@Model.SQLMAP.dbms">
+                                            <input type="text" class="col-sm-5"  asp-for="@Model.SQLMAP.dbms" placeholder="MySQL">
                                         </div>
                                         <div class="form-group row">
                                             <div class="col-sm-4">
                                                 <label class="control-label">Scegli le credenziali del dbms</label>
                                             </div>
                                              <div class="col-sm-1"></div>
-                                            <input type="text" class="col-sm-5"  asp-for="@Model.SQLMAP.dbmsCredenziali">
+                                            <input type="text" class="col-sm-5"  asp-for="@Model.SQLMAP.dbmsCredenziali" placeholder="user:pass">
                                         </div>
                                         <div class="form-group row">
                                             <div class="col-sm-4">
                                                 <label class="control-label">Scegli il sistema operativo</label>
                                             </div>
                                              <div class="col-sm-1"></div>
-                                            <input type="text" class="col-sm-5" asp-for="@Model.SQLMAP.sistemaOperativo">
+                                            <input type="text" class="col-sm-5" asp-for="@Model.SQLMAP.sistemaOperativo" placeholder="Linux">
                                         </div>
                                         <hr /> 
                                         <h4>Detection</h4>
@@ -1265,17 +1235,17 @@
                                         <hr />
                                         <div class="form-group row">
                                             <div class="col-sm-4">
-                                                <label class="control-label">Scegli i timesec</label>
+                                                <label class="control-label">Scegli il timesec</label>
                                             </div>
                                              <div class="col-sm-1"></div>
                                             <input type="number" class="col-sm-5" asp-for="@Model.SQLMAP.timesec" />
                                         </div>
                                         <div class="form-group row">
                                             <div class="col-sm-4">
-                                                <label class="control-label">Scegli i tecnique</label>
+                                                <label class="control-label">Scegli le tecniche</label>
                                             </div>
                                              <div class="col-sm-1"></div>
-                                            <input type="text" class="col-sm-5" asp-for="@Model.SQLMAP.tecnique" />
+                                            <input type="text" class="col-sm-5" asp-for="@Model.SQLMAP.tecnique" placeholder="BEUSTQ" />
                                         </div>
                                         
                                         <div class="form-group row">
@@ -1454,6 +1424,9 @@
                                             </div>
                                         <div class="col-sm-12">
                                             <hr/>
+                                            <div clas="form-group row">
+                                                <h5 style="color:red"><strong><span class="glyphicon glyphicon-eye-open" style="font-size:90%"></span> Ricorda di disabilitare il Monitor Mode tramite: 'airmon-ng stop [nomeInterfaccia]'!</strong></h5>
+                                        </div>
                                             <div class="col-sm-5">
                                                 <div clas="form-group row">
                                                  <a href="https://en.kali.tools/?p=18..c%27%C3%A8" target="_blank"><span class="glyphicon glyphicon-info-sign" style="font-size:90%"></span>
@@ -1503,10 +1476,11 @@
                                                 </div>
 
                                             </div>
-
+ <hr/>
                                         </div>
 
                                     </div>
+                                   
                                     <div class="col-sm-12">
                                         <h4>Tipi di enumerazione</h4>
                                         <hr />
@@ -1522,14 +1496,14 @@
                                                 <label class="control-label">Scegli il cookie </label>
                                             </div>
                                              <div class="col-sm-1"></div>
-                                            <input type="text" class="col-sm-5" asp-for="@Model.JOOMSCAN.Cookie" />  
+                                            <input type="text" class="col-sm-6" asp-for="@Model.JOOMSCAN.Cookie" placeholder="test=demo;" />  
                                         </div>
                                           <div class="form-group row">
                                             <div class="col-sm-4">
                                                 <label class="control-label">Scegli lo user agent </label>
                                             </div>
                                              <div class="col-sm-1"></div>
-                                            <input type="text" class="col-sm-5" asp-for="@Model.JOOMSCAN.UserAgent" />  
+                                            <input type="text" class="col-sm-6" asp-for="@Model.JOOMSCAN.UserAgent" placeholder="Googlebot/2.1 (+http://www.googlebot.com/bot.html)" />  
                                         </div>
                                         <div class="col-sm-12">
                                             <hr/>
@@ -1557,7 +1531,7 @@
     {
         <h2><em>Modifica modulo</em><strong> @(Model.WPSCAN.Nome)</strong></h2>
         <hr />
-<form asp-action="Edit" name="wpscanForm">
+        <form asp-action="Edit" name="wpscanForm">
                                 <input type="hidden" asp-for="@Model.WPSCAN.Applicazione" value="@webmva.Models.APPLICAZIONE.WPSCAN" />
 <input type="hidden" asp-for="@Model.WPSCAN.ID" />
                                   <div class="row panel panel-default panel-body">
@@ -1588,42 +1562,54 @@
                                     <div class="col-sm-12">
                                         <h4>Tipi di enumerazione</h4>
                                         <hr />
-                                       <div class="form-group row">
-                                                    <div class="col-sm-6">
+                                            <div class="form-group row">
+                                            <div class="col-sm-4">
+                                                <label class="control-label">Setta i parametri dello User-Agent </label>
+                                            </div>
+                                             <div class="col-sm-1"></div>
+                                            <input type="text" class="col-sm-5" asp-for="@Model.WPSCAN.UserAgent" placeholder="Googlebot" />  
+                                        </div>  
+                                            <div class="form-group row">
+                                            <div class="col-sm-4">
+                                                <label class="control-label">Scegli i cookies </label>
+                                            </div>
+                                             <div class="col-sm-1"></div>
+                                            <input type="text" class="col-sm-5" asp-for="@Model.WPSCAN.Cookie" placeholder="test=demo;"/>  
+                                        </div>  
+                                        <div class=col-sm-6>
+                                        <div class="form-group row">
+                                                   
                                                         <label class="control-label">
                                                             <input type="checkbox" asp-for="@Model.WPSCAN.Force" /> Force (-f)
                                                         </label>
-                                                    </div>
-                                                     <div class="col-sm-6">
+                                                    
+                                                </div>
+                                                <div class="form-group row">
+                                                    
                                                         <label class="control-label">
                                                             <input type="checkbox" asp-for="@Model.WPSCAN.RandomAgent" /> Random Agent (-r)
                                                         </label>
-                                                    </div>
-                                                     <div class="col-sm-6">
+                                                    
+                                                </div>
+                                                </div>
+                                                 <div class=col-sm-6>
+                                                <div class="form-group row">
+                                                   
                                                         <label class="control-label">
-                                                            <input type="checkbox" asp-for="@Model.WPSCAN.VerbositàWP" />  Verbosità (-v)
-                                                        </label>
-                                                    </div>
-                                                     <div class="col-sm-6">
+                                                            <input type="checkbox" asp-for="@Model.WPSCAN.VerbositàWP" /> Verbosità (-v)
+                                                    
+                                                </div>
+                                                <div class="form-group row">
+                                                    
                                                         <label class="control-label">
                                                             <input type="checkbox" asp-for="@Model.WPSCAN.DisableChecks" /> Disable Checks ( --disable-tls-checks)
-                                                        </label>
-                                                    </div>
+                                                   
                                                 </div>
-                                          <div class="form-group row">
-                                            <div class="col-sm-4">
-                                                <label class="control-label">Scegli il cookie </label>
-                                            </div>
-                                             <div class="col-sm-1"></div>
-                                            <input type="text" class="col-sm-5" asp-for="@Model.WPSCAN.Cookie" />  
-                                        </div>
-                                          <div class="form-group row">
-                                            <div class="col-sm-4">
-                                                <label class="control-label">Scegli lo user agent </label>
-                                            </div>
-                                             <div class="col-sm-1"></div>
-                                            <input type="text" class="col-sm-5" asp-for="@Model.WPSCAN.UserAgent" />  
-                                        </div>
+                                                </div>
+                                       
+                                          
+                                        
+                                    
                                         <div class="col-sm-12">
                                             <hr/>
                                             <div class="col-sm-5">
@@ -1642,7 +1628,7 @@
                                         </div>
                                     </div>
                                 </div>
-</div>
+                            </div>
                             </form>
 
 }
@@ -1685,36 +1671,35 @@
                                     <div class="col-sm-12">
                                         <h4>Tipi di enumerazione</h4>
                                         <hr />
-                                        <div class=col-sm-6>
+                                      
                                         <div class="form-group row">
-                                                   
+                                                   <div class="col-sm-6">
                                                         <label class="control-label">
                                                             <input type="checkbox" asp-for="@Model.FIERCE.Connect" /> Connect (--connect)
                                                         </label>
-                                                    
+                                                    </div>
                                                 </div>
                                                 <div class="form-group row">
-                                                    
+                                                     <div class="col-sm-6">
                                                         <label class="control-label">
                                                             <input type="checkbox" asp-for="@Model.FIERCE.Wide" /> Wide (--wide)
-
                                                         </label>
-                                                    
+                                                    </div>
                                                 </div>
-                                                </div>
+                                                
                                           <div class="form-group row">
                                             <div class="col-sm-4">
                                                 <label class="control-label">Scegli il DnsServer </label>
                                             </div>
-                                             <div class="col-sm-1"></div>
-                                            <input type="text" class="col-sm-5" asp-for="@Model.FIERCE.DnServer" />  
+                                               <div class="col-sm-1"></div>
+                                            <input type="text" class="col-sm-5" asp-for="@Model.FIERCE.DnServer" placeholder="10.0.0.1"/>  
                                         </div>
                                           <div class="form-group row">
                                             <div class="col-sm-4">
-                                                <label class="control-label">Scegli il SubDomain </label>
+                                                <label class="control-label">Scegli i SubDomains </label>
                                             </div>
-                                             <div class="col-sm-1"></div>
-                                            <input type="text" class="col-sm-5" asp-for="@Model.FIERCE.SubDomain" />  
+                                            <div class="col-sm-1"></div>
+                                            <input type="text" class="col-sm-5" asp-for="@Model.FIERCE.SubDomain" placeholder="separati da spazi, es: accounts admin sales" />  
                                         </div>
                                         <div class="col-sm-12">
                                             <hr/>
@@ -1772,17 +1757,26 @@
                                     <div class="col-sm-12">
                                         <h4>Tipi di enumerazione</h4>
                                         <hr />
+                                          <div class="form-group row">
+                                                        <div class="col-sm-6">
+                                                            <label class="control-label">
+                                                                <input type="checkbox" asp-for="@Model.OPENDOOR.AcceptCookies" /> AcceptCookies (--accept-cookies)
+                                                            </label>
+                                                        </div>
+                                                    </div>
                                         <div class="form-group row">
+                                            
                                             <div class="col-sm-5">
-                                                <label class="control-label"> Settaggio Delay</label>
+                                                <label class="control-label">Settaggio Delay tra richieste</label>
                                             </div>
 
                                             <input class="col-sm-5" type="number" asp-for="@Model.OPENDOOR.DelayO" />
                                             <div class="col-sm-3"></div>
                                         </div>
-                                        <div class="form-group row">
+                                         <div class="form-group row">
+                                            
                                             <div class="col-sm-5">
-                                                <label class="control-label"> Settaggio Timeout</label>
+                                                <label class="control-label">Settaggio Timeout delle richieste</label>
                                             </div>
 
                                             <input class="col-sm-5" type="number" asp-for="@Model.OPENDOOR.TimeoutO" />
@@ -1790,7 +1784,7 @@
                                         </div>
                                           <div class="form-group row">
                                             <div class="col-sm-5">
-                                                <label class="control-label"> Settaggio Porta</label>
+                                                <label class="control-label">Settaggio Porta</label>
                                             </div>
 
                                             <input class="col-sm-5" type="number" asp-for="@Model.OPENDOOR.PortaO" />
@@ -1804,22 +1798,17 @@
                                             <input class="col-sm-5" type="number" asp-for="@Model.OPENDOOR.RetriesO" />
                                             <div class="col-sm-3"></div>
                                         </div>
-                                        <div class="col-sm-12">
-                                                    <div class="form-group row">
-                                                        <div class="col-sm-6">
-                                                            <label class="control-label">
-                                                                <input type="checkbox" asp-for="@Model.OPENDOOR.AcceptCookies" /> AcceptCookies (--accept-cookies)
-                                                            </label>
-                                                        </div>
-                                                    </div>
+                                        
+                                       
+                                                  
                                                     <div class="form-group row">
                                             <div class="col-sm-4">
                                                 <label class="control-label">Scegli il metodo </label>
                                             </div>
                                              <div class="col-sm-1"></div>
-                                            <input type="text" class="col-sm-5" asp-for="@Model.OPENDOOR.Metodo" />  
+                                            <input type="text" class="col-sm-5" asp-for="@Model.OPENDOOR.Metodo" placeholder="HEAD GET o POST"/>  
                                         </div>  
-                                    </div>
+                                        </div>
                                    <div class="col-sm-12">
                                             <hr/>
                                             <div class="col-sm-5">
@@ -1902,7 +1891,7 @@
                                                 <label class="control-label">Scegli la/le porta/e </label>
                                             </div>
                                              <div class="col-sm-1"></div>
-                                            <input type="text" class="col-sm-5" asp-for="@Model.SUBLIST3R.PorteSUB" />  
+                                            <input type="text" class="col-sm-5" asp-for="@Model.SUBLIST3R.PorteSUB" placeholder="80,443"/>  
                                         </div>
                                         <div class="col-sm-12">
                                             <h4>
@@ -2033,8 +2022,7 @@
                                 <input type="hidden" asp-for="@Model.WASCAN.Applicazione" value="@webmva.Models.APPLICAZIONE.WASCAN" />
 <input type="hidden" asp-for="@Model.WASCAN.ID" />
                                   <div class="row panel panel-default panel-body">
-
-                                <div class="col-sm-12">
+<div class="col-sm-12">
                                     <div class="col-sm-7" style="margin:0 auto; float:none">
                                         <div class="form-group">
                                             <h4 asp-for="@(Model.WASCAN.Nome)">Nome Modulo</h4>
@@ -2095,6 +2083,35 @@
                                             </select>
                                         </div>
                                         <div class="form-group row">
+                                            <div class="col-sm-4">
+                                                <label class="control-label">Scegli gli extra headers</label>
+                                            </div>
+                                             <div class="col-sm-1"></div>
+                                            <input type="text" class="col-sm-5" asp-for="@Model.WASCAN.HeadersW" placeholder="Host: site.com"/>  
+                                        </div>  
+                                            <div class="form-group row">
+                                            <div class="col-sm-4">
+                                                <label class="control-label">Setta i parametri di autenticazione</label>
+                                            </div>
+                                             <div class="col-sm-1"></div>
+                                            <input type="text" class="col-sm-5" asp-for="@Model.WASCAN.AutenticazioneW" placeholder="user:pass" />  
+                                        </div>  
+                                        <div class="form-group row">
+                                            <div class="col-sm-4">
+                                                <label class="control-label">Setta i parametri dello User-Agent </label>
+                                            </div>
+                                             <div class="col-sm-1"></div>
+                                            <input type="text" class="col-sm-5" asp-for="@Model.WASCAN.UserAgentW" placeholder="Googlebot" />  
+                                        </div>  
+                                            <div class="form-group row">
+                                            <div class="col-sm-4">
+                                                <label class="control-label">Scegli i cookies </label>
+                                            </div>
+                                             <div class="col-sm-1"></div>
+                                            <input type="text" class="col-sm-5" asp-for="@Model.WASCAN.CookiesW" placeholder="test=demo;"/>  
+                                        </div> 
+                                           
+                                        <div class="form-group row">
                                             
                                             <div class="col-sm-5">
                                                 <label class="control-label"> Settaggio Timeout</label>
@@ -2116,14 +2133,14 @@
                                                     <div class="form-group row">
                                                         <div class="col-sm-6">
                                                             <label class="control-label">
-                                                                <input type="checkbox" asp-for="@Model.WASCAN.Fingerprint" /> Fingerprint (0)
+                                                                <input type="checkbox" asp-for="@Model.WASCAN.Fingerprint"/> Fingerprint (0)
                                                             </label>
                                                         </div>
                                                     </div>
                                                     <div class="form-group row">
                                                         <div class="col-sm-6">
                                                             <label class="control-label">
-                                                                <input type="checkbox" asp-for="@Model.WASCAN.Attacks" /> Attacks (1)
+                                                                <input type="checkbox" asp-for="@Model.WASCAN.Attacks"  /> Attacks (1)
                                                             </label>
                                                         </div>
                                                     </div>
@@ -2134,14 +2151,14 @@
                                                <div class="form-group row">
                                                         <div class="col-sm-6">
                                                             <label class="control-label">
-                                                                <input type="checkbox" asp-for="@Model.WASCAN.Audit" /> Audit (2)
+                                                                <input type="checkbox" asp-for="@Model.WASCAN.Audit"  /> Audit (2)
                                                             </label>
                                                         </div>
                                                     </div>
                                                     <div class="form-group row">
                                                         <div class="col-sm-6">
                                                             <label class="control-label">
-                                                                <input type="checkbox" asp-for="@Model.WASCAN.Bruteforce" />  Bruteforce (3)
+                                                                <input type="checkbox" asp-for="@Model.WASCAN.Bruteforce"  />  Bruteforce (3)
                                                             </label>
                                                         </div>
                                                     </div>
@@ -2155,9 +2172,12 @@
 
                                             </div>
                                             </div>
+                                            </div>
+                                            </div>
 
                                         
                                    
+                                
                                    <div class="col-sm-12">
                                             <hr/>
                                             <div class="col-sm-5">
@@ -2175,8 +2195,7 @@
                                         </div>
                                         </div>
                                 </div>
-</div>
-</div>
+                            </div>
                             </form>
 
 }
@@ -2203,6 +2222,9 @@
                                        <div class="col-sm-12">
                                             <hr/>
                                             <div class="col-sm-5">
+                                            <div clas="form-group row" style="color:red">
+                                                    <span class="glyphicon glyphicon-eye-open" style="font-size:90"></span>&nbsp;Non restituisce un report!
+                                                </div>
                                                 <div clas="form-group row">
                                                  <a href="https://github.com/codingo/NoSQLMap"target="_blank"><span class="glyphicon glyphicon-info-sign" style="font-size:90%"></span>
                                         consulta il documentazione di NoSQLMap </a>
@@ -2275,14 +2297,14 @@
                                                 <label class="control-label">Scegli SID</label>
                                             </div>
                                              <div class="col-sm-1"></div>
-                                            <input type="text" class="col-sm-5" asp-for="@Model.ODAT.SID">
+                                            <input type="text" class="col-sm-5" asp-for="@Model.ODAT.SID" placeholder="ORCL">
                                         </div>
                                         <div class="form-group row">
                                             <div class="col-sm-4">
                                                 <label class="control-label">Setta Utente</label>
                                             </div>
                                              <div class="col-sm-1"></div>
-                                            <input type="text" class="col-sm-5" asp-for="@Model.ODAT.UtenteOdat">
+                                            <input type="text" class="col-sm-5" asp-for="@Model.ODAT.UtenteOdat" placeholder="SYS">
                                         </div>
                                          <div class="form-group row">
                                             <div class="col-sm-4">
@@ -2421,7 +2443,7 @@
                                         <div class="form-group row">
                                             <div class="col-sm-5">
                                                 <label class="control-label"> Settaggio Page</label>
-                                            </div>
+                                          </div>
                                             <input class="col-sm-5" type="number" asp-for="@Model.DNSENUM.PagesDNS" />
                                             <div class="col-sm-3"></div>
                                         </div>
@@ -2439,7 +2461,7 @@
                                             <input class="col-sm-5" type="number" asp-for="@Model.DNSENUM.ThreadsDNS" />
                                             <div class="col-sm-3"></div>
                                         </div>
-                                       <div class="col-sm-12">
+                                        <div class="col-sm-12">
                                             <div class="col-sm-6">
                                         <div class="form-group row">
                                                      <div class="col-sm-6">

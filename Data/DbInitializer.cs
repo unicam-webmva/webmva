@@ -19,6 +19,24 @@ namespace webmva.Data
             new ModuloNMAP{Applicazione = APPLICAZIONE.NMAP,Nome="Scan Intenso",Tempo = TEMPI.QUATTRO, AllDetections=true, IncreaseVerbosity=true }, // -T4 -A -v
             new ModuloNMAP{Applicazione = APPLICAZIONE.NMAP,Nome="Scan Porte UDP", TCPScan=TCPSCAN.SYN, NonTCPScan=NONTCPSCAN.UDP}, //-sS -sU
             new ModuloNMAP{Applicazione = APPLICAZIONE.NMAP,Nome="Scan All TCP", ListSpecificPort="1-65535"}, // -p 1-65535
+            new ModuloWAPITI{Applicazione = APPLICAZIONE.WAPITI, Nome="Scan Base"},
+            new ModuloOPENDOOR{Applicazione = APPLICAZIONE.OPENDOOR, Nome="Scan Base"},
+            new ModuloWASCAN{Applicazione = APPLICAZIONE.WASCAN, Nome="Scan Base"},
+            new ModuloDROOPE{Applicazione = APPLICAZIONE.DROOPE, Nome="Scan generico (cerca cms automaticamente)"},
+            new ModuloDROOPE{Applicazione = APPLICAZIONE.DROOPE, Nome="Scan Drupal", Cms=CMS.DRUPAL},
+            new ModuloWPSCAN{Applicazione = APPLICAZIONE.WPSCAN, Nome="Scan base non intrusivo"},
+            new ModuloJOOMSCAN{Applicazione = APPLICAZIONE.JOOMSCAN, Nome="Scan base"},
+            new ModuloDNSRECON{Applicazione = APPLICAZIONE.DNSRECON, Nome="Scan base"},
+            new ModuloDNSENUM{Applicazione = APPLICAZIONE.DNSENUM, Nome="Scan base"},
+            new ModuloFIERCE{Applicazione = APPLICAZIONE.FIERCE, Nome="Scan base"},
+            new ModuloINFOGA{Applicazione = APPLICAZIONE.INFOGA, Nome="Scan base"},
+            new ModuloINFOGAEMAIL{Applicazione = APPLICAZIONE.INFOGAEMAIL, Nome="Scan Email (controlla breach)", Breach=true},
+            new ModuloSUBLIST3R{Applicazione = APPLICAZIONE.SUBLIST3R, Nome="Scan base", All=true},
+            new ModuloSQLMAP{Applicazione = APPLICAZIONE.SQLMAP, Nome="Scan base"},
+            new ModuloNOSQL{Applicazione = APPLICAZIONE.NOSQL, Nome="NoSQL"},
+            new ModuloODAT{Applicazione = APPLICAZIONE.ODAT, Nome="Scan base"},
+            new ModuloWIFITE{Applicazione = APPLICAZIONE.WIFITE, Nome="Scan base (interattivo)"}
+
             //new ModuloNESSUS{Applicazione = APPLICAZIONE.NESSUS,Nome="TestNessus", JSON="prova"}
             };
             foreach (Modulo m in moduli)
@@ -40,10 +58,10 @@ namespace webmva.Data
             { return; }
             var modProg = new ModuliProgetto[]
             {
-            new ModuliProgetto{ModuloID=1,ProgettoID=1},
-            new ModuliProgetto{ModuloID=2,ProgettoID=1},
-            new ModuliProgetto{ModuloID=3,ProgettoID=1},
-            new ModuliProgetto{ModuloID=2,ProgettoID=2},
+            new ModuliProgetto{ModuloID=1,ProgettoID=1, Target = "www.google.it"},
+            new ModuliProgetto{ModuloID=2,ProgettoID=1, Target = "www.google.it"},
+            new ModuliProgetto{ModuloID=3,ProgettoID=2, Target = "www.google.it"},
+            new ModuliProgetto{ModuloID=2,ProgettoID=2, Target = "www.google.it"},
             };
             foreach (ModuliProgetto mp in modProg)
             { context.ModuliProgetto.Add(mp); }
@@ -52,3 +70,4 @@ namespace webmva.Data
         }
     }
 }
+
