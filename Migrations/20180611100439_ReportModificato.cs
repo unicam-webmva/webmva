@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace webmva.Migrations
 {
-    public partial class ModificatoProgetto : Migration
+    public partial class ReportModificato : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -273,7 +273,8 @@ namespace webmva.Migrations
                     ID = table.Column<int>(nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
                     Data = table.Column<DateTime>(nullable: false),
-                    ProgettoID = table.Column<int>(nullable: false)
+                    ProgettoID = table.Column<int>(nullable: false),
+                    isImportati = table.Column<bool>(nullable: false)
                 },
                 constraints: table =>
                 {

@@ -12,6 +12,8 @@ using webmva.Models;
 using webmva.ViewModels;
 using webmva.Helpers;
 using Microsoft.Extensions.FileProviders;
+using Microsoft.AspNetCore.Http;
+using System.IO.Compression;
 
 namespace webmva.Controllers
 {
@@ -26,7 +28,7 @@ namespace webmva.Controllers
         public async Task<IActionResult> Index()
         {
             return View(await _context.Progetti
-            .Include(x=>x.ListaReport)
+            .Include(x => x.ListaReport)
             .AsNoTracking()
             .ToListAsync());
         }
@@ -37,8 +39,8 @@ namespace webmva.Controllers
                 return NotFound();
             }
             var lista = await _context.Report
-                .Where(m=>m.ProgettoID==id)
-                .Include(p=>p.Progetto)
+                .Where(m => m.ProgettoID == id)
+                .Include(p => p.Progetto)
                 .AsNoTracking()
                 .ToListAsync();
             return View(lista);
@@ -50,82 +52,253 @@ namespace webmva.Controllers
                 return NotFound();
             }
             var lista = await _context.Report
-                .Where(m=>m.ProgettoID==id)
-                .Include(p=>p.Progetto)
-                .Include(m=>m.Percorsi)
+                .Where(m => m.ProgettoID == id)
+                .Include(p => p.Progetto)
+                .Include(m => m.Percorsi)
                 .AsNoTracking()
                 .ToListAsync();
             return View(lista);
         }
-        public async Task<IActionResult> Details(int? id){
-{
-            if (id == null)
+        public async Task<IActionResult> Details(int? id)
+        {
             {
-                return NotFound();
-            }
+                if (id == null)
+                {
+                    return NotFound();
+                }
 
-            var report = await _context.Report
-                .Include(x => x.Progetto)
-                    .ThenInclude(ll => ll.ModuliProgetto)
-                        .ThenInclude(mm=>mm.Modulo)
-                .Include(x=>x.Percorsi)
-                .AsNoTracking()
-                .SingleOrDefaultAsync(r => r.ID == id);
-            if (report == null)
-            {
-                return NotFound();
+                var report = await _context.Report
+                    .Include(x => x.Progetto)
+                        .ThenInclude(ll => ll.ModuliProgetto)
+                            .ThenInclude(mm => mm.Modulo)
+                    .Include(x => x.Percorsi)
+                    .AsNoTracking()
+                    .SingleOrDefaultAsync(r => r.ID == id);
+                if (report == null)
+                {
+                    return NotFound();
+                }
+                ViewData["Lista"] = report.Percorsi.ToList();
+                return View(report);
             }
-            ViewData["Lista"] = report.Percorsi.ToList();
-            return View(report);
-        }
         }
 
         public IActionResult Error()
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
-       [HttpPost]
-       public FileResult Download(string filePath)
+        [HttpPost]
+        public FileResult Download(string filePath)
         {
-            if(string.IsNullOrEmpty(filePath)){return null;}
+            if (string.IsNullOrEmpty(filePath)) { return null; }
             var dir = Path.Combine(Globals.CartellaWEBMVA, "wwwroot", Path.GetDirectoryName(filePath));
             var fileName = Path.GetFileName(filePath);
             var extension = Path.GetExtension(fileName).ToLower();
             IFileProvider provider = new PhysicalFileProvider(dir);
             IFileInfo fileInfo = provider.GetFileInfo(fileName);
             var readStream = fileInfo.CreateReadStream();
-            string mimetype="text/plain";
-            switch(extension){
+            string mimetype = "text/plain";
+            switch (extension)
+            {
                 case ".html":
-                    mimetype="text/html";
+                    mimetype = "text/html";
                     break;
                 case ".xml":
-                    mimetype="application/xml";
+                    mimetype = "application/xml";
                     break;
                 default: break;
             }
             return File(readStream, mimetype, fileName);
         }
-        [HttpPost]
-       public FileResult DownloadPDF(string filePath)
+        private FileResult DownloadPDF(string filePath)
         {
-            if(string.IsNullOrEmpty(filePath)){return null;}
+            if (string.IsNullOrEmpty(filePath)) { return null; }
             var dir = Path.Combine(Globals.CartellaWEBMVA, "wwwroot", Path.GetDirectoryName(filePath));
             var fileName = Path.GetFileName(filePath);
             var extension = Path.GetExtension(fileName).ToLower();
 
             string percorsoAssolutoPDF;
-            if(extension.Equals(".xml")) percorsoAssolutoPDF = Globals.ConvertiReportXML(Path.Combine(dir,fileName));
-            else if(extension.Equals(".txt")) percorsoAssolutoPDF = Globals.ConvertiReportTXT(Path.Combine(dir,fileName));
+            if (extension.Equals(".xml")) percorsoAssolutoPDF = Globals.ConvertiReportXML(Path.Combine(dir, fileName));
+            else if (extension.Equals(".txt")) percorsoAssolutoPDF = Globals.ConvertiReportTXT(Path.Combine(dir, fileName));
             else return null; //per ora
-            fileName=Path.GetFileName(percorsoAssolutoPDF);
+            fileName = Path.GetFileName(percorsoAssolutoPDF);
             IFileProvider provider = new PhysicalFileProvider(dir);
             IFileInfo fileInfo = provider.GetFileInfo(fileName);
-            
+
             var readStream = fileInfo.CreateReadStream();
-            string mimetype="application/pdf";
-            
+            string mimetype = "application/pdf";
+
             return File(readStream, mimetype, fileName);
+        }
+        [HttpPost]
+        public async Task<IActionResult> DownloadUnico(string[] check, string[] pdf, string[] nativo, string cosa, string filePath, string nomeProgetto)
+        {
+            if (string.IsNullOrEmpty(cosa)) return Error();
+            if (cosa.Equals("unico"))
+            {
+                if (check == null || string.IsNullOrEmpty(check[0])) return Error();
+                // converto tutti i report in pdf (se già non lo sono) e li accorpo, poi restituisco l'oggetto risultante
+                var collezionePercorsi = await _context.PercorsiReport.ToListAsync();
+                string[] percorsiPdf = new string[check.Length];
+                for (int i = 0; i < check.Length; i++)
+                {
+                    var percorso = collezionePercorsi.SingleOrDefault(x => x.ID == int.Parse(check[i]));
+                    string extension = Path.GetExtension(percorso.Percorso).ToLower();
+                    if (extension.Equals(".txt") || extension.Equals(".html"))
+                    {
+                        percorsiPdf[i] = Globals.ConvertiReportTXT(Path.Combine(Globals.CartellaWEBMVA, "wwwroot", "Report", percorso.Percorso));
+
+                    }
+                    else if (extension.Equals(".xml"))
+                    {
+                        percorsiPdf[i] = Globals.ConvertiReportXML(Path.Combine(Globals.CartellaWEBMVA, "wwwroot", "Report", percorso.Percorso));
+                    }
+                    else if (extension.Equals(".pdf"))
+                    {
+                        percorsiPdf[i] = Path.Combine(Globals.CartellaWEBMVA, "wwwroot", "Report", percorso.Percorso);
+                    }
+                    List<string> listaPercorsi = percorsiPdf.ToList();
+                    string percorsoPdfUnico = Path.Combine(Globals.CartellaWEBMVA, "wwwroot", "Report", nomeProgetto, nomeProgetto + ".pdf");
+                    if (Globals.MergePDF(percorsoPdfUnico, listaPercorsi))
+                    {
+                        var fileName = Path.GetFileName(percorsoPdfUnico);
+                        IFileProvider provider = new PhysicalFileProvider(Path.GetDirectoryName(percorsoPdfUnico));
+                        IFileInfo fileInfo = provider.GetFileInfo(fileName);
+
+                        var readStream = fileInfo.CreateReadStream();
+                        string mimetype = "application/pdf";
+
+                        return File(readStream, mimetype, fileName);
+                    }
+                }
+
+            }
+            else if (cosa.Equals("zip"))
+            {
+                //https://stackoverflow.com/questions/43281554/create-zip-in-net-core-from-urls-without-downloading-on-server
+                if (string.IsNullOrEmpty(nativo[0]) && string.IsNullOrEmpty(pdf[0])) return Error();
+                // prendo i report selezionati, li zippo e restituisco l'oggetto risultante
+                string[] percorsiPdf = new string[pdf.Length];
+                var collezionePercorsi = await _context.PercorsiReport.ToListAsync();
+
+                List<string> listaPercorsi =new List<string>();
+                foreach (string str in nativo) listaPercorsi.Add(Path.Combine(Globals.CartellaWEBMVA, "wwwroot", str));
+                for (int i = 0; i < pdf.Length; i++)
+                {
+                    var percorso = collezionePercorsi.SingleOrDefault(x => "Report/"+x.Percorso == pdf[i]);
+                    string extension = Path.GetExtension(percorso.Percorso).ToLower();
+                    if (extension.Equals(".txt") || extension.Equals(".html"))
+                    {
+                        percorsiPdf[i] = Globals.ConvertiReportTXT(Path.Combine(Globals.CartellaWEBMVA, "wwwroot", "Report", percorso.Percorso));
+
+                    }
+                    else if (extension.Equals(".xml"))
+                    {
+                        percorsiPdf[i] = Globals.ConvertiReportXML(Path.Combine(Globals.CartellaWEBMVA, "wwwroot", "Report", percorso.Percorso));
+                    }
+                    else if (extension.Equals(".pdf"))
+                    {
+                        percorsiPdf[i] = Path.Combine(Globals.CartellaWEBMVA, "wwwroot", "Report", percorso.Percorso);
+                    }
+                    listaPercorsi.AddRange(percorsiPdf.ToList());
+
+                }
+var path = Path.Combine(Globals.CartellaWEBMVA, "wwwroot", "Report", nomeProgetto, "Report.zip");
+                using (var fs = new FileStream(path, FileMode.Create))
+                {
+
+                    using (ZipArchive zip = new ZipArchive(fs, ZipArchiveMode.Create))
+                    {
+
+                        foreach (string item in listaPercorsi)
+                        {
+                            IFileProvider provider = new PhysicalFileProvider(Path.GetDirectoryName(item));
+                            IFileInfo fileInfo = provider.GetFileInfo(Path.GetFileName(item));
+
+                            var readStream = fileInfo.CreateReadStream();
+                            ZipArchiveEntry entry = zip.CreateEntry(Path.GetFileName(item));
+                            using (Stream entryStream = entry.Open())
+                            {
+
+                                readStream.CopyTo(entryStream);
+                            }
+                        }
+
+                        IFileProvider provider2 = new PhysicalFileProvider(Path.GetDirectoryName(path));
+                            IFileInfo fileInfo2 = provider2.GetFileInfo(Path.GetFileName(path));
+                        return File(fileInfo2.CreateReadStream(), "application/zip", "Report.zip");
+
+                    }
+                }
+
+
+
+            }
+            else if (cosa.Equals("singolo"))
+            {
+                // download del singolo report
+                Download(filePath);
+            }
+            return Error();
+        }
+        private FileResult DownloadZip(string[] nativo, string[] pdf)
+        {
+            return null;
+        }
+        [HttpPost]
+        public async Task<IActionResult> Importa(IFormFile file, int idProgetto, int reportID)
+        {
+            if (file == null || file.Length == 0)
+                return Content("file not selected");
+            int reportIDDentro;
+            if (reportID == -1)
+            {
+                // non esiste il report degli importati, lo creo
+                Report report = new Report
+                {
+                    ProgettoID = idProgetto,
+                    isImportati = true
+                };
+                _context.Report.Add(report);
+                try
+                {
+                    await _context.SaveChangesAsync();
+                }
+                catch (DbUpdateException /* ex */)
+                {
+                    //Log the error (uncomment ex variable name and write a log.)
+                    ModelState.AddModelError("", "Unable to save changes. " +
+                        "Try again, and if the problem persists, " +
+                        "see your system administrator.");
+                }
+                reportIDDentro = _context.Report.SingleOrDefault(x => x.ProgettoID == idProgetto && x.isImportati == true).ID;
+            }
+            else reportIDDentro = reportID;
+            string nomeProgetto = _context.Progetti.SingleOrDefault(x => x.ID == idProgetto).Nome;
+            var path = Path.Combine(
+                        Globals.CreaCartellaImportati(nomeProgetto),
+                        file.FileName);
+
+            string percorsoPerReport = Path.Combine(nomeProgetto, "Importati", Path.GetFileName(path));
+            using (var stream = new FileStream(path, FileMode.Create))
+            {
+                await file.CopyToAsync(stream);
+            }
+            PercorsiReport pr = new PercorsiReport { ReportID = reportIDDentro, Percorso = percorsoPerReport };
+            _context.PercorsiReport.Add(pr);
+            try
+            {
+                await _context.SaveChangesAsync();
+            }
+            catch (DbUpdateException /* ex */)
+            {
+                //Log the error (uncomment ex variable name and write a log.)
+                ModelState.AddModelError("", "Unable to save changes. " +
+                    "Try again, and if the problem persists, " +
+                    "see your system administrator.");
+            }
+
+            return Redirect(Url.Action($"Tutti/{idProgetto}", "Report").Replace("%2F", "/"));
         }
     }
 }

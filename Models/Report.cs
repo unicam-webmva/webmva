@@ -19,6 +19,11 @@ namespace webmva.Models
         public int ProgettoID { get; set; }
         public Progetto Progetto { get; set; }
         public IEnumerable<PercorsiReport> Percorsi { get; set; }
+        private bool _isImportati = false;
+        public bool isImportati {
+            get {return _isImportati;}
+            set{_isImportati=value;}
+        }
 
     }
 }

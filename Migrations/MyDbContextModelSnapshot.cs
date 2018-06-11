@@ -101,6 +101,8 @@ namespace webmva.Migrations
 
                     b.Property<int>("ProgettoID");
 
+                    b.Property<bool>("isImportati");
+
                     b.HasKey("ID");
 
                     b.HasIndex("ProgettoID");

@@ -11,15 +11,15 @@ using PdfSharp.Pdf.IO;
 using PdfSharp;
 using webmva.Helpers;
 using System.Drawing;
-using TuesPechkin;
 using System.Drawing.Printing;
+using System.Linq;
+using Shark.PdfConvert;
 
 namespace webmva
 {
     public static class Globals
     {
         public static readonly PlatformID SistemaOperativoAttuale = Environment.OSVersion.Platform;
-        public static readonly string CartellaTuttiProgetti = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Personal), "webmvaProjects");
         public static string CartellaWEBMVA;
 
 
@@ -82,7 +82,12 @@ namespace webmva
             Dictionary<string,string> varsPdf = GetPercorsoPDF(percorsoXMLAssoluto);
             string percorsoPdf = varsPdf.GetValueOrDefault("dove");
             string cosa = varsPdf.GetValueOrDefault("cosa");
-
+            if(cosa.Equals("nmap")){
+                // Tolgo la dicitura DOCTYPE perché sennò FOP sclera male
+                System.IO.File.WriteAllLines(percorsoXMLAssoluto, 
+                    System.IO.File.ReadLines(percorsoXMLAssoluto)
+                        .Where(l => !l.Contains("<!DOCTYPE")).ToList());
+            }
             string comando = $"fop -xml {percorsoXMLAssoluto} -xsl {cosa}-fo.xsl -pdf {percorsoPdf}";
             comando.EseguiCLI(Path.Combine(CartellaWEBMVA, "Script", "fop"));
             return percorsoPdf;
@@ -104,40 +109,15 @@ namespace webmva
         internal static string ConvertiReportTXT(string percorsoTXTAssoluto)
         {
             if (string.IsNullOrEmpty(percorsoTXTAssoluto)) return string.Empty;
-            
-            string percorsoPdf = percorsoTXTAssoluto.Replace(".txt", ".pdf");
-            string filename = Path.GetFileName(percorsoPdf);
-            string[] pezzi = filename.Split('_');
+            var extension = Path.GetExtension(percorsoTXTAssoluto).ToLower();
+            string content = System.IO.File.ReadAllText(percorsoTXTAssoluto);
+            string[] pezzi = Path.GetFileName(percorsoTXTAssoluto).Split('_');
             string data = DateTime.ParseExact(pezzi[0]+pezzi[1], "yyyyMMddHHmmss",
                                        System.Globalization.CultureInfo.InvariantCulture).ToString("dd MMMM yyyy HH:mm:ss");
             string cosa = pezzi[2];
-            string content = System.IO.File.ReadAllText(percorsoPdf);
-            StringBuilder sb = new StringBuilder();
-            sb.Append($"<html><body><h3>Report di {cosa}</h3><h5>Eseguito in data {data}</h5><p>");
-            sb.Append(content);
-            sb.Append("<p></body></html>");
-            content = sb.ToString();
-            var document = new HtmlToPdfDocument
-            {
-                GlobalSettings =
-                {
-                    ProduceOutline = true,
-                    DocumentTitle = "Pretty Websites",
-                    PaperSize = new PechkinPaperSize("210mm", "297mm"), // Implicit conversion to PechkinPaperSize
-                    Margins =
-                    {
-                        All = 1.375,
-                        Unit = Unit.Centimeters
-		            }
-	            },
-                Objects = {
-                    new ObjectSettings { HtmlText = content },
-                }
-            };
-            IConverter converter = new ThreadSafeConverter(new PdfToolset(new StaticDeployment(percorsoPdf)));
-
-            byte[] result = converter.Convert(document);
-            File.WriteAllBytes(percorsoPdf, result);
+            string percorsoPdf = percorsoTXTAssoluto.Substring(0, percorsoTXTAssoluto.LastIndexOf('.')) + ".pdf";
+            string comando = "wkhtmltopdf " + percorsoTXTAssoluto + " "+ percorsoPdf;
+            comando.EseguiCLI(Globals.CartellaWEBMVA);
             return percorsoPdf;
         }
 
@@ -152,6 +132,18 @@ namespace webmva
             if (!Directory.Exists(cartellaConData))
                 Directory.CreateDirectory(cartellaConData);
             return cartellaConData;
+        }
+        public static string CreaCartellaImportati(string cartellaProgetto)
+        {
+            // mi assicuro che la cartella dedicata al progetto esista
+            // altrimenti la creo
+            string cartellaAssoluta = Path.Combine(CartellaWEBMVA, "wwwroot", "Report", cartellaProgetto);
+            if (!Directory.Exists(cartellaAssoluta))
+                Directory.CreateDirectory(cartellaAssoluta);
+            string cartellaImportati = Path.Combine(cartellaAssoluta, "Importati");
+            if (!Directory.Exists(cartellaImportati))
+                Directory.CreateDirectory(cartellaImportati);
+            return cartellaImportati;
         }
         // https://stackoverflow.com/questions/34638823/store-complex-object-in-tempdata
         public static void Put<T>(this ITempDataDictionary tempData, string key, T value) where T : class

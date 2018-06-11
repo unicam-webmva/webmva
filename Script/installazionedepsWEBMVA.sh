@@ -181,7 +181,38 @@ echo "Fine installazione WPScan."
 echo " "
 echo " "
 echo " "
+echo "-------------------------------------------------------"
+echo "INSTALLAZIONE WKHTMLTOPDF"
+echo "-------------------------------------------------------"
 
+if hash wkhtmltopdf >/dev/null 2>&1 ; 
+then
+	echo "wkhtmltopdf è già installato.";
+else {
+	echo "Sto installando wkhtmltopdf..."
+	apt-get install xvfb libfontconfig wkhtmltopdf >/dev/null
+	echo "Fine installazione wkhtmltopdf."
+	}
+fi
+echo " "
+echo " "
+echo " "
+echo "-------------------------------------------------------"
+echo "INSTALLAZIONE FOP"
+echo "-------------------------------------------------------"
+
+if hash fop >/dev/null 2>&1 ; 
+then
+	echo "fop è già installato.";
+else {
+	echo "Sto installando fop..."
+	apt-get install fop >/dev/null
+	echo "Fine installazione fop."
+	}
+fi
+echo " "
+echo " "
+echo " "
 echo "-------------------------------------------------------"
 echo "INSTALLAZIONE ODAT"
 echo "-------------------------------------------------------"

@@ -13,8 +13,8 @@ using webmva.Models;
 namespace webmva.Migrations
 {
     [DbContext(typeof(MyDbContext))]
-    [Migration("20180607130832_ModificatoProgetto")]
-    partial class ModificatoProgetto
+    [Migration("20180611100439_ReportModificato")]
+    partial class ReportModificato
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -101,6 +101,8 @@ namespace webmva.Migrations
                     b.Property<DateTime>("Data");
 
                     b.Property<int>("ProgettoID");
+
+                    b.Property<bool>("isImportati");
 
                     b.HasKey("ID");
 

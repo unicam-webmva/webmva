@@ -32,6 +32,7 @@ if ! hash bundle >/dev/null 2>&1 ; then MANCANTI="${MANCANTI}wpscan " ;
 else  { bundle check --gemfile=/home/rick/webmva/Programmi/wpscan/Gemfile >/dev/null ; 
 if [[ ! $0 -eq 0 ]] ; then MANCANTI="${MANCANTI}wpscan " ; fi; } fi ;
 
+if ! hash wkhtmltopdf >/dev/null 2>&1 ; then MANCANTI="${MANCANTI}wkhtmltopdf " ; 
 
 EXIT=0
 if [[ ${MANCANTI} -eq "" ]] ; then EXIT=1 ; else EXIT=0 ; fi

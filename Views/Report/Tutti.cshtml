@@ -1,50 +1,122 @@
 @model ICollection<webmva.Models.Report>
 
-@{ ViewData["Title"] = "Report"; }
+@{ ViewData["Title"] = "Report"; 
+
+Report importati = @Model.SingleOrDefault(x=>x.isImportati == true);
+int idImportati=-1;
+if (importati != null) idImportati = importati.ID;
+}
 
 <div class="container">
-    <h2><em>Tutti i report del progetto @Model.ElementAt(0).Progetto.Nome</em></h2>
-    <div class="panel panel-default col-lg-10 col-md-offset-1">
+    <h2><em>Tutti i report del progetto: @Model.ElementAt(0).Progetto.Nome</em></h2>
+    
+    <div class="panel panel-default col-lg-10 col-lg-offset-1">
+        <div class="col-lg-12 text-right">
+    <form asp-action="Importa" enctype="multipart/form-data">
+        <input type="file" id="file" name="file" value="Sfoglia..." accept=".pdf,application/pdf" style="display:inline-block; margin-top:2%"/>
+        <input type="submit" asp-action="Importa" asp-route-idProgetto="@Model.ElementAt(0).ProgettoID" asp-route-reportID="@idImportati" value="Importa" style="display:inline-block"/>
+    </form>
+    </div>
             <table class="table">
                 <div class="method">
                    <thead>
                         <tr>
-                            <th> <input type="checkbox" name="selezionati" /></th>
+                            <th> <div style="font-size=4pt;"><h6><strong>PDF unico</strong> </h6></div><input type="checkbox" name="selezionaTutto" onclick="SelezTT()"/></th>
                           
                             <th>
                                 Percorso
                             </th>
                             
-                            <th>Scarica nativo </th>
-                            <th>Scarica pdf</th>
+                            <th class="text-center">Scarica nativo </th>
+                            <th class="text-center">Scarica pdf</th>
+                            <th class="text-center"></th>
                         </tr>
                     </thead>
                 </div>
-            <tbody>
-@foreach(var itm in @Model)
-{
-
-                    @for(int i=0;i < itm.Percorsi.Count(); i++)
-                    {
-                        <tr>
-                            <td>
-                               <!--<input type="checkbox" value="@itm.Percorsi.ElementAt(0).ID" name="selezionati" />-->
+                <tbody>
+                    
+                    <form asp-action="DownloadUnico">
+            @foreach(var itm in @Model)
+            {
+                
+                @for(int i=0;i < itm.Percorsi.Count(); i++)
+                {
+                    <tr>
+                    
+                        <td>
+                        
+                        <input type="checkbox" value="@itm.Percorsi.ElementAt(i).ID" name="check" />
+                        
+                        </td>
+                        <td>
+                        
+                                <input type="submit" asp-action="Download" asp-route-cosa="singolo" asp-route-filePath="Report/@itm.Percorsi.ElementAt(i).Percorso" value="@itm.Percorsi.ElementAt(i).Percorso" class="btn btn-link">
+                        </td>
+                            
+                        
+                            <td class="text-center">
+                                <input type="checkbox" value="Report/@itm.Percorsi.ElementAt(i).Percorso" name="nativo" />
                             </td>
-                            <td>
-                              @Html.Raw(itm.Percorsi.ElementAt(0).Percorso)
+                            <td class="text-center">
+                                <input type="checkbox" value="Report/@itm.Percorsi.ElementAt(i).Percorso" name="pdf" />
+                            </td>  
+                            <td class="text-center">
+                                <a >Cancella </a>
                             </td>
-                            <td>
-                                <div class="col-sm-8 col-sm-offset-6">
-                                <form asp-action="Download">
-                                    <input type="submit" value="Scarica" asp-action="Download" asp-route-filePath="Report/@itm.Percorsi.ElementAt(0).Percorso" class="btn btn-default" />
-                                </form>
-                                </div>
-                            </td>
-
-                        </tr>
-                    }
-}
-</tbody>
-            </table>
-        </div>
+                            </tr>
+                }
+            }
+                <input type="submit" asp-action="DownloadUnico" asp-route-cosa="unico" asp-route-nomeProgetto="@Model.ElementAt(0).Progetto.Nome" class="btn btn-info" value="Scarica tutto in PDF" style="position:fixed;width:150px;height:40px;bottom:40px;left:25px;" />&nbsp;&nbsp; 
+                    
+                <input type="submit" asp-action="DownloadUnico" asp-route-cosa="zip" asp-route-nomeProgetto="@Model.ElementAt(0).Progetto.Nome" class="btn btn-info" value="Scarica ZIP" style="position:fixed;width:100px;height:40px;bottom:40px;right:45px;" />&nbsp;&nbsp; 
+                        </form>
+            
+            </tbody>
+        </table>
+    </div>
 </div>
+@section scripts{
+	        <script>
+	
+	    function SelezTT(){
+	      $('input[name=selezionaTutto]').change(
+	        function(){
+	            if( $('input[name=selezionaTutto]').prop('checked')){
+	                var modulo = $('input[name=check]').each(function(index, element){
+	                    $(element).prop('checked', true);
+	                    console.log(index);
+	                   
+	                })
+	               
+	            }
+	            else{
+	                var modulo = $('input[name=check]').each(function(index, element){
+	                    $(element).prop('checked', false);
+	  
+	                })
+	                
+	            }
+	        });
+	        
+	        
+	   };
+	
+	$(function(){
+	    var tutticheck=true;
+	    $('input[name=check]').change(
+	        function(){
+	            var check=$('input[name=check]');
+	        for(i=0; i<check.length; i++){
+	        if(!check[i].checked) {
+	            tutticheck=false;
+	            $('input[name=selezionaTutto]').prop('checked', false); 
+	            break;
+	        } else tutticheck=true;
+	        if(tutticheck)
+	        $('input[name=selezionaTutto]').prop('checked', true);
+	    }
+	        }
+	    ).change();
+	    });
+	        </script> }
+

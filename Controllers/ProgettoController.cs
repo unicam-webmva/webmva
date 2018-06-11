@@ -382,9 +382,6 @@ namespace webmva.Controllers
                 string comando = $"{mod.Comando} -oX {nomeFile}.xml --webxml {target}";
                 var percorsoFile = Path.Combine(cartella, nomeFile+".xml");
                 percorsi.Add(percorsoFile);
-                // Tolgo la dicitura DOCTYPE perché sennò FOP sclera male
-                System.IO.File.WriteAllLines(percorsoFile, 
-                    System.IO.File.ReadLines(percorsoFile).Where(l => !l.Contains("<DOCTYPE")).ToList());
                 return comando;
             }
             if(mod is ModuloNESSUS || mod is ModuloOPENVAS){
@@ -438,8 +435,8 @@ namespace webmva.Controllers
             if(mod is ModuloWAPITI)
             {
                 string percorsoExec = Path.Combine(Globals.CartellaWEBMVA, "Programmi", "wapiti");
-                string comando = $"python3 {percorsoExec}/{mod.Comando} -u {target} -f html -o {nomeFile}.html";
-                percorsi.Add(Path.Combine(cartella, nomeFile+".html"));
+                string comando = $"python3 {percorsoExec}/{mod.Comando} -u {target} -f txt -o {nomeFile}.txt";
+                percorsi.Add(Path.Combine(cartella, nomeFile+".txt"));
                 return comando;
             }
              if(mod is ModuloOPENDOOR)
