@@ -14,19 +14,8 @@ namespace webmva
 {
     public class Program
     {
-        private static void CreaCartellaProgetti(){
-            if(!Directory.Exists(Globals.CartellaTuttiProgetti))
-            {
-                // Se sono qui la cartella che conterrà tutti i progetti ancora non esiste
-                // Quindi la creo
-                Directory.CreateDirectory(Globals.CartellaTuttiProgetti);
-            }
-        }
         public static void Main(string[] args)
         {
-            // Mi assicuro che la cartella dove risiederanno
-            // i report dei Progetti esista
-            CreaCartellaProgetti();
             var host = BuildWebHost(args);
             using (var scope = host.Services.CreateScope())
             {

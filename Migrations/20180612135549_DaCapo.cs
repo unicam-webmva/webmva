@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace webmva.Migrations
 {
-    public partial class CorrettoWASCAN : Migration
+    public partial class DaCapo : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
