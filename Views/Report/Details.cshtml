@@ -1,20 +1,22 @@
 @model webmva.Models.Report
 
-@{ ViewData["Title"] = "Report";
-List<webmva.Models.PercorsiReport> lista = ViewBag.Lista; }
+@{ ViewData["Title"] = "Report"; 
+}
 
 <div class="container">
-    <form asp-action="Download">
-
+    <div class="form-group">
     <h2><em>Dettagli Report</em></h2>
     <h3><em>Progetto:</em><strong> @Model.Progetto.Nome</strong></h3>
-
-    <div class="panel panel-default col-lg-12">
-            <table class="table">
+    <a  asp-action="Delete" asp-route-id="@Model.ID" class="btn btn-danger" >Elimina</a>
+    </div>          
+    
+    <div class="panel panel-default">
+        <div class="col-lg-8 col-lg-offset-1">
+        <table class="table">
                 <div class="method">
                    <thead>
                         <tr>
-                            <th> <input type="checkbox" name="selezionaTutto" onclick="SelezTT()"/></th>
+                            <th> <div style="font-size=4pt;"><h6><strong>PDF unico</strong> </h6></div><input type="checkbox" name="selezionaTutto" onclick="SelezTT()"/></th>
                           
                             <th>
                                 Percorso
@@ -26,53 +28,46 @@ List<webmva.Models.PercorsiReport> lista = ViewBag.Lista; }
                         </tr>
                     </thead>
                 </div>
-            <tbody>
-                
-                    @for(int i=0;i<lista.Count; i++)
-                    {
-                        <tr>
-                            <td>
-                               <input type="checkbox" value="@lista[i].ID" name="check" />
-                            </td>
-                            <td>
-                                <form asp-action="Download">
-                                <input type="submit" asp-action="Download" asp-route-filePath="Report/@lista[i].Percorso" value="@lista[i].Percorso" class="btn btn-link">
-                                </form>
-                            </td>
-                            
-                                <div class="form-group row ">
-                                <td class="text-center">
-                                    <input type="checkbox" value="Report/@lista[i].Percorso" name="nativo" />
-                                    </td>
-                                    <td class="text-center">
-                                    <input type="checkbox" value="Report/@lista[i].Percorso" name="pdf" />
-                                    </td>
-                                    <td class="text-center">
-                                    <a >Cancella </a>
-                                    </td>
-                                </div>
-
-                        </tr>
-                    }
+                <tbody>
                     
-                </tbody>
-            </table>
+                    <form asp-action="DownloadUnico">
+            
+                @for(int i=0;i < @Model.Percorsi.Count(); i++)
+                {
+                    <tr>
+                    
+                        <td>
+                        
+                        <input type="checkbox" value="@Model.Percorsi.ElementAt(i).ID" name="check" />
+                        
+                        </td>
+                        <td>
+                        
+                                <input type="submit" asp-action="Download" asp-route-cosa="singolo" asp-route-filePath="Report/@Model.Percorsi.ElementAt(i).Percorso" value="@Model.Percorsi.ElementAt(i).Percorso" class="btn btn-link">
+                        </td>
+                            
+                        
+                            <td class="text-center">
+                                <input type="checkbox" value="Report/@Model.Percorsi.ElementAt(i).Percorso" name="nativo" />
+                            </td>
+                            <td class="text-center">
+                                <input type="checkbox" value="Report/@Model.Percorsi.ElementAt(i).Percorso" name="pdf" />
+                            </td>  
+                            <td class="text-center">
+                                <a asp-action="DeletePercorso"  asp-route-id="@Model.Percorsi.ElementAt(i).ID" class="btn btn-danger">Cancella</a>
+                            </td>
+                            </tr>
+                }
+                <input type="submit" asp-action="DownloadUnico" asp-route-daDove="Details/@Model.ID" asp-route-cosa="unico" asp-route-nomeProgetto="@Model.Progetto.Nome" class="btn btn-info" value="Scarica tutto in PDF" style="position:fixed;width:150px;height:40px;bottom:40px;left:25px;" />&nbsp;&nbsp; 
+                    
+                <input type="submit" asp-action="DownloadUnico" asp-route-daDove="Details/@Model.ID" asp-route-cosa="zip" asp-route-nomeProgetto="@Model.Progetto.Nome" class="btn btn-info" value="Scarica ZIP" style="position:fixed;width:100px;height:40px;bottom:40px;right:25px;" />&nbsp;&nbsp; 
+                        </form>
+            
+            </tbody>
+        </table>
         </div>
-            <div class="col-sm-12">
-                <br>
-                <div class="form-group row">
-                    <div class="col-sm-6">
-                        <input type="submit"  class="btn btn-default" value="Scarica tutto in PDF" />&nbsp;&nbsp; 
-                    </div> 
-                    <div class="col-sm-6 text-right">                      
-                        <input type="submit"  class="btn btn-default" value="Scarica" />&nbsp;&nbsp; 
-                    </div>                      
-                </div>
-            </div>
-    </form>
+    </div>
 </div>
-
-
 @section scripts{
 	        <script>
 	

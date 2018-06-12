@@ -68,7 +68,7 @@ namespace webmva.Models
                 if (string.IsNullOrEmpty(ComandoPersonalizzato))
                 {
 
-                    string risultato = "opendoor.py";
+                    string risultato = "opendoor";
                     if (PortaO != 80 && PortaO > 0)
                         risultato += "-p" + PortaO;
                     if (string.IsNullOrEmpty(_metodo))

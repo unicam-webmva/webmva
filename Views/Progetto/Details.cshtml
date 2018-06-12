@@ -24,7 +24,8 @@ var contDnsEnum = 0;
 <br>
 <div class="container">
 <h2><em>Dettagli</em><strong>  @Html.DisplayFor(model => model.Nome)</strong></h2>
-  <a  class="btn btn-default"asp-action="Run" asp-route-id="@Model.ID"> Avvia scan</a>
+  <a  class="btn btn-info"asp-action="Run" asp-route-id="@Model.ID"> Avvia scan</a> 
+  <a  class="btn btn-info" href="/Report/Lista/@Model.ID"> Lista Report</a>
 <hr />
 <div class="col-md-12">
     <form asp-action="Edit">

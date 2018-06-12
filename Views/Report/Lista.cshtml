@@ -15,6 +15,9 @@
                             <th>
                                 &nbsp;&nbsp;&nbsp;&nbsp;Link
                             </th>
+                            <th>
+
+                            </th>
                         </tr>
                     </thead>
                 </div>
@@ -29,6 +32,9 @@
                             <form asp-action="Details">
                                 <input type="submit" value="Dettagli" asp-action="Details" asp-route-id="@Model.ElementAt(i).ID" class="btn btn-default" />
                             </form>
+                        </td>
+                        <td>
+                                <a asp-action="Delete" asp-route-id="@Model.ElementAt(i).ID" class="btn btn-danger">Elimina</a>
                         </td>
 
                     </tr>

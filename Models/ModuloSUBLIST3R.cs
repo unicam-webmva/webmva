@@ -33,7 +33,7 @@ namespace webmva.Models
                 {
                     
                     string risultato ="sublist3r.py" ;
-                if(string.IsNullOrEmpty(PorteSUB))
+                if(!string.IsNullOrEmpty(PorteSUB))
                 risultato += " -p " + PorteSUB;  
                 if(VerbositàSUB)
                 risultato += " -v";

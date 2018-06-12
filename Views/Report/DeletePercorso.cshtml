@@ -1,0 +1,41 @@
+@model webmva.Models.PercorsiReport 
+@{ ViewData["Title"] = "Elimina Singolo File"; 
+}
+<br>
+  <div class="container">
+<h2><em>Sei sicuro di voler cancellare il file?</em></h2>
+<hr />
+<div class="col-md-12">
+    <form asp-action="Delete">
+       <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <input type="hidden" asp-for="ID" />
+        <div class="row panel panel-default panel-body">
+                 <!--<div class="form-group">-->
+                    <div class="col-md-12">
+                        <!--vedere l'elenco puntato-->
+                        <dl class="dl-horizontal">
+                            <div class="col-sm-9">
+                                            <div class="form-group row">
+                                                <h4 ><strong>Percorso</strong></h4><hr />
+                                                <h4><em>@Html.DisplayFor(model => model.Percorso)</em></h4>
+                                            
+
+                            </div>
+                            </div>
+                            
+                        </dl>
+                    <!--</div>-->
+                    
+
+                </div>
+                 <div class="col-xs-6 col-sm-offset-6 text-right">
+                     <br>
+                    <div class="form-group">
+                        <input type="submit" asp-action="DeletePercorso" asp-route-id="@Model.ID" class="btn btn-info" value="Elimina File" />&nbsp; |
+                        <a asp-action="Index">  Torna alla lista</a>
+                    </div>
+                </div>
+            </div>
+            </form>
+        </div>   
+</div>

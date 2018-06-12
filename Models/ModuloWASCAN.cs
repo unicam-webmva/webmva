@@ -72,7 +72,7 @@ namespace webmva.Models
         {
             get
             {
-                string risultato = "wpscan.rb --batch ";
+                string risultato = "wascan.py ";
                 if (string.IsNullOrEmpty(ComandoPersonalizzato))
                 {
 

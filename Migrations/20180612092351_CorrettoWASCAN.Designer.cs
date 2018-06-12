@@ -13,8 +13,8 @@ using webmva.Models;
 namespace webmva.Migrations
 {
     [DbContext(typeof(MyDbContext))]
-    [Migration("20180611174022_ModificaDefinitiva")]
-    partial class ModificaDefinitiva
+    [Migration("20180612092351_CorrettoWASCAN")]
+    partial class CorrettoWASCAN
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

@@ -100,6 +100,7 @@ namespace webmva
             string software="";
             if(nomeFile.Substring(nomeFile.IndexOf('_'),nomeFile.LastIndexOf('_')).Contains("nmap")) software="nmap";
             else if(nomeFile.Substring(nomeFile.IndexOf('_'),nomeFile.LastIndexOf('_')).Contains("dnsrecon")) software="dnsrecon";
+            else if(nomeFile.Substring(nomeFile.IndexOf('_'),nomeFile.LastIndexOf('_')).Contains("dnsenum")) software="dnsenum";
             return new Dictionary<string,string>{
                 {"dove", percorsoPdf},
                 {"cosa", software}
@@ -115,6 +116,16 @@ namespace webmva
             string data = DateTime.ParseExact(pezzi[0]+pezzi[1], "yyyyMMddHHmmss",
                                        System.Globalization.CultureInfo.InvariantCulture).ToString("dd MMMM yyyy HH:mm:ss");
             string cosa = pezzi[2];
+            if (cosa.Equals("droope"))
+            {
+                // aggiungo alla testa del file la dicitura droopescan, se già non lo contiene
+
+                List<string> str = System.IO.File.ReadLines(percorsoTXTAssoluto).ToList();
+                if (!str.ElementAt(0).Contains("Report di Droopescan")){
+                    str.Insert(0, "Report di Droopescan");
+                    System.IO.File.WriteAllLines(percorsoTXTAssoluto,str);
+                }
+            }
             string percorsoPdf = percorsoTXTAssoluto.Substring(0, percorsoTXTAssoluto.LastIndexOf('.')) + ".pdf";
             string comando = "wkhtmltopdf " + percorsoTXTAssoluto + " "+ percorsoPdf;
             comando.EseguiCLI(Globals.CartellaWEBMVA);

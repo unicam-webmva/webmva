@@ -6,7 +6,7 @@
     <div class="row">
         <h2><em>Resoconto Progetti</em></h2>
         <p class="lead">
-            I report presenti sono questi! Per importare un report in un progetto <a href="/Report/Import">clicca qui </a>!
+            I report presenti sono questi!
         </p>
         <!--rivedere-->
         <hr />
@@ -30,7 +30,7 @@
                         <tr>
                         <td></td>
                             <td>
-                                @Html.DisplayFor(modelItem => item.Nome)
+                                <a href="/Progetto/Details/@item.ID">@Html.DisplayFor(modelItem => item.Nome)</a>
                             </td>
                             <td>
                                 @if(@item.ListaReport.Count != 0){

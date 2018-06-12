@@ -140,7 +140,7 @@ namespace webmva.Models
             {
                 if (string.IsNullOrEmpty(ComandoPersonalizzato))
                 {
-                    string risultato = "sqlmap --batch";
+                    string risultato = "sqlmap.py --batch";
                     if (forceAggressive)
                         risultato += " -f";
                     if (!string.IsNullOrEmpty(header))
@@ -225,7 +225,7 @@ namespace webmva.Models
                     if (timesec != 5 && timesec > 0)
                         risultato += " --time-sec=" + timesec;
                     if (!string.IsNullOrEmpty(tecnique) && tecnique.Equals("BEUSTQ"))
-                        risultato += " --tecnique=" + tecnique;
+                        risultato += " --technique=" + tecnique;
                     if (a)
                         risultato += " -a";
                     if (b)

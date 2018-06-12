@@ -210,6 +210,29 @@ else {
 	echo "Fine installazione fop."
 	}
 fi
+echo "-------------------------------------------------------"
+echo "INSTALLAZIONE OPENDOOR"
+echo "-------------------------------------------------------"
+
+if hash opendoor >/dev/null 2>&1 ; 
+then
+	echo "opendoor è già installato.";
+else {
+	echo "Sto installando opendoor..."
+	git clone https://github.com/stanislav-web/OpenDoor.git
+ 	cd OpenDoor/
+ 	sudo su 
+	python3 setup.py build && python3 setup.py install
+	cp -R data/ /usr/local/bin/data
+	exit
+	cd ..
+	rm -rf OpenDoor/
+	echo "Fine installazione opendoor."
+	}
+fi
+echo " "
+echo " "
+echo " "
 echo " "
 echo " "
 echo " "

@@ -55,19 +55,6 @@ public enum VERBOSEODAT{
                 if (string.IsNullOrEmpty(ComandoPersonalizzato))
                 {
                     string risultato = "odat.py ";
-                   
-                    switch (VerboseOdat)
-                    {
-                        case VERBOSEODAT.DUE:
-                            risultato += " -vv";
-                            break;
-                        case VERBOSEODAT.TRE:
-                            risultato += " -vvv";
-                            break;
-                        default:
-                        risultato += " -v";
-                            break;
-                    }
                     
                     if (PortaOdat != 1521 && PortaOdat > 0)
                         risultato += " -p" + PortaOdat;
@@ -91,6 +78,18 @@ public enum VERBOSEODAT{
                         risultato += " passwordguesser";
                     if (TestOdat)
                         risultato += " --test-module";
+                    switch (VerboseOdat)
+                    {
+                        case VERBOSEODAT.DUE:
+                            risultato += " -vv";
+                            break;
+                        case VERBOSEODAT.TRE:
+                            risultato += " -vvv";
+                            break;
+                        default:
+                        risultato += " -v";
+                            break;
+                    }
 
 
 
