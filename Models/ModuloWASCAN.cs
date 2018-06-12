@@ -15,7 +15,6 @@ namespace webmva.Models
     {
 
         public string ComandoPersonalizzato { get; set; }
-        public string HeadersW { get; set; }
         public string AutenticazioneW { get; set; }
         public string UserAgentW { get; set; }
         public string CookiesW { get; set; }
@@ -106,9 +105,6 @@ namespace webmva.Models
                             break;
 
                     }
-                    if (!string.IsNullOrEmpty(HeadersW))
-                        risultato += " -H" + HeadersW;
-                    //(user:pass)
                     if (!string.IsNullOrEmpty(AutenticazioneW))
                         risultato += " -a" + AutenticazioneW;
                     if (!string.IsNullOrEmpty(UserAgentW))

@@ -13,8 +13,8 @@ using webmva.Models;
 namespace webmva.Migrations
 {
     [DbContext(typeof(MyDbContext))]
-    [Migration("20180611100439_ReportModificato")]
-    partial class ReportModificato
+    [Migration("20180611174022_ModificaDefinitiva")]
+    partial class ModificaDefinitiva
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -244,8 +244,6 @@ namespace webmva.Migrations
                     b.Property<string>("ComandoPersonalizzato")
                         .HasColumnName("ModuloJOOMSCAN_ComandoPersonalizzato");
 
-                    b.Property<string>("Cookie");
-
                     b.Property<bool>("EnumerateComponents");
 
                     b.Property<string>("UserAgent");
@@ -414,8 +412,6 @@ namespace webmva.Migrations
 
                     b.Property<int>("Rischio");
 
-                    b.Property<int>("TorType");
-
                     b.Property<int>("Verbose")
                         .HasColumnName("ModuloSQLMAP_Verbose");
 
@@ -424,8 +420,6 @@ namespace webmva.Migrations
                     b.Property<bool>("allOptimization");
 
                     b.Property<bool>("b");
-
-                    b.Property<bool>("checkTor");
 
                     b.Property<bool>("columns");
 
@@ -467,8 +461,6 @@ namespace webmva.Migrations
 
                     b.Property<bool>("passwords");
 
-                    b.Property<int>("portaSql");
-
                     b.Property<bool>("predictOutput");
 
                     b.Property<bool>("privileges");
@@ -492,8 +484,6 @@ namespace webmva.Migrations
                     b.Property<int>("timeout");
 
                     b.Property<int>("timesec");
-
-                    b.Property<bool>("tor");
 
                     b.Property<bool>("users");
 
@@ -621,8 +611,6 @@ namespace webmva.Migrations
 
                     b.Property<bool>("FullScanW");
 
-                    b.Property<string>("HeadersW");
-
                     b.Property<int>("MethodsW");
 
                     b.Property<bool>("ReagentW");
@@ -687,8 +675,7 @@ namespace webmva.Migrations
                     b.Property<string>("ComandoPersonalizzato")
                         .HasColumnName("ModuloWPSCAN_ComandoPersonalizzato");
 
-                    b.Property<string>("Cookie")
-                        .HasColumnName("ModuloWPSCAN_Cookie");
+                    b.Property<string>("Cookie");
 
                     b.Property<bool>("DisableChecks");
 

@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace webmva.Migrations
 {
-    public partial class ReportModificato : Migration
+    public partial class ModificaDefinitiva : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -51,7 +51,6 @@ namespace webmva.Migrations
                     ModuloINFOGAEMAIL_ComandoPersonalizzato = table.Column<string>(nullable: true),
                     ModuloINFOGAEMAIL_Verbose = table.Column<int>(nullable: true),
                     ModuloJOOMSCAN_ComandoPersonalizzato = table.Column<string>(nullable: true),
-                    Cookie = table.Column<string>(nullable: true),
                     EnumerateComponents = table.Column<bool>(nullable: true),
                     UserAgent = table.Column<string>(nullable: true),
                     Porta = table.Column<int>(nullable: true),
@@ -102,12 +101,10 @@ namespace webmva.Migrations
                     ModuloSQLMAP_ComandoPersonalizzato = table.Column<string>(nullable: true),
                     Detection = table.Column<int>(nullable: true),
                     Rischio = table.Column<int>(nullable: true),
-                    TorType = table.Column<int>(nullable: true),
                     ModuloSQLMAP_Verbose = table.Column<int>(nullable: true),
                     a = table.Column<bool>(nullable: true),
                     allOptimization = table.Column<bool>(nullable: true),
                     b = table.Column<bool>(nullable: true),
-                    checkTor = table.Column<bool>(nullable: true),
                     columns = table.Column<bool>(nullable: true),
                     commonColumns = table.Column<bool>(nullable: true),
                     commonTables = table.Column<bool>(nullable: true),
@@ -128,7 +125,6 @@ namespace webmva.Migrations
                     keepAlive = table.Column<bool>(nullable: true),
                     nessunaConnessione = table.Column<bool>(nullable: true),
                     passwords = table.Column<bool>(nullable: true),
-                    portaSql = table.Column<int>(nullable: true),
                     predictOutput = table.Column<bool>(nullable: true),
                     privileges = table.Column<bool>(nullable: true),
                     retries = table.Column<int>(nullable: true),
@@ -141,7 +137,6 @@ namespace webmva.Migrations
                     threads = table.Column<int>(nullable: true),
                     timeout = table.Column<int>(nullable: true),
                     timesec = table.Column<int>(nullable: true),
-                    tor = table.Column<bool>(nullable: true),
                     users = table.Column<bool>(nullable: true),
                     All = table.Column<bool>(nullable: true),
                     AskSUB = table.Column<bool>(nullable: true),
@@ -189,7 +184,6 @@ namespace webmva.Migrations
                     Disclosure = table.Column<bool>(nullable: true),
                     Fingerprint = table.Column<bool>(nullable: true),
                     FullScanW = table.Column<bool>(nullable: true),
-                    HeadersW = table.Column<string>(nullable: true),
                     MethodsW = table.Column<int>(nullable: true),
                     ReagentW = table.Column<bool>(nullable: true),
                     RedirectW = table.Column<bool>(nullable: true),
@@ -212,7 +206,7 @@ namespace webmva.Migrations
                     wpa = table.Column<bool>(nullable: true),
                     wpsSetting = table.Column<bool>(nullable: true),
                     ModuloWPSCAN_ComandoPersonalizzato = table.Column<string>(nullable: true),
-                    ModuloWPSCAN_Cookie = table.Column<string>(nullable: true),
+                    Cookie = table.Column<string>(nullable: true),
                     DisableChecks = table.Column<bool>(nullable: true),
                     ModuloWPSCAN_Force = table.Column<bool>(nullable: true),
                     RandomAgent = table.Column<bool>(nullable: true),

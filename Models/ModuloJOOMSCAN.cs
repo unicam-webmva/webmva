@@ -11,7 +11,6 @@ namespace webmva.Models
     {
        
         public string ComandoPersonalizzato { get; set; }
-        public string Cookie{get;set;}
         public string UserAgent{get;set;}
          public bool EnumerateComponents { get; set; }
         public override string Comando
@@ -23,8 +22,6 @@ namespace webmva.Models
                 {
                 if(EnumerateComponents)
                    risultato +=" -ec";                
-                if (!string.IsNullOrEmpty(Cookie))  
-                risultato +=" -cookie " + Cookie;
                 if (!string.IsNullOrEmpty(UserAgent))  
                 risultato +=" -a " + UserAgent;
 
