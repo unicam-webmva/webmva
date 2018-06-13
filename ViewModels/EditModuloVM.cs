@@ -8,25 +8,45 @@ namespace webmva.ViewModels
 {
     public class EditModuloVM
     {
-        public ModuloNMAP NMAP { get; set; }
-        public ModuloNESSUS NESSUS { get; set; }
-        public ModuloDNSRECON DNSRECON { get; set; }
-        public ModuloFIERCE FIERCE { get; set; }
-        public ModuloDROOPE DROOPE{get; set;}
-        public ModuloJOOMSCAN JOOMSCAN{get; set;}
-        public ModuloWPSCAN WPSCAN{get; set;} 
-        public ModuloINFOGA INFOGA{get; set;}
-        public ModuloOPENDOOR OPENDOOR{get; set;}
-        public ModuloINFOGAEMAIL INFOGAEMAIL{get; set;}
-        public ModuloSUBLIST3R SUBLIST3R{get; set;}
-        public ModuloWASCAN WASCAN{get; set;}
-        public ModuloWAPITI WAPITI{get; set;}
-        public ModuloSQLMAP SQLMAP{get; set;}
-        public ModuloWIFITE WIFITE{get; set;}
-        public ModuloNOSQL NOSQL{get; set;}
-        public ModuloODAT ODAT{get; set;}
-        public ModuloDNSENUM DNSENUM{get; set;}
-        public ModuloOPENVAS OPENVAS{get; set;}
+        private ModuloNMAP _nMAP = null;
+        private ModuloNESSUS _nESSUS = null;
+        private ModuloDNSRECON _dNSRECON = null;
+        private ModuloFIERCE _fIERCE = null;
+        private ModuloDROOPE _dROOPE = null;
+        private ModuloJOOMSCAN _jOOMSCAN = null;
+        private ModuloWPSCAN _wPSCAN = null;
+        private ModuloINFOGA _iNFOGA = null;
+        private ModuloOPENDOOR _oPENDOOR = null;
+        private ModuloINFOGAEMAIL _iNFOGAEMAIL = null;
+        private ModuloSUBLIST3R _sUBLIST3R = null;
+        private ModuloWASCAN _wASCAN = null;
+        private ModuloWAPITI _wAPITI = null;
+        private ModuloSQLMAP _sQLMAP = null;
+        private ModuloWIFITE _wIFITE = null;
+        private ModuloNOSQL _nOSQL = null;
+        private ModuloODAT _oDAT = null;
+        private ModuloDNSENUM _dNSENUM = null;
+        private ModuloOPENVAS _oPENVAS = null;
+
+        public ModuloNMAP NMAP { get => _nMAP; set => _nMAP = value; }
+        public ModuloNESSUS NESSUS { get => _nESSUS; set => _nESSUS = value; }
+        public ModuloDNSRECON DNSRECON { get => _dNSRECON; set => _dNSRECON = value; }
+        public ModuloFIERCE FIERCE { get => _fIERCE; set => _fIERCE = value; }
+        public ModuloDROOPE DROOPE { get => _dROOPE; set => _dROOPE = value; }
+        public ModuloJOOMSCAN JOOMSCAN { get => _jOOMSCAN; set => _jOOMSCAN = value; }
+        public ModuloWPSCAN WPSCAN { get => _wPSCAN; set => _wPSCAN = value; }
+        public ModuloINFOGA INFOGA { get => _iNFOGA; set => _iNFOGA = value; }
+        public ModuloOPENDOOR OPENDOOR { get => _oPENDOOR; set => _oPENDOOR = value; }
+        public ModuloINFOGAEMAIL INFOGAEMAIL { get => _iNFOGAEMAIL; set => _iNFOGAEMAIL = value; }
+        public ModuloSUBLIST3R SUBLIST3R { get => _sUBLIST3R; set => _sUBLIST3R = value; }
+        public ModuloWASCAN WASCAN { get => _wASCAN; set => _wASCAN = value; }
+        public ModuloWAPITI WAPITI { get => _wAPITI; set => _wAPITI = value; }
+        public ModuloSQLMAP SQLMAP { get => _sQLMAP; set => _sQLMAP = value; }
+        public ModuloWIFITE WIFITE { get => _wIFITE; set => _wIFITE = value; }
+        public ModuloNOSQL NOSQL { get => _nOSQL; set => _nOSQL = value; }
+        public ModuloODAT ODAT { get => _oDAT; set => _oDAT = value; }
+        public ModuloDNSENUM DNSENUM { get => _dNSENUM; set => _dNSENUM = value; }
+        public ModuloOPENVAS OPENVAS { get => _oPENVAS; set => _oPENVAS = value; }
 
 
         public EditModuloVM()
@@ -53,6 +73,104 @@ namespace webmva.ViewModels
 
 
         }
+        public EditModuloVM(Modulo mod)
+        {
+            if (mod is ModuloNMAP)
+            {
+
+                this.NMAP = (ModuloNMAP)mod;
+            }
+            if (mod is ModuloNESSUS)
+            {
+
+                this.NESSUS = (ModuloNESSUS)mod;
+            }
+            if (mod is ModuloOPENVAS)
+            {
+
+                this.OPENVAS = (ModuloOPENVAS)mod;
+            }
+            if (mod is ModuloFIERCE)
+            {
+
+                this.FIERCE = (ModuloFIERCE)mod;
+            }
+            if (mod is ModuloDNSRECON)
+            {
+
+                this.DNSRECON = (ModuloDNSRECON)mod;
+            }
+            if (mod is ModuloDROOPE)
+            {
+
+                this.DROOPE = (ModuloDROOPE)mod;
+            }
+            if (mod is ModuloJOOMSCAN)
+            {
+
+                this.JOOMSCAN = (ModuloJOOMSCAN)mod;
+            }
+            if (mod is ModuloWPSCAN)
+            {
+
+                this.WPSCAN = (ModuloWPSCAN)mod;
+            }
+            if (mod is ModuloINFOGA)
+            {
+
+                this.INFOGA = (ModuloINFOGA)mod;
+            }
+            if (mod is ModuloINFOGAEMAIL)
+            {
+
+                this.INFOGAEMAIL = (ModuloINFOGAEMAIL)mod;
+            }
+            if (mod is ModuloOPENDOOR)
+            {
+
+                this.OPENDOOR = (ModuloOPENDOOR)mod;
+            }
+            if (mod is ModuloSUBLIST3R)
+            {
+
+                this.SUBLIST3R = (ModuloSUBLIST3R)mod;
+            }
+            if (mod is ModuloWASCAN)
+            {
+
+                this.WASCAN = (ModuloWASCAN)mod;
+            }
+            if (mod is ModuloWAPITI)
+            {
+
+                this.WAPITI = (ModuloWAPITI)mod;
+            }
+            if (mod is ModuloSQLMAP)
+            {
+
+                this.SQLMAP = (ModuloSQLMAP)mod;
+            }
+            if (mod is ModuloWIFITE)
+            {
+
+                this.WIFITE = (ModuloWIFITE)mod;
+            }
+            if (mod is ModuloNOSQL)
+            {
+
+                this.NOSQL = (ModuloNOSQL)mod;
+            }
+            if (mod is ModuloODAT)
+            {
+
+                this.ODAT = (ModuloODAT)mod;
+            }
+            if (mod is ModuloDNSENUM)
+            {
+
+                this.DNSENUM = (ModuloDNSENUM)mod;
+            }
+        }
         public EditModuloVM(ModuloNMAP mod)
         {
             NMAP = mod;
@@ -62,7 +180,7 @@ namespace webmva.ViewModels
             JOOMSCAN = null;
             WPSCAN = null;
             INFOGA = null;
-            WAPITI= null;
+            WAPITI = null;
             INFOGAEMAIL = null;
             SUBLIST3R = null;
             SQLMAP = null;
@@ -85,7 +203,7 @@ namespace webmva.ViewModels
             JOOMSCAN = null;
             WPSCAN = null;
             INFOGA = null;
-            WAPITI= null;
+            WAPITI = null;
             INFOGAEMAIL = null;
             SUBLIST3R = null;
             SQLMAP = null;
@@ -109,12 +227,12 @@ namespace webmva.ViewModels
             JOOMSCAN = null;
             WPSCAN = null;
             INFOGA = null;
-            WAPITI= null;
+            WAPITI = null;
             INFOGAEMAIL = null;
-            SUBLIST3R = null; 
-            SQLMAP = null; 
+            SUBLIST3R = null;
+            SQLMAP = null;
             WIFITE = null;
-            FIERCE = null; 
+            FIERCE = null;
             OPENDOOR = null;
             WASCAN = null;
             NOSQL = null;
@@ -132,11 +250,11 @@ namespace webmva.ViewModels
             DROOPE = mod;
             JOOMSCAN = null;
             WPSCAN = null;
-            WAPITI= null;
+            WAPITI = null;
             INFOGAEMAIL = null;
-            SUBLIST3R = null; 
+            SUBLIST3R = null;
             SQLMAP = null;
-            WIFITE = null; 
+            WIFITE = null;
             FIERCE = null;
             OPENDOOR = null;
             WASCAN = null;
@@ -155,11 +273,11 @@ namespace webmva.ViewModels
             DROOPE = null;
             JOOMSCAN = mod;
             WPSCAN = null;
-            WAPITI= null;
+            WAPITI = null;
             INFOGAEMAIL = null;
-            SUBLIST3R = null; 
+            SUBLIST3R = null;
             SQLMAP = null;
-            WIFITE = null; 
+            WIFITE = null;
             FIERCE = null;
             OPENDOOR = null;
             WASCAN = null;
@@ -177,102 +295,11 @@ namespace webmva.ViewModels
             INFOGA = mod;
             DROOPE = null;
             JOOMSCAN = null;
-            WPSCAN = null; 
-            WAPITI= null;
+            WPSCAN = null;
+            WAPITI = null;
             INFOGAEMAIL = null;
-            SUBLIST3R = null; 
-            SQLMAP = null;
-            WIFITE = null; 
-            FIERCE = null; 
-            OPENDOOR = null;
-            WASCAN = null;
-            NOSQL = null;
-            ODAT = null;
-            DNSENUM = null;
-            OPENVAS = null;
-
-        }
-         public EditModuloVM(ModuloINFOGAEMAIL mod)
-        {
-            NMAP = null;
-            NESSUS = null;
-            DNSRECON = null;
-            INFOGA = null;
-            DROOPE = null;
-            JOOMSCAN = null;
-            WPSCAN = null; 
-            WAPITI= null;
-            INFOGAEMAIL = mod;
             SUBLIST3R = null;
             SQLMAP = null;
-            WIFITE = null; 
-            FIERCE = null;
-            OPENDOOR = null;
-            WASCAN = null;
-            NOSQL = null;
-            ODAT = null;
-            DNSENUM = null;
-            OPENVAS = null;
-
-        }
-         public EditModuloVM(ModuloSUBLIST3R mod)
-        {
-            NMAP = null;
-            NESSUS = null;
-            DNSRECON = null;
-            INFOGA = null;
-            DROOPE = null;
-            JOOMSCAN = null;
-            WPSCAN = null; 
-            WAPITI= null;
-            INFOGAEMAIL = null;
-            SUBLIST3R = mod;
-            SQLMAP = null;
-            WIFITE = null; 
-            FIERCE = null;
-            OPENDOOR = null;
-            WASCAN = null;
-            NOSQL = null;
-            ODAT = null;
-            DNSENUM = null;
-            OPENVAS = null;
-        }
-         public EditModuloVM(ModuloWAPITI mod)
-        {
-            NMAP = null;
-            NESSUS = null;
-            DNSRECON = null;
-            INFOGA = null;
-            DROOPE = null;
-            JOOMSCAN = null;
-             WPSCAN = null;
-            WAPITI= mod;
-            INFOGAEMAIL = null;
-            SUBLIST3R = null; 
-            SQLMAP = null;
-            WIFITE = null;
-            FIERCE = null;  
-            OPENDOOR = null;
-            WASCAN = null;
-            NOSQL = null;
-            ODAT = null;
-            DNSENUM = null;
-            OPENVAS = null;
-
-        }
-          public EditModuloVM(ModuloSQLMAP mod)
-        {
-            NMAP = null;
-            NESSUS = null;
-            DNSRECON = null;
-            INFOGA = null;
-            DROOPE = null;
-            JOOMSCAN = null;
-            WPSCAN = null; 
-            WAPITI= null;
-            INFOGAEMAIL = null;
-            SUBLIST3R = null; 
-            SQLMAP = mod; 
             WIFITE = null;
             FIERCE = null;
             OPENDOOR = null;
@@ -283,8 +310,7 @@ namespace webmva.ViewModels
             OPENVAS = null;
 
         }
-
-          public EditModuloVM(ModuloWIFITE mod)
+        public EditModuloVM(ModuloINFOGAEMAIL mod)
         {
             NMAP = null;
             NESSUS = null;
@@ -293,11 +319,79 @@ namespace webmva.ViewModels
             DROOPE = null;
             JOOMSCAN = null;
             WPSCAN = null;
-            WAPITI= null;
+            WAPITI = null;
+            INFOGAEMAIL = mod;
+            SUBLIST3R = null;
+            SQLMAP = null;
+            WIFITE = null;
+            FIERCE = null;
+            OPENDOOR = null;
+            WASCAN = null;
+            NOSQL = null;
+            ODAT = null;
+            DNSENUM = null;
+            OPENVAS = null;
+
+        }
+        public EditModuloVM(ModuloSUBLIST3R mod)
+        {
+            NMAP = null;
+            NESSUS = null;
+            DNSRECON = null;
+            INFOGA = null;
+            DROOPE = null;
+            JOOMSCAN = null;
+            WPSCAN = null;
+            WAPITI = null;
             INFOGAEMAIL = null;
-            SUBLIST3R = null; 
-            SQLMAP = null; 
-            WIFITE = mod; 
+            SUBLIST3R = mod;
+            SQLMAP = null;
+            WIFITE = null;
+            FIERCE = null;
+            OPENDOOR = null;
+            WASCAN = null;
+            NOSQL = null;
+            ODAT = null;
+            DNSENUM = null;
+            OPENVAS = null;
+        }
+        public EditModuloVM(ModuloWAPITI mod)
+        {
+            NMAP = null;
+            NESSUS = null;
+            DNSRECON = null;
+            INFOGA = null;
+            DROOPE = null;
+            JOOMSCAN = null;
+            WPSCAN = null;
+            WAPITI = mod;
+            INFOGAEMAIL = null;
+            SUBLIST3R = null;
+            SQLMAP = null;
+            WIFITE = null;
+            FIERCE = null;
+            OPENDOOR = null;
+            WASCAN = null;
+            NOSQL = null;
+            ODAT = null;
+            DNSENUM = null;
+            OPENVAS = null;
+
+        }
+        public EditModuloVM(ModuloSQLMAP mod)
+        {
+            NMAP = null;
+            NESSUS = null;
+            DNSRECON = null;
+            INFOGA = null;
+            DROOPE = null;
+            JOOMSCAN = null;
+            WPSCAN = null;
+            WAPITI = null;
+            INFOGAEMAIL = null;
+            SUBLIST3R = null;
+            SQLMAP = mod;
+            WIFITE = null;
             FIERCE = null;
             OPENDOOR = null;
             WASCAN = null;
@@ -308,7 +402,31 @@ namespace webmva.ViewModels
 
         }
 
-          public EditModuloVM(ModuloWPSCAN mod)
+        public EditModuloVM(ModuloWIFITE mod)
+        {
+            NMAP = null;
+            NESSUS = null;
+            DNSRECON = null;
+            INFOGA = null;
+            DROOPE = null;
+            JOOMSCAN = null;
+            WPSCAN = null;
+            WAPITI = null;
+            INFOGAEMAIL = null;
+            SUBLIST3R = null;
+            SQLMAP = null;
+            WIFITE = mod;
+            FIERCE = null;
+            OPENDOOR = null;
+            WASCAN = null;
+            NOSQL = null;
+            ODAT = null;
+            DNSENUM = null;
+            OPENVAS = null;
+
+        }
+
+        public EditModuloVM(ModuloWPSCAN mod)
         {
             NMAP = null;
             NESSUS = null;
@@ -317,12 +435,12 @@ namespace webmva.ViewModels
             DROOPE = null;
             JOOMSCAN = null;
             WPSCAN = mod;
-            WAPITI= null;
+            WAPITI = null;
             INFOGAEMAIL = null;
             SUBLIST3R = null;
-            SQLMAP = null; 
+            SQLMAP = null;
             WIFITE = null;
-            FIERCE = null; 
+            FIERCE = null;
             OPENDOOR = null;
             WASCAN = null;
             NOSQL = null;
@@ -332,7 +450,7 @@ namespace webmva.ViewModels
 
         }
 
-          public EditModuloVM(ModuloFIERCE mod)
+        public EditModuloVM(ModuloFIERCE mod)
         {
             NMAP = null;
             NESSUS = null;
@@ -341,12 +459,12 @@ namespace webmva.ViewModels
             DROOPE = null;
             JOOMSCAN = null;
             WPSCAN = null;
-            WAPITI= null;
+            WAPITI = null;
             INFOGAEMAIL = null;
-            SUBLIST3R = null; 
-            SQLMAP = null; 
+            SUBLIST3R = null;
+            SQLMAP = null;
             WIFITE = null;
-            FIERCE = mod; 
+            FIERCE = mod;
             OPENDOOR = null;
             WASCAN = null;
             NOSQL = null;
@@ -356,7 +474,7 @@ namespace webmva.ViewModels
 
         }
 
-          public EditModuloVM(ModuloOPENDOOR mod)
+        public EditModuloVM(ModuloOPENDOOR mod)
         {
             NMAP = null;
             NESSUS = null;
@@ -365,12 +483,12 @@ namespace webmva.ViewModels
             DROOPE = null;
             JOOMSCAN = null;
             WPSCAN = null;
-            WAPITI= null;
+            WAPITI = null;
             INFOGAEMAIL = null;
-            SUBLIST3R = null; 
-            SQLMAP = null; 
+            SUBLIST3R = null;
+            SQLMAP = null;
             WIFITE = null;
-            FIERCE = null; 
+            FIERCE = null;
             OPENDOOR = mod;
             WASCAN = null;
             NOSQL = null;
@@ -379,7 +497,7 @@ namespace webmva.ViewModels
             OPENVAS = null;
 
         }
-          public EditModuloVM(ModuloWASCAN mod)
+        public EditModuloVM(ModuloWASCAN mod)
         {
             NMAP = null;
             NESSUS = null;
@@ -388,12 +506,12 @@ namespace webmva.ViewModels
             DROOPE = null;
             JOOMSCAN = null;
             WPSCAN = null;
-            WAPITI= null;
+            WAPITI = null;
             INFOGAEMAIL = null;
-            SUBLIST3R = null; 
-            SQLMAP = null; 
+            SUBLIST3R = null;
+            SQLMAP = null;
             WIFITE = null;
-            FIERCE = null; 
+            FIERCE = null;
             OPENDOOR = null;
             WASCAN = mod;
             NOSQL = null;
@@ -402,7 +520,7 @@ namespace webmva.ViewModels
             OPENVAS = null;
 
         }
-          public EditModuloVM(ModuloNOSQL mod)
+        public EditModuloVM(ModuloNOSQL mod)
         {
             NMAP = null;
             NESSUS = null;
@@ -411,12 +529,12 @@ namespace webmva.ViewModels
             DROOPE = null;
             JOOMSCAN = null;
             WPSCAN = null;
-            WAPITI= null;
+            WAPITI = null;
             INFOGAEMAIL = null;
-            SUBLIST3R = null; 
-            SQLMAP = null; 
+            SUBLIST3R = null;
+            SQLMAP = null;
             WIFITE = null;
-            FIERCE = null; 
+            FIERCE = null;
             OPENDOOR = null;
             WASCAN = null;
             NOSQL = mod;
@@ -426,7 +544,7 @@ namespace webmva.ViewModels
 
         }
 
-          public EditModuloVM(ModuloODAT mod)
+        public EditModuloVM(ModuloODAT mod)
         {
             NMAP = null;
             NESSUS = null;
@@ -435,12 +553,12 @@ namespace webmva.ViewModels
             DROOPE = null;
             JOOMSCAN = null;
             WPSCAN = null;
-            WAPITI= null;
+            WAPITI = null;
             INFOGAEMAIL = null;
-            SUBLIST3R = null; 
-            SQLMAP = null; 
+            SUBLIST3R = null;
+            SQLMAP = null;
             WIFITE = null;
-            FIERCE = null; 
+            FIERCE = null;
             OPENDOOR = null;
             WASCAN = null;
             NOSQL = null;
@@ -450,7 +568,7 @@ namespace webmva.ViewModels
 
         }
 
-          public EditModuloVM(ModuloDNSENUM mod)
+        public EditModuloVM(ModuloDNSENUM mod)
         {
             NMAP = null;
             NESSUS = null;
@@ -459,12 +577,12 @@ namespace webmva.ViewModels
             DROOPE = null;
             JOOMSCAN = null;
             WPSCAN = null;
-            WAPITI= null;
+            WAPITI = null;
             INFOGAEMAIL = null;
-            SUBLIST3R = null; 
-            SQLMAP = null; 
+            SUBLIST3R = null;
+            SQLMAP = null;
             WIFITE = null;
-            FIERCE = null; 
+            FIERCE = null;
             OPENDOOR = null;
             WASCAN = null;
             NOSQL = null;
@@ -473,7 +591,7 @@ namespace webmva.ViewModels
             OPENVAS = null;
 
         }
-           public EditModuloVM(ModuloOPENVAS mod)
+        public EditModuloVM(ModuloOPENVAS mod)
         {
             NMAP = null;
             NESSUS = null;
@@ -482,12 +600,12 @@ namespace webmva.ViewModels
             DROOPE = null;
             JOOMSCAN = null;
             WPSCAN = null;
-            WAPITI= null;
+            WAPITI = null;
             INFOGAEMAIL = null;
-            SUBLIST3R = null; 
-            SQLMAP = null; 
+            SUBLIST3R = null;
+            SQLMAP = null;
             WIFITE = null;
-            FIERCE = null; 
+            FIERCE = null;
             OPENDOOR = null;
             WASCAN = null;
             NOSQL = null;

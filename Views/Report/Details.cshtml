@@ -6,7 +6,7 @@
 <div class="container">
     <div class="form-group">
     <h2><em>Dettagli Report</em></h2>
-    <h3><em>Progetto:</em><strong> @Model.Progetto.Nome</strong></h3>
+    <h3><em>Progetto:</em><strong> <a href="/Progetto/Details/@Model.ProgettoID">@Model.Progetto.Nome</a></strong></h3>
     <a  asp-action="Delete" asp-route-id="@Model.ID" class="btn btn-danger" >Elimina</a>
     </div>          
     
@@ -54,7 +54,7 @@
                                 <input type="checkbox" value="Report/@Model.Percorsi.ElementAt(i).Percorso" name="pdf" />
                             </td>  
                             <td class="text-center">
-                                <a asp-action="DeletePercorso"  asp-route-id="@Model.Percorsi.ElementAt(i).ID" class="btn btn-danger">Cancella</a>
+                                <a asp-action="DeletePercorso" asp-route-daDove="Details/@Model.ID" asp-route-id="@Model.Percorsi.ElementAt(i).ID" class="btn btn-danger">Cancella</a>
                             </td>
                             </tr>
                 }

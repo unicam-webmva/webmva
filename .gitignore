@@ -101,3 +101,4 @@ msbuild.wrn
 webmva.db
 *desktop.ini
 wwwroot/Report/
+.bundle/

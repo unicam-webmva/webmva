@@ -1,0 +1,5 @@
+cx_Oracle
+colorlog
+termcolor
+pycrypto
+passlib

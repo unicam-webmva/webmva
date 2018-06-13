@@ -1,8 +1,8 @@
 #!/bin/bash
 
-######################
-## CHECK DIPENDENZE ##
-######################
+echo "######################"
+echo "## CHECK DIPENDENZE ##"
+echo "######################"
 
 ###########
 # Exit codes:
@@ -28,15 +28,25 @@ if ! hash ruby >/dev/null 2>&1 ; then MANCANTI="${MANCANTI}ruby " ; fi
 if [ ! -d Programmi/odat ] ; then MANCANTI="${MANCANTI}odat " ; fi
 if ! hash fop >/dev/null 2>&1 ; then MANCANTI="${MANCANTI}fop " ; fi
 #questo mega if è tutto per wpscan
-if ! hash bundle >/dev/null 2>&1 ; then MANCANTI="${MANCANTI}wpscan " ; 
-else  { bundle check --gemfile=/home/rick/webmva/Programmi/wpscan/Gemfile >/dev/null ; 
-if [[ ! $0 -eq 0 ]] ; then MANCANTI="${MANCANTI}wpscan " ; fi; } fi ;
+if ! hash bundle >/dev/null 2>&1 ; 
+    then  MANCANTI="${MANCANTI}wpscan " ;
+else  {
+    bundle check --gemfile=/home/rick/webmva/Programmi/wpscan/Gemfile >/dev/null
+    CODICEUSCITA=$?
+    if [[ $CODICEUSCITA -gt 0 ]] ;
+        then MANCANTI="${MANCANTI}wpscan " ;
+    fi ; 
+    } 
+fi
 
 if ! hash opendoor >/dev/null 2>&1 ; then MANCANTI="${MANCANTI}opendoor " ; fi
 
-if ! hash wkhtmltopdf >/dev/null 2>&1 ; then MANCANTI="${MANCANTI}wkhtmltopdf " ; 
+if ! hash wkhtmltopdf >/dev/null 2>&1 ; then MANCANTI="${MANCANTI}wkhtmltopdf " ; fi
 
 EXIT=0
-if [[ ${MANCANTI} -eq "" ]] ; then EXIT=1 ; else EXIT=0 ; fi
+if [[ "${MANCANTI}" = "" ]] 
+    then EXIT=1 
+else EXIT=0  
+fi
 echo $MANCANTI
 exit $EXIT

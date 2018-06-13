@@ -1,19 +1,32 @@
 #!/bin/bash
-if [[ $EUID > 0 ]]
-  then echo "Bisogna farmi partire come root."
+if [[ $EUID > 0 ]] ;
+  then 
+  echo "Bisogna farmi partire come root."
+  echo "Premere un tasto per chiudere questo script..."
+  read
   exit
 fi
+WORKINGDIR=$PWD
+HOME=$1
+if [[ $HOME = "" ]] ;
+then
+  echo "Bisogna passare come parametro la home dell'utente."
+  echo "Premere un tasto per chiudere questo script..."
+  read
+  exit
+fi
+
 
 
 echo "-------------------------------------------------------"
 echo "Installazione dipendenze WEBMVA"
 echo "-------------------------------------------------------"
 echo "Autori: Margherita Renieri, Riccardo Cannella"
-echo "Ultima modifica: 29 maggio 2018"
+echo "Ultima modifica: 13 giugno 2018"
 echo "-------------------------------------------------------"
 echo " "
 echo " "
-
+echo "Sto eseguendo apt-get update..."
 apt-get update > /dev/null
 
 echo "-------------------------------------------------------"
@@ -89,8 +102,10 @@ echo "INSTALLAZIONE DIPENDENZE PER SCRIPT PYTHON"
 echo "-------------------------------------------------------"
 echo "Sto installando alcune dipendenze tramite pip e pip3 per i vari programmi usati all'interno di WEBMVA..."
 
-pip install tabulate json2html urllib3 requests beautifulsoup4 yaswfp tld html5lib cement pystache futures dnspython netaddr lxml argparse mako pysocks requests_ntlm requests_kerberos > /dev/null
-pip3 install tabulate json2html urllib3 requests beautifulsoup4 yaswfp tld html5lib cement pystache futures dnspython netaddr lxml argparse mako pysocks requests_ntlm requests_kerberos > /dev/null
+while read p; do
+  pip freeze | grep -q $p && if [[ ! $? = 0 ]] ; then  pip install $p >/dev/null ; else echo "Pacchetto ${p} (pip2) già installato." ; fi
+  pip3 freeze | grep -q $p && if [[ ! $? = 0 ]] ; then  pip3 install $p >/dev/null ; else echo "Pacchetto ${p} (pip3) già installato." ; fi
+done <${WORKINGDIR}/Script/requirements.txt
 
 echo "Fine installazione dipendenze script PYTHON."
 echo " "
@@ -157,7 +172,13 @@ else {
 	echo "Fine installazione cpanm, procedo con l'installazione delle dipendenze..."
 };
 fi
-cpanm String::Random Net::IP Net::DNS Net::Netmask Net::Whois::IP HTML::Parser WWW::Mechanize XML::Writer > /dev/null
+
+perl -MNet::Whois::IP -e 1 && if [[ ! $? = 0 ]] ; then  apt install libnet-whois-ip-perl >/dev/null ; else echo "Pacchetto Net:Whois:IP già installato." ; fi
+
+while read p; do
+  perl -M$p -e 1 && if [[ ! $? = 0 ]] ; then  cpanm $p >/dev/null ; else echo "Pacchetto ${p} già installato." ; fi
+done <${WORKINGDIR}/Script/dipendenzePerl.txt
+
 echo "Fine installazione dipendenze di DnsEnum."
 echo " "
 echo " "
@@ -166,17 +187,19 @@ echo " "
 echo "-------------------------------------------------------"
 echo "INSTALLAZIONE WPScan"
 echo "-------------------------------------------------------"
-cd Programmi/WPScan
+cd ${WORKINGDIR}/Programmi/wpscan
 if ! hash bundle >/dev/null 2>&1 ; then 
 apt install ruby-all-dev ruby-dev libffi-dev build-essential patch ruby-dev zlib1g-dev liblzma-dev > /dev/null ;
 fi
-bundle check --gemfile=/home/rick/webmva/Programmi/wpscan/Gemfile >/dev/null ;
-if [[ ! $0 -eq 0 ]] ; then 
+bundle check --gemfile=Gemfile >/dev/null ;
+if [[ ! $0 = 0 ]] ; then 
 sudo gem install bundler && bundle install --without test ;
 fi
 if [ ! -d ~/.wpscan/data ] >/dev/null 2>&1 ; then 
 unzip data.zip -d ~/.wpscan/ ; fi
-cd ../..
+if [ ! -d "${HOME}/.wpscan/data" ] >/dev/null 2>&1 ; then 
+unzip data.zip -d ${HOME}/.wpscan/ ; fi
+cd ${WORKINGDIR}
 echo "Fine installazione WPScan."
 echo " "
 echo " "
@@ -219,14 +242,14 @@ then
 	echo "opendoor è già installato.";
 else {
 	echo "Sto installando opendoor..."
-	git clone https://github.com/stanislav-web/OpenDoor.git
- 	cd OpenDoor/
+	git clone https://github.com/stanislav-web/OpenDoor.git ${WORKINGDIR}/OpenDoor
+ 	cd ${WORKINGDIR}/OpenDoor
  	sudo su 
 	python3 setup.py build && python3 setup.py install
 	cp -R data/ /usr/local/bin/data
 	exit
-	cd ..
-	rm -rf OpenDoor/
+	cd ${WORKINGDIR}
+	rm -rf ${WORKINGDIR}/OpenDoor/
 	echo "Fine installazione opendoor."
 	}
 fi
@@ -239,7 +262,7 @@ echo " "
 echo "-------------------------------------------------------"
 echo "INSTALLAZIONE ODAT"
 echo "-------------------------------------------------------"
-bash Script/Odat/installOdat.sh
+bash ${WORKINGDIR}/Script/Odat/installOdat.sh ;
 echo "Fine installazione Odat."
 echo " "
 echo " "

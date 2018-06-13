@@ -375,6 +375,7 @@ namespace webmva.Controllers
         }
         private string CreaComando(Modulo mod, string target, string cartella, string nomeFile, List<string> percorsi){
             //Controllo di che tipo è il modulo
+            string regex = "s/\x1B\\[([0-9]{1,2}(;[0-9]{1,2})?)?[m|K]//g";
             if (mod is ModuloNMAP){
                 // Inserisco il comando generato dal modulo, il target e la direttiva
                 // per esportare un xml con nome derivato dal timestamp e dal nome del modulo
@@ -392,35 +393,35 @@ namespace webmva.Controllers
             if(mod is ModuloDNSRECON)
             {
                 string percorsoExec = Path.Combine(Globals.CartellaWEBMVA, "Programmi", "dnsrecon");
-                string comando = $"python3 {percorsoExec}/{mod.Comando} -d {target} --xml {nomeFile}.xml";
+                string comando = $"python {percorsoExec}/{mod.Comando} -d {target} --xml {nomeFile}.xml";
                 percorsi.Add(Path.Combine(cartella, nomeFile+".xml"));
                 return comando;
             }
             if(mod is ModuloFIERCE)
             {
                 string percorsoExec = Path.Combine(Globals.CartellaWEBMVA, "Programmi", "fierce", "fierce");
-                string comando = $"python3 -u {percorsoExec}/{mod.Comando} --domain {target} | tee {nomeFile}.txt";
+                string comando = $"python3 -u {percorsoExec}/{mod.Comando} --domain {target} | sed -r \"{regex}\" | tee {nomeFile}.txt";
                 percorsi.Add(Path.Combine(cartella, nomeFile+".txt"));
                 return comando;
             }
             if(mod is ModuloDROOPE)
             {
                 string percorsoExec = Path.Combine(Globals.CartellaWEBMVA, "Programmi", "droopescan");
-                string comando = $"python -u {percorsoExec}/{mod.Comando} -u {target} | tee {nomeFile}.txt";
+                string comando = $"python -u {percorsoExec}/{mod.Comando} -u {target} | sed -r \"{regex}\" | tee {nomeFile}.txt";
                 percorsi.Add(Path.Combine(cartella, nomeFile+".txt"));
                 return comando;
             }
              if(mod is ModuloINFOGA )
             {
                 string percorsoExec = Path.Combine(Globals.CartellaWEBMVA, "Programmi", "Infoga");
-                string comando = $"python3 -u {percorsoExec}/{mod.Comando} -d {target} | tee {nomeFile}.txt";
+                string comando = $"python3 -u {percorsoExec}/{mod.Comando} -d {target} | sed -r \"{regex}\" | tee {nomeFile}.txt";
                 percorsi.Add(Path.Combine(cartella, nomeFile+".txt"));
                 return comando;
             }
             if(mod is ModuloINFOGAEMAIL)
             {
                 string percorsoExec = Path.Combine(Globals.CartellaWEBMVA, "Programmi", "Infoga");
-                string comando = $"python3 -u {percorsoExec}/{mod.Comando} --info {target} | tee {nomeFile}.txt";
+                string comando = $"python3 -u {percorsoExec}/{mod.Comando} --info {target} | sed -r \"{regex}\" | tee {nomeFile}.txt";
                 percorsi.Add(Path.Combine(cartella, nomeFile+".txt"));
                 return comando;
             }
@@ -441,14 +442,14 @@ namespace webmva.Controllers
              if(mod is ModuloOPENDOOR)
             {
                  string percorsoExec = Path.Combine(Globals.CartellaWEBMVA, "Programmi", "OpenDoor");
-                string comando = $"cd /usr/local/bin && {mod.Comando} --host {target} | tee {Path.Combine(Globals.CartellaWEBMVA, "wwwroot", "Report", cartella, nomeFile)}opendoor.txt ";
+                string comando = $"cd /usr/local/bin && {mod.Comando} --host {target} | sed -r \"{regex}\" | tee {Path.Combine(Globals.CartellaWEBMVA, "wwwroot", "Report", cartella, nomeFile)}opendoor.txt ";
                 percorsi.Add(Path.Combine(cartella, nomeFile+"opendoor.txt"));
                 return comando;
             }
             if(mod is ModuloSQLMAP)
             {
                 string percorsoExec = Path.Combine(Globals.CartellaWEBMVA, "Programmi", "sqlmap");
-                string comando = $"python {percorsoExec}/{mod.Comando} -u {target} | tee {nomeFile}.txt ";
+                string comando = $"python {percorsoExec}/{mod.Comando} -u {target} | sed -r \"{regex}\" | tee {nomeFile}.txt ";
                 percorsi.Add(Path.Combine(cartella, nomeFile+".txt"));
                 return comando;
             }
@@ -467,7 +468,7 @@ namespace webmva.Controllers
              if(mod is ModuloJOOMSCAN)
             {
                 string percorsoExec = Path.Combine(Globals.CartellaWEBMVA, "Programmi", "joomscan");
-                string comando = $"perl {percorsoExec}/{mod.Comando} -u {target} | tee {nomeFile}.txt ";
+                string comando = $"perl {percorsoExec}/{mod.Comando} -u {target} | sed -r \"{regex}\" | tee {nomeFile}.txt ";
                 percorsi.Add(Path.Combine(cartella, nomeFile+".txt"));
                 return comando;
             }
@@ -481,7 +482,7 @@ namespace webmva.Controllers
             if(mod is ModuloWASCAN)
             {
                 string percorsoExec = Path.Combine(Globals.CartellaWEBMVA, "Programmi", "WAScan");
-                string comando = $"python -u {percorsoExec}/{mod.Comando} -u {target} >> {nomeFile}.txt ";
+                string comando = $"python -u {percorsoExec}/{mod.Comando} -u {target} | sed -r \"{regex}\" | tee {nomeFile}.txt ";
                 percorsi.Add(Path.Combine(cartella, nomeFile+".txt"));
                 return comando;
             }
@@ -495,7 +496,7 @@ namespace webmva.Controllers
             if(mod is ModuloODAT)
             {
                 string percorsoExec = Path.Combine(Globals.CartellaWEBMVA, "Programmi", "odat");
-                string comando = $"python -u {percorsoExec}/{mod.Comando} -s {target} | tee {nomeFile}.txt ";
+                string comando = $"python -u {percorsoExec}/{mod.Comando} -s {target} | sed -r \"{regex}\" | tee {nomeFile}.txt ";
                 percorsi.Add(Path.Combine(cartella, nomeFile+".txt"));
                 return comando;
             }

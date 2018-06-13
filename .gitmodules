@@ -37,3 +37,6 @@
 [submodule "Programmi/WAScan"]
 	path = Programmi/WAScan
 	url = https://github.com/m4ll0k/WAScan
+[submodule "Programmi/odat"]
+	path = Programmi/odat
+	url = https://github.com/quentinhardy/odat

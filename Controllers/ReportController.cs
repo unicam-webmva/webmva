@@ -98,9 +98,41 @@ namespace webmva.Controllers
             if (fileName.Split('_').ElementAt(2).Equals("droope"))
             {
                 List<string> content = System.IO.File.ReadLines(Path.Combine("wwwroot",filePath)).ToList();
-                if (!content.ElementAt(0).Contains("Report di Droopescan"))
+                if (!content.ElementAt(0).Contains("___________________________________________________________________"))
                 {
-                    content.Insert(0, "Report di Droopescan");
+                    var progetto = filePath.Split(Path.DirectorySeparatorChar).ElementAt(1);
+                    var filename = Path.GetFileName(filePath).Split('_');
+                    var nomeModulo = filename[3].Substring(0, filename[3].LastIndexOf('.'));
+                    var data = DateTime
+                        .ParseExact(filename[0]+filename[1],
+                            "yyyyMMddHHmmss",
+                            System.Globalization.CultureInfo.InvariantCulture)
+                        .ToString("dd MMMM dd alle HH:mm:ss");
+                    string comando = _context.Moduli.SingleOrDefault(x=>x.Nome.ToCamelCase() == nomeModulo).Comando;
+                    List<string> asciiArt = new List<string>();
+                    asciiArt.Add(@"___________________________________________________________________");
+                    asciiArt.Add(@"  _____                                                          ");
+                    asciiArt.Add(@" |  __ \                                                         ");
+                    asciiArt.Add(@" | |  | | _ __  ___    ___   _ __    ___  ___   ___  __ _  _ __  ");
+                    asciiArt.Add(@" | |  | || '__|/ _ \  / _ \ | '_ \  / _ \/ __| / __|/ _` || '_ \ ");
+                    asciiArt.Add(@" | |__| || |  | (_) || (_) || |_) ||  __/\__ \| (__| (_| || | | |");
+                    asciiArt.Add(@" |_____/ |_|   \___/  \___/ | .__/  \___||___/ \___|\__,_||_| |_|");
+                    asciiArt.Add(@"                            | |                                  ");
+                    asciiArt.Add(@"                            |_|                                  ");
+                    asciiArt.Add(@"___________________________________________________________________");
+                    asciiArt.Add("");
+                    asciiArt.Add(@" Progetto: " + progetto);
+                    asciiArt.Add(@" Nome Modulo: " + nomeModulo);
+                    asciiArt.Add(@" Comando eseguito: " + comando);
+                    asciiArt.Add("");
+                    asciiArt.Add("\tScan iniziato il " + data);
+                    asciiArt.Add(@"___________________________________________________________________");
+                    asciiArt.Add("");
+                    asciiArt.Add("");
+                    
+                    for(int i = 0; i< asciiArt.Count; i++){
+                        content.Insert(i,asciiArt.ElementAt(i));
+                    }
                     System.IO.File.WriteAllLines(Path.Combine("wwwroot",filePath), content);
                 }
             }
@@ -368,11 +400,11 @@ namespace webmva.Controllers
             var listaRecord = await _context.PercorsiReport.Where(riga => riga.ReportID == id).ToListAsync();
             _context.PercorsiReport.RemoveRange(listaRecord);
             await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
+            return Redirect(Url.Action($"Lista/{report.ProgettoID}","Report").Replace("%2F","/"));
         }
 
         // GET: Report/Delete/5 (elimina totalmente un report e i suoi percorsi)
-        public async Task<IActionResult> DeletePercorso(int? id)
+        public async Task<IActionResult> DeletePercorso(int? id, string daDove)
         {
             if (id == null)
             {
@@ -386,13 +418,14 @@ namespace webmva.Controllers
             {
                 return NotFound();
             }
+            ViewData["daDove"] = daDove;
             return View(percorso);
         }
 
         // POST: Report/Delete/5
         [HttpPost, ActionName("DeletePercorso")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeletePercorsoConfirmed(int id)
+        public async Task<IActionResult> DeletePercorsoConfirmed(int id, string daDove)
         {
 
             var percorso = await _context.PercorsiReport
@@ -404,7 +437,7 @@ namespace webmva.Controllers
             System.IO.File.Delete(Path.Combine(Globals.CartellaWEBMVA, "wwwroot", "Report", percorso.Percorso));
             _context.PercorsiReport.Remove(percorso);
             await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
+            return Redirect(Url.Action($"{daDove}","Report").Replace("%2F","/"));
         }
     }
 }

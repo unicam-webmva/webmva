@@ -8,12 +8,12 @@ if (importati != null) idImportati = importati.ID;
 }
 
 <div class="container">
-    <h2><em>Tutti i report del progetto: @Model.ElementAt(0).Progetto.Nome</em></h2>
+    <h2><em>Tutti i report del progetto: <a href="/Progetto/Details/@Model.ElementAt(0).ProgettoID">@Model.ElementAt(0).Progetto.Nome</a></em></h2>
     
     <div class="panel panel-default">
         <div class="col-lg-12 text-right">
     <form asp-action="Importa" enctype="multipart/form-data">
-        <input type="file" id="file" name="file" value="Sfoglia..." accept=".pdf,application/pdf" style="display:inline-block; margin-top:2%"/>
+        <input type="file" id="file" name="file" value="Sfoglia..." accept=".pdf,application/pdf,.html,.htm" style="display:inline-block; margin-top:2%"/>
         <input type="submit" asp-action="Importa" asp-route-idProgetto="@Model.ElementAt(0).ProgettoID" asp-route-reportID="@idImportati" value="Importa" style="display:inline-block"/>
     </form>
     </div>
@@ -62,7 +62,7 @@ if (importati != null) idImportati = importati.ID;
                                 <input type="checkbox" value="Report/@itm.Percorsi.ElementAt(i).Percorso" name="pdf" />
                             </td>  
                             <td class="text-center">
-                                <a asp-action="DeletePercorso"  asp-route-id="@itm.Percorsi.ElementAt(i).ID" class="btn btn-danger">Cancella</a>
+                                <a asp-action="DeletePercorso" asp-route-daDove="Tutti/@Model.ElementAt(0).ProgettoID" asp-route-id="@itm.Percorsi.ElementAt(i).ID" class="btn btn-danger">Cancella</a>
                             </td>
                             </tr>
                 }

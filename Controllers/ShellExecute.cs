@@ -42,7 +42,7 @@ namespace webmva.Helpers
                 {
                     WorkingDirectory = cartellaDiLavoro,
                     FileName = "/bin/bash",
-                    Arguments = $"-c \"exec xterm -e '{escapedArgs}'\"",
+                    Arguments = $"-c \"exec stdbuf -oL xterm -e '{escapedArgs}'\"",
                     RedirectStandardOutput = false,
                     UseShellExecute = false,
                     CreateNoWindow = false,
@@ -65,13 +65,13 @@ namespace webmva.Helpers
                     WorkingDirectory = cartellaDiLavoro,
                     FileName = "/bin/bash",
                     Arguments = $"-c \"{escapedArgs}\"",
-                    RedirectStandardOutput = false,
-                    UseShellExecute = true,
-                    CreateNoWindow = false,
+                    RedirectStandardOutput = true,
+                    UseShellExecute = false,
+                    CreateNoWindow = true,
                 }
             };
             process.Start();
-            
+            string result = process.StandardOutput.ReadToEnd();
             process.WaitForExit();
             
             return process.ExitCode.ToString();

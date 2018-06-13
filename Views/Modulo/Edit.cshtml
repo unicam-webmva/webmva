@@ -275,6 +275,42 @@
 
                                         </div>
                                     </div>
+                                    <div class="col-sm-12">
+                                        @if(ViewData["TestN"] != null)
+                                        {
+                                            <div class="col-sm-8">
+                                                <h5 style="color:red">
+                                                    <strong>
+                                                @{
+                                                    string check = ViewBag.TestN;
+                                                    if(check=="True")
+                                                    {
+                                                        @Html.Raw("Il server specificato è attivo");
+                                                    }
+                                                    else
+                                                    {
+                                                     
+                                                    @Html.Raw("Il server specificato è spento<br>");
+                                                    @Html.Raw("Per farlo partire inserire nella shell: '/etc/init.d/nessusd start'");
+
+                                                         
+
+                                                    }
+                                                }
+                                                    </strong>
+                                                </h5>
+                                            </div>
+                                        }
+                                        <div class="col-sm-4  text-right ">
+                                                <form asp-action="Test">
+                                            <div class="form-group">
+                                                <input type="submit" asp-action="Test" asp-route-daDove="Edit/@Model.NESSUS.ID" class="btn btn-default" value="Test" asp-route-cosa="nessus" />
+                                                </div>
+                                                </form>
+                                               
+                                            </div>
+                                            </div>
+                                    </div>
                                      <div class="col-sm-12">
                                             <hr/>
                                             <div class="col-sm-6">
@@ -309,7 +345,7 @@
    
    <form asp-action="Edit" name="openvasForm">
                             <input type="hidden" asp-for="@Model.OPENVAS.Applicazione" value="@webmva.Models.APPLICAZIONE.OPENVAS" />
-                              <input type="hidden" asp-for="@Model.NESSUS.ID" />
+                              <input type="hidden" asp-for="@Model.OPENVAS.ID" />
                               <div class="row panel panel-default panel-body">
                             <div class="col-sm-12">
                                   <div class="col-sm-7" style="margin:0 auto; float:none">
@@ -338,6 +374,42 @@
 
                                         </div>
                                     </div>
+                                    <div class="col-sm-12">
+                                        @if(ViewData["TestO"] != null)
+                                        {
+                                            <div class="col-sm-8">
+                                                <h5 style="color:red">
+                                                    <strong>
+                                                @{
+                                                    string check = ViewBag.TestO;
+                                                    if(check=="True")
+                                                    {
+                                                        @Html.Raw("Il server specificato è attivo");
+                                                    }
+                                                    else
+                                                    {
+                                                     
+                                                    @Html.Raw("Il server specificato è spento<br>");
+                                                    @Html.Raw("Per farlo partire inserire nella shell: 'openvas-start'");
+
+                                                         
+
+                                                    }
+                                                }
+                                                    </strong>
+                                                </h5>
+                                            </div>
+                                        }
+                                        <div class="col-sm-4 text-right ">
+                                                <form asp-action="Test">
+                                            <div class="form-group">
+                                                <input type="submit" asp-action="Test" asp-route-daDove="Edit/@Model.OPENVAS.ID" class="btn btn-default" value="Test" asp-route-cosa="openvas" />
+                                                </div>
+                                                </form>
+                                               
+                                            </div>
+                                            </div>
+                                    </div>
                                      <div class="col-sm-12">
                                             <hr/>
                                             <div class="col-sm-6">
@@ -359,7 +431,7 @@
                                         </div>
                                         </div>
                             </div>
-                            </div>
+
                         </form>
 }
     @* -----DNSRECON----- *@
@@ -369,6 +441,7 @@
         <hr />
         <form asp-action="Edit" name="dnsReconForm">
             <input type="hidden" asp-for="@Model.DNSRECON.Applicazione" value="@webmva.Models.APPLICAZIONE.DNSRECON" />
+            <input type="hidden" asp-for="@Model.DNSRECON.ID" />
             <div class="row panel panel-default panel-body">
 
                  <div class="col-sm-12">

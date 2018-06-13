@@ -40,10 +40,10 @@ namespace webmva.Controllers
             var listaWIFITE = await _context.Moduli.Where(modulo => modulo.Applicazione == APPLICAZIONE.WIFITE).ToListAsync();
             var listaWASCAN = await _context.Moduli.Where(modulo => modulo.Applicazione == APPLICAZIONE.WASCAN).ToListAsync();
             var listaNOSQL = await _context.Moduli.Where(modulo => modulo.Applicazione == APPLICAZIONE.NOSQL).ToListAsync();
-            var listaODAT = await _context.Moduli.Where(modulo => modulo.Applicazione == APPLICAZIONE.ODAT).ToListAsync(); 
-            var listaDNSENUM = await _context.Moduli.Where(modulo => modulo.Applicazione == APPLICAZIONE.DNSENUM).ToListAsync(); 
-            var listaOPENVAS = await _context.Moduli.Where(modulo => modulo.Applicazione == APPLICAZIONE.OPENVAS).ToListAsync();             
-            return View(new ListaModuliVM { ModuliNMAP = listaNMAP, ModuliNESSUS= listaNESSUS,ModuliOPENDOOR= listaOPENDOOR, ModuliDNSRECON = listaDNSRECON, ModuliFIERCE= listaFIERCE, ModuliDROOPE= listaDROOPE,ModuliJOOMSCAN=listaJOOMSCAN,ModuliWPSCAN=listaWPSCAN, ModuliINFOGA =listaINFOGA,ModuliINFOGAEMAIL = listaINFOGAEMAIL, ModuliSUBLIST3R = listaSUBLIST3R, ModuliWAPITI = listaWAPITI, ModuliSQLMAP = listaSQLMAP, ModuliWIFITE = listaWIFITE, ModuliWASCAN =listaWASCAN, ModuliNOSQL = listaNOSQL, ModuliODAT = listaODAT, ModuliDNSENUM = listaDNSENUM, ModuliOPENVAS = listaOPENVAS });
+            var listaODAT = await _context.Moduli.Where(modulo => modulo.Applicazione == APPLICAZIONE.ODAT).ToListAsync();
+            var listaDNSENUM = await _context.Moduli.Where(modulo => modulo.Applicazione == APPLICAZIONE.DNSENUM).ToListAsync();
+            var listaOPENVAS = await _context.Moduli.Where(modulo => modulo.Applicazione == APPLICAZIONE.OPENVAS).ToListAsync();
+            return View(new ListaModuliVM { ModuliNMAP = listaNMAP, ModuliNESSUS = listaNESSUS, ModuliOPENDOOR = listaOPENDOOR, ModuliDNSRECON = listaDNSRECON, ModuliFIERCE = listaFIERCE, ModuliDROOPE = listaDROOPE, ModuliJOOMSCAN = listaJOOMSCAN, ModuliWPSCAN = listaWPSCAN, ModuliINFOGA = listaINFOGA, ModuliINFOGAEMAIL = listaINFOGAEMAIL, ModuliSUBLIST3R = listaSUBLIST3R, ModuliWAPITI = listaWAPITI, ModuliSQLMAP = listaSQLMAP, ModuliWIFITE = listaWIFITE, ModuliWASCAN = listaWASCAN, ModuliNOSQL = listaNOSQL, ModuliODAT = listaODAT, ModuliDNSENUM = listaDNSENUM, ModuliOPENVAS = listaOPENVAS });
         }
 
         // GET: Modulo/Details/5
@@ -68,26 +68,29 @@ namespace webmva.Controllers
         public IActionResult Create()
         {
             var model = TempData.Peek<EditModuloVM>("Model");
-            if (model!=null){
+            if (model != null)
+            {
                 TempData.Remove("Model");
                 var anchor = TempData.Peek<string>("Anchor");
                 TempData.Remove("Anchor");
                 ViewData["Anchor"] = anchor;
-                if(anchor=="Nessus"){
+                if (anchor == "Nessus")
+                {
                     ViewData["TestN"] = TempData.Peek<string>("TestN");
                     TempData.Remove("TestN");
                 }
-                else if(anchor=="Openvas"){
+                else if (anchor == "Openvas")
+                {
                     ViewData["TestO"] = TempData.Peek<string>("TestO");
                     TempData.Remove("TestO");
                 }
                 return View(model);
             }
             else
-            return View(new EditModuloVM());
+                return View(new EditModuloVM());
         }
 
-        // POST: Modulo/CreateNMAP
+        // POST: Modulo/
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
@@ -131,7 +134,7 @@ namespace webmva.Controllers
                     }
                 }
             }
-             else if (createmodulo.FIERCE.Nome != null && cosa.Equals("fierce"))
+            else if (createmodulo.FIERCE.Nome != null && cosa.Equals("fierce"))
             {
                 {
                     if (ModelState.IsValid)
@@ -170,7 +173,7 @@ namespace webmva.Controllers
                     }
                 }
             }
-             else if (createmodulo.WPSCAN.Nome != null && cosa.Equals("wpscan"))
+            else if (createmodulo.WPSCAN.Nome != null && cosa.Equals("wpscan"))
             {
                 {
                     if (ModelState.IsValid)
@@ -183,7 +186,7 @@ namespace webmva.Controllers
                     }
                 }
             }
-             else if (createmodulo.INFOGA.Nome != null && cosa.Equals("infoga"))
+            else if (createmodulo.INFOGA.Nome != null && cosa.Equals("infoga"))
             {
                 {
                     if (ModelState.IsValid)
@@ -209,7 +212,7 @@ namespace webmva.Controllers
                     }
                 }
             }
-             else if (createmodulo.SUBLIST3R.Nome != null && cosa.Equals("sublist3r"))
+            else if (createmodulo.SUBLIST3R.Nome != null && cosa.Equals("sublist3r"))
             {
                 {
                     if (ModelState.IsValid)
@@ -222,7 +225,7 @@ namespace webmva.Controllers
                     }
                 }
             }
-             else if (createmodulo.WAPITI.Nome != null && cosa.Equals("wapiti"))
+            else if (createmodulo.WAPITI.Nome != null && cosa.Equals("wapiti"))
             {
                 {
                     if (ModelState.IsValid)
@@ -248,7 +251,7 @@ namespace webmva.Controllers
                     }
                 }
             }
-             else if (createmodulo.SQLMAP.Nome != null && cosa.Equals("sqlmap"))
+            else if (createmodulo.SQLMAP.Nome != null && cosa.Equals("sqlmap"))
             {
                 {
                     if (ModelState.IsValid)
@@ -261,7 +264,7 @@ namespace webmva.Controllers
                     }
                 }
             }
-             else if (createmodulo.WIFITE.Nome != null && cosa.Equals("wifite"))
+            else if (createmodulo.WIFITE.Nome != null && cosa.Equals("wifite"))
             {
                 {
                     if (ModelState.IsValid)
@@ -346,78 +349,66 @@ namespace webmva.Controllers
         }
         // POST: Modulo/Test
         [HttpPost]
-        public async Task<IActionResult>Test(EditModuloVM createmodulo, string cosa){
-            if(cosa== "nessus"){
+        public async Task<IActionResult> Test(EditModuloVM createmodulo, string cosa, string daDove)
+        {
+            if (cosa == "nessus")
+            {
                 bool check = await CheckServer(createmodulo.NESSUS.ServerIP, createmodulo.NESSUS.Porta);
                 TempData.Put("TestN", check.ToString());
                 TempData.Put("Anchor", "Nessus");
-                
-                
-            } 
-            else if(cosa == "openvas"){
+
+
+            }
+            else if (cosa == "openvas")
+            {
                 bool check = await CheckServer(createmodulo.OPENVAS.ServerIPOpenvas, createmodulo.OPENVAS.PortaOpenvas);
                 TempData.Put("TestO", check.ToString());
                 TempData.Put("Anchor", "Openvas");
-                
+
             }
             TempData.Put("Model", createmodulo);
             //return View(nameof(Create),createmodulo);
-            return RedirectToAction("Create", "Modulo");
-            
+            return Redirect(Url.Action(daDove, "Modulo").Replace("%2F", "/"));
+
         }
         // GET: Modulo/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
 
-            var modulo = await _context.Moduli.SingleOrDefaultAsync(m => m.ID == id);
-            if (modulo == null)
+            var model = TempData.Peek<EditModuloVM>("Model");
+            if (model != null)
             {
-                return NotFound();
+                Modulo m = null;
+                TempData.Remove("Model");
+                var anchor = TempData.Peek<string>("Anchor");
+                TempData.Remove("Anchor");
+                if (anchor == "Nessus")
+                {
+                    m = model.NESSUS;
+                    ViewData["TestN"] = TempData.Peek<string>("TestN");
+                    TempData.Remove("TestN");
+                }
+                else if (anchor == "Openvas")
+                {
+                    m = model.OPENVAS;
+                    ViewData["TestO"] = TempData.Peek<string>("TestO");
+                    TempData.Remove("TestO");
+                }
+                return View(new EditModuloVM(m));
             }
-            if (modulo is ModuloNMAP)
-                return View(new EditModuloVM((ModuloNMAP) modulo));
-            else if (modulo is ModuloNESSUS)
-                return View(new EditModuloVM((ModuloNESSUS) modulo));
-            else if (modulo is ModuloDNSRECON)
-                return View(new EditModuloVM((ModuloDNSRECON) modulo));
-            else if (modulo is ModuloDROOPE)
-                return View(new EditModuloVM((ModuloDROOPE) modulo));
-             else if (modulo is ModuloFIERCE)
-                return View(new EditModuloVM((ModuloFIERCE) modulo));    
-            else if (modulo is ModuloJOOMSCAN)
-                return View(new EditModuloVM((ModuloJOOMSCAN) modulo));
-             else if (modulo is ModuloWPSCAN)
-                return View(new EditModuloVM((ModuloWPSCAN) modulo));    
-            else if (modulo is ModuloINFOGA)
-                return View(new EditModuloVM((ModuloINFOGA) modulo));
-            else if (modulo is ModuloINFOGAEMAIL)
-                return View(new EditModuloVM((ModuloINFOGAEMAIL) modulo));
-             else if (modulo is ModuloSUBLIST3R)
-                return View(new EditModuloVM((ModuloSUBLIST3R) modulo));    
-            else if (modulo is ModuloWAPITI)
-                return View(new EditModuloVM((ModuloWAPITI) modulo));
-            else if (modulo is ModuloSQLMAP)
-                return View(new EditModuloVM((ModuloSQLMAP) modulo));
-            else if (modulo is ModuloWIFITE)
-                return View(new EditModuloVM((ModuloWIFITE) modulo));
-            else if (modulo is ModuloOPENDOOR)
-                return View(new EditModuloVM((ModuloOPENDOOR) modulo));
-            else if (modulo is ModuloWASCAN)
-                return View(new EditModuloVM((ModuloWASCAN) modulo));
-            else if (modulo is ModuloNOSQL)
-                return View(new EditModuloVM((ModuloNOSQL) modulo));
-            else if (modulo is ModuloODAT)
-                return View(new EditModuloVM((ModuloODAT) modulo)); 
-            else if (modulo is ModuloDNSENUM)
-                return View(new EditModuloVM((ModuloDNSENUM) modulo)); 
-            else if (modulo is ModuloOPENVAS)
-                return View(new EditModuloVM((ModuloOPENVAS) modulo));                
-            // PROVVISORIO, SOLO PER NON DARE ERRORI DI COMPILAZIONE
-            else return View(new EditModuloVM() );
+            else
+            {
+                if (id == null)
+                {
+                    return NotFound();
+                }
+                var modulo = await _context.Moduli.SingleOrDefaultAsync(m => m.ID == id);
+                if (modulo == null)
+                {
+                    return NotFound();
+                }
+                return View(new EditModuloVM(modulo));
+            }
         }
 
         // POST: Modulo/Edit/5
@@ -515,7 +506,7 @@ namespace webmva.Controllers
                     return RedirectToAction(nameof(Index));
                 }
             }
-             else if (!string.IsNullOrEmpty(editmodulo.FIERCE.Nome))
+            else if (!string.IsNullOrEmpty(editmodulo.FIERCE.Nome))
             {
                 ModuloFIERCE mod = editmodulo.FIERCE;
                 if (id != mod.ID)
@@ -544,7 +535,7 @@ namespace webmva.Controllers
                     return RedirectToAction(nameof(Index));
                 }
             }
-             else if (!string.IsNullOrEmpty(editmodulo.DROOPE.Nome))
+            else if (!string.IsNullOrEmpty(editmodulo.DROOPE.Nome))
             {
                 ModuloDROOPE mod = editmodulo.DROOPE;
                 if (id != mod.ID)
@@ -573,7 +564,7 @@ namespace webmva.Controllers
                     return RedirectToAction(nameof(Index));
                 }
             }
-             else if (!string.IsNullOrEmpty(editmodulo.JOOMSCAN.Nome))
+            else if (!string.IsNullOrEmpty(editmodulo.JOOMSCAN.Nome))
             {
                 ModuloJOOMSCAN mod = editmodulo.JOOMSCAN;
                 if (id != mod.ID)
@@ -602,7 +593,7 @@ namespace webmva.Controllers
                     return RedirectToAction(nameof(Index));
                 }
             }
-             else if (!string.IsNullOrEmpty(editmodulo.WPSCAN.Nome))
+            else if (!string.IsNullOrEmpty(editmodulo.WPSCAN.Nome))
             {
                 ModuloWPSCAN mod = editmodulo.WPSCAN;
                 if (id != mod.ID)
@@ -631,7 +622,7 @@ namespace webmva.Controllers
                     return RedirectToAction(nameof(Index));
                 }
             }
-             else if (!string.IsNullOrEmpty(editmodulo.INFOGA.Nome))
+            else if (!string.IsNullOrEmpty(editmodulo.INFOGA.Nome))
             {
                 ModuloINFOGA mod = editmodulo.INFOGA;
                 if (id != mod.ID)
@@ -660,7 +651,7 @@ namespace webmva.Controllers
                     return RedirectToAction(nameof(Index));
                 }
             }
-             else if (!string.IsNullOrEmpty(editmodulo.INFOGAEMAIL.Nome))
+            else if (!string.IsNullOrEmpty(editmodulo.INFOGAEMAIL.Nome))
             {
                 ModuloINFOGAEMAIL mod = editmodulo.INFOGAEMAIL;
                 if (id != mod.ID)
@@ -689,7 +680,7 @@ namespace webmva.Controllers
                     return RedirectToAction(nameof(Index));
                 }
             }
-             else if (!string.IsNullOrEmpty(editmodulo.SUBLIST3R.Nome))
+            else if (!string.IsNullOrEmpty(editmodulo.SUBLIST3R.Nome))
             {
                 ModuloSUBLIST3R mod = editmodulo.SUBLIST3R;
                 if (id != mod.ID)
@@ -718,7 +709,7 @@ namespace webmva.Controllers
                     return RedirectToAction(nameof(Index));
                 }
             }
-             else if (!string.IsNullOrEmpty(editmodulo.WASCAN.Nome))
+            else if (!string.IsNullOrEmpty(editmodulo.WASCAN.Nome))
             {
                 ModuloWASCAN mod = editmodulo.WASCAN;
                 if (id != mod.ID)
@@ -805,7 +796,7 @@ namespace webmva.Controllers
                     return RedirectToAction(nameof(Index));
                 }
             }
-             else if (!string.IsNullOrEmpty(editmodulo.SUBLIST3R.Nome))
+            else if (!string.IsNullOrEmpty(editmodulo.SUBLIST3R.Nome))
             {
                 ModuloSUBLIST3R mod = editmodulo.SUBLIST3R;
                 if (id != mod.ID)
@@ -921,7 +912,7 @@ namespace webmva.Controllers
                     return RedirectToAction(nameof(Index));
                 }
             }
-              else if (!string.IsNullOrEmpty(editmodulo.ODAT.Nome))
+            else if (!string.IsNullOrEmpty(editmodulo.ODAT.Nome))
             {
                 ModuloODAT mod = editmodulo.ODAT;
                 if (id != mod.ID)
@@ -979,7 +970,7 @@ namespace webmva.Controllers
                     return RedirectToAction(nameof(Index));
                 }
             }
-             else if (!string.IsNullOrEmpty(editmodulo.OPENVAS.Nome))
+            else if (!string.IsNullOrEmpty(editmodulo.OPENVAS.Nome))
             {
                 ModuloOPENVAS mod = editmodulo.OPENVAS;
                 if (id != mod.ID)
@@ -1010,7 +1001,7 @@ namespace webmva.Controllers
             }
             return View(editmodulo);
         }
-        
+
 
         // GET: Modulo/Delete/5
         public async Task<IActionResult> Delete(int? id)
@@ -1026,9 +1017,9 @@ namespace webmva.Controllers
             {
                 return NotFound();
             }
-            var progetti = _context.ModuliProgetto.Where(m=>m.ModuloID==modulo.ID).Select(x =>x.Progetto.Nome).ToList();
-            
-            ViewData["Progetti"]= progetti;
+            var progetti = _context.ModuliProgetto.Where(m => m.ModuloID == modulo.ID).Select(x => x.Progetto.Nome).ToList();
+
+            ViewData["Progetti"] = progetti;
 
             return View(modulo);
         }
@@ -1055,24 +1046,29 @@ namespace webmva.Controllers
                 handler.ServerCertificateCustomValidationCallback =
                 HttpClientHandler.DangerousAcceptAnyServerCertificateValidator;
 
-                using (var client = new HttpClient(handler)){
+                using (var client = new HttpClient(handler))
+                {
                     // timeout per la richiesta
-                    client.Timeout = new TimeSpan(0,0,5);
+                    client.Timeout = new TimeSpan(0, 0, 5);
                     Uri ppp = new Uri($"https://{ip}:{port}");
                     Console.WriteLine(ppp.ToString());
-                    try{
+                    try
+                    {
                         var result = await client.GetAsync(ppp);
                         return result.IsSuccessStatusCode;
                     }
                     // se finisco qui sono passati più di 5 secondi e il server non ha risposto, lo do per morto
-                    catch(System.Threading.Tasks.TaskCanceledException /*e*/){
+                    catch (System.Threading.Tasks.TaskCanceledException /*e*/)
+                    {
                         return false;
                     }
-                    catch(Exception e){
+                    catch (Exception e)
+                    {
                         Console.WriteLine(e.Message);
                         return false;
                     }
-                    finally{
+                    finally
+                    {
                         client.Dispose();
                     }
                 }

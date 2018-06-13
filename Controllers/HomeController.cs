@@ -14,8 +14,9 @@ namespace webmva.Controllers
     {
         public IActionResult Index()
         {
-            string checkDipendenze = Path.Combine(Globals.CartellaWEBMVA, "Script", "testDipendenzeBase.sh").EseguiCLI(Globals.CartellaWEBMVA);
-            string[] dips = checkDipendenze.Split(' ');
+            string checkDipendenze = Path.Combine(Globals.CartellaWEBMVA, "Script", "testDipendenzeBase.sh");
+            
+            string[] dips = checkDipendenze.EseguiCLI(Globals.CartellaWEBMVA, true).Split(' ');
             ViewData["Dipendenze"] = dips;
             return View();
         }
