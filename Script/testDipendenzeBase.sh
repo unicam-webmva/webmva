@@ -1,8 +1,8 @@
 #!/bin/bash
 
-echo "######################"
-echo "## CHECK DIPENDENZE ##"
-echo "######################"
+#echo "######################"
+#echo "## CHECK DIPENDENZE ##"
+#echo "######################"
 
 ###########
 # Exit codes:
@@ -36,6 +36,13 @@ else  {
     if [[ $CODICEUSCITA -gt 0 ]] ;
         then MANCANTI="${MANCANTI}wpscan " ;
     fi ; 
+    } 
+fi
+
+if ! hash timedatectl >/dev/null 2>&1 ; 
+    then  MANCANTI="${MANCANTI}timedatectl " ;
+else  {
+    systemctl is-active --quiet systemd-timesyncd.service && if [[ ! $? = 0 ]] ; then MANCANTI="${MANCANTI}timedatectl " ; fi
     } 
 fi
 

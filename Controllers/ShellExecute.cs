@@ -17,21 +17,21 @@ namespace webmva.Helpers
         
         
             
-        public static string EseguiCLI(this string cmd, string cartellaProgetto, bool finestra = false){
+        public static string EseguiCLI(this string cmd, string cartellaProgetto, bool finestra = true){
             switch (Globals.SistemaOperativoAttuale){
                 case Win32NT:
                     return Batch(cmd, cartellaProgetto);
                 case Unix:
                 if(finestra)
-                    return BashConShell(cmd, cartellaProgetto);
-                    else return Bash(cmd,cartellaProgetto);
+                    return BashXTERM(cmd, cartellaProgetto);
+                    else return BashConShell(cmd,cartellaProgetto);
                 default:
                     throw new ApplicationException("Non so come tu sia finito qui");
             }
         }
 
         //https://askubuntu.com/questions/46627/how-can-i-make-a-script-that-opens-terminal-windows-and-executes-commands-in-the
-        private static string Bash(string cmd, string cartellaDiLavoro)
+        private static string BashXTERM(string cmd, string cartellaDiLavoro)
         {
             //CreaCartellaProgetto(cartellaProgetto);
             var escapedArgs = cmd.Replace("\"", "\\\"");
@@ -74,7 +74,7 @@ namespace webmva.Helpers
             string result = process.StandardOutput.ReadToEnd();
             process.WaitForExit();
             
-            return process.ExitCode.ToString();
+            return result;
         }
         private static string Batch(string cmd, string cartellaDiLavoro)
         {

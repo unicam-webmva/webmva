@@ -1,9 +1,8 @@
 #!/bin/bash
 if [[ $EUID > 0 ]] ;
   then 
-  echo "Bisogna farmi partire come root."
-  echo "Premere un tasto per chiudere questo script..."
-  read
+  echo "Concedere i permessi root."
+  exec sudo /bin/bash "$0" "$@"
   exit
 fi
 WORKINGDIR=$PWD
@@ -22,13 +21,24 @@ echo "-------------------------------------------------------"
 echo "Installazione dipendenze WEBMVA"
 echo "-------------------------------------------------------"
 echo "Autori: Margherita Renieri, Riccardo Cannella"
-echo "Ultima modifica: 13 giugno 2018"
 echo "-------------------------------------------------------"
 echo " "
 echo " "
 echo "Sto eseguendo apt-get update..."
 apt-get update > /dev/null
+echo "-------------------------------------------------------"
+echo "INSTALLAZIONE WKHTMLTOPDF"
+echo "-------------------------------------------------------"
 
+if hash wkhtmltopdf >/dev/null 2>&1 ; 
+then
+	echo "wkhtmltopdf è già installato.";
+else {
+	echo "Sto installando wkhtmltopdf..."
+	apt-get install xvfb libfontconfig wkhtmltopdf -y >/dev/null
+	echo "Fine installazione wkhtmltopdf."
+	}
+fi
 echo "-------------------------------------------------------"
 echo "INSTALLAZIONE NMAP"
 echo "-------------------------------------------------------"
@@ -42,9 +52,6 @@ else {
 	echo "Fine installazione NMAP."
 	}
 fi
-echo " "
-echo " "
-echo " "
 echo "-------------------------------------------------------"
 echo "INSTALLAZIONE RUBY E PERL"
 echo "-------------------------------------------------------"
@@ -67,10 +74,6 @@ else {
 	echo "Fine installazione perl."
 	}
 fi
-echo " "
-echo " "
-echo " "
-
 echo "-------------------------------------------------------"
 echo "INSTALLAZIONE PYTHON"
 echo "-------------------------------------------------------"
@@ -93,14 +96,10 @@ else {
 	fi;
 };
 fi
-echo " "
-echo " "
-echo " "
-
 echo "-------------------------------------------------------"
 echo "INSTALLAZIONE DIPENDENZE PER SCRIPT PYTHON"
 echo "-------------------------------------------------------"
-echo "Sto installando alcune dipendenze tramite pip e pip3 per i vari programmi usati all'interno di WEBMVA..."
+echo "Sto installando alcune dipendenze tramite pip e pip3..."
 
 while read p; do
   pip freeze | grep -q $p && if [[ ! $? = 0 ]] ; then  pip install $p >/dev/null ; else echo "Pacchetto ${p} (pip2) già installato." ; fi
@@ -108,10 +107,6 @@ while read p; do
 done <${WORKINGDIR}/Script/requirements.txt
 
 echo "Fine installazione dipendenze script PYTHON."
-echo " "
-echo " "
-echo " "
-
 echo "-------------------------------------------------------"
 echo "INSTALLAZIONE DIPENDENZE PER WIFITE2"
 echo "-------------------------------------------------------"
@@ -134,10 +129,6 @@ else {
 	echo "Fine installazione dipendenze per Wifite2."
 };
 fi
-echo " "
-echo " "
-echo " "
-
 echo "-------------------------------------------------------"
 echo "INSTALLAZIONE .NET CORE 2 SDK"
 echo "-------------------------------------------------------"
@@ -156,11 +147,6 @@ else {
 	echo "Fine installazione DOTNET SDK."
 };
 fi
-
-echo " "
-echo " "
-echo " "
-
 echo "-------------------------------------------------------"
 echo "INSTALLAZIONE DIPENDENZE DNSENUM"
 echo "-------------------------------------------------------"
@@ -180,16 +166,12 @@ while read p; do
 done <${WORKINGDIR}/Script/dipendenzePerl.txt
 
 echo "Fine installazione dipendenze di DnsEnum."
-echo " "
-echo " "
-echo " "
-
 echo "-------------------------------------------------------"
 echo "INSTALLAZIONE WPScan"
 echo "-------------------------------------------------------"
 cd ${WORKINGDIR}/Programmi/wpscan
 if ! hash bundle >/dev/null 2>&1 ; then 
-apt install ruby-all-dev ruby-dev libffi-dev build-essential patch ruby-dev zlib1g-dev liblzma-dev > /dev/null ;
+apt install ruby-all-dev ruby-dev libffi-dev build-essential patch ruby-dev zlib1g-dev liblzma-dev -y > /dev/null ;
 fi
 bundle check --gemfile=Gemfile >/dev/null ;
 if [[ ! $0 = 0 ]] ; then 
@@ -201,25 +183,6 @@ if [ ! -d "${HOME}/.wpscan/data" ] >/dev/null 2>&1 ; then
 unzip data.zip -d ${HOME}/.wpscan/ ; fi
 cd ${WORKINGDIR}
 echo "Fine installazione WPScan."
-echo " "
-echo " "
-echo " "
-echo "-------------------------------------------------------"
-echo "INSTALLAZIONE WKHTMLTOPDF"
-echo "-------------------------------------------------------"
-
-if hash wkhtmltopdf >/dev/null 2>&1 ; 
-then
-	echo "wkhtmltopdf è già installato.";
-else {
-	echo "Sto installando wkhtmltopdf..."
-	apt-get install xvfb libfontconfig wkhtmltopdf >/dev/null
-	echo "Fine installazione wkhtmltopdf."
-	}
-fi
-echo " "
-echo " "
-echo " "
 echo "-------------------------------------------------------"
 echo "INSTALLAZIONE FOP"
 echo "-------------------------------------------------------"
@@ -238,8 +201,7 @@ echo "INSTALLAZIONE OPENDOOR"
 echo "-------------------------------------------------------"
 
 if hash opendoor >/dev/null 2>&1 ; 
-then
-	echo "opendoor è già installato.";
+then echo "opendoor è già installato." ;
 else {
 	echo "Sto installando opendoor..."
 	git clone https://github.com/stanislav-web/OpenDoor.git ${WORKINGDIR}/OpenDoor
@@ -253,19 +215,25 @@ else {
 	echo "Fine installazione opendoor."
 	}
 fi
-echo " "
-echo " "
-echo " "
-echo " "
-echo " "
-echo " "
+echo "-------------------------------------------------------"
+echo "INSTALLAZIONE TIMEDATECTL"
+echo "-------------------------------------------------------"
+
+if hash timedatectl >/dev/null 2>&1 ; 
+then
+	echo "timedatectl è già installato."
+	systemctl is-active --quiet systemd-timesyncd.service && if [[ ! $? = 0 ]] ; then timedatectl set-ntp true ; fi
+	echo "timedatectl è attivo." ;
+else {
+	echo "Sto installando timedatectl..."
+	apt install timedatectl >/dev/null
+	timedatectl set-ntp true
+	echo "Fine installazione timedatectl." ;
+}
+fi
 echo "-------------------------------------------------------"
 echo "INSTALLAZIONE ODAT"
 echo "-------------------------------------------------------"
 bash ${WORKINGDIR}/Script/Odat/installOdat.sh ;
 echo "Fine installazione Odat."
-echo " "
-echo " "
-echo " "
-
 exit 0
