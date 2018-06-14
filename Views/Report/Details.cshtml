@@ -5,7 +5,7 @@
 
 <div class="container">
     <div class="form-group">
-    <h2><em>Dettagli Report</em></h2>
+    <h2><em>Dettagli Report @Html.Raw((@Model.isImportati)? "Importati" : @Model.Data.ToString("dd/MM/yyyy ore HH:mm:ss"))</em></h2>
     <h3><em>Progetto:</em><strong> <a href="/Progetto/Details/@Model.ProgettoID">@Model.Progetto.Nome</a></strong></h3>
     <a  asp-action="Delete" asp-route-id="@Model.ID" class="btn btn-danger" >Elimina</a>
     </div>          

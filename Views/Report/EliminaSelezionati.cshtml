@@ -1,0 +1,55 @@
+@model IEnumerable<webmva.Models.Report>
+@{ ViewData["Title"] = "Elimina Report selezionati"; 
+}
+<br>
+  <div class="container">
+<h2><em>Sei sicuro di voler cancellare i report selezionati?</em></h2>
+<hr />
+<div class="col-md-12">
+    <form asp-action="EliminaSelezionatiConfirmed">
+       <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <div class="row panel panel-default panel-body">
+                    <table class="table">
+                <div class="method">
+                   <thead>
+                        <tr>
+                            <th>
+                                ID
+                            </th>
+                          
+                            <th>
+                                Data
+                            </th>
+                        </tr>
+                    </thead>
+                </div>
+                <tbody>
+            
+                @for(int i=0;i < @Model.Count(); i++)
+                {
+                    <tr>
+                        <td>
+                            @Html.Raw(@Model.ElementAt(i).ID)
+                        </td>
+                        <td>
+                            @Html.Raw((@Model.ElementAt(i).isImportati)?"Report Importati":@Model.ElementAt(i).Data.ToString("dd/MM/yyyy ore HH:mm:ss"))
+                        </td>
+                    </tr>
+                    <input type="hidden" value="@Model.ElementAt(i).ID" name="id"/>
+                }
+            
+            </tbody>
+        </table>
+
+                </div>
+                 <div class="col-xs-6 col-sm-offset-6 text-right">
+                     <br>
+                    <div class="form-group">
+                        <input type="submit" asp-action="EliminaSelezionatiConfirmed" asp-route-progettoID="@Model.ElementAt(0).ProgettoID" class="btn btn-info" value="Elimina Report" />&nbsp; |
+                        <a asp-action="Index">  Torna alla lista</a>
+                    </div>
+                </div>
+            </div>
+            </form>
+        </div>   
+</div>

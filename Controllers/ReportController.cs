@@ -43,6 +43,7 @@ namespace webmva.Controllers
                 .Include(p => p.Progetto)
                 .AsNoTracking()
                 .ToListAsync();
+            ViewData["Progetto"] = _context.Progetti.SingleOrDefault(x=>x.ID == id);
             return View(lista);
         }
         public async Task<IActionResult> Tutti(int? id)
@@ -438,6 +439,57 @@ namespace webmva.Controllers
             _context.PercorsiReport.Remove(percorso);
             await _context.SaveChangesAsync();
             return Redirect(Url.Action($"{daDove}","Report").Replace("%2F","/"));
+        }
+
+
+[HttpPost]
+        // POST: Report/EliminaSelezionati 
+        public async Task<IActionResult> EliminaSelezionati(string[] check)
+        {
+            if (check == null || check.Count()==0)
+            {
+                return NotFound();
+            }
+            List<Report> lista = new List<Report>();
+            for(int i = 0; i<check.Length;i++){
+                var report = await _context.Report
+                .Include(list => list.Percorsi)
+                .AsNoTracking()
+                .SingleOrDefaultAsync(m => m.ID == int.Parse(check[i]));
+            if (report == null)
+            {
+                return NotFound();
+            }
+            lista.Add(report);
+            }
+            
+            return View(lista);
+        }
+
+        // POST: Report/Delete/5
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> EliminaSelezionatiConfirmed(string[] id, string progettoID)
+        {
+            for(int i = 0; i<id.Length;i++){
+                var report = await _context.Report
+            .Include(x => x.Percorsi)
+            .AsNoTracking()
+            .SingleOrDefaultAsync(m => m.ID == int.Parse(id[i]));
+            if (report == null)
+            {
+                return NotFound();
+            }
+                // cancello i file
+                foreach (var percorso in report.Percorsi)
+                    System.IO.File.Delete(Path.Combine(Globals.CartellaWEBMVA, "wwwroot", "Report", percorso.Percorso));
+            _context.Report.Remove(report);
+            var listaRecord = await _context.PercorsiReport.Where(riga => riga.ReportID == i).ToListAsync();
+            _context.PercorsiReport.RemoveRange(listaRecord);
+            await _context.SaveChangesAsync();
+            }
+
+            
+            return Redirect(Url.Action($"Lista/{progettoID}","Report").Replace("%2F","/"));
         }
     }
 }

@@ -34,8 +34,7 @@
                             <td>
                                 <div class="col-sm-8 col-sm-offset-6">
                                     <a asp-action="Edit" asp-route-id="@item.ID">Modifica </a> |
-                                     <a asp-action="Resoconto" asp-route-id="@item.ID" >Resoconto </a> |
-                                     <a asp-action="Run" asp-route-id="@item.ID"> Avvia scan</a> |
+                                     <a asp-action="Details" asp-route-id="@item.ID" >Avvia scan </a> |
                                     <a asp-action="Delete" asp-route-id="@item.ID">Cancella </a>
                                     @if(@item.ListaReport.Count != 0){
                                             @Html.Raw(" | <a href=\"/Report/Lista/"+@item.ID+"\" >Lista report</a> <span class=\"glyphicon glyphicon-ok-sign\" style=\"color:green\"></span>")

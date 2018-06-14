@@ -52,18 +52,16 @@ namespace webmva.Controllers
                 return NotFound();
             }
 
-            var progetto = await _context.Progetti
-                .Include(list => list.ModuliProgetto)
-                    .ThenInclude(mod => mod.Modulo)
-                .Include(list=>list.ListaReport)
-                .AsNoTracking()
-                .SingleOrDefaultAsync(m => m.ID == id);
-            if (progetto == null)
+            var listaModuli = await _context.Progetti
+                .Include(m => m.ModuliProgetto)
+                    .ThenInclude(m=> m.Modulo)
+                .SingleOrDefaultAsync(x=>x.ID==id);
+            if (listaModuli == null)
             {
                 return NotFound();
             }
 
-            return View(progetto);
+            return View(listaModuli);
         }
 
         // GET: Progetto/Create
@@ -179,9 +177,12 @@ namespace webmva.Controllers
             if (progetto == null) return NotFound();
 
             if (await TryUpdateModelAsync<Progetto>(progetto, "",
-                i => i.Nome, i => i.Descrizione))
+                i=>i.Nome, i=>i.Descrizione))
             {
                 if(AggiornaModuliInseriti(moduliInseriti.ListaModuliConTarget, progetto)){
+                    progetto.Nome = moduliInseriti.Progetto.Nome;
+                    progetto.Descrizione = moduliInseriti.Progetto.Descrizione;
+                    
                     _context.Update(progetto);
                     try
                     {
