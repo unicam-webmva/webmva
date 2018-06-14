@@ -24,6 +24,53 @@ namespace webmva
     {
         public static readonly PlatformID SistemaOperativoAttuale = Environment.OSVersion.Platform;
         public static string CartellaWEBMVA;
+        public static string CARTELLALOG;
+        public static int PORTA;
+        public static bool LOGGING;
+        public static string CARTELLAREPORT;
+
+        
+        public static void CaricaFileConfig()
+        {
+            string configPath = Path.Combine(CartellaWEBMVA, "config.ini");
+            // controllo se esiste il file di configurazione
+            if(!File.Exists(configPath))
+            {
+                // lo creo con variabili di default:
+                //  PORTA           =   80
+                //  CARTELLAREPORT  =   wwwroot/Report
+                //  LOGGING         =   true
+                //  CARTELLALOG     =   /var/log/webmva
+                int porta = 80;
+                string cartellaReport = "wwwroot/Report";
+                bool logging=true;
+                string cartellaLog="/var/log/webmva";
+                
+                // Create a file to write to.
+                using (StreamWriter sw = File.CreateText(configPath)) 
+                {
+                    sw.WriteLine($"PORTA={porta.ToString()}");
+                    sw.WriteLine($"CARTELLAREPORT={cartellaReport}");
+                    sw.WriteLine($"LOGGING={logging.ToString().ToLower()}");
+                    sw.WriteLine($"CARTELLALOG={cartellaLog}");
+                }
+                PORTA=porta;
+                CARTELLAREPORT=cartellaReport;
+                CARTELLALOG=cartellaLog;
+                LOGGING=logging;
+            }
+            else
+            {
+                // se esiste lo leggo
+                string[] parametri = File.ReadAllLines(configPath);
+            }
+        }
+        internal static void CreaCartellaLog(string cartellaLog)
+        {
+            // mi assicuro che la cartella log esista, altrimenti la creo
+            if (!Directory.Exists(cartellaLog))
+                Directory.CreateDirectory(cartellaLog);
+        }
 
 
         /// <summary>
@@ -370,6 +417,5 @@ namespace webmva
             System.IO.File.WriteAllLines(Path.Combine("wwwroot", "Report", percorso), content);
 
         }
-
     }
 }

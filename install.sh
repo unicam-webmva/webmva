@@ -2,7 +2,7 @@
 if [[ $EUID > 0 ]] ;
   then 
   echo "Concedere i permessi root."
-  exec sudo /bin/bash "$0" "$@"
+  exec sudo /bin/bash "$0" "$@ $HOME"
   exit
 fi
 WORKINGDIR=$PWD

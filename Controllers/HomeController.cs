@@ -28,7 +28,7 @@ namespace webmva.Controllers
         [HttpPost]
         public IActionResult Installa()
         {
-            string installa = Path.Combine(Globals.CartellaWEBMVA, "Script", "installazionedepsWEBMVA.sh $HOME").EseguiCLI(Globals.CartellaWEBMVA, true);
+            string installa = Path.Combine(Globals.CartellaWEBMVA, "install.sh").EseguiCLI(Globals.CartellaWEBMVA, true);
             return RedirectToAction(nameof(Index));
         }
        
