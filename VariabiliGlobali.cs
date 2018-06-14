@@ -14,6 +14,8 @@ using System.Drawing;
 using System.Drawing.Printing;
 using System.Linq;
 using Shark.PdfConvert;
+using Microsoft.EntityFrameworkCore;
+using webmva.Data;
 
 namespace webmva
 {
@@ -79,12 +81,13 @@ namespace webmva
         public static string ConvertiReportXML(string percorsoXMLAssoluto)
         {
             if (string.IsNullOrEmpty(percorsoXMLAssoluto)) return string.Empty;
-            Dictionary<string,string> varsPdf = GetPercorsoPDF(percorsoXMLAssoluto);
+            Dictionary<string, string> varsPdf = GetPercorsoPDF(percorsoXMLAssoluto);
             string percorsoPdf = varsPdf.GetValueOrDefault("dove");
             string cosa = varsPdf.GetValueOrDefault("cosa");
-            if(cosa.Equals("nmap")){
+            if (cosa.Equals("nmap"))
+            {
                 // Tolgo la dicitura DOCTYPE perché sennò FOP sclera male
-                System.IO.File.WriteAllLines(percorsoXMLAssoluto, 
+                System.IO.File.WriteAllLines(percorsoXMLAssoluto,
                     System.IO.File.ReadLines(percorsoXMLAssoluto)
                         .Where(l => !l.Contains("<!DOCTYPE")).ToList());
             }
@@ -93,15 +96,16 @@ namespace webmva
             return percorsoPdf;
         }
 
-        private static Dictionary<string, string> GetPercorsoPDF(string percorsoXML){
-            string percorsoPdf = percorsoXML.Replace(".xml",".pdf");
+        private static Dictionary<string, string> GetPercorsoPDF(string percorsoXML)
+        {
+            string percorsoPdf = percorsoXML.Replace(".xml", ".pdf");
             // cerco di evitare un caso in cui il nome del modulo è nmap o dnsrecon anche se non è davvero quello il software usato, da pazzi ma vabbè
             string nomeFile = Path.GetFileName(percorsoPdf);
-            string software="";
-            if(nomeFile.Substring(nomeFile.IndexOf('_'),nomeFile.LastIndexOf('_')).Contains("nmap")) software="nmap";
-            else if(nomeFile.Substring(nomeFile.IndexOf('_'),nomeFile.LastIndexOf('_')).Contains("dnsrecon")) software="dnsrecon";
-            else if(nomeFile.Substring(nomeFile.IndexOf('_'),nomeFile.LastIndexOf('_')).Contains("dnsenum")) software="dnsenum";
-            return new Dictionary<string,string>{
+            string software = "";
+            if (nomeFile.Substring(nomeFile.IndexOf('_'), nomeFile.LastIndexOf('_')).Contains("nmap")) software = "nmap";
+            else if (nomeFile.Substring(nomeFile.IndexOf('_'), nomeFile.LastIndexOf('_')).Contains("dnsrecon")) software = "dnsrecon";
+            else if (nomeFile.Substring(nomeFile.IndexOf('_'), nomeFile.LastIndexOf('_')).Contains("dnsenum")) software = "dnsenum";
+            return new Dictionary<string, string>{
                 {"dove", percorsoPdf},
                 {"cosa", software}
             };
@@ -113,21 +117,11 @@ namespace webmva
             var extension = Path.GetExtension(percorsoTXTAssoluto).ToLower();
             string content = System.IO.File.ReadAllText(percorsoTXTAssoluto);
             string[] pezzi = Path.GetFileName(percorsoTXTAssoluto).Split('_');
-            string data = DateTime.ParseExact(pezzi[0]+pezzi[1], "yyyyMMddHHmmss",
+            string data = DateTime.ParseExact(pezzi[0] + pezzi[1], "yyyyMMddHHmmss",
                                        System.Globalization.CultureInfo.InvariantCulture).ToString("dd MMMM yyyy HH:mm:ss");
-            string cosa = pezzi[2];
-            if (cosa.Equals("droope"))
-            {
-                // aggiungo alla testa del file la dicitura droopescan, se già non lo contiene
-
-                List<string> str = System.IO.File.ReadLines(percorsoTXTAssoluto).ToList();
-                if (!str.ElementAt(0).Contains("Report di Droopescan")){
-                    str.Insert(0, "Report di Droopescan");
-                    System.IO.File.WriteAllLines(percorsoTXTAssoluto,str);
-                }
-            }
+            
             string percorsoPdf = percorsoTXTAssoluto.Substring(0, percorsoTXTAssoluto.LastIndexOf('.')) + ".pdf";
-            string comando = "wkhtmltopdf " + percorsoTXTAssoluto + " "+ percorsoPdf;
+            string comando = "wkhtmltopdf " + percorsoTXTAssoluto + " " + percorsoPdf;
             comando.EseguiCLI(Globals.CartellaWEBMVA);
             return percorsoPdf;
         }
@@ -172,6 +166,200 @@ namespace webmva
         {
             object o = tempData.Peek(key);
             return o == null ? null : JsonConvert.DeserializeObject<T>((string)o);
+        }
+
+        public static void AggiungiIntestazione(string percorso, MyDbContext context)
+        {
+            if (string.IsNullOrEmpty(percorso)) return;
+            List<string> content = System.IO.File.ReadLines(Path.Combine("wwwroot", "Report", percorso)).ToList();
+            var progetto = percorso.Split(Path.DirectorySeparatorChar).ElementAt(0);
+            var filename = Path.GetFileName(percorso).Split('_');
+            var nomeModulo = filename[3].Substring(0, filename[3].LastIndexOf('.'));
+            var data = DateTime
+                .ParseExact(filename[0] + filename[1],
+                    "yyyyMMddHHmmss",
+                    System.Globalization.CultureInfo.InvariantCulture)
+                .ToString("dd MMMM yyyy alle HH:mm:ss");
+            string comando = context.Moduli.SingleOrDefault(x => x.Nome.ToCamelCase() == nomeModulo && x.Applicazione.ToString().ToLower() == filename[2]).Comando;
+            List<string> intestazione = new List<string>();
+
+            if (Path.GetExtension(percorso).Equals(".txt"))
+            {
+                if (filename[2].Equals("infoga") || filename[2].Equals("infogaemail"))
+                {
+                    intestazione.Add(@"___________________________________________________________________");
+                    intestazione.Add(@"  _____        __                  
+ |_   _|      / _|                 
+   | |  _ __ | |_ ___   __ _  __ _ 
+   | | | '_ \|  _/ _ \ / _` |/ _` |
+  _| |_| | | | || (_) | (_| | (_| |
+ |_____|_| |_|_| \___/ \__, |\__,_|
+                        __/ |      
+                       |___/      ");
+                }
+                else if (filename[2].Equals("sublist3r"))
+                {
+                    intestazione.Add(@"___________________________________________________________________");
+                    intestazione.Add(@"   _____       _     _ _     _   ____       
+  / ____|     | |   | (_)   | | |___ \      
+ | (___  _   _| |__ | |_ ___| |_  __) |_ __ 
+  \___ \| | | | '_ \| | / __| __||__ <| '__|
+  ____) | |_| | |_) | | \__ \ |_ ___) | |   
+ |_____/ \__,_|_.__/|_|_|___/\__|____/|_|   ");
+                }
+                else if (filename[2].Equals("wapiti"))
+                {
+                    intestazione.Add(@"___________________________________________________________________");
+                    intestazione.Add(@" __          __         _ _   _ 
+ \ \        / /        (_) | (_)
+  \ \  /\  / /_ _ _ __  _| |_ _ 
+   \ \/  \/ / _` | '_ \| | __| |
+    \  /\  / (_| | |_) | | |_| |
+     \/  \/ \__,_| .__/|_|\__|_|
+                 | |            
+                 |_|            ");
+                }
+                else if (filename[2].Equals("opendoor"))
+                {
+                    intestazione.Add(@"___________________________________________________________________");
+                    intestazione.Add(@"   ____                   _____                   
+  / __ \                 |  __ \                  
+ | |  | |_ __   ___ _ __ | |  | | ___   ___  _ __ 
+ | |  | | '_ \ / _ \ '_ \| |  | |/ _ \ / _ \| '__|
+ | |__| | |_) |  __/ | | | |__| | (_) | (_) | |   
+  \____/| .__/ \___|_| |_|_____/ \___/ \___/|_|   
+        | |                                       
+        |_|                                      ");
+                }
+                else if (filename[2].Equals("sqlmap"))
+                {
+                    intestazione.Add(@"___________________________________________________________________");
+                    intestazione.Add(@"   _____  ____  _      __  __             
+  / ____|/ __ \| |    |  \/  |            
+ | (___ | |  | | |    | \  / | __ _ _ __  
+  \___ \| |  | | |    | |\/| |/ _` | '_ \ 
+  ____) | |__| | |____| |  | | (_| | |_) |
+ |_____/ \___\_\______|_|  |_|\__,_| .__/ 
+                                   | |    
+                                   |_|   ");
+                }
+                else if (filename[2].Equals("joomscan"))
+                {
+                    intestazione.Add(@"___________________________________________________________________");
+                    intestazione.Add(@"       _                        _____                 
+      | |                      / ____|                
+      | | ___   ___  _ __ ___ | (___   ___ __ _ _ __  
+  _   | |/ _ \ / _ \| '_ ` _ \ \___ \ / __/ _` | '_ \ 
+ | |__| | (_) | (_) | | | | | |____) | (_| (_| | | | |
+  \____/ \___/ \___/|_| |_| |_|_____/ \___\__,_|_| |_|");
+                }
+                else if (filename[2].Equals("wpscan"))
+                {
+                    intestazione.Add(@"___________________________________________________________________");
+                    intestazione.Add(@" __          _______   _____                 
+ \ \        / /  __ \ / ____|                
+  \ \  /\  / /| |__) | (___   ___ __ _ _ __  
+   \ \/  \/ / |  ___/ \___ \ / __/ _` | '_ \ 
+    \  /\  /  | |     ____) | (_| (_| | | | |
+     \/  \/   |_|    |_____/ \___\__,_|_| |_| ");
+                }
+                else if (filename[2].Equals("wascan"))
+                {
+                    intestazione.Add(@"___________________________________________________________________");
+                    intestazione.Add(@" __          __      _____                 
+ \ \        / /\    / ____|                
+  \ \  /\  / /  \  | (___   ___ __ _ _ __  
+   \ \/  \/ / /\ \  \___ \ / __/ _` | '_ \ 
+    \  /\  / ____ \ ____) | (_| (_| | | | |
+     \/  \/_/    \_\_____/ \___\__,_|_| |_|");
+                }
+                else if (filename[2].Equals("odat"))
+                {
+                    intestazione.Add(@"___________________________________________________________________");
+                    intestazione.Add(@"   ____  _____       _______ 
+  / __ \|  __ \   /\|__   __|
+ | |  | | |  | | /  \  | |   
+ | |  | | |  | |/ /\ \ | |   
+ | |__| | |__| / ____ \| |   
+  \____/|_____/_/    \_\_|   ");
+                }
+                else if (filename[2].Equals("droope"))
+                {
+                    intestazione.Add(@"___________________________________________________________________");
+                    intestazione.Add(@"  _____                                                          ");
+                    intestazione.Add(@" |  __ \                                                         ");
+                    intestazione.Add(@" | |  | | _ __  ___    ___   _ __    ___  ___   ___  __ _  _ __  ");
+                    intestazione.Add(@" | |  | || '__|/ _ \  / _ \ | '_ \  / _ \/ __| / __|/ _` || '_ \ ");
+                    intestazione.Add(@" | |__| || |  | (_) || (_) || |_) ||  __/\__ \| (__| (_| || | | |");
+                    intestazione.Add(@" |_____/ |_|   \___/  \___/ | .__/  \___||___/ \___|\__,_||_| |_|");
+                    intestazione.Add(@"                            | |                                  ");
+                    intestazione.Add(@"                            |_|                                  ");
+                }
+                else if (filename[2].Equals("fierce"))
+                {
+                    intestazione.Add(@"___________________________________________________________________");
+                    intestazione.Add(@"          ______ _                   ");
+                    intestazione.Add(@"         |  ____(_)                  ");
+                    intestazione.Add(@"         | |__   _  ___ _ __ ___ ___ ");
+                    intestazione.Add(@"         |  __| | |/ _ \ '__/ __/ _ \");
+                    intestazione.Add(@"         | |    | |  __/ | | (_|  __/");
+                    intestazione.Add(@"         |_|    |_|\___|_|  \___\___|");
+                }
+
+                intestazione.Add(@"___________________________________________________________________");
+                intestazione.Add("");
+                intestazione.Add(@" Progetto: " + progetto);
+                intestazione.Add(@" Nome Modulo: " + nomeModulo);
+                intestazione.Add(@" Comando eseguito: " + comando);
+                intestazione.Add("");
+                intestazione.Add("\tScan iniziato il " + data);
+                intestazione.Add(@"___________________________________________________________________");
+                intestazione.Add("");
+                intestazione.Add("");
+
+
+                for (int i = 0; i < intestazione.Count; i++)
+                {
+                    content.Insert(i, intestazione.ElementAt(i));
+                }
+            }
+            else if (Path.GetExtension(percorso).Equals(".xml"))
+            {
+                int riga = 0;
+                if(filename[2].Equals("nmap")){
+                    riga = content.IndexOf("</nmaprun>");
+                }
+                else if(filename[2].Equals("dnsrecon")){
+                    riga = content.IndexOf("</records>");
+                }
+                if(filename[2].Equals("dnsenum")){
+                    int r = content.FindIndex(x=>x.Contains("</testdata>"));
+                    if(r == 1){
+                        int index = content.ElementAt(r).Substring(0,content.ElementAt(r).LastIndexOf("/")).LastIndexOf("/")-1;
+                        int lunghezza = content.ElementAt(r).Length;
+                        string pezzoDaMettereInNuovaRiga = content.ElementAt(r).Substring(index, lunghezza-index);
+                        string rigaNuova = content.ElementAt(r).Substring(0, index);
+                        content.RemoveAt(r);
+                        content.Add(rigaNuova);
+                        content.Add("");
+                        content.Add("");
+                        content.Add(pezzoDaMettereInNuovaRiga);
+                        riga = r +1;
+                    }
+                    else riga = r;
+                    
+                }
+                content.Insert(riga, $@"<webmva>
+                <scaninfo>
+                <progetto>{progetto}</progetto>
+                <modulo>{nomeModulo}</modulo>
+                <comando>{comando}</comando>
+                <data>{data}</data>
+                </scaninfo>
+                </webmva>");
+            }
+            System.IO.File.WriteAllLines(Path.Combine("wwwroot", "Report", percorso), content);
+
         }
 
     }

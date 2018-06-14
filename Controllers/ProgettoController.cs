@@ -352,7 +352,6 @@ namespace webmva.Controllers
             try{
                 await _context.SaveChangesAsync();
             }
-            
             catch (DbUpdateException /* ex */)
                 {
                     //Log the error (uncomment ex variable name and write a log.)
@@ -360,6 +359,8 @@ namespace webmva.Controllers
                         "Try again, and if the problem persists, " +
                         "see your system administrator.");
                 }
+                foreach(var percorso in percorsi)
+                    Globals.AggiungiIntestazione(percorso, _context);
                 var ID = _context.Report.SingleOrDefault(x=>x.ProgettoID==progetto.ID && x.Data==data).ID;
             foreach(var percorso in percorsi){
                 _context.PercorsiReport.Add(new PercorsiReport{

@@ -96,47 +96,6 @@ namespace webmva.Controllers
             var dir = Path.Combine(Globals.CartellaWEBMVA, "wwwroot", Path.GetDirectoryName(filePath));
             var fileName = Path.GetFileName(filePath);
             var extension = Path.GetExtension(fileName).ToLower();
-            if (fileName.Split('_').ElementAt(2).Equals("droope"))
-            {
-                List<string> content = System.IO.File.ReadLines(Path.Combine("wwwroot",filePath)).ToList();
-                if (!content.ElementAt(0).Contains("___________________________________________________________________"))
-                {
-                    var progetto = filePath.Split(Path.DirectorySeparatorChar).ElementAt(1);
-                    var filename = Path.GetFileName(filePath).Split('_');
-                    var nomeModulo = filename[3].Substring(0, filename[3].LastIndexOf('.'));
-                    var data = DateTime
-                        .ParseExact(filename[0]+filename[1],
-                            "yyyyMMddHHmmss",
-                            System.Globalization.CultureInfo.InvariantCulture)
-                        .ToString("dd MMMM dd alle HH:mm:ss");
-                    string comando = _context.Moduli.SingleOrDefault(x=>x.Nome.ToCamelCase() == nomeModulo).Comando;
-                    List<string> asciiArt = new List<string>();
-                    asciiArt.Add(@"___________________________________________________________________");
-                    asciiArt.Add(@"  _____                                                          ");
-                    asciiArt.Add(@" |  __ \                                                         ");
-                    asciiArt.Add(@" | |  | | _ __  ___    ___   _ __    ___  ___   ___  __ _  _ __  ");
-                    asciiArt.Add(@" | |  | || '__|/ _ \  / _ \ | '_ \  / _ \/ __| / __|/ _` || '_ \ ");
-                    asciiArt.Add(@" | |__| || |  | (_) || (_) || |_) ||  __/\__ \| (__| (_| || | | |");
-                    asciiArt.Add(@" |_____/ |_|   \___/  \___/ | .__/  \___||___/ \___|\__,_||_| |_|");
-                    asciiArt.Add(@"                            | |                                  ");
-                    asciiArt.Add(@"                            |_|                                  ");
-                    asciiArt.Add(@"___________________________________________________________________");
-                    asciiArt.Add("");
-                    asciiArt.Add(@" Progetto: " + progetto);
-                    asciiArt.Add(@" Nome Modulo: " + nomeModulo);
-                    asciiArt.Add(@" Comando eseguito: " + comando);
-                    asciiArt.Add("");
-                    asciiArt.Add("\tScan iniziato il " + data);
-                    asciiArt.Add(@"___________________________________________________________________");
-                    asciiArt.Add("");
-                    asciiArt.Add("");
-                    
-                    for(int i = 0; i< asciiArt.Count; i++){
-                        content.Insert(i,asciiArt.ElementAt(i));
-                    }
-                    System.IO.File.WriteAllLines(Path.Combine("wwwroot",filePath), content);
-                }
-            }
                 IFileProvider provider = new PhysicalFileProvider(dir);
                 IFileInfo fileInfo = provider.GetFileInfo(fileName);
                 var readStream = fileInfo.CreateReadStream();

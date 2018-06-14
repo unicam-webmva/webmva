@@ -35,12 +35,34 @@
 
 			<fo:page-sequence master-reference="simple">
 				<fo:flow flow-name="xsl-region-body">
+					<xsl:apply-templates select="magictree/testdata/webmva"/>
 					<xsl:apply-templates select="magictree/testdata"/>
 				</fo:flow>
 			</fo:page-sequence>
 		</fo:root>
 	</xsl:template>
 <!-- ............................................................ -->
+<!-- Intestazione aggiunta per report WEBMVA -->
+<xsl:template match="magictree/testdata/webmva">
+	<fo:block font-size="18pt" font-family="sans-serif" font-weight="bold" background-color="#2A0D45" color="#FFFFFF" margin-bottom="1cm" text-align="center">
+			WebMVA - DNSEnum Scan Report
+	</fo:block>
+	<fo:block margin-top="5pt">
+	Progetto: <xsl:value-of select="scaninfo/progetto"/>
+	</fo:block>
+	<fo:block margin-top="5pt">
+	Nome modulo: <xsl:value-of select="scaninfo/modulo"/>
+	</fo:block>
+	<fo:block margin-top="5pt">
+	Comando: <xsl:value-of select="scaninfo/comando"/>
+	</fo:block>
+	<fo:block margin-top="5pt">
+	Data di esecuzione: <xsl:value-of select="scaninfo/data"/>
+	</fo:block>
+	<fo:block margin-bottom="5pt"/>
+</xsl:template>
+
+
 
 	<!-- magictree/testdata -->
 	<xsl:template match="magictree/testdata">
