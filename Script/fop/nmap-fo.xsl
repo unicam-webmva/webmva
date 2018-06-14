@@ -153,6 +153,9 @@
 	Comando: <xsl:value-of select="scaninfo/comando"/>
 	</fo:block>
 	<fo:block margin-top="5pt">
+	Target: <xsl:value-of select="scaninfo/target"/>
+	</fo:block>
+	<fo:block margin-top="5pt">
 	Data di esecuzione: <xsl:value-of select="scaninfo/data"/>
 	</fo:block>
 	<fo:block margin-bottom="5pt"/>

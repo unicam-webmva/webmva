@@ -16,6 +16,7 @@ using System.Linq;
 using Shark.PdfConvert;
 using Microsoft.EntityFrameworkCore;
 using webmva.Data;
+using webmva.Models;
 
 namespace webmva
 {
@@ -173,6 +174,10 @@ namespace webmva
             if (string.IsNullOrEmpty(percorso)) return;
             List<string> content = System.IO.File.ReadLines(Path.Combine("wwwroot", "Report", percorso)).ToList();
             var progetto = percorso.Split(Path.DirectorySeparatorChar).ElementAt(0);
+            Progetto p = context.Progetti
+                .Include(x=>x.ModuliProgetto)
+                    .ThenInclude(m=>m.Modulo)
+                .SingleOrDefault(s=>s.Nome == progetto);
             var filename = Path.GetFileName(percorso).Split('_');
             var nomeModulo = filename[3].Substring(0, filename[3].LastIndexOf('.'));
             var data = DateTime
@@ -180,7 +185,9 @@ namespace webmva
                     "yyyyMMddHHmmss",
                     System.Globalization.CultureInfo.InvariantCulture)
                 .ToString("dd MMMM yyyy alle HH:mm:ss");
-            string comando = context.Moduli.SingleOrDefault(x => x.Nome.ToCamelCase() == nomeModulo && x.Applicazione.ToString().ToLower() == filename[2]).Comando;
+            var associazione = p.ModuliProgetto.SingleOrDefault(x=>x.Modulo.Nome.ToCamelCase() == nomeModulo && x.Modulo.Applicazione.ToString().ToLower() == filename[2]);
+            var comando = associazione.Modulo.Comando;
+            var target = associazione.Target;
             List<string> intestazione = new List<string>();
 
             if (Path.GetExtension(percorso).Equals(".txt"))
@@ -311,6 +318,7 @@ namespace webmva
                 intestazione.Add(@" Progetto: " + progetto);
                 intestazione.Add(@" Nome Modulo: " + nomeModulo);
                 intestazione.Add(@" Comando eseguito: " + comando);
+                intestazione.Add(@" Target: " + target);
                 intestazione.Add("");
                 intestazione.Add("\tScan iniziato il " + data);
                 intestazione.Add(@"___________________________________________________________________");
@@ -354,6 +362,7 @@ namespace webmva
                 <progetto>{progetto}</progetto>
                 <modulo>{nomeModulo}</modulo>
                 <comando>{comando}</comando>
+                <target>{target}</target>
                 <data>{data}</data>
                 </scaninfo>
                 </webmva>");
