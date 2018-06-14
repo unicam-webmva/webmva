@@ -28,6 +28,18 @@ namespace webmva.Controllers
         {
             return View(await _context.Progetti
                 .Include(list=>list.ListaReport)
+                .Include(m => m.ModuliProgetto)
+                    .ThenInclude(m=> m.Modulo)
+                .AsNoTracking()
+                .ToListAsync());
+        }
+         // GET: Resoconto
+         public async Task<IActionResult> Resoconto(int? id)
+        {
+            return View(await _context.ModuliProgetto
+                .Include(m => m.Progetto)
+                .Include(m=> m.Modulo)
+                .Where(x=>x.ProgettoID==id)
                 .AsNoTracking()
                 .ToListAsync());
         }

@@ -10,7 +10,7 @@
         </p>
         <!--rivedere-->
         <hr />
-        <div class="panel panel-default col-md-9 col-md-offset-1">
+        <div class="panel panel-default col-md-10 col-md-offset-1">
             <table class="table">
                 <div class="method">
                     <thead>
@@ -34,6 +34,7 @@
                             <td>
                                 <div class="col-sm-8 col-sm-offset-6">
                                     <a asp-action="Edit" asp-route-id="@item.ID">Modifica </a> |
+                                     <a asp-action="Resoconto" asp-route-id="@item.ID" >Resoconto </a> |
                                      <a asp-action="Run" asp-route-id="@item.ID"> Avvia scan</a> |
                                     <a asp-action="Delete" asp-route-id="@item.ID">Cancella </a>
                                     @if(@item.ListaReport.Count != 0){
@@ -51,4 +52,7 @@
             </table>
         </div>
     </div>
+  
+</div>
+
 </div>
