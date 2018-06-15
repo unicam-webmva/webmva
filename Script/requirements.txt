@@ -17,3 +17,9 @@ mako
 pysocks
 requests_ntlm 
 requests_kerberos
+cx_Oracle
+colorlog
+termcolor
+pycrypto
+passlib
+argcomplete

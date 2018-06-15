@@ -6,8 +6,8 @@ if [[ $EUID > 0 ]] ;
   exit
 fi
 WORKINGDIR=$PWD
-HOME=$1
-if [[ $HOME = "" ]] ;
+MYHOME=$1
+if [[ $MYHOME = "" ]] ;
 then
   echo "Bisogna passare come parametro la home dell'utente."
   echo "Premere un tasto per chiudere questo script..."
@@ -26,6 +26,12 @@ echo " "
 echo " "
 echo "Sto eseguendo apt-get update..."
 apt-get update > /dev/null
+echo "-------------------------------------------------------"
+echo "Inizializzazione dei sottomoduli di WebMVA"
+echo "-------------------------------------------------------"
+echo "Sto scaricando i sottomoduli necessari al funzionamento di WebMVA..."
+git submodule init && git submodule update >/dev/null
+echo "Inizializzazione dei sottomoduli terminata."
 echo "-------------------------------------------------------"
 echo "INSTALLAZIONE WKHTMLTOPDF"
 echo "-------------------------------------------------------"
@@ -96,35 +102,51 @@ else {
 	fi;
 };
 fi
+if hash scapy >/dev/null 2>&1 ; then echo "Scapy è già installato." ;
+else { 
+	echo "Sto installando python-scapy..."
+	apt-get install python-scapy >/dev/null
+	echo "Fine installazione python-scapy."
+}
+fi
 echo "-------------------------------------------------------"
 echo "INSTALLAZIONE DIPENDENZE PER SCRIPT PYTHON"
 echo "-------------------------------------------------------"
 echo "Sto installando alcune dipendenze tramite pip e pip3..."
-
+PIP=`pip freeze`
+PIP3=`pip3 freeze`
 while read p; do
-  pip freeze | grep -q $p && if [[ ! $? = 0 ]] ; then  pip install $p >/dev/null ; else echo "Pacchetto ${p} (pip2) già installato." ; fi
-  pip3 freeze | grep -q $p && if [[ ! $? = 0 ]] ; then  pip3 install $p >/dev/null ; else echo "Pacchetto ${p} (pip3) già installato." ; fi
+  if [[ ${PIP} = *$p* ]] ; then echo "Pacchetto ${p} (pip2) già installato." ; else  pip install $p >/dev/null ; fi
+  if [[ ${PIP3} = *$p* ]] ; then echo "Pacchetto ${p} (pip3) già installato." ; else  pip3 install $p >/dev/null ; fi
 done <${WORKINGDIR}/Script/requirements.txt
+activate-global-argcomplete
 
 echo "Fine installazione dipendenze script PYTHON."
 echo "-------------------------------------------------------"
 echo "INSTALLAZIONE DIPENDENZE PER WIFITE2"
 echo "-------------------------------------------------------"
 
-if hash bully && hash reaver && hash tshark && hash aircrack-ng && hash cowpatty >/dev/null 2>&1 ;
+if hash bully && hash reaver && hash tshark && hash aircrack-ng && hash cowpatty && hash pyrit >/dev/null 2>&1 ;
 then echo "Tutte le dipendenze di Wifite2 sono già installate.";
 else {
 	if grep -q "kali-rolling" /etc/apt/sources.list ;
-	then echo "I repository di Kali sono già in questo sistema, non li aggiungo.";
+	then 
+		echo "I repository di Kali sono già in questo sistema, non li aggiungo."
+		echo "Sto installando cowpatty e bully dai repo di kali..."
+		apt-get install bully cowpatty -y >/dev/null ;
 	else {
-		echo "Aggiungo i repository di Kali Linux per installare alcuni programmi non presenti in quelli di Ubuntu..."
+		echo "Verranno aggiunti i repository di Kali Linux per installare alcuni programmi non presenti in quelli di Ubuntu..."
 		echo "deb http://http.kali.org/kali kali-rolling main non-free contrib" | tee -a /etc/apt/sources.list > /dev/null
 		apt-key adv --keyserver hkp://keys.gnupg.net --recv-keys ED444FF07D8D0BF6  > /dev/null
 		apt-get update > /dev/null
+		echo "Sto installando cowpatty e bully dai repo di kali..."
+		apt-get install bully cowpatty -y >/dev/null
+		echo "Verranno tolti i repo di kali per non interferire nel sistema in uso."
+		sed -i 's/^deb http://http.kali.org/#deb http://http.kali.org' /etc/apt/sources.list
 	};
 	fi
-	echo "Sto installando aircrack-ng, reaver, cowpatty, bully e tshark tramite i repository di Kali Linux..."
-	apt-get install aircrack-ng reaver cowpatty bully pyrit -y > /dev/null
+	echo "Sto installando aircrack-ng, reaver, pyrit e tshark tramite i repository normali..."
+	apt-get install aircrack-ng reaver pyrit -y > /dev/null
 	DEBIAN_FRONTEND=noninteractive apt-get -y install tshark > /dev/null
 	echo "Fine installazione dipendenze per Wifite2."
 };
@@ -179,8 +201,8 @@ sudo gem install bundler && bundle install --without test ;
 fi
 if [ ! -d ~/.wpscan/data ] >/dev/null 2>&1 ; then 
 unzip data.zip -d ~/.wpscan/ ; fi
-if [ ! -d "${HOME}/.wpscan/data" ] >/dev/null 2>&1 ; then 
-unzip data.zip -d ${HOME}/.wpscan/ ; fi
+if [ ! -d "${MYHOME}/.wpscan/data" ] >/dev/null 2>&1 ; then 
+unzip data.zip -d ${MYHOME}/.wpscan/ ; fi
 cd ${WORKINGDIR}
 echo "Fine installazione WPScan."
 echo "-------------------------------------------------------"
@@ -225,7 +247,7 @@ then
 	systemctl is-active --quiet systemd-timesyncd.service && if [[ ! $? = 0 ]] ; then timedatectl set-ntp true ; fi
 	echo "timedatectl è attivo." ;
 else {
-	echo "Sto installando timedatectl..."
+	echo "Sto installando e attivando timedatectl..."
 	apt install timedatectl >/dev/null
 	timedatectl set-ntp true
 	echo "Fine installazione timedatectl." ;
@@ -236,4 +258,13 @@ echo "INSTALLAZIONE ODAT"
 echo "-------------------------------------------------------"
 bash ${WORKINGDIR}/Script/Odat/installOdat.sh ;
 echo "Fine installazione Odat."
+echo ""
+echo ""
+echo ""
+echo "-------------------------------------------------------"
+echo "FINE INSTALLAZIONE DIPENDENZE"
+echo "-------------------------------------------------------"
+echo "Tutte le dipendenze di WebMVA sono ora presenti nel sistema."
+echo "Per iniziare ad usare WebMVA, eseguire:"
+echo "\tsudo dotnet run"
 exit 0
