@@ -68,7 +68,10 @@ $ git clone https://github.com/unicam-webmva/webmva
 $ cd webmva
 $ ./install.sh
 ```
-
+### Avvio
+```
+sudo dotnet run
+```
 ## Installazione manuale
 
 Per iniziare: 
@@ -77,7 +80,7 @@ git clone https://github.com/unicam-webmva/webmva
 cd webmva
 WEBMVADIR=$PWD
 ```
-**Inizializzazione sottomoduli**
+### Inizializzazione sottomoduli
 
 I sottomoduli che sono nella cartella `Programmi` vanno inizializzati tramite i comandi:
 ```
@@ -86,13 +89,16 @@ git submodule update
 ```
 In questo modo tutti i software (con l'unica eccezione di Wapiti) saranno scaricati automaticamente all'ultima versione disponibile.
 
-**Installazione dipendenze**
+### Installazione dipendenze
 
 Per installare tutte le dipendenze necessarie dai repository di Ubuntu, eseguire:
 ```
 sudo apt-get install build-essential nmap fop wkhtmltopdf python2.7 python3 python-pip python3-pip timedatectl aircrack-ng reaver pyrit
 ```
-
+Per sincronizzare l'ora del PC usando NTP:
+```
+timedatectl set-ntp true
+```
 Per quanto riguarda .NET Core:
 ```
 wget -qO- https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > microsoft.asc.gpg
@@ -124,7 +130,8 @@ Per quanto riguarda ODAT:
 ```
 sudo apt-get install alien libaio1 python-scapy
 ```
-**Repository di Kali Linux**
+
+### Repository di Kali Linux
 
 Per poter installare Bully e coWPAtty è necessario avere nelle liste di apt i repository di Kali Linux:
 ```
@@ -139,7 +146,7 @@ sudo sed -i 's/^deb http://http.kali.org/#deb http://http.kali.org' /etc/apt/sou
 sudo apt-get update
 ```
 
-**Configurazione WPScan**
+### Configurazione WPScan
 
 WPScan necessita di alcuni passaggi supplementari:
 ```
@@ -149,19 +156,19 @@ unzip data.zip -d ${HOME}/.wpscan/
 cd ${WEBMVADIR}
 ```
 
-**Configurazione ODAT**
+### Configurazione ODAT
 
 ODAT necessita di alcuni passaggi supplementari:
 ```
 cd ${WEBMVADIR}/Programmi/odat
 git submodule init
 git submodule update
-sudo alien --to-deb ${WEBMVA}/Script/Odat/oracle-instantclient12.2-basic-12.2.0.1.0-1.x86_64.rpm
-sudo dpkg -i ${WEBMVA}/Script/Odat/oracle-instantclient12.2-basic-12.2.0.1.0-2.x86_64.deb
-sudo alien --to-deb ${WEBMVA}/Script/Odat/oracle-instantclient12.2-sqlplus-12.2.0.1.0-1.x86_64.rpm
-sudo dpkg -i ${WEBMVA}/Script/Odat/oracle-instantclient12.2-basic-12.2.0.1.0-2.x86_64.rpm
-sudo alien --to-deb ${WEBMVA}/Script/Odat/oracle-instantclient12.2-devel-12.2.0.1.0-1.x86_64.rpm
-sudo dpkg -i ${WEBMVA}/Script/Odat/oracle-instantclient12.2-basic-12.2.0.1.0-2.x86_64.rpm
+sudo alien --to-deb ${WEBMVADIR}/Script/Odat/oracle-instantclient12.2-basic-12.2.0.1.0-1.x86_64.rpm
+sudo dpkg -i ${WEBMVADIR}/Script/Odat/oracle-instantclient12.2-basic-12.2.0.1.0-2.x86_64.deb
+sudo alien --to-deb ${WEBMVADIR}/Script/Odat/oracle-instantclient12.2-sqlplus-12.2.0.1.0-1.x86_64.rpm
+sudo dpkg -i ${WEBMVADIR}/Script/Odat/oracle-instantclient12.2-basic-12.2.0.1.0-2.x86_64.rpm
+sudo alien --to-deb ${WEBMVADIR}/Script/Odat/oracle-instantclient12.2-devel-12.2.0.1.0-1.x86_64.rpm
+sudo dpkg -i ${WEBMVADIR}/Script/Odat/oracle-instantclient12.2-basic-12.2.0.1.0-2.x86_64.rpm
 echo "export LD_LIBRARY_PATH=/opt/oracle/instantclient_12_2:\$LD_LIBRARY" | sudo tee -a /etc/profile
 echo "export PATH=/usr/lib/oracle/12.2/client64/bin:\$PATH | sudo tee -a /etc/profile
 sudo ln -s /usr/lib/oracle/12.2/client64/lib/libclntsh.so.11.1   /usr/lib/oracle/12.2/client64/lib/libclntsh.so
@@ -172,7 +179,7 @@ source /etc/profile
 cd ${WEBMVADIR}
 ```
 
-**Installazione OpenDoor**
+### Installazione OpenDoor
 
 OpenDoor va installato e configurato:
 ```
@@ -184,9 +191,4 @@ cp -R data/ /usr/local/bin/data
 exit
 cd ${WEBMVA}
 rm -rf ${WEBMVA}/OpenDoor/
-```
-
-**Avvio**
-```
-$ sudo dotnet run
 ```
