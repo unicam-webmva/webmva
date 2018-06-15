@@ -7,6 +7,29 @@
 *  Riccardo Cannella, 096001, riccardo.cannella@studenti.unicam.it 
 *  Margherita Renieri, 095100, margherita.renieri@studenti.unicam.it 
 
+## Ambito
+
+Penetration Testing Tools
+
+
+### Progetto
+
+Realizzazione di una pagina web per la gestione locale di test di vulnerabilità del sistema e la generazione di report di risultati.
+La piattaforma è progettata per supportare l'automazione in ogni fase del processo e consentire la personalizzazione per qualsiasi altro sistema che si utilizza.
+
+
+### Obiettivi
+
+**WebMVA** si propone di rendere il processo di pentesting il più semplice possibile e creare report di ricerca di facile comprensione e utilizzabili dal cliente finale. 
+Il sistema esegue la scansione e rileva le vulnerabilità di rete prima che siano esposte, riducendo il tempo necessario per applicare le patch sul sistema del cliente.
+I dati immessi nel sistema mantengono una forma ben strutturata e organizzata per facilitare le eventuali ricerche nello storico di ciascun cliente. 
+
+
+### Tecnologie usate
+
+ASP.NET Core, Entity Framework, HTML, Javascript, Bash Scripting, XSLT
+
+
 ## Dipendenze
 
 
@@ -69,6 +92,18 @@ Per installare tutte le dipendenze necessarie dai repository di Ubuntu, eseguire
 ```
 sudo apt-get install build-essential nmap fop wkhtmltopdf python2.7 python3 python-pip python3-pip timedatectl aircrack-ng reaver pyrit
 ```
+
+Per quanto riguarda .NET Core:
+```
+wget -qO- https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > microsoft.asc.gpg
+mv microsoft.asc.gpg /etc/apt/trusted.gpg.d/
+wget -q https://packages.microsoft.com/config/ubuntu/18.04/prod.list
+mv prod.list /etc/apt/sources.list.d/microsoft-prod.list
+apt-get install apt-transport-https
+apt-get update
+apt-get install dotnet-sdk-2.1.200
+```
+
 Per quanto riguarda le dipendenze installabili con pip:
 ```
 pip install -r ${WEBMVADIR}/Script/requirements.txt
@@ -155,26 +190,3 @@ rm -rf ${WEBMVA}/OpenDoor/
 ```
 $ sudo dotnet run
 ```
-
-
-**Ambito**
-
-Penetration Testing Tools
-
-
-**Progetto**
-
-Realizzazione di una pagina web per la gestione locale di test di vulnerabilità del sistema e la generazione di report di risultati.
-La piattaforma è progettata per supportare l'automazione in ogni fase del processo e consentire la personalizzazione per qualsiasi altro sistema che si utilizza.
-
-
-**Obiettivi**
-
-**Webmva** si propone di rendere il processo di pentesting il più semplice possibile e creare report di ricerca di facile comprensione e utilizzabili dal cliente finale. 
-Il sistema esegue la scansione e rileva le vulnerabilità di rete prima che siano esposte, riducendo il tempo necessario per applicare le patch sul sistema del cliente.
-I dati immessi nel sistema mantengono una forma ben strutturata e organizzata per facilitare le eventuali ricerche nello storico di ciascun cliente. 
-
-
-**Tecnologie proposte**
-
-ASP.NET Core, SQLite
