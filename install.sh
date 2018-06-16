@@ -2,7 +2,7 @@
 if [[ $EUID > 0 ]] ;
   then 
   echo "Concedere i permessi root."
-  exec sudo /bin/bash "$0" "$@ $HOME"
+  exec sudo /bin/bash "$0" "$@"
   exit
 fi
 WORKINGDIR=$PWD
@@ -129,7 +129,15 @@ echo "-------------------------------------------------------"
 if hash bully && hash reaver && hash tshark && hash aircrack-ng && hash cowpatty && hash pyrit >/dev/null 2>&1 ;
 then echo "Tutte le dipendenze di Wifite2 sono già installate.";
 else {
-	if grep -q "kali-rolling" /etc/apt/sources.list ;
+	TROVATO=false
+	while IFS=$'\n' read line ; do  
+    	if [[ "$line" =~ \#.* ]] ; then
+        	continue
+    	else
+        	TROVATO=true
+    	fi
+	done < /etc/apt/sources.list
+if [[ $TROVATO = "true" ]] ;
 	then 
 		echo "I repository di Kali sono già in questo sistema, non li aggiungo."
 		echo "Sto installando cowpatty e bully dai repo di kali..."
@@ -137,7 +145,7 @@ else {
 	else {
 		echo "Verranno aggiunti i repository di Kali Linux per installare alcuni programmi non presenti in quelli di Ubuntu..."
 		echo "deb http://http.kali.org/kali kali-rolling main non-free contrib" | tee -a /etc/apt/sources.list > /dev/null
-		apt-key adv --keyserver hkp://keys.gnupg.net --recv-keys ED444FF07D8D0BF6  > /dev/null
+		apt-key adv --keyserver hkp://keys.gnupg.net --recv-keys ED444FF07D8D0BF6 
 		apt-get update > /dev/null
 		echo "Sto installando cowpatty e bully dai repo di kali..."
 		apt-get install bully cowpatty -y >/dev/null
