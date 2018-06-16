@@ -192,3 +192,27 @@ exit
 cd ${WEBMVA}
 rm -rf ${WEBMVA}/OpenDoor/
 ```
+
+## Uso
+
+### Settaggi base dell'applicazione
+
+È possibile specificare alcuni parametri per il funzionamento di **WebMVA** nel file `webmvaSettings.json`. Nello specifico le opzioni disponibili sono:
+* `Porta`: la porta da usare per l'applicazione web. Default: 5000
+* `CartellaReport`: la cartella dove si desidera che l'applicazione inserisca i report generati. In questa cartella verranno create le sottocartelle dedicate al Progetto in questione.
+* `Log`: booleano, se true l'applicazione scriverà dei file di log nella cartella specificata nel prossimo parametro.
+* `CartellaLog`: la cartella dove depositare i file di log dell'applicazione. È possibile specificare un percorso assoluto o relativo alla radice dell'applicazione.
+* `TipoDB`: uno tra `sqlite`, `sqlserver` e `inmemory`.
+* `ConnectionString`: la stringa di connessione per il motore DB, per esempio `Data Source=nomeDb.db` per SQLite.
+
+Se il file non esiste l'applicazione caricherà dei valori di default, che equivalgono a un file `webmvaSettings.json` così formato:
+```
+{
+    "Porta": 5050,
+    "CartellaReport": "wwwroot/Report",
+    "Log": true,
+    "CartellaLog": "/var/log/webmva",
+    "TipoDB": "sqlite",
+    "ConnectionString": "Data Source=webmva.db"
+}
+```
