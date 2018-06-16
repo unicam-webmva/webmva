@@ -216,4 +216,4 @@ Se il file non esiste l'applicazione caricherà dei valori di default, che equiv
     "ConnectionString": "Data Source=webmva.db"
 }
 ```
-Tenere presente che se l'applicazione non ha i permessi di root non può scrivere in alcune cartelle e non può avviarsi su porte inferiori alla 1000, quindi eventualmente lanciarla con `sudo dotnet run`.
+Tenere presente che se l'applicazione non ha i permessi di root non può scrivere in alcune cartelle e non può avviarsi su porte inferiori alla 1000, quindi eventualmente lanciarla con `sudo dotnet run`. Eseguire quest'applicazione con i permessi di root è particolarmente rischioso per i permessi dei file generati, non garantiamo sui risultati ottenuti in questa maniera. Eventualmente è possibile usare una porta sopra la 1000 e usare Apache o nginx come proxy server che ascoltano richieste sulla 80 e reindirizzano internamente alla porta scelta. L'applicazione ha permessi di lettura e scrittura solo all'interno della sua cartella radice.
