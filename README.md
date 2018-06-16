@@ -211,7 +211,7 @@ Se il file non esiste l'applicazione caricherà dei valori di default, che equiv
     "Porta": 5000,
     "CartellaReport": "wwwroot/Report",
     "Log": true,
-    "CartellaLog": "/var/log/webmva",
+    "CartellaLog": "wwwroot/Log",
     "TipoDB": "sqlite",
     "ConnectionString": "Data Source=webmva.db"
 }
