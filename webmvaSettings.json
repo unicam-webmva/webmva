@@ -1,0 +1,8 @@
+{
+    "Porta": 5050,
+    "CartellaReport": "wwwroot/Report",
+    "Log": true,
+    "CartellaLog": "/var/log/webmva",
+    "TipoDB": "sqlite",
+    "ConnectionString": "Data Source=webmva.db"
+}

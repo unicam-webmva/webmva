@@ -24,20 +24,24 @@ namespace webmva
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<MyDbContext>(options =>
-                options.UseSqlite("Data Source=webmva.db"));
+            if(Globals.TIPODB.Equals("sqlite"))
+                services.AddDbContext<MyDbContext>(options =>
+                    options.UseSqlite(Globals.CONNECTIONSTRING));
+            else if(Globals.TIPODB.Equals("sqlserver"))
+                services.AddDbContext<MyDbContext>(options =>
+                    options.UseSqlServer(Globals.CONNECTIONSTRING));
+            else if(Globals.TIPODB.Equals("inmemory"))
+                services.AddDbContext<MyDbContext>(options =>
+                    options.UseInMemoryDatabase(Globals.CONNECTIONSTRING));
+            else
+                services.AddDbContext<MyDbContext>(options =>
+                    options.UseSqlite("Data Source=webmva.db"));    
             services.AddMvc();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
-            var porta = Configuration["Porta"];
-            var logging = Configuration["Logging"];
-            var cartellaReport = Configuration["CartellaReport"];
-            var cartellaLog = Configuration["CartellaLog"];
-
-            Console.WriteLine($"{porta} {logging} {cartellaReport} {cartellaLog}");
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
@@ -46,12 +50,6 @@ namespace webmva
             {
                 app.UseExceptionHandler("/Home/Error");
             }
-            // Inizializzo la variabile che conterrà il percorso assoluto
-            // di WebMVA
-            // suggerimento: https://stackoverflow.com/questions/43992261/how-to-get-absolute-path-in-asp-net-core-alternative-way-for-server-mappath
-            
-            webmva.Globals.CartellaWEBMVA = env.ContentRootPath;
-            webmva.Globals.CaricaFileConfig();
             
             app.UseStaticFiles();
 
@@ -61,7 +59,6 @@ namespace webmva
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");
             });
-
             System.Text.Encoding.RegisterProvider(System.Text.CodePagesEncodingProvider.Instance);
         }
     }

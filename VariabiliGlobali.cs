@@ -17,6 +17,7 @@ using Shark.PdfConvert;
 using Microsoft.EntityFrameworkCore;
 using webmva.Data;
 using webmva.Models;
+using Microsoft.Extensions.Configuration;
 
 namespace webmva
 {
@@ -28,48 +29,74 @@ namespace webmva
         public static int PORTA;
         public static bool LOGGING;
         public static string CARTELLAREPORT;
+        public static string TIPODB; 
+        public static string CONNECTIONSTRING;
 
         
-        public static void CaricaFileConfig()
+        public static void CaricaFileConfig(IConfiguration config, string cartellaCorrente)
         {
-            string configPath = Path.Combine(CartellaWEBMVA, "config.ini");
-            // controllo se esiste il file di configurazione
-            if(!File.Exists(configPath))
+            if(string.IsNullOrEmpty(cartellaCorrente)) CartellaWEBMVA = Directory.GetCurrentDirectory();
+            else CartellaWEBMVA = cartellaCorrente;
+            if(config!=null)
             {
-                // lo creo con variabili di default:
-                //  PORTA           =   80
-                //  CARTELLAREPORT  =   wwwroot/Report
-                //  LOGGING         =   true
-                //  CARTELLALOG     =   /var/log/webmva
-                int porta = 80;
-                string cartellaReport = "wwwroot/Report";
-                bool logging=true;
-                string cartellaLog="/var/log/webmva";
-                
-                // Create a file to write to.
-                using (StreamWriter sw = File.CreateText(configPath)) 
-                {
-                    sw.WriteLine($"PORTA={porta.ToString()}");
-                    sw.WriteLine($"CARTELLAREPORT={cartellaReport}");
-                    sw.WriteLine($"LOGGING={logging.ToString().ToLower()}");
-                    sw.WriteLine($"CARTELLALOG={cartellaLog}");
-                }
-                PORTA=porta;
-                CARTELLAREPORT=cartellaReport;
-                CARTELLALOG=cartellaLog;
-                LOGGING=logging;
+                PORTA = config.GetValue<int>("Porta");
+                if (PORTA == 0) PORTA=5000;
+            
+                var tmpReportDir=config.GetValue<string>("CartellaReport");
+                if (string.IsNullOrEmpty(tmpReportDir))
+                    // Non è stato fornito un percorso, default:
+                    CARTELLAREPORT=Path.Combine(CartellaWEBMVA,"wwwroot", "Report");
+                else if (tmpReportDir.ElementAt(0).Equals(Path.DirectorySeparatorChar))
+                    // il percorso fornito è assoluto, lo metto tale e quale
+                    CARTELLAREPORT=tmpReportDir;
+                else
+                    // il percorso lo intendo relativo alla root di WebMVA
+                    CARTELLAREPORT=Path.Combine(CartellaWEBMVA, tmpReportDir);
+
+                var tmpLogDir=config.GetValue<string>("CartellaLog");
+                if (string.IsNullOrEmpty(tmpLogDir))
+                    // Non è stato fornito un percorso, default:
+                    CARTELLALOG=Path.Combine(CartellaWEBMVA,"wwwroot", "Log");
+                else if (tmpLogDir.ElementAt(0).Equals(Path.DirectorySeparatorChar))
+                    // il percorso fornito è assoluto, lo metto tale e quale
+                    CARTELLALOG=tmpLogDir;
+                else
+                    // il percorso lo intendo relativo alla root di WebMVA
+                    CARTELLALOG=Path.Combine(CartellaWEBMVA, tmpLogDir);
+            
+                var tmpLog =config.GetValue<string>("Log");
+                if(!bool.TryParse(tmpLog, out LOGGING)) LOGGING=false;
+
+                TIPODB=config.GetValue<string>("TipoDB");
+                if (string.IsNullOrEmpty(TIPODB)) TIPODB="sqlite";
+
+                CONNECTIONSTRING=config.GetValue<string>("ConnectionString");
+                if (string.IsNullOrEmpty(CONNECTIONSTRING)) CONNECTIONSTRING="Data Source=webmva.db";    
             }
             else
             {
-                // se esiste lo leggo
-                string[] parametri = File.ReadAllLines(configPath);
+                // metto valori di default
+                PORTA=5000;
+                CARTELLAREPORT=Path.Combine(CartellaWEBMVA, "wwwroot", "Report");
+                CARTELLALOG=Path.Combine(CartellaWEBMVA, "wwwroot", "Log");
+                LOGGING=false;
+                TIPODB="sqlite";
+                CONNECTIONSTRING="Data Source=webmva.db";
             }
+            CreaCartellaLog();
+            CreaCartellaReport();
         }
-        internal static void CreaCartellaLog(string cartellaLog)
+        internal static void CreaCartellaLog()
         {
             // mi assicuro che la cartella log esista, altrimenti la creo
-            if (!Directory.Exists(cartellaLog))
-                Directory.CreateDirectory(cartellaLog);
+            if (!Directory.Exists(CARTELLALOG))
+                Directory.CreateDirectory(CARTELLALOG);
+        }
+        internal static void CreaCartellaReport()
+        {
+            // mi assicuro che la cartella log esista, altrimenti la creo
+            if (!Directory.Exists(CARTELLAREPORT))
+                Directory.CreateDirectory(CARTELLAREPORT);
         }
 
 
@@ -174,13 +201,20 @@ namespace webmva
             return percorsoPdf;
         }
 
-        public static string CreaCartellaProgetto(string cartellaProgetto, DateTime data)
+        public static string CreaCartellaProgetto(string cartellaProgetto)
         {
             // mi assicuro che la cartella dedicata al progetto esista
             // altrimenti la creo
-            string cartellaAssoluta = Path.Combine(CartellaWEBMVA, "wwwroot", "Report", cartellaProgetto);
+            string cartellaAssoluta = Path.Combine(CARTELLAREPORT, cartellaProgetto);
             if (!Directory.Exists(cartellaAssoluta))
                 Directory.CreateDirectory(cartellaAssoluta);
+            return cartellaAssoluta;
+        }
+        public static string CreaCartellaScan(string cartellaProgetto, DateTime data)
+        {
+            // mi assicuro che la cartella dedicata al progetto esista
+            // altrimenti la creo
+            string cartellaAssoluta = CreaCartellaProgetto(cartellaProgetto);
             string cartellaConData = Path.Combine(cartellaAssoluta, data.ToString("dd-MM-yyyy_HH-mm"));
             if (!Directory.Exists(cartellaConData))
                 Directory.CreateDirectory(cartellaConData);
@@ -190,7 +224,7 @@ namespace webmva
         {
             // mi assicuro che la cartella dedicata al progetto esista
             // altrimenti la creo
-            string cartellaAssoluta = Path.Combine(CartellaWEBMVA, "wwwroot", "Report", cartellaProgetto);
+            string cartellaAssoluta = Path.Combine(CARTELLAREPORT, cartellaProgetto);
             if (!Directory.Exists(cartellaAssoluta))
                 Directory.CreateDirectory(cartellaAssoluta);
             string cartellaImportati = Path.Combine(cartellaAssoluta, "Importati");
