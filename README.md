@@ -208,7 +208,7 @@ rm -rf ${WEBMVA}/OpenDoor/
 Se il file non esiste l'applicazione caricherà dei valori di default, che equivalgono a un file `webmvaSettings.json` così formato:
 ```
 {
-    "Porta": 5050,
+    "Porta": 5000,
     "CartellaReport": "wwwroot/Report",
     "Log": true,
     "CartellaLog": "/var/log/webmva",
@@ -216,4 +216,4 @@ Se il file non esiste l'applicazione caricherà dei valori di default, che equiv
     "ConnectionString": "Data Source=webmva.db"
 }
 ```
-Tenere presente che se l'applicazione non ha i permessi di root non può scrivere in alcune cartelle e non può avviarsi su poprte inferiori alla 1000, quindi eventualmente lanciarla con `sudo dotnet run`.
+Tenere presente che se l'applicazione non ha i permessi di root non può scrivere in alcune cartelle e non può avviarsi su porte inferiori alla 1000, quindi eventualmente lanciarla con `sudo dotnet run`.
