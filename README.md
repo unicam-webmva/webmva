@@ -216,3 +216,4 @@ Se il file non esiste l'applicazione caricherà dei valori di default, che equiv
     "ConnectionString": "Data Source=webmva.db"
 }
 ```
+Tenere presente che se l'applicazione non ha i permessi di root non può scrivere in alcune cartelle e non può avviarsi su poprte inferiori alla 1000, quindi eventualmente lanciarla con `sudo dotnet run`.
