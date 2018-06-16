@@ -28,6 +28,7 @@ namespace webmva
         public static string CARTELLALOG;
         public static int PORTA;
         public static bool LOGGING;
+        public static string LOGFILE;
         public static string CARTELLAREPORT;
         public static string TIPODB; 
         public static string CONNECTIONSTRING;
@@ -91,6 +92,12 @@ namespace webmva
             // mi assicuro che la cartella log esista, altrimenti la creo
             if (!Directory.Exists(CARTELLALOG))
                 Directory.CreateDirectory(CARTELLALOG);
+            if(LOGGING)
+            { // creo un file vuoto chiamato TIMESTAMP_webmva.log
+                string nomeFile = Path.Combine(CARTELLALOG, $"{DateTime.Now.ToString("yyyyMMdd_HHmmss")}_webmva.log");
+                File.Create(nomeFile).Dispose();
+                LOGFILE=nomeFile;
+            }
         }
         internal static void CreaCartellaReport()
         {

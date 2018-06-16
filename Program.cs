@@ -31,6 +31,7 @@ namespace webmva
                     logger.LogError(ex, "Errore durante la creazione del db");
                 }
             }
+            MyLogger.Log("Applicazione avviata");
             host.Run();   
         }
 
@@ -43,6 +44,7 @@ namespace webmva
                 .AddJsonFile($"webmvaSettings.json", optional:true)
                 .Build();
             Globals.CaricaFileConfig(settings, cartellaCorrente);
+            MyLogger.Log("Caricato config file");
             return WebHost.CreateDefaultBuilder(args)
                 .UseStartup<Startup>()
                 .UseUrls($"http://0.0.0.0:{Globals.PORTA}")
