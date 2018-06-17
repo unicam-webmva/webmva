@@ -43,6 +43,7 @@ namespace webmva.Controllers
             var listaODAT = await _context.Moduli.Where(modulo => modulo.Applicazione == APPLICAZIONE.ODAT).ToListAsync();
             var listaDNSENUM = await _context.Moduli.Where(modulo => modulo.Applicazione == APPLICAZIONE.DNSENUM).ToListAsync();
             var listaOPENVAS = await _context.Moduli.Where(modulo => modulo.Applicazione == APPLICAZIONE.OPENVAS).ToListAsync();
+            MyLogger.Log(messaggio: "Richiesta GET", controller: "ModuloController", metodo: "Index");
             return View(new ListaModuliVM { ModuliNMAP = listaNMAP, ModuliNESSUS = listaNESSUS, ModuliOPENDOOR = listaOPENDOOR, ModuliDNSRECON = listaDNSRECON, ModuliFIERCE = listaFIERCE, ModuliDROOPE = listaDROOPE, ModuliJOOMSCAN = listaJOOMSCAN, ModuliWPSCAN = listaWPSCAN, ModuliINFOGA = listaINFOGA, ModuliINFOGAEMAIL = listaINFOGAEMAIL, ModuliSUBLIST3R = listaSUBLIST3R, ModuliWAPITI = listaWAPITI, ModuliSQLMAP = listaSQLMAP, ModuliWIFITE = listaWIFITE, ModuliWASCAN = listaWASCAN, ModuliNOSQL = listaNOSQL, ModuliODAT = listaODAT, ModuliDNSENUM = listaDNSENUM, ModuliOPENVAS = listaOPENVAS });
         }
 
@@ -51,6 +52,7 @@ namespace webmva.Controllers
         {
             if (id == null)
             {
+                MyLogger.Log(messaggio: $"ERRORE: Richiesta GET: nessun id fornito", controller: "ModuloController", metodo: "Details");
                 return NotFound();
             }
 
@@ -58,9 +60,10 @@ namespace webmva.Controllers
                 .SingleOrDefaultAsync(m => m.ID == id);
             if (modulo == null)
             {
+                MyLogger.Log(messaggio: $"ERRORE: Richiesta GET con id {id} fallita: nessun modulo con questo id", controller: "ModuloController", metodo: "Details");
                 return NotFound();
             }
-
+            MyLogger.Log(messaggio: $"Richiesta GET con id {id}", controller: "ModuloController", metodo: "Details");
             return View(modulo);
         }
 
@@ -84,9 +87,11 @@ namespace webmva.Controllers
                     ViewData["TestO"] = TempData.Peek<string>("TestO");
                     TempData.Remove("TestO");
                 }
+                MyLogger.Log(messaggio: $"Richiesta GET in seguito a Test", controller: "ModuloController", metodo: "Create");
                 return View(model);
             }
             else
+                MyLogger.Log(messaggio: $"Richiesta GET", controller: "ModuloController", metodo: "Create");
                 return View(new EditModuloVM());
         }
 
@@ -105,6 +110,7 @@ namespace webmva.Controllers
                     mod.Applicazione = APPLICAZIONE.NMAP;
                     _context.Moduli.Add(mod);
                     await _context.SaveChangesAsync();
+                    MyLogger.Log(messaggio: $"Richiesta POST: \n\tNuovo modulo nmap con nome: {mod.Nome}", controller: "ModuloController", metodo: "Create");
                     return RedirectToAction(nameof(Index));
                 }
             }
@@ -117,6 +123,7 @@ namespace webmva.Controllers
                         mod.Applicazione = APPLICAZIONE.NESSUS;
                         _context.Moduli.Add(mod);
                         await _context.SaveChangesAsync();
+                        MyLogger.Log(messaggio: $"Richiesta POST: \n\tNuovo modulo Nessus con nome: {mod.Nome}", controller: "ModuloController", metodo: "Create");
                         return RedirectToAction(nameof(Index));
                     }
                 }
@@ -130,6 +137,7 @@ namespace webmva.Controllers
                         mod.Applicazione = APPLICAZIONE.DNSRECON;
                         _context.Moduli.Add(mod);
                         await _context.SaveChangesAsync();
+                        MyLogger.Log(messaggio: $"Richiesta POST: \n\tNuovo modulo DNSRecon con nome: {mod.Nome}", controller: "ModuloController", metodo: "Create");
                         return RedirectToAction(nameof(Index));
                     }
                 }
@@ -143,6 +151,7 @@ namespace webmva.Controllers
                         mod.Applicazione = APPLICAZIONE.FIERCE;
                         _context.Moduli.Add(mod);
                         await _context.SaveChangesAsync();
+                        MyLogger.Log(messaggio: $"Richiesta POST: \n\tNuovo modulo Fierce con nome: {mod.Nome}", controller: "ModuloController", metodo: "Create");
                         return RedirectToAction(nameof(Index));
                     }
                 }
@@ -156,6 +165,7 @@ namespace webmva.Controllers
                         mod.Applicazione = APPLICAZIONE.DROOPE;
                         _context.Moduli.Add(mod);
                         await _context.SaveChangesAsync();
+                        MyLogger.Log(messaggio: $"Richiesta POST: \n\tNuovo modulo DroopeScan con nome: {mod.Nome}", controller: "ModuloController", metodo: "Create");
                         return RedirectToAction(nameof(Index));
                     }
                 }
@@ -169,6 +179,7 @@ namespace webmva.Controllers
                         mod.Applicazione = APPLICAZIONE.JOOMSCAN;
                         _context.Moduli.Add(mod);
                         await _context.SaveChangesAsync();
+                        MyLogger.Log(messaggio: $"Richiesta POST: \n\tNuovo modulo JoomScan con nome: {mod.Nome}", controller: "ModuloController", metodo: "Create");
                         return RedirectToAction(nameof(Index));
                     }
                 }
@@ -182,6 +193,7 @@ namespace webmva.Controllers
                         mod.Applicazione = APPLICAZIONE.WPSCAN;
                         _context.Moduli.Add(mod);
                         await _context.SaveChangesAsync();
+                        MyLogger.Log(messaggio: $"Richiesta POST: \n\tNuovo modulo WPScan con nome: {mod.Nome}", controller: "ModuloController", metodo: "Create");
                         return RedirectToAction(nameof(Index));
                     }
                 }
@@ -195,6 +207,7 @@ namespace webmva.Controllers
                         mod.Applicazione = APPLICAZIONE.INFOGA;
                         _context.Moduli.Add(mod);
                         await _context.SaveChangesAsync();
+                        MyLogger.Log(messaggio: $"Richiesta POST: \n\tNuovo modulo Infoga con nome: {mod.Nome}", controller: "ModuloController", metodo: "Create");
                         return RedirectToAction(nameof(Index));
                     }
                 }
@@ -208,6 +221,7 @@ namespace webmva.Controllers
                         mod.Applicazione = APPLICAZIONE.INFOGAEMAIL;
                         _context.Moduli.Add(mod);
                         await _context.SaveChangesAsync();
+                        MyLogger.Log(messaggio: $"Richiesta POST: \n\tNuovo modulo Infoga (email) con nome: {mod.Nome}", controller: "ModuloController", metodo: "Create");
                         return RedirectToAction(nameof(Index));
                     }
                 }
@@ -221,6 +235,7 @@ namespace webmva.Controllers
                         mod.Applicazione = APPLICAZIONE.SUBLIST3R;
                         _context.Moduli.Add(mod);
                         await _context.SaveChangesAsync();
+                        MyLogger.Log(messaggio: $"Richiesta POST: \n\tNuovo modulo Sublist3r con nome: {mod.Nome}", controller: "ModuloController", metodo: "Create");
                         return RedirectToAction(nameof(Index));
                     }
                 }
@@ -234,6 +249,7 @@ namespace webmva.Controllers
                         mod.Applicazione = APPLICAZIONE.WAPITI;
                         _context.Moduli.Add(mod);
                         await _context.SaveChangesAsync();
+                        MyLogger.Log(messaggio: $"Richiesta POST: \n\tNuovo modulo Wapiti con nome: {mod.Nome}", controller: "ModuloController", metodo: "Create");
                         return RedirectToAction(nameof(Index));
                     }
                 }
@@ -247,6 +263,7 @@ namespace webmva.Controllers
                         mod.Applicazione = APPLICAZIONE.WASCAN;
                         _context.Moduli.Add(mod);
                         await _context.SaveChangesAsync();
+                        MyLogger.Log(messaggio: $"Richiesta POST: \n\tNuovo modulo Wascan con nome: {mod.Nome}", controller: "ModuloController", metodo: "Create");
                         return RedirectToAction(nameof(Index));
                     }
                 }
@@ -260,6 +277,7 @@ namespace webmva.Controllers
                         mod.Applicazione = APPLICAZIONE.SQLMAP;
                         _context.Moduli.Add(mod);
                         await _context.SaveChangesAsync();
+                        MyLogger.Log(messaggio: $"Richiesta POST: \n\tNuovo modulo SQLMap con nome: {mod.Nome}", controller: "ModuloController", metodo: "Create");
                         return RedirectToAction(nameof(Index));
                     }
                 }
@@ -273,6 +291,7 @@ namespace webmva.Controllers
                         mod.Applicazione = APPLICAZIONE.WIFITE;
                         _context.Moduli.Add(mod);
                         await _context.SaveChangesAsync();
+                        MyLogger.Log(messaggio: $"Richiesta POST: \n\tNuovo modulo Wifite con nome: {mod.Nome}", controller: "ModuloController", metodo: "Create");
                         return RedirectToAction(nameof(Index));
                     }
                 }
@@ -286,6 +305,7 @@ namespace webmva.Controllers
                         mod.Applicazione = APPLICAZIONE.OPENDOOR;
                         _context.Moduli.Add(mod);
                         await _context.SaveChangesAsync();
+                        MyLogger.Log(messaggio: $"Richiesta POST: \n\tNuovo modulo OpenDoor con nome: {mod.Nome}", controller: "ModuloController", metodo: "Create");
                         return RedirectToAction(nameof(Index));
                     }
                 }
@@ -299,6 +319,7 @@ namespace webmva.Controllers
                         mod.Applicazione = APPLICAZIONE.NOSQL;
                         _context.Moduli.Add(mod);
                         await _context.SaveChangesAsync();
+                        MyLogger.Log(messaggio: $"Richiesta POST: \n\tNuovo modulo NoSQLMap con nome: {mod.Nome}", controller: "ModuloController", metodo: "Create");
                         return RedirectToAction(nameof(Index));
                     }
                 }
@@ -312,6 +333,7 @@ namespace webmva.Controllers
                         mod.Applicazione = APPLICAZIONE.ODAT;
                         _context.Moduli.Add(mod);
                         await _context.SaveChangesAsync();
+                        MyLogger.Log(messaggio: $"Richiesta POST: \n\tNuovo modulo ODAT con nome: {mod.Nome}", controller: "ModuloController", metodo: "Create");
                         return RedirectToAction(nameof(Index));
                     }
                 }
@@ -325,6 +347,7 @@ namespace webmva.Controllers
                         mod.Applicazione = APPLICAZIONE.DNSENUM;
                         _context.Moduli.Add(mod);
                         await _context.SaveChangesAsync();
+                        MyLogger.Log(messaggio: $"Richiesta POST: \n\tNuovo modulo DNSEnum con nome: {mod.Nome}", controller: "ModuloController", metodo: "Create");
                         return RedirectToAction(nameof(Index));
                     }
                 }
@@ -338,12 +361,16 @@ namespace webmva.Controllers
                         mod.Applicazione = APPLICAZIONE.OPENVAS;
                         _context.Moduli.Add(mod);
                         await _context.SaveChangesAsync();
+                        MyLogger.Log(messaggio: $"Richiesta POST: \n\tNuovo modulo OpenVAS con nome: {mod.Nome}", controller: "ModuloController", metodo: "Create");
                         return RedirectToAction(nameof(Index));
                     }
                 }
             }
-            else return BadRequest();
-
+            else {
+                MyLogger.Log(messaggio: $"ERRORE: Richiesta POST: BadRequest", controller: "ModuloController", metodo: "Create");
+                return BadRequest();
+            }
+            MyLogger.Log(messaggio: $"ERRORE: Richiesta POST: Richiesta malformata", controller: "ModuloController", metodo: "Create");
             return View(createmodulo);
 
         }
@@ -354,6 +381,8 @@ namespace webmva.Controllers
             if (cosa == "nessus")
             {
                 bool check = await CheckServer(createmodulo.NESSUS.ServerIP, createmodulo.NESSUS.Porta);
+                MyLogger.Log(messaggio: $"Richiesta POST: Test verso https://{createmodulo.NESSUS.ServerIP}:{createmodulo.NESSUS.Porta} "+
+                    ((check)?"up":"down"), controller: "ModuloController", metodo: "Test");
                 TempData.Put("TestN", check.ToString());
                 TempData.Put("Anchor", "Nessus");
 
@@ -362,6 +391,8 @@ namespace webmva.Controllers
             else if (cosa == "openvas")
             {
                 bool check = await CheckServer(createmodulo.OPENVAS.ServerIPOpenvas, createmodulo.OPENVAS.PortaOpenvas);
+                MyLogger.Log(messaggio: $"Richiesta POST: Test verso https://{createmodulo.OPENVAS.ServerIPOpenvas}:{createmodulo.OPENVAS.PortaOpenvas} "+
+                    ((check)?"up":"down"), controller: "ModuloController", metodo: "Test");
                 TempData.Put("TestO", check.ToString());
                 TempData.Put("Anchor", "Openvas");
 
@@ -394,19 +425,23 @@ namespace webmva.Controllers
                     ViewData["TestO"] = TempData.Peek<string>("TestO");
                     TempData.Remove("TestO");
                 }
+                MyLogger.Log(messaggio: $"Richiesta GET con id {id} in seguito a Test", controller: "ModuloController", metodo: "Edit");
                 return View(new EditModuloVM(m));
             }
             else
             {
                 if (id == null)
                 {
+                    MyLogger.Log(messaggio: $"ERRORE: Richiesta GET: nessun id fornito", controller: "ModuloController", metodo: "Edit");
                     return NotFound();
                 }
                 var modulo = await _context.Moduli.SingleOrDefaultAsync(m => m.ID == id);
                 if (modulo == null)
                 {
+                    MyLogger.Log(messaggio: $"ERRORE: Richiesta GET con id {id} fallita: nessun modulo con questo id", controller: "ModuloController", metodo: "Details");
                     return NotFound();
                 }
+                MyLogger.Log(messaggio: $"Richiesta GET con id {id}", controller: "ModuloController", metodo: "Edit");
                 return View(new EditModuloVM(modulo));
             }
         }
@@ -418,587 +453,85 @@ namespace webmva.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, EditModuloVM editmodulo)
         {
+            Modulo m;
 
             if (!string.IsNullOrEmpty(editmodulo.NMAP.Nome))
-            {
-                ModuloNMAP mod = editmodulo.NMAP;
-                if (id != mod.ID)
-                {
-                    return NotFound();
-                }
-
-                if (ModelState.IsValid)
-                {
-                    try
-                    {
-                        _context.Update(mod);
-                        await _context.SaveChangesAsync();
-                    }
-                    catch (DbUpdateConcurrencyException)
-                    {
-                        if (!ModuloExists(mod.ID))
-                        {
-                            return NotFound();
-                        }
-                        else
-                        {
-                            throw;
-                        }
-                    }
-                    return RedirectToAction(nameof(Index));
-                }
-            }
+                m = editmodulo.NMAP;
             else if (!string.IsNullOrEmpty(editmodulo.NESSUS.Nome))
-            {
-                ModuloNESSUS mod = editmodulo.NESSUS;
-                if (id != mod.ID)
-                {
-                    return NotFound();
-                }
-
-                if (ModelState.IsValid)
-                {
-                    try
-                    {
-                        _context.Update(mod);
-                        await _context.SaveChangesAsync();
-                    }
-                    catch (DbUpdateConcurrencyException)
-                    {
-                        if (!ModuloExists(mod.ID))
-                        {
-                            return NotFound();
-                        }
-                        else
-                        {
-                            throw;
-                        }
-                    }
-                    return RedirectToAction(nameof(Index));
-                }
-            }
+                m = editmodulo.NESSUS;
             else if (!string.IsNullOrEmpty(editmodulo.DNSRECON.Nome))
-            {
-                ModuloDNSRECON mod = editmodulo.DNSRECON;
-                if (id != mod.ID)
-                {
-                    return NotFound();
-                }
-
-                if (ModelState.IsValid)
-                {
-                    try
-                    {
-                        _context.Update(mod);
-                        await _context.SaveChangesAsync();
-                    }
-                    catch (DbUpdateConcurrencyException)
-                    {
-                        if (!ModuloExists(mod.ID))
-                        {
-                            return NotFound();
-                        }
-                        else
-                        {
-                            throw;
-                        }
-                    }
-                    return RedirectToAction(nameof(Index));
-                }
-            }
+                m = editmodulo.DNSRECON;
             else if (!string.IsNullOrEmpty(editmodulo.FIERCE.Nome))
-            {
-                ModuloFIERCE mod = editmodulo.FIERCE;
-                if (id != mod.ID)
-                {
-                    return NotFound();
-                }
-
-                if (ModelState.IsValid)
-                {
-                    try
-                    {
-                        _context.Update(mod);
-                        await _context.SaveChangesAsync();
-                    }
-                    catch (DbUpdateConcurrencyException)
-                    {
-                        if (!ModuloExists(mod.ID))
-                        {
-                            return NotFound();
-                        }
-                        else
-                        {
-                            throw;
-                        }
-                    }
-                    return RedirectToAction(nameof(Index));
-                }
-            }
+                m = editmodulo.FIERCE;
             else if (!string.IsNullOrEmpty(editmodulo.DROOPE.Nome))
-            {
-                ModuloDROOPE mod = editmodulo.DROOPE;
-                if (id != mod.ID)
-                {
-                    return NotFound();
-                }
-
-                if (ModelState.IsValid)
-                {
-                    try
-                    {
-                        _context.Update(mod);
-                        await _context.SaveChangesAsync();
-                    }
-                    catch (DbUpdateConcurrencyException)
-                    {
-                        if (!ModuloExists(mod.ID))
-                        {
-                            return NotFound();
-                        }
-                        else
-                        {
-                            throw;
-                        }
-                    }
-                    return RedirectToAction(nameof(Index));
-                }
-            }
+                m = editmodulo.DROOPE;
             else if (!string.IsNullOrEmpty(editmodulo.JOOMSCAN.Nome))
-            {
-                ModuloJOOMSCAN mod = editmodulo.JOOMSCAN;
-                if (id != mod.ID)
-                {
-                    return NotFound();
-                }
-
-                if (ModelState.IsValid)
-                {
-                    try
-                    {
-                        _context.Update(mod);
-                        await _context.SaveChangesAsync();
-                    }
-                    catch (DbUpdateConcurrencyException)
-                    {
-                        if (!ModuloExists(mod.ID))
-                        {
-                            return NotFound();
-                        }
-                        else
-                        {
-                            throw;
-                        }
-                    }
-                    return RedirectToAction(nameof(Index));
-                }
-            }
+                m = editmodulo.JOOMSCAN;
             else if (!string.IsNullOrEmpty(editmodulo.WPSCAN.Nome))
-            {
-                ModuloWPSCAN mod = editmodulo.WPSCAN;
-                if (id != mod.ID)
-                {
-                    return NotFound();
-                }
-
-                if (ModelState.IsValid)
-                {
-                    try
-                    {
-                        _context.Update(mod);
-                        await _context.SaveChangesAsync();
-                    }
-                    catch (DbUpdateConcurrencyException)
-                    {
-                        if (!ModuloExists(mod.ID))
-                        {
-                            return NotFound();
-                        }
-                        else
-                        {
-                            throw;
-                        }
-                    }
-                    return RedirectToAction(nameof(Index));
-                }
-            }
+                m = editmodulo.WPSCAN;
             else if (!string.IsNullOrEmpty(editmodulo.INFOGA.Nome))
-            {
-                ModuloINFOGA mod = editmodulo.INFOGA;
-                if (id != mod.ID)
-                {
-                    return NotFound();
-                }
-
-                if (ModelState.IsValid)
-                {
-                    try
-                    {
-                        _context.Update(mod);
-                        await _context.SaveChangesAsync();
-                    }
-                    catch (DbUpdateConcurrencyException)
-                    {
-                        if (!ModuloExists(mod.ID))
-                        {
-                            return NotFound();
-                        }
-                        else
-                        {
-                            throw;
-                        }
-                    }
-                    return RedirectToAction(nameof(Index));
-                }
-            }
+                m = editmodulo.INFOGA;
             else if (!string.IsNullOrEmpty(editmodulo.INFOGAEMAIL.Nome))
-            {
-                ModuloINFOGAEMAIL mod = editmodulo.INFOGAEMAIL;
-                if (id != mod.ID)
-                {
-                    return NotFound();
-                }
-
-                if (ModelState.IsValid)
-                {
-                    try
-                    {
-                        _context.Update(mod);
-                        await _context.SaveChangesAsync();
-                    }
-                    catch (DbUpdateConcurrencyException)
-                    {
-                        if (!ModuloExists(mod.ID))
-                        {
-                            return NotFound();
-                        }
-                        else
-                        {
-                            throw;
-                        }
-                    }
-                    return RedirectToAction(nameof(Index));
-                }
-            }
+                m = editmodulo.INFOGAEMAIL;
             else if (!string.IsNullOrEmpty(editmodulo.SUBLIST3R.Nome))
-            {
-                ModuloSUBLIST3R mod = editmodulo.SUBLIST3R;
-                if (id != mod.ID)
-                {
-                    return NotFound();
-                }
-
-                if (ModelState.IsValid)
-                {
-                    try
-                    {
-                        _context.Update(mod);
-                        await _context.SaveChangesAsync();
-                    }
-                    catch (DbUpdateConcurrencyException)
-                    {
-                        if (!ModuloExists(mod.ID))
-                        {
-                            return NotFound();
-                        }
-                        else
-                        {
-                            throw;
-                        }
-                    }
-                    return RedirectToAction(nameof(Index));
-                }
-            }
+                m = editmodulo.SUBLIST3R;
             else if (!string.IsNullOrEmpty(editmodulo.WASCAN.Nome))
-            {
-                ModuloWASCAN mod = editmodulo.WASCAN;
-                if (id != mod.ID)
-                {
-                    return NotFound();
-                }
-
-                if (ModelState.IsValid)
-                {
-                    try
-                    {
-                        _context.Update(mod);
-                        await _context.SaveChangesAsync();
-                    }
-                    catch (DbUpdateConcurrencyException)
-                    {
-                        if (!ModuloExists(mod.ID))
-                        {
-                            return NotFound();
-                        }
-                        else
-                        {
-                            throw;
-                        }
-                    }
-                    return RedirectToAction(nameof(Index));
-                }
-            }
+                m = editmodulo.WASCAN;
             else if (!string.IsNullOrEmpty(editmodulo.OPENDOOR.Nome))
-            {
-                ModuloOPENDOOR mod = editmodulo.OPENDOOR;
-                if (id != mod.ID)
-                {
-                    return NotFound();
-                }
-
-                if (ModelState.IsValid)
-                {
-                    try
-                    {
-                        _context.Update(mod);
-                        await _context.SaveChangesAsync();
-                    }
-                    catch (DbUpdateConcurrencyException)
-                    {
-                        if (!ModuloExists(mod.ID))
-                        {
-                            return NotFound();
-                        }
-                        else
-                        {
-                            throw;
-                        }
-                    }
-                    return RedirectToAction(nameof(Index));
-                }
-            }
+                m = editmodulo.OPENDOOR;
             else if (!string.IsNullOrEmpty(editmodulo.WAPITI.Nome))
-            {
-                ModuloWAPITI mod = editmodulo.WAPITI;
-                if (id != mod.ID)
-                {
-                    return NotFound();
-                }
-
-                if (ModelState.IsValid)
-                {
-                    try
-                    {
-                        _context.Update(mod);
-                        await _context.SaveChangesAsync();
-                    }
-                    catch (DbUpdateConcurrencyException)
-                    {
-                        if (!ModuloExists(mod.ID))
-                        {
-                            return NotFound();
-                        }
-                        else
-                        {
-                            throw;
-                        }
-                    }
-                    return RedirectToAction(nameof(Index));
-                }
-            }
+                m = editmodulo.WAPITI;
             else if (!string.IsNullOrEmpty(editmodulo.SUBLIST3R.Nome))
-            {
-                ModuloSUBLIST3R mod = editmodulo.SUBLIST3R;
-                if (id != mod.ID)
-                {
-                    return NotFound();
-                }
-
-                if (ModelState.IsValid)
-                {
-                    try
-                    {
-                        _context.Update(mod);
-                        await _context.SaveChangesAsync();
-                    }
-                    catch (DbUpdateConcurrencyException)
-                    {
-                        if (!ModuloExists(mod.ID))
-                        {
-                            return NotFound();
-                        }
-                        else
-                        {
-                            throw;
-                        }
-                    }
-                    return RedirectToAction(nameof(Index));
-                }
-            }
+                m = editmodulo.SUBLIST3R;
             else if (!string.IsNullOrEmpty(editmodulo.SQLMAP.Nome))
-            {
-                ModuloSQLMAP mod = editmodulo.SQLMAP;
-                if (id != mod.ID)
-                {
-                    return NotFound();
-                }
-
-                if (ModelState.IsValid)
-                {
-                    try
-                    {
-                        _context.Update(mod);
-                        await _context.SaveChangesAsync();
-                    }
-                    catch (DbUpdateConcurrencyException)
-                    {
-                        if (!ModuloExists(mod.ID))
-                        {
-                            return NotFound();
-                        }
-                        else
-                        {
-                            throw;
-                        }
-                    }
-                    return RedirectToAction(nameof(Index));
-                }
-            }
+                m = editmodulo.SQLMAP;
             else if (!string.IsNullOrEmpty(editmodulo.WIFITE.Nome))
-            {
-                ModuloWIFITE mod = editmodulo.WIFITE;
-                if (id != mod.ID)
-                {
-                    return NotFound();
-                }
-
-                if (ModelState.IsValid)
-                {
-                    try
-                    {
-                        _context.Update(mod);
-                        await _context.SaveChangesAsync();
-                    }
-                    catch (DbUpdateConcurrencyException)
-                    {
-                        if (!ModuloExists(mod.ID))
-                        {
-                            return NotFound();
-                        }
-                        else
-                        {
-                            throw;
-                        }
-                    }
-                    return RedirectToAction(nameof(Index));
-                }
-            }
+                m = editmodulo.WIFITE;
             else if (!string.IsNullOrEmpty(editmodulo.NOSQL.Nome))
-            {
-                ModuloNOSQL mod = editmodulo.NOSQL;
-                if (id != mod.ID)
-                {
-                    return NotFound();
-                }
-
-                if (ModelState.IsValid)
-                {
-                    try
-                    {
-                        _context.Update(mod);
-                        await _context.SaveChangesAsync();
-                    }
-                    catch (DbUpdateConcurrencyException)
-                    {
-                        if (!ModuloExists(mod.ID))
-                        {
-                            return NotFound();
-                        }
-                        else
-                        {
-                            throw;
-                        }
-                    }
-                    return RedirectToAction(nameof(Index));
-                }
-            }
+                m = editmodulo.NOSQL;
             else if (!string.IsNullOrEmpty(editmodulo.ODAT.Nome))
-            {
-                ModuloODAT mod = editmodulo.ODAT;
-                if (id != mod.ID)
-                {
-                    return NotFound();
-                }
-
-                if (ModelState.IsValid)
-                {
-                    try
-                    {
-                        _context.Update(mod);
-                        await _context.SaveChangesAsync();
-                    }
-                    catch (DbUpdateConcurrencyException)
-                    {
-                        if (!ModuloExists(mod.ID))
-                        {
-                            return NotFound();
-                        }
-                        else
-                        {
-                            throw;
-                        }
-                    }
-                    return RedirectToAction(nameof(Index));
-                }
-            }
+                m = editmodulo.ODAT;
             else if (!string.IsNullOrEmpty(editmodulo.DNSENUM.Nome))
+                m = editmodulo.DNSENUM;
+            else // è rimasto solo openvas, controllo dopo se m è ancora null o no
+                m = editmodulo.OPENVAS;
+            
+            if (m==null)
             {
-                ModuloDNSENUM mod = editmodulo.DNSENUM;
-                if (id != mod.ID)
-                {
-                    return NotFound();
-                }
-
-                if (ModelState.IsValid)
-                {
-                    try
-                    {
-                        _context.Update(mod);
-                        await _context.SaveChangesAsync();
-                    }
-                    catch (DbUpdateConcurrencyException)
-                    {
-                        if (!ModuloExists(mod.ID))
-                        {
-                            return NotFound();
-                        }
-                        else
-                        {
-                            throw;
-                        }
-                    }
-                    return RedirectToAction(nameof(Index));
-                }
+                MyLogger.Log(messaggio: $"ERRORE: Richiesta POST con id {id}: BadRequest", controller: "ModuloController", metodo: "Edit");
+                return BadRequest();
             }
-            else if (!string.IsNullOrEmpty(editmodulo.OPENVAS.Nome))
+            
+            if (id != m.ID)
             {
-                ModuloOPENVAS mod = editmodulo.OPENVAS;
-                if (id != mod.ID)
-                {
-                    return NotFound();
-                }
-
-                if (ModelState.IsValid)
-                {
-                    try
-                    {
-                        _context.Update(mod);
-                        await _context.SaveChangesAsync();
-                    }
-                    catch (DbUpdateConcurrencyException)
-                    {
-                        if (!ModuloExists(mod.ID))
-                        {
-                            return NotFound();
-                        }
-                        else
-                        {
-                            throw;
-                        }
-                    }
-                    return RedirectToAction(nameof(Index));
-                }
+                MyLogger.Log(messaggio: $"ERRORE: Richiesta POST con id {id}: Richiesta malformata", controller: "ModuloController", metodo: "Edit");
+                return NotFound();
             }
+
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    _context.Update(m);
+                    await _context.SaveChangesAsync();
+                }
+                catch (DbUpdateConcurrencyException)
+                {
+                    if (!ModuloExists(m.ID))
+                    {
+                        MyLogger.Log(messaggio: $"ERRORE: Richiesta POST con id {id}: Nessun modulo con questo id", controller: "ModuloController", metodo: "Edit");
+                        return NotFound();
+                    }
+                    else
+                    {
+                        MyLogger.Log(messaggio: $"ERRORE CRITICO: Richiesta POST con id {id}: Errore nel DB", controller: "ModuloController", metodo: "Edit");
+                        throw;
+                    }
+                }
+                MyLogger.Log(messaggio: $"Richiesta POST: \n\tModulo di tipo {m.Applicazione.ToString()} con nome: {m.Nome} modificato", controller: "ModuloController", metodo: "Edit");
+                return RedirectToAction(nameof(Index));
+            }
+            
             return View(editmodulo);
         }
 
@@ -1008,6 +541,7 @@ namespace webmva.Controllers
         {
             if (id == null)
             {
+                MyLogger.Log(messaggio: $"ERRORE: Richiesta GET: nessun id fornito", controller: "ModuloController", metodo: "Delete");
                 return NotFound();
             }
 
@@ -1015,12 +549,13 @@ namespace webmva.Controllers
                 .SingleOrDefaultAsync(m => m.ID == id);
             if (modulo == null)
             {
+                MyLogger.Log(messaggio: $"ERRORE: Richiesta GET con id {id} fallita: nessun modulo con questo id", controller: "ModuloController", metodo: "Delete");
                 return NotFound();
             }
             var progetti = _context.ModuliProgetto.Where(m => m.ModuloID == modulo.ID).Select(x => x.Progetto.Nome).ToList();
 
             ViewData["Progetti"] = progetti;
-
+            MyLogger.Log(messaggio: $"Richiesta GET con id {id}", controller: "ModuloController", metodo: "Delete");
             return View(modulo);
         }
 
@@ -1032,6 +567,7 @@ namespace webmva.Controllers
             var modulo = await _context.Moduli.SingleOrDefaultAsync(m => m.ID == id);
             _context.Moduli.Remove(modulo);
             await _context.SaveChangesAsync();
+            MyLogger.Log(messaggio: $"Richiesta POST con id {id}:\n\tModulo di tipo {modulo.Applicazione.ToString()} con nome {modulo.Nome} eliminato", controller: "ModuloController", metodo: "Delete");
             return RedirectToAction(nameof(Index));
         }
 
@@ -1073,8 +609,6 @@ namespace webmva.Controllers
                     }
                 }
             }
-
-
         }
     }
 }
