@@ -224,7 +224,8 @@ namespace webmva.Controllers
                     MyLogger.Log(messaggio: $"AVVISO: Richiesta POST con id {id}: Richiesta riuscita ma contenuto con errori.", controller: "ProgettoController", metodo: "Edit");
                     return View(view);
                 }
-                MyLogger.Log(messaggio: $"Richiesta POST con id {id}:\n\tProgetto con nome {progetto.Nome} modificato", controller: "ProgettoController", metodo: "Edit");
+                MyLogger.Log(messaggio: $"Richiesta POST con id {id}", controller: "ProgettoController", metodo: "Edit");
+                MyLogger.Log(messaggio: $"\tProgetto con nome {progetto.Nome} modificato", controller: "ProgettoController", metodo: "Edit");
                 return RedirectToAction(nameof(Index));
             }
             List<string> ModuliSenzaTarget1 = new List<string>();

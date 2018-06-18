@@ -77,10 +77,7 @@ private CHECKS _check= CHECKS.NESSUNO;
                           controlloCheck="";
                           break;
                     }
-                    string risultato = "droopescan scan " + controlloCMS + controlloCheck ;
-// TODOOOO"-u" + url
-                   
-                   
+                    string risultato = "droopescan scan " + controlloCMS + controlloCheck ;                   
                     return risultato;
                 }
                 else return ComandoPersonalizzato;
