@@ -26,20 +26,11 @@ namespace webmva.Controllers
         // GET: Progetto
         public async Task<IActionResult> Index()
         {
+            MyLogger.Log(messaggio: $"Richiesta GET", controller: "ProgettoController", metodo: "Index");
             return View(await _context.Progetti
                 .Include(list => list.ListaReport)
                 .Include(m => m.ModuliProgetto)
                     .ThenInclude(m => m.Modulo)
-                .AsNoTracking()
-                .ToListAsync());
-        }
-        // GET: Resoconto
-        public async Task<IActionResult> Resoconto(int? id)
-        {
-            return View(await _context.ModuliProgetto
-                .Include(m => m.Progetto)
-                .Include(m => m.Modulo)
-                .Where(x => x.ProgettoID == id)
                 .AsNoTracking()
                 .ToListAsync());
         }
@@ -49,6 +40,7 @@ namespace webmva.Controllers
         {
             if (id == null)
             {
+                MyLogger.Log(messaggio: $"ERRORE: Richiesta GET: nessun id fornito", controller: "ProgettoController", metodo: "Details");
                 return NotFound();
             }
 
@@ -58,15 +50,17 @@ namespace webmva.Controllers
                 .SingleOrDefaultAsync(x => x.ID == id);
             if (listaModuli == null)
             {
+                MyLogger.Log(messaggio: $"ERRORE: Richiesta GET con id {id} fallita: nessun progetto con questo id", controller: "ProgettoController", metodo: "Details");
                 return NotFound();
             }
-
+            MyLogger.Log(messaggio: $"Richiesta GET con id {id}", controller: "ProgettoController", metodo: "Details");
             return View(listaModuli);
         }
 
         // GET: Progetto/Create
         public IActionResult Create()
         {
+            MyLogger.Log(messaggio: $"Richiesta GET", controller: "ProgettoController", metodo: "Create");
             return View();
         }
 
@@ -81,8 +75,10 @@ namespace webmva.Controllers
             {
                 _context.Add(progetto);
                 await _context.SaveChangesAsync();
+                MyLogger.Log(messaggio: $"Richiesta POST:\n\tNuovo progetto con nome {progetto.Nome}", controller: "ProgettoController", metodo: "Create");
                 return RedirectToAction(nameof(Edit), new { id = progetto.ID });
             }
+            MyLogger.Log(messaggio: $"ERRORE: Richiesta POST: Richiesta malformata", controller: "ProgettoController", metodo: "Create");
             return View(progetto);
         }
 
@@ -91,6 +87,7 @@ namespace webmva.Controllers
         {
             if (id == null)
             {
+                MyLogger.Log(messaggio: $"ERRORE: Richiesta GET: nessun id fornito", controller: "ProgettoController", metodo: "Edit");
                 return NotFound();
             }
 
@@ -101,9 +98,11 @@ namespace webmva.Controllers
                 .SingleOrDefaultAsync(m => m.ID == id);
             if (progetto == null)
             {
+                MyLogger.Log(messaggio: $"ERRORE: Richiesta GET con id {id} fallita: nessun progetto con questo id", controller: "ProgettoController", metodo: "Details");
                 return NotFound();
             }
             var view = PopolaModuliAssegnati(progetto);
+            MyLogger.Log(messaggio: $"Richiesta GET con id {id}", controller: "ProgettoController", metodo: "Edit");
             return View(view);
         }
         private ModuliInseriti PopolaModuliAssegnati(Progetto progetto)
@@ -175,14 +174,22 @@ namespace webmva.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int? id, ModuliInseriti moduliInseriti, string[] moduliSelezionati)
         {
-            if (id == null) return NotFound();
+            if (id == null)
+            {
+                MyLogger.Log(messaggio: $"ERRORE: Richiesta POST: nessun id fornito", controller: "ProgettoController", metodo: "Edit");
+                return NotFound();
+            }
             var progetto = await _context.Progetti
                         .Include(p => p.ModuliProgetto)
                         .ThenInclude(m => m.Modulo)
                         .AsNoTracking()
                         .SingleOrDefaultAsync(a => a.ID == id);
 
-            if (progetto == null) return NotFound();
+            if (progetto == null)
+            {
+                MyLogger.Log(messaggio: $"ERRORE: Richiesta POST con id {id} fallita: nessun progetto con questo id", controller: "ProgettoController", metodo: "Edit");
+                return NotFound();
+            }
 
             if (await TryUpdateModelAsync<Progetto>(progetto, "",
                 i => i.Nome, i => i.Descrizione))
@@ -199,10 +206,8 @@ namespace webmva.Controllers
                     }
                     catch (DbUpdateException /* ex */)
                     {
-                        //Log the error (uncomment ex variable name and write a log.)
-                        ModelState.AddModelError("", "Unable to save changes. " +
-                            "Try again, and if the problem persists, " +
-                            "see your system administrator.");
+                        MyLogger.Log(messaggio: $"ERRORE CRITICO: Richiesta POST con id {id}: Errore nel DB", controller: "ProgettoController", metodo: "Edit");
+                        throw;
                     }
                 }
                 else
@@ -216,8 +221,11 @@ namespace webmva.Controllers
                     {
                         ViewData["ProgettoSenzaModuli"] = "Inserire almeno un modulo col relativo target";
                     }
+                    MyLogger.Log(messaggio: $"AVVISO: Richiesta POST con id {id}: Richiesta riuscita ma contenuto con errori.", controller: "ProgettoController", metodo: "Edit");
                     return View(view);
                 }
+                MyLogger.Log(messaggio: $"Richiesta POST con id {id}", controller: "ProgettoController", metodo: "Edit");
+                MyLogger.Log(messaggio: $"\tProgetto con nome {progetto.Nome} modificato", controller: "ProgettoController", metodo: "Edit");
                 return RedirectToAction(nameof(Index));
             }
             List<string> ModuliSenzaTarget1 = new List<string>();
@@ -229,6 +237,7 @@ namespace webmva.Controllers
             {
                 ViewData["ProgettoSenzaModuli"] = "Inserire almeno un modulo col relativo target";
             }
+            MyLogger.Log(messaggio: $"AVVISO: Richiesta POST con id {id}: Richiesta riuscita ma contenuto con errori.", controller: "ProgettoController", metodo: "Edit");
             return View(view1);
         }
 
@@ -309,6 +318,7 @@ namespace webmva.Controllers
         {
             if (id == null)
             {
+                MyLogger.Log(messaggio: $"ERRORE: Richiesta GET: nessun id fornito", controller: "ProgettoController", metodo: "Delete");
                 return NotFound();
             }
 
@@ -319,9 +329,11 @@ namespace webmva.Controllers
                 .SingleOrDefaultAsync(m => m.ID == id);
             if (progetto == null)
             {
+                MyLogger.Log(messaggio: $"ERRORE: Richiesta GET con id {id} fallita: nessun progetto con questo id", controller: "ProgettoController", metodo: "Delete");
                 return NotFound();
             }
             PopolaModuliAssegnati(progetto);
+            MyLogger.Log(messaggio: $"Richiesta GET con id {id}", controller: "ProgettoController", metodo: "Delete");
             return View(progetto);
         }
 
@@ -335,6 +347,7 @@ namespace webmva.Controllers
             var listaRecord = await _context.ModuliProgetto.Where(riga => riga.ProgettoID == id).ToListAsync();
             _context.ModuliProgetto.RemoveRange(listaRecord);
             await _context.SaveChangesAsync();
+            MyLogger.Log(messaggio: $"Richiesta POST con id {id}:\n\tProgetto con nome {progetto.Nome} eliminato", controller: "ProgettoController", metodo: "Delete");
             return RedirectToAction(nameof(Index));
         }
 
@@ -344,7 +357,7 @@ namespace webmva.Controllers
         }
         public async Task<IActionResult> Run(int? id)
         {
-
+            MyLogger.Log(messaggio: $"Richiesta POST con id {id}", controller: "ProgettoController", metodo: "Run");
             var progetto = await _context.Progetti
                 .Include(list => list.ModuliProgetto)
                     .ThenInclude(mod => mod.Modulo)
@@ -364,8 +377,9 @@ namespace webmva.Controllers
                 Modulo modulo = modprog.Modulo;
                 string nomeFile = CreaNomeFile(modulo.Applicazione, modulo.Comando, modulo.Nome);
                 string comando = CreaComando(modulo, modprog.Target, Path.Combine(progetto.Nome, data.ToString("dd-MM-yyyy_HH-mm")), nomeFile, percorsi);
-
+                MyLogger.Log(messaggio: $"\tEseguendo comando: {comando} ...", controller: "ProgettoController", metodo: "Run");
                 comando.EseguiCLI(cartellaProgetto);
+                MyLogger.Log(messaggio: $"\tFine esecuzione comando", controller: "ProgettoController", metodo: "Run");
 
             }
             _context.Report.Add(report);
@@ -403,6 +417,7 @@ namespace webmva.Controllers
                     "Try again, and if the problem persists, " +
                     "see your system administrator.");
             }
+            MyLogger.Log(messaggio: $"\tFine esecuzione scan. Report con id {ID} salvato.", controller: "ProgettoController", metodo: "Run");
             //return View(new RisultatoVM { NomeProgetto = progetto.Nome, risultati = risultati });
             return Redirect(Url.Action($"Details/{report.ID}", "Report").Replace("%2F", "/"));
         }

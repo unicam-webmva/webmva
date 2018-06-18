@@ -14,9 +14,12 @@ namespace webmva.Helpers
 
     public static class ShellExecute
     {
+        // DA VEDERE PER L'OUTPUT DEI PROCESSI: PUO' FORSE PORTARE L'OUTPUT ALLA PAGINA IN MANIERA ASINCRONA?
+        // https://stackoverflow.com/questions/139593/processstartinfo-hanging-on-waitforexit-why/7608823#7608823
+        // GUARDARE ANCHE RISPOSTE SUCCESSIVE
+
+
         
-        
-            
         public static string EseguiCLI(this string cmd, string cartellaProgetto, bool finestra = true){
             switch (Globals.SistemaOperativoAttuale){
                 case Win32NT:

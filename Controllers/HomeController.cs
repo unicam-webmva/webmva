@@ -18,19 +18,22 @@ namespace webmva.Controllers
             
             string[] dips = checkDipendenze.EseguiCLI(Globals.CartellaWEBMVA, false).Split(' ');
             ViewData["Dipendenze"] = dips;
+            MyLogger.Log(messaggio: "Richiesta GET", controller: "HomeController", metodo: "Index");
             return View();
         }
 
         public IActionResult Error()
         {
+            MyLogger.Log(messaggio: "ERRORE: " + Activity.Current?.Id ?? HttpContext.TraceIdentifier, controller: "HomeController", metodo: "Error");
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
         [HttpPost]
         public IActionResult Installa()
         {
+            MyLogger.Log(messaggio: "Installazione dipendenze iniziata", controller: "HomeController", metodo: "Installa");
             var HOME = Environment.GetEnvironmentVariable("HOME");
-            Console.WriteLine(HOME);
             string installa = Path.Combine(Globals.CartellaWEBMVA, $"install.sh {HOME}").EseguiCLI(Globals.CartellaWEBMVA, true);
+            MyLogger.Log(messaggio: "Installazione dipendenze finita", controller: "HomeController", metodo: "Installa");
             return RedirectToAction(nameof(Index));
         }
        

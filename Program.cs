@@ -9,6 +9,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using webmva.Data;
 using Microsoft.Extensions.DependencyInjection;
+using System.Runtime.Loader;
 
 namespace webmva
 {
@@ -16,6 +17,9 @@ namespace webmva
     {
         public static void Main(string[] args)
         {
+            Console.CancelKeyPress += delegate {
+                MyLogger.Log("Applicazione terminata");
+            };
             var host = BuildWebHost(args);
             using (var scope = host.Services.CreateScope())
             {
@@ -29,10 +33,12 @@ namespace webmva
                 {
                     var logger = services.GetRequiredService<ILogger<Program>>();
                     logger.LogError(ex, "Errore durante la creazione del db");
+                    MyLogger.Log("ERRORE CRITICO: Creazione del database fallita");
+                    MyLogger.Log("Stack trace: \n" + ex.StackTrace);
                 }
             }
             MyLogger.Log("Applicazione avviata");
-            host.Run();   
+            host.Run();
         }
 
         public static IWebHost BuildWebHost(string[] args)
