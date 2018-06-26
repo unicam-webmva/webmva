@@ -1,19 +1,20 @@
 #!/bin/bash
-if [[ $EUID > 0 ]] ;
-  then 
-  echo "Concedere i permessi root."
-  exec sudo /bin/bash "$0" "$@"
-  exit
-fi
+
+#if [[ $EUID > 0 ]] ;
+#  then 
+#  echo "Concedere i permessi root."
+#  exec sudo /bin/bash "$0" "$@"
+#  exit
+#fi
 WORKINGDIR=$PWD
 MYHOME=$1
-if [[ $MYHOME = "" ]] ;
-then
-  echo "Bisogna passare come parametro la home dell'utente."
-  echo "Premere un tasto per chiudere questo script..."
-  read
-  exit
-fi
+#if [[ $MYHOME = "" ]] ;
+#then
+#  echo "Bisogna passare come parametro la home dell'utente."
+#  echo "Premere un tasto per chiudere questo script..."
+#  read
+#  exit
+#fi
 
 
 
@@ -25,7 +26,7 @@ echo "-------------------------------------------------------"
 echo " "
 echo " "
 echo "Sto eseguendo apt-get update..."
-apt-get update > /dev/null
+sudo apt-get update > /dev/null
 echo "-------------------------------------------------------"
 echo "Inizializzazione dei sottomoduli di WebMVA"
 echo "-------------------------------------------------------"
@@ -41,7 +42,7 @@ then
 	echo "wkhtmltopdf è già installato.";
 else {
 	echo "Sto installando wkhtmltopdf..."
-	apt-get install xvfb libfontconfig wkhtmltopdf -y >/dev/null
+	sudo apt-get install xvfb libfontconfig wkhtmltopdf -y >/dev/null
 	echo "Fine installazione wkhtmltopdf."
 	}
 fi
@@ -54,7 +55,7 @@ then
 	echo "nmap è già installato.";
 else {
 	echo "Sto installando nmap..."
-	apt-get install nmap -y > /dev/null
+	sudo apt-get install nmap -y > /dev/null
 	echo "Fine installazione NMAP."
 	}
 fi
@@ -67,7 +68,7 @@ then
 	echo "ruby è già installato.";
 else {
 	echo "Sto installando ruby..."
-	apt-get install ruby -y > /dev/null
+	sudo apt-get install ruby -y > /dev/null
 	echo "Fine installazione ruby."
 	}
 fi
@@ -76,7 +77,7 @@ then
 	echo "perl è già installato.";
 else {
 	echo "Sto installando perl..."
-	apt-get install perl -y > /dev/null
+	sudo apt-get install perl -y > /dev/null
 	echo "Fine installazione perl."
 	}
 fi
@@ -91,12 +92,12 @@ else {
 	then {
 		echo "Python è installato ma pip no."
 		echo "Sto installando pip..."
-		apt-get install python2.7-dev python3-dev python-pip python3-pip -y > /dev/null
+		sudo apt-get install python2.7-dev python3-dev python-pip python3-pip -y > /dev/null
 		echo "Fine installazione pip."
 	}
 	else {
 		echo "Sto installando Python versione 2.7 e 3 e pip..."
-		apt-get install python2.7 python2.7-dev python-pip python3 python3-dev python3-pip -y > /dev/null
+		sudo apt-get install python2.7 python2.7-dev python-pip python3 python3-dev python3-pip -y > /dev/null
 		echo "Fine installazione Python e pip."
 	};
 	fi;
@@ -105,7 +106,7 @@ fi
 if hash scapy >/dev/null 2>&1 ; then echo "Scapy è già installato." ;
 else { 
 	echo "Sto installando python-scapy..."
-	apt-get install python-scapy >/dev/null
+	sudo apt-get install python-scapy >/dev/null
 	echo "Fine installazione python-scapy."
 }
 fi
@@ -119,7 +120,7 @@ while read p; do
   if [[ ${PIP} = *$p* ]] ; then echo "Pacchetto ${p} (pip2) già installato." ; else  pip install $p >/dev/null ; fi
   if [[ ${PIP3} = *$p* ]] ; then echo "Pacchetto ${p} (pip3) già installato." ; else  pip3 install $p >/dev/null ; fi
 done <${WORKINGDIR}/Script/requirements.txt
-activate-global-argcomplete
+activate-global-python-argcomplete
 
 echo "Fine installazione dipendenze script PYTHON."
 echo "-------------------------------------------------------"
@@ -134,28 +135,30 @@ else {
     	if [[ "$line" =~ \#.* ]] ; then
         	continue
     	else
-        	TROVATO=true
+		if [[ "$line" = *"kali"* ]] ; then
+        		TROVATO=true ;
+		fi
     	fi
 	done < /etc/apt/sources.list
 if [[ $TROVATO = "true" ]] ;
 	then 
 		echo "I repository di Kali sono già in questo sistema, non li aggiungo."
 		echo "Sto installando cowpatty e bully dai repo di kali..."
-		apt-get install bully cowpatty -y >/dev/null ;
+		sudo apt-get install bully cowpatty -y >/dev/null ;
 	else {
 		echo "Verranno aggiunti i repository di Kali Linux per installare alcuni programmi non presenti in quelli di Ubuntu..."
-		echo "deb http://http.kali.org/kali kali-rolling main non-free contrib" | tee -a /etc/apt/sources.list > /dev/null
-		apt-key adv --keyserver hkp://keys.gnupg.net --recv-keys ED444FF07D8D0BF6 
-		apt-get update > /dev/null
+		echo "deb http://http.kali.org/kali kali-rolling main non-free contrib" | sudo tee -a /etc/apt/sources.list > /dev/null
+		sudo apt-key adv --keyserver hkp://keys.gnupg.net --recv-keys ED444FF07D8D0BF6 
+		sudo apt-get update > /dev/null
 		echo "Sto installando cowpatty e bully dai repo di kali..."
-		apt-get install bully cowpatty -y >/dev/null
+		sudo apt-get install bully cowpatty -y >/dev/null
 		echo "Verranno tolti i repo di kali per non interferire nel sistema in uso."
-		sed -i 's/^deb http://http.kali.org/#deb http://http.kali.org' /etc/apt/sources.list
+		sudo sed -i '/kali-rolling main non-free contrib/d' /etc/apt/sources.list
 	};
 	fi
 	echo "Sto installando aircrack-ng, reaver, pyrit e tshark tramite i repository normali..."
-	apt-get install aircrack-ng reaver pyrit -y > /dev/null
-	DEBIAN_FRONTEND=noninteractive apt-get -y install tshark > /dev/null
+	sudo apt-get install aircrack-ng reaver pyrit -y > /dev/null
+	DEBIAN_FRONTEND=noninteractive sudo apt-get -y install tshark > /dev/null
 	echo "Fine installazione dipendenze per Wifite2."
 };
 fi
@@ -167,13 +170,15 @@ if hash dotnet >/dev/null 2>&1 ;
 then echo ".NET Core 2 SDK è già installato." ;
 else {
 	echo "Sto installando il kit di sviluppo di .NET Core 2..."
-	wget -qO- https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > microsoft.asc.gpg  > /dev/null
-	mv microsoft.asc.gpg /etc/apt/trusted.gpg.d/ > /dev/null
-	wget -q https://packages.microsoft.com/config/ubuntu/18.04/prod.list > /dev/null
-	mv prod.list /etc/apt/sources.list.d/microsoft-prod.list > /dev/null
-	apt-get install apt-transport-https > /dev/null
-	apt-get update > /dev/null
-	apt-get install -y dotnet-sdk-2.1.200 > /dev/null
+	wget -qO- https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > microsoft.asc.gpg
+	sudo mv microsoft.asc.gpg /etc/apt/trusted.gpg.d/
+	wget -q https://packages.microsoft.com/config/ubuntu/18.04/prod.list
+	sudo mv prod.list /etc/apt/sources.list.d/microsoft-prod.list
+	sudo chown root:root /etc/apt/trusted.gpg.d/microsoft.asc.gpg
+	sudo chown root:root /etc/apt/sources.list.d/microsoft-prod.list
+	sudo apt-get install -y apt-transport-https > /dev/null
+	sudo apt-get update > /dev/null
+	sudo apt-get install -y dotnet-sdk-2.1.200 > /dev/null
 	echo "Fine installazione DOTNET SDK."
 };
 fi
@@ -184,15 +189,17 @@ if hash cpanm >/dev/null 2>&1 ;
 then echo "cpanm è già installato, procedo con l'installazione delle dipendenze..." ;
 else {
 	echo "Sto installando cpanm..."
-	apt-get install cpanminus -y > /dev/null
+	sudo apt-get install cpanminus -y > /dev/null
 	echo "Fine installazione cpanm, procedo con l'installazione delle dipendenze..."
 };
 fi
 
-perl -MNet::Whois::IP -e 1 && if [[ ! $? = 0 ]] ; then  apt install libnet-whois-ip-perl >/dev/null ; else echo "Pacchetto Net:Whois:IP già installato." ; fi
+perl -MNet::Whois::IP -e 1 >/dev/null 2>&1
+if [[ ! $? = 0 ]] ; then echo "Installo Net::Whois:IP..." && sudo apt-get install -y libnet-whois-ip-perl >/dev/null ; else echo "Pacchetto Net:Whois:IP già installato." ; fi
 
 while read p; do
-  perl -M$p -e 1 && if [[ ! $? = 0 ]] ; then  cpanm $p >/dev/null ; else echo "Pacchetto ${p} già installato." ; fi
+  perl -M$p -e 1 >/dev/null 2>&1
+  if [[ ! $? = 0 ]] ; then echo "Installo ${p}..." && cpanm $p >/dev/null ; else echo "Pacchetto ${p} già installato." ; fi
 done <${WORKINGDIR}/Script/dipendenzePerl.txt
 
 echo "Fine installazione dipendenze di DnsEnum."
@@ -201,7 +208,7 @@ echo "INSTALLAZIONE WPScan"
 echo "-------------------------------------------------------"
 cd ${WORKINGDIR}/Programmi/wpscan
 if ! hash bundle >/dev/null 2>&1 ; then 
-apt install ruby-all-dev ruby-dev libffi-dev build-essential patch ruby-dev zlib1g-dev liblzma-dev -y > /dev/null ;
+sudo apt-get install ruby-all-dev ruby-dev libffi-dev build-essential patch ruby-dev zlib1g-dev liblzma-dev -y > /dev/null ;
 fi
 bundle check --gemfile=Gemfile >/dev/null ;
 if [[ ! $0 = 0 ]] ; then 
@@ -222,7 +229,7 @@ then
 	echo "fop è già installato.";
 else {
 	echo "Sto installando fop..."
-	apt-get install fop >/dev/null
+	sudo apt-get install -y fop >/dev/null
 	echo "Fine installazione fop."
 	}
 fi
@@ -236,10 +243,8 @@ else {
 	echo "Sto installando opendoor..."
 	git clone https://github.com/stanislav-web/OpenDoor.git ${WORKINGDIR}/OpenDoor
  	cd ${WORKINGDIR}/OpenDoor
- 	sudo su 
-	python3 setup.py build && python3 setup.py install
-	cp -R data/ /usr/local/bin/data
-	exit
+ 	sudo python3 setup.py build && sudo python3 setup.py install
+	sudo cp -R data/ /usr/local/bin/data
 	cd ${WORKINGDIR}
 	rm -rf ${WORKINGDIR}/OpenDoor/
 	echo "Fine installazione opendoor."
@@ -256,7 +261,7 @@ then
 	echo "timedatectl è attivo." ;
 else {
 	echo "Sto installando e attivando timedatectl..."
-	apt install timedatectl >/dev/null
+	sudo apt-get install timedatectl >/dev/null
 	timedatectl set-ntp true
 	echo "Fine installazione timedatectl." ;
 }
@@ -274,5 +279,5 @@ echo "FINE INSTALLAZIONE DIPENDENZE"
 echo "-------------------------------------------------------"
 echo "Tutte le dipendenze di WebMVA sono ora presenti nel sistema."
 echo "Per iniziare ad usare WebMVA, eseguire:"
-echo "\tsudo dotnet run"
+echo "dotnet run"
 exit 0
