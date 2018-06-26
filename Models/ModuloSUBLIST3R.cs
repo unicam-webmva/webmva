@@ -39,7 +39,7 @@ namespace webmva.Models
                 risultato += " -v";
                 if(BruteforceSUB)
                 risultato += " -b";
-                if (!All)
+                if (!AllSUB)
                     {
                         string appoggio = " -e ";
                         if (BaiduSUB) appoggio += "baidu ";

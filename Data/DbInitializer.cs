@@ -31,7 +31,7 @@ namespace webmva.Data
             new ModuloFIERCE{Applicazione = APPLICAZIONE.FIERCE, Nome="Scan base"},
             new ModuloINFOGA{Applicazione = APPLICAZIONE.INFOGA, Nome="Scan base"},
             new ModuloINFOGAEMAIL{Applicazione = APPLICAZIONE.INFOGAEMAIL, Nome="Scan Email con breach", Breach=true},
-            new ModuloSUBLIST3R{Applicazione = APPLICAZIONE.SUBLIST3R, Nome="Scan base", All=true},
+            new ModuloSUBLIST3R{Applicazione = APPLICAZIONE.SUBLIST3R, Nome="Scan base", AllSUB=true},
             new ModuloSQLMAP{Applicazione = APPLICAZIONE.SQLMAP, Nome="Scan base"},
             new ModuloNOSQL{Applicazione = APPLICAZIONE.NOSQL, Nome="NoSQL"},
             new ModuloODAT{Applicazione = APPLICAZIONE.ODAT, Nome="Scan base"},
