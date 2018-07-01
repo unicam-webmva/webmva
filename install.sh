@@ -178,7 +178,7 @@ else {
 	sudo chown root:root /etc/apt/sources.list.d/microsoft-prod.list
 	sudo apt-get install -y apt-transport-https > /dev/null
 	sudo apt-get update > /dev/null
-	sudo apt-get install -y dotnet-sdk-2.1.200 > /dev/null
+	sudo apt-get install -y dotnet-sdk-2.1 > /dev/null
 	echo "Fine installazione DOTNET SDK."
 };
 fi
