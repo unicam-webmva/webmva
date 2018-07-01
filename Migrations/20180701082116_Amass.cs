@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace webmva.Migrations
 {
-    public partial class Definitivo : Migration
+    public partial class Amass : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -17,7 +17,20 @@ namespace webmva.Migrations
                     Applicazione = table.Column<int>(type: "INTEGER", nullable: false),
                     Discriminator = table.Column<string>(type: "TEXT", nullable: false),
                     Nome = table.Column<string>(type: "TEXT", nullable: true),
+                    ActiveAmass = table.Column<bool>(type: "INTEGER", nullable: true),
+                    AllTheH = table.Column<bool>(type: "INTEGER", nullable: true),
+                    BlacklistAmass = table.Column<string>(type: "TEXT", nullable: true),
+                    BlacklistSubdomainAmass = table.Column<string>(type: "TEXT", nullable: true),
+                    BruteAmass = table.Column<bool>(type: "INTEGER", nullable: true),
                     ComandoPersonalizzato = table.Column<string>(type: "TEXT", nullable: true),
+                    IpAmass = table.Column<bool>(type: "INTEGER", nullable: true),
+                    NoAltsAmass = table.Column<bool>(type: "INTEGER", nullable: true),
+                    NoDnsAmass = table.Column<bool>(type: "INTEGER", nullable: true),
+                    NumberOfFrequences = table.Column<int>(type: "INTEGER", nullable: true),
+                    PorteAmass = table.Column<string>(type: "TEXT", nullable: true),
+                    VerboseAmass = table.Column<bool>(type: "INTEGER", nullable: true),
+                    WhoisAmass = table.Column<bool>(type: "INTEGER", nullable: true),
+                    ModuloDNSENUM_ComandoPersonalizzato = table.Column<string>(type: "TEXT", nullable: true),
                     DelayDNS = table.Column<int>(type: "INTEGER", nullable: true),
                     NoReverseDNS = table.Column<bool>(type: "INTEGER", nullable: true),
                     PagesDNS = table.Column<int>(type: "INTEGER", nullable: true),
@@ -155,6 +168,21 @@ namespace webmva.Migrations
                     VerbositàSUB = table.Column<bool>(type: "INTEGER", nullable: true),
                     VirustotalSUB = table.Column<bool>(type: "INTEGER", nullable: true),
                     YahooSUB = table.Column<bool>(type: "INTEGER", nullable: true),
+                    ModuloTHEHARVESTER_AllTheH = table.Column<bool>(type: "INTEGER", nullable: true),
+                    BingApiTheH = table.Column<bool>(type: "INTEGER", nullable: true),
+                    BingTheH = table.Column<bool>(type: "INTEGER", nullable: true),
+                    ModuloTHEHARVESTER_ComandoPersonalizzato = table.Column<string>(type: "TEXT", nullable: true),
+                    DNSBruteForceTheH = table.Column<bool>(type: "INTEGER", nullable: true),
+                    DNSReverseQueryTheH = table.Column<bool>(type: "INTEGER", nullable: true),
+                    DNSTLDTheH = table.Column<bool>(type: "INTEGER", nullable: true),
+                    GoogleProfilesTheH = table.Column<bool>(type: "INTEGER", nullable: true),
+                    GoogleTheH = table.Column<bool>(type: "INTEGER", nullable: true),
+                    JigsawTheH = table.Column<bool>(type: "INTEGER", nullable: true),
+                    LinkedinTheH = table.Column<bool>(type: "INTEGER", nullable: true),
+                    NumberOfResult = table.Column<int>(type: "INTEGER", nullable: true),
+                    People123TheH = table.Column<bool>(type: "INTEGER", nullable: true),
+                    PgpTheH = table.Column<bool>(type: "INTEGER", nullable: true),
+                    RicercaHostsVirtualiTheH = table.Column<bool>(type: "INTEGER", nullable: true),
                     All = table.Column<bool>(type: "INTEGER", nullable: true),
                     BackUp = table.Column<bool>(type: "INTEGER", nullable: true),
                     BlindSql = table.Column<bool>(type: "INTEGER", nullable: true),

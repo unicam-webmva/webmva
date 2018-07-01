@@ -39,6 +39,9 @@ namespace webmva.Data
             modelBuilder.Entity<ModuloODAT>().HasBaseType<Modulo>();
             modelBuilder.Entity<ModuloDNSENUM>().HasBaseType<Modulo>();
             modelBuilder.Entity<ModuloOPENVAS>().HasBaseType<Modulo>();
+            modelBuilder.Entity<ModuloTHEHARVESTER>().HasBaseType<Modulo>();
+            modelBuilder.Entity<ModuloAMASS>().HasBaseType<Modulo>();
+
         }
     }
 }

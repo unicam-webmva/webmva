@@ -19,6 +19,8 @@ var contOpendoor =0;
 var contNosql = 0;
 var contOdat = 0;
 var contDnsEnum = 0;
+var contTheHarvester = 0;
+var contAmass = 0;
 
 }
 <br>
@@ -79,6 +81,8 @@ var contDnsEnum = 0;
                             if(item.Modulo is webmva.Models.ModuloODAT) {contOdat++;}
                             if(item.Modulo is webmva.Models.ModuloDNSENUM) {contDnsEnum++;}
                             if(item.Modulo is webmva.Models.ModuloOPENVAS) {contOpenVAS++;}
+                            if(item.Modulo is webmva.Models.ModuloTHEHARVESTER) {contTheHarvester++;}
+                            if(item.Modulo is webmva.Models.ModuloAMASS) {contAmass++;}
                         }
                         @if(contNMAP!=0){
                                 
@@ -597,6 +601,62 @@ var contDnsEnum = 0;
                         @foreach (var item in Model.ModuliProgetto) {
                             
                                 @if(item.Modulo is webmva.Models.ModuloDNSENUM){
+                                <tr>
+                                <td></td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Modulo.Nome)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Modulo.Comando)
+                                    </td>
+                                </tr>
+                               
+                                }
+                                }
+                                </table>
+                                </dd>    
+                        } 
+                          @if(contTheHarvester!=0){
+                                
+                            <dd>TheHarvester</dd>
+                            <dd>
+                            <table class="table">
+                                <tr>
+                                    <th> </th>
+                                    <th>Modulo</th>
+                                    <th>Comando</th>
+                                </tr>
+                        @foreach (var item in Model.ModuliProgetto) {
+                            
+                                @if(item.Modulo is webmva.Models.ModuloTHEHARVESTER){
+                                <tr>
+                                <td></td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Modulo.Nome)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Modulo.Comando)
+                                    </td>
+                                </tr>
+                               
+                                }
+                                }
+                                </table>
+                                </dd>    
+                        } 
+                          @if(contAmass!=0){
+                                
+                            <dd>Amass</dd>
+                            <dd>
+                            <table class="table">
+                                <tr>
+                                    <th> </th>
+                                    <th>Modulo</th>
+                                    <th>Comando</th>
+                                </tr>
+                        @foreach (var item in Model.ModuliProgetto) {
+                            
+                                @if(item.Modulo is webmva.Models.ModouloAMASS){
                                 <tr>
                                 <td></td>
                                     <td>

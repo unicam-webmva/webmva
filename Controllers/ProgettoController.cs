@@ -557,6 +557,20 @@ namespace webmva.Controllers
                 percorsi.Add(Path.Combine(cartella, nomeFile + ".txt"));
                 return comando;
             }
+             if (mod is ModuloTHEHARVESTER)
+            {
+                string percorsoExec = Path.Combine(Globals.CartellaWEBMVA, "Programmi", "theharvester");
+                string comando = $"python -u {percorsoExec}/{mod.Comando} -d {target} -f {nomeFile}.xml ";
+                percorsi.Add(Path.Combine(cartella, nomeFile + ".xml"));
+                return comando;
+            }
+             if (mod is ModuloAMASS)
+            {
+                string percorsoExec = Path.Combine(Globals.CartellaWEBMVA, "Programmi", "amass");
+                string comando = $"python -u {percorsoExec}/{mod.Comando} -d {target} -f {nomeFile}.xml ";
+                percorsi.Add(Path.Combine(cartella, nomeFile + ".xml"));
+                return comando;
+            }
 
 
 

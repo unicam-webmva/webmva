@@ -110,11 +110,47 @@ namespace webmva.Migrations
                     b.ToTable("Report");
                 });
 
+            modelBuilder.Entity("webmva.Models.ModuloAMASS", b =>
+                {
+                    b.HasBaseType("webmva.Models.Modulo");
+
+                    b.Property<bool>("ActiveAmass");
+
+                    b.Property<bool>("AllTheH");
+
+                    b.Property<string>("BlacklistAmass");
+
+                    b.Property<string>("BlacklistSubdomainAmass");
+
+                    b.Property<bool>("BruteAmass");
+
+                    b.Property<string>("ComandoPersonalizzato");
+
+                    b.Property<bool>("IpAmass");
+
+                    b.Property<bool>("NoAltsAmass");
+
+                    b.Property<bool>("NoDnsAmass");
+
+                    b.Property<int>("NumberOfFrequences");
+
+                    b.Property<string>("PorteAmass");
+
+                    b.Property<bool>("VerboseAmass");
+
+                    b.Property<bool>("WhoisAmass");
+
+                    b.ToTable("ModuloAMASS");
+
+                    b.HasDiscriminator().HasValue("ModuloAMASS");
+                });
+
             modelBuilder.Entity("webmva.Models.ModuloDNSENUM", b =>
                 {
                     b.HasBaseType("webmva.Models.Modulo");
 
-                    b.Property<string>("ComandoPersonalizzato");
+                    b.Property<string>("ComandoPersonalizzato")
+                        .HasColumnName("ModuloDNSENUM_ComandoPersonalizzato");
 
                     b.Property<int>("DelayDNS");
 
@@ -533,6 +569,47 @@ namespace webmva.Migrations
                     b.ToTable("ModuloSUBLIST3R");
 
                     b.HasDiscriminator().HasValue("ModuloSUBLIST3R");
+                });
+
+            modelBuilder.Entity("webmva.Models.ModuloTHEHARVESTER", b =>
+                {
+                    b.HasBaseType("webmva.Models.Modulo");
+
+                    b.Property<bool>("AllTheH")
+                        .HasColumnName("ModuloTHEHARVESTER_AllTheH");
+
+                    b.Property<bool>("BingApiTheH");
+
+                    b.Property<bool>("BingTheH");
+
+                    b.Property<string>("ComandoPersonalizzato")
+                        .HasColumnName("ModuloTHEHARVESTER_ComandoPersonalizzato");
+
+                    b.Property<bool>("DNSBruteForceTheH");
+
+                    b.Property<bool>("DNSReverseQueryTheH");
+
+                    b.Property<bool>("DNSTLDTheH");
+
+                    b.Property<bool>("GoogleProfilesTheH");
+
+                    b.Property<bool>("GoogleTheH");
+
+                    b.Property<bool>("JigsawTheH");
+
+                    b.Property<bool>("LinkedinTheH");
+
+                    b.Property<int>("NumberOfResult");
+
+                    b.Property<bool>("People123TheH");
+
+                    b.Property<bool>("PgpTheH");
+
+                    b.Property<bool>("RicercaHostsVirtualiTheH");
+
+                    b.ToTable("ModuloTHEHARVESTER");
+
+                    b.HasDiscriminator().HasValue("ModuloTHEHARVESTER");
                 });
 
             modelBuilder.Entity("webmva.Models.ModuloWAPITI", b =>

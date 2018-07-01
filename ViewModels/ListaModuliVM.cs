@@ -27,6 +27,8 @@ namespace webmva.ViewModels
         public IEnumerable<Modulo> ModuliODAT { get; set; }
         public IEnumerable<Modulo> ModuliDNSENUM { get; set; }
         public IEnumerable<Modulo> ModuliOPENVAS { get; set; }
+        public IEnumerable<Modulo> ModuliTHEHARVESTER { get; set; }
+        public IEnumerable<Modulo> ModuliAMASS { get; set; }
         
         
 

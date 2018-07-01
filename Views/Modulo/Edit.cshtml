@@ -19,6 +19,8 @@
     bool odat = Model.ODAT != null;
     bool dnsEnum = Model.DNSENUM != null;
     bool openvas = Model.OPENVAS != null;
+    bool theharvester = Model.THEHARVESTER != null;
+    bool amass = Model.AMASS != null;
 }
 
 
@@ -2576,5 +2578,464 @@
                                     </div>
                             </form>
 } 
+@* -----THEHARVESTER----- *@
+    if (theharvester)
+    {
+        <h2><em>Modifica modulo</em><strong> @(Model.THEHARVESTER.Nome)</strong></h2>
+        <hr />
+        <form asp-action="Edit" name="theHarvasterForm">
+                                <input type="hidden" asp-for="@Model.THEHARVESTER.Applicazione" value="@webmva.Models.APPLICAZIONE.THEHARVESTER" />
+                                <input type="hidden" asp-for="@Model.THEHARVESTER.ID" />
+                                <div class="row panel panel-default panel-body">
+                                <div class="col-sm-12">
+                                    <div class="col-sm-7" style="margin:0 auto; float:none">
+                                        <div class="form-group">
+                                            <h4 asp-for="@(Model.THEHARVESTER.Nome)">Nome Modulo</h4>
+                                            <input class="form-control" asp-for="@(Model.THEHARVESTER.Nome)" />
+                                        </div>
+                                    </div>
+
+                                    <hr />
+                                    <div class="col-sm-12">
+                                        <div class="col-sm-12">
+                                            <div class="col-sm-7" style="margin:0 auto; float:none">
+                                                <div class="form-group row">
+                                                    <h4 asp-for="@(Model.THEHARVESTER.ComandoPersonalizzato)">Comando Personalizzato</h4>
+                                                    <input class="form-control" asp-for="@(Model.THEHARVESTER.ComandoPersonalizzato)" />
+                                                </div>
+
+                                            </div>
+ <hr/>
+                                        </div>
+
+                                    </div>
+                                   
+                                    <div class="col-sm-12">
+                                        <h4>Tipi di enumerazione</h4>
+                                        <hr />
+                                              
+                                          <div class="form-group row">
+                                            <div class="col-sm-4">
+                                                <label class="control-label">Limit the number of results to work with </label>
+                                            </div>
+                                               <div class="col-sm-1"></div>
+                                            <input type="text" class="col-sm-5" asp-for="@Model.THEHARVESTER.NumberOfResult" placeholder="ex: 100"/>  
+                                        </div>
+                                         <div class="col-sm-12">
+                                          <div class="col-sm-6">
+                                          <div class="form-group row">
+                                                    <div class="col-sm-6">
+                                                        <label class="control-label">
+                                                            <input type="checkbox" asp-for="@Model.THEHARVESTER.RicercaHostsVirtualiTheH" /> Ricerca Hosts Virtuali
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <div class="col-sm-6">
+                                                        <label class="control-label">
+                                                            <input type="checkbox" asp-for="@Model.THEHARVESTER.DNSReverseQueryTheH" /> DNS Reverse Query
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                                </div>
+                                                <div class= "col-sm-6">
+                                                <div class="form-group row">
+                                                    <div class="col-sm-6">
+                                                        <label class="control-label">
+                                                            <input type="checkbox" asp-for="@Model.THEHARVESTER.DNSTLDTheH" /> DNS TLD
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                                 <div class="form-group row">
+                                                    <div class="col-sm-6">
+                                                        <label class="control-label">
+                                                            <input type="checkbox" asp-for="@Model.THEHARVESTER.DNSBruteForceTheH" /> DNS Brute Force
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                               
+                                                </div>
+                                                </div>
+                                         <div class="col-sm-12">
+                                            <h4>
+                                                Seleziona i moduli desiderati
+                                            </h4>
+                                            <hr />
+                                             <div class="col-sm-6">
+                                                <div class="col-sm-12">
+                                                    <div class="form-group row">
+                                                        <div class="col-sm-6">
+                                                            <label class="control-label">
+                                                                <input type="checkbox" asp-for="@Model.THEHARVESTER.AllTheH"  /> Tutto
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group row">
+                                                        <div class="col-sm-6">
+                                                            <label class="control-label">
+                                                                <input type="checkbox" asp-for="@Model.THEHARVESTER.GoogleTheH"  /> Google 
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group row">
+                                                        <div class="col-sm-6">
+                                                            <label class="control-label">
+                                                                <input type="checkbox" asp-for="@Model.THEHARVESTER.BingTheH"  /> Bing
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group row">
+                                                        <div class="col-sm-6">
+                                                            <label class="control-label">
+                                                                <input type="checkbox" asp-for="@Model.THEHARVESTER.BingApiTheH"  /> BingApi
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group row">
+                                                        <div class="col-sm-6">
+                                                            <label class="control-label">
+                                                                <input type="checkbox" asp-for="@Model.THEHARVESTER.PgpTheH" /> Pgp
+                                                            </label>
+                                                        </div>
+                                                    </div> 
+                                                </div>
+                                                </div>
+                                            <div class="col-sm-6">
+                                                 <div class="form-group row">
+                                                    <div class="col-sm-6">
+                                                        <label class="control-label">
+                                                            <input type="checkbox" asp-for="@Model.THEHARVESTER.LinkedinTheH"  /> Linkedin
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                                 <div class="form-group row">
+                                                    <div class="col-sm-6">
+                                                        <label class="control-label">
+                                                            <input type="checkbox" asp-for="@Model.THEHARVESTER.GoogleProfilesTheH"  /> Google-Profiles
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                               
+                                                <div class="form-group row">
+                                                    <div class=" col-sm-6">
+                                                        <label class="control-label">
+                                                            <input type="checkbox" asp-for="@Model.THEHARVESTER.People123TheH" /> People123
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <div class=" col-sm-6">
+                                                        <label class="control-label">
+                                                            <input type="checkbox" asp-for="@Model.THEHARVESTER.JigsawTheH"  /> Jigsaw
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                              
+
+                                            </div>
+
+                                        </div>
+                                        <div class="col-sm-12">
+                                            <hr/>
+                                            <div class="col-sm-5">
+                                                <div clas="form-group row">
+                                                 <a href="https://tools.kali.org/information-gathering/theharvester"target="_blank"><span class="glyphicon glyphicon-info-sign" style="font-size:90%"></span>
+                                        consulta il documentazione di TheHarvester</a>
+                                        </div>
+                                        </div>
+                                        <div class="col-sm-1"></div>
+                                        <div class="col-sm-6 text-right">
+                                            <div class="form-group row">
+                                                <input type="submit" asp-action="Edit"  asp-route-id="@Model.THEHARVESTER.ID" class="btn btn-default" value="Modifica" />&nbsp;&nbsp; |
+                                                <a asp-action="Index"> Torna alla lista</a>
+                                            </div>
+                                        </div>
+                                        </div>
+                                    </div>
+                                </div>
+</div>
+                            </form>
+    }
+ @* -----AMASS----- *@
+    if (amass)
+    {
+        <h2><em>Modifica modulo</em><strong> @(Model.AMASS.Nome)</strong></h2>
+        <hr />
+         <form asp-action="Edit" name="amassForm">
+                                <input type="hidden" asp-for="@Model.AMASS.Applicazione" value="@webmva.Models.APPLICAZIONE.AMASS" />
+                                <input type="hidden" asp-for="@Model.AMASS.ID" />
+                                <div class="row panel panel-default panel-body">
+                                <div class="col-sm-12">
+                                    <div class="col-sm-7" style="margin:0 auto; float:none">
+                                        <div class="form-group">
+                                            <h4 asp-for="@(Model.AMASS.Nome)">Nome Modulo</h4>
+                                            <input class="form-control" asp-for="@(Model.AMASS.Nome)" />
+                                        </div>
+                                    </div>
+
+                                    <hr />
+                                    <div class="col-sm-12">
+                                        <div class="col-sm-12">
+                                            <div class="col-sm-7" style="margin:0 auto; float:none">
+                                                <div class="form-group row">
+                                                    <h4 asp-for="@(Model.AMASS.ComandoPersonalizzato)">Comando Personalizzato</h4>
+                                                    <input class="form-control" asp-for="@(Model.AMASS.ComandoPersonalizzato)" />
+                                                </div>
+
+                                            </div>
+<hr/>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-12">
+                                        <h4>Tipi di enumerazione</h4>
+                                        <hr />
+                                       
+                                        <div class="form-group row">
+                                            <div class="col-sm-4">
+                                                <label class="control-label">Scegli il sottodominio </label>
+                                            </div>
+                                             <div class="col-sm-1"></div>
+                                            <input type="text" class="col-sm-5" asp-for="@Model.AMASS.BlacklistAmass" placeholder="blah.example.com " />  
+                                        </div>
+                                        <div class="form-group row">
+                                            <div class="col-sm-4">
+                                                <label class="control-label">Scegli il sottodominio ... </label>
+                                            </div>
+                                             <div class="col-sm-1"></div>
+                                            <input type="text" class="col-sm-5" asp-for="@Model.AMASS.BlacklistSubdomainAmass" placeholder=" data/blacklist.txt " />  
+                                        </div>
+                                        <div class="form-group row">
+                                            <div class="col-sm-4">
+                                                <label class="control-label">Scegli la/le porta/e </label>
+                                            </div>
+                                             <div class="col-sm-1"></div>
+                                            <input type="text" class="col-sm-5" asp-for="@Model.AMASS.PorteAmass" placeholder=" ex: 100,200.. " />  
+                                        </div>
+                                        <div class="form-group row">
+                                            <div class="col-sm-4">
+                                                <label class="control-label">Setta la frequenza  </label>
+                                            </div>
+                                             <div class="col-sm-1"></div>
+                                            <input type="text" class="col-sm-5" asp-for="@Model.AMASS.NumberOfFrequences" placeholder="ex: 120" />  
+                                        </div>
+                                        <div class="col-sm-12">
+                                            <h4>
+                                                Seleziona i moduli desiderati
+                                            </h4>
+                                            <hr />
+                                            <div class="col-sm-6">
+                                                <div class="form-group row">
+                                                    <div class="col-sm-6">
+                                                        <label class="control-label">
+                                                            <input type="checkbox" asp-for="@Model.AMASS.WhoisAmass" />   Whois
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                                 <div class="form-group row">
+                                                    <div class="col-sm-6">
+                                                        <label class="control-label">
+                                                            <input type="checkbox" asp-for="@Model.AMASS.VerboseAmass" />  Verbose
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <div class="col-sm-6">
+                                                        <label class="control-label">
+                                                            <input type="checkbox" asp-for="@Model.AMASS.NoDnsAmass" />  No DNS
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <div class=" col-sm-6">
+                                                        <label class="control-label">
+                                                            <input type="checkbox" asp-for="@Model.AMASS.IpAmass" />  Ip
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                                </div>
+                                                <div class="col-sm-6">
+                                                <div class="form-group row">
+                                                    <div class=" col-sm-6">
+                                                        <label class="control-label">
+                                                            <input type="checkbox" asp-for="@Model.AMASS.NoAltsAmass" />  No Alts
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <div class="col-sm-6">
+                                                        <label class="control-label">
+                                                            <input type="checkbox" asp-for="@Model.AMASS.ActiveAmass" />  Active
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <div class="col-sm-6">
+                                                        <label class="control-label">
+                                                            <input type="checkbox" asp-for="@Model.AMASS.BruteAmass" />  Brute Force
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                   <div class="col-sm-12">
+                                            <hr/>
+                                            <div class="col-sm-5">
+                                                <div clas="form-group row">
+                                                 <a href="https://github.com/caffix/amass"target="_blank"><span class="glyphicon glyphicon-info-sign" style="font-size:90%"></span>
+                                        consulta il documentazione di Amass</a>
+                                        </div>
+                                        </div>
+                                        <div class="col-sm-1"></div>
+                                        <div class="col-sm-6 text-right">
+                                            <div class="form-group row">
+                                                <input type="submit" asp-action="Edit" asp-route-id="@Model.AMASS.ID" class="btn btn-default" value="Modifica" />&nbsp;&nbsp; |
+                                                <a asp-action="Index"> Torna alla lista</a>
+                                            </div>
+                                        </div>
+                                        </div>
+                                </div>
+                            </div>
+                            </form>
+    }
+     @* -----OSINT-SCRAPER----- *@
+    if (nessus)
+   { 
+        <h2><em>Modifica modulo</em><strong> @(Model.NESSUS.Nome)</strong></h2>
+        <hr />
+       <form asp-action="Create" name="osintForm">
+                            <input type="hidden" asp-for="@Model.NESSUS.Applicazione" value="@webmva.Models.APPLICAZIONE.NESSUS" />
+                            <div class="col-sm-12">
+                                  <div class="col-sm-7" style="margin:0 auto; float:none">
+                                    <div class="form-group row">
+                                        <h4 asp-for="@(Model.NESSUS.Nome)">Nome Modulo</h4>
+                                        <input class="form-control" asp-for="@(Model.NESSUS.Nome)" />
+                                    </div>
+                                </div>
+                            <div class="col-sm-12">
+                                 <h4>Opzioni</h4><hr />
+                                        <div class="col-sm-12">
+                                            <div class="col-sm-7" style="margin:0 auto; float:none">
+                                                <div class="form-group row">
+                                                    <h4 asp-for="@(Model.NESSUS.ServerIP)">Server IP</h4>
+                                                    <input class="form-control" asp-for="@(Model.NESSUS.ServerIP)" />
+                                                </div>
+
+                                            </div>
+                                            <div class="col-sm-7" style="margin:0 auto; float:none">
+                                                <div class="form-group row">
+                                                    <h4 asp-for="@(Model.NESSUS.Porta)">Porta</h4>
+                                                    <input class="form-control" asp-for="@(Model.NESSUS.Porta)" />
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-12">
+                                        @if(ViewData["TestN"] != null)
+                                        {
+                                            <div class="col-sm-8">
+                                                <h5 style="color:red">
+                                                    <strong>
+                                                @{
+                                                    string check = ViewBag.TestN;
+                                                    if(check=="True")
+                                                    {
+                                                        @Html.Raw("Il server specificato è attivo");
+                                                    }
+                                                    else
+                                                    {
+                                                     
+                                                    @Html.Raw("Il server specificato è spento<br>");
+                                                    @Html.Raw("Per farlo partire inserire nella shell: '/etc/init.d/nessusd start'");
+
+                                                         
+
+                                                    }
+                                                }
+                                                    </strong>
+                                                </h5>
+                                            </div>
+                                        }
+                                        <div class="col-sm-4  text-right ">
+                                                <form asp-action="Test">
+                                            <div class="form-group">
+                                                <input type="submit" asp-action="Test" class="btn btn-default" value="Test" asp-route-cosa="nessus" asp-route-daDove="Create" />
+                                                </div>
+                                                </form>
+                                               
+                                            </div>
+                                            </div>
+                                    </div>
+                                     <div class="col-sm-12">
+                                            <hr/>
+                                            <div class="col-sm-6">
+                                                <div clas="form-group row" style="color:red">
+                                                    <span class="glyphicon glyphicon-eye-open" style="font-size:90"></span>&nbsp;Non finziona però c'è!
+                                                </div>
+                                            
+                                                 <div clas="form-group row"><ahref="https://securityonline.info/social-recon/"  target="_blank"><span class="glyphicon glyphicon-info-sign" style="font-size:90%"></span>
+                                        sito</a></div>
+                                                <div clas="form-group row">
+                                                 <a href="https://securityonline.info/social-recon/" target="_blank"><span class="glyphicon glyphicon-info-sign" style="font-size:90%"></span>
+                                        consulta il documentazione di Osint-scraper</a>
+                                        </div>
+                                        </div>
+                                        <div class="col-sm-1"></div>
+                                        <div class="col-sm-5 text-right">
+                                            <div class="form-group row">
+                                                <input type="submit" asp-action="Create" asp-route-cosa="nessus" class="btn btn-default" value="Crea" />&nbsp;&nbsp; |
+                                                <a asp-action="Index"> Torna alla lista</a>
+                                            </div>
+                                        </div>
+                                        </div>
+                            </div>
+                        </form>
+                        }
 
 }
+@section scripts{
+	        <script>
+	
+	    function SelezTT(){
+	      $('input[name=selezionaTutto]').change(
+	        function(){
+	            if( $('input[name=selezionaTutto]').prop('checked')){
+	                var modulo = $('input[name=check]').each(function(index, element){
+	                    $(element).prop('checked', true);
+	                    console.log(index);
+	                   
+	                })
+	               
+	            }
+	            else{
+	                var modulo = $('input[name=check]').each(function(index, element){
+	                    $(element).prop('checked', false);
+	  
+	                })
+	                
+	            }
+	        });
+	        
+	        
+	   };
+	
+	$(function(){
+	    var tutticheck=true;
+	    $('input[name=check]').change(
+	        function(){
+	            var check=$('input[name=check]');
+	        for(i=0; i<check.length; i++){
+	        if(!check[i].checked) {
+	            tutticheck=false;
+	            $('input[name=selezionaTutto]').prop('checked', false); 
+	            break;
+	        } else tutticheck=true;
+	        if(tutticheck)
+	        $('input[name=selezionaTutto]').prop('checked', true);
+	    }
+	        }
+	    ).change();
+	    });
+	        </script> }
+

@@ -1,0 +1,4 @@
+[console_scripts]
+coveralls = coveralls.cli:main
+opendoor = src:main
+
