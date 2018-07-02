@@ -270,7 +270,7 @@
                                             <div class="col-sm-7" style="margin:0 auto; float:none">
                                                 <div class="form-group row">
                                                     <h4 asp-for="@(Model.NESSUS.Porta)">Porta</h4>
-                                                    <input class="form-control" asp-for="@(Model.NESSUS.Porta)" />
+                                                    <input <input type="number" class="form-control" asp-for="@(Model.NESSUS.Porta)" value="8834"  />
                                                 </div>
 
                                             </div>
@@ -369,7 +369,7 @@
                                             <div class="col-sm-7" style="margin:0 auto; float:none">
                                                 <div class="form-group row">
                                                     <h4 asp-for="@(Model.OPENVAS.PortaOpenvas)">Porta</h4>
-                                                    <input class="form-control" asp-for="@(Model.OPENVAS.PortaOpenvas)" />
+                                                    <input  <input type="number" class="form-control" asp-for="@(Model.OPENVAS.Porta)" value="9192" /> />
                                                 </div>
 
                                             </div>
@@ -2616,7 +2616,7 @@
                                               
                                           <div class="form-group row">
                                             <div class="col-sm-4">
-                                                <label class="control-label">Limit the number of results to work with </label>
+                                                <label class="control-label">Limite al numero risultati </label>
                                             </div>
                                                <div class="col-sm-1"></div>
                                             <input type="text" class="col-sm-5" asp-for="@Model.THEHARVESTER.NumberOfResult" placeholder="ex: 100"/>  
@@ -2816,7 +2816,7 @@
                                                 <label class="control-label">Setta la frequenza  </label>
                                             </div>
                                              <div class="col-sm-1"></div>
-                                            <input type="text" class="col-sm-5" asp-for="@Model.AMASS.NumberOfFrequences" placeholder="ex: 120" />  
+                                            <input type="number" class="col-sm-5" asp-for="@Model.AMASS.NumberOfFrequences" value="-1" />  
                                         </div>
                                         <div class="col-sm-12">
                                             <h4>
@@ -2904,7 +2904,7 @@
    { 
         <h2><em>Modifica modulo</em><strong> @(Model.NESSUS.Nome)</strong></h2>
         <hr />
-       <form asp-action="Create" name="osintForm">
+       <form asp-action="Create" name="nessusForm">
                             <input type="hidden" asp-for="@Model.NESSUS.Applicazione" value="@webmva.Models.APPLICAZIONE.NESSUS" />
                             <div class="col-sm-12">
                                   <div class="col-sm-7" style="margin:0 auto; float:none">
@@ -2926,7 +2926,7 @@
                                             <div class="col-sm-7" style="margin:0 auto; float:none">
                                                 <div class="form-group row">
                                                     <h4 asp-for="@(Model.NESSUS.Porta)">Porta</h4>
-                                                    <input class="form-control" asp-for="@(Model.NESSUS.Porta)" />
+                                                    <input type="number" class="form-control" asp-for="@(Model.NESSUS.Porta)" value="6543" />
                                                 </div>
 
                                             </div>
@@ -2974,7 +2974,7 @@
                                                     <span class="glyphicon glyphicon-eye-open" style="font-size:90"></span>&nbsp;Non finziona però c'è!
                                                 </div>
                                             
-                                                 <div clas="form-group row"><ahref="https://securityonline.info/social-recon/"  target="_blank"><span class="glyphicon glyphicon-info-sign" style="font-size:90%"></span>
+                                                 <div clas="form-group row"><a href="https://securityonline.info/social-recon/"  target="_blank"><span class="glyphicon glyphicon-info-sign" style="font-size:90%"></span>
                                         sito</a></div>
                                                 <div clas="form-group row">
                                                  <a href="https://securityonline.info/social-recon/" target="_blank"><span class="glyphicon glyphicon-info-sign" style="font-size:90%"></span>
@@ -2988,9 +2988,9 @@
                                                 <a asp-action="Index"> Torna alla lista</a>
                                             </div>
                                         </div>
-                                        </div>
+                                        
                             </div>
-                        </form>
+                    </form>
                         }
 
 }

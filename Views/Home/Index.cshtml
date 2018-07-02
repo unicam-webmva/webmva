@@ -1,6 +1,11 @@
 ﻿@{ ViewData["Title"] = "Home"; }
 @model webmva.Models.Progetto
-
+<div class="container">
+   <h2>WebMVA  </h2>
+    <p class="lead">
+      Collaborative Application for Vulnerability Assessment Analysis 
+    </p>
+    <hr />
       <div class="row">
           
               <!-- uncomment code for absolute positioning tweek see top comment in css
@@ -93,31 +98,23 @@
               </div>
 
           <div class="col-sm-9 ">
-              <!--<div class="col-5">-->
-              <!--<div class="col-5">-->
-              <div class="panel panel-default">
-                  <div class="panel-heading">
-                      <strong>
+                    <!--<p class="lead"><strong>
                           Cos'è WEBMVA?
-                      </strong>
-                  </div>
+                      </strong></p><hr/>
+                 
                   <div class="panel-body">
 
                     Webmva si propone di rendere il processo di pentesting il più semplice possibile e creare report di ricerca di facile comprensione e utilizzabili dal cliente finale. 
                     Il sistema esegue la scansione e rileva le vulnerabilità di rete prima che siano esposte, riducendo il tempo necessario per applicare le patch sul sistema del cliente.
                     I dati immessi nel sistema mantengono una forma ben strutturata e organizzata per facilitare le eventuali ricerche nello storico di ciascun cliente. 
-
-                  </div>
-              </div>
-              <div class="panel panel-default">
-                  <div class="panel-heading">
-                      <strong>
-                          Verifica dei servizi
-                      </strong>
-                  </div>
+                  </div>-->
+             
+                  
+                         <h2>Verifica dei servizi</h2> 
+                         <hr/>
+                
                   <div class="panel-body">
-
-                    WebMVA dipende da alcuni pacchetti che devono essere installati, ovvero:
+                    <strong>WebMVA</strong> dipende da alcuni pacchetti che devono essere installati, ovvero:
                     <ul>
                         <li>nmap</li>
                         <li>ruby</li>
@@ -145,7 +142,7 @@
                                     @(itm + " ")
                             }
                             @Html.Raw("</strong></p>")
-                            <form asp-action="Installa">
+                            <form asp-action="Installa"><hr/>
                             <div class="col-sm-6 col-sm-offset-6 text-right">
                                             <div class="form-group">
                                                 <input type="submit" asp-action="Installa" class="btn btn-default" value="Installa dipendenze" />
@@ -154,40 +151,10 @@
                                         </form>
                         }
                     }
-                        
-                    
-
-
                   </div>
-              </div>
-              <div class="panel panel-default">
-                  <div class="panel-heading">
-                      <strong>
-                          Contatti
-                      </strong>
-                  </div>
-                  <div class="panel-body">
-                      <ul class="panel-default" role="menu">
-                          <li class="">
-                              <strong>Professore</strong>
-                              <a href="http://computerscience.unicam.it/marcantoni/" target="blank">
-                                  <strong>Fausto Marcantoni</strong>
-                              </a>
-                          </li>
-                          <li class="">
-                              <strong>Margherita Renieri:</strong>
-                              <a href="mailto:margherita.renieri@studenti.unicam.it"> margherita.renieri@studenti.unicam.it</a>
-                              <br />
-                          </li>
-                          <li class="">
-                              <strong>Riccardo Cannella:</strong>
-                              <a href="mailto:riccardo.cannella@studenti.unicam.it"> riccardo.cannella@studenti.unicam.it</a>
-
-                      </ul>
-                  </div>
-              </div>
-
+             
           </div>
           <!--</div>-->
+      </div>
       </div>
 

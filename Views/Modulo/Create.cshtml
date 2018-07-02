@@ -539,7 +539,7 @@
                                             <div class="col-sm-7" style="margin:0 auto; float:none">
                                                 <div class="form-group row">
                                                     <h4 asp-for="@(Model.NESSUS.Porta)">Porta</h4>
-                                                    <input class="form-control" asp-for="@(Model.NESSUS.Porta)" />
+                                                    <input type="number" class="form-control" asp-for="@(Model.NESSUS.Porta)" value="8834" />
                                                 </div>
 
                                             </div>
@@ -646,7 +646,7 @@
                                             <div class="col-sm-7" style="margin:0 auto; float:none">
                                                 <div class="form-group row">
                                                     <h4 asp-for="@(Model.OPENVAS.PortaOpenvas)">Porta</h4>
-                                                    <input class="form-control" asp-for="@(Model.OPENVAS.PortaOpenvas)" />
+                                                    <input  />
                                                 </div>
 
                                             </div>
@@ -2003,7 +2003,7 @@
                                               
                                           <div class="form-group row">
                                             <div class="col-sm-4">
-                                                <label class="control-label">Limit the number of results to work with </label>
+                                                <label class="control-label">Limite al numero risultati  </label>
                                             </div>
                                                <div class="col-sm-1"></div>
                                             <input type="text" class="col-sm-5" asp-for="@Model.THEHARVESTER.NumberOfResult" placeholder="ex: 100"/>  
@@ -2052,14 +2052,14 @@
                                                     <div class="form-group row">
                                                         <div class="col-sm-6">
                                                             <label class="control-label">
-                                                                <input type="checkbox" asp-for="@Model.THEHARVESTER.AllTheH"  /> Tutto
+                                                                <input type="checkbox" asp-for="@Model.THEHARVESTER.AllTheH" > Tutto
                                                             </label>
                                                         </div>
                                                     </div>
                                                     <div class="form-group row">
                                                         <div class="col-sm-6">
                                                             <label class="control-label">
-                                                                <input type="checkbox" asp-for="@Model.THEHARVESTER.GoogleTheH"  /> Google 
+                                                                <input type="checkbox" asp-for="@Model.THEHARVESTER.GoogleTheH"   /> Google 
                                                             </label>
                                                         </div>
                                                     </div>
@@ -2430,7 +2430,7 @@
                                                     <div class="form-group row">
                                                         <div class="col-sm-6">
                                                             <label class="control-label">
-                                                                <input type="checkbox" asp-for="@Model.SUBLIST3R.BaiduSUB" /> Baidu 
+                                                                <input type="checkbox" asp-for="@Model.SUBLIST3R.BaiduSUB"/> Baidu 
                                                             </label>
                                                         </div>
                                                     </div>
@@ -2458,7 +2458,7 @@
                                                     <div class="form-group row">
                                                     <div class="col-sm-6">
                                                         <label class="control-label">
-                                                            <input type="checkbox" asp-for="@Model.SUBLIST3R.AskSUB" /> Ask
+                                                            <input type="checkbox" asp-for="@Model.SUBLIST3R.AskSUB"/> Ask
                                                         </label>
                                                     </div>
                                                 </div>
@@ -2591,7 +2591,7 @@
                                         </div>
                                         <div class="form-group row">
                                             <div class="col-sm-4">
-                                                <label class="control-label">Scegli il sottodominio ... </label>
+                                                <label class="control-label">Scegli il sottodominio </label>
                                             </div>
                                              <div class="col-sm-1"></div>
                                             <input type="text" class="col-sm-5" asp-for="@Model.AMASS.BlacklistSubdomainAmass" placeholder=" data/blacklist.txt " />  
@@ -2608,7 +2608,7 @@
                                                 <label class="control-label">Setta la frequenza  </label>
                                             </div>
                                              <div class="col-sm-1"></div>
-                                            <input type="text" class="col-sm-5" asp-for="@Model.AMASS.NumberOfFrequences" placeholder="ex: 120" />  
+                                            <input type="number" class="col-sm-5" asp-for="@Model.AMASS.NumberOfFrequences" value="-1" />  
                                         </div>
                                         <div class="col-sm-12">
                                             <h4>
@@ -2733,7 +2733,7 @@
                                             <div class="col-sm-7" style="margin:0 auto; float:none">
                                                 <div class="form-group row">
                                                     <h4 asp-for="@(Model.NESSUS.Porta)">Porta</h4>
-                                                    <input class="form-control" asp-for="@(Model.NESSUS.Porta)" />
+                                                    <input type="number"  class="form-control" asp-for="@(Model.NESSUS.Porta)" value="6543"/>
                                                 </div>
 
                                             </div>
@@ -2778,10 +2778,10 @@
                                             <hr/>
                                             <div class="col-sm-6">
                                                 <div clas="form-group row" style="color:red">
-                                                    <span class="glyphicon glyphicon-eye-open" style="font-size:90"></span>&nbsp;Non finziona però c'è!
+                                                    <span class="glyphicon glyphicon-eye-open" style="font-size:90"></span>&nbsp;Non funziona però c'è!
                                                 </div>
                                             
-                                                 <div clas="form-group row"><ahref="https://securityonline.info/social-recon/"  target="_blank"><span class="glyphicon glyphicon-info-sign" style="font-size:90%"></span>
+                                                 <div clas="form-group row"><a href="https://securityonline.info/social-recon/"  target="_blank"><span class="glyphicon glyphicon-info-sign" style="font-size:90%"></span>
                                         sito</a></div>
                                                 <div clas="form-group row">
                                                  <a href="https://securityonline.info/social-recon/" target="_blank"><span class="glyphicon glyphicon-info-sign" style="font-size:90%"></span>
@@ -3605,7 +3605,8 @@
 
 	        <script>
 	
-	    function SelezTT(){
+	   
+		    function SelezTT(){
 	      $('input[name=selezionaTutto]').change(
 	        function(){
 	            if( $('input[name=selezionaTutto]').prop('checked')){

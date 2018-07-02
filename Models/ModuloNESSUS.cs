@@ -8,12 +8,8 @@ namespace webmva.Models
     public class ModuloNESSUS : Modulo
     {
         public string ServerIP { get; set; }
-        private int _porta = 8834;
-        public int Porta
-        {
-            get { return _porta; }
-            set { _porta = value; }
-        }
+        public int Porta {get;set;}
+        
 
         public override string Comando
         {
