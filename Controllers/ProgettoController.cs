@@ -571,6 +571,12 @@ namespace webmva.Controllers
                 percorsi.Add(Path.Combine(cartella, nomeFile + ".xml"));
                 return comando;
             }
+            if (mod is ModuloDRUPWN)
+            {
+                string comando = $" {mod.Comando} -s {target} | sed -r \"{regex}\" | tee {nomeFile}.txt ";
+                percorsi.Add(Path.Combine(cartella, nomeFile + ".txt"));
+                return comando;
+            }
 
 
 

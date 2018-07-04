@@ -45,8 +45,9 @@ namespace webmva.Controllers
             var listaOPENVAS = await _context.Moduli.Where(modulo => modulo.Applicazione == APPLICAZIONE.OPENVAS).ToListAsync();
             var listaTHEHARVESTER = await _context.Moduli.Where(modulo => modulo.Applicazione == APPLICAZIONE.THEHARVESTER).ToListAsync();
             var listaAMASS = await _context.Moduli.Where(modulo => modulo.Applicazione == APPLICAZIONE.AMASS).ToListAsync();
+            var listaDRUPWN = await _context.Moduli.Where(modulo => modulo.Applicazione == APPLICAZIONE.DRUPWN).ToListAsync();
             MyLogger.Log(messaggio: "Richiesta GET", controller: "ModuloController", metodo: "Index");
-            return View(new ListaModuliVM { ModuliNMAP = listaNMAP, ModuliNESSUS = listaNESSUS, ModuliOPENDOOR = listaOPENDOOR, ModuliDNSRECON = listaDNSRECON, ModuliFIERCE = listaFIERCE, ModuliDROOPE = listaDROOPE, ModuliJOOMSCAN = listaJOOMSCAN, ModuliWPSCAN = listaWPSCAN, ModuliINFOGA = listaINFOGA, ModuliINFOGAEMAIL = listaINFOGAEMAIL, ModuliSUBLIST3R = listaSUBLIST3R, ModuliWAPITI = listaWAPITI, ModuliSQLMAP = listaSQLMAP, ModuliWIFITE = listaWIFITE, ModuliWASCAN = listaWASCAN, ModuliNOSQL = listaNOSQL, ModuliODAT = listaODAT, ModuliDNSENUM = listaDNSENUM, ModuliOPENVAS = listaOPENVAS, ModuliTHEHARVESTER = listaTHEHARVESTER, ModuliAMASS = listaAMASS });
+            return View(new ListaModuliVM { ModuliNMAP = listaNMAP, ModuliNESSUS = listaNESSUS, ModuliOPENDOOR = listaOPENDOOR, ModuliDNSRECON = listaDNSRECON, ModuliFIERCE = listaFIERCE, ModuliDROOPE = listaDROOPE, ModuliJOOMSCAN = listaJOOMSCAN, ModuliWPSCAN = listaWPSCAN, ModuliINFOGA = listaINFOGA, ModuliINFOGAEMAIL = listaINFOGAEMAIL, ModuliSUBLIST3R = listaSUBLIST3R, ModuliWAPITI = listaWAPITI, ModuliSQLMAP = listaSQLMAP, ModuliWIFITE = listaWIFITE, ModuliWASCAN = listaWASCAN, ModuliNOSQL = listaNOSQL, ModuliODAT = listaODAT, ModuliDNSENUM = listaDNSENUM, ModuliOPENVAS = listaOPENVAS, ModuliTHEHARVESTER = listaTHEHARVESTER, ModuliAMASS = listaAMASS, ModuliDRUPWN = listaDRUPWN });
         }
 
         // GET: Modulo/Details/5
@@ -396,6 +397,20 @@ namespace webmva.Controllers
                     }
                 }
             }
+               else if (createmodulo.DRUPWN.Nome != null && cosa.Equals("drupwn"))
+            {
+                {
+                    if (ModelState.IsValid)
+                    {
+                        ModuloDRUPWN mod = createmodulo.DRUPWN;
+                        mod.Applicazione = APPLICAZIONE.DRUPWN;
+                        _context.Moduli.Add(mod);
+                        await _context.SaveChangesAsync();
+                        MyLogger.Log(messaggio: $"Richiesta POST: \n\tNuovo modulo Drupwn con nome: {mod.Nome}", controller: "ModuloController", metodo: "Create");
+                        return RedirectToAction(nameof(Index));
+                    }
+                }
+            }
             else {
                 MyLogger.Log(messaggio: $"ERRORE: Richiesta POST: BadRequest", controller: "ModuloController", metodo: "Create");
                 return BadRequest();
@@ -527,6 +542,8 @@ namespace webmva.Controllers
                 m = editmodulo.THEHARVESTER;
             else if (!string.IsNullOrEmpty(editmodulo.AMASS.Nome))
                 m = editmodulo.AMASS;
+            else if (!string.IsNullOrEmpty(editmodulo.DRUPWN.Nome))
+                m = editmodulo.DRUPWN;
             else // è rimasto solo openvas, controllo dopo se m è ancora null o no
                 m = editmodulo.OPENVAS;
             

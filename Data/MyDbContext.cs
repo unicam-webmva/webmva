@@ -41,6 +41,8 @@ namespace webmva.Data
             modelBuilder.Entity<ModuloOPENVAS>().HasBaseType<Modulo>();
             modelBuilder.Entity<ModuloTHEHARVESTER>().HasBaseType<Modulo>();
             modelBuilder.Entity<ModuloAMASS>().HasBaseType<Modulo>();
+            modelBuilder.Entity<ModuloDRUPWN>().HasBaseType<Modulo>();
+
 
         }
     }
