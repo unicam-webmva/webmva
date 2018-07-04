@@ -267,6 +267,27 @@ else {
 }
 fi
 echo "-------------------------------------------------------"
+echo "INSTALLAZIONE AMASS"
+echo "-------------------------------------------------------"
+
+if hash amass >/dev/null 2>&1 ; then 
+	echo "amass è già installato"; 
+else {
+	if hash snap >/dev/null 2>&1 ; then 
+		echo "Sto installando amass..."; 
+		sudo snap install amass >/dev/null ;
+		echo "Fine installazione amass." ;
+	else { 
+		echo "Sto installando snap...";
+		sudo apt install snap >/dev/null;
+		echo "Fine installazione snap, installo amass...";
+		sudo snap install amass >/dev/null;
+		echo "Fine installazione amass." ; 
+	}; 
+	fi 
+}; 
+fi
+echo "-------------------------------------------------------"
 echo "INSTALLAZIONE ODAT"
 echo "-------------------------------------------------------"
 bash ${WORKINGDIR}/Script/Odat/installOdat.sh ;
