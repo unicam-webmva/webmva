@@ -61,6 +61,7 @@ namespace webmva.Models
                         risultato +=appoggio;
                         
                     }
+                    else risultato += "-b all ";
                     if (_numberOfResult != -1 && _numberOfResult > 0)
                     {
                         risultato += " -l " + NumberOfResult;

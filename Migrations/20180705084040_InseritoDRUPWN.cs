@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace webmva.Migrations
 {
-    public partial class Amass : Migration
+    public partial class InseritoDRUPWN : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -52,6 +52,14 @@ namespace webmva.Migrations
                     Check = table.Column<int>(type: "INTEGER", nullable: true),
                     Cms = table.Column<int>(type: "INTEGER", nullable: true),
                     ModuloDROOPE_ComandoPersonalizzato = table.Column<string>(type: "TEXT", nullable: true),
+                    ModuloDRUPWN_ComandoPersonalizzato = table.Column<string>(type: "TEXT", nullable: true),
+                    DFilesDrupwn = table.Column<bool>(type: "INTEGER", nullable: true),
+                    ModulesDrupwn = table.Column<bool>(type: "INTEGER", nullable: true),
+                    NodesDrupwn = table.Column<bool>(type: "INTEGER", nullable: true),
+                    ThemesDrupwn = table.Column<bool>(type: "INTEGER", nullable: true),
+                    ThreadDrupwn = table.Column<int>(type: "INTEGER", nullable: true),
+                    UserAgentDrupwn = table.Column<string>(type: "TEXT", nullable: true),
+                    UsersDrupwn = table.Column<bool>(type: "INTEGER", nullable: true),
                     ModuloFIERCE_ComandoPersonalizzato = table.Column<string>(type: "TEXT", nullable: true),
                     Connect = table.Column<bool>(type: "INTEGER", nullable: true),
                     DnServer = table.Column<string>(type: "TEXT", nullable: true),

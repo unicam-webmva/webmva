@@ -13,8 +13,8 @@ using webmva.Models;
 namespace webmva.Migrations
 {
     [DbContext(typeof(MyDbContext))]
-    [Migration("20180701082116_Amass")]
-    partial class Amass
+    [Migration("20180705084040_InseritoDRUPWN")]
+    partial class InseritoDRUPWN
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -218,6 +218,32 @@ namespace webmva.Migrations
                     b.ToTable("ModuloDROOPE");
 
                     b.HasDiscriminator().HasValue("ModuloDROOPE");
+                });
+
+            modelBuilder.Entity("webmva.Models.ModuloDRUPWN", b =>
+                {
+                    b.HasBaseType("webmva.Models.Modulo");
+
+                    b.Property<string>("ComandoPersonalizzato")
+                        .HasColumnName("ModuloDRUPWN_ComandoPersonalizzato");
+
+                    b.Property<bool>("DFilesDrupwn");
+
+                    b.Property<bool>("ModulesDrupwn");
+
+                    b.Property<bool>("NodesDrupwn");
+
+                    b.Property<bool>("ThemesDrupwn");
+
+                    b.Property<int>("ThreadDrupwn");
+
+                    b.Property<string>("UserAgentDrupwn");
+
+                    b.Property<bool>("UsersDrupwn");
+
+                    b.ToTable("ModuloDRUPWN");
+
+                    b.HasDiscriminator().HasValue("ModuloDRUPWN");
                 });
 
             modelBuilder.Entity("webmva.Models.ModuloFIERCE", b =>

@@ -830,63 +830,6 @@
                         </div>
                         </div>
                       </div>
-                      <div class="panel panel-sidebar">
-                    <div class="panel-heading">
-                        <a data-toggle="collapse" href="#theharvester">
-                            <strong>
-                                THEHARVESTER
-                            </strong>
-                            <span class="caret"></span>
-                        </a>
-                    </div>
-                    <div class="collapse" id="theharvester">
-                     <div class="panel-body ">
-                                    <div class="col-sm-12">
-                                     <h4>Seleziona i moduli THEHARVESTER</h4><hr/>
-                                    </div>
-                            <table class="table">
-                                <div class="method">
-                                    <thead>
-                                        <tr>
-                                        <th></th>
-                                             <th>
-                                        Nome
-                                            </th>
-                                            <th>
-                                        Comando
-                                            </th>
-                                            <th>Target</th>
-                                        </tr>
-                                    </thead>
-                                </div>
-                                <tbody>
-                                    @for (int i=0; i<Model.ListaModuliConTarget.Count; i++) {
-
-                                            if(Model.ListaModuliConTarget[i].Applicazione!= webmva.Models.APPLICAZIONE.THEHARVESTER){continue;}
-                                             <tr>
-                                                <td>
-                                                    @Html.CheckBoxFor(model => model.ListaModuliConTarget[i].Inserito)
-                                                        
-                                                </td>
-                                        <td>
-                                            @Html.DisplayFor(model => model.ListaModuliConTarget[i].Nome)
-                                                </td>
-                                                <td>
-                                                    @Html.DisplayFor(model => model.ListaModuliConTarget[i].Comando)
-                                                </td>
-                                                <td>
-                                                    @Html.TextBoxFor(model => model.ListaModuliConTarget[i].Target, new {placeholder="es: example.org", @class="col-md-10"})
-                                                    @Html.HiddenFor(model => model.ListaModuliConTarget[i].ModuloID)
-                                                    @Html.HiddenFor(model => model.ListaModuliConTarget[i].Applicazione)
-                                                </td>
-                                            </tr>
-                                    }
-                                </tbody>
-                            </table>
-
-                        </div>
-                        </div>
-                      </div>
                     </div>
                       <div class="panel panel-default">
                     <div class="panel-heading">
@@ -1071,6 +1014,63 @@
                         </div>
                         </div>
                         </div>
+                        <div class="panel panel-sidebar">
+                    <div class="panel-heading">
+                        <a data-toggle="collapse" href="#theharvester">
+                            <strong>
+                                THEHARVESTER
+                            </strong>
+                            <span class="caret"></span>
+                        </a>
+                    </div>
+                    <div class="collapse" id="theharvester">
+                     <div class="panel-body ">
+                                    <div class="col-sm-12">
+                                     <h4>Seleziona i moduli THEHARVESTER</h4><hr/>
+                                    </div>
+                            <table class="table">
+                                <div class="method">
+                                    <thead>
+                                        <tr>
+                                        <th></th>
+                                             <th>
+                                        Nome
+                                            </th>
+                                            <th>
+                                        Comando
+                                            </th>
+                                            <th>Target</th>
+                                        </tr>
+                                    </thead>
+                                </div>
+                                <tbody>
+                                    @for (int i=0; i<Model.ListaModuliConTarget.Count; i++) {
+
+                                            if(Model.ListaModuliConTarget[i].Applicazione!= webmva.Models.APPLICAZIONE.THEHARVESTER){continue;}
+                                             <tr>
+                                                <td>
+                                                    @Html.CheckBoxFor(model => model.ListaModuliConTarget[i].Inserito)
+                                                        
+                                                </td>
+                                        <td>
+                                            @Html.DisplayFor(model => model.ListaModuliConTarget[i].Nome)
+                                                </td>
+                                                <td>
+                                                    @Html.DisplayFor(model => model.ListaModuliConTarget[i].Comando)
+                                                </td>
+                                                <td>
+                                                    @Html.TextBoxFor(model => model.ListaModuliConTarget[i].Target, new {placeholder="es: example.org", @class="col-md-10"})
+                                                    @Html.HiddenFor(model => model.ListaModuliConTarget[i].ModuloID)
+                                                    @Html.HiddenFor(model => model.ListaModuliConTarget[i].Applicazione)
+                                                </td>
+                                            </tr>
+                                    }
+                                </tbody>
+                            </table>
+
+                        </div>
+                        </div>
+                      </div>
                          <div class="panel panel-sidebar">
                     <div class="panel-heading">
                     <a data-toggle="collapse"  href="#amass">

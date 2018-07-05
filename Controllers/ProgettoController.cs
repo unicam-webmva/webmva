@@ -559,21 +559,21 @@ namespace webmva.Controllers
             }
              if (mod is ModuloTHEHARVESTER)
             {
-                string percorsoExec = Path.Combine(Globals.CartellaWEBMVA, "Programmi", "theharvester");
-                string comando = $"python -u {percorsoExec}/{mod.Comando} -d {target} -f {nomeFile}.xml ";
-                percorsi.Add(Path.Combine(cartella, nomeFile + ".xml"));
+                string comando = $"{mod.Comando} -d {target} -f {nomeFile}.html && read";
+                percorsi.Add(Path.Combine(cartella, nomeFile + ".html"));
                 return comando;
             }
              if (mod is ModuloAMASS)
             {
                 string percorsoExec = Path.Combine(Globals.CartellaWEBMVA, "Programmi", "amass");
-                string comando = $"python -u {percorsoExec}/{mod.Comando} -d {target} -f {nomeFile}.xml ";
-                percorsi.Add(Path.Combine(cartella, nomeFile + ".xml"));
+                string comando = $"python -u {percorsoExec}/{mod.Comando} -d {target} -o {nomeFile}.txt -visjs {nomeFile}.visjs.html ";
+                percorsi.Add(Path.Combine(cartella, nomeFile + ".txt"));
+                percorsi.Add(Path.Combine(cartella, nomeFile + ".visjs.html"));
                 return comando;
             }
             if (mod is ModuloDRUPWN)
             {
-                string comando = $" {mod.Comando} -s {target} | sed -r \"{regex}\" | tee {nomeFile}.txt ";
+                string comando = $"{mod.Comando} {target} | sed -r \"{regex}\" | tee {nomeFile}.txt";
                 percorsi.Add(Path.Combine(cartella, nomeFile + ".txt"));
                 return comando;
             }

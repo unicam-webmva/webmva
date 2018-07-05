@@ -400,6 +400,24 @@ namespace webmva
                     intestazione.Add(@"         | |    | |  __/ | | (_|  __/");
                     intestazione.Add(@"         |_|    |_|\___|_|  \___\___|");
                 }
+                else if(filename[2].Equals("amass"))
+                {
+                    intestazione.Add(@"     /\                            
+    /  \   _ __ ___   __ _ ___ ___ 
+   / /\ \ | '_ ` _ \ / _` / __/ __|
+  / ____ \| | | | | | (_| \__ \__ \
+ /_/    \_\_| |_| |_|\__,_|___/___/");
+
+                }
+                else if(filename[2].Equals("drupwn"))
+                {
+                    intestazione.Add(@"  _____             _______          ___   _ 
+ |  __ \           |  __ \ \        / / \ | |
+ | |  | |_ __ _   _| |__) \ \  /\  / /|  \| |
+ | |  | | '__| | | |  ___/ \ \/  \/ / | . ` |
+ | |__| | |  | |_| | |      \  /\  /  | |\  |
+ |_____/|_|   \__,_|_|       \/  \/   |_| \_|");
+                }
 
                 intestazione.Add(@"___________________________________________________________________");
                 intestazione.Add("");
@@ -428,7 +446,7 @@ namespace webmva
                 else if(filename[2].Equals("dnsrecon")){
                     riga = content.IndexOf("</records>");
                 }
-                if(filename[2].Equals("dnsenum")){
+                else if(filename[2].Equals("dnsenum")){
                     int r = content.FindIndex(x=>x.Contains("</testdata>"));
                     if(r == 1){
                         int index = content.ElementAt(r).Substring(0,content.ElementAt(r).LastIndexOf("/")).LastIndexOf("/")-1;
@@ -454,6 +472,23 @@ namespace webmva
                 <data>{data}</data>
                 </scaninfo>
                 </webmva>");
+            }
+            else if(Path.GetExtension(percorso).Equals(".html")){
+                if(filename[2].Equals("theharvester")){
+                    int r = content.FindIndex(x=>x.Contains("<body>"));
+                        string appoggio = $@"<body>
+                        <br />
+                        <h3>Progetto: {progetto}<br />
+                        Modulo: {nomeModulo}<br />
+                        Comando: {comando}<br />
+                        Target: {target}<br />
+                        Data: {data}</h3>
+                        <h1>";
+                        string rigaNuova = content.ElementAt(r).Replace("<body><h1>",appoggio);
+                        
+                        content.RemoveAt(r);
+                        content.Add(rigaNuova);
+                }
             }
             System.IO.File.WriteAllLines(Path.Combine("wwwroot", "Report", percorso), content);
 

@@ -219,6 +219,32 @@ namespace webmva.Migrations
                     b.HasDiscriminator().HasValue("ModuloDROOPE");
                 });
 
+            modelBuilder.Entity("webmva.Models.ModuloDRUPWN", b =>
+                {
+                    b.HasBaseType("webmva.Models.Modulo");
+
+                    b.Property<string>("ComandoPersonalizzato")
+                        .HasColumnName("ModuloDRUPWN_ComandoPersonalizzato");
+
+                    b.Property<bool>("DFilesDrupwn");
+
+                    b.Property<bool>("ModulesDrupwn");
+
+                    b.Property<bool>("NodesDrupwn");
+
+                    b.Property<bool>("ThemesDrupwn");
+
+                    b.Property<int>("ThreadDrupwn");
+
+                    b.Property<string>("UserAgentDrupwn");
+
+                    b.Property<bool>("UsersDrupwn");
+
+                    b.ToTable("ModuloDRUPWN");
+
+                    b.HasDiscriminator().HasValue("ModuloDRUPWN");
+                });
+
             modelBuilder.Entity("webmva.Models.ModuloFIERCE", b =>
                 {
                     b.HasBaseType("webmva.Models.Modulo");
