@@ -127,7 +127,19 @@ echo "-------------------------------------------------------"
 echo "INSTALLAZIONE DIPENDENZE PER WIFITE2"
 echo "-------------------------------------------------------"
 
-if hash bully && hash reaver && hash tshark && hash aircrack-ng && hash cowpatty && hash pyrit >/dev/null 2>&1 ;
+if hash reaver >/dev/null 2>&1 && hash tshark >/dev/null 2>&1 && hash aircrack-ng >/dev/null 2>&1 && hash pyrit >/dev/null 2>&1 ;
+then echo "Tutte le dipendenze di Wifite2 sono già installate.";
+else {
+	echo "Installazione di reaver, tshark, aircrack-ng e pyrit..."
+	sudo apt-get install -y reaver aircrack-ng pyrit >/dev/null
+	DEBIAN_FRONTEND=noninteractive sudo apt-get -y install tshark > /dev/null
+	echo "Fine installazione dipendenze di Wifite2."
+}
+fi
+echo "-------------------------------------------------------"
+echo "INSTALLAZIONE DAI REPO DI KALI"
+echo "-------------------------------------------------------"
+if hash bully >/dev/null 2>&1 && hash cowpatty >/dev/null 2>&1 && hash theharvester >/dev/null 2>&1 ;
 then echo "Tutte le dipendenze di Wifite2 sono già installate.";
 else {
 	TROVATO=false
@@ -143,23 +155,20 @@ else {
 if [[ $TROVATO = "true" ]] ;
 	then 
 		echo "I repository di Kali sono già in questo sistema, non li aggiungo."
-		echo "Sto installando cowpatty e bully dai repo di kali..."
-		sudo apt-get install bully cowpatty -y >/dev/null ;
+		echo "Sto installando theharvester, cowpatty e bully dai repo di kali..."
+		sudo apt-get install theharvester bully cowpatty -y >/dev/null ;
 	else {
 		echo "Verranno aggiunti i repository di Kali Linux per installare alcuni programmi non presenti in quelli di Ubuntu..."
 		echo "deb http://http.kali.org/kali kali-rolling main non-free contrib" | sudo tee -a /etc/apt/sources.list > /dev/null
-		sudo apt-key adv --keyserver hkp://keys.gnupg.net --recv-keys ED444FF07D8D0BF6 
+		sudo apt-key adv --keyserver hkp://keys.gnupg.net:80 --recv-keys ED444FF07D8D0BF6 
 		sudo apt-get update > /dev/null
-		echo "Sto installando cowpatty e bully dai repo di kali..."
-		sudo apt-get install bully cowpatty -y >/dev/null
+		echo "Sto installando theharvester, cowpatty e bully dai repo di kali..."
+		sudo apt-get install theharvester bully cowpatty -y >/dev/null
 		echo "Verranno tolti i repo di kali per non interferire nel sistema in uso."
 		sudo sed -i '/kali-rolling main non-free contrib/d' /etc/apt/sources.list
 	};
 	fi
-	echo "Sto installando aircrack-ng, reaver, pyrit e tshark tramite i repository normali..."
-	sudo apt-get install aircrack-ng reaver pyrit -y > /dev/null
-	DEBIAN_FRONTEND=noninteractive sudo apt-get -y install tshark > /dev/null
-	echo "Fine installazione dipendenze per Wifite2."
+	echo "Fine installazione pacchetti dai repo di Kali."
 };
 fi
 echo "-------------------------------------------------------"
@@ -265,6 +274,27 @@ else {
 	timedatectl set-ntp true
 	echo "Fine installazione timedatectl." ;
 }
+fi
+echo "-------------------------------------------------------"
+echo "INSTALLAZIONE AMASS"
+echo "-------------------------------------------------------"
+
+if hash amass >/dev/null 2>&1 ; then 
+	echo "amass è già installato"; 
+else {
+	if hash snap >/dev/null 2>&1 ; then 
+		echo "Sto installando amass..."; 
+		sudo snap install amass >/dev/null ;
+		echo "Fine installazione amass." ;
+	else { 
+		echo "Sto installando snap...";
+		sudo apt install snap >/dev/null;
+		echo "Fine installazione snap, installo amass...";
+		sudo snap install amass >/dev/null;
+		echo "Fine installazione amass." ; 
+	}; 
+	fi 
+}; 
 fi
 echo "-------------------------------------------------------"
 echo "INSTALLAZIONE ODAT"

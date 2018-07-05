@@ -50,6 +50,8 @@ if ! hash opendoor >/dev/null 2>&1 ; then MANCANTI="${MANCANTI}opendoor " ; fi
 
 if ! hash wkhtmltopdf >/dev/null 2>&1 ; then MANCANTI="${MANCANTI}wkhtmltopdf " ; fi
 
+if ! hash amass >/dev/null 2>&1 ; then MANCANTI="${MANCANTI}amass " ; fi
+
 EXIT=0
 if [[ "${MANCANTI}" = "" ]] 
     then EXIT=1 
