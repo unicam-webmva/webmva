@@ -27,6 +27,8 @@ if ! hash perl >/dev/null 2>&1 ; then MANCANTI="${MANCANTI}perl " ; fi
 if ! hash ruby >/dev/null 2>&1 ; then MANCANTI="${MANCANTI}ruby " ; fi
 if [ ! -d Programmi/odat ] ; then MANCANTI="${MANCANTI}odat " ; fi
 if ! hash fop >/dev/null 2>&1 ; then MANCANTI="${MANCANTI}fop " ; fi
+if ! hash drupwn >/dev/null 2>&1 ; then MANCANTI="${MANCANTI}drupwn " ; fi
+if ! hash theharverster >/dev/null 2>&1 ; then MANCANTI="${MANCANTI}theharverster " ; fi
 #questo mega if è tutto per wpscan
 if ! hash bundle >/dev/null 2>&1 ; 
     then  MANCANTI="${MANCANTI}wpscan " ;

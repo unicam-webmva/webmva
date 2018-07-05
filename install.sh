@@ -255,7 +255,7 @@ else {
  	sudo python3 setup.py build && sudo python3 setup.py install
 	sudo cp -R data/ /usr/local/bin/data
 	cd ${WORKINGDIR}
-	rm -rf ${WORKINGDIR}/OpenDoor/
+	sudo rm -rf ${WORKINGDIR}/OpenDoor/
 	echo "Fine installazione opendoor."
 	}
 fi
@@ -294,6 +294,22 @@ else {
 		echo "Fine installazione amass." ; 
 	}; 
 	fi 
+}; 
+fi
+echo "-------------------------------------------------------"
+echo "INSTALLAZIONE Drupwn"
+echo "-------------------------------------------------------"
+
+if hash drupwn >/dev/null 2>&1 ; then 
+	echo "drupwn è già installato"; 
+else {
+	echo "Sto  installando drupwn..."
+	git clone https://github.com/immunIT/drupwn ${WORKINGDIR}/drupwn
+	cd ${WORKINGDIR}/drupwn
+	sudo python3 setup.py install
+	cd ${WORKINGDIR}
+	sudo rm -rf ${WORKINGDIR}/drupwn
+	echo "Fine installazione drupwn."
 }; 
 fi
 echo "-------------------------------------------------------"
