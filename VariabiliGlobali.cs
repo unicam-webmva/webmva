@@ -18,6 +18,7 @@ using Microsoft.EntityFrameworkCore;
 using webmva.Data;
 using webmva.Models;
 using Microsoft.Extensions.Configuration;
+using System.Text.RegularExpressions;
 
 namespace webmva
 {
@@ -163,6 +164,21 @@ namespace webmva
         public static string ConvertiReportXML(string percorsoXMLAssoluto)
         {
             if (string.IsNullOrEmpty(percorsoXMLAssoluto)) return string.Empty;
+            string percorsoXMLEscape = "";
+            string percorsoPDFEscape = "";
+            if(percorsoXMLAssoluto.Contains(' ')){
+                string[] pezzi = percorsoXMLAssoluto.Split(' ');
+                char spazio = ' ';
+                char bs = Char.ConvertFromUtf32(92).ToCharArray()[0];
+                string repl = bs.ToString() + spazio.ToString();
+                for (int j = 0; j<pezzi.Length-1; j++){
+                    percorsoXMLEscape += String.Concat(pezzi[j], bs);
+                    percorsoXMLEscape = String.Concat(percorsoXMLEscape, spazio);
+                }
+                percorsoXMLEscape += pezzi[pezzi.Length-1];
+                //Console.WriteLine(percorsoXMLEscape);
+            }
+            percorsoPDFEscape = percorsoXMLEscape.Replace(".xml", ".pdf");
             Dictionary<string, string> varsPdf = GetPercorsoPDF(percorsoXMLAssoluto);
             string percorsoPdf = varsPdf.GetValueOrDefault("dove");
             string cosa = varsPdf.GetValueOrDefault("cosa");
@@ -173,7 +189,9 @@ namespace webmva
                     System.IO.File.ReadLines(percorsoXMLAssoluto)
                         .Where(l => !l.Contains("<!DOCTYPE")).ToList());
             }
-            string comando = $"fop -xml {percorsoXMLAssoluto} -xsl {cosa}-fo.xsl -pdf {percorsoPdf}";
+
+            //var escaped = percorsoXMLAssoluto.Replace(@" ", escape);
+            string comando = $@"fop -xml {percorsoXMLEscape} -xsl {cosa}-fo.xsl -pdf {percorsoPDFEscape}";
             comando.EseguiCLI(Path.Combine(CartellaWEBMVA, "Script", "fop"));
             return percorsoPdf;
         }

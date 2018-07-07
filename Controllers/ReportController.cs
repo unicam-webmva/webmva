@@ -184,20 +184,20 @@ namespace webmva.Controllers
                     string extension = Path.GetExtension(percorso.Percorso).ToLower();
                     if (extension.Equals(".txt") || extension.Equals(".html"))
                     {
-                        percorsiPdf[i] = Globals.ConvertiReportTXT(Path.Combine(Globals.CartellaWEBMVA, "wwwroot", "Report", percorso.Percorso));
+                        percorsiPdf[i] = Globals.ConvertiReportTXT(Path.Combine(Globals.CARTELLAREPORT, percorso.Percorso));
                     }
                     else if (extension.Equals(".xml"))
                     {
-                        percorsiPdf[i] = Globals.ConvertiReportXML(Path.Combine(Globals.CartellaWEBMVA, "wwwroot", "Report", percorso.Percorso));
+                        percorsiPdf[i] = Globals.ConvertiReportXML(Path.Combine(Globals.CARTELLAREPORT, percorso.Percorso));
                     }
                     else if (extension.Equals(".pdf"))
                     {
-                        percorsiPdf[i] = Path.Combine(Globals.CartellaWEBMVA, "wwwroot", "Report", percorso.Percorso);
+                        percorsiPdf[i] = Path.Combine(Globals.CARTELLAREPORT, percorso.Percorso);
                     }
                     MyLogger.Log(messaggio: $"\t{percorsiPdf[i]} generato", controller: "ReportController", metodo: "DownloadUnico");
                 }
                 List<string> listaPercorsi = percorsiPdf.ToList();
-                string percorsoPdfUnico = Path.Combine(Globals.CartellaWEBMVA, "wwwroot", "Report", nomeProgetto, nomeProgetto + ".pdf");
+                string percorsoPdfUnico = Path.Combine(Globals.CARTELLAREPORT, nomeProgetto, nomeProgetto + ".pdf");
                 if (Globals.MergePDF(percorsoPdfUnico, listaPercorsi))
                 {
                     var fileName = Path.GetFileName(percorsoPdfUnico);

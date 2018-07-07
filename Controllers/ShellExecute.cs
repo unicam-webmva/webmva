@@ -51,6 +51,7 @@ namespace webmva.Helpers
                     CreateNoWindow = false,
                 }
             };
+            //Console.WriteLine(process.StartInfo.FileName + " " + process.StartInfo.Arguments);
             process.Start();
             //string result = process.StandardOutput.ReadToEnd();
             process.WaitForExit();

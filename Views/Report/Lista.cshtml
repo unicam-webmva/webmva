@@ -15,6 +15,9 @@ int ID = ViewBag.Progetto.ID;
             <h3 style="color:red"><strong>Vai ai <a asp-controller="Progetto" asp-action="Details" asp-route-id="@ID">dettagli</a> del progetto se vuoi avviare uno scan.</strong></h3>
     }
     else {
+        <div class="col-6 col-offset-5">
+            <div class="btn btn-default"><a asp-action="Tutti" asp-route-id="@ID">Visualizza tutti i report</a></div>
+        </div>
         <div class="panel panel-default col-md-7" style="margin:0 auto; float:none;">
             <table class="table">
                 <div class="method">

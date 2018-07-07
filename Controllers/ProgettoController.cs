@@ -559,7 +559,7 @@ namespace webmva.Controllers
             }
              if (mod is ModuloTHEHARVESTER)
             {
-                string comando = $"{mod.Comando} -d {target} -f {nomeFile}.html && read";
+                string comando = $"{mod.Comando} -d {target} -f {nomeFile}.html";
                 percorsi.Add(Path.Combine(cartella, nomeFile + ".html"));
                 return comando;
             }

@@ -18,12 +18,12 @@ if (importati != null) idImportati = importati.ID;
     </form>
     </div>
     <div class="col-lg-8 col-lg-offset-1">
-            <table class="table">
+            <table class="table grid" id="sort">
                 <div class="method">
                     <thead>
                         <tr>
                             <th> <div style="font-size=4pt;"><h6><strong>PDF unico</strong> </h6></div><input type="checkbox" name="selezionaTutto" onclick="SelezTT()"/></th>
-                          
+                            <th class="index">Ordine</th>
                             <th>
                                 Percorso
                             </th>
@@ -34,21 +34,23 @@ if (importati != null) idImportati = importati.ID;
                         </tr>
                         </thead>
                 </div>
-                <tbody>
+                <tbody class="pippo">
                     
                     <form asp-action="DownloadUnico">
-            @foreach(var itm in @Model)
+            @*@foreach(var itm in @Model)*@
+            @for(int j=0;j<Model.Count; j++)
             {
-                
+                var itm = Model.ElementAt(j);
                 @for(int i=0;i < itm.Percorsi.Count(); i++)
                 {
+                    var index = (i+1)*(j+1);
                     <tr>
-                    
                         <td>
                         
                         <input type="checkbox" value="@itm.Percorsi.ElementAt(i).ID" name="check" />
                         
                         </td>
+                        <td class="index">@(index)</td>
                         <td>
                         
                                 <input type="submit" asp-action="Download" asp-route-cosa="singolo" asp-route-filePath="Report/@itm.Percorsi.ElementAt(i).Percorso" value="@itm.Percorsi.ElementAt(i).Percorso" class="btn btn-link">
@@ -120,5 +122,26 @@ if (importati != null) idImportati = importati.ID;
 	        }
 	    ).change();
 	    });
+
+
+        // drag&drop
+        var fixHelperModified = function(e, tr) {
+    var $originals = tr.children();
+    var $helper = tr.clone();
+    $helper.children().each(function(index) {
+        $(this).width($originals.eq(index).width())
+    });
+    return $helper;
+},
+    updateIndex = function(e, ui) {
+        $('td.index', ui.item.parent()).each(function (i) {
+            $(this).html(i + 1);
+        });
+    };
+
+$("#sort tbody").sortable({
+    helper: fixHelperModified,
+    stop: updateIndex
+}).disableSelection();
 	        </script> }
 
