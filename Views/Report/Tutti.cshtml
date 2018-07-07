@@ -18,6 +18,7 @@ if (importati != null) idImportati = importati.ID;
     </form>
     </div>
     <div class="col-lg-8 col-lg-offset-1">
+         <form asp-action="DownloadUnico">
             <table class="table grid" id="sort">
                 <div class="method">
                     <thead>
@@ -35,8 +36,6 @@ if (importati != null) idImportati = importati.ID;
                         </thead>
                 </div>
                 <tbody class="pippo">
-                    
-                    <form asp-action="DownloadUnico">
             @*@foreach(var itm in @Model)*@
             @for(int j=0;j<Model.Count; j++)
             {
@@ -72,10 +71,10 @@ if (importati != null) idImportati = importati.ID;
                 <input type="submit" asp-action="DownloadUnico" asp-route-daDove="Tutti/@Model.ElementAt(0).ProgettoID" asp-route-cosa="unico" asp-route-nomeProgetto="@Model.ElementAt(0).Progetto.Nome" class="btn btn-info" value="Scarica tutto in PDF" style="position:fixed;width:150px;height:40px;bottom:40px;left:25px;" />&nbsp;&nbsp; 
                     
                 <input type="submit" asp-action="DownloadUnico" asp-route-daDove="Tutti/@Model.ElementAt(0).ProgettoID" asp-route-cosa="zip" asp-route-nomeProgetto="@Model.ElementAt(0).Progetto.Nome" class="btn btn-info" value="Scarica ZIP" style="position:fixed;width:100px;height:40px;bottom:40px;right:25px;" />&nbsp;&nbsp; 
-                        </form>
             
             </tbody>
         </table>
+        </form>
         </div>
     </div>
 </div>
@@ -88,7 +87,7 @@ if (importati != null) idImportati = importati.ID;
 	            if( $('input[name=selezionaTutto]').prop('checked')){
 	                var modulo = $('input[name=check]').each(function(index, element){
 	                    $(element).prop('checked', true);
-	                    console.log(index);
+	                    console.log(element);
 	                   
 	                })
 	               
