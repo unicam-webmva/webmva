@@ -42,14 +42,14 @@ if (importati != null) idImportati = importati.ID;
                 var itm = Model.ElementAt(j);
                 @for(int i=0;i < itm.Percorsi.Count(); i++)
                 {
-                    var index = (i+1)*(j+1);
+                    @*var index = (i+1)*(j+1);*@
                     <tr>
                         <td>
                         
                         <input type="checkbox" value="@itm.Percorsi.ElementAt(i).ID" name="check" />
                         
                         </td>
-                        <td class="index">@(index)</td>
+                        <td class="index"><i class="glyphicon glyphicon-menu-hamburger"></i></td>
                         <td>
                         
                                 <input type="submit" asp-action="Download" asp-route-cosa="singolo" asp-route-filePath="Report/@itm.Percorsi.ElementAt(i).Percorso" value="@itm.Percorsi.ElementAt(i).Percorso" class="btn btn-link">
@@ -80,17 +80,21 @@ if (importati != null) idImportati = importati.ID;
 </div>
 @section scripts{
 	        <script>
-	
+        function DeselezTT(){
+            var modulo = $('input[name=check]').each(function(index, element){
+	                    $(element).prop('checked', false);
+	  
+                    });
+            $('input[name=selezionaTutto]').prop('checked', false);
+        }
 	    function SelezTT(){
 	      $('input[name=selezionaTutto]').change(
 	        function(){
 	            if( $('input[name=selezionaTutto]').prop('checked')){
 	                var modulo = $('input[name=check]').each(function(index, element){
 	                    $(element).prop('checked', true);
-	                    console.log(element);
-	                   
+	                    //console.log(element);
 	                })
-	               
 	            }
 	            else{
 	                var modulo = $('input[name=check]').each(function(index, element){
@@ -134,7 +138,8 @@ if (importati != null) idImportati = importati.ID;
 },
     updateIndex = function(e, ui) {
         $('td.index', ui.item.parent()).each(function (i) {
-            $(this).html(i + 1);
+            //$(this).html(i + 1);
+            DeselezTT();
         });
     };
 
