@@ -23,3 +23,7 @@ termcolor
 pycrypto
 passlib
 argcomplete
+couchdb
+pbkdf2
+pymongo
+ipcalc
