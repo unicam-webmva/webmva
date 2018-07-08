@@ -498,8 +498,7 @@ namespace webmva.Controllers
             }
             if (mod is ModuloOPENDOOR)
             {
-                string percorsoExec = Path.Combine(Globals.CartellaWEBMVA, "Programmi", "OpenDoor");
-                string comando = $"cd /usr/local/bin && {mod.Comando} --host {target} | sed -r \"{regex}\" | tee {Path.Combine(Globals.CartellaWEBMVA, "wwwroot", "Report", cartella, nomeFile)}opendoor.txt ";
+                string comando = $"cd /usr/local/bin && {mod.Comando} --host {target} | sed -r \"{regex}\" | tee {Path.Combine(Globals.CARTELLAREPORT, cartella, nomeFile)}opendoor.txt ";
                 percorsi.Add(Path.Combine(cartella, nomeFile + "opendoor.txt"));
                 return comando;
             }
@@ -532,7 +531,7 @@ namespace webmva.Controllers
             if (mod is ModuloWPSCAN)
             {
                 string percorsoExec = Path.Combine(Globals.CartellaWEBMVA, "Programmi", "wpscan");
-                string comando = $"ruby {percorsoExec}/{mod.Comando} -u {target} --log {Path.Combine(Globals.CartellaWEBMVA, "wwwroot", "Report", cartella, nomeFile)}.txt ";
+                string comando = $"ruby {percorsoExec}/{mod.Comando} -u {target} --log {Path.Combine(Globals.CARTELLAREPORT, cartella, nomeFile)}.txt ";
                 percorsi.Add(Path.Combine(cartella, nomeFile + ".txt"));
                 return comando;
             }
