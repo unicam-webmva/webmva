@@ -49,7 +49,7 @@ if (importati != null) idImportati = importati.ID;
                         <input type="checkbox" value="@itm.Percorsi.ElementAt(i).ID" name="check" />
                         
                         </td>
-                        <td class="index"><i class="glyphicon glyphicon-menu-hamburger"></i></td>
+                        <td class="index" style="cursor: ns-resize;"><i class="glyphicon glyphicon-menu-hamburger"></i></td>
                         <td>
                         
                                 <input type="submit" asp-action="Download" asp-route-cosa="singolo" asp-route-filePath="Report/@itm.Percorsi.ElementAt(i).Percorso" value="@itm.Percorsi.ElementAt(i).Percorso" class="btn btn-link">
