@@ -31,177 +31,205 @@ namespace webmva
         public static bool LOGGING;
         public static string LOGFILE;
         public static string CARTELLAREPORT;
-        public static string TIPODB; 
+        public static string TIPODB;
         public static string CONNECTIONSTRING;
 
-        public static string GetScrittaWebMVA(){
+        public static string GetScrittaWebMVA()
+        {
             Random r = new Random();
-            int num = r.Next()%12;
-            StringBuilder sb = new StringBuilder();
-            switch(num)
+            int num = r.Next() % 12;
+            List<string> sb = new List<string>();
+            switch (num)
             {
                 case 0:
-                    sb.AppendLine("888       888          888      888b     d888 888     888     d8888");
-                    sb.AppendLine("888   o   888          888      8888b   d8888 888     888    d88888");
-                    sb.AppendLine("888  d8b  888          888      88888b.d88888 888     888   d88P888");
-                    sb.AppendLine("888 d888b 888  .d88b.  88888b.  888Y88888P888 Y88b   d88P  d88P 888");
-                    sb.AppendLine("888d88888b888 d8P  Y8b 888 \"88b 888 Y888P 888  Y88b d88P  d88P  888");
-                    sb.AppendLine("88888P Y88888 88888888 888  888 888  Y8P  888   Y88o88P  d88P   888");
-                    sb.AppendLine("8888P   Y8888 Y8b.     888 d88P 888   \"   888    Y888P  d8888888888");
-                    sb.AppendLine("888P     Y888  \"Y8888  88888P\"  888       888     Y8P  d88P     888");
+                    sb.Add("888       888          888      888b     d888 888     888     d8888");
+                    sb.Add("888   o   888          888      8888b   d8888 888     888    d88888");
+                    sb.Add("888  d8b  888          888      88888b.d88888 888     888   d88P888");
+                    sb.Add("888 d888b 888  .d88b.  88888b.  888Y88888P888 Y88b   d88P  d88P 888");
+                    sb.Add("888d88888b888 d8P  Y8b 888 \"88b 888 Y888P 888  Y88b d88P  d88P  888");
+                    sb.Add("88888P Y88888 88888888 888  888 888  Y8P  888   Y88o88P  d88P   888");
+                    sb.Add("8888P   Y8888 Y8b.     888 d88P 888   \"   888    Y888P  d8888888888");
+                    sb.Add("888P     Y888  \"Y8888  88888P\"  888       888     Y8P  d88P     888");
                     break;
                 case 1:
-                    sb.AppendLine(" ▄         ▄  ▄▄▄▄▄▄▄▄▄▄▄  ▄▄▄▄▄▄▄▄▄▄   ▄▄       ▄▄  ▄               ▄  ▄▄▄▄▄▄▄▄▄▄▄ ");
-                    sb.AppendLine("▐░▌       ▐░▌▐░░░░░░░░░░░▌▐░░░░░░░░░░▌ ▐░░▌     ▐░░▌▐░▌             ▐░▌▐░░░░░░░░░░░▌");
-                    sb.AppendLine("▐░▌       ▐░▌▐░█▀▀▀▀▀▀▀▀▀ ▐░█▀▀▀▀▀▀▀█░▌▐░▌░▌   ▐░▐░▌ ▐░▌           ▐░▌ ▐░█▀▀▀▀▀▀▀█░▌");
-                    sb.AppendLine("▐░▌       ▐░▌▐░▌          ▐░▌       ▐░▌▐░▌▐░▌ ▐░▌▐░▌  ▐░▌         ▐░▌  ▐░▌       ▐░▌");
-                    sb.AppendLine("▐░▌   ▄   ▐░▌▐░█▄▄▄▄▄▄▄▄▄ ▐░█▄▄▄▄▄▄▄█░▌▐░▌ ▐░▐░▌ ▐░▌   ▐░▌       ▐░▌   ▐░█▄▄▄▄▄▄▄█░▌");
-                    sb.AppendLine("▐░▌  ▐░▌  ▐░▌▐░░░░░░░░░░░▌▐░░░░░░░░░░▌ ▐░▌  ▐░▌  ▐░▌    ▐░▌     ▐░▌    ▐░░░░░░░░░░░▌");
-                    sb.AppendLine("▐░▌ ▐░▌░▌ ▐░▌▐░█▀▀▀▀▀▀▀▀▀ ▐░█▀▀▀▀▀▀▀█░▌▐░▌   ▀   ▐░▌     ▐░▌   ▐░▌     ▐░█▀▀▀▀▀▀▀█░▌");
-                    sb.AppendLine("▐░▌▐░▌ ▐░▌▐░▌▐░▌          ▐░▌       ▐░▌▐░▌       ▐░▌      ▐░▌ ▐░▌      ▐░▌       ▐░▌");
-                    sb.AppendLine("▐░▌░▌   ▐░▐░▌▐░█▄▄▄▄▄▄▄▄▄ ▐░█▄▄▄▄▄▄▄█░▌▐░▌       ▐░▌       ▐░▐░▌       ▐░▌       ▐░▌");
-                    sb.AppendLine("▐░░▌     ▐░░▌▐░░░░░░░░░░░▌▐░░░░░░░░░░▌ ▐░▌       ▐░▌        ▐░▌        ▐░▌       ▐░▌");
-                    sb.AppendLine(" ▀▀       ▀▀  ▀▀▀▀▀▀▀▀▀▀▀  ▀▀▀▀▀▀▀▀▀▀   ▀         ▀          ▀          ▀         ▀ ");
+                    sb.Add(" ▄         ▄  ▄▄▄▄▄▄▄▄▄▄▄  ▄▄▄▄▄▄▄▄▄▄   ▄▄       ▄▄  ▄               ▄  ▄▄▄▄▄▄▄▄▄▄▄ ");
+                    sb.Add("▐░▌       ▐░▌▐░░░░░░░░░░░▌▐░░░░░░░░░░▌ ▐░░▌     ▐░░▌▐░▌             ▐░▌▐░░░░░░░░░░░▌");
+                    sb.Add("▐░▌       ▐░▌▐░█▀▀▀▀▀▀▀▀▀ ▐░█▀▀▀▀▀▀▀█░▌▐░▌░▌   ▐░▐░▌ ▐░▌           ▐░▌ ▐░█▀▀▀▀▀▀▀█░▌");
+                    sb.Add("▐░▌       ▐░▌▐░▌          ▐░▌       ▐░▌▐░▌▐░▌ ▐░▌▐░▌  ▐░▌         ▐░▌  ▐░▌       ▐░▌");
+                    sb.Add("▐░▌   ▄   ▐░▌▐░█▄▄▄▄▄▄▄▄▄ ▐░█▄▄▄▄▄▄▄█░▌▐░▌ ▐░▐░▌ ▐░▌   ▐░▌       ▐░▌   ▐░█▄▄▄▄▄▄▄█░▌");
+                    sb.Add("▐░▌  ▐░▌  ▐░▌▐░░░░░░░░░░░▌▐░░░░░░░░░░▌ ▐░▌  ▐░▌  ▐░▌    ▐░▌     ▐░▌    ▐░░░░░░░░░░░▌");
+                    sb.Add("▐░▌ ▐░▌░▌ ▐░▌▐░█▀▀▀▀▀▀▀▀▀ ▐░█▀▀▀▀▀▀▀█░▌▐░▌   ▀   ▐░▌     ▐░▌   ▐░▌     ▐░█▀▀▀▀▀▀▀█░▌");
+                    sb.Add("▐░▌▐░▌ ▐░▌▐░▌▐░▌          ▐░▌       ▐░▌▐░▌       ▐░▌      ▐░▌ ▐░▌      ▐░▌       ▐░▌");
+                    sb.Add("▐░▌░▌   ▐░▐░▌▐░█▄▄▄▄▄▄▄▄▄ ▐░█▄▄▄▄▄▄▄█░▌▐░▌       ▐░▌       ▐░▐░▌       ▐░▌       ▐░▌");
+                    sb.Add("▐░░▌     ▐░░▌▐░░░░░░░░░░░▌▐░░░░░░░░░░▌ ▐░▌       ▐░▌        ▐░▌        ▐░▌       ▐░▌");
+                    sb.Add(" ▀▀       ▀▀  ▀▀▀▀▀▀▀▀▀▀▀  ▀▀▀▀▀▀▀▀▀▀   ▀         ▀          ▀          ▀         ▀ ");
                     break;
                 case 2:
-                    sb.AppendLine("██╗    ██╗███████╗██████╗ ███╗   ███╗██╗   ██╗ █████╗ ");
-                    sb.AppendLine("██║    ██║██╔════╝██╔══██╗████╗ ████║██║   ██║██╔══██╗");
-                    sb.AppendLine("██║ █╗ ██║█████╗  ██████╔╝██╔████╔██║██║   ██║███████║");
-                    sb.AppendLine("██║███╗██║██╔══╝  ██╔══██╗██║╚██╔╝██║╚██╗ ██╔╝██╔══██║");
-                    sb.AppendLine("╚███╔███╔╝███████╗██████╔╝██║ ╚═╝ ██║ ╚████╔╝ ██║  ██║");
-                    sb.AppendLine(" ╚══╝╚══╝ ╚══════╝╚═════╝ ╚═╝     ╚═╝  ╚═══╝  ╚═╝  ╚═╝");
+                    sb.Add("██╗    ██╗███████╗██████╗ ███╗   ███╗██╗   ██╗ █████╗ ");
+                    sb.Add("██║    ██║██╔════╝██╔══██╗████╗ ████║██║   ██║██╔══██╗");
+                    sb.Add("██║ █╗ ██║█████╗  ██████╔╝██╔████╔██║██║   ██║███████║");
+                    sb.Add("██║███╗██║██╔══╝  ██╔══██╗██║╚██╔╝██║╚██╗ ██╔╝██╔══██║");
+                    sb.Add("╚███╔███╔╝███████╗██████╔╝██║ ╚═╝ ██║ ╚████╔╝ ██║  ██║");
+                    sb.Add(" ╚══╝╚══╝ ╚══════╝╚═════╝ ╚═╝     ╚═╝  ╚═══╝  ╚═╝  ╚═╝");
                     break;
                 case 3:
-                    sb.AppendLine(",--.   ,--.       ,--.   ,--.   ,--.,--.   ,--.,---.   ");
-                    sb.AppendLine("|  |   |  | ,---. |  |-. |   `.'   | \\  `.'  //  O  \\  ");
-                    sb.AppendLine("|  |.'.|  || .-. :| .-. '|  |'.'|  |  \\     /|  .-.  | ");
-                    sb.AppendLine("|   ,'.   |\\   --.| `-' ||  |   |  |   \\   / |  | |  | ");
-                    sb.AppendLine("'--'   '--' `----' `---' `--'   `--'    `-'  `--' `--' ");
+                    sb.Add(",--.   ,--.       ,--.   ,--.   ,--.,--.   ,--.,---.   ");
+                    sb.Add("|  |   |  | ,---. |  |-. |   `.'   | \\  `.'  //  O  \\  ");
+                    sb.Add("|  |.'.|  || .-. :| .-. '|  |'.'|  |  \\     /|  .-.  | ");
+                    sb.Add("|   ,'.   |\\   --.| `-' ||  |   |  |   \\   / |  | |  | ");
+                    sb.Add("'--'   '--' `----' `---' `--'   `--'    `-'  `--' `--' ");
                     break;
                 case 4:
-                    sb.AppendLine(" _       __     __    __  ____    _____ ");
-                    sb.AppendLine("| |     / /__  / /_  /  |/  / |  / /   |");
-                    sb.AppendLine("| | /| / / _ \\/ __ \\/ /|_/ /| | / / /| |");
-                    sb.AppendLine("| |/ |/ /  __/ /_/ / /  / / | |/ / ___ |");
-                    sb.AppendLine("|__/|__/\\___/_.___/_/  /_/  |___/_/  |_|");
+                    sb.Add(" _       __     __    __  ____    _____ ");
+                    sb.Add("| |     / /__  / /_  /  |/  / |  / /   |");
+                    sb.Add("| | /| / / _ \\/ __ \\/ /|_/ /| | / / /| |");
+                    sb.Add("| |/ |/ /  __/ /_/ / /  / / | |/ / ___ |");
+                    sb.Add("|__/|__/\\___/_.___/_/  /_/  |___/_/  |_|");
                     break;
                 case 5:
-                    sb.AppendLine(" _ _ _     _   _____ _____ _____ ");
-                    sb.AppendLine("| | | |___| |_|     |  |  |  _  |");
-                    sb.AppendLine("| | | | -_| . | | | |  |  |     |");
-                    sb.AppendLine("|_____|___|___|_|_|_|\\___/|__|__|");
+                    sb.Add(" _ _ _     _   _____ _____ _____ ");
+                    sb.Add("| | | |___| |_|     |  |  |  _  |");
+                    sb.Add("| | | | -_| . | | | |  |  |     |");
+                    sb.Add("|_____|___|___|_|_|_|\\___/|__|__|");
                     break;
                 case 6:
-                    sb.AppendLine(" __      __      ___.       _________   _________   ");
-                    sb.AppendLine("/  \\    /  \\ ____\\_ |__    /     \\   \\ /   /  _  \\  ");
-                    sb.AppendLine("\\   \\/\\/   // __ \\| __ \\  /  \\ /  \\   Y   /  /_\\  \\ ");
-                    sb.AppendLine(" \\        /\\  ___/| \\_\\ \\/    Y    \\     /    |    \\");
-                    sb.AppendLine("  \\__/\\  /  \\___  >___  /\\____|__  /\\___/\\____|__  /");
-                    sb.AppendLine("       \\/       \\/    \\/         \\/              \\/ ");
+                    sb.Add(" __      __      ___.       _________   _________   ");
+                    sb.Add("/  \\    /  \\ ____\\_ |__    /     \\   \\ /   /  _  \\  ");
+                    sb.Add("\\   \\/\\/   // __ \\| __ \\  /  \\ /  \\   Y   /  /_\\  \\ ");
+                    sb.Add(" \\        /\\  ___/| \\_\\ \\/    Y    \\     /    |    \\");
+                    sb.Add("  \\__/\\  /  \\___  >___  /\\____|__  /\\___/\\____|__  /");
+                    sb.Add("       \\/       \\/    \\/         \\/              \\/ ");
                     break;
                 case 7:
-                    sb.AppendLine("__          __  _     __  ____      __     ");
-                    sb.AppendLine(" \\ \\        / / | |   |  \\/  \\ \\    / /\\    ");
-                    sb.AppendLine("  \\ \\  /\\  / /__| |__ | \\  / |\\ \\  / /  \\   ");
-                    sb.AppendLine("   \\ \\/  \\/ / _ \\ '_ \\| |\\/| | \\ \\/ / /\\ \\  ");
-                    sb.AppendLine("    \\  /\\  /  __/ |_) | |  | |  \\  / ____ \\ ");
-                    sb.AppendLine("     \\/  \\/ \\___|_.__/|_|  |_|   \\/_/    \\_\\");
+                    sb.Add("__          __  _     __  ____      __     ");
+                    sb.Add(" \\ \\        / / | |   |  \\/  \\ \\    / /\\    ");
+                    sb.Add("  \\ \\  /\\  / /__| |__ | \\  / |\\ \\  / /  \\   ");
+                    sb.Add("   \\ \\/  \\/ / _ \\ '_ \\| |\\/| | \\ \\/ / /\\ \\  ");
+                    sb.Add("    \\  /\\  /  __/ |_) | |  | |  \\  / ____ \\ ");
+                    sb.Add("     \\/  \\/ \\___|_.__/|_|  |_|   \\/_/    \\_\\");
                     break;
                 case 8:
-                    sb.AppendLine(" __       __            __        __       __  __     __   ______  ");
-                    sb.AppendLine("/  |  _  /  |          /  |      /  \\     /  |/  |   /  | /      \\ ");
-                    sb.AppendLine("$$ | / \\ $$ |  ______  $$ |____  $$  \\   /$$ |$$ |   $$ |/$$$$$$  |");
-                    sb.AppendLine("$$ |/$  \\$$ | /      \\ $$      \\ $$$  \\ /$$$ |$$ |   $$ |$$ |__$$ |");
-                    sb.AppendLine("$$ /$$$  $$ |/$$$$$$  |$$$$$$$  |$$$$  /$$$$ |$$  \\ /$$/ $$    $$ |");
-                    sb.AppendLine("$$ $$/$$ $$ |$$    $$ |$$ |  $$ |$$ $$ $$/$$ | $$  /$$/  $$$$$$$$ |");
-                    sb.AppendLine("$$$$/  $$$$ |$$$$$$$$/ $$ |__$$ |$$ |$$$/ $$ |  $$ $$/   $$ |  $$ |");
-                    sb.AppendLine("$$$/    $$$ |$$       |$$    $$/ $$ | $/  $$ |   $$$/    $$ |  $$ |");
-                    sb.AppendLine("$$/      $$/  $$$$$$$/ $$$$$$$/  $$/      $$/     $/     $$/   $$/ ");
+                    sb.Add(" __       __            __        __       __  __     __   ______  ");
+                    sb.Add("/  |  _  /  |          /  |      /  \\     /  |/  |   /  | /      \\ ");
+                    sb.Add("$$ | / \\ $$ |  ______  $$ |____  $$  \\   /$$ |$$ |   $$ |/$$$$$$  |");
+                    sb.Add("$$ |/$  \\$$ | /      \\ $$      \\ $$$  \\ /$$$ |$$ |   $$ |$$ |__$$ |");
+                    sb.Add("$$ /$$$  $$ |/$$$$$$  |$$$$$$$  |$$$$  /$$$$ |$$  \\ /$$/ $$    $$ |");
+                    sb.Add("$$ $$/$$ $$ |$$    $$ |$$ |  $$ |$$ $$ $$/$$ | $$  /$$/  $$$$$$$$ |");
+                    sb.Add("$$$$/  $$$$ |$$$$$$$$/ $$ |__$$ |$$ |$$$/ $$ |  $$ $$/   $$ |  $$ |");
+                    sb.Add("$$$/    $$$ |$$       |$$    $$/ $$ | $/  $$ |   $$$/    $$ |  $$ |");
+                    sb.Add("$$/      $$/  $$$$$$$/ $$$$$$$/  $$/      $$/     $/     $$/   $$/ ");
                     break;
                 case 9:
-                    sb.AppendLine(" __       __            __        __       __  __     __   ______  ");
-                    sb.AppendLine("|  \\  _  |  \\          |  \\      |  \\     /  \\|  \\   |  \\ /      \\ ");
-                    sb.AppendLine("| $$ / \\ | $$  ______  | $$____  | $$\\   /  $$| $$   | $$|  $$$$$$\\");
-                    sb.AppendLine("| $$/  $\\| $$ /      \\ | $$    \\ | $$$\\ /  $$$| $$   | $$| $$__| $$");
-                    sb.AppendLine("| $$  $$$\\ $$|  $$$$$$\\| $$$$$$$\\| $$$$\\  $$$$ \\$$\\ /  $$| $$    $$");
-                    sb.AppendLine("| $$ $$\\$$\\$$| $$    $$| $$  | $$| $$\\$$ $$ $$  \\$$\\  $$ | $$$$$$$$");
-                    sb.AppendLine("| $$$$  \\$$$$| $$$$$$$$| $$__/ $$| $$ \\$$$| $$   \\$$ $$  | $$  | $$");
-                    sb.AppendLine("| $$$    \\$$$ \\$$     \\| $$    $$| $$  \\$ | $$    \\$$$   | $$  | $$");
-                    sb.AppendLine(" \\$$      \\$$  \\$$$$$$$ \\$$$$$$$  \\$$      \\$$     \\$     \\$$   \\$$");
+                    sb.Add(" __       __            __        __       __  __     __   ______  ");
+                    sb.Add("|  \\  _  |  \\          |  \\      |  \\     /  \\|  \\   |  \\ /      \\ ");
+                    sb.Add("| $$ / \\ | $$  ______  | $$____  | $$\\   /  $$| $$   | $$|  $$$$$$\\");
+                    sb.Add("| $$/  $\\| $$ /      \\ | $$    \\ | $$$\\ /  $$$| $$   | $$| $$__| $$");
+                    sb.Add("| $$  $$$\\ $$|  $$$$$$\\| $$$$$$$\\| $$$$\\  $$$$ \\$$\\ /  $$| $$    $$");
+                    sb.Add("| $$ $$\\$$\\$$| $$    $$| $$  | $$| $$\\$$ $$ $$  \\$$\\  $$ | $$$$$$$$");
+                    sb.Add("| $$$$  \\$$$$| $$$$$$$$| $$__/ $$| $$ \\$$$| $$   \\$$ $$  | $$  | $$");
+                    sb.Add("| $$$    \\$$$ \\$$     \\| $$    $$| $$  \\$ | $$    \\$$$   | $$  | $$");
+                    sb.Add(" \\$$      \\$$  \\$$$$$$$ \\$$$$$$$  \\$$      \\$$     \\$     \\$$   \\$$");
                     break;
                 case 10:
-                    sb.AppendLine("$$\\      $$\\           $$\\       $$\\      $$\\ $$\\    $$\\  $$$$$$\\  ");
-                    sb.AppendLine("$$ | $\\  $$ |          $$ |      $$$\\    $$$ |$$ |   $$ |$$  __$$\\ ");
-                    sb.AppendLine("$$ |$$$\\ $$ | $$$$$$\\  $$$$$$$\\  $$$$\\  $$$$ |$$ |   $$ |$$ /  $$ |");
-                    sb.AppendLine("$$ $$ $$\\$$ |$$  __$$\\ $$  __$$\\ $$\\$$\\$$ $$ |\\$$\\  $$  |$$$$$$$$ |");
-                    sb.AppendLine("$$$$  _$$$$ |$$$$$$$$ |$$ |  $$ |$$ \\$$$  $$ | \\$$\\$$  / $$  __$$ |");
-                    sb.AppendLine("$$$  / \\$$$ |$$   ____|$$ |  $$ |$$ |\\$  /$$ |  \\$$$  /  $$ |  $$ |");
-                    sb.AppendLine("$$  /   \\$$ |\\$$$$$$$\\ $$$$$$$  |$$ | \\_/ $$ |   \\$  /   $$ |  $$ |");
-                    sb.AppendLine("\\__/     \\__| \\_______|\\_______/ \\__|     \\__|    \\_/    \\__|  \\__|");
+                    sb.Add("$$\\      $$\\           $$\\       $$\\      $$\\ $$\\    $$\\  $$$$$$\\  ");
+                    sb.Add("$$ | $\\  $$ |          $$ |      $$$\\    $$$ |$$ |   $$ |$$  __$$\\ ");
+                    sb.Add("$$ |$$$\\ $$ | $$$$$$\\  $$$$$$$\\  $$$$\\  $$$$ |$$ |   $$ |$$ /  $$ |");
+                    sb.Add("$$ $$ $$\\$$ |$$  __$$\\ $$  __$$\\ $$\\$$\\$$ $$ |\\$$\\  $$  |$$$$$$$$ |");
+                    sb.Add("$$$$  _$$$$ |$$$$$$$$ |$$ |  $$ |$$ \\$$$  $$ | \\$$\\$$  / $$  __$$ |");
+                    sb.Add("$$$  / \\$$$ |$$   ____|$$ |  $$ |$$ |\\$  /$$ |  \\$$$  /  $$ |  $$ |");
+                    sb.Add("$$  /   \\$$ |\\$$$$$$$\\ $$$$$$$  |$$ | \\_/ $$ |   \\$  /   $$ |  $$ |");
+                    sb.Add("\\__/     \\__| \\_______|\\_______/ \\__|     \\__|    \\_/    \\__|  \\__|");
                     break;
                 case 11:
-                    sb.AppendLine(" /$$      /$$           /$$       /$$      /$$ /$$    /$$  /$$$$$$ ");
-                    sb.AppendLine("| $$  /$ | $$          | $$      | $$$    /$$$| $$   | $$ /$$__  $$");
-                    sb.AppendLine("| $$ /$$$| $$  /$$$$$$ | $$$$$$$ | $$$$  /$$$$| $$   | $$| $$  \\ $$");
-                    sb.AppendLine("| $$/$$ $$ $$ /$$__  $$| $$__  $$| $$ $$/$$ $$|  $$ / $$/| $$$$$$$$");
-                    sb.AppendLine("| $$$$_  $$$$| $$$$$$$$| $$  \\ $$| $$  $$$| $$ \\  $$ $$/ | $$__  $$");
-                    sb.AppendLine("| $$$/ \\  $$$| $$_____/| $$  | $$| $$\\  $ | $$  \\  $$$/  | $$  | $$");
-                    sb.AppendLine("| $$/   \\  $$|  $$$$$$$| $$$$$$$/| $$ \\/  | $$   \\  $/   | $$  | $$");
-                    sb.AppendLine("|__/     \\__/ \\_______/|_______/ |__/     |__/    \\_/    |__/  |__/");
+                    sb.Add(" /$$      /$$           /$$       /$$      /$$ /$$    /$$  /$$$$$$ ");
+                    sb.Add("| $$  /$ | $$          | $$      | $$$    /$$$| $$   | $$ /$$__  $$");
+                    sb.Add("| $$ /$$$| $$  /$$$$$$ | $$$$$$$ | $$$$  /$$$$| $$   | $$| $$  \\ $$");
+                    sb.Add("| $$/$$ $$ $$ /$$__  $$| $$__  $$| $$ $$/$$ $$|  $$ / $$/| $$$$$$$$");
+                    sb.Add("| $$$$_  $$$$| $$$$$$$$| $$  \\ $$| $$  $$$| $$ \\  $$ $$/ | $$__  $$");
+                    sb.Add("| $$$/ \\  $$$| $$_____/| $$  | $$| $$\\  $ | $$  \\  $$$/  | $$  | $$");
+                    sb.Add("| $$/   \\  $$|  $$$$$$$| $$$$$$$/| $$ \\/  | $$   \\  $/   | $$  | $$");
+                    sb.Add("|__/     \\__/ \\_______/|_______/ |__/     |__/    \\_/    |__/  |__/");
                     break;
             }
-
-            return sb.ToString();
+            List<string> lucchetto = new List<string>();
+            lucchetto.Add("             /&%,     ,&&*            ");
+            lucchetto.Add("           /&    /////   .&.          ");
+            lucchetto.Add("          (%  ./,     */,  &.         ");
+            lucchetto.Add("          &  */         /, ,&         ");
+            lucchetto.Add("         .&  /*         ,/  &         ");
+            lucchetto.Add("         .&  /*         ,/  &.        ");
+            lucchetto.Add("         .&  /*         ,/  &         ");
+            lucchetto.Add("       ,&*.   ___________   .*&       ");
+            lucchetto.Add("       /%    *//,,/    //     %\\      ");
+            lucchetto.Add("       /%                     %\\      ");
+            lucchetto.Add("       /%  ,*  *///.   ///////%\\      ");
+            lucchetto.Add("       /%  ////    .///////// %\\      ");
+            lucchetto.Add("       /%                     %\\      ");
+            lucchetto.Add("        %&%%%%%%%%%%%%%%%%%%%&%       ");
+            int count = lucchetto.Count - sb.Count;
+            for (int i = 0; i < count; i++){
+                sb.Insert(i, lucchetto.ElementAt(i));
+            }
+            for(int i = count; i<lucchetto.Count; i++){
+                string riga = sb.ElementAt(i).Insert(0, lucchetto.ElementAt(i));
+                    sb.RemoveAt(i);
+                    sb.Insert(i, riga);
+            }
+            StringBuilder builder = new StringBuilder();
+            foreach(string s in sb){
+                builder.AppendLine(s);
+            }
+            return builder.ToString();
         }
         public static void CaricaFileConfig(IConfiguration config, string cartellaCorrente)
         {
-            if(string.IsNullOrEmpty(cartellaCorrente)) CartellaWEBMVA = Directory.GetCurrentDirectory();
+            if (string.IsNullOrEmpty(cartellaCorrente)) CartellaWEBMVA = Directory.GetCurrentDirectory();
             else CartellaWEBMVA = cartellaCorrente;
-            if(config!=null)
+            if (config != null)
             {
                 PORTA = config.GetValue<int>("Porta");
-                if (PORTA == 0) PORTA=5000;
-            
-                var tmpReportDir=config.GetValue<string>("CartellaReport");
+                if (PORTA == 0) PORTA = 5000;
+
+                var tmpReportDir = config.GetValue<string>("CartellaReport");
                 if (string.IsNullOrEmpty(tmpReportDir))
                     // Non è stato fornito un percorso, default:
-                    CARTELLAREPORT=Path.Combine(CartellaWEBMVA,"wwwroot", "Report");
+                    CARTELLAREPORT = Path.Combine(CartellaWEBMVA, "wwwroot", "Report");
                 else if (tmpReportDir.ElementAt(0).Equals(Path.DirectorySeparatorChar))
                     // il percorso fornito è assoluto, lo metto tale e quale
-                    CARTELLAREPORT=tmpReportDir;
+                    CARTELLAREPORT = tmpReportDir;
                 else
                     // il percorso lo intendo relativo alla root di WebMVA
-                    CARTELLAREPORT=Path.Combine(CartellaWEBMVA, tmpReportDir);
+                    CARTELLAREPORT = Path.Combine(CartellaWEBMVA, tmpReportDir);
 
-                var tmpLogDir=config.GetValue<string>("CartellaLog");
+                var tmpLogDir = config.GetValue<string>("CartellaLog");
                 if (string.IsNullOrEmpty(tmpLogDir))
                     // Non è stato fornito un percorso, default:
-                    CARTELLALOG=Path.Combine(CartellaWEBMVA,"wwwroot", "Log");
+                    CARTELLALOG = Path.Combine(CartellaWEBMVA, "wwwroot", "Log");
                 else if (tmpLogDir.ElementAt(0).Equals(Path.DirectorySeparatorChar))
                     // il percorso fornito è assoluto, lo metto tale e quale
-                    CARTELLALOG=tmpLogDir;
+                    CARTELLALOG = tmpLogDir;
                 else
                     // il percorso lo intendo relativo alla root di WebMVA
-                    CARTELLALOG=Path.Combine(CartellaWEBMVA, tmpLogDir);
-            
-                var tmpLog =config.GetValue<string>("Log");
-                if(!bool.TryParse(tmpLog, out LOGGING)) LOGGING=false;
+                    CARTELLALOG = Path.Combine(CartellaWEBMVA, tmpLogDir);
 
-                TIPODB=config.GetValue<string>("TipoDB");
-                if (string.IsNullOrEmpty(TIPODB)) TIPODB="sqlite";
+                var tmpLog = config.GetValue<string>("Log");
+                if (!bool.TryParse(tmpLog, out LOGGING)) LOGGING = false;
 
-                CONNECTIONSTRING=config.GetValue<string>("ConnectionString");
-                if (string.IsNullOrEmpty(CONNECTIONSTRING)) CONNECTIONSTRING="Data Source=webmva.db";    
+                TIPODB = config.GetValue<string>("TipoDB");
+                if (string.IsNullOrEmpty(TIPODB)) TIPODB = "sqlite";
+
+                CONNECTIONSTRING = config.GetValue<string>("ConnectionString");
+                if (string.IsNullOrEmpty(CONNECTIONSTRING)) CONNECTIONSTRING = "Data Source=webmva.db";
             }
             else
             {
                 // metto valori di default
-                PORTA=5000;
-                CARTELLAREPORT=Path.Combine(CartellaWEBMVA, "wwwroot", "Report");
-                CARTELLALOG=Path.Combine(CartellaWEBMVA, "wwwroot", "Log");
-                LOGGING=false;
-                TIPODB="sqlite";
-                CONNECTIONSTRING="Data Source=webmva.db";
+                PORTA = 5000;
+                CARTELLAREPORT = Path.Combine(CartellaWEBMVA, "wwwroot", "Report");
+                CARTELLALOG = Path.Combine(CartellaWEBMVA, "wwwroot", "Log");
+                LOGGING = false;
+                TIPODB = "sqlite";
+                CONNECTIONSTRING = "Data Source=webmva.db";
             }
             CreaCartellaLog();
             CreaCartellaReport();
@@ -211,11 +239,11 @@ namespace webmva
             // mi assicuro che la cartella log esista, altrimenti la creo
             if (!Directory.Exists(CARTELLALOG))
                 Directory.CreateDirectory(CARTELLALOG);
-            if(LOGGING)
+            if (LOGGING)
             { // creo un file vuoto chiamato TIMESTAMP_webmva.log
                 string nomeFile = Path.Combine(CARTELLALOG, $"{DateTime.Now.ToString("yyyyMMdd_HHmmss")}_webmva.log");
                 File.Create(nomeFile).Dispose();
-                LOGFILE=nomeFile;
+                LOGFILE = nomeFile;
             }
         }
         internal static void CreaCartellaReport()
@@ -284,16 +312,18 @@ namespace webmva
             if (string.IsNullOrEmpty(percorsoXMLAssoluto)) return string.Empty;
             string percorsoXMLEscape = "";
             string percorsoPDFEscape = "";
-            if(percorsoXMLAssoluto.Contains(' ')){
+            if (percorsoXMLAssoluto.Contains(' '))
+            {
                 string[] pezzi = percorsoXMLAssoluto.Split(' ');
                 char spazio = ' ';
                 char bs = Char.ConvertFromUtf32(92).ToCharArray()[0];
                 string repl = bs.ToString() + spazio.ToString();
-                for (int j = 0; j<pezzi.Length-1; j++){
+                for (int j = 0; j < pezzi.Length - 1; j++)
+                {
                     percorsoXMLEscape += String.Concat(pezzi[j], bs);
                     percorsoXMLEscape = String.Concat(percorsoXMLEscape, spazio);
                 }
-                percorsoXMLEscape += pezzi[pezzi.Length-1];
+                percorsoXMLEscape += pezzi[pezzi.Length - 1];
                 //Console.WriteLine(percorsoXMLEscape);
             }
             percorsoPDFEscape = percorsoXMLEscape.Replace(".xml", ".pdf");
@@ -337,7 +367,7 @@ namespace webmva
             string[] pezzi = Path.GetFileName(percorsoTXTAssoluto).Split('_');
             string data = DateTime.ParseExact(pezzi[0] + pezzi[1], "yyyyMMddHHmmss",
                                        System.Globalization.CultureInfo.InvariantCulture).ToString("dd MMMM yyyy HH:mm:ss");
-            
+
             string percorsoPdf = percorsoTXTAssoluto.Substring(0, percorsoTXTAssoluto.LastIndexOf('.')) + ".pdf";
             string comando = "wkhtmltopdf " + percorsoTXTAssoluto + " " + percorsoPdf;
             comando.EseguiCLI(Globals.CartellaWEBMVA);
@@ -399,9 +429,9 @@ namespace webmva
             List<string> content = System.IO.File.ReadLines(Path.Combine("wwwroot", "Report", percorso)).ToList();
             var progetto = percorso.Split(Path.DirectorySeparatorChar).ElementAt(0);
             Progetto p = context.Progetti
-                .Include(x=>x.ModuliProgetto)
-                    .ThenInclude(m=>m.Modulo)
-                .SingleOrDefault(s=>s.Nome == progetto);
+                .Include(x => x.ModuliProgetto)
+                    .ThenInclude(m => m.Modulo)
+                .SingleOrDefault(s => s.Nome == progetto);
             var filename = Path.GetFileName(percorso).Split('_');
             var nomeModulo = filename[3].Substring(0, filename[3].LastIndexOf('.'));
             var data = DateTime
@@ -409,7 +439,7 @@ namespace webmva
                     "yyyyMMddHHmmss",
                     System.Globalization.CultureInfo.InvariantCulture)
                 .ToString("dd MMMM yyyy alle HH:mm:ss");
-            var associazione = p.ModuliProgetto.SingleOrDefault(x=>x.Modulo.Nome.ToCamelCase() == nomeModulo && x.Modulo.Applicazione.ToString().ToLower() == filename[2]);
+            var associazione = p.ModuliProgetto.SingleOrDefault(x => x.Modulo.Nome.ToCamelCase() == nomeModulo && x.Modulo.Applicazione.ToString().ToLower() == filename[2]);
             var comando = associazione.Modulo.Comando;
             var target = associazione.Target;
             List<string> intestazione = new List<string>();
@@ -536,7 +566,7 @@ namespace webmva
                     intestazione.Add(@"         | |    | |  __/ | | (_|  __/");
                     intestazione.Add(@"         |_|    |_|\___|_|  \___\___|");
                 }
-                else if(filename[2].Equals("amass"))
+                else if (filename[2].Equals("amass"))
                 {
                     intestazione.Add(@"     /\                            
     /  \   _ __ ___   __ _ ___ ___ 
@@ -545,7 +575,7 @@ namespace webmva
  /_/    \_\_| |_| |_|\__,_|___/___/");
 
                 }
-                else if(filename[2].Equals("drupwn"))
+                else if (filename[2].Equals("drupwn"))
                 {
                     intestazione.Add(@"  _____             _______          ___   _ 
  |  __ \           |  __ \ \        / / \ | |
@@ -576,28 +606,32 @@ namespace webmva
             else if (Path.GetExtension(percorso).Equals(".xml"))
             {
                 int riga = 0;
-                if(filename[2].Equals("nmap")){
+                if (filename[2].Equals("nmap"))
+                {
                     riga = content.IndexOf("</nmaprun>");
                 }
-                else if(filename[2].Equals("dnsrecon")){
+                else if (filename[2].Equals("dnsrecon"))
+                {
                     riga = content.IndexOf("</records>");
                 }
-                else if(filename[2].Equals("dnsenum")){
-                    int r = content.FindIndex(x=>x.Contains("</testdata>"));
-                    if(r == 1){
-                        int index = content.ElementAt(r).Substring(0,content.ElementAt(r).LastIndexOf("/")).LastIndexOf("/")-1;
+                else if (filename[2].Equals("dnsenum"))
+                {
+                    int r = content.FindIndex(x => x.Contains("</testdata>"));
+                    if (r == 1)
+                    {
+                        int index = content.ElementAt(r).Substring(0, content.ElementAt(r).LastIndexOf("/")).LastIndexOf("/") - 1;
                         int lunghezza = content.ElementAt(r).Length;
-                        string pezzoDaMettereInNuovaRiga = content.ElementAt(r).Substring(index, lunghezza-index);
+                        string pezzoDaMettereInNuovaRiga = content.ElementAt(r).Substring(index, lunghezza - index);
                         string rigaNuova = content.ElementAt(r).Substring(0, index);
                         content.RemoveAt(r);
                         content.Add(rigaNuova);
                         content.Add("");
                         content.Add("");
                         content.Add(pezzoDaMettereInNuovaRiga);
-                        riga = r +1;
+                        riga = r + 1;
                     }
                     else riga = r;
-                    
+
                 }
                 content.Insert(riga, $@"<webmva>
                 <scaninfo>
@@ -609,10 +643,12 @@ namespace webmva
                 </scaninfo>
                 </webmva>");
             }
-            else if(Path.GetExtension(percorso).Equals(".html")){
-                if(filename[2].Equals("theharvester")){
-                    int r = content.FindIndex(x=>x.Contains("<body>"));
-                        string appoggio = $@"<body>
+            else if (Path.GetExtension(percorso).Equals(".html"))
+            {
+                if (filename[2].Equals("theharvester"))
+                {
+                    int r = content.FindIndex(x => x.Contains("<body>"));
+                    string appoggio = $@"<body>
                         <br />
                         <h3>Progetto: {progetto}<br />
                         Modulo: {nomeModulo}<br />
@@ -620,10 +656,10 @@ namespace webmva
                         Target: {target}<br />
                         Data: {data}</h3>
                         <h1>";
-                        string rigaNuova = content.ElementAt(r).Replace("<body><h1>",appoggio);
-                        
-                        content.RemoveAt(r);
-                        content.Add(rigaNuova);
+                    string rigaNuova = content.ElementAt(r).Replace("<body><h1>", appoggio);
+
+                    content.RemoveAt(r);
+                    content.Add(rigaNuova);
                 }
             }
             System.IO.File.WriteAllLines(Path.Combine("wwwroot", "Report", percorso), content);
