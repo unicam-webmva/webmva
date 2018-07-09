@@ -14,10 +14,12 @@ namespace webmva.Controllers
     {
         public IActionResult Index()
         {
+            string titolo = Globals.GetScrittaWebMVA();
             string checkDipendenze = Path.Combine(Globals.CartellaWEBMVA, "Script", "testDipendenzeBase.sh");
             
             string[] dips = checkDipendenze.EseguiCLI(Globals.CartellaWEBMVA, false).Split(' ');
             ViewData["Dipendenze"] = dips;
+            ViewData["titolo"] = titolo;
             MyLogger.Log(messaggio: "Richiesta GET", controller: "HomeController", metodo: "Index");
             return View();
         }
