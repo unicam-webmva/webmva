@@ -1,66 +1,58 @@
-@model webmva.Models.Report 
-@{ ViewData["Title"] = "Elimina Report"; 
+@model webmva.Models.Report
+@{ ViewData["Title"] = "Elimina Report";
 }
 <br>
-  <div class="container">
-<h2><em>Sei sicuro di voler cancellare il report?</em></h2>
-<hr />
-<div class="col-md-12">
-    <form asp-action="Delete">
-       <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-        <input type="hidden" asp-for="ID" />
-        <div class="row panel panel-default panel-body">
-                 <!--<div class="form-group">-->
-                    <div class="col-md-12">
-                        <!--vedere l'elenco puntato-->
-                        <dl class="dl-horizontal">
-                            <div class="col-sm-9">
-                                            <div class="form-group row">
-                                                <h4 >ID Report</h4><hr />
-                                                <h4><strong>@Html.DisplayFor(model => model.ID)</strong></h4>
-                                            
-
+<div class="container">
+    <h2><em>Sei sicuro di voler cancellare il report?</em></h2>
+    <hr />
+    <div class="col-md-12">
+        <form asp-action="Delete">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="ID" />
+            <div class="row panel panel-default panel-body">
+                <!--<div class="form-group">-->
+                <div class="col-md-12">
+                    <!--vedere l'elenco puntato-->
+                    <dl class="dl-horizontal">
+                        <div class="col-sm-9">
+                            <div class="form-group row">
+                                <h4>ID Report</h4><hr />
+                                <h4><strong>@Html.DisplayFor(model => model.ID)</strong></h4>
                             </div>
-                            </div>
-                            
-                        </dl>
+                        </div>
+                    </dl>
                     <!--</div>-->
                     <table class="table">
-                <div class="method">
-                   <thead>
-                        <tr>
-                          
-                            <th>
-                                Percorso
-                            </th>
-                        </tr>
-                    </thead>
+                        <div class="method">
+                            <thead>
+                                <tr>
+                                    <th>
+                                        Percorso
+                                    </th>
+                                </tr>
+                            </thead>
+                        </div>
+                        <tbody>
+                            @for (int i = 0; i < @Model.Percorsi.Count(); i++)
+                            {
+                                <tr>
+                                    <td>
+                                        @Html.Raw("Report/" + @Model.Percorsi.ElementAt(i).Percorso)
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
                 </div>
-                <tbody>
-            
-                @for(int i=0;i < @Model.Percorsi.Count(); i++)
-                {
-                    <tr>
-                        <td>
-                            @Html.Raw("Report/" + @Model.Percorsi.ElementAt(i).Percorso)
-                        </td>
-                    </tr>
-                }
-            
-            </tbody>
-        </table>
-
-                </div>
-                 <div class="col-xs-6 col-sm-offset-6 text-right">
-                     <br>
+                <div class="col-xs-6 col-sm-offset-6 text-right">
+                    <br>
                     <div class="form-group">
                         <input type="submit" asp-action="Delete" asp-route-cancellaFile="false" class="btn btn-info" value="Elimina Report" />&nbsp; |
-                    
-                <input type="submit" asp-action="Delete" asp-route-cancellaFile="true" class="btn btn-info" value="Elimina Report e files" />&nbsp; | 
+                        <input type="submit" asp-action="Delete" asp-route-cancellaFile="true" class="btn btn-info" value="Elimina Report e files" />&nbsp; |
                         <a asp-action="Index">  Torna alla lista</a>
                     </div>
                 </div>
             </div>
-            </form>
-        </div>   
+        </form>
+    </div>
 </div>

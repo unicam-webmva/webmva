@@ -1,7 +1,5 @@
 @model IEnumerable<webmva.Models.Progetto>
-
 @{ ViewData["Title"] = "Resoconto Progetti"; }
-
 <div class="container">
     <div class="row">
         <h2><em>Resoconto Progetti</em></h2>
@@ -28,19 +26,21 @@
                     @foreach (var item in Model)
                     {
                         <tr>
-                        <td></td>
+                            <td></td>
                             <td>
                                 <a href="/Progetto/Details/@item.ID">@Html.DisplayFor(modelItem => item.Nome)</a>
                             </td>
                             <td>
-                                @if(@item.ListaReport.Count != 0){
-                                            @Html.Raw("<a href=\"/Report/Lista/"+@item.ID+"\" >Lista report</a> <span class=\"glyphicon glyphicon-ok-sign\" style=\"color:green\"></span> | ")
-                                            @Html.Raw("<a href=\"/Report/Tutti/"+@item.ID+"\" >Visualizza tutti i report</a> <span class=\"glyphicon glyphicon-folder-open\" style=\"color:green\"></span>")
-                                        }
-                                        else {
-                                            @Html.Raw("Lista report <span class=\"glyphicon glyphicon-remove-sign\" style=\"color:red\" ></span> | ")
-                                            @Html.Raw("Visualizza tutti i report <span class=\"glyphicon glyphicon-folder-open\" style=\"color:red\" ></span>")
-                                        }
+                                @if (@item.ListaReport.Count != 0)
+                                {
+                                    @Html.Raw("<a href=\"/Report/Lista/" + @item.ID + "\" >Lista report</a> <span class=\"glyphicon glyphicon-ok-sign\" style=\"color:green\"></span> | ")
+                                    @Html.Raw("<a href=\"/Report/Tutti/" + @item.ID + "\" >Visualizza tutti i report</a> <span class=\"glyphicon glyphicon-folder-open\" style=\"color:green\"></span>")
+                                }
+                                else
+                                {
+                                    @Html.Raw("Lista report <span class=\"glyphicon glyphicon-remove-sign\" style=\"color:red\" ></span> | ")
+                                    @Html.Raw("Visualizza tutti i report <span class=\"glyphicon glyphicon-folder-open\" style=\"color:red\" ></span>")
+                                }
                             </td>
                         </tr>
                     }

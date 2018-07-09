@@ -1,161 +1,139 @@
-﻿@{ ViewData["Title"] = "Home"; 
-string titolo = (string) ViewData["titolo"];}
+﻿@{ ViewData["Title"] = "Home";
+    string titolo = (string)ViewData["titolo"];}
 @model webmva.Models.Progetto
 <div class="container">
     <pre style="background-color:transparent; border: 0px solid black; margin-top:2em; color:navy">@titolo </pre>
     <h3 style="color:navy">
-      Collaborative Application for Vulnerability Assessment Analysis 
+        Collaborative Application for Vulnerability Assessment Analysis
     </h3>
     <hr />
-      <div class="row">
-          
-              <!-- uncomment code for absolute positioning tweek see top comment in css
+    <div class="row">
+        <!-- uncomment code for absolute positioning tweek see top comment in css
         <div class="absolute-wrapper"> </div>-->
-              <!-- Menu -->
-              <br>
-              <div class="col-sm-3">
-                  <!--<div class="sidebar" aria-expanded="false">-->
-                  <nav class="navbar navbar-default" role="navigation">
-                      <!-- Main Menu -->
-                      <!--<div class="side-menu-container">-->
-                      <ul class="form-group nav" style="list-style-type:none">
-
-                          <!-- Dropdown-->
-                          <li class=" panel-default" id="dropdown">
-                              <a data-toggle="collapse" href="#dropdown-lvl1">
-                                  <span class="glyphicon glyphicon-barcode"></span>
-                                  <strong> PROGETTO</strong>
-                                  <span class="caret"></span>
-                              </a>
-
-                              <!-- Dropdown level 1 -->
-                              <div id="dropdown-lvl1" class="panel-collapse collapse">
-                                  <div class="panel-body">
-                                      <ul class="panel-default">
-                                          <li>
-                                              <a href="/Progetto/Create">nuovo progetto </a>
-
-                                          </li>
-                                          <li>
-                                              <a href="/Progetto">visualizza progetti</a>
-                                          </li>
-
-
-                                      </ul>
-
-                                  </div>
-                              </div>
-                          </li>
-                          <li class="panel-default" id="dropdown">
-                              <a data-toggle="collapse" href="#dropdown-lvl2">
-                                  <span class="glyphicon glyphicon-barcode"></span>
-                                  <strong> MODULO</strong>
-                                  <span class="caret"></span>
-                              </a>
-
-                              <!-- Dropdown level 1 -->
-                              <div id="dropdown-lvl2" class="panel-collapse collapse">
-                                  <div class="panel-body">
-                                      <ul class="panel-default">
-                                          
-                                          <li>
-                                              <a href="/Modulo/Create">nuovo modulo</a>
-                                          </li>
-                                          <li>
-                                              <a href="/Modulo">visualizza modulo</a>
-                                          </li>
-
-                                          <!-- Dropdown level 2 -->
-
-                                      </ul>
-                                  </div>
-                              </div>
-                          </li>
-                          <li class=" panel-collapse" id="dropdown">
-                              <a data-toggle="collapse" href="#dropdown-lvl3">
-                                  <span class="glyphicon glyphicon-barcode"></span>
-                                  <strong> REPORT </strong>
-                                  <span class="caret"></span>
-                              </a>
-
-                              <!-- Dropdown level 1 -->
-                              <div id="dropdown-lvl3" class="panel-collapse collapse">
-                                  <div class="panel-body">
-                                      <ul class="panel-default">
-                                          <li>
-                                              <a href="/Report">visualizza report</a>
-                                          </li>
-                                      </ul>
-                                  </div>
-                              </div>
-                          </li>
-
-                      </ul>
-                      <!--</div>-->
-                      <!-- /.navbar-collapse -->
-                  </nav>
-
-                  <!--</div>-->
-              </div>
-
-          <div class="col-sm-9 ">
-                    <!--<p class="lead"><strong>
-                          Cos'è WEBMVA?
-                      </strong></p><hr/>
-                 
-                  <div class="panel-body">
-
-                    Webmva si propone di rendere il processo di pentesting il più semplice possibile e creare report di ricerca di facile comprensione e utilizzabili dal cliente finale. 
-                    Il sistema esegue la scansione e rileva le vulnerabilità di rete prima che siano esposte, riducendo il tempo necessario per applicare le patch sul sistema del cliente.
-                    I dati immessi nel sistema mantengono una forma ben strutturata e organizzata per facilitare le eventuali ricerche nello storico di ciascun cliente. 
-                  </div>-->
-             
-                  
-                         <h2 style="color:navy">Verifica dei servizi</h2> 
-                         <hr/>
-                
-                  <div class="panel-body">
-                    <strong>WebMVA</strong> dipende da alcuni pacchetti che devono essere installati, ovvero:
-                    <ul>
-                        <li>nmap</li>
-                        <li>ruby</li>
-                        <li>perl</li>
-                        <li>Apache fop</li>
-                        <li>wkhtmltopdf</li>
-                        <li>Python 2 e 3 più pip per entrambi</li>
-                        <li>timedatectl (per sincronizzazione tempo con NTP)</li>
-                        <li>dotnet (se questo sito sta partendo è difficile non averlo! =)</li>
-                        <li>aircrack-ng, cowpatty, bully, reaver, pyrit, tshark per Wifite2</li>
-                    </ul>
-                    Inoltre, per installare ODAT e WPScan è necessario effettuare alcuni passaggi aggiuntivi.
-
-                    @{
-                        string[] dips = ViewBag.Dipendenze;
-                        @if(dips.Length == 0 || dips[0].Equals(Environment.NewLine) || dips[0].Equals(string.Empty))
-                        {
-                            @Html.Raw("<p style=\"color:red\"><strong>In questo sistema sono tutti installati!</strong></p>")
-                        }
-                        else
-                        {
-                            @Html.Raw("<p style=\"color:red\"><strong>E' necessario installare: ")
-                            @foreach(string itm in dips)
-                            {
-                                    @(itm + " ")
-                            }
-                            @Html.Raw("</strong></p>")
-                            <form asp-action="Installa"><hr/>
-                            <div class="col-sm-6 col-sm-offset-6 text-right">
-                                            <div class="form-group">
-                                                <input type="submit" asp-action="Installa" class="btn btn-default" value="Installa dipendenze" />
-                                            </div>
-                                        </div>
-                                        </form>
-                        }
+        <!-- Menu -->
+        <br>
+        <div class="col-sm-3">
+            <!--<div class="sidebar" aria-expanded="false">-->
+            <nav class="navbar navbar-default" role="navigation">
+                <!-- Main Menu -->
+                <!--<div class="side-menu-container">-->
+                <ul class="form-group nav" style="list-style-type:none">
+                    <!-- Dropdown-->
+                    <li class=" panel-default" id="dropdown">
+                        <a data-toggle="collapse" href="#dropdown-lvl1">
+                            <span class="glyphicon glyphicon-barcode"></span>
+                            <strong> PROGETTO</strong>
+                            <span class="caret"></span>
+                        </a>
+                        <!-- Dropdown level 1 -->
+                        <div id="dropdown-lvl1" class="panel-collapse collapse">
+                            <div class="panel-body">
+                                <ul class="panel-default">
+                                    <li>
+                                        <a href="/Progetto/Create">nuovo progetto </a>
+                                    </li>
+                                    <li>
+                                        <a href="/Progetto">visualizza progetti</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="panel-default" id="dropdown">
+                        <a data-toggle="collapse" href="#dropdown-lvl2">
+                            <span class="glyphicon glyphicon-barcode"></span>
+                            <strong> MODULO</strong>
+                            <span class="caret"></span>
+                        </a>
+                        <!-- Dropdown level 1 -->
+                        <div id="dropdown-lvl2" class="panel-collapse collapse">
+                            <div class="panel-body">
+                                <ul class="panel-default">
+                                    <li>
+                                        <a href="/Modulo/Create">nuovo modulo</a>
+                                    </li>
+                                    <li>
+                                        <a href="/Modulo">visualizza modulo</a>
+                                    </li>
+                                    <!-- Dropdown level 2 -->
+                                </ul>
+                            </div>
+                        </div>
+                    </li>
+                    <li class=" panel-collapse" id="dropdown">
+                        <a data-toggle="collapse" href="#dropdown-lvl3">
+                            <span class="glyphicon glyphicon-barcode"></span>
+                            <strong> REPORT </strong>
+                            <span class="caret"></span>
+                        </a>
+                        <!-- Dropdown level 1 -->
+                        <div id="dropdown-lvl3" class="panel-collapse collapse">
+                            <div class="panel-body">
+                                <ul class="panel-default">
+                                    <li>
+                                        <a href="/Report">visualizza report</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+                <!--</div>-->
+                <!-- /.navbar-collapse -->
+            </nav>
+            <!--</div>-->
+        </div>
+        <div class="col-sm-9 ">
+            <!--<p class="lead"><strong>
+                    Cos'è WEBMVA?
+                </strong></p><hr/>
+            <div class="panel-body">
+              Webmva si propone di rendere il processo di pentesting il più semplice possibile e creare report di ricerca di facile comprensione e utilizzabili dal cliente finale.
+              Il sistema esegue la scansione e rileva le vulnerabilità di rete prima che siano esposte, riducendo il tempo necessario per applicare le patch sul sistema del cliente.
+              I dati immessi nel sistema mantengono una forma ben strutturata e organizzata per facilitare le eventuali ricerche nello storico di ciascun cliente.
+            </div>-->
+            <h2 style="color:navy">Verifica dei servizi</h2>
+            <hr />
+            <div class="panel-body">
+                <strong>WebMVA</strong> dipende da alcuni pacchetti che devono essere installati, ovvero:
+                <ul>
+                    <li>nmap</li>
+                    <li>ruby</li>
+                    <li>perl</li>
+                    <li>Apache fop</li>
+                    <li>wkhtmltopdf</li>
+                    <li>Python 2 e 3 più pip per entrambi</li>
+                    <li>timedatectl (per sincronizzazione tempo con NTP)</li>
+                    <li>dotnet (se questo sito sta partendo è difficile non averlo! =)</li>
+                    <li>aircrack-ng, cowpatty, bully, reaver, pyrit, tshark per Wifite2</li>
+                </ul>
+                Inoltre, per installare ODAT e WPScan è necessario effettuare alcuni passaggi aggiuntivi.
+                @{
+                    string[] dips = ViewBag.Dipendenze;
+                    @if (dips.Length == 0 || dips[0].Equals(Environment.NewLine) || dips[0].Equals(string.Empty))
+                    {
+                        @Html.Raw("<p style=\"color:red\"><strong>In questo sistema sono tutti installati!</strong></p>")
                     }
-                  </div>
-             
-          </div>
-          <!--</div>-->
-      </div>
-      </div>
-
+                    else
+                    {
+                        @Html.Raw("<p style=\"color:red\"><strong>E' necessario installare: ")
+                        @foreach (string itm in dips)
+                        {
+                            @(itm + " ")
+                        }
+                        @Html.Raw("</strong></p>")
+                        <form asp-action="Installa">
+                            <hr />
+                            <div class="col-sm-6 col-sm-offset-6 text-right">
+                                <div class="form-group">
+                                    <input type="submit" asp-action="Installa" class="btn btn-default" value="Installa dipendenze" />
+                                </div>
+                            </div>
+                        </form>
+                    }
+                }
+            </div>
+        </div>
+        <!--</div>-->
+    </div>
+</div>

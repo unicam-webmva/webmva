@@ -1,7 +1,6 @@
 @model webmva.ViewModels.ModuliInseriti;
- @{ ViewData["Title"] = "Edit"; 
- 
- }
+@{ ViewData["Title"] = "Edit";
+}
 <div class="container">
     <h2><em>Modifica Progetto</em><strong> @Model.Progetto.Nome</strong></h2>
     <hr />
@@ -9,1401 +8,1338 @@
         List<string> ListaModuliSenzaTarget = ViewBag.ListaSenzaTarget;
         List<string> ListaModuliSenzaInserito = ViewBag.ListaSenzaInserito;
         string messaggio = ViewBag.ProgettoSenzaModuli;
-        if(ListaModuliSenzaTarget!= null && ListaModuliSenzaTarget.Count!=0){
+        if (ListaModuliSenzaTarget != null && ListaModuliSenzaTarget.Count != 0)
+        {
             @Html.Raw("<h3 style=\"color:red\"><em>Inserire il target in:</em> <strong>" + ListaModuliSenzaTarget[0]);
-            for(int i=1; i<ListaModuliSenzaTarget.Count; i++){
+            for (int i = 1; i < ListaModuliSenzaTarget.Count; i++)
+            {
                 @Html.Raw(", " + ListaModuliSenzaTarget[i]);
             }
             @Html.Raw("</strong></h3>");
         }
-        if(ListaModuliSenzaInserito!= null && ListaModuliSenzaInserito.Count!=0){
+        if (ListaModuliSenzaInserito != null && ListaModuliSenzaInserito.Count != 0)
+        {
             @Html.Raw("<h3 style=\"color:red\"><em>Inserire il check in:</em> <strong>" + ListaModuliSenzaInserito[0]);
-            for(int i=1; i<ListaModuliSenzaInserito.Count; i++){
+            for (int i = 1; i < ListaModuliSenzaInserito.Count; i++)
+            {
                 @Html.Raw(", " + ListaModuliSenzaInserito[i]);
             }
             @Html.Raw("</strong></h3>");
         }
-        if(!string.IsNullOrEmpty(messaggio)){
-            @Html.Raw("<h3 style=\"color:red\"><em>"+messaggio+"</em></h3>");
+        if (!string.IsNullOrEmpty(messaggio))
+        {
+            @Html.Raw("<h3 style=\"color:red\"><em>" + messaggio + "</em></h3>");
         }
     }
-            @{List<webmva.ViewModels.ModuliInProgetto> listaModuli = Model.ListaModuliConTarget;
-           
-            <form asp-action="Edit" name="modificaProgetto">
-           <!-- <div asp-validation-summary="ModelOnly" class="text-danger"></div>--> 
+    @{List<webmva.ViewModels.ModuliInProgetto> listaModuli = Model.ListaModuliConTarget;
+        <form asp-action="Edit" name="modificaProgetto">
+            <!-- <div asp-validation-summary="ModelOnly" class="text-danger"></div>-->
             <input type="hidden" asp-for="@Model.Progetto.ID" />
-             <div class="row panel panel-default panel-body">
-             <div class="col-sm-12">
-             <br>
-            <div class="col-sm-7" style="margin:0 auto; float:none">
+            <div class="row panel panel-default panel-body">
+                <div class="col-sm-12">
+                    <br>
+                    <div class="col-sm-7" style="margin:0 auto; float:none">
                         <div class="form-group">
-                            <h4 asp-for="@Model.Progetto.Nome">Nome Progetto  </h4><hr/>
+                            <h4 asp-for="@Model.Progetto.Nome">Nome Progetto  </h4><hr />
                             <input class="form-control" asp-for="@Model.Progetto.Nome" />
                         </div>
-            </div>
-                  <br>
-                  <h4><strong>Scegli il modulo</strong> | Per creare un nuovo modulo <a href="/Modulo/Create">clicca qui</a>!</h4><hr/>
-                 
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                     <a href="#network" data-toggle="collapse">
-                    <strong>
-                        NETWORK
-                    </strong>
-
-                </a></div>
-                <div class="col-5">
-                <div class="panel panel-sidebar">
-                    <div class="panel-heading">
-					<a data-toggle="collapse" href="#Nmap"><strong>NMAP</strong>
-                     <span class="caret"></span></a><br>
                     </div>
-                    <div class="collapse" id="Nmap">
-                     <div class="panel-body ">
-                                    <div class="col-sm-12">
-                                     <h4>Seleziona i moduli NMAP</h4><hr/>
-                                    </div>
-                            <table class="table">
-                                <div class="method">
-                               
-                                    <thead>
-                                        <tr>
-                                            <th></th>
-                                             <th>
-                                        Nome
-                                            </th>
-                                            <th>
-                                        Comando
-                                            </th>
-                                            <th>
-                                        Target
-                                            </th>
-
-                                        </tr>
-                                    </thead>
-                                </div>
-                                
-                                <tbody>
-                                    
-                                    @for (int i=0; i<Model.ListaModuliConTarget.Count; i++) {
-                                       
-                                        
-                                            if(Model.ListaModuliConTarget[i].Applicazione!= webmva.Models.APPLICAZIONE.NMAP){continue;}
-                                             <tr>
-                                                <td>
-                                                    @Html.CheckBoxFor(model => model.ListaModuliConTarget[i].Inserito)
-                                                        
-                                                </td>
-                                        <td>
-                                            @Html.DisplayFor(model => model.ListaModuliConTarget[i].Nome)
-                                                </td>
-                                                <td>
-                                                    @Html.DisplayFor(model => model.ListaModuliConTarget[i].Comando)
-                                                </td>
-                                                <td>
-                                                    @Html.TextBoxFor(model => model.ListaModuliConTarget[i].Target, new {placeholder="es: 90.147.42.2", @class="col-md-10"})
-                                                    @Html.HiddenFor(model => model.ListaModuliConTarget[i].ModuloID)
-                                                    @Html.HiddenFor(model => model.ListaModuliConTarget[i].Applicazione)
-                                                </td>
-                                            </tr>       
-                                    }
-                                </tbody>
-                            </table>
-
-                        </div>
-                        </div>
-                      </div>
-                      
-    
-					<div class="panel panel-sidebar">
-                    <div class="panel-heading">
-					<a  data-toggle="collapse" href="#Nessus"><strong>NESSUS</strong>
-                    <span class="caret"></span></a><br>
-                    </div>
-                    <div class="collapse" id="Nessus">
-                     <div class="panel-body ">
-                                    <div class="col-sm-12">
-                                     <h4>Seleziona i moduli NESSUS</h4><hr/>
-                                    </div>
-                            <table class="table">
-                                <div class="method">
-                                    <thead>
-                                        <tr>
-                                        <th></th>
-                                             <th>
-                                        Nome
-                                            </th>
-                                            <th>
-                                        Comando
-                                            </th>
-                                            <th>Target</th>
-                                        </tr>
-                                    </thead>
-                                </div>
-                                <tbody>
-                                    @for (int i=0; i<Model.ListaModuliConTarget.Count; i++) { 
-                                            if(Model.ListaModuliConTarget[i].Applicazione!= webmva.Models.APPLICAZIONE.NESSUS){continue;}
-                                             
-                                        <tr>
-                                                <td>
-                                                    @Html.CheckBoxFor(model => model.ListaModuliConTarget[i].Inserito)
-                                                        
-                                                </td>
-                                        <td>
-                                            @Html.DisplayFor(model => model.ListaModuliConTarget[i].Nome)
-                                                </td>
-                                                <td>
-                                                    @Html.DisplayFor(model => model.ListaModuliConTarget[i].Comando)
-                                                </td>
-                                                <td>
-                                                    @Html.TextBoxFor(model => model.ListaModuliConTarget[i].Target, new {placeholder="Per i moduli NESSUS non è necessario", @class="col-md-10", disabled="true"})
-                                                    @Html.HiddenFor(model => model.ListaModuliConTarget[i].ModuloID)
-                                                    @Html.HiddenFor(model => model.ListaModuliConTarget[i].Applicazione)
-                                                </td>
-                                            </tr>
-                                    }
-                                </tbody>
-                            </table>
-
-                        </div>
-                        </div>
-                      </div>
-                     
-                     <div class="panel panel-sidebar">
-                    <div class="panel-heading">
-					<a data-toggle="collapse" href="#OpenVAS"><strong>OPENVAS</strong>
-                    <span class="caret"></span></a><br>
-                    </div>
-                    <div class="collapse" id="OpenVAS">
-                     <div class="panel-body ">
-                                    <div class="col-sm-12">
-                                     <h4>Seleziona i moduli OpenVAS</h4><hr/>
-                                    </div>
-                            <table class="table">
-                                <div class="method">
-                                    <thead>
-                                        <tr>
-                                        <th></th>
-                                             <th>
-                                        Nome
-                                            </th>
-                                            <th>
-                                        Comando
-                                            </th>
-                                            <th>Target</th>
-                                        </tr>
-                                    </thead>
-                                </div>
-                                <tbody>
-                                    @for (int i=0; i<Model.ListaModuliConTarget.Count; i++) {
-                                        
-                                       
-                                            if(Model.ListaModuliConTarget[i].Applicazione!= webmva.Models.APPLICAZIONE.OPENVAS){continue;}
-                                             <tr>
-                                                <td>
-                                                    @Html.CheckBoxFor(model => model.ListaModuliConTarget[i].Inserito)
-                                                        
-                                                </td>
-                                        <td>
-                                            @Html.DisplayFor(model => model.ListaModuliConTarget[i].Nome)
-                                                </td>
-                                                <td>
-                                                    @Html.DisplayFor(model => model.ListaModuliConTarget[i].Comando)
-                                                </td>
-                                                <td>
-                                                    @Html.TextBoxFor(model => model.ListaModuliConTarget[i].Target, new {placeholder="Per i moduli OPENVAS non è necessario", @class="col-md-10", disabled="true"})
-                                                    @Html.HiddenFor(model => model.ListaModuliConTarget[i].ModuloID)
-                                                    @Html.HiddenFor(model => model.ListaModuliConTarget[i].Applicazione)
-                                                </td>
-                                            </tr>  
-                                    }
-                                </tbody>
-                            </table>
-
-                        </div>
-                        </div>
-                      </div>
-                      </div>
-                      </div>
-                     
-                     <div class="panel panel-default">
-                    <div class="panel-heading">
-                    <a href="#web" data-toggle="collapse">
-                    <strong>
-                        WEB
-                    </strong>
-
-                </a>
-            </div>
-             <div class="panel panel-sidebar">
-                    <div class="panel-heading">
-					<a  data-toggle="collapse" href="#WAPITI"><strong>WAPITI</strong>
-                      <span class="caret"></span></a><br>
-                    </div>
-                    <div class="collapse" id="WAPITI">
-                     <div class="panel-body ">                
-                                    <div class="col-sm-12">
-                                     <h4>Seleziona i moduli WAPITI</h4><hr/>
-                                    </div>
-                            <table class="table">
-                                <div class="method">
-                                    <thead>
-                                        <tr>
-                                            <th></th>
-                                             <th>
-                                        Nome
-                                            </th>
-                                            <th>
-                                        Comando
-                                            </th>
-                                            <th>Target</th>
-                                        </tr>
-                                    </thead>
-                                </div>
-                                <tbody>
-                                    @for (int i=0; i<Model.ListaModuliConTarget.Count; i++) {
-            
-                                        
-                                            if(Model.ListaModuliConTarget[i].Applicazione!= webmva.Models.APPLICAZIONE.WAPITI){continue;}
-                                             <tr>
-                                                <td>
-                                                    @Html.CheckBoxFor(model => model.ListaModuliConTarget[i].Inserito)
-                                                        
-                                                </td>
-                                        <td>
-                                            @Html.DisplayFor(model => model.ListaModuliConTarget[i].Nome)
-                                                </td>
-                                                <td>
-                                                    @Html.DisplayFor(model => model.ListaModuliConTarget[i].Comando)
-                                                </td>
-                                                <td>
-                                                    @Html.TextBoxFor(model => model.ListaModuliConTarget[i].Target, new {placeholder="es: https://www.example.org/", @class="col-md-10"})
-                                                    @Html.HiddenFor(model => model.ListaModuliConTarget[i].ModuloID)
-                                                    @Html.HiddenFor(model => model.ListaModuliConTarget[i].Applicazione)
-                                                </td>
-                                            </tr>  
-                                    }
-                                </tbody>
-                            </table>
-
-                        </div>
-                        </div>
-                      </div>
-                        <div class="panel panel-sidebar">
-                    <div class="panel-heading">
-					<a  data-toggle="collapse" href="#OPENDOOR"><strong>OPENDOOR</strong>
-                      <span class="caret"></span></a><br>
-                    </div>
-                    <div class="collapse" id="OPENDOOR">
-                     <div class="panel-body ">
-                     
-                                     
-                                    <div class="col-sm-12">
-                                     <h4>Seleziona i moduli OPENDOOR</h4><hr/>
-                                    </div>
-                            <table class="table">
-                                <div class="method">
-                                    <thead>
-                                        <tr>
-                                            <th></th>
-                                             <th>
-                                        Nome
-                                            </th>
-                                            <th>
-                                        Comando
-                                            </th>
-                                            <th>URL</th>
-                                        </tr>
-                                    </thead>
-                                </div>
-                                <tbody>
-                                    
-                                     @for (int i=0; i<Model.ListaModuliConTarget.Count; i++) {
-
-                                        var item = Model.ListaModuliConTarget.ElementAt(i);
-                                            if(Model.ListaModuliConTarget[i].Applicazione!= webmva.Models.APPLICAZIONE.OPENDOOR){continue;}
-                                             <tr>
-                                                <td>
-                                                    @Html.CheckBoxFor(model => model.ListaModuliConTarget[i].Inserito)
-                                                        
-                                                </td>
-                                        <td>
-                                            @Html.DisplayFor(model => model.ListaModuliConTarget[i].Nome)
-                                                </td>
-                                                <td>
-                                                    @Html.DisplayFor(model => model.ListaModuliConTarget[i].Comando)
-                                                </td>
-                                                <td>
-                                                    @Html.TextBoxFor(model => model.ListaModuliConTarget[i].Target, new {placeholder="es: https://www.example.org", @class="col-md-10"})
-                                                    @Html.HiddenFor(model => model.ListaModuliConTarget[i].ModuloID)
-                                                    @Html.HiddenFor(model => model.ListaModuliConTarget[i].Applicazione)
-                                                </td>
-                                            </tr>
-                                    }
-                                </tbody>
-                            </table>
-
-                        </div>
-                        </div>
-                      </div>
-                        <div class="panel panel-sidebar">
-                    <div class="panel-heading">
-					<a  data-toggle="collapse" href="#WASCAN"><strong>WASCAN</strong>
-                      <span class="caret"></span></a><br>
-                    </div>
-                    <div class="collapse" id="WASCAN">
-                     <div class="panel-body ">
-                                     
-                                    <div class="col-sm-12">
-                                     <h4>Seleziona i moduli WASCAN</h4><hr/>
-                                    </div>
-                            <table class="table">
-                                <div class="method">
-                                    <thead>
-                                        <tr>
-                                            <th></th>
-                                             <th>
-                                        Nome
-                                            </th>
-                                            <th>
-                                        Comando
-                                            </th>
-                                            <th>Target</th>
-                                        </tr>
-                                    </thead>
-                                </div>
-                                <tbody>
-                                    
-                                     @for (int i=0; i<Model.ListaModuliConTarget.Count; i++) {
-
-                                        var item = Model.ListaModuliConTarget.ElementAt(i);
-                                            if(Model.ListaModuliConTarget[i].Applicazione!= webmva.Models.APPLICAZIONE.WASCAN){continue;}
-                                             <tr>
-                                                <td>
-                                                    @Html.CheckBoxFor(model => model.ListaModuliConTarget[i].Inserito)
-                                                        
-                                                </td>
-                                        <td>
-                                            @Html.DisplayFor(model => model.ListaModuliConTarget[i].Nome)
-                                                </td>
-                                                <td>
-                                                    @Html.DisplayFor(model => model.ListaModuliConTarget[i].Comando)
-                                                </td>
-                                                <td>
-                                                    @Html.TextBoxFor(model => model.ListaModuliConTarget[i].Target, new {placeholder="es: https://www.example.org/", @class="col-md-10"})
-                                                    @Html.HiddenFor(model => model.ListaModuliConTarget[i].ModuloID)
-                                                    @Html.HiddenFor(model => model.ListaModuliConTarget[i].Applicazione)
-                                                </td>
-                                            </tr>
-                                    }
-                                </tbody>
-                            </table>
-
-                        </div>
-                        </div>
-                      </div>
-                      </div>
+                    <br>
+                    <h4><strong>Scegli il modulo</strong> | Per creare un nuovo modulo <a href="/Modulo/Create">clicca qui</a>!</h4><hr />
                     <div class="panel panel-default">
-                    <div class="panel-heading">
-                <a href="#cms" data-toggle="collapse">
-                    <strong>
-                        CMS
-                    </strong>
-
-                </a>
-            </div>
-             <div class="panel panel-sidebar">
-                    <div class="panel-heading">
-                    <a   data-toggle="collapse" href="#droopescan">
-                            <strong>
-                                DROOPESCAN
-                            </strong>
-                            <span class="caret"></span>
-                        </a>
-                    </div>
-                    <div class="collapse" id="droopescan">
-                     <div class="panel-body " >
-                                    <div class="col-sm-12">
-                                     <h4>Seleziona i moduli DROOPE</h4><hr/>
-                                    </div>
-                            <table class="table">
-                                <div class="method">
-                                    <thead>
-                                        <tr>
-                                        <th></th>
-                                             <th>
-                                        Nome
-                                            </th>
-                                            <th>
-                                        Comando
-                                            </th>
-                                            <th>Target</th>
-                                        </tr>
-                                    </thead>
+                        <div class="panel-heading">
+                            <a href="#network" data-toggle="collapse">
+                                <strong>
+                                    NETWORK
+                                </strong>
+                            </a>
+                        </div>
+                        <div class="col-5">
+                            <div class="panel panel-sidebar">
+                                <div class="panel-heading">
+                                    <a data-toggle="collapse" href="#Nmap">
+                                        <strong>NMAP</strong>
+                                        <span class="caret"></span>
+                                    </a><br>
                                 </div>
-                                <tbody>
-                                    @for (int i=0; i<Model.ListaModuliConTarget.Count; i++) {
-
-                                        var item = Model.ListaModuliConTarget.ElementAt(i);
-                                        
-                                            if(Model.ListaModuliConTarget[i].Applicazione!= webmva.Models.APPLICAZIONE.DROOPE){continue;}
-                                             <tr>
-                                                <td>
-                                                    @Html.CheckBoxFor(model => model.ListaModuliConTarget[i].Inserito)
-                                                        
-                                                </td>
-                                        <td>
-                                            @Html.DisplayFor(model => model.ListaModuliConTarget[i].Nome)
-                                                </td>
-                                                <td>
-                                                    @Html.DisplayFor(model => model.ListaModuliConTarget[i].Comando)
-                                                </td>
-                                                <td>
-                                                    @Html.TextBoxFor(model => model.ListaModuliConTarget[i].Target, new {placeholder="es: https://www.example.org/", @class="col-md-10"})
-                                                    @Html.HiddenFor(model => model.ListaModuliConTarget[i].ModuloID)
-                                                    @Html.HiddenFor(model => model.ListaModuliConTarget[i].Applicazione)
-                                                </td>
-                                            </tr>
-                                    }
-                                </tbody>
-                            </table>
-
-                        </div>
-                        </div>
-                        </div>
-                          <div class="panel panel-sidebar">
-                    <div class="panel-heading">
-                    <a   data-toggle="collapse" href="#drupwn">
-                            <strong>
-                                DRUPWN
-                            </strong>
-                            <span class="caret"></span>
-                        </a>
-                    </div>
-                    <div class="collapse" id="drupwn">
-                     <div class="panel-body " >
-                                    <div class="col-sm-12">
-                                     <h4>Seleziona i moduli DRUPWN</h4><hr/>
-                                    </div>
-                            <table class="table">
-                                <div class="method">
-                                    <thead>
-                                        <tr>
-                                        <th></th>
-                                             <th>
-                                        Nome
-                                            </th>
-                                            <th>
-                                        Comando
-                                            </th>
-                                            <th>
-                                        Target
-                                            </th>
-                                        </tr>
-                                    </thead>
-                                </div>
-                                <tbody>
-                                    @for (int i=0; i<Model.ListaModuliConTarget.Count; i++) {
-
-                                        var item = Model.ListaModuliConTarget.ElementAt(i);
-                                        
-                                            if(Model.ListaModuliConTarget[i].Applicazione!= webmva.Models.APPLICAZIONE.DRUPWN){continue;}
-                                             <tr>
-                                                <td>
-                                                    @Html.CheckBoxFor(model => model.ListaModuliConTarget[i].Inserito)
-                                                        
-                                                </td>
-                                        <td>
-                                            @Html.DisplayFor(model => model.ListaModuliConTarget[i].Nome)
-                                                </td>
-                                                <td>
-                                                    @Html.DisplayFor(model => model.ListaModuliConTarget[i].Comando)
-                                                </td>
-                                                <td>
-                                                    @Html.TextBoxFor(model => model.ListaModuliConTarget[i].Target, new {placeholder="es: https://www.example.org/", @class="col-md-10"})
-                                                    @Html.HiddenFor(model => model.ListaModuliConTarget[i].ModuloID)
-                                                    @Html.HiddenFor(model => model.ListaModuliConTarget[i].Applicazione)
-                                                </td>
-                                            </tr>
-                                    }
-                                </tbody>
-                            </table>
-
-                        </div>
-                        </div>
-                        </div>
-                          <div class="panel panel-sidebar">
-                    <div class="panel-heading">
-                    <a   data-toggle="collapse" href="#joomscan">
-                            <strong>
-                                JOOMSCAN
-                            </strong>
-                            <span class="caret"></span>
-                        </a>
-                    </div>
-                    <div class="collapse" id="joomscan">
-                     <div class="panel-body " >
-                                    <div class="col-sm-12">
-                                     <h4>Seleziona i moduli JOOMSCAN</h4><hr/>
-                                    </div>
-                            <table class="table">
-                                <div class="method">
-                                    <thead>
-                                        <tr>
-                                        <th></th>
-                                             <th>
-                                        Nome
-                                            </th>
-                                            <th>
-                                        Comando
-                                            </th>
-                                            <th>Target</th>
-                                        </tr>
-                                    </thead>
-                                </div>
-                                <tbody>
-                                    @for (int i=0; i<Model.ListaModuliConTarget.Count; i++) {
-                                       
-                                        var item = Model.ListaModuliConTarget.ElementAt(i);
-                                            if(Model.ListaModuliConTarget[i].Applicazione!= webmva.Models.APPLICAZIONE.JOOMSCAN){continue;}
-                                             <tr>
-                                                <td>
-                                                    @Html.CheckBoxFor(model => model.ListaModuliConTarget[i].Inserito)
-                                                        
-                                                </td>
-                                        <td>
-                                            @Html.DisplayFor(model => model.ListaModuliConTarget[i].Nome)
-                                                </td>
-                                                <td>
-                                                    @Html.DisplayFor(model => model.ListaModuliConTarget[i].Comando)
-                                                </td>
-                                                <td>
-                                                    @Html.TextBoxFor(model => model.ListaModuliConTarget[i].Target, new {placeholder="es: www.example.org", @class="col-md-10"})
-                                                    @Html.HiddenFor(model => model.ListaModuliConTarget[i].ModuloID)
-                                                    @Html.HiddenFor(model => model.ListaModuliConTarget[i].Applicazione)
-                                                </td>
-                                            </tr>
-                                    }
-                                </tbody>
-                            </table>
-
-                        </div>
-                        </div>
-                        </div>
-                          <div class="panel panel-sidebar">
-                    <div class="panel-heading">
-                    <a   data-toggle="collapse" href="#wpscan">
-                            <strong>
-                                WPSCAN
-                            </strong>
-                            <span class="caret"></span>
-                        </a>
-                    </div>
-                    <div class="collapse" id="wpscan">
-                     <div class="panel-body " >
-                                    <div class="col-sm-12">
-                                     <h4>Seleziona i moduli WPSCAN</h4><hr/>
-                                    </div>
-                            <table class="table">
-                                <div class="method">
-                                    <thead>
-                                        <tr>
-                                        <th></th>
-                                             <th>
-                                        Nome
-                                            </th>
-                                            <th>
-                                        Comando
-                                            </th>
-                                            <th>Target</th>
-                                        </tr>
-                                    </thead>
-                                </div>
-                                <tbody>
-                                    @for (int i=0; i<Model.ListaModuliConTarget.Count; i++) {
-             
-                                            if(Model.ListaModuliConTarget[i].Applicazione!= webmva.Models.APPLICAZIONE.WPSCAN){continue;}
-                                            <tr>
-                                                <td>
-                                                    @Html.CheckBoxFor(model => model.ListaModuliConTarget[i].Inserito)
-                                                        
-                                                </td>
-                                        <td>
-                                            @Html.DisplayFor(model => model.ListaModuliConTarget[i].Nome)
-                                                </td>
-                                                <td>
-                                                    @Html.DisplayFor(model => model.ListaModuliConTarget[i].Comando)
-                                                </td>
-                                                <td>
-                                                    @Html.TextBoxFor(model => model.ListaModuliConTarget[i].Target, new {placeholder="es: www.example.org", @class="col-md-10"})
-                                                    @Html.HiddenFor(model => model.ListaModuliConTarget[i].ModuloID)
-                                                    @Html.HiddenFor(model => model.ListaModuliConTarget[i].Applicazione)
-                                                </td>
-                                            </tr>
-                                    }
-                                </tbody>
-                            </table>
-
-                        </div>
-                        </div>
-                        </div>
-                      </div>
-       <div class="panel panel-default">
-                    <div class="panel-heading">
-					<a href="#dns" data-toggle="collapse">
-                    <strong>
-                        DNS
-                    </strong>
-
-                </a>
-            </div>
-            <div class="panel panel-sidebar">
-                    <div class="panel-heading">
-                        <a data-toggle="collapse" href="#dnsRecon">
-                            <strong>
-                                DNSRECON
-                            </strong>
-                            <span class="caret"></span>
-                        </a>
-                    </div>
-                    <div class="collapse" id="dnsRecon">
-                     <div class="panel-body ">
-                                    <div class="col-sm-12">
-                                     <h4>Seleziona i moduli DNSRECON</h4><hr/>
-                                    </div>
-                            <table class="table">
-                                <div class="method">
-                                    <thead>
-                                        <tr>
-                                        <th></th>
-                                             <th>
-                                        Nome
-                                            </th>
-                                            <th>
-                                        Comando
-                                            </th>
-                                            <th>Target</th>
-                                        </tr>
-                                    </thead>
-                                </div>
-                                <tbody>
-                                    @for (int i=0; i<Model.ListaModuliConTarget.Count; i++) {
-                                    
-                                            if(Model.ListaModuliConTarget[i].Applicazione!= webmva.Models.APPLICAZIONE.DNSRECON){continue;}
-                                             <tr>
-                                                <td>
-                                                    @Html.CheckBoxFor(model => model.ListaModuliConTarget[i].Inserito)
-                                                        
-                                                </td>
-                                        <td>
-                                            @Html.DisplayFor(model => model.ListaModuliConTarget[i].Nome)
-                                                </td>
-                                                <td>
-                                                    @Html.DisplayFor(model => model.ListaModuliConTarget[i].Comando)
-                                                </td>
-                                                <td>
-                                                    @Html.TextBoxFor(model => model.ListaModuliConTarget[i].Target, new {placeholder="es: example.org", @class="col-md-10"})
-                                                    @Html.HiddenFor(model => model.ListaModuliConTarget[i].ModuloID)
-                                                    @Html.HiddenFor(model => model.ListaModuliConTarget[i].Applicazione)
-                                                </td>
-                                            </tr>
-                                    }
-                                </tbody>
-                            </table>
-
-                        </div>
-                        </div>
-                      </div>
-                       <div class="panel panel-sidebar">
-                    <div class="panel-heading">
-                        <a data-toggle="collapse" href="#fierce">
-                            <strong>
-                                FIERCE
-                            </strong>
-                            <span class="caret"></span>
-                        </a>
-                    </div>
-                    <div class="collapse" id="fierce">
-                     <div class="panel-body ">
-                                    <div class="col-sm-12">
-                                     <h4>Seleziona i moduli FIERCE</h4><hr/>
-                                    </div>
-                            <table class="table">
-                                <div class="method">
-                                    <thead>
-                                        <tr>
-                                        <th></th>
-                                             <th>
-                                        Nome
-                                            </th>
-                                            <th>
-                                        Comando
-                                            </th>
-                                            <th>Target</th>
-                                        </tr>
-                                    </thead>
-                                </div>
-                                <tbody>
-                                    @for (int i=0; i<Model.ListaModuliConTarget.Count; i++) {
-
-                                            if(Model.ListaModuliConTarget[i].Applicazione!= webmva.Models.APPLICAZIONE.FIERCE){continue;}
-                                             <tr>
-                                                <td>
-                                                    @Html.CheckBoxFor(model => model.ListaModuliConTarget[i].Inserito)
-                                                        
-                                                </td>
-                                        <td>
-                                            @Html.DisplayFor(model => model.ListaModuliConTarget[i].Nome)
-                                                </td>
-                                                <td>
-                                                    @Html.DisplayFor(model => model.ListaModuliConTarget[i].Comando)
-                                                </td>
-                                                <td>
-                                                    @Html.TextBoxFor(model => model.ListaModuliConTarget[i].Target, new {placeholder="es: example.org", @class="col-md-10"})
-                                                    @Html.HiddenFor(model => model.ListaModuliConTarget[i].ModuloID)
-                                                    @Html.HiddenFor(model => model.ListaModuliConTarget[i].Applicazione)
-                                                </td>
-                                            </tr>
-                                    }
-                                </tbody>
-                            </table>
-
-                        </div>
-                        </div>
-                      </div>
-                         <div class="panel panel-sidebar">
-                    <div class="panel-heading">
-                        <a data-toggle="collapse" href="#dnsEnum">
-                            <strong>
-                                DNSENUM
-                            </strong>
-                            <span class="caret"></span>
-                        </a>
-                    </div>
-                    <div class="collapse" id="dnsEnum">
-                     <div class="panel-body ">
-                                    <div class="col-sm-12">
-                                     <h4>Seleziona i moduli DNSENUM</h4><hr/>
-                                    </div>
-                            <table class="table">
-                                <div class="method">
-                                    <thead>
-                                        <tr>
-                                            <th></th>
-                                             <th>
-                                        Nome
-                                            </th>
-                                            <th>
-                                        Comando
-                                            </th>
-                                            <th>Target</th>
-                                        </tr>
-                                    </thead>
-                                </div>
-                                <tbody>
-                                    
-                                     @for (int i=0; i<Model.ListaModuliConTarget.Count; i++) {
-
-                                        var item = Model.ListaModuliConTarget.ElementAt(i);
-                                            if(Model.ListaModuliConTarget[i].Applicazione!= webmva.Models.APPLICAZIONE.DNSENUM){continue;}
-                                             <tr>
-                                                <td>
-                                                    @Html.CheckBoxFor(model => model.ListaModuliConTarget[i].Inserito)
-                                                        
-                                                </td>
-                                        <td>
-                                            @Html.DisplayFor(model => model.ListaModuliConTarget[i].Nome)
-                                                </td>
-                                                <td>
-                                                    @Html.DisplayFor(model => model.ListaModuliConTarget[i].Comando)
-                                                </td>
-                                                <td>
-                                                    @Html.TextBoxFor(model => model.ListaModuliConTarget[i].Target, new {placeholder="es: example.org", @class="col-md-10"})
-                                                    @Html.HiddenFor(model => model.ListaModuliConTarget[i].ModuloID)
-                                                    @Html.HiddenFor(model => model.ListaModuliConTarget[i].Applicazione)
-                                                </td>
-                                            </tr>
-                                    }
-                                </tbody>
-                            </table>
-
-                        </div>
-                        </div>
-                      </div>
-                    </div>
-                      <div class="panel panel-default">
-                    <div class="panel-heading">
-				 <a href="#ig" data-toggle="collapse">
-                    <strong>
-                        INFORMATION GATHERING
-                    </strong>
-
-                </a>
-                    </div>
-                    <div class="panel panel-sidebar">
-                    <div class="panel-heading">
-                    <a data-toggle="collapse"  href="#infoga">
-                    <strong>
-                                INFOGA
-                            </strong>
-                            <span class="caret"></span>
-                        </a>
-                    </div>
-                    <div class="collapse " id="infoga">
-                     <div class="panel-body ">
-                                    <div class="col-sm-12">
-                                     <h4>Seleziona i moduli INFOGA</h4><hr/>
-                                    </div>
-                            <table class="table">
-                                <div class="method">
-                                    <thead>
-                                        <tr>
-                                        <th></th>
-                                             <th>
-                                        Nome
-                                            </th>
-                                            <th>
-                                        Comando
-                                            </th>
-                                            <th>Target</th>
-                                        </tr>
-                                    </thead>
-                                </div>
-                                <tbody>
-                                    @for (int i=0; i<Model.ListaModuliConTarget.Count; i++) {
-
-                                       
-                                        var item = Model.ListaModuliConTarget.ElementAt(i);
-                                            if(Model.ListaModuliConTarget[i].Applicazione!= webmva.Models.APPLICAZIONE.INFOGA){continue;}
-                                             <tr>
-                                                <td>
-                                                    @Html.CheckBoxFor(model => model.ListaModuliConTarget[i].Inserito)
-                                                        
-                                                </td>
-                                        <td>
-                                            @Html.DisplayFor(model => model.ListaModuliConTarget[i].Nome)
-                                                </td>
-                                                <td>
-                                                    @Html.DisplayFor(model => model.ListaModuliConTarget[i].Comando)
-                                                </td>
-                                                <td>
-                                                    @Html.TextBoxFor(model => model.ListaModuliConTarget[i].Target, new {placeholder="es: example.org", @class="col-md-10"})
-                                                    @Html.HiddenFor(model => model.ListaModuliConTarget[i].ModuloID)
-                                                    @Html.HiddenFor(model => model.ListaModuliConTarget[i].Applicazione)
-                                                </td>
-                                            </tr>
-                                    }
-                                </tbody>
-                                </table>
-                                </div>
-                                </div>
-                                </div>
-        
-                        
-                      
-                        <div class="panel panel-sidebar">
-                    <div class="panel-heading">
-					<a   data-toggle="collapse"  href="#INFOGAEMAIL"><strong>INFOGA EMAIL</strong>
-                     <span class="caret"></span></a><br>
-                    </div>
-                    <div class="collapse" id="INFOGAEMAIL">
-                     <div class="panel-body ">
-                                    <div class="col-sm-12">
-                                     <h4>Seleziona i moduli INFOGA EMAIL</h4><hr/>
-                                    </div>
-                            <table class="table">
-                                <div class="method">
-                                    <thead>
-                                        <tr>
-                                        <th></th>
-                                             <th>
-                                        Nome
-                                            </th>
-                                            <th>
-                                        Comando
-                                            </th>
-                                            <th>Target</th>
-                                        </tr>
-                                    </thead>
-                                </div>
-                                <tbody>
-                                    @for (int i=0; i<Model.ListaModuliConTarget.Count; i++) {
-                                       
-                                        var item = Model.ListaModuliConTarget.ElementAt(i);
-                                        
-                                            if(Model.ListaModuliConTarget[i].Applicazione!= webmva.Models.APPLICAZIONE.INFOGAEMAIL){continue;}
-                                             <tr>
-                                                <td>
-                                                    @Html.CheckBoxFor(model => model.ListaModuliConTarget[i].Inserito)
-                                                        
-                                                </td>
-                                        <td>
-                                            @Html.DisplayFor(model => model.ListaModuliConTarget[i].Nome)
-                                                </td>
-                                                <td>
-                                                    @Html.DisplayFor(model => model.ListaModuliConTarget[i].Comando)
-                                                </td>
-                                                <td>
-                                                    @Html.TextBoxFor(model => model.ListaModuliConTarget[i].Target, new {placeholder="es: info@example.org", @class="col-md-10"})
-                                                    @Html.HiddenFor(model => model.ListaModuliConTarget[i].ModuloID)
-                                                    @Html.HiddenFor(model => model.ListaModuliConTarget[i].Applicazione)
-                                                </td>
-                                            </tr>
-                                    }
-                                </tbody>
-                            </table>
-                        </div>
-                        </div>
-                      </div>
-                       <div class="panel panel-sidebar">
-                    <div class="panel-heading">
-                    <a data-toggle="collapse"  href="#sublist3r">
-                    <strong>
-                                SUBLIST3R
-                            </strong>
-                            <span class="caret"></span>
-                        </a>
-                    </div>
-                    <div class="collapse " id="sublist3r">
-                     <div class="panel-body ">
-                                    <div class="col-sm-12">
-                                     <h4>Seleziona i moduli SUBLIST3R</h4><hr/>
-                                    </div>
-                            <table class="table">
-                                <div class="method">
-                                    <thead>
-                                        <tr>
-                                            <th></th>
-                                             <th>
-                                        Nome
-                                            </th>
-                                            <th>
-                                        Comando
-                                            </th>
-                                            <th>Target</th>
-                                        </tr>
-                                    </thead>
-                                </div>
-                                <tbody>
-                                    
-                                     @for (int i=0; i<Model.ListaModuliConTarget.Count; i++) {
-
-                                        var item = Model.ListaModuliConTarget.ElementAt(i);
-                                            if(Model.ListaModuliConTarget[i].Applicazione!= webmva.Models.APPLICAZIONE.SUBLIST3R){continue;}
-                                             <tr>
-                                                <td>
-                                                    @Html.CheckBoxFor(model => model.ListaModuliConTarget[i].Inserito)
-                                                        
-                                                </td>
-                                        <td>
-                                            @Html.DisplayFor(model => model.ListaModuliConTarget[i].Nome)
-                                                </td>
-                                                <td>
-                                                    @Html.DisplayFor(model => model.ListaModuliConTarget[i].Comando)
-                                                </td>
-                                                <td>
-                                                    @Html.TextBoxFor(model => model.ListaModuliConTarget[i].Target, new {placeholder="es: example.org", @class="col-md-10"})
-                                                    @Html.HiddenFor(model => model.ListaModuliConTarget[i].ModuloID)
-                                                    @Html.HiddenFor(model => model.ListaModuliConTarget[i].Applicazione)
-                                                </td>
-                                            </tr>
-                                    }
-                                </tbody>
-                            </table>
-
-                        </div>
-                        </div>
-                        </div>
-                        <div class="panel panel-sidebar">
-                    <div class="panel-heading">
-                        <a data-toggle="collapse" href="#theharvester">
-                            <strong>
-                                THEHARVESTER
-                            </strong>
-                            <span class="caret"></span>
-                        </a>
-                    </div>
-                    <div class="collapse" id="theharvester">
-                     <div class="panel-body ">
-                                    <div class="col-sm-12">
-                                     <h4>Seleziona i moduli THEHARVESTER</h4><hr/>
-                                    </div>
-                            <table class="table">
-                                <div class="method">
-                                    <thead>
-                                        <tr>
-                                        <th></th>
-                                             <th>
-                                        Nome
-                                            </th>
-                                            <th>
-                                        Comando
-                                            </th>
-                                            <th>Target</th>
-                                        </tr>
-                                    </thead>
-                                </div>
-                                <tbody>
-                                    @for (int i=0; i<Model.ListaModuliConTarget.Count; i++) {
-
-                                            if(Model.ListaModuliConTarget[i].Applicazione!= webmva.Models.APPLICAZIONE.THEHARVESTER){continue;}
-                                             <tr>
-                                                <td>
-                                                    @Html.CheckBoxFor(model => model.ListaModuliConTarget[i].Inserito)
-                                                        
-                                                </td>
-                                        <td>
-                                            @Html.DisplayFor(model => model.ListaModuliConTarget[i].Nome)
-                                                </td>
-                                                <td>
-                                                    @Html.DisplayFor(model => model.ListaModuliConTarget[i].Comando)
-                                                </td>
-                                                <td>
-                                                    @Html.TextBoxFor(model => model.ListaModuliConTarget[i].Target, new {placeholder="es: example.org", @class="col-md-10"})
-                                                    @Html.HiddenFor(model => model.ListaModuliConTarget[i].ModuloID)
-                                                    @Html.HiddenFor(model => model.ListaModuliConTarget[i].Applicazione)
-                                                </td>
-                                            </tr>
-                                    }
-                                </tbody>
-                            </table>
-
-                        </div>
-                        </div>
-                      </div>
-                         <div class="panel panel-sidebar">
-                    <div class="panel-heading">
-                    <a data-toggle="collapse"  href="#amass">
-                    <strong>
-                                AMASS
-                            </strong>
-                            <span class="caret"></span>
-                        </a>
-                    </div>
-                    <div class="collapse " id="amass">
-                     <div class="panel-body ">
-                                    <div class="col-sm-12">
-                                     <h4>Seleziona i moduli AMASS</h4><hr/>
-                                    </div>
-                            <table class="table">
-                                <div class="method">
-                                    <thead>
-                                        <tr>
-                                            <th></th>
-                                             <th>
-                                        Nome
-                                            </th>
-                                            <th>
-                                        Comando
-                                            </th>
-                                            <th>Target</th>
-                                        </tr>
-                                    </thead>
-                                </div>
-                                <tbody>
-                                    
-                                     @for (int i=0; i<Model.ListaModuliConTarget.Count; i++) {
-
-                                        var item = Model.ListaModuliConTarget.ElementAt(i);
-                                            if(Model.ListaModuliConTarget[i].Applicazione!= webmva.Models.APPLICAZIONE.AMASS){continue;}
-                                             <tr>
-                                                <td>
-                                                    @Html.CheckBoxFor(model => model.ListaModuliConTarget[i].Inserito)
-                                                        
-                                                </td>
-                                        <td>
-                                            @Html.DisplayFor(model => model.ListaModuliConTarget[i].Nome)
-                                                </td>
-                                                <td>
-                                                    @Html.DisplayFor(model => model.ListaModuliConTarget[i].Comando)
-                                                </td>
-                                                <td>
-                                                    @Html.TextBoxFor(model => model.ListaModuliConTarget[i].Target, new {placeholder="es: example.org", @class="col-md-10"})
-                                                    @Html.HiddenFor(model => model.ListaModuliConTarget[i].ModuloID)
-                                                    @Html.HiddenFor(model => model.ListaModuliConTarget[i].Applicazione)
-                                                </td>
-                                            </tr>
-                                    }
-                                </tbody>
-                            </table>
-
-                        </div>
-                        </div>
-                        </div>
-                      </div>
-                     <div class="panel panel-default">
-                    <div class="panel-heading">
-					<a href="#database" data-toggle="collapse">
-                    <strong>
-                        DATABASE
-                    </strong>
-                </a>
-                    </div>
-                    <div class="panel panel-sidebar">
-                    <div class="panel-heading">
-                        <a   data-toggle="collapse" href="#sqlmap">
-                            <strong>
-                                SQLMAP
-                            </strong>
-                            <span class="caret"></span>
-                        </a>
-                    </div>
-                    <div class="collapse" id="sqlmap">
-                     <div class="panel-body ">
-                                    <div class="col-sm-12">
-                                     <h4>Seleziona i moduli SQLMAP</h4><hr/>
-                                    </div>
-                            <table class="table">
-                                <div class="method">
-                                    <thead>
-                                        <tr>
-                                        <th></th>
-                                             <th>
-                                        Nome
-                                            </th>
-                                            <th>
-                                        Comando
-                                            </th>
-                                            <th>Target</th>
-                                        </tr>
-                                    </thead>
-                                </div>
-                                <tbody>
-                                    @for (int i=0; i<Model.ListaModuliConTarget.Count; i++) {
-                                       
-                                        var item = Model.ListaModuliConTarget.ElementAt(i);
-                                            if(Model.ListaModuliConTarget[i].Applicazione!= webmva.Models.APPLICAZIONE.SQLMAP){continue;}
-                                             <tr>
-                                                <td>
-                                                    @Html.CheckBoxFor(model => model.ListaModuliConTarget[i].Inserito)
-                                                        
-                                                </td>
-                                        <td>
-                                            @Html.DisplayFor(model => model.ListaModuliConTarget[i].Nome)
-                                                </td>
-                                                <td>
-                                                    @Html.DisplayFor(model => model.ListaModuliConTarget[i].Comando)
-                                                </td>
-                                                <td>
-                                                    @Html.TextBoxFor(model => model.ListaModuliConTarget[i].Target, new {placeholder="es: https://www.example.org/vuln.php?id=1", @class="col-md-10"})
-                                                    @Html.HiddenFor(model => model.ListaModuliConTarget[i].ModuloID)
-                                                    @Html.HiddenFor(model => model.ListaModuliConTarget[i].Applicazione)
-                                                </td>
-                                            </tr>
-                                    }
-                                </tbody>
-                            </table>
-
-                        </div>
-                        </div>
-                      </div>
-                <div class="panel panel-sidebar">
-                    <div class="panel-heading">
-                        <a   data-toggle="collapse" href="#nosql">
-                            <strong>
-                                NOSQLMAP
-                            </strong>
-                            <span class="caret"></span>
-                        </a>
-                    </div>
-                    <div class="collapse" id="nosql">
-                     <div class="panel-body ">
-                                    <div class="col-sm-12">
-                                     <h4>Seleziona i moduli NOSQLMAP</h4><hr/>
-                                    </div>
-                            <table class="table">
-                                <div class="method">
-                                    <thead>
-                                        <tr>
-                                            <th></th>
-                                             <th>
-                                        Nome
-                                            </th>
-                                            <th>
-                                        Comando
-                                            </th>
-                                            <th>Target</th>
-                                        </tr>
-                                    </thead>
-                                </div>
-                                <tbody>
-                                    
-                                     @for (int i=0; i<Model.ListaModuliConTarget.Count; i++) {
-
-                                        var item = Model.ListaModuliConTarget.ElementAt(i);
-                                            if(Model.ListaModuliConTarget[i].Applicazione!= webmva.Models.APPLICAZIONE.NOSQL){continue;}
-                                             <tr>
-                                                <td>
-                                                    @Html.CheckBoxFor(model => model.ListaModuliConTarget[i].Inserito)
-                                                        
-                                                </td>
-                                        <td>
-                                            @Html.DisplayFor(model => model.ListaModuliConTarget[i].Nome)
-                                                </td>
-                                                <td>
-                                                    @Html.DisplayFor(model => model.ListaModuliConTarget[i].Comando)
-                                                </td>
-                                                <td>
-                                                    @Html.TextBoxFor(model => model.ListaModuliConTarget[i].Target, new {placeholder="Per i moduli NOSQLMAP non è necessario", @class="col-md-10", disabled="true"})
-                                                    @Html.HiddenFor(model => model.ListaModuliConTarget[i].ModuloID)
-                                                    @Html.HiddenFor(model => model.ListaModuliConTarget[i].Applicazione)
-                                                </td>
-                                            </tr>
-                                    }
-                                </tbody>
-                            </table>
-
-                        </div>
-                        </div>
-                      </div>
-                        <div class="panel panel-sidebar">
-                    <div class="panel-heading">
-                        <a   data-toggle="collapse" href="#odat">
-                            <strong>
-                                ODAT
-                            </strong>
-                            <span class="caret"></span>
-                        </a>
-                    </div>
-                    <div class="collapse" id="odat">
-                     <div class="panel-body ">
-                                    <div class="col-sm-12">
-                                     <h4>Seleziona i moduli ODAT</h4><hr/>
-                                    </div>
-                            <table class="table">
-                                <div class="method">
-                                    <thead>
-                                        <tr>
-                                            <th></th>
-                                             <th>
-                                        Nome
-                                            </th>
-                                            <th>
-                                        Comando
-                                            </th>
-                                            <th>Target</th>
-                                        </tr>
-                                    </thead>
-                                </div>
-                                <tbody>
-                                    
-                                     @for (int i=0; i<Model.ListaModuliConTarget.Count; i++) {
-
-                                        var item = Model.ListaModuliConTarget.ElementAt(i);
-                                            if(Model.ListaModuliConTarget[i].Applicazione!= webmva.Models.APPLICAZIONE.ODAT){continue;}
-                                             <tr>
-                                                <td>
-                                                    @Html.CheckBoxFor(model => model.ListaModuliConTarget[i].Inserito)
-                                                        
-                                                </td>
-                                        <td>
-                                            @Html.DisplayFor(model => model.ListaModuliConTarget[i].Nome)
-                                                </td>
-                                                <td>
-                                                    @Html.DisplayFor(model => model.ListaModuliConTarget[i].Comando)
-                                                </td>
-                                                <td>
-                                                    @Html.TextBoxFor(model => model.ListaModuliConTarget[i].Target, new {placeholder="es: 192.168.1.254", @class="col-md-10"})
-                                                    @Html.HiddenFor(model => model.ListaModuliConTarget[i].ModuloID)
-                                                    @Html.HiddenFor(model => model.ListaModuliConTarget[i].Applicazione)
-                                                </td>
-                                            </tr>
-                                    }
-                                </tbody>
-                            </table>
-
-                        </div>
-                        </div>
-                      </div>
-   </div>
-                 
-                   
-                    <div class="panel panel-default">
-                    <div class="panel-heading">
-                     <a href="#wifi" data-toggle="collapse">
-                    <strong>
-                       WIFI
-                    </strong>
-
-                </a>
-                </div>
-                <div class="panel panel-sidebar">
-                    <div class="panel-heading">
-					<a data-toggle="collapse" href="#wifite">
-                            <strong>
-                                WIFITE
-                            </strong>
-                            <span class="caret"></span>
-                        </a>
-                    </div>
-                    <div class="collapse" id="wifite">
-                     <div class="panel-body ">
-                                    <div class="col-sm-12">
-                                     <h4>Seleziona i moduli WIFITE</h4><hr/>
-                                    </div>
-                            <table class="table">
-                                <div class="method">
-                                    <thead>
-                                        <tr>
-                                        <th></th>
-                                             <th>
-                                        Nome
-                                            </th>
-                                            <th>
-                                        Comando
-                                            </th>
-                                            <th>Target</th>
-                                        </tr>
-                                    </thead>
-                                </div>
-                                <tbody>
-                                    @for (int i=0; i<Model.ListaModuliConTarget.Count; i++) {
-
-                                        var item = Model.ListaModuliConTarget.ElementAt(i);
-                                            if(Model.ListaModuliConTarget[i].Applicazione!= webmva.Models.APPLICAZIONE.WIFITE){continue;}
-                                             <tr>
-                                                <td>
-                                                    @Html.CheckBoxFor(model => model.ListaModuliConTarget[i].Inserito)
-                                                        
-                                                </td>
-                                        <td>
-                                            @Html.DisplayFor(model => model.ListaModuliConTarget[i].Nome)
-                                                </td>
-                                                <td>
-                                                    @Html.DisplayFor(model => model.ListaModuliConTarget[i].Comando)
-                                                </td>
-                                                <td>
-                                                    @Html.TextBoxFor(model => model.ListaModuliConTarget[i].Target, new {placeholder="Per i moduli WIFITE non è necessario", @class="col-md-10", disabled="true"})
-                                                    @Html.HiddenFor(model => model.ListaModuliConTarget[i].ModuloID)
-                                                    @Html.HiddenFor(model => model.ListaModuliConTarget[i].Applicazione)
-                                                </td>
-                                            </tr>
-                                    }
-                                </tbody>
-                            </table>
-
-                        </div>
-                        </div>
-                      </div>
-                      </div>
-                     	
-                
-            
-                <br>
-            
-                <div class="col-md-12">
-                <h4 for="descrizione" asp-for="@Model.Progetto.Descrizione">Descrizione</h4><hr/>
-                <textarea class="form-control" id="descrizione" placeholder="descrizione del progetto" rows="5" cols="40" style="resize:none"
-                    maxlength="1000" asp-for="@Model.Progetto.Descrizione"></textarea>
-            </div>
-        <div class="col-sm-12 text-center"><br>
-                                        <div class="form-group">
-                                            <input type="submit" class="btn btn-info" value="Salva" style="position:fixed;width:100px;height:40px;bottom:40px;right:50px;" />&nbsp;&nbsp;
-                                            <a asp-action="Index"> Torna alla lista</a>
+                                <div class="collapse" id="Nmap">
+                                    <div class="panel-body ">
+                                        <div class="col-sm-12">
+                                            <h4>Seleziona i moduli NMAP</h4><hr />
                                         </div>
+                                        <table class="table">
+                                            <div class="method">
+                                                <thead>
+                                                    <tr>
+                                                        <th></th>
+                                                        <th>
+                                                            Nome
+                                                        </th>
+                                                        <th>
+                                                            Comando
+                                                        </th>
+                                                        <th>
+                                                            Target
+                                                        </th>
+                                                    </tr>
+                                                </thead>
+                                            </div>
+                                            <tbody>
+                                                @for (int i = 0; i < Model.ListaModuliConTarget.Count; i++)
+                                                {
+                                                    if (Model.ListaModuliConTarget[i].Applicazione != webmva.Models.APPLICAZIONE.NMAP) { continue; }
+                                                    <tr>
+                                                        <td>
+                                                            @Html.CheckBoxFor(model => model.ListaModuliConTarget[i].Inserito)
+                                                        </td>
+                                                        <td>
+                                                            @Html.DisplayFor(model => model.ListaModuliConTarget[i].Nome)
+                                                        </td>
+                                                        <td>
+                                                            @Html.DisplayFor(model => model.ListaModuliConTarget[i].Comando)
+                                                        </td>
+                                                        <td>
+                                                            @Html.TextBoxFor(model => model.ListaModuliConTarget[i].Target, new { placeholder = "es: 90.147.42.2", @class = "col-md-10" })
+                                                            @Html.HiddenFor(model => model.ListaModuliConTarget[i].ModuloID)
+                                                            @Html.HiddenFor(model => model.ListaModuliConTarget[i].Applicazione)
+                                                        </td>
+                                                    </tr>
+                                                }
+                                            </tbody>
+                                        </table>
                                     </div>
-                   </div>                 
+                                </div>
+                            </div>
+                            <div class="panel panel-sidebar">
+                                <div class="panel-heading">
+                                    <a data-toggle="collapse" href="#Nessus">
+                                        <strong>NESSUS</strong>
+                                        <span class="caret"></span>
+                                    </a><br>
+                                </div>
+                                <div class="collapse" id="Nessus">
+                                    <div class="panel-body ">
+                                        <div class="col-sm-12">
+                                            <h4>Seleziona i moduli NESSUS</h4><hr />
+                                        </div>
+                                        <table class="table">
+                                            <div class="method">
+                                                <thead>
+                                                    <tr>
+                                                        <th></th>
+                                                        <th>
+                                                            Nome
+                                                        </th>
+                                                        <th>
+                                                            Comando
+                                                        </th>
+                                                        <th>Target</th>
+                                                    </tr>
+                                                </thead>
+                                            </div>
+                                            <tbody>
+                                                @for (int i = 0; i < Model.ListaModuliConTarget.Count; i++)
+                                                {
+                                                    if (Model.ListaModuliConTarget[i].Applicazione != webmva.Models.APPLICAZIONE.NESSUS) { continue; }
+                                                    <tr>
+                                                        <td>
+                                                            @Html.CheckBoxFor(model => model.ListaModuliConTarget[i].Inserito)
+                                                        </td>
+                                                        <td>
+                                                            @Html.DisplayFor(model => model.ListaModuliConTarget[i].Nome)
+                                                        </td>
+                                                        <td>
+                                                            @Html.DisplayFor(model => model.ListaModuliConTarget[i].Comando)
+                                                        </td>
+                                                        <td>
+                                                            @Html.TextBoxFor(model => model.ListaModuliConTarget[i].Target, new { placeholder = "Per i moduli NESSUS non è necessario", @class = "col-md-10", disabled = "true" })
+                                                            @Html.HiddenFor(model => model.ListaModuliConTarget[i].ModuloID)
+                                                            @Html.HiddenFor(model => model.ListaModuliConTarget[i].Applicazione)
+                                                        </td>
+                                                    </tr>
+                                                }
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="panel panel-sidebar">
+                                <div class="panel-heading">
+                                    <a data-toggle="collapse" href="#OpenVAS">
+                                        <strong>OPENVAS</strong>
+                                        <span class="caret"></span>
+                                    </a><br>
+                                </div>
+                                <div class="collapse" id="OpenVAS">
+                                    <div class="panel-body ">
+                                        <div class="col-sm-12">
+                                            <h4>Seleziona i moduli OpenVAS</h4><hr />
+                                        </div>
+                                        <table class="table">
+                                            <div class="method">
+                                                <thead>
+                                                    <tr>
+                                                        <th></th>
+                                                        <th>
+                                                            Nome
+                                                        </th>
+                                                        <th>
+                                                            Comando
+                                                        </th>
+                                                        <th>Target</th>
+                                                    </tr>
+                                                </thead>
+                                            </div>
+                                            <tbody>
+                                                @for (int i = 0; i < Model.ListaModuliConTarget.Count; i++)
+                                                {
+                                                    if (Model.ListaModuliConTarget[i].Applicazione != webmva.Models.APPLICAZIONE.OPENVAS) { continue; }
+                                                    <tr>
+                                                        <td>
+                                                            @Html.CheckBoxFor(model => model.ListaModuliConTarget[i].Inserito)
+                                                        </td>
+                                                        <td>
+                                                            @Html.DisplayFor(model => model.ListaModuliConTarget[i].Nome)
+                                                        </td>
+                                                        <td>
+                                                            @Html.DisplayFor(model => model.ListaModuliConTarget[i].Comando)
+                                                        </td>
+                                                        <td>
+                                                            @Html.TextBoxFor(model => model.ListaModuliConTarget[i].Target, new { placeholder = "Per i moduli OPENVAS non è necessario", @class = "col-md-10", disabled = "true" })
+                                                            @Html.HiddenFor(model => model.ListaModuliConTarget[i].ModuloID)
+                                                            @Html.HiddenFor(model => model.ListaModuliConTarget[i].Applicazione)
+                                                        </td>
+                                                    </tr>
+                                                }
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <a href="#web" data-toggle="collapse">
+                                <strong>
+                                    WEB
+                                </strong>
+                            </a>
+                        </div>
+                        <div class="panel panel-sidebar">
+                            <div class="panel-heading">
+                                <a data-toggle="collapse" href="#WAPITI">
+                                    <strong>WAPITI</strong>
+                                    <span class="caret"></span>
+                                </a><br>
+                            </div>
+                            <div class="collapse" id="WAPITI">
+                                <div class="panel-body ">
+                                    <div class="col-sm-12">
+                                        <h4>Seleziona i moduli WAPITI</h4><hr />
+                                    </div>
+                                    <table class="table">
+                                        <div class="method">
+                                            <thead>
+                                                <tr>
+                                                    <th></th>
+                                                    <th>
+                                                        Nome
+                                                    </th>
+                                                    <th>
+                                                        Comando
+                                                    </th>
+                                                    <th>Target</th>
+                                                </tr>
+                                            </thead>
+                                        </div>
+                                        <tbody>
+                                            @for (int i = 0; i < Model.ListaModuliConTarget.Count; i++)
+                                            {
+                                                if (Model.ListaModuliConTarget[i].Applicazione != webmva.Models.APPLICAZIONE.WAPITI) { continue; }
+                                                <tr>
+                                                    <td>
+                                                        @Html.CheckBoxFor(model => model.ListaModuliConTarget[i].Inserito)
+                                                    </td>
+                                                    <td>
+                                                        @Html.DisplayFor(model => model.ListaModuliConTarget[i].Nome)
+                                                    </td>
+                                                    <td>
+                                                        @Html.DisplayFor(model => model.ListaModuliConTarget[i].Comando)
+                                                    </td>
+                                                    <td>
+                                                        @Html.TextBoxFor(model => model.ListaModuliConTarget[i].Target, new { placeholder = "es: https://www.example.org/", @class = "col-md-10" })
+                                                        @Html.HiddenFor(model => model.ListaModuliConTarget[i].ModuloID)
+                                                        @Html.HiddenFor(model => model.ListaModuliConTarget[i].Applicazione)
+                                                    </td>
+                                                </tr>
+                                            }
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel panel-sidebar">
+                            <div class="panel-heading">
+                                <a data-toggle="collapse" href="#OPENDOOR">
+                                    <strong>OPENDOOR</strong>
+                                    <span class="caret"></span>
+                                </a><br>
+                            </div>
+                            <div class="collapse" id="OPENDOOR">
+                                <div class="panel-body ">
+                                    <div class="col-sm-12">
+                                        <h4>Seleziona i moduli OPENDOOR</h4><hr />
+                                    </div>
+                                    <table class="table">
+                                        <div class="method">
+                                            <thead>
+                                                <tr>
+                                                    <th></th>
+                                                    <th>
+                                                        Nome
+                                                    </th>
+                                                    <th>
+                                                        Comando
+                                                    </th>
+                                                    <th>URL</th>
+                                                </tr>
+                                            </thead>
+                                        </div>
+                                        <tbody>
+                                            @for (int i = 0; i < Model.ListaModuliConTarget.Count; i++)
+                                            {
+                                                var item = Model.ListaModuliConTarget.ElementAt(i);
+                                                if (Model.ListaModuliConTarget[i].Applicazione != webmva.Models.APPLICAZIONE.OPENDOOR) { continue; }
+                                                <tr>
+                                                    <td>
+                                                        @Html.CheckBoxFor(model => model.ListaModuliConTarget[i].Inserito)
+                                                    </td>
+                                                    <td>
+                                                        @Html.DisplayFor(model => model.ListaModuliConTarget[i].Nome)
+                                                    </td>
+                                                    <td>
+                                                        @Html.DisplayFor(model => model.ListaModuliConTarget[i].Comando)
+                                                    </td>
+                                                    <td>
+                                                        @Html.TextBoxFor(model => model.ListaModuliConTarget[i].Target, new { placeholder = "es: https://www.example.org", @class = "col-md-10" })
+                                                        @Html.HiddenFor(model => model.ListaModuliConTarget[i].ModuloID)
+                                                        @Html.HiddenFor(model => model.ListaModuliConTarget[i].Applicazione)
+                                                    </td>
+                                                </tr>
+                                            }
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel panel-sidebar">
+                            <div class="panel-heading">
+                                <a data-toggle="collapse" href="#WASCAN">
+                                    <strong>WASCAN</strong>
+                                    <span class="caret"></span>
+                                </a><br>
+                            </div>
+                            <div class="collapse" id="WASCAN">
+                                <div class="panel-body ">
+                                    <div class="col-sm-12">
+                                        <h4>Seleziona i moduli WASCAN</h4><hr />
+                                    </div>
+                                    <table class="table">
+                                        <div class="method">
+                                            <thead>
+                                                <tr>
+                                                    <th></th>
+                                                    <th>
+                                                        Nome
+                                                    </th>
+                                                    <th>
+                                                        Comando
+                                                    </th>
+                                                    <th>Target</th>
+                                                </tr>
+                                            </thead>
+                                        </div>
+                                        <tbody>
+                                            @for (int i = 0; i < Model.ListaModuliConTarget.Count; i++)
+                                            {
+                                                var item = Model.ListaModuliConTarget.ElementAt(i);
+                                                if (Model.ListaModuliConTarget[i].Applicazione != webmva.Models.APPLICAZIONE.WASCAN) { continue; }
+                                                <tr>
+                                                    <td>
+                                                        @Html.CheckBoxFor(model => model.ListaModuliConTarget[i].Inserito)
+                                                    </td>
+                                                    <td>
+                                                        @Html.DisplayFor(model => model.ListaModuliConTarget[i].Nome)
+                                                    </td>
+                                                    <td>
+                                                        @Html.DisplayFor(model => model.ListaModuliConTarget[i].Comando)
+                                                    </td>
+                                                    <td>
+                                                        @Html.TextBoxFor(model => model.ListaModuliConTarget[i].Target, new { placeholder = "es: https://www.example.org/", @class = "col-md-10" })
+                                                        @Html.HiddenFor(model => model.ListaModuliConTarget[i].ModuloID)
+                                                        @Html.HiddenFor(model => model.ListaModuliConTarget[i].Applicazione)
+                                                    </td>
+                                                </tr>
+                                            }
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <a href="#cms" data-toggle="collapse">
+                                <strong>
+                                    CMS
+                                </strong>
+                            </a>
+                        </div>
+                        <div class="panel panel-sidebar">
+                            <div class="panel-heading">
+                                <a data-toggle="collapse" href="#droopescan">
+                                    <strong>
+                                        DROOPESCAN
+                                    </strong>
+                                    <span class="caret"></span>
+                                </a>
+                            </div>
+                            <div class="collapse" id="droopescan">
+                                <div class="panel-body ">
+                                    <div class="col-sm-12">
+                                        <h4>Seleziona i moduli DROOPE</h4><hr />
+                                    </div>
+                                    <table class="table">
+                                        <div class="method">
+                                            <thead>
+                                                <tr>
+                                                    <th></th>
+                                                    <th>
+                                                        Nome
+                                                    </th>
+                                                    <th>
+                                                        Comando
+                                                    </th>
+                                                    <th>Target</th>
+                                                </tr>
+                                            </thead>
+                                        </div>
+                                        <tbody>
+                                            @for (int i = 0; i < Model.ListaModuliConTarget.Count; i++)
+                                            {
+                                                var item = Model.ListaModuliConTarget.ElementAt(i);
+                                                if (Model.ListaModuliConTarget[i].Applicazione != webmva.Models.APPLICAZIONE.DROOPE) { continue; }
+                                                <tr>
+                                                    <td>
+                                                        @Html.CheckBoxFor(model => model.ListaModuliConTarget[i].Inserito)
+                                                    </td>
+                                                    <td>
+                                                        @Html.DisplayFor(model => model.ListaModuliConTarget[i].Nome)
+                                                    </td>
+                                                    <td>
+                                                        @Html.DisplayFor(model => model.ListaModuliConTarget[i].Comando)
+                                                    </td>
+                                                    <td>
+                                                        @Html.TextBoxFor(model => model.ListaModuliConTarget[i].Target, new { placeholder = "es: https://www.example.org/", @class = "col-md-10" })
+                                                        @Html.HiddenFor(model => model.ListaModuliConTarget[i].ModuloID)
+                                                        @Html.HiddenFor(model => model.ListaModuliConTarget[i].Applicazione)
+                                                    </td>
+                                                </tr>
+                                            }
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel panel-sidebar">
+                            <div class="panel-heading">
+                                <a data-toggle="collapse" href="#drupwn">
+                                    <strong>
+                                        DRUPWN
+                                    </strong>
+                                    <span class="caret"></span>
+                                </a>
+                            </div>
+                            <div class="collapse" id="drupwn">
+                                <div class="panel-body ">
+                                    <div class="col-sm-12">
+                                        <h4>Seleziona i moduli DRUPWN</h4><hr />
+                                    </div>
+                                    <table class="table">
+                                        <div class="method">
+                                            <thead>
+                                                <tr>
+                                                    <th></th>
+                                                    <th>
+                                                        Nome
+                                                    </th>
+                                                    <th>
+                                                        Comando
+                                                    </th>
+                                                    <th>
+                                                        Target
+                                                    </th>
+                                                </tr>
+                                            </thead>
+                                        </div>
+                                        <tbody>
+                                            @for (int i = 0; i < Model.ListaModuliConTarget.Count; i++)
+                                            {
+                                                var item = Model.ListaModuliConTarget.ElementAt(i);
+                                                if (Model.ListaModuliConTarget[i].Applicazione != webmva.Models.APPLICAZIONE.DRUPWN) { continue; }
+                                                <tr>
+                                                    <td>
+                                                        @Html.CheckBoxFor(model => model.ListaModuliConTarget[i].Inserito)
+                                                    </td>
+                                                    <td>
+                                                        @Html.DisplayFor(model => model.ListaModuliConTarget[i].Nome)
+                                                    </td>
+                                                    <td>
+                                                        @Html.DisplayFor(model => model.ListaModuliConTarget[i].Comando)
+                                                    </td>
+                                                    <td>
+                                                        @Html.TextBoxFor(model => model.ListaModuliConTarget[i].Target, new { placeholder = "es: https://www.example.org/", @class = "col-md-10" })
+                                                        @Html.HiddenFor(model => model.ListaModuliConTarget[i].ModuloID)
+                                                        @Html.HiddenFor(model => model.ListaModuliConTarget[i].Applicazione)
+                                                    </td>
+                                                </tr>
+                                            }
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel panel-sidebar">
+                            <div class="panel-heading">
+                                <a data-toggle="collapse" href="#joomscan">
+                                    <strong>
+                                        JOOMSCAN
+                                    </strong>
+                                    <span class="caret"></span>
+                                </a>
+                            </div>
+                            <div class="collapse" id="joomscan">
+                                <div class="panel-body ">
+                                    <div class="col-sm-12">
+                                        <h4>Seleziona i moduli JOOMSCAN</h4><hr />
+                                    </div>
+                                    <table class="table">
+                                        <div class="method">
+                                            <thead>
+                                                <tr>
+                                                    <th></th>
+                                                    <th>
+                                                        Nome
+                                                    </th>
+                                                    <th>
+                                                        Comando
+                                                    </th>
+                                                    <th>Target</th>
+                                                </tr>
+                                            </thead>
+                                        </div>
+                                        <tbody>
+                                            @for (int i = 0; i < Model.ListaModuliConTarget.Count; i++)
+                                            {
+                                                var item = Model.ListaModuliConTarget.ElementAt(i);
+                                                if (Model.ListaModuliConTarget[i].Applicazione != webmva.Models.APPLICAZIONE.JOOMSCAN) { continue; }
+                                                <tr>
+                                                    <td>
+                                                        @Html.CheckBoxFor(model => model.ListaModuliConTarget[i].Inserito)
+                                                    </td>
+                                                    <td>
+                                                        @Html.DisplayFor(model => model.ListaModuliConTarget[i].Nome)
+                                                    </td>
+                                                    <td>
+                                                        @Html.DisplayFor(model => model.ListaModuliConTarget[i].Comando)
+                                                    </td>
+                                                    <td>
+                                                        @Html.TextBoxFor(model => model.ListaModuliConTarget[i].Target, new { placeholder = "es: www.example.org", @class = "col-md-10" })
+                                                        @Html.HiddenFor(model => model.ListaModuliConTarget[i].ModuloID)
+                                                        @Html.HiddenFor(model => model.ListaModuliConTarget[i].Applicazione)
+                                                    </td>
+                                                </tr>
+                                            }
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel panel-sidebar">
+                            <div class="panel-heading">
+                                <a data-toggle="collapse" href="#wpscan">
+                                    <strong>
+                                        WPSCAN
+                                    </strong>
+                                    <span class="caret"></span>
+                                </a>
+                            </div>
+                            <div class="collapse" id="wpscan">
+                                <div class="panel-body ">
+                                    <div class="col-sm-12">
+                                        <h4>Seleziona i moduli WPSCAN</h4><hr />
+                                    </div>
+                                    <table class="table">
+                                        <div class="method">
+                                            <thead>
+                                                <tr>
+                                                    <th></th>
+                                                    <th>
+                                                        Nome
+                                                    </th>
+                                                    <th>
+                                                        Comando
+                                                    </th>
+                                                    <th>Target</th>
+                                                </tr>
+                                            </thead>
+                                        </div>
+                                        <tbody>
+                                            @for (int i = 0; i < Model.ListaModuliConTarget.Count; i++)
+                                            {
+                                                if (Model.ListaModuliConTarget[i].Applicazione != webmva.Models.APPLICAZIONE.WPSCAN) { continue; }
+                                                <tr>
+                                                    <td>
+                                                        @Html.CheckBoxFor(model => model.ListaModuliConTarget[i].Inserito)
+                                                    </td>
+                                                    <td>
+                                                        @Html.DisplayFor(model => model.ListaModuliConTarget[i].Nome)
+                                                    </td>
+                                                    <td>
+                                                        @Html.DisplayFor(model => model.ListaModuliConTarget[i].Comando)
+                                                    </td>
+                                                    <td>
+                                                        @Html.TextBoxFor(model => model.ListaModuliConTarget[i].Target, new { placeholder = "es: www.example.org", @class = "col-md-10" })
+                                                        @Html.HiddenFor(model => model.ListaModuliConTarget[i].ModuloID)
+                                                        @Html.HiddenFor(model => model.ListaModuliConTarget[i].Applicazione)
+                                                    </td>
+                                                </tr>
+                                            }
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <a href="#dns" data-toggle="collapse">
+                                <strong>
+                                    DNS
+                                </strong>
+                            </a>
+                        </div>
+                        <div class="panel panel-sidebar">
+                            <div class="panel-heading">
+                                <a data-toggle="collapse" href="#dnsRecon">
+                                    <strong>
+                                        DNSRECON
+                                    </strong>
+                                    <span class="caret"></span>
+                                </a>
+                            </div>
+                            <div class="collapse" id="dnsRecon">
+                                <div class="panel-body ">
+                                    <div class="col-sm-12">
+                                        <h4>Seleziona i moduli DNSRECON</h4><hr />
+                                    </div>
+                                    <table class="table">
+                                        <div class="method">
+                                            <thead>
+                                                <tr>
+                                                    <th></th>
+                                                    <th>
+                                                        Nome
+                                                    </th>
+                                                    <th>
+                                                        Comando
+                                                    </th>
+                                                    <th>Target</th>
+                                                </tr>
+                                            </thead>
+                                        </div>
+                                        <tbody>
+                                            @for (int i = 0; i < Model.ListaModuliConTarget.Count; i++)
+                                            {
+                                                if (Model.ListaModuliConTarget[i].Applicazione != webmva.Models.APPLICAZIONE.DNSRECON) { continue; }
+                                                <tr>
+                                                    <td>
+                                                        @Html.CheckBoxFor(model => model.ListaModuliConTarget[i].Inserito)
+                                                    </td>
+                                                    <td>
+                                                        @Html.DisplayFor(model => model.ListaModuliConTarget[i].Nome)
+                                                    </td>
+                                                    <td>
+                                                        @Html.DisplayFor(model => model.ListaModuliConTarget[i].Comando)
+                                                    </td>
+                                                    <td>
+                                                        @Html.TextBoxFor(model => model.ListaModuliConTarget[i].Target, new { placeholder = "es: example.org", @class = "col-md-10" })
+                                                        @Html.HiddenFor(model => model.ListaModuliConTarget[i].ModuloID)
+                                                        @Html.HiddenFor(model => model.ListaModuliConTarget[i].Applicazione)
+                                                    </td>
+                                                </tr>
+                                            }
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel panel-sidebar">
+                            <div class="panel-heading">
+                                <a data-toggle="collapse" href="#fierce">
+                                    <strong>
+                                        FIERCE
+                                    </strong>
+                                    <span class="caret"></span>
+                                </a>
+                            </div>
+                            <div class="collapse" id="fierce">
+                                <div class="panel-body ">
+                                    <div class="col-sm-12">
+                                        <h4>Seleziona i moduli FIERCE</h4><hr />
+                                    </div>
+                                    <table class="table">
+                                        <div class="method">
+                                            <thead>
+                                                <tr>
+                                                    <th></th>
+                                                    <th>
+                                                        Nome
+                                                    </th>
+                                                    <th>
+                                                        Comando
+                                                    </th>
+                                                    <th>Target</th>
+                                                </tr>
+                                            </thead>
+                                        </div>
+                                        <tbody>
+                                            @for (int i = 0; i < Model.ListaModuliConTarget.Count; i++)
+                                            {
+                                                if (Model.ListaModuliConTarget[i].Applicazione != webmva.Models.APPLICAZIONE.FIERCE) { continue; }
+                                                <tr>
+                                                    <td>
+                                                        @Html.CheckBoxFor(model => model.ListaModuliConTarget[i].Inserito)
+                                                    </td>
+                                                    <td>
+                                                        @Html.DisplayFor(model => model.ListaModuliConTarget[i].Nome)
+                                                    </td>
+                                                    <td>
+                                                        @Html.DisplayFor(model => model.ListaModuliConTarget[i].Comando)
+                                                    </td>
+                                                    <td>
+                                                        @Html.TextBoxFor(model => model.ListaModuliConTarget[i].Target, new { placeholder = "es: example.org", @class = "col-md-10" })
+                                                        @Html.HiddenFor(model => model.ListaModuliConTarget[i].ModuloID)
+                                                        @Html.HiddenFor(model => model.ListaModuliConTarget[i].Applicazione)
+                                                    </td>
+                                                </tr>
+                                            }
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel panel-sidebar">
+                            <div class="panel-heading">
+                                <a data-toggle="collapse" href="#dnsEnum">
+                                    <strong>
+                                        DNSENUM
+                                    </strong>
+                                    <span class="caret"></span>
+                                </a>
+                            </div>
+                            <div class="collapse" id="dnsEnum">
+                                <div class="panel-body ">
+                                    <div class="col-sm-12">
+                                        <h4>Seleziona i moduli DNSENUM</h4><hr />
+                                    </div>
+                                    <table class="table">
+                                        <div class="method">
+                                            <thead>
+                                                <tr>
+                                                    <th></th>
+                                                    <th>
+                                                        Nome
+                                                    </th>
+                                                    <th>
+                                                        Comando
+                                                    </th>
+                                                    <th>Target</th>
+                                                </tr>
+                                            </thead>
+                                        </div>
+                                        <tbody>
+                                            @for (int i = 0; i < Model.ListaModuliConTarget.Count; i++)
+                                            {
+                                                var item = Model.ListaModuliConTarget.ElementAt(i);
+                                                if (Model.ListaModuliConTarget[i].Applicazione != webmva.Models.APPLICAZIONE.DNSENUM) { continue; }
+                                                <tr>
+                                                    <td>
+                                                        @Html.CheckBoxFor(model => model.ListaModuliConTarget[i].Inserito)
+                                                    </td>
+                                                    <td>
+                                                        @Html.DisplayFor(model => model.ListaModuliConTarget[i].Nome)
+                                                    </td>
+                                                    <td>
+                                                        @Html.DisplayFor(model => model.ListaModuliConTarget[i].Comando)
+                                                    </td>
+                                                    <td>
+                                                        @Html.TextBoxFor(model => model.ListaModuliConTarget[i].Target, new { placeholder = "es: example.org", @class = "col-md-10" })
+                                                        @Html.HiddenFor(model => model.ListaModuliConTarget[i].ModuloID)
+                                                        @Html.HiddenFor(model => model.ListaModuliConTarget[i].Applicazione)
+                                                    </td>
+                                                </tr>
+                                            }
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <a href="#ig" data-toggle="collapse">
+                                <strong>
+                                    INFORMATION GATHERING
+                                </strong>
+                            </a>
+                        </div>
+                        <div class="panel panel-sidebar">
+                            <div class="panel-heading">
+                                <a data-toggle="collapse" href="#infoga">
+                                    <strong>
+                                        INFOGA
+                                    </strong>
+                                    <span class="caret"></span>
+                                </a>
+                            </div>
+                            <div class="collapse " id="infoga">
+                                <div class="panel-body ">
+                                    <div class="col-sm-12">
+                                        <h4>Seleziona i moduli INFOGA</h4><hr />
+                                    </div>
+                                    <table class="table">
+                                        <div class="method">
+                                            <thead>
+                                                <tr>
+                                                    <th></th>
+                                                    <th>
+                                                        Nome
+                                                    </th>
+                                                    <th>
+                                                        Comando
+                                                    </th>
+                                                    <th>Target</th>
+                                                </tr>
+                                            </thead>
+                                        </div>
+                                        <tbody>
+                                            @for (int i = 0; i < Model.ListaModuliConTarget.Count; i++)
+                                            {
+                                                var item = Model.ListaModuliConTarget.ElementAt(i);
+                                                if (Model.ListaModuliConTarget[i].Applicazione != webmva.Models.APPLICAZIONE.INFOGA) { continue; }
+                                                <tr>
+                                                    <td>
+                                                        @Html.CheckBoxFor(model => model.ListaModuliConTarget[i].Inserito)
+                                                    </td>
+                                                    <td>
+                                                        @Html.DisplayFor(model => model.ListaModuliConTarget[i].Nome)
+                                                    </td>
+                                                    <td>
+                                                        @Html.DisplayFor(model => model.ListaModuliConTarget[i].Comando)
+                                                    </td>
+                                                    <td>
+                                                        @Html.TextBoxFor(model => model.ListaModuliConTarget[i].Target, new { placeholder = "es: example.org", @class = "col-md-10" })
+                                                        @Html.HiddenFor(model => model.ListaModuliConTarget[i].ModuloID)
+                                                        @Html.HiddenFor(model => model.ListaModuliConTarget[i].Applicazione)
+                                                    </td>
+                                                </tr>
+                                            }
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel panel-sidebar">
+                            <div class="panel-heading">
+                                <a data-toggle="collapse" href="#INFOGAEMAIL">
+                                    <strong>INFOGA EMAIL</strong>
+                                    <span class="caret"></span>
+                                </a><br>
+                            </div>
+                            <div class="collapse" id="INFOGAEMAIL">
+                                <div class="panel-body ">
+                                    <div class="col-sm-12">
+                                        <h4>Seleziona i moduli INFOGA EMAIL</h4><hr />
+                                    </div>
+                                    <table class="table">
+                                        <div class="method">
+                                            <thead>
+                                                <tr>
+                                                    <th></th>
+                                                    <th>
+                                                        Nome
+                                                    </th>
+                                                    <th>
+                                                        Comando
+                                                    </th>
+                                                    <th>Target</th>
+                                                </tr>
+                                            </thead>
+                                        </div>
+                                        <tbody>
+                                            @for (int i = 0; i < Model.ListaModuliConTarget.Count; i++)
+                                            {
+                                                var item = Model.ListaModuliConTarget.ElementAt(i);
+                                                if (Model.ListaModuliConTarget[i].Applicazione != webmva.Models.APPLICAZIONE.INFOGAEMAIL) { continue; }
+                                                <tr>
+                                                    <td>
+                                                        @Html.CheckBoxFor(model => model.ListaModuliConTarget[i].Inserito)
+                                                    </td>
+                                                    <td>
+                                                        @Html.DisplayFor(model => model.ListaModuliConTarget[i].Nome)
+                                                    </td>
+                                                    <td>
+                                                        @Html.DisplayFor(model => model.ListaModuliConTarget[i].Comando)
+                                                    </td>
+                                                    <td>
+                                                        @Html.TextBoxFor(model => model.ListaModuliConTarget[i].Target, new { placeholder = "es: info@example.org", @class = "col-md-10" })
+                                                        @Html.HiddenFor(model => model.ListaModuliConTarget[i].ModuloID)
+                                                        @Html.HiddenFor(model => model.ListaModuliConTarget[i].Applicazione)
+                                                    </td>
+                                                </tr>
+                                            }
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel panel-sidebar">
+                            <div class="panel-heading">
+                                <a data-toggle="collapse" href="#sublist3r">
+                                    <strong>
+                                        SUBLIST3R
+                                    </strong>
+                                    <span class="caret"></span>
+                                </a>
+                            </div>
+                            <div class="collapse " id="sublist3r">
+                                <div class="panel-body ">
+                                    <div class="col-sm-12">
+                                        <h4>Seleziona i moduli SUBLIST3R</h4><hr />
+                                    </div>
+                                    <table class="table">
+                                        <div class="method">
+                                            <thead>
+                                                <tr>
+                                                    <th></th>
+                                                    <th>
+                                                        Nome
+                                                    </th>
+                                                    <th>
+                                                        Comando
+                                                    </th>
+                                                    <th>Target</th>
+                                                </tr>
+                                            </thead>
+                                        </div>
+                                        <tbody>
+                                            @for (int i = 0; i < Model.ListaModuliConTarget.Count; i++)
+                                            {
+                                                var item = Model.ListaModuliConTarget.ElementAt(i);
+                                                if (Model.ListaModuliConTarget[i].Applicazione != webmva.Models.APPLICAZIONE.SUBLIST3R) { continue; }
+                                                <tr>
+                                                    <td>
+                                                        @Html.CheckBoxFor(model => model.ListaModuliConTarget[i].Inserito)
+                                                    </td>
+                                                    <td>
+                                                        @Html.DisplayFor(model => model.ListaModuliConTarget[i].Nome)
+                                                    </td>
+                                                    <td>
+                                                        @Html.DisplayFor(model => model.ListaModuliConTarget[i].Comando)
+                                                    </td>
+                                                    <td>
+                                                        @Html.TextBoxFor(model => model.ListaModuliConTarget[i].Target, new { placeholder = "es: example.org", @class = "col-md-10" })
+                                                        @Html.HiddenFor(model => model.ListaModuliConTarget[i].ModuloID)
+                                                        @Html.HiddenFor(model => model.ListaModuliConTarget[i].Applicazione)
+                                                    </td>
+                                                </tr>
+                                            }
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel panel-sidebar">
+                            <div class="panel-heading">
+                                <a data-toggle="collapse" href="#theharvester">
+                                    <strong>
+                                        THEHARVESTER
+                                    </strong>
+                                    <span class="caret"></span>
+                                </a>
+                            </div>
+                            <div class="collapse" id="theharvester">
+                                <div class="panel-body ">
+                                    <div class="col-sm-12">
+                                        <h4>Seleziona i moduli THEHARVESTER</h4><hr />
+                                    </div>
+                                    <table class="table">
+                                        <div class="method">
+                                            <thead>
+                                                <tr>
+                                                    <th></th>
+                                                    <th>
+                                                        Nome
+                                                    </th>
+                                                    <th>
+                                                        Comando
+                                                    </th>
+                                                    <th>Target</th>
+                                                </tr>
+                                            </thead>
+                                        </div>
+                                        <tbody>
+                                            @for (int i = 0; i < Model.ListaModuliConTarget.Count; i++)
+                                            {
+                                                if (Model.ListaModuliConTarget[i].Applicazione != webmva.Models.APPLICAZIONE.THEHARVESTER) { continue; }
+                                                <tr>
+                                                    <td>
+                                                        @Html.CheckBoxFor(model => model.ListaModuliConTarget[i].Inserito)
+                                                    </td>
+                                                    <td>
+                                                        @Html.DisplayFor(model => model.ListaModuliConTarget[i].Nome)
+                                                    </td>
+                                                    <td>
+                                                        @Html.DisplayFor(model => model.ListaModuliConTarget[i].Comando)
+                                                    </td>
+                                                    <td>
+                                                        @Html.TextBoxFor(model => model.ListaModuliConTarget[i].Target, new { placeholder = "es: example.org", @class = "col-md-10" })
+                                                        @Html.HiddenFor(model => model.ListaModuliConTarget[i].ModuloID)
+                                                        @Html.HiddenFor(model => model.ListaModuliConTarget[i].Applicazione)
+                                                    </td>
+                                                </tr>
+                                            }
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel panel-sidebar">
+                            <div class="panel-heading">
+                                <a data-toggle="collapse" href="#amass">
+                                    <strong>
+                                        AMASS
+                                    </strong>
+                                    <span class="caret"></span>
+                                </a>
+                            </div>
+                            <div class="collapse " id="amass">
+                                <div class="panel-body ">
+                                    <div class="col-sm-12">
+                                        <h4>Seleziona i moduli AMASS</h4><hr />
+                                    </div>
+                                    <table class="table">
+                                        <div class="method">
+                                            <thead>
+                                                <tr>
+                                                    <th></th>
+                                                    <th>
+                                                        Nome
+                                                    </th>
+                                                    <th>
+                                                        Comando
+                                                    </th>
+                                                    <th>Target</th>
+                                                </tr>
+                                            </thead>
+                                        </div>
+                                        <tbody>
+                                            @for (int i = 0; i < Model.ListaModuliConTarget.Count; i++)
+                                            {
+                                                var item = Model.ListaModuliConTarget.ElementAt(i);
+                                                if (Model.ListaModuliConTarget[i].Applicazione != webmva.Models.APPLICAZIONE.AMASS) { continue; }
+                                                <tr>
+                                                    <td>
+                                                        @Html.CheckBoxFor(model => model.ListaModuliConTarget[i].Inserito)
+                                                    </td>
+                                                    <td>
+                                                        @Html.DisplayFor(model => model.ListaModuliConTarget[i].Nome)
+                                                    </td>
+                                                    <td>
+                                                        @Html.DisplayFor(model => model.ListaModuliConTarget[i].Comando)
+                                                    </td>
+                                                    <td>
+                                                        @Html.TextBoxFor(model => model.ListaModuliConTarget[i].Target, new { placeholder = "es: example.org", @class = "col-md-10" })
+                                                        @Html.HiddenFor(model => model.ListaModuliConTarget[i].ModuloID)
+                                                        @Html.HiddenFor(model => model.ListaModuliConTarget[i].Applicazione)
+                                                    </td>
+                                                </tr>
+                                            }
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <a href="#database" data-toggle="collapse">
+                                <strong>
+                                    DATABASE
+                                </strong>
+                            </a>
+                        </div>
+                        <div class="panel panel-sidebar">
+                            <div class="panel-heading">
+                                <a data-toggle="collapse" href="#sqlmap">
+                                    <strong>
+                                        SQLMAP
+                                    </strong>
+                                    <span class="caret"></span>
+                                </a>
+                            </div>
+                            <div class="collapse" id="sqlmap">
+                                <div class="panel-body ">
+                                    <div class="col-sm-12">
+                                        <h4>Seleziona i moduli SQLMAP</h4><hr />
+                                    </div>
+                                    <table class="table">
+                                        <div class="method">
+                                            <thead>
+                                                <tr>
+                                                    <th></th>
+                                                    <th>
+                                                        Nome
+                                                    </th>
+                                                    <th>
+                                                        Comando
+                                                    </th>
+                                                    <th>Target</th>
+                                                </tr>
+                                            </thead>
+                                        </div>
+                                        <tbody>
+                                            @for (int i = 0; i < Model.ListaModuliConTarget.Count; i++)
+                                            {
+                                                var item = Model.ListaModuliConTarget.ElementAt(i);
+                                                if (Model.ListaModuliConTarget[i].Applicazione != webmva.Models.APPLICAZIONE.SQLMAP) { continue; }
+                                                <tr>
+                                                    <td>
+                                                        @Html.CheckBoxFor(model => model.ListaModuliConTarget[i].Inserito)
+                                                    </td>
+                                                    <td>
+                                                        @Html.DisplayFor(model => model.ListaModuliConTarget[i].Nome)
+                                                    </td>
+                                                    <td>
+                                                        @Html.DisplayFor(model => model.ListaModuliConTarget[i].Comando)
+                                                    </td>
+                                                    <td>
+                                                        @Html.TextBoxFor(model => model.ListaModuliConTarget[i].Target, new { placeholder = "es: https://www.example.org/vuln.php?id=1", @class = "col-md-10" })
+                                                        @Html.HiddenFor(model => model.ListaModuliConTarget[i].ModuloID)
+                                                        @Html.HiddenFor(model => model.ListaModuliConTarget[i].Applicazione)
+                                                    </td>
+                                                </tr>
+                                            }
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel panel-sidebar">
+                            <div class="panel-heading">
+                                <a data-toggle="collapse" href="#nosql">
+                                    <strong>
+                                        NOSQLMAP
+                                    </strong>
+                                    <span class="caret"></span>
+                                </a>
+                            </div>
+                            <div class="collapse" id="nosql">
+                                <div class="panel-body ">
+                                    <div class="col-sm-12">
+                                        <h4>Seleziona i moduli NOSQLMAP</h4><hr />
+                                    </div>
+                                    <table class="table">
+                                        <div class="method">
+                                            <thead>
+                                                <tr>
+                                                    <th></th>
+                                                    <th>
+                                                        Nome
+                                                    </th>
+                                                    <th>
+                                                        Comando
+                                                    </th>
+                                                    <th>Target</th>
+                                                </tr>
+                                            </thead>
+                                        </div>
+                                        <tbody>
+                                            @for (int i = 0; i < Model.ListaModuliConTarget.Count; i++)
+                                            {
+                                                var item = Model.ListaModuliConTarget.ElementAt(i);
+                                                if (Model.ListaModuliConTarget[i].Applicazione != webmva.Models.APPLICAZIONE.NOSQL) { continue; }
+                                                <tr>
+                                                    <td>
+                                                        @Html.CheckBoxFor(model => model.ListaModuliConTarget[i].Inserito)
+                                                    </td>
+                                                    <td>
+                                                        @Html.DisplayFor(model => model.ListaModuliConTarget[i].Nome)
+                                                    </td>
+                                                    <td>
+                                                        @Html.DisplayFor(model => model.ListaModuliConTarget[i].Comando)
+                                                    </td>
+                                                    <td>
+                                                        @Html.TextBoxFor(model => model.ListaModuliConTarget[i].Target, new { placeholder = "Per i moduli NOSQLMAP non è necessario", @class = "col-md-10", disabled = "true" })
+                                                        @Html.HiddenFor(model => model.ListaModuliConTarget[i].ModuloID)
+                                                        @Html.HiddenFor(model => model.ListaModuliConTarget[i].Applicazione)
+                                                    </td>
+                                                </tr>
+                                            }
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel panel-sidebar">
+                            <div class="panel-heading">
+                                <a data-toggle="collapse" href="#odat">
+                                    <strong>
+                                        ODAT
+                                    </strong>
+                                    <span class="caret"></span>
+                                </a>
+                            </div>
+                            <div class="collapse" id="odat">
+                                <div class="panel-body ">
+                                    <div class="col-sm-12">
+                                        <h4>Seleziona i moduli ODAT</h4><hr />
+                                    </div>
+                                    <table class="table">
+                                        <div class="method">
+                                            <thead>
+                                                <tr>
+                                                    <th></th>
+                                                    <th>
+                                                        Nome
+                                                    </th>
+                                                    <th>
+                                                        Comando
+                                                    </th>
+                                                    <th>Target</th>
+                                                </tr>
+                                            </thead>
+                                        </div>
+                                        <tbody>
+                                            @for (int i = 0; i < Model.ListaModuliConTarget.Count; i++)
+                                            {
+                                                var item = Model.ListaModuliConTarget.ElementAt(i);
+                                                if (Model.ListaModuliConTarget[i].Applicazione != webmva.Models.APPLICAZIONE.ODAT) { continue; }
+                                                <tr>
+                                                    <td>
+                                                        @Html.CheckBoxFor(model => model.ListaModuliConTarget[i].Inserito)
+                                                    </td>
+                                                    <td>
+                                                        @Html.DisplayFor(model => model.ListaModuliConTarget[i].Nome)
+                                                    </td>
+                                                    <td>
+                                                        @Html.DisplayFor(model => model.ListaModuliConTarget[i].Comando)
+                                                    </td>
+                                                    <td>
+                                                        @Html.TextBoxFor(model => model.ListaModuliConTarget[i].Target, new { placeholder = "es: 192.168.1.254", @class = "col-md-10" })
+                                                        @Html.HiddenFor(model => model.ListaModuliConTarget[i].ModuloID)
+                                                        @Html.HiddenFor(model => model.ListaModuliConTarget[i].Applicazione)
+                                                    </td>
+                                                </tr>
+                                            }
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <a href="#wifi" data-toggle="collapse">
+                                <strong>
+                                    WIFI
+                                </strong>
+                            </a>
+                        </div>
+                        <div class="panel panel-sidebar">
+                            <div class="panel-heading">
+                                <a data-toggle="collapse" href="#wifite">
+                                    <strong>
+                                        WIFITE
+                                    </strong>
+                                    <span class="caret"></span>
+                                </a>
+                            </div>
+                            <div class="collapse" id="wifite">
+                                <div class="panel-body ">
+                                    <div class="col-sm-12">
+                                        <h4>Seleziona i moduli WIFITE</h4><hr />
+                                    </div>
+                                    <table class="table">
+                                        <div class="method">
+                                            <thead>
+                                                <tr>
+                                                    <th></th>
+                                                    <th>
+                                                        Nome
+                                                    </th>
+                                                    <th>
+                                                        Comando
+                                                    </th>
+                                                    <th>Target</th>
+                                                </tr>
+                                            </thead>
+                                        </div>
+                                        <tbody>
+                                            @for (int i = 0; i < Model.ListaModuliConTarget.Count; i++)
+                                            {
+                                                var item = Model.ListaModuliConTarget.ElementAt(i);
+                                                if (Model.ListaModuliConTarget[i].Applicazione != webmva.Models.APPLICAZIONE.WIFITE) { continue; }
+                                                <tr>
+                                                    <td>
+                                                        @Html.CheckBoxFor(model => model.ListaModuliConTarget[i].Inserito)
+                                                    </td>
+                                                    <td>
+                                                        @Html.DisplayFor(model => model.ListaModuliConTarget[i].Nome)
+                                                    </td>
+                                                    <td>
+                                                        @Html.DisplayFor(model => model.ListaModuliConTarget[i].Comando)
+                                                    </td>
+                                                    <td>
+                                                        @Html.TextBoxFor(model => model.ListaModuliConTarget[i].Target, new { placeholder = "Per i moduli WIFITE non è necessario", @class = "col-md-10", disabled = "true" })
+                                                        @Html.HiddenFor(model => model.ListaModuliConTarget[i].ModuloID)
+                                                        @Html.HiddenFor(model => model.ListaModuliConTarget[i].Applicazione)
+                                                    </td>
+                                                </tr>
+                                            }
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="col-md-12">
+                        <h4 for="descrizione" asp-for="@Model.Progetto.Descrizione">Descrizione</h4><hr />
+                        <textarea class="form-control" id="descrizione" placeholder="descrizione del progetto" rows="5" cols="40" style="resize:none"
+                                  maxlength="1000" asp-for="@Model.Progetto.Descrizione"></textarea>
+                    </div>
+                    <div class="col-sm-12 text-center">
+                        <br>
+                        <div class="form-group">
+                            <input type="submit" class="btn btn-info" value="Salva" style="position:fixed;width:100px;height:40px;bottom:40px;right:50px;" />&nbsp;&nbsp;
+                            <a asp-action="Index"> Torna alla lista</a>
+                        </div>
+                    </div>
                 </div>
-                </form>
-                 }
+            </div>
+        </form>
+    }
 </div>

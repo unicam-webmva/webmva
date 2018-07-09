@@ -1,17 +1,13 @@
 @model webmva.ViewModels.ListaModuliVM
-
-    @{ ViewData["Title"] = "Moduli"; }
-    
-    <div class="container">
-        <h2>Moduli</h2>
-        <p class="lead">
-            I moduli presenti sono questi! Per creare un nuovo modulo
-            <a href="/Modulo/Create">clicca qui</a> !
-        </p>
-        <hr/>
-        
-        
- <div class="col-md-2 sidebar">
+@{ ViewData["Title"] = "Moduli"; }
+<div class="container">
+    <h2>Moduli</h2>
+    <p class="lead">
+        I moduli presenti sono questi! Per creare un nuovo modulo
+        <a href="/Modulo/Create">clicca qui</a> !
+    </p>
+    <hr />
+    <div class="col-md-2 sidebar">
         <div class="row">
             <!-- uncomment code for absolute positioning tweek see top comment in css -->
             <div class="absolute-wrapper"> </div>
@@ -35,29 +31,26 @@
                                 <!-- Dropdown level 1-->
                                 <div class="nav-item dropdown">
                                     <div class="dropdown">
-
                                         <ul class="dropdown" style="list-style-type:none; margin-left:-40px align:center">
-
                                             <li>
-                                                <a   data-toggle="collapse" href="#Nmap">
+                                                <a data-toggle="collapse" href="#Nmap">
                                                     Nmap
                                                     <span class="glyphicon glyphicon-play" style="font-size:65%"></span>
                                                 </a>
                                             </li>
                                             <li>
-                                                <a   data-toggle="collapse" href="#Nessus">
+                                                <a data-toggle="collapse" href="#Nessus">
                                                     Nessus
                                                     <span class="glyphicon glyphicon-play" style="font-size:65%"></span>
                                                 </a>
                                             </li>
                                             <li>
-                                                <a   data-toggle="collapse" href="#OpenVAS">
+                                                <a data-toggle="collapse" href="#OpenVAS">
                                                     OpenVAS
                                                     <span class="glyphicon glyphicon-play" style="font-size:65%"></span>
                                                 </a>
                                             </li>
                                         </ul>
-
                                     </div>
                                 </div>
                             </li>
@@ -69,23 +62,21 @@
                                 <!-- Dropdown level 1-->
                                 <div id="web" class="nav dropdown">
                                     <div class="dropdown">
-
                                         <ul class="dropdown" style="list-style-type:none; margin-left:-40px align:center">
-
                                             <li>
-                                                <a   data-toggle="collapse" href="#Wapiti">
+                                                <a data-toggle="collapse" href="#Wapiti">
                                                     Wapiti
                                                     <span class="glyphicon glyphicon-play" style="font-size:65%"></span>
                                                 </a>
                                             </li>
                                             <li>
-                                                <a   data-toggle="collapse" href="#Opendoor">
+                                                <a data-toggle="collapse" href="#Opendoor">
                                                     Opendoor
                                                     <span class="glyphicon glyphicon-play" style="font-size:65%"></span>
                                                 </a>
                                             </li>
                                             <li>
-                                                <a   data-toggle="collapse" href="#Wascan">
+                                                <a data-toggle="collapse" href="#Wascan">
                                                     Wascan
                                                     <span class="glyphicon glyphicon-play" style="font-size:65%"></span>
                                                 </a>
@@ -102,35 +93,32 @@
                                 <!-- Dropdown level 1-->
                                 <div id="cms" class="nav-item dropdown">
                                     <div class="dropdown">
-
                                         <ul class="dropdown" style="list-style-type:none; margin-left:-40px align:center">
-
                                             <li>
-                                                <a   data-toggle="collapse" href="#Droopescan">
+                                                <a data-toggle="collapse" href="#Droopescan">
                                                     Droopescan
                                                     <span class="glyphicon glyphicon-play" style="font-size:65%"></span>
                                                 </a>
                                             </li>
                                             <li>
-                                                <a   data-toggle="collapse" href="#Drupwn">
+                                                <a data-toggle="collapse" href="#Drupwn">
                                                     Drupwn
                                                     <span class="glyphicon glyphicon-play" style="font-size:65%"></span>
                                                 </a>
                                             </li>
                                             <li>
-                                                <a   data-toggle="collapse" href="#JOOMSCAN">
+                                                <a data-toggle="collapse" href="#JOOMSCAN">
                                                     Joomscan
                                                     <span class="glyphicon glyphicon-play" style="font-size:65%"></span>
                                                 </a>
                                             </li>
-                                               <li>
-                                                <a   data-toggle="collapse" href="#WPSCAN">
+                                            <li>
+                                                <a data-toggle="collapse" href="#WPSCAN">
                                                     Wpscan
                                                     <span class="glyphicon glyphicon-play" style="font-size:65%"></span>
                                                 </a>
                                             </li>
                                         </ul>
-
                                     </div>
                                 </div>
                             </li>
@@ -142,34 +130,32 @@
                                 <!-- Dropdown level 1-->
                                 <div id="dns" class="nav-item dropdown">
                                     <div class="dropdown">
-
                                         <ul class="dropdown" style="list-style-type:none; margin-left:-40px align:center">
                                             <li>
-                                                <a   data-toggle="collapse" href="#DnsRecon">
+                                                <a data-toggle="collapse" href="#DnsRecon">
                                                     Dnsrecon
                                                     <span class="glyphicon glyphicon-play" style="font-size:65%"></span>
                                                 </a>
                                             </li>
                                             <li>
-                                                <a   data-toggle="collapse" href="#fierce">
+                                                <a data-toggle="collapse" href="#fierce">
                                                     Fierce
                                                     <span class="glyphicon glyphicon-play" style="font-size:65%"></span>
                                                 </a>
                                             </li>
-                                             <li>
-                                                <a   data-toggle="collapse" href="#dnsEnum">
+                                            <li>
+                                                <a data-toggle="collapse" href="#dnsEnum">
                                                     DnsEnum
                                                     <span class="glyphicon glyphicon-play" style="font-size:65%"></span>
                                                 </a>
                                             </li>
                                             <li>
-                                                <a   data-toggle="collapse" href="#theharvester">
+                                                <a data-toggle="collapse" href="#theharvester">
                                                     TheHarvester
                                                     <span class="glyphicon glyphicon-play" style="font-size:65%"></span>
                                                 </a>
                                             </li>
                                         </ul>
-
                                     </div>
                                 </div>
                             </li>
@@ -181,20 +167,18 @@
                                 <!-- Dropdown level 1-->
                                 <div id="informationGathering" class="nav-item dropdown">
                                     <div class="dropdown">
-
                                         <ul class="dropdown" style="list-style-type:none; margin-left:-40px align:center">
-
                                             <li>
-                                                <a   data-toggle="collapse" href="#Infoga"> Infoga <span class="glyphicon glyphicon-play" style="font-size:65%"></span></a>
+                                                <a data-toggle="collapse" href="#Infoga"> Infoga <span class="glyphicon glyphicon-play" style="font-size:65%"></span></a>
                                             </li>
                                             <li>
-                                                <a   data-toggle="collapse" href="#Infogae">Infoga Email  <span class="glyphicon glyphicon-play" style="font-size:65%"></span></a>
+                                                <a data-toggle="collapse" href="#Infogae">Infoga Email  <span class="glyphicon glyphicon-play" style="font-size:65%"></span></a>
                                             </li>
                                             <li>
-                                                <a   data-toggle="collapse" href="#sublist3r"> Sublist3r <span class="glyphicon glyphicon-play" style="font-size:65%"></span></a>
+                                                <a data-toggle="collapse" href="#sublist3r"> Sublist3r <span class="glyphicon glyphicon-play" style="font-size:65%"></span></a>
                                             </li>
                                             <li>
-                                                <a   data-toggle="collapse" href="#amass"> Amass <span class="glyphicon glyphicon-play" style="font-size:65%"></span></a>
+                                                <a data-toggle="collapse" href="#amass"> Amass <span class="glyphicon glyphicon-play" style="font-size:65%"></span></a>
                                             </li>
                                         </ul>
                                     </div>
@@ -210,29 +194,28 @@
                                     <div class="dropdown">
                                         <ul class="dropdown" style="list-style-type:none; margin-left:-40px align:center">
                                             <li>
-                                                <a   data-toggle="collapse" href="#Sqlmap">
+                                                <a data-toggle="collapse" href="#Sqlmap">
                                                     SQLMap
                                                     <span class="glyphicon glyphicon-play" style="font-size:65%"></span>
                                                 </a>
                                             </li>
                                             <li>
-                                                <a   data-toggle="collapse" href="#Nosql">
+                                                <a data-toggle="collapse" href="#Nosql">
                                                     NoSQLMap
                                                     <span class="glyphicon glyphicon-play" style="font-size:65%"></span>
                                                 </a>
                                             </li>
-                                             <li>
-                                                <a   data-toggle="collapse" href="#odat">
+                                            <li>
+                                                <a data-toggle="collapse" href="#odat">
                                                     Odat
                                                     <span class="glyphicon glyphicon-play" style="font-size:65%"></span>
                                                 </a>
                                             </li>
                                         </ul>
-
                                     </div>
                                 </div>
                             </li>
-                              <li class="nav navbar-nav" id="dropdown">
+                            <li class="nav navbar-nav" id="dropdown">
                                 <a>
                                     <span class="glyphicon glyphicon-cloud-upload"></span>
                                     <strong>   WIFI</strong>
@@ -240,15 +223,12 @@
                                 <!-- Dropdown level 1-->
                                 <div id="wifi" class="nav-item dropdown">
                                     <div class="dropdown">
-
                                         <ul class="dropdown" style="list-style-type:none; margin-left:-40px align:center">
-
                                             <li>
-                                                <a   data-toggle="collapse" href="#Wifite"> Wifite <span class="glyphicon glyphicon-play" style="font-size:65%"></span></a>
+                                                <a data-toggle="collapse" href="#Wifite"> Wifite <span class="glyphicon glyphicon-play" style="font-size:65%"></span></a>
                                             </li>
-                                         <br>
+                                            <br>
                                         </ul>
-
                                     </div>
                                 </div>
                             </li>
@@ -256,34 +236,30 @@
                     </div>
                     <!-- /.navbar-collapse -->
                 </nav>
-
             </div>
         </div>
     </div>
-
-        <div class="col-6 col-md-10">
-             <div class="panel panel-default">
-                    <div class="panel-heading">
-                        <a href="#network" data-toggle="collapse">
-                            <strong>
-                               NETWORK
-                            </strong>
-                           
-                        </a>
-                    </div>
+    <div class="col-6 col-md-10">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <a href="#network" data-toggle="collapse">
+                    <strong>
+                        NETWORK
+                    </strong>
+                </a>
+            </div>
             <div class="col-5">
                 <div class="panel panel-sidebar">
                     <div class="panel-heading">
-                        <a   data-toggle="collapse"  href="#Nmap">
+                        <a data-toggle="collapse" href="#Nmap">
                             <strong>
-                                 NMAP
+                                NMAP
                             </strong>
                             <span class="caret"></span>
                         </a>
                     </div>
                     <div class="collapse " id="Nmap">
                         <div class="panel-body ">
-
                             <table class="table">
                                 <div class="method">
                                     <thead>
@@ -294,162 +270,149 @@
                                             <th>
                                                 Comando
                                             </th>
-
                                             <th></th>
                                         </tr>
                                     </thead>
                                 </div>
                                 <tbody>
-                                    @foreach (var item in Model.ModuliNMAP) { 
-                                    <tr>
-                                        <td>
-                                           <a asp-action="Details" asp-route-id="@item.ID"> @Html.DisplayFor(modelItem => item.Nome)</a> 
-                                        </td>
-                                        <td>
-                                            @Html.DisplayFor(modelItem => item.Comando)
-                                        </td>
-                                        <td>
-                                            <a asp-action="Edit" asp-route-id="@item.ID">Modifica</a> |
-                                            <a asp-action="Delete" asp-route-id="@item.ID">Cancella</a>
-                                        </td>
-                                    </tr>
+                                    @foreach (var item in Model.ModuliNMAP)
+                                    {
+                                        <tr>
+                                            <td>
+                                                <a asp-action="Details" asp-route-id="@item.ID"> @Html.DisplayFor(modelItem => item.Nome)</a>
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.Comando)
+                                            </td>
+                                            <td>
+                                                <a asp-action="Edit" asp-route-id="@item.ID">Modifica</a> |
+                                                <a asp-action="Delete" asp-route-id="@item.ID">Cancella</a>
+                                            </td>
+                                        </tr>
                                     }
                                 </tbody>
                             </table>
-
                         </div>
                     </div>
                 </div>
             </div>
             <div class="col-5">
-                    <div class="panel panel-sidebar">
-                        <div class="panel-heading">
-                            <a   data-toggle="collapse"  href="#Nessus">
-                                <strong>
-                                     NESSUS
-                                </strong>
-                                <span class="caret"></span>
-                            </a>
-                        </div>
-                        <div class="collapse " id="Nessus">
-                            <div class="panel-body ">
-    
-                                <table class="table" >
-                                    <div class="method">
-                                        <thead>
-                                            <tr>
-                                                <th>
-                                                    Nome
-                                                </th>
-                                                <th>
-                                                    Comando
-                                                </th>
-    
-                                                <th></th>
-                                            </tr>
-                                        </thead>
-                                    </div>
-                                    <tbody>
-                                        @foreach (var item in Model.ModuliNESSUS) { 
-                                            <tr>
+                <div class="panel panel-sidebar">
+                    <div class="panel-heading">
+                        <a data-toggle="collapse" href="#Nessus">
+                            <strong>
+                                NESSUS
+                            </strong>
+                            <span class="caret"></span>
+                        </a>
+                    </div>
+                    <div class="collapse " id="Nessus">
+                        <div class="panel-body ">
+                            <table class="table">
+                                <div class="method">
+                                    <thead>
+                                        <tr>
+                                            <th>
+                                                Nome
+                                            </th>
+                                            <th>
+                                                Comando
+                                            </th>
+                                            <th></th>
+                                        </tr>
+                                    </thead>
+                                </div>
+                                <tbody>
+                                    @foreach (var item in Model.ModuliNESSUS)
+                                    {
+                                        <tr>
                                             <td>
-                                               <a asp-action="Details" asp-route-id="@item.ID">@Html.DisplayFor(modelItem => item.Nome)</a> 
+                                                <a asp-action="Details" asp-route-id="@item.ID">@Html.DisplayFor(modelItem => item.Nome)</a>
                                             </td>
                                             <td>
                                                 @Html.DisplayFor(modelItem => item.Comando)
                                             </td>
-                                          
                                             <td>
                                                 <a asp-action="Edit" asp-route-id="@item.ID">Modifica</a> |
                                                 <a asp-action="Delete" asp-route-id="@item.ID">Cancella</a>
                                             </td>
                                         </tr>
-                                        }
-                                    </tbody>
-                                </table>
-    
-                            </div>
+                                    }
+                                </tbody>
+                            </table>
                         </div>
                     </div>
                 </div>
-                <div class="col-5">
-                        <div class="panel panel-sidebar">
-                            <div class="panel-heading">
-                                <a   data-toggle="collapse"  href="#OpenVAS">
-                                    <strong>
-                                         OPENVAS
-                                    </strong>
-                                    <span class="caret"></span>
-                                </a>
-                            </div>
-                            <div class="collapse " id="OpenVAS">
-                                <div class="panel-body ">
-        
-                                    <table class="table" >
-                                        <div class="method">
-                                            <thead>
-                                                <tr>
-                                                    <th>
-                                                        Nome
-                                                    </th>
-                                                    <th>
-                                                        Comando
-                                                    </th>
-        
-                                                    <th></th>
-                                                </tr>
-                                            </thead>
-                                        </div>
-                                        <tbody>
-                                            @foreach (var item in Model.ModuliOPENVAS)
-    {
+            </div>
+            <div class="col-5">
+                <div class="panel panel-sidebar">
+                    <div class="panel-heading">
+                        <a data-toggle="collapse" href="#OpenVAS">
+                            <strong>
+                                OPENVAS
+                            </strong>
+                            <span class="caret"></span>
+                        </a>
+                    </div>
+                    <div class="collapse " id="OpenVAS">
+                        <div class="panel-body ">
+                            <table class="table">
+                                <div class="method">
+                                    <thead>
+                                        <tr>
+                                            <th>
+                                                Nome
+                                            </th>
+                                            <th>
+                                                Comando
+                                            </th>
+                                            <th></th>
+                                        </tr>
+                                    </thead>
+                                </div>
+                                <tbody>
+                                    @foreach (var item in Model.ModuliOPENVAS)
+                                    {
                                         <tr>
                                             <td>
-                                                  <a asp-action="Details" asp-route-id="@item.ID">@Html.DisplayFor(modelItem => item.Nome)</a>
+                                                <a asp-action="Details" asp-route-id="@item.ID">@Html.DisplayFor(modelItem => item.Nome)</a>
                                             </td>
                                             <td>
                                                 @Html.DisplayFor(modelItem => item.Comando)
                                             </td>
-
                                             <td>
                                                 <a asp-action="Edit" asp-route-id="@item.ID">Modifica</a> |
                                                 <a asp-action="Delete" asp-route-id="@item.ID">Cancella</a>
                                             </td>
                                         </tr>
-}
-                                           
-                                        </tbody>
-                                    </table>
-        
-                                </div>
-                            </div>
+                                    }
+                                </tbody>
+                            </table>
                         </div>
                     </div>
-
-        
+                </div>
+            </div>
         </div>
-         <div class="panel panel-default">
-                    <div class="panel-heading">
-                        <a href="#web" data-toggle="collapse">
-                            <strong>
-                               WEB
-                            </strong>
-                           
-                        </a>
-                    </div>
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <a href="#web" data-toggle="collapse">
+                    <strong>
+                        WEB
+                    </strong>
+                </a>
+            </div>
             <div class="col-5">
                 <div class="panel panel-sidebar">
                     <div class="panel-heading">
-                        <a   data-toggle="collapse"  href="#Wapiti">
+                        <a data-toggle="collapse" href="#Wapiti">
                             <strong>
-                                 WAPITI
+                                WAPITI
                             </strong>
                             <span class="caret"></span>
                         </a>
                     </div>
                     <div class="collapse " id="Wapiti">
                         <div class="panel-body ">
-
                             <table class="table">
                                 <div class="method">
                                     <thead>
@@ -460,46 +423,44 @@
                                             <th>
                                                 Comando
                                             </th>
-
                                             <th></th>
                                         </tr>
                                     </thead>
                                 </div>
                                 <tbody>
-                                    @foreach (var item in Model.ModuliWAPITI) { 
-                                    <tr>
-                                        <td>
-                                           <a asp-action="Details" asp-route-id="@item.ID"> @Html.DisplayFor(modelItem => item.Nome)</a> 
-                                        </td>
-                                        <td>
-                                            @Html.DisplayFor(modelItem => item.Comando)
-                                        </td>
-                                        <td>
-                                            <a asp-action="Edit" asp-route-id="@item.ID">Modifica</a> |
-                                            <a asp-action="Delete" asp-route-id="@item.ID">Cancella</a>
-                                        </td>
-                                    </tr>
+                                    @foreach (var item in Model.ModuliWAPITI)
+                                    {
+                                        <tr>
+                                            <td>
+                                                <a asp-action="Details" asp-route-id="@item.ID"> @Html.DisplayFor(modelItem => item.Nome)</a>
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.Comando)
+                                            </td>
+                                            <td>
+                                                <a asp-action="Edit" asp-route-id="@item.ID">Modifica</a> |
+                                                <a asp-action="Delete" asp-route-id="@item.ID">Cancella</a>
+                                            </td>
+                                        </tr>
                                     }
                                 </tbody>
                             </table>
-
                         </div>
                     </div>
                 </div>
             </div>
-                <div class="col-5">
+            <div class="col-5">
                 <div class="panel panel-sidebar">
                     <div class="panel-heading">
-                        <a   data-toggle="collapse"  href="#Opendoor">
+                        <a data-toggle="collapse" href="#Opendoor">
                             <strong>
-                                 OPENDOOR
+                                OPENDOOR
                             </strong>
                             <span class="caret"></span>
                         </a>
                     </div>
                     <div class="collapse " id="Opendoor">
                         <div class="panel-body ">
-
                             <table class="table">
                                 <div class="method">
                                     <thead>
@@ -510,29 +471,28 @@
                                             <th>
                                                 Comando
                                             </th>
-
                                             <th></th>
                                         </tr>
                                     </thead>
                                 </div>
                                 <tbody>
-                                    @foreach (var item in Model.ModuliOPENDOOR) { 
-                                    <tr>
-                                        <td>
-                                           <a asp-action="Details" asp-route-id="@item.ID"> @Html.DisplayFor(modelItem => item.Nome)</a> 
-                                        </td>
-                                        <td>
-                                            @Html.DisplayFor(modelItem => item.Comando)
-                                        </td>
-                                        <td>
-                                            <a asp-action="Edit" asp-route-id="@item.ID">Modifica</a> |
-                                            <a asp-action="Delete" asp-route-id="@item.ID">Cancella</a>
-                                        </td>
-                                    </tr>
+                                    @foreach (var item in Model.ModuliOPENDOOR)
+                                    {
+                                        <tr>
+                                            <td>
+                                                <a asp-action="Details" asp-route-id="@item.ID"> @Html.DisplayFor(modelItem => item.Nome)</a>
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.Comando)
+                                            </td>
+                                            <td>
+                                                <a asp-action="Edit" asp-route-id="@item.ID">Modifica</a> |
+                                                <a asp-action="Delete" asp-route-id="@item.ID">Cancella</a>
+                                            </td>
+                                        </tr>
                                     }
                                 </tbody>
                             </table>
-
                         </div>
                     </div>
                 </div>
@@ -540,16 +500,15 @@
             <div class="col-5">
                 <div class="panel panel-sidebar">
                     <div class="panel-heading">
-                        <a   data-toggle="collapse"  href="#Wascan">
+                        <a data-toggle="collapse" href="#Wascan">
                             <strong>
-                                 WASCAN
+                                WASCAN
                             </strong>
                             <span class="caret"></span>
                         </a>
                     </div>
                     <div class="collapse " id="Wascan">
                         <div class="panel-body ">
-
                             <table class="table">
                                 <div class="method">
                                     <thead>
@@ -560,56 +519,53 @@
                                             <th>
                                                 Comando
                                             </th>
-
                                             <th></th>
                                         </tr>
                                     </thead>
                                 </div>
                                 <tbody>
-                                    @foreach (var item in Model.ModuliWASCAN) { 
-                                    <tr>
-                                        <td>
-                                           <a asp-action="Details" asp-route-id="@item.ID"> @Html.DisplayFor(modelItem => item.Nome)</a> 
-                                        </td>
-                                        <td>
-                                            @Html.DisplayFor(modelItem => item.Comando)
-                                        </td>
-                                        <td>
-                                            <a asp-action="Edit" asp-route-id="@item.ID">Modifica</a> |
-                                            <a asp-action="Delete" asp-route-id="@item.ID">Cancella</a>
-                                        </td>
-                                    </tr>
+                                    @foreach (var item in Model.ModuliWASCAN)
+                                    {
+                                        <tr>
+                                            <td>
+                                                <a asp-action="Details" asp-route-id="@item.ID"> @Html.DisplayFor(modelItem => item.Nome)</a>
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.Comando)
+                                            </td>
+                                            <td>
+                                                <a asp-action="Edit" asp-route-id="@item.ID">Modifica</a> |
+                                                <a asp-action="Delete" asp-route-id="@item.ID">Cancella</a>
+                                            </td>
+                                        </tr>
                                     }
                                 </tbody>
                             </table>
-
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-         <div class="panel panel-default">
-                    <div class="panel-heading">
-                        <a href="#cms" data-toggle="collapse">
-                            <strong>
-                               CMS
-                            </strong>
-                           
-                        </a>
-                    </div>
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <a href="#cms" data-toggle="collapse">
+                    <strong>
+                        CMS
+                    </strong>
+                </a>
+            </div>
             <div class="col-5">
                 <div class="panel panel-sidebar">
                     <div class="panel-heading">
-                        <a   data-toggle="collapse"  href="#Droopescan">
+                        <a data-toggle="collapse" href="#Droopescan">
                             <strong>
-                                 DROOPESCAN
+                                DROOPESCAN
                             </strong>
                             <span class="caret"></span>
                         </a>
                     </div>
                     <div class="collapse " id="Droopescan">
                         <div class="panel-body ">
-
                             <table class="table">
                                 <div class="method">
                                     <thead>
@@ -620,46 +576,44 @@
                                             <th>
                                                 Comando
                                             </th>
-
                                             <th></th>
                                         </tr>
                                     </thead>
                                 </div>
                                 <tbody>
-                                    @foreach (var item in Model.ModuliDROOPE) { 
-                                    <tr>
-                                        <td>
-                                           <a asp-action="Details" asp-route-id="@item.ID"> @Html.DisplayFor(modelItem => item.Nome)</a> 
-                                        </td>
-                                        <td>
-                                            @Html.DisplayFor(modelItem => item.Comando)
-                                        </td>
-                                        <td>
-                                            <a asp-action="Edit" asp-route-id="@item.ID">Modifica</a> |
-                                            <a asp-action="Delete" asp-route-id="@item.ID">Cancella</a>
-                                        </td>
-                                    </tr>
+                                    @foreach (var item in Model.ModuliDROOPE)
+                                    {
+                                        <tr>
+                                            <td>
+                                                <a asp-action="Details" asp-route-id="@item.ID"> @Html.DisplayFor(modelItem => item.Nome)</a>
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.Comando)
+                                            </td>
+                                            <td>
+                                                <a asp-action="Edit" asp-route-id="@item.ID">Modifica</a> |
+                                                <a asp-action="Delete" asp-route-id="@item.ID">Cancella</a>
+                                            </td>
+                                        </tr>
                                     }
                                 </tbody>
                             </table>
-
                         </div>
                     </div>
                 </div>
             </div>
-               <div class="col-5">
+            <div class="col-5">
                 <div class="panel panel-sidebar">
                     <div class="panel-heading">
-                        <a   data-toggle="collapse"  href="#Drupwn">
+                        <a data-toggle="collapse" href="#Drupwn">
                             <strong>
-                                 DRUPWN
+                                DRUPWN
                             </strong>
                             <span class="caret"></span>
                         </a>
                     </div>
                     <div class="collapse " id="Drupwn">
                         <div class="panel-body ">
-
                             <table class="table">
                                 <div class="method">
                                     <thead>
@@ -670,46 +624,44 @@
                                             <th>
                                                 Comando
                                             </th>
-
                                             <th></th>
                                         </tr>
                                     </thead>
                                 </div>
                                 <tbody>
-                                    @foreach (var item in Model.ModuliDRUPWN) { 
-                                    <tr>
-                                        <td>
-                                           <a asp-action="Details" asp-route-id="@item.ID"> @Html.DisplayFor(modelItem => item.Nome)</a> 
-                                        </td>
-                                        <td>
-                                            @Html.DisplayFor(modelItem => item.Comando)
-                                        </td>
-                                        <td>
-                                            <a asp-action="Edit" asp-route-id="@item.ID">Modifica</a> |
-                                            <a asp-action="Delete" asp-route-id="@item.ID">Cancella</a>
-                                        </td>
-                                    </tr>
+                                    @foreach (var item in Model.ModuliDRUPWN)
+                                    {
+                                        <tr>
+                                            <td>
+                                                <a asp-action="Details" asp-route-id="@item.ID"> @Html.DisplayFor(modelItem => item.Nome)</a>
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.Comando)
+                                            </td>
+                                            <td>
+                                                <a asp-action="Edit" asp-route-id="@item.ID">Modifica</a> |
+                                                <a asp-action="Delete" asp-route-id="@item.ID">Cancella</a>
+                                            </td>
+                                        </tr>
                                     }
                                 </tbody>
                             </table>
-
                         </div>
                     </div>
                 </div>
             </div>
-               <div class="col-5">
+            <div class="col-5">
                 <div class="panel panel-sidebar">
                     <div class="panel-heading">
-                        <a   data-toggle="collapse"  href="#JOOMSCAN">
+                        <a data-toggle="collapse" href="#JOOMSCAN">
                             <strong>
-                                 JOOMSCAN
+                                JOOMSCAN
                             </strong>
                             <span class="caret"></span>
                         </a>
                     </div>
                     <div class="collapse " id="JOOMSCAN">
                         <div class="panel-body ">
-
                             <table class="table">
                                 <div class="method">
                                     <thead>
@@ -720,46 +672,44 @@
                                             <th>
                                                 Comando
                                             </th>
-
                                             <th></th>
                                         </tr>
                                     </thead>
                                 </div>
                                 <tbody>
-                                    @foreach (var item in Model.ModuliJOOMSCAN) { 
-                                    <tr>
-                                        <td>
-                                           <a asp-action="Details" asp-route-id="@item.ID"> @Html.DisplayFor(modelItem => item.Nome)</a> 
-                                        </td>
-                                        <td>
-                                            @Html.DisplayFor(modelItem => item.Comando)
-                                        </td>
-                                        <td>
-                                            <a asp-action="Edit" asp-route-id="@item.ID">Modifica</a> |
-                                            <a asp-action="Delete" asp-route-id="@item.ID">Cancella</a>
-                                        </td>
-                                    </tr>
+                                    @foreach (var item in Model.ModuliJOOMSCAN)
+                                    {
+                                        <tr>
+                                            <td>
+                                                <a asp-action="Details" asp-route-id="@item.ID"> @Html.DisplayFor(modelItem => item.Nome)</a>
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.Comando)
+                                            </td>
+                                            <td>
+                                                <a asp-action="Edit" asp-route-id="@item.ID">Modifica</a> |
+                                                <a asp-action="Delete" asp-route-id="@item.ID">Cancella</a>
+                                            </td>
+                                        </tr>
                                     }
                                 </tbody>
                             </table>
-
                         </div>
                     </div>
                 </div>
             </div>
-              <div class="col-5">
+            <div class="col-5">
                 <div class="panel panel-sidebar">
                     <div class="panel-heading">
-                        <a   data-toggle="collapse"  href="#WPSCAN">
+                        <a data-toggle="collapse" href="#WPSCAN">
                             <strong>
-                                 WPSCAN
+                                WPSCAN
                             </strong>
                             <span class="caret"></span>
                         </a>
                     </div>
                     <div class="collapse " id="WPSCAN">
                         <div class="panel-body ">
-
                             <table class="table">
                                 <div class="method">
                                     <thead>
@@ -770,56 +720,53 @@
                                             <th>
                                                 Comando
                                             </th>
-
                                             <th></th>
                                         </tr>
                                     </thead>
                                 </div>
                                 <tbody>
-                                    @foreach (var item in Model.ModuliWPSCAN) { 
-                                    <tr>
-                                        <td>
-                                           <a asp-action="Details" asp-route-id="@item.ID"> @Html.DisplayFor(modelItem => item.Nome)</a> 
-                                        </td>
-                                        <td>
-                                            @Html.DisplayFor(modelItem => item.Comando)
-                                        </td>
-                                        <td>
-                                            <a asp-action="Edit" asp-route-id="@item.ID">Modifica</a> |
-                                            <a asp-action="Delete" asp-route-id="@item.ID">Cancella</a>
-                                        </td>
-                                    </tr>
+                                    @foreach (var item in Model.ModuliWPSCAN)
+                                    {
+                                        <tr>
+                                            <td>
+                                                <a asp-action="Details" asp-route-id="@item.ID"> @Html.DisplayFor(modelItem => item.Nome)</a>
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.Comando)
+                                            </td>
+                                            <td>
+                                                <a asp-action="Edit" asp-route-id="@item.ID">Modifica</a> |
+                                                <a asp-action="Delete" asp-route-id="@item.ID">Cancella</a>
+                                            </td>
+                                        </tr>
                                     }
                                 </tbody>
                             </table>
-
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-         <div class="panel panel-default">
-                    <div class="panel-heading">
-                        <a href="#dns" data-toggle="collapse">
-                            <strong>
-                               DNS
-                            </strong>
-                           
-                        </a>
-                    </div>
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <a href="#dns" data-toggle="collapse">
+                    <strong>
+                        DNS
+                    </strong>
+                </a>
+            </div>
             <div class="col-5">
                 <div class="panel panel-sidebar">
                     <div class="panel-heading">
-                        <a   data-toggle="collapse"  href="#DnsRecon">
+                        <a data-toggle="collapse" href="#DnsRecon">
                             <strong>
-                                 DNSRECON
+                                DNSRECON
                             </strong>
                             <span class="caret"></span>
                         </a>
                     </div>
                     <div class="collapse " id="DnsRecon">
                         <div class="panel-body ">
-
                             <table class="table">
                                 <div class="method">
                                     <thead>
@@ -830,46 +777,44 @@
                                             <th>
                                                 Comando
                                             </th>
-
                                             <th></th>
                                         </tr>
                                     </thead>
                                 </div>
                                 <tbody>
-                                    @foreach (var item in Model.ModuliDNSRECON) { 
-                                    <tr>
-                                        <td>
-                                           <a asp-action="Details" asp-route-id="@item.ID"> @Html.DisplayFor(modelItem => item.Nome)</a> 
-                                        </td>
-                                        <td>
-                                            @Html.DisplayFor(modelItem => item.Comando)
-                                        </td>
-                                        <td>
-                                            <a asp-action="Edit" asp-route-id="@item.ID">Modifica</a> |
-                                            <a asp-action="Delete" asp-route-id="@item.ID">Cancella</a>
-                                        </td>
-                                    </tr>
+                                    @foreach (var item in Model.ModuliDNSRECON)
+                                    {
+                                        <tr>
+                                            <td>
+                                                <a asp-action="Details" asp-route-id="@item.ID"> @Html.DisplayFor(modelItem => item.Nome)</a>
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.Comando)
+                                            </td>
+                                            <td>
+                                                <a asp-action="Edit" asp-route-id="@item.ID">Modifica</a> |
+                                                <a asp-action="Delete" asp-route-id="@item.ID">Cancella</a>
+                                            </td>
+                                        </tr>
                                     }
                                 </tbody>
                             </table>
-
                         </div>
                     </div>
                 </div>
             </div>
-             <div class="col-5">
+            <div class="col-5">
                 <div class="panel panel-sidebar">
                     <div class="panel-heading">
-                        <a   data-toggle="collapse"  href="#fierce">
+                        <a data-toggle="collapse" href="#fierce">
                             <strong>
-                                 FIERCE
+                                FIERCE
                             </strong>
                             <span class="caret"></span>
                         </a>
                     </div>
                     <div class="collapse " id="fierce">
                         <div class="panel-body ">
-
                             <table class="table">
                                 <div class="method">
                                     <thead>
@@ -880,46 +825,44 @@
                                             <th>
                                                 Comando
                                             </th>
-
                                             <th></th>
                                         </tr>
                                     </thead>
                                 </div>
                                 <tbody>
-                                    @foreach (var item in Model.ModuliFIERCE) { 
-                                    <tr>
-                                        <td>
-                                           <a asp-action="Details" asp-route-id="@item.ID"> @Html.DisplayFor(modelItem => item.Nome)</a> 
-                                        </td>
-                                        <td>
-                                            @Html.DisplayFor(modelItem => item.Comando)
-                                        </td>
-                                        <td>
-                                            <a asp-action="Edit" asp-route-id="@item.ID">Modifica</a> |
-                                            <a asp-action="Delete" asp-route-id="@item.ID">Cancella</a>
-                                        </td>
-                                    </tr>
+                                    @foreach (var item in Model.ModuliFIERCE)
+                                    {
+                                        <tr>
+                                            <td>
+                                                <a asp-action="Details" asp-route-id="@item.ID"> @Html.DisplayFor(modelItem => item.Nome)</a>
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.Comando)
+                                            </td>
+                                            <td>
+                                                <a asp-action="Edit" asp-route-id="@item.ID">Modifica</a> |
+                                                <a asp-action="Delete" asp-route-id="@item.ID">Cancella</a>
+                                            </td>
+                                        </tr>
                                     }
                                 </tbody>
                             </table>
-
                         </div>
                     </div>
                 </div>
             </div>
-             <div class="col-5">
+            <div class="col-5">
                 <div class="panel panel-sidebar">
                     <div class="panel-heading">
-                        <a   data-toggle="collapse"  href="#dnsEnum">
+                        <a data-toggle="collapse" href="#dnsEnum">
                             <strong>
-                                 DNSENUM
+                                DNSENUM
                             </strong>
                             <span class="caret"></span>
                         </a>
                     </div>
                     <div class="collapse " id="dnsEnum">
                         <div class="panel-body ">
-
                             <table class="table">
                                 <div class="method">
                                     <thead>
@@ -930,46 +873,44 @@
                                             <th>
                                                 Comando
                                             </th>
-
                                             <th></th>
                                         </tr>
                                     </thead>
                                 </div>
                                 <tbody>
-                                    @foreach (var item in Model.ModuliDNSENUM) { 
-                                    <tr>
-                                        <td>
-                                           <a asp-action="Details" asp-route-id="@item.ID"> @Html.DisplayFor(modelItem => item.Nome)</a> 
-                                        </td>
-                                        <td>
-                                            @Html.DisplayFor(modelItem => item.Comando)
-                                        </td>
-                                        <td>
-                                            <a asp-action="Edit" asp-route-id="@item.ID">Modifica</a> |
-                                            <a asp-action="Delete" asp-route-id="@item.ID">Cancella</a>
-                                        </td>
-                                    </tr>
+                                    @foreach (var item in Model.ModuliDNSENUM)
+                                    {
+                                        <tr>
+                                            <td>
+                                                <a asp-action="Details" asp-route-id="@item.ID"> @Html.DisplayFor(modelItem => item.Nome)</a>
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.Comando)
+                                            </td>
+                                            <td>
+                                                <a asp-action="Edit" asp-route-id="@item.ID">Modifica</a> |
+                                                <a asp-action="Delete" asp-route-id="@item.ID">Cancella</a>
+                                            </td>
+                                        </tr>
                                     }
                                 </tbody>
                             </table>
-
                         </div>
                     </div>
                 </div>
             </div>
-              <div class="col-5">
+            <div class="col-5">
                 <div class="panel panel-sidebar">
                     <div class="panel-heading">
-                        <a   data-toggle="collapse"  href="#theharvester">
+                        <a data-toggle="collapse" href="#theharvester">
                             <strong>
-                                 THEHARVESTER
+                                THEHARVESTER
                             </strong>
                             <span class="caret"></span>
                         </a>
                     </div>
                     <div class="collapse " id="theharvester">
                         <div class="panel-body ">
-
                             <table class="table">
                                 <div class="method">
                                     <thead>
@@ -980,56 +921,53 @@
                                             <th>
                                                 Comando
                                             </th>
-
                                             <th></th>
                                         </tr>
                                     </thead>
                                 </div>
                                 <tbody>
-                                    @foreach (var item in Model.ModuliTHEHARVESTER) { 
-                                    <tr>
-                                        <td>
-                                           <a asp-action="Details" asp-route-id="@item.ID"> @Html.DisplayFor(modelItem => item.Nome)</a> 
-                                        </td>
-                                        <td>
-                                            @Html.DisplayFor(modelItem => item.Comando)
-                                        </td>
-                                        <td>
-                                            <a asp-action="Edit" asp-route-id="@item.ID">Modifica</a> |
-                                            <a asp-action="Delete" asp-route-id="@item.ID">Cancella</a>
-                                        </td>
-                                    </tr>
+                                    @foreach (var item in Model.ModuliTHEHARVESTER)
+                                    {
+                                        <tr>
+                                            <td>
+                                                <a asp-action="Details" asp-route-id="@item.ID"> @Html.DisplayFor(modelItem => item.Nome)</a>
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.Comando)
+                                            </td>
+                                            <td>
+                                                <a asp-action="Edit" asp-route-id="@item.ID">Modifica</a> |
+                                                <a asp-action="Delete" asp-route-id="@item.ID">Cancella</a>
+                                            </td>
+                                        </tr>
                                     }
                                 </tbody>
                             </table>
-
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-         <div class="panel panel-default">
-                    <div class="panel-heading">
-                        <a href="#ig" data-toggle="collapse">
-                            <strong>
-                               INFORMATION GATHERING
-                            </strong>
-                           
-                        </a>
-                    </div>
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <a href="#ig" data-toggle="collapse">
+                    <strong>
+                        INFORMATION GATHERING
+                    </strong>
+                </a>
+            </div>
             <div class="col-5">
                 <div class="panel panel-sidebar">
                     <div class="panel-heading">
-                        <a   data-toggle="collapse"  href="#Infoga">
+                        <a data-toggle="collapse" href="#Infoga">
                             <strong>
-                                 INFOGA
+                                INFOGA
                             </strong>
                             <span class="caret"></span>
                         </a>
                     </div>
                     <div class="collapse " id="Infoga">
                         <div class="panel-body ">
-
                             <table class="table">
                                 <div class="method">
                                     <thead>
@@ -1040,129 +978,28 @@
                                             <th>
                                                 Comando
                                             </th>
-
                                             <th></th>
                                         </tr>
                                     </thead>
                                 </div>
                                 <tbody>
-                                    @foreach (var item in Model.ModuliINFOGA) { 
-                                    <tr>
-                                        <td>
-                                           <a asp-action="Details" asp-route-id="@item.ID"> @Html.DisplayFor(modelItem => item.Nome)</a> 
-                                        </td>
-                                        <td>
-                                            @Html.DisplayFor(modelItem => item.Comando)
-                                        </td>
-                                        <td>
-                                            <a asp-action="Edit" asp-route-id="@item.ID">Modifica</a> |
-                                            <a asp-action="Delete" asp-route-id="@item.ID">Cancella</a>
-                                        </td>
-                                    </tr>
-                                    }
-                                </tbody>
-                            </table>
-
-                        </div>
-                    </div>
-                </div>
-            </div>
-             <div class="col-5">
-                <div class="panel panel-sidebar">
-                    <div class="panel-heading">
-                        <a   data-toggle="collapse"  href="#Infogae">
-                            <strong>
-                                 INFOGA EMAIL
-                            </strong>
-                            <span class="caret"></span>
-                        </a>
-                    </div>
-                    <div class="collapse " id="Infogae">
-                        <div class="panel-body ">
-
-                            <table class="table">
-                                <div class="method">
-                                    <thead>
+                                    @foreach (var item in Model.ModuliINFOGA)
+                                    {
                                         <tr>
-                                            <th>
-                                                Nome
-                                            </th>
-                                            <th>
-                                                Comando
-                                            </th>
-
-                                            <th></th>
+                                            <td>
+                                                <a asp-action="Details" asp-route-id="@item.ID"> @Html.DisplayFor(modelItem => item.Nome)</a>
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.Comando)
+                                            </td>
+                                            <td>
+                                                <a asp-action="Edit" asp-route-id="@item.ID">Modifica</a> |
+                                                <a asp-action="Delete" asp-route-id="@item.ID">Cancella</a>
+                                            </td>
                                         </tr>
-                                    </thead>
-                                </div>
-                                <tbody>
-                                    @foreach (var item in Model.ModuliINFOGAEMAIL) { 
-                                    <tr>
-                                        <td>
-                                           <a asp-action="Details" asp-route-id="@item.ID"> @Html.DisplayFor(modelItem => item.Nome)</a> 
-                                        </td>
-                                        <td>
-                                            @Html.DisplayFor(modelItem => item.Comando)
-                                        </td>
-                                        <td>
-                                            <a asp-action="Edit" asp-route-id="@item.ID">Modifica</a> |
-                                            <a asp-action="Delete" asp-route-id="@item.ID">Cancella</a>
-                                        </td>
-                                    </tr>
                                     }
                                 </tbody>
                             </table>
-
-                        </div>
-                    </div>
-                </div>
-            </div>
-<div class="col-5">
-                <div class="panel panel-sidebar">
-                    <div class="panel-heading">
-                        <a   data-toggle="collapse"  href="#sublist3r">
-                            <strong>
-                                 SUBLIST3R
-                            </strong>
-                            <span class="caret"></span>
-                        </a>
-                    </div>
-                    <div class="collapse " id="sublist3r">
-                        <div class="panel-body ">
-
-                            <table class="table">
-                                <div class="method">
-                                    <thead>
-                                        <tr>
-                                            <th>
-                                                Nome
-                                            </th>
-                                            <th>
-                                                Comando
-                                            </th>
-
-                                            <th></th>
-                                        </tr>
-                                    </thead>
-                                </div>
-                                <tbody>
-                                    @foreach (var item in Model.ModuliSUBLIST3R) { 
-                                    <tr>
-                                        <td>
-                                           <a asp-action="Details" asp-route-id="@item.ID"> @Html.DisplayFor(modelItem => item.Nome)</a> 
-                                        </td>
-                                        <td>
-                                            @Html.DisplayFor(modelItem => item.Comando)
-                                        </td>
-                                        <td>
-                                            <a asp-action="Edit" asp-route-id="@item.ID">Modifica</a> |
-                                            <a asp-action="Delete" asp-route-id="@item.ID">Cancella</a>
-                                        </td>
-                                    </tr>
-                                    }
-                                </tbody>
-                            </table>
-
                         </div>
                     </div>
                 </div>
@@ -1170,7 +1007,103 @@
             <div class="col-5">
                 <div class="panel panel-sidebar">
                     <div class="panel-heading">
-                        <a   data-toggle="collapse"  href="#amass">
+                        <a data-toggle="collapse" href="#Infogae">
+                            <strong>
+                                INFOGA EMAIL
+                            </strong>
+                            <span class="caret"></span>
+                        </a>
+                    </div>
+                    <div class="collapse " id="Infogae">
+                        <div class="panel-body ">
+                            <table class="table">
+                                <div class="method">
+                                    <thead>
+                                        <tr>
+                                            <th>
+                                                Nome
+                                            </th>
+                                            <th>
+                                                Comando
+                                            </th>
+                                            <th></th>
+                                        </tr>
+                                    </thead>
+                                </div>
+                                <tbody>
+                                    @foreach (var item in Model.ModuliINFOGAEMAIL)
+                                    {
+                                        <tr>
+                                            <td>
+                                                <a asp-action="Details" asp-route-id="@item.ID"> @Html.DisplayFor(modelItem => item.Nome)</a>
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.Comando)
+                                            </td>
+                                            <td>
+                                                <a asp-action="Edit" asp-route-id="@item.ID">Modifica</a> |
+                                                <a asp-action="Delete" asp-route-id="@item.ID">Cancella</a>
+                                            </td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-5">
+                <div class="panel panel-sidebar">
+                    <div class="panel-heading">
+                        <a data-toggle="collapse" href="#sublist3r">
+                            <strong>
+                                SUBLIST3R
+                            </strong>
+                            <span class="caret"></span>
+                        </a>
+                    </div>
+                    <div class="collapse " id="sublist3r">
+                        <div class="panel-body ">
+                            <table class="table">
+                                <div class="method">
+                                    <thead>
+                                        <tr>
+                                            <th>
+                                                Nome
+                                            </th>
+                                            <th>
+                                                Comando
+                                            </th>
+                                            <th></th>
+                                        </tr>
+                                    </thead>
+                                </div>
+                                <tbody>
+                                    @foreach (var item in Model.ModuliSUBLIST3R)
+                                    {
+                                        <tr>
+                                            <td>
+                                                <a asp-action="Details" asp-route-id="@item.ID"> @Html.DisplayFor(modelItem => item.Nome)</a>
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.Comando)
+                                            </td>
+                                            <td>
+                                                <a asp-action="Edit" asp-route-id="@item.ID">Modifica</a> |
+                                                <a asp-action="Delete" asp-route-id="@item.ID">Cancella</a>
+                                            </td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-5">
+                <div class="panel panel-sidebar">
+                    <div class="panel-heading">
+                        <a data-toggle="collapse" href="#amass">
                             <strong>
                                 AMASS
                             </strong>
@@ -1179,7 +1112,6 @@
                     </div>
                     <div class="collapse " id="amass">
                         <div class="panel-body ">
-
                             <table class="table">
                                 <div class="method">
                                     <thead>
@@ -1190,56 +1122,53 @@
                                             <th>
                                                 Comando
                                             </th>
-
                                             <th></th>
                                         </tr>
                                     </thead>
                                 </div>
                                 <tbody>
-                                    @foreach (var item in Model.ModuliAMASS) { 
-                                    <tr>
-                                        <td>
-                                           <a asp-action="Details" asp-route-id="@item.ID"> @Html.DisplayFor(modelItem => item.Nome)</a> 
-                                        </td>
-                                        <td>
-                                            @Html.DisplayFor(modelItem => item.Comando)
-                                        </td>
-                                        <td>
-                                            <a asp-action="Edit" asp-route-id="@item.ID">Modifica</a> |
-                                            <a asp-action="Delete" asp-route-id="@item.ID">Cancella</a>
-                                        </td>
-                                    </tr>
+                                    @foreach (var item in Model.ModuliAMASS)
+                                    {
+                                        <tr>
+                                            <td>
+                                                <a asp-action="Details" asp-route-id="@item.ID"> @Html.DisplayFor(modelItem => item.Nome)</a>
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.Comando)
+                                            </td>
+                                            <td>
+                                                <a asp-action="Edit" asp-route-id="@item.ID">Modifica</a> |
+                                                <a asp-action="Delete" asp-route-id="@item.ID">Cancella</a>
+                                            </td>
+                                        </tr>
                                     }
                                 </tbody>
                             </table>
-
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-          <div class="panel panel-default">
-                    <div class="panel-heading">
-                        <a href="#database" data-toggle="collapse">
-                            <strong>
-                              DATABASE
-                            </strong>
-                           
-                        </a>
-                    </div>
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <a href="#database" data-toggle="collapse">
+                    <strong>
+                        DATABASE
+                    </strong>
+                </a>
+            </div>
             <div class="col-5">
                 <div class="panel panel-sidebar">
                     <div class="panel-heading">
-                        <a   data-toggle="collapse"  href="#Sqlmap">
+                        <a data-toggle="collapse" href="#Sqlmap">
                             <strong>
-                                 SQLMap
+                                SQLMap
                             </strong>
                             <span class="caret"></span>
                         </a>
                     </div>
                     <div class="collapse " id="Sqlmap">
                         <div class="panel-body ">
-
                             <table class="table">
                                 <div class="method">
                                     <thead>
@@ -1250,46 +1179,44 @@
                                             <th>
                                                 Comando
                                             </th>
-
                                             <th></th>
                                         </tr>
                                     </thead>
                                 </div>
                                 <tbody>
-                                    @foreach (var item in Model.ModuliSQLMAP) { 
-                                    <tr>
-                                        <td>
-                                           <a asp-action="Details" asp-route-id="@item.ID"> @Html.DisplayFor(modelItem => item.Nome)</a> 
-                                        </td>
-                                        <td>
-                                            @Html.DisplayFor(modelItem => item.Comando)
-                                        </td>
-                                        <td>
-                                            <a asp-action="Edit" asp-route-id="@item.ID">Modifica</a> |
-                                            <a asp-action="Delete" asp-route-id="@item.ID">Cancella</a>
-                                        </td>
-                                    </tr>
+                                    @foreach (var item in Model.ModuliSQLMAP)
+                                    {
+                                        <tr>
+                                            <td>
+                                                <a asp-action="Details" asp-route-id="@item.ID"> @Html.DisplayFor(modelItem => item.Nome)</a>
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.Comando)
+                                            </td>
+                                            <td>
+                                                <a asp-action="Edit" asp-route-id="@item.ID">Modifica</a> |
+                                                <a asp-action="Delete" asp-route-id="@item.ID">Cancella</a>
+                                            </td>
+                                        </tr>
                                     }
                                 </tbody>
                             </table>
-
                         </div>
                     </div>
                 </div>
             </div>
-             <div class="col-5">
+            <div class="col-5">
                 <div class="panel panel-sidebar">
                     <div class="panel-heading">
-                        <a   data-toggle="collapse"  href="#Nosql">
+                        <a data-toggle="collapse" href="#Nosql">
                             <strong>
-                                 NoSQLMap
+                                NoSQLMap
                             </strong>
                             <span class="caret"></span>
                         </a>
                     </div>
                     <div class="collapse " id="Nosql">
                         <div class="panel-body ">
-
                             <table class="table">
                                 <div class="method">
                                     <thead>
@@ -1300,46 +1227,44 @@
                                             <th>
                                                 Comando
                                             </th>
-
                                             <th></th>
                                         </tr>
                                     </thead>
                                 </div>
                                 <tbody>
-                                    @foreach (var item in Model.ModuliNOSQL) { 
-                                    <tr>
-                                        <td>
-                                           <a asp-action="Details" asp-route-id="@item.ID"> @Html.DisplayFor(modelItem => item.Nome)</a> 
-                                        </td>
-                                        <td>
-                                            @Html.DisplayFor(modelItem => item.Comando)
-                                        </td>
-                                        <td>
-                                            <a asp-action="Edit" asp-route-id="@item.ID">Modifica</a> |
-                                            <a asp-action="Delete" asp-route-id="@item.ID">Cancella</a>
-                                        </td>
-                                    </tr>
+                                    @foreach (var item in Model.ModuliNOSQL)
+                                    {
+                                        <tr>
+                                            <td>
+                                                <a asp-action="Details" asp-route-id="@item.ID"> @Html.DisplayFor(modelItem => item.Nome)</a>
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.Comando)
+                                            </td>
+                                            <td>
+                                                <a asp-action="Edit" asp-route-id="@item.ID">Modifica</a> |
+                                                <a asp-action="Delete" asp-route-id="@item.ID">Cancella</a>
+                                            </td>
+                                        </tr>
                                     }
                                 </tbody>
                             </table>
-
                         </div>
                     </div>
                 </div>
             </div>
-             <div class="col-5">
+            <div class="col-5">
                 <div class="panel panel-sidebar">
                     <div class="panel-heading">
-                        <a   data-toggle="collapse"  href="#odat">
+                        <a data-toggle="collapse" href="#odat">
                             <strong>
-                                 ODAT
+                                ODAT
                             </strong>
                             <span class="caret"></span>
                         </a>
                     </div>
                     <div class="collapse " id="odat">
                         <div class="panel-body ">
-
                             <table class="table">
                                 <div class="method">
                                     <thead>
@@ -1350,57 +1275,53 @@
                                             <th>
                                                 Comando
                                             </th>
-
                                             <th></th>
                                         </tr>
                                     </thead>
                                 </div>
                                 <tbody>
-                                    @foreach (var item in Model.ModuliODAT) { 
-                                    <tr>
-                                        <td>
-                                           <a asp-action="Details" asp-route-id="@item.ID"> @Html.DisplayFor(modelItem => item.Nome)</a> 
-                                        </td>
-                                        <td>
-                                            @Html.DisplayFor(modelItem => item.Comando)
-                                        </td>
-                                        <td>
-                                            <a asp-action="Edit" asp-route-id="@item.ID">Modifica</a> |
-                                            <a asp-action="Delete" asp-route-id="@item.ID">Cancella</a>
-                                        </td>
-                                    </tr>
+                                    @foreach (var item in Model.ModuliODAT)
+                                    {
+                                        <tr>
+                                            <td>
+                                                <a asp-action="Details" asp-route-id="@item.ID"> @Html.DisplayFor(modelItem => item.Nome)</a>
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.Comando)
+                                            </td>
+                                            <td>
+                                                <a asp-action="Edit" asp-route-id="@item.ID">Modifica</a> |
+                                                <a asp-action="Delete" asp-route-id="@item.ID">Cancella</a>
+                                            </td>
+                                        </tr>
                                     }
                                 </tbody>
                             </table>
-
                         </div>
                     </div>
                 </div>
             </div>
-
         </div>
-          <div class="panel panel-default">
-                    <div class="panel-heading">
-                        <a href="#wifi" data-toggle="collapse">
-                            <strong>
-                              WIFI
-                            </strong>
-                           
-                        </a>
-                    </div>
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <a href="#wifi" data-toggle="collapse">
+                    <strong>
+                        WIFI
+                    </strong>
+                </a>
+            </div>
             <div class="col-5">
                 <div class="panel panel-sidebar">
                     <div class="panel-heading">
-                        <a   data-toggle="collapse"  href="#Wifite">
+                        <a data-toggle="collapse" href="#Wifite">
                             <strong>
-                                 WIFITE
+                                WIFITE
                             </strong>
                             <span class="caret"></span>
                         </a>
                     </div>
                     <div class="collapse " id="Wifite">
                         <div class="panel-body ">
-
                             <table class="table">
                                 <div class="method">
                                     <thead>
@@ -1411,34 +1332,32 @@
                                             <th>
                                                 Comando
                                             </th>
-
                                             <th></th>
                                         </tr>
                                     </thead>
                                 </div>
                                 <tbody>
-                                    @foreach (var item in Model.ModuliWIFITE) { 
-                                    <tr>
-                                        <td>
-                                           <a asp-action="Details" asp-route-id="@item.ID"> @Html.DisplayFor(modelItem => item.Nome)</a> 
-                                        </td>
-                                        <td>
-                                            @Html.DisplayFor(modelItem => item.Comando)
-                                        </td>
-                                        <td>
-                                            <a asp-action="Edit" asp-route-id="@item.ID">Modifica</a> |
-                                            <a asp-action="Delete" asp-route-id="@item.ID">Cancella</a>
-                                        </td>
-                                    </tr>
+                                    @foreach (var item in Model.ModuliWIFITE)
+                                    {
+                                        <tr>
+                                            <td>
+                                                <a asp-action="Details" asp-route-id="@item.ID"> @Html.DisplayFor(modelItem => item.Nome)</a>
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.Comando)
+                                            </td>
+                                            <td>
+                                                <a asp-action="Edit" asp-route-id="@item.ID">Modifica</a> |
+                                                <a asp-action="Delete" asp-route-id="@item.ID">Cancella</a>
+                                            </td>
+                                        </tr>
                                     }
                                 </tbody>
                             </table>
-
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        </div>
-       
     </div>
+</div>

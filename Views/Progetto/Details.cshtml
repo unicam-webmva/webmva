@@ -1,83 +1,80 @@
 @model webmva.Models.Progetto;
-@{ ViewData["Title"] = "Dettagli "; 
+@{ ViewData["Title"] = "Dettagli ";
 }
 <br>
 <div class="container">
-<h2><em>Dettagli progetto: @Html.DisplayFor(model => model.Nome)</em></h2>
-<hr />
-  <div class="col-md-12">
-       <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <h2><em>Dettagli progetto: @Html.DisplayFor(model => model.Nome)</em></h2>
+    <hr />
+    <div class="col-md-12">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
         <div class="row panel panel-default panel-body">
-                    <div class="col-md-12">
-                        <!--vedere l'elenco puntato-->
-                        <dl class="dl-horizontal">
-                            <div class="col-sm-9">
-                                <div class="form-group row">
-                                    <h4 ><strong> Progetto</strong> </h4><hr />
-                                    <h4><em>@Html.DisplayFor(model => model.Nome)</em></h4>
-                                </div>
-                            </div>   
-                        </dl>
-                        <dl class="dl-horizontal">
-                            <div class="col-sm-9">
-                                <div class="form-group row">
-                                    <h4 ><strong> Descrizione</strong> </h4><hr />
-                                    <p>@Html.DisplayFor(model => model.Descrizione)</p>
-                                </div>
-                            </div>   
-                        </dl>
-            <table class="table">
-                <div class="method">
-                   <thead>
-                        <tr>
-                            <th>
-                                Applicazione 
-                            </th>
-                            <th>
-                                Nome 
-                            </th>
-                            <th>
-                                Comando 
-                            </th>
-                             <th>
-                                Target 
-                            </th>
-                        </tr>
-                    </thead>
-                </div>
-                <tbody>
-                @for(int i=0;i < @Model.ModuliProgetto.Count(); i++)
-                {
-                    <tr>
-                     <td>
-                            @Html.Raw( @Model.ModuliProgetto.ElementAt(i).Modulo.Applicazione.ToString())
-                        </td>
-                        <td>
-                            @Html.Raw( @Model.ModuliProgetto.ElementAt(i).Modulo.Nome)
-                        </td>
-                        <td>
-                            @Html.Raw( @Model.ModuliProgetto.ElementAt(i).Modulo.Comando)
-                        </td>
-                        <td>
-                            @Html.Raw( @Model.ModuliProgetto.ElementAt(i).Target)
-                        </td>
-                       
-                    </tr>
-                }
-            
-            </tbody>
-        </table>
-
-                </div>
-                 <div class="col-xs-6 col-sm-offset-6 text-right">
-                     <br>
-                    <div class="form-group">
-                        <a asp-action="Run" asp-route-id="@Model.ID" class="btn btn-info" >Avvia Scan </a>&nbsp; |
-                        <a asp-action="Edit"asp-route-id="@Model.ID"   class="btn btn-info">Modifica </a>&nbsp; | 
-                        <a asp-action="Lista" asp-controller="Report" asp-route-id="@Model.ID"   class="btn btn-info">Lista report </a>&nbsp; | 
-                        <a asp-action="Index"> Torna alla lista</a>
+            <div class="col-md-12">
+                <!--vedere l'elenco puntato-->
+                <dl class="dl-horizontal">
+                    <div class="col-sm-9">
+                        <div class="form-group row">
+                            <h4><strong> Progetto</strong> </h4><hr />
+                            <h4><em>@Html.DisplayFor(model => model.Nome)</em></h4>
+                        </div>
                     </div>
+                </dl>
+                <dl class="dl-horizontal">
+                    <div class="col-sm-9">
+                        <div class="form-group row">
+                            <h4><strong> Descrizione</strong> </h4><hr />
+                            <p>@Html.DisplayFor(model => model.Descrizione)</p>
+                        </div>
+                    </div>
+                </dl>
+                <table class="table">
+                    <div class="method">
+                        <thead>
+                            <tr>
+                                <th>
+                                    Applicazione
+                                </th>
+                                <th>
+                                    Nome
+                                </th>
+                                <th>
+                                    Comando
+                                </th>
+                                <th>
+                                    Target
+                                </th>
+                            </tr>
+                        </thead>
+                    </div>
+                    <tbody>
+                        @for (int i = 0; i < @Model.ModuliProgetto.Count(); i++)
+                        {
+                            <tr>
+                                <td>
+                                    @Html.Raw(@Model.ModuliProgetto.ElementAt(i).Modulo.Applicazione.ToString())
+                                </td>
+                                <td>
+                                    @Html.Raw(@Model.ModuliProgetto.ElementAt(i).Modulo.Nome)
+                                </td>
+                                <td>
+                                    @Html.Raw(@Model.ModuliProgetto.ElementAt(i).Modulo.Comando)
+                                </td>
+                                <td>
+                                    @Html.Raw(@Model.ModuliProgetto.ElementAt(i).Target)
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+            <div class="col-xs-6 col-sm-offset-6 text-right">
+                <br>
+                <div class="form-group">
+                    <a asp-action="Run" asp-route-id="@Model.ID" class="btn btn-info">Avvia Scan </a>&nbsp; |
+                    <a asp-action="Edit" asp-route-id="@Model.ID" class="btn btn-info">Modifica </a>&nbsp; |
+                    <a asp-action="Lista" asp-controller="Report" asp-route-id="@Model.ID" class="btn btn-info">Lista report </a>&nbsp; |
+                    <a asp-action="Index"> Torna alla lista</a>
                 </div>
             </div>
-    </div>   
+        </div>
+    </div>
 </div>

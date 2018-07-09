@@ -1,111 +1,99 @@
 @model ICollection<webmva.Models.Report>
-
-@{ ViewData["Title"] = "Lista Report"; 
-string Nome = ViewBag.Progetto.Nome;
-int ID = ViewBag.Progetto.ID;
+@{ ViewData["Title"] = "Lista Report";
+    string Nome = ViewBag.Progetto.Nome;
+    int ID = ViewBag.Progetto.ID;
 }
-
 <div class="container">
     <h2><em>Lista Report</em></h2>
     <h3><em>Progetto:</em><strong> <a href="/Progetto/Details/@ID">@Nome</a></strong></h3>
-
-        @if(@Model.Count() == 0){
-            <hr />
-            <h3 style="color:red"><strong>Non sono presenti report per il progetto @Nome.</strong></h3>
-            <h3 style="color:red"><strong>Vai ai <a asp-controller="Progetto" asp-action="Details" asp-route-id="@ID">dettagli</a> del progetto se vuoi avviare uno scan.</strong></h3>
+    @if (@Model.Count() == 0)
+    {
+        <hr />
+        <h3 style="color:red"><strong>Non sono presenti report per il progetto @Nome.</strong></h3>
+        <h3 style="color:red"><strong>Vai ai <a asp-controller="Progetto" asp-action="Details" asp-route-id="@ID">dettagli</a> del progetto se vuoi avviare uno scan.</strong></h3>
     }
-    else {
+    else
+    {
         <div class="col-6 col-offset-5">
             <div class="btn btn-default"><a asp-action="Tutti" asp-route-id="@ID">Visualizza tutti i report</a></div>
         </div>
         <div class="panel panel-default col-md-7" style="margin:0 auto; float:none;">
             <table class="table">
                 <div class="method">
-                   <thead>
-                   <tr>
-                    <th><input type="checkbox" name="eliminaTutti" onclick="SelezTT()"/></th>
+                    <thead>
+                        <tr>
+                            <th><input type="checkbox" name="eliminaTutti" onclick="SelezTT()" /></th>
                             <th>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Data</th>
                             <th>
                                 &nbsp;&nbsp;&nbsp;&nbsp;Link
                             </th>
                             <th>
-
                             </th>
-                    </tr>
+                        </tr>
                     </thead>
                 </div>
-            <tbody>
-            <form asp-action="EliminaSelezionati">
-                @for(int i=0;i<@Model.Count; i++)
-                {
-                     <tr>
-                     <td>
-                        <input type="checkbox" value="@Model.ElementAt(i).ID" name="check" />
-                    </td>
-                        
-                        <td>
-                            @if(@Model.ElementAt(i).isImportati ){@Html.Raw("Report Importati")}
-                            else{@Html.Raw(@Model.ElementAt(i).Data)}
-                          
-                        </td>
-                        <td>
-                                <a asp-action="Details" asp-route-id="@Model.ElementAt(i).ID" class="btn btn-default">Dettagli</a>
-                        </td>
-                        <td>
-                                <a asp-action="Delete" asp-route-id="@Model.ElementAt(i).ID" class="btn btn-danger">Elimina</a>
-                        </td>
-
-                    </tr>
-                }
-                    <input type="submit" asp-action="EliminaSelezionati" class="btn btn-danger" value="Elimina Selezionati" style="position:fixed;width:150px;height:40px;bottom:40px;left:25px;" />&nbsp;&nbsp; 
-</form>
-            </tbody>
-        </table>
-    </div>
+                <tbody>
+                    <form asp-action="EliminaSelezionati">
+                        @for (int i = 0; i < @Model.Count; i++)
+                        {
+                            <tr>
+                                <td>
+                                    <input type="checkbox" value="@Model.ElementAt(i).ID" name="check" />
+                                </td>
+                                <td>
+                                    @if (@Model.ElementAt(i).isImportati)
+                                    {@Html.Raw("Report Importati")}
+                                else
+                                {@Html.Raw(@Model.ElementAt(i).Data)}
+                                </td>
+                                <td>
+                                    <a asp-action="Details" asp-route-id="@Model.ElementAt(i).ID" class="btn btn-default">Dettagli</a>
+                                </td>
+                                <td>
+                                    <a asp-action="Delete" asp-route-id="@Model.ElementAt(i).ID" class="btn btn-danger">Elimina</a>
+                                </td>
+                            </tr>
+                        }
+                        <input type="submit" asp-action="EliminaSelezionati" class="btn btn-danger" value="Elimina Selezionati" style="position:fixed;width:150px;height:40px;bottom:40px;left:25px;" />&nbsp;&nbsp;
+                    </form>
+                </tbody>
+            </table>
+        </div>
     }
 </div>
 @section scripts{
-	        <script>
-	
-	    function SelezTT(){
-	      $('input[name=eliminaTutti]').change(
-	        function(){
-	            if( $('input[name=eliminaTutti]').prop('checked')){
-	                var modulo = $('input[name=check]').each(function(index, element){
-	                    $(element).prop('checked', true);
-	                    console.log(index);
-	                   
-	                })
-	               
-	            }
-	            else{
-	                var modulo = $('input[name=check]').each(function(index, element){
-	                    $(element).prop('checked', false);
-	  
-	                })
-	                
-	            }
-	        });
-	        
-	        
-	   };
-	
-	$(function(){
-	    var tutticheck=true;
-	    $('input[name=check]').change(
-	        function(){
-	            var check=$('input[name=check]');
-	        for(i=0; i<check.length; i++){
-	        if(!check[i].checked) {
-	            tutticheck=false;
-	            $('input[name=eliminaTutti]').prop('checked', false); 
-	            break;
-	        } else tutticheck=true;
-	        if(tutticheck)
-	        $('input[name=eliminaTutti]').prop('checked', true);
-	    }
-	        }
-	    ).change();
-	    });
-	        </script> }
-
+    <script>
+        function SelezTT() {
+            $('input[name=eliminaTutti]').change(
+                function () {
+                    if ($('input[name=eliminaTutti]').prop('checked')) {
+                        var modulo = $('input[name=check]').each(function (index, element) {
+                            $(element).prop('checked', true);
+                            console.log(index);
+                        })
+                    }
+                    else {
+                        var modulo = $('input[name=check]').each(function (index, element) {
+                            $(element).prop('checked', false);
+                        })
+                    }
+                });
+        };
+        $(function () {
+            var tutticheck = true;
+            $('input[name=check]').change(
+                function () {
+                    var check = $('input[name=check]');
+                    for (i = 0; i < check.length; i++) {
+                        if (!check[i].checked) {
+                            tutticheck = false;
+                            $('input[name=eliminaTutti]').prop('checked', false);
+                            break;
+                        } else tutticheck = true;
+                        if (tutticheck)
+                            $('input[name=eliminaTutti]').prop('checked', true);
+                    }
+                }
+            ).change();
+        });
+    </script> }

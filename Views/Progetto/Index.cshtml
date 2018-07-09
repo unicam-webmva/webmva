@@ -18,7 +18,7 @@
                             <th>
                                 @Html.DisplayNameFor(model => model.Nome)
                             </th>
-                            
+
                             <th></th>
                         </tr>
                     </thead>
@@ -28,20 +28,22 @@
                     {
                         <tr>
                             <td>
-                                 <a asp-action="Details" asp-route-id="@item.ID"> @Html.DisplayFor(modelItem => item.Nome)</a> 
+                                <a asp-action="Details" asp-route-id="@item.ID"> @Html.DisplayFor(modelItem => item.Nome)</a>
                             </td>
-                            
+
                             <td>
                                 <div class="col-sm-8 col-sm-offset-6">
                                     <a asp-action="Edit" asp-route-id="@item.ID">Modifica </a> |
-                                     <a asp-action="Details" asp-route-id="@item.ID" >Avvia scan </a> |
+                                    <a asp-action="Details" asp-route-id="@item.ID">Avvia scan </a> |
                                     <a asp-action="Delete" asp-route-id="@item.ID">Cancella </a>
-                                    @if(@item.ListaReport.Count != 0){
-                                            @Html.Raw(" | <a href=\"/Report/Lista/"+@item.ID+"\" >Lista report</a> <span class=\"glyphicon glyphicon-ok-sign\" style=\"color:green\"></span>")
-                                        }
-                                        else {
-                                            @Html.Raw(" | Lista report <span class=\"glyphicon glyphicon-remove-sign\" style=\"color:red\" ></span>")
-                                        }
+                                    @if (@item.ListaReport.Count != 0)
+                                    {
+                                        @Html.Raw(" | <a href=\"/Report/Lista/" + @item.ID + "\" >Lista report</a> <span class=\"glyphicon glyphicon-ok-sign\" style=\"color:green\"></span>")
+                                    }
+                                    else
+                                    {
+                                        @Html.Raw(" | Lista report <span class=\"glyphicon glyphicon-remove-sign\" style=\"color:red\" ></span>")
+                                    }
                                 </div>
                             </td>
 
@@ -51,7 +53,5 @@
             </table>
         </div>
     </div>
-  
-</div>
 
 </div>

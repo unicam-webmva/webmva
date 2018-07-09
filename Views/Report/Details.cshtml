@@ -1,27 +1,22 @@
 @model webmva.Models.Report
-
-@{ ViewData["Title"] = "Report"; 
+@{ ViewData["Title"] = "Report";
 }
-
 <div class="container">
     <div class="form-group">
-    <h2><em>Dettagli Report @Html.Raw((@Model.isImportati)? "Importati" : @Model.Data.ToString("dd/MM/yyyy ore HH:mm:ss"))</em></h2>
-    <h3><em>Progetto:</em><strong> <a href="/Progetto/Details/@Model.ProgettoID">@Model.Progetto.Nome</a></strong></h3>
-    <a  asp-action="Delete" asp-route-id="@Model.ID" class="btn btn-danger" >Elimina</a>
-    </div>          
-    
+        <h2><em>Dettagli Report @Html.Raw((@Model.isImportati) ? "Importati" : @Model.Data.ToString("dd/MM/yyyy ore HH:mm:ss"))</em></h2>
+        <h3><em>Progetto:</em><strong> <a href="/Progetto/Details/@Model.ProgettoID">@Model.Progetto.Nome</a></strong></h3>
+        <a asp-action="Delete" asp-route-id="@Model.ID" class="btn btn-danger">Elimina</a>
+    </div>
     <div class="panel panel-default">
         <div class="col-lg-8 col-lg-offset-1">
-        <table class="table">
+            <table class="table">
                 <div class="method">
-                   <thead>
+                    <thead>
                         <tr>
-                            <th> <div style="font-size=4pt;"><h6><strong>PDF unico</strong> </h6></div><input type="checkbox" name="selezionaTutto" onclick="SelezTT()"/></th>
-                          
+                            <th> <div style="font-size=4pt;"><h6><strong>PDF unico</strong> </h6></div><input type="checkbox" name="selezionaTutto" onclick="SelezTT()" /></th>
                             <th>
                                 Percorso
                             </th>
-                            
                             <th class="text-center">Scarica nativo </th>
                             <th class="text-center">Scarica pdf</th>
                             <th class="text-center"></th>
@@ -29,48 +24,37 @@
                     </thead>
                 </div>
                 <tbody>
-                    
                     <form asp-action="DownloadUnico">
-            
-                @for(int i=0;i < @Model.Percorsi.Count(); i++)
-                {
-                    <tr>
-                    
-                        <td>
-                        
-                        <input type="checkbox" value="@Model.Percorsi.ElementAt(i).ID" name="check" />
-                        
-                        </td>
-                        <td>
-                        
-                                <input type="submit" asp-action="Download" asp-route-cosa="singolo" asp-route-filePath="Report/@Model.Percorsi.ElementAt(i).Percorso" value="@Model.Percorsi.ElementAt(i).Percorso" class="btn btn-link">
-                        </td>
-                            
-                        
-                            <td class="text-center">
-                                <input type="checkbox" value="Report/@Model.Percorsi.ElementAt(i).Percorso" name="nativo" />
-                            </td>
-                            <td class="text-center">
-                                <input type="checkbox" value="Report/@Model.Percorsi.ElementAt(i).Percorso" name="pdf" />
-                            </td>  
-                            <td class="text-center">
-                                <a asp-action="DeletePercorso" asp-route-daDove="Details/@Model.ID" asp-route-id="@Model.Percorsi.ElementAt(i).ID" class="btn btn-danger">Cancella</a>
-                            </td>
+                        @for (int i = 0; i < @Model.Percorsi.Count(); i++)
+                        {
+                            <tr>
+                                <td>
+                                    <input type="checkbox" value="@Model.Percorsi.ElementAt(i).ID" name="check" />
+                                </td>
+                                <td>
+                                    <input type="submit" asp-action="Download" asp-route-cosa="singolo" asp-route-filePath="Report/@Model.Percorsi.ElementAt(i).Percorso" value="@Model.Percorsi.ElementAt(i).Percorso" class="btn btn-link">
+                                </td>
+                                <td class="text-center">
+                                    <input type="checkbox" value="Report/@Model.Percorsi.ElementAt(i).Percorso" name="nativo" />
+                                </td>
+                                <td class="text-center">
+                                    <input type="checkbox" value="Report/@Model.Percorsi.ElementAt(i).Percorso" name="pdf" />
+                                </td>
+                                <td class="text-center">
+                                    <a asp-action="DeletePercorso" asp-route-daDove="Details/@Model.ID" asp-route-id="@Model.Percorsi.ElementAt(i).ID" class="btn btn-danger">Cancella</a>
+                                </td>
                             </tr>
-                }
-                <input type="submit" asp-action="DownloadUnico" asp-route-daDove="Details/@Model.ID" asp-route-cosa="unico" asp-route-nomeProgetto="@Model.Progetto.Nome" class="btn btn-info" value="Scarica tutto in PDF" style="position:fixed;width:150px;height:40px;bottom:40px;left:25px;" />&nbsp;&nbsp; 
-                    
-                <input type="submit" asp-action="DownloadUnico" asp-route-daDove="Details/@Model.ID" asp-route-cosa="zip" asp-route-nomeProgetto="@Model.Progetto.Nome" class="btn btn-info" value="Scarica ZIP" style="position:fixed;width:100px;height:40px;bottom:40px;right:25px;" />&nbsp;&nbsp; 
-                        </form>
-            
-            </tbody>
-        </table>
+                        }
+                        <input type="submit" asp-action="DownloadUnico" asp-route-daDove="Details/@Model.ID" asp-route-cosa="unico" asp-route-nomeProgetto="@Model.Progetto.Nome" class="btn btn-info" value="Scarica tutto in PDF" style="position:fixed;width:150px;height:40px;bottom:40px;left:25px;" />&nbsp;&nbsp;
+                        <input type="submit" asp-action="DownloadUnico" asp-route-daDove="Details/@Model.ID" asp-route-cosa="zip" asp-route-nomeProgetto="@Model.Progetto.Nome" class="btn btn-info" value="Scarica ZIP" style="position:fixed;width:100px;height:40px;bottom:40px;right:25px;" />&nbsp;&nbsp;
+                    </form>
+                </tbody>
+            </table>
         </div>
     </div>
 </div>
 @section scripts{
-	        <script>
-	
+    <script>
 	    function SelezTT(){
 	      $('input[name=selezionaTutto]').change(
 	        function(){
@@ -78,22 +62,15 @@
 	                var modulo = $('input[name=check]').each(function(index, element){
 	                    $(element).prop('checked', true);
 	                    console.log(index);
-	                   
 	                })
-	               
 	            }
 	            else{
 	                var modulo = $('input[name=check]').each(function(index, element){
 	                    $(element).prop('checked', false);
-	  
 	                })
-	                
 	            }
 	        });
-	        
-	        
 	   };
-	
 	$(function(){
 	    var tutticheck=true;
 	    $('input[name=check]').change(
@@ -102,7 +79,7 @@
 	        for(i=0; i<check.length; i++){
 	        if(!check[i].checked) {
 	            tutticheck=false;
-	            $('input[name=selezionaTutto]').prop('checked', false); 
+	            $('input[name=selezionaTutto]').prop('checked', false);
 	            break;
 	        } else tutticheck=true;
 	        if(tutticheck)
@@ -111,5 +88,4 @@
 	        }
 	    ).change();
 	    });
-	        </script> }
-
+    </script> }

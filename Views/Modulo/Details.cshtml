@@ -1,64 +1,63 @@
-@model webmva.Models.Modulo 
+@model webmva.Models.Modulo
 @{ ViewData["Title"] = "Dettagli"; }
 <br>
 <div class="container">
-<h2><em>Dettagli</em> @Html.DisplayFor(model => model.Nome)
-</h2>
-<hr />
-<div class="col-md-12">
-    <form asp-action="Edit">
-      <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-        <input type="hidden" asp-for="ID" />
-        <div class="row panel panel-default panel-body">
-                 <!--<div class="form-group">-->
-                    <div class="col-md-12">
-                        <!--vedere l'elenco puntato-->
-                        <dl class="dl-horizontal">
-                            <div class="col-sm-9" style="margin:5ex; float:none">
-                                            <div class="form-group row">
-                                                <h4>Nome Modulo</h4><hr />
-                                                <dd>  @Html.DisplayFor(model => model.Nome)
-                                            </dd>
-
+    <h2>
+        <em>Dettagli</em> @Html.DisplayFor(model => model.Nome)
+    </h2>
+    <hr />
+    <div class="col-md-12">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="ID" />
+            <div class="row panel panel-default panel-body">
+                <!--<div class="form-group">-->
+                <div class="col-md-12">
+                    <!--vedere l'elenco puntato-->
+                    <dl class="dl-horizontal">
+                        <div class="col-sm-9" style="margin:5ex; float:none">
+                            <div class="form-group row">
+                                <h4>Nome Modulo</h4><hr />
+                                <dd>
+                                    @Html.DisplayFor(model => model.Nome)
+                                </dd>
                             </div>
+                        </div>
+                        <div class="col-sm-9" style="margin:5ex;  float:none">
+                            <div class="form-group row">
+                                <h4>ID Modulo</h4><hr />
+                                <dd>
+                                    @Html.DisplayFor(model => model.ID)
+                                </dd>
                             </div>
-                             <div class="col-sm-9" style="margin:5ex;  float:none">
-                                            <div class="form-group row">
-                                                <h4 >ID Modulo</h4><hr />
-                                                <dd>  @Html.DisplayFor(model => model.ID)
-                                            </dd>
-
-                             </div>
-                             </div>
-                            <div class="col-sm-9" style="margin:5ex;  float:none">
-                                            <div class="form-group row">
-                                                <h4 >Tipo</h4><hr />
-                                                <dd>  @Html.DisplayFor(model => model.Applicazione)
-                                            </dd>
-
-                             </div>
-                             </div>
-                             <div class="col-sm-9" style="margin:5ex;  float:none">
-                                            <div class="form-group row">
-                                                <h4 >Comando</h4><hr />
-                                                <dd>  @Html.DisplayFor(model => model.Comando)
-                                            </dd>
-
-                             </div>
-                            
-                        </dl>
+                        </div>
+                        <div class="col-sm-9" style="margin:5ex;  float:none">
+                            <div class="form-group row">
+                                <h4>Tipo</h4><hr />
+                                <dd>
+                                    @Html.DisplayFor(model => model.Applicazione)
+                                </dd>
+                            </div>
+                        </div>
+                        <div class="col-sm-9" style="margin:5ex;  float:none">
+                            <div class="form-group row">
+                                <h4>Comando</h4><hr />
+                                <dd>
+                                    @Html.DisplayFor(model => model.Comando)
+                                </dd>
+                            </div>
+                    </dl>
                     <!--</div>-->
                 </div>
-                 <div class="col-xs-6 col-sm-offset-6 text-right">
-                     <br>
+                <div class="col-xs-6 col-sm-offset-6 text-right">
+                    <br>
                     <div class="form-group">
-                        <a class="btn btn-default" asp-action="Edit" asp-route-id="@Model.ID" >   Modifica </a>&nbsp;&nbsp;&nbsp; | &nbsp;
-                         <a class="btn btn-default" asp-action="Delete" asp-route-id="@Model.ID" >  Cancella </a>&nbsp;&nbsp;&nbsp; | &nbsp;
+                        <a class="btn btn-default" asp-action="Edit" asp-route-id="@Model.ID">   Modifica </a>&nbsp;&nbsp;&nbsp; | &nbsp;
+                        <a class="btn btn-default" asp-action="Delete" asp-route-id="@Model.ID">  Cancella </a>&nbsp;&nbsp;&nbsp; | &nbsp;
                         <a asp-action="Index">  Torna alla lista</a>
                     </div>
                 </div>
             </div>
-    </form>
-    
-</div>
+        </form>
+    </div>
 </div>
