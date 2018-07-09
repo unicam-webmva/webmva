@@ -1,5 +1,5 @@
 # WebMVA
-
+![WebMVA](webmva.PNG)
 
 ## Realizzatori del progetto
 
