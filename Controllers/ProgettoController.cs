@@ -377,7 +377,7 @@ namespace webmva.Controllers
                 Modulo modulo = modprog.Modulo;
                 string nomeFile = CreaNomeFile(modulo.Applicazione, modulo.Comando, modulo.Nome);
                 string comando = CreaComando(modulo, modprog.Target, Path.Combine(progetto.Nome, data.ToString("dd-MM-yyyy_HH-mm")), nomeFile, percorsi);
-                MyLogger.Log(messaggio: $"\tEseguendo comando: {comando} ...", controller: "ProgettoController", metodo: "Run");
+                MyLogger.Log(messaggio: $"\tModulo {modulo.Applicazione.ToString()} - {modulo.Nome}, esecuzione comando: {comando} ...", controller: "ProgettoController", metodo: "Run");
                 comando.EseguiCLI(cartellaProgetto);
                 MyLogger.Log(messaggio: $"\tFine esecuzione comando", controller: "ProgettoController", metodo: "Run");
 

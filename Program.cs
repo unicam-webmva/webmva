@@ -50,6 +50,7 @@ namespace webmva
                 .AddJsonFile($"webmvaSettings.json", optional:true)
                 .Build();
             Globals.CaricaFileConfig(settings, cartellaCorrente);
+            MyLogger.Log($"WebMVA - avviato su: {System.Environment.MachineName}, {System.Runtime.InteropServices.RuntimeInformation.OSDescription}");
             MyLogger.Log("Caricato config file");
             return WebHost.CreateDefaultBuilder(args)
                 .UseStartup<Startup>()
