@@ -16,7 +16,7 @@ namespace webmva.Controllers
         {
             string titolo = Globals.GetScrittaWebMVA();
             string checkDipendenze = Path.Combine(Globals.CartellaWEBMVA, "Script", "testDipendenzeBase.sh");
-            
+
             string[] dips = checkDipendenze.EseguiCLI(Globals.CartellaWEBMVA, false).Split(' ');
             ViewData["Dipendenze"] = dips;
             ViewData["titolo"] = titolo;
@@ -38,6 +38,6 @@ namespace webmva.Controllers
             MyLogger.Log(messaggio: "Installazione dipendenze finita", controller: "HomeController", metodo: "Installa");
             return RedirectToAction(nameof(Index));
         }
-       
+
     }
 }

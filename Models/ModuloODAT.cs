@@ -5,48 +5,57 @@ using System.Threading.Tasks;
 
 namespace webmva.Models
 {
-public enum VERBOSEODAT{
-    UNO, DUE, TRE
-}
+    public enum VERBOSEODAT
+    {
+        UNO, DUE, TRE
+    }
     public class ModuloODAT : Modulo
     {
-       
         private VERBOSEODAT _verboseOdat = VERBOSEODAT.UNO;
-        public VERBOSEODAT VerboseOdat {
-            get{
+        public VERBOSEODAT VerboseOdat
+        {
+            get
+            {
                 return _verboseOdat;
-            }set{
+            }
+            set
+            {
                 _verboseOdat = value;
             }
         }
         private int _portaOdat = 1521;
-        public int PortaOdat {
-            get{
+        public int PortaOdat
+        {
+            get
+            {
                 return _portaOdat;
             }
-            set{
+            set
+            {
                 _portaOdat = value;
             }
         }
-        public string PasswordOdat{get;set;}
-       
-       private bool _allOdat = true;
-       public bool AllOdat{
-           get{
-               return _allOdat;
-           }
-           set{
-               _allOdat = value;
-           }
-       }
-       public bool Tnspoison{get;set;}
-       public bool Tnscmd{get;set;} 
-       public bool SmbOdat{get;set;}
-       public bool PasswordStealer{get;set;}
-       public bool PasswordGuesser{get;set;} 
-       public string UtenteOdat{get;set;}
-       public string SID{get;set;}
-       public bool TestOdat{get;set;} 
+        public string PasswordOdat { get; set; }
+        private bool _allOdat = true;
+        public bool AllOdat
+        {
+            get
+            {
+                return _allOdat;
+            }
+            set
+            {
+                _allOdat = value;
+            }
+        }
+        public bool Tnspoison { get; set; }
+        public bool Tnscmd { get; set; }
+        public bool SmbOdat { get; set; }
+        public bool PasswordStealer { get; set; }
+        public bool PasswordGuesser { get; set; }
+        public string UtenteOdat { get; set; }
+        public string SID { get; set; }
+        public bool TestOdat { get; set; }
         public string ComandoPersonalizzato { get; set; }
         public override string Comando
         {
@@ -54,8 +63,8 @@ public enum VERBOSEODAT{
             {
                 if (string.IsNullOrEmpty(ComandoPersonalizzato))
                 {
-                    string risultato = "odat.py ";
-                    
+                    string risultato = "odat.py";
+
                     if (PortaOdat != 1521 && PortaOdat > 0)
                         risultato += " -p" + PortaOdat;
                     if (!string.IsNullOrEmpty(PasswordOdat))
@@ -87,20 +96,13 @@ public enum VERBOSEODAT{
                             risultato += " -vvv";
                             break;
                         default:
-                        risultato += " -v";
+                            risultato += " -v";
                             break;
                     }
-
-
-
                     return risultato;
-
-
-
                 }
                 else return ComandoPersonalizzato;
             }
-
         }
     }
 }

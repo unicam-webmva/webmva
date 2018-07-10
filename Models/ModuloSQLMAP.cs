@@ -5,7 +5,6 @@ using System.Threading.Tasks;
 
 namespace webmva.Models
 {
-
     public enum VERBOSESQLMAP
     {
         UNO, DUE, TRE, QUATTRO, CINQUE, SEI, ZERO
@@ -20,7 +19,6 @@ namespace webmva.Models
     }
     public class ModuloSQLMAP : Modulo
     {
-       
         public string header { get; set; }
         public string credenzialiAutenticazione { get; set; }
         public string dbms { get; set; }
@@ -51,7 +49,6 @@ namespace webmva.Models
         public bool excludesSySdbs { get; set; }
         public bool commonTables { get; set; }
         public bool commonColumns { get; set; }
-
         public int delay { get; set; }
         private int _timeout = 30;
         public int timeout
@@ -113,8 +110,6 @@ namespace webmva.Models
                 _tecnique = value;
             }
         }
-
-
         private VERBOSESQLMAP _verbose = VERBOSESQLMAP.UNO;
         public VERBOSESQLMAP Verbose
         {
@@ -262,16 +257,10 @@ namespace webmva.Models
                         risultato += " --common-tables";
                     if (commonColumns)
                         risultato += " --common-columns";
-
-
                     return risultato;
-
-
-
                 }
                 else return ComandoPersonalizzato;
             }
-
         }
     }
 }

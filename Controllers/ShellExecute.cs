@@ -19,15 +19,17 @@ namespace webmva.Helpers
         // GUARDARE ANCHE RISPOSTE SUCCESSIVE
 
 
-        
-        public static string EseguiCLI(this string cmd, string cartellaProgetto, bool finestra = true){
-            switch (Globals.SistemaOperativoAttuale){
+
+        public static string EseguiCLI(this string cmd, string cartellaProgetto, bool finestra = true)
+        {
+            switch (Globals.SistemaOperativoAttuale)
+            {
                 case Win32NT:
                     return Batch(cmd, cartellaProgetto);
                 case Unix:
-                if(finestra)
-                    return BashXTERM(cmd, cartellaProgetto);
-                    else return BashConShell(cmd,cartellaProgetto);
+                    if (finestra)
+                        return BashXTERM(cmd, cartellaProgetto);
+                    else return BashConShell(cmd, cartellaProgetto);
                 default:
                     throw new ApplicationException("Non so come tu sia finito qui");
             }
@@ -77,7 +79,7 @@ namespace webmva.Helpers
             process.Start();
             string result = process.StandardOutput.ReadToEnd();
             process.WaitForExit();
-            
+
             return result;
         }
         private static string Batch(string cmd, string cartellaDiLavoro)
@@ -102,6 +104,6 @@ namespace webmva.Helpers
             process.WaitForExit();
             return result;
         }
-        
+
     }
 }

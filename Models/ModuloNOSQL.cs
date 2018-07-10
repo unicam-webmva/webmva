@@ -5,14 +5,14 @@ using System.Threading.Tasks;
 
 namespace webmva.Models
 {
-
     public class ModuloNOSQL : Modulo
     {
-        public override string Comando{
-            get{
+        public override string Comando
+        {
+            get
+            {
                 return "nosqlmap.py";
             }
         }
-        
     }
 }

@@ -12,7 +12,7 @@ namespace webmva.ViewModels
         public IEnumerable<Modulo> ModuliNESSUS { get; set; }
         public IEnumerable<Modulo> ModuliDNSRECON { get; set; }
         public IEnumerable<Modulo> ModuliFIERCE { get; set; }
-         public IEnumerable<Modulo> ModuliOPENDOOR { get; set; }
+        public IEnumerable<Modulo> ModuliOPENDOOR { get; set; }
         public IEnumerable<Modulo> ModuliDROOPE { get; set; }
         public IEnumerable<Modulo> ModuliJOOMSCAN { get; set; }
         public IEnumerable<Modulo> ModuliWPSCAN { get; set; }
@@ -30,9 +30,5 @@ namespace webmva.ViewModels
         public IEnumerable<Modulo> ModuliTHEHARVESTER { get; set; }
         public IEnumerable<Modulo> ModuliAMASS { get; set; }
         public IEnumerable<Modulo> ModuliDRUPWN { get; set; }
-        
-        
-
-
     }
 }

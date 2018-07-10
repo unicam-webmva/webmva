@@ -11,15 +11,11 @@ namespace webmva.Models
         UDP, LIST, NOPORT, NESSUNO
     }
     public enum TEMPI
-    { ZERO, UNO, DUE, TRE, QUATTRO, CINQUE}
-    
+    { ZERO, UNO, DUE, TRE, QUATTRO, CINQUE }
+
     public class ModuloNMAP : Modulo
     {
         // https://www.stationx.net/nmap-cheat-sheet/
-
-        // VEDIAMO SE SARA' COSI'
-
-        // SWITCH
         private TCPSCAN _tcpscan = TCPSCAN.NESSUNO;
         public TCPSCAN TCPScan
         {
@@ -34,7 +30,6 @@ namespace webmva.Models
         }
 
         // DISCOVERY
-
         private bool _noHost = false;
         public bool NoHostDiscovery { get { return _noHost; } set { _noHost = value; } } //-Pn
         public string SynDiscoveryPorts { get; set; } //-PSlista_porte
@@ -80,9 +75,6 @@ namespace webmva.Models
         public bool IPv6Scan { get { return _ipv6; } set { _ipv6 = value; } } //-6
         private bool _verbose = false;
         public bool IncreaseVerbosity { get { return _verbose; } set { _verbose = value; } } //-vv
-
-
-        // COMANDO PERSONALIZZATO TOTALMENTE
         public string ComandoPersonalizzato { get; set; }
         public override string Comando
         {
@@ -91,7 +83,6 @@ namespace webmva.Models
                 string risultato = "nmap ";
                 if (ComandoPersonalizzato == "" || string.IsNullOrEmpty(ComandoPersonalizzato))
                 {
-                    //Costruisco il comando
                     switch (TCPScan)
                     {
                         case TCPSCAN.ACK:
@@ -147,7 +138,8 @@ namespace webmva.Models
                             if (OSDetectionAggressive) risultato += " --osscan-guess";
                         }
                     }
-                    if(Tempo != TEMPI.TRE) switch (Tempo) {
+                    if (Tempo != TEMPI.TRE) switch (Tempo)
+                        {
                             case TEMPI.ZERO:
                                 risultato += " -T0";
                                 break;
@@ -172,7 +164,6 @@ namespace webmva.Models
                     ComandoPersonalizzato = "";
                     return risultato;
                 }
-
                 else
                 {
                     return ComandoPersonalizzato;

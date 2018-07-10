@@ -5,15 +5,12 @@ using System.Threading.Tasks;
 
 namespace webmva.Models
 {
-    
     public enum WPS
     {
         NO, ONLY, DEFAULT
     }
     public class ModuloWIFITE : Modulo
     {
-        
-       
         private bool _client = false;
         public bool client
         {
@@ -79,11 +76,9 @@ namespace webmva.Models
         public bool accessPoint { get; set; }
         public bool crack { get; set; }
         public bool wpsSetting { get; set; }
-   
         public bool bully { get; set; }
         public int scanTime { get; set; }
         private int _channel = -1;
-
         public int channel
         {
             get
@@ -95,7 +90,6 @@ namespace webmva.Models
                 _channel = value;
             }
         }
-       
         private WPS _wps = WPS.DEFAULT;
         public WPS Wps
         {
@@ -105,57 +99,54 @@ namespace webmva.Models
         public string ComandoPersonalizzato { get; set; }
         public override string Comando
         {
-
             get
             {
                 if (string.IsNullOrEmpty(ComandoPersonalizzato))
                 {
-
                     string risultato = "Wifite.py";
-                  
-                        switch (Wps)
-                        {
-                            case WPS.ONLY:
-                                risultato += " --wps-only";
-                                break;
-                            case WPS.NO:
-                                risultato += " --no-wps";
-                                break;
-                            default:
-                                break;
-                        }
-                        if (verbositaWifite)
-                            risultato += " -v";
-                        if (client)
-                            risultato += " -co";
-                        if (wep)
-                            risultato += " --wep";
-                        if (fakeAutenticazione)
-                            risultato += " --require-fakeauth";
-                        if (keepIvs)
-                            risultato += " --keep-ivs";
-                        if (wpa)
-                            risultato += " --wpa";
-                        if (newHs)
-                            risultato += " --new-hs";
-                        if (wpsSetting)
-                            risultato += " --wps";
-                        if (accessPoint)
-                            risultato += " --cracked";
-                        if (crack)
-                            risultato += " --crack";
-                        if (bully ){
-                            risultato += " --bully";
+                    switch (Wps)
+                    {
+                        case WPS.ONLY:
+                            risultato += " --wps-only";
+                            break;
+                        case WPS.NO:
+                            risultato += " --no-wps";
+                            break;
+                        default:
+                            break;
+                    }
+                    if (verbositaWifite)
+                        risultato += " -v";
+                    if (client)
+                        risultato += " -co";
+                    if (wep)
+                        risultato += " --wep";
+                    if (fakeAutenticazione)
+                        risultato += " --require-fakeauth";
+                    if (keepIvs)
+                        risultato += " --keep-ivs";
+                    if (wpa)
+                        risultato += " --wpa";
+                    if (newHs)
+                        risultato += " --new-hs";
+                    if (wpsSetting)
+                        risultato += " --wps";
+                    if (accessPoint)
+                        risultato += " --cracked";
+                    if (crack)
+                        risultato += " --crack";
+                    if (bully)
+                    {
+                        risultato += " --bully";
                         if (channel != 0 && channel <= 14)
                             risultato += " -c " + channel;
                         if (scanTime != 0)
                             risultato += " -p " + scanTime;
-                        }
-                        return risultato;
                     }
-                    else return ComandoPersonalizzato;
+                    return risultato;
                 }
-
+                else return ComandoPersonalizzato;
             }
         }
     }
+}

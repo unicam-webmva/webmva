@@ -168,16 +168,19 @@ namespace webmva
             lucchetto.Add("       /%                     %\\      ");
             lucchetto.Add("        %&%%%%%%%%%%%%%%%%%%%&%       ");
             int count = lucchetto.Count - sb.Count;
-            for (int i = 0; i < count; i++){
+            for (int i = 0; i < count; i++)
+            {
                 sb.Insert(i, lucchetto.ElementAt(i));
             }
-            for(int i = count; i<lucchetto.Count; i++){
+            for (int i = count; i < lucchetto.Count; i++)
+            {
                 string riga = sb.ElementAt(i).Insert(0, lucchetto.ElementAt(i));
-                    sb.RemoveAt(i);
-                    sb.Insert(i, riga);
+                sb.RemoveAt(i);
+                sb.Insert(i, riga);
             }
             StringBuilder builder = new StringBuilder();
-            foreach(string s in sb){
+            foreach (string s in sb)
+            {
                 builder.AppendLine(s);
             }
             return builder.ToString();

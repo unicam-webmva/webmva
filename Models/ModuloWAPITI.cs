@@ -19,8 +19,6 @@ namespace webmva.Models
     }
     public class ModuloWAPITI : Modulo
     {
-       
-
         public bool All { get; set; }
         private bool _common = true;
         public bool Common
@@ -34,7 +32,6 @@ namespace webmva.Models
             get { return _nessuno; }
             set { _nessuno = value; }
         }
-
         public bool BackUp { get; set; }
         public bool BlindSql { get; set; }
         public bool Crlf { get; set; }
@@ -47,7 +44,6 @@ namespace webmva.Models
         public bool Xss { get; set; }
         public bool Buster { get; set; }
         public bool ShellShock { get; set; }
-
         private SCOPE _Scope = SCOPE.NESSUNO;
         public SCOPE Scope
         {
@@ -79,7 +75,6 @@ namespace webmva.Models
             {
                 if (string.IsNullOrEmpty(ComandoPersonalizzato))
                 {
-
                     string risultato = "wapiti --color";
                     if (Nessuno) risultato += " -m \"\"";
                     else if (!All)
@@ -137,7 +132,6 @@ namespace webmva.Models
                 }
                 else return ComandoPersonalizzato;
             }
-
         }
     }
 }

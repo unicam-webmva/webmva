@@ -7,7 +7,6 @@ namespace webmva.Models
 {
     public class ModuloDRUPWN : Modulo
     {
-
         public bool UsersDrupwn { get; set; }
         public bool NodesDrupwn { get; set; }
         public bool ModulesDrupwn { get; set; }
@@ -26,13 +25,11 @@ namespace webmva.Models
             }
         }
         public string UserAgentDrupwn { get; set; }
-
         public string ComandoPersonalizzato { get; set; }
         public override string Comando
         {
             get
             {
-
                 if (string.IsNullOrEmpty(ComandoPersonalizzato))
                 {
                     string risultato = "drupwn enum ";
@@ -53,9 +50,6 @@ namespace webmva.Models
                     return risultato;
                 }
                 else return ComandoPersonalizzato;
-
-
-
             }
         }
     }

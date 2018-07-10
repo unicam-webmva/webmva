@@ -24,18 +24,18 @@ namespace webmva
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            if(Globals.TIPODB.Equals("sqlite"))
+            if (Globals.TIPODB.Equals("sqlite"))
                 services.AddDbContext<MyDbContext>(options =>
                     options.UseSqlite(Globals.CONNECTIONSTRING));
-            else if(Globals.TIPODB.Equals("sqlserver"))
+            else if (Globals.TIPODB.Equals("sqlserver"))
                 services.AddDbContext<MyDbContext>(options =>
                     options.UseSqlServer(Globals.CONNECTIONSTRING));
-            else if(Globals.TIPODB.Equals("inmemory"))
+            else if (Globals.TIPODB.Equals("inmemory"))
                 services.AddDbContext<MyDbContext>(options =>
                     options.UseInMemoryDatabase(Globals.CONNECTIONSTRING));
             else
                 services.AddDbContext<MyDbContext>(options =>
-                    options.UseSqlite("Data Source=webmva.db"));    
+                    options.UseSqlite("Data Source=webmva.db"));
             services.AddMvc();
         }
 
@@ -50,7 +50,7 @@ namespace webmva
             {
                 app.UseExceptionHandler("/Home/Error");
             }
-            
+
             app.UseStaticFiles();
 
             app.UseMvc(routes =>

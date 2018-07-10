@@ -19,7 +19,6 @@ namespace webmva.Models
                 _porta = value;
             }
         }
-
         private int _porta = 80;
         public int RetriesO
         {
@@ -32,7 +31,6 @@ namespace webmva.Models
                 _retries = value;
             }
         }
-
         private int _retries = 3;
         public string Metodo
         {
@@ -59,7 +57,7 @@ namespace webmva.Models
             }
         }
         private int _timeout = 30;
-        public bool AcceptCookies{get;set;}
+        public bool AcceptCookies { get; set; }
         public string ComandoPersonalizzato { get; set; }
         public override string Comando
         {
@@ -67,7 +65,6 @@ namespace webmva.Models
             {
                 if (string.IsNullOrEmpty(ComandoPersonalizzato))
                 {
-
                     string risultato = "opendoor";
                     if (PortaO != 80 && PortaO > 0)
                         risultato += "-p" + PortaO;
@@ -75,20 +72,17 @@ namespace webmva.Models
                         risultato += " -m" + _metodo;
                     if (DelayO > 0 && DelayO != 30)
                         risultato += " -d" + DelayO;
-                    if(RetriesO !=3 && RetriesO>0)
+                    if (RetriesO != 3 && RetriesO > 0)
                         risultato += " -r" + RetriesO;
-                    if(TimeoutO !=30 && TimeoutO>0)
+                    if (TimeoutO != 30 && TimeoutO > 0)
                         risultato += " ---timeout" + TimeoutO;
-                        if(AcceptCookies)
+                    if (AcceptCookies)
                         risultato += " --accept-cookies";
-                
-
-                return risultato;
-            }
+                    return risultato;
+                }
                 else return ComandoPersonalizzato;
+            }
         }
-
-    }
     }
 }
 

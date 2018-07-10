@@ -7,14 +7,7 @@ namespace webmva.Models
 {
     public class ModuloINFOGAEMAIL : Modulo
     {
-
-
-        
-
         public bool Breach { get; set; }
-
-
-
         private VERBOSE _verbose = VERBOSE.NESSUNA;
         public VERBOSE Verbose
         {
@@ -28,11 +21,7 @@ namespace webmva.Models
             {
                 if (string.IsNullOrEmpty(ComandoPersonalizzato))
                 {
-
-                    string risultato = "infoga.py ";
-  //risultato += " -i " + Email;
-                    // prova
-
+                    string risultato = "infoga.py";
                     switch (Verbose)
                     {
                         case VERBOSE.UNO:
@@ -50,12 +39,10 @@ namespace webmva.Models
                     }
                     if (Breach)
                         risultato += " -b";
-
                     return risultato;
                 }
                 else return ComandoPersonalizzato;
             }
-
         }
     }
 }

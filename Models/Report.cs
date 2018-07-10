@@ -13,17 +13,15 @@ namespace webmva.Models
         public int ID { get; set; }
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd-HH-mm-ss}", ApplyFormatInEditMode = true)]
-        public DateTime Data { get; internal set; }        
-       
-       
+        public DateTime Data { get; internal set; }
         public int ProgettoID { get; set; }
         public Progetto Progetto { get; set; }
         public IEnumerable<PercorsiReport> Percorsi { get; set; }
         private bool _isImportati = false;
-        public bool isImportati {
-            get {return _isImportati;}
-            set{_isImportati=value;}
+        public bool isImportati
+        {
+            get { return _isImportati; }
+            set { _isImportati = value; }
         }
-
     }
 }

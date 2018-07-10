@@ -357,7 +357,7 @@ namespace webmva.Controllers
         }
         public async Task<IActionResult> Run(int? id)
         {
-            MyLogger.Log(messaggio: $"Richiesta POST con id {id}", controller: "ProgettoController", metodo: "Run");
+            MyLogger.Log(messaggio: $"Richiesta GET con id {id}", controller: "ProgettoController", metodo: "Run");
             var progetto = await _context.Progetti
                 .Include(list => list.ModuliProgetto)
                     .ThenInclude(mod => mod.Modulo)
@@ -556,13 +556,13 @@ namespace webmva.Controllers
                 percorsi.Add(Path.Combine(cartella, nomeFile + ".txt"));
                 return comando;
             }
-             if (mod is ModuloTHEHARVESTER)
+            if (mod is ModuloTHEHARVESTER)
             {
                 string comando = $"{mod.Comando} -d {target} -f {nomeFile}.html";
                 percorsi.Add(Path.Combine(cartella, nomeFile + ".html"));
                 return comando;
             }
-             if (mod is ModuloAMASS)
+            if (mod is ModuloAMASS)
             {
                 string percorsoExec = Path.Combine(Globals.CartellaWEBMVA, "Programmi", "amass");
                 string comando = $"python -u {percorsoExec}/{mod.Comando} -d {target} -o {nomeFile}.txt -visjs {nomeFile}.visjs.html ";

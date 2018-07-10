@@ -54,8 +54,8 @@ namespace webmva.Data
             { context.Progetti.Add(p); }
             context.SaveChanges();
 
-            
-            
+
+
         }
     }
 }

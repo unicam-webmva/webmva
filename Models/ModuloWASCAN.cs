@@ -5,15 +5,12 @@ using System.Threading.Tasks;
 
 namespace webmva.Models
 {
-
     public enum METHODW
     {
         GET, POST
     }
-
     public class ModuloWASCAN : Modulo
     {
-
         public string ComandoPersonalizzato { get; set; }
         public string AutenticazioneW { get; set; }
         public string UserAgentW { get; set; }
@@ -75,8 +72,6 @@ namespace webmva.Models
                 string risultato = "wascan.py ";
                 if (string.IsNullOrEmpty(ComandoPersonalizzato))
                 {
-
-                    
                     {
                         string appoggio = "";
                         if (Fingerprint) appoggio += "0 ";
@@ -84,16 +79,16 @@ namespace webmva.Models
                         if (Audit) appoggio += "2 ";
                         if (Bruteforce) appoggio += "3 ";
                         if (Disclosure) appoggio += "4 ";
-                        if(appoggio.Length!=0 && appoggio.Length!=10){
-                        string[] appoggio2= appoggio.Split(' ');
-                        
-                        appoggio = appoggio2[0];
-                        for(int i=1; i < appoggio2.Length-1; i++){
-                            appoggio += "," +appoggio2[i];
+                        if (appoggio.Length != 0 && appoggio.Length != 10)
+                        {
+                            string[] appoggio2 = appoggio.Split(' ');
+                            appoggio = appoggio2[0];
+                            for (int i = 1; i < appoggio2.Length - 1; i++)
+                            {
+                                appoggio += "," + appoggio2[i];
+                            }
+                            risultato += "-s [" + appoggio + "]";
                         }
-                        risultato +="-s [" + appoggio + "]";
-                        }
-                        
                     }
                     switch (MethodsW)
                     {
@@ -103,7 +98,6 @@ namespace webmva.Models
                         default:
                             risultato += " -m GET";
                             break;
-
                     }
                     if (!string.IsNullOrEmpty(AutenticazioneW))
                         risultato += " -a" + AutenticazioneW;
@@ -123,7 +117,6 @@ namespace webmva.Models
                 }
                 else return ComandoPersonalizzato;
             }
-
         }
     }
 }

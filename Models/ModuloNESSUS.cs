@@ -4,7 +4,6 @@ using System.ComponentModel.DataAnnotations;
 
 namespace webmva.Models
 {
-
     public class ModuloNESSUS : Modulo
     {
         public string ServerIP { get; set; }
@@ -14,8 +13,6 @@ namespace webmva.Models
             get { return _porta; }
             set { _porta = value; }
         }
-        
-
         public override string Comando
         {
             // DALLA PROSSIMA VERSIONE DI NESSUS LE API PER CREARE GLI SCAN DA REMOTO

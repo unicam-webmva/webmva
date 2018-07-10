@@ -17,7 +17,8 @@ namespace webmva
     {
         public static void Main(string[] args)
         {
-            Console.CancelKeyPress += delegate {
+            Console.CancelKeyPress += delegate
+            {
                 MyLogger.Log("Applicazione terminata");
             };
             var host = BuildWebHost(args);
@@ -47,7 +48,7 @@ namespace webmva
             // https://stackoverflow.com/questions/41738692/read-appsettings-json-in-main-program-cs/41738816#41738816
             var settings = new ConfigurationBuilder()
                 .SetBasePath(cartellaCorrente)
-                .AddJsonFile($"webmvaSettings.json", optional:true)
+                .AddJsonFile($"webmvaSettings.json", optional: true)
                 .Build();
             Globals.CaricaFileConfig(settings, cartellaCorrente);
             MyLogger.Log($"WebMVA - avviato su: {System.Environment.MachineName}, {System.Runtime.InteropServices.RuntimeInformation.OSDescription}");
@@ -56,7 +57,8 @@ namespace webmva
                 .UseStartup<Startup>()
                 .UseUrls($"http://0.0.0.0:{Globals.PORTA}")
                 // https://stackoverflow.com/questions/42079956/suppress-sql-queries-logging-in-entity-framework-core
-                .ConfigureLogging((context, logging)=> {
+                .ConfigureLogging((context, logging) =>
+                {
                     var env = context.HostingEnvironment;
                     var config = context.Configuration.GetSection("Logging");
                     logging.AddConfiguration(config);

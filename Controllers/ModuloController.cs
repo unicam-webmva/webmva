@@ -95,7 +95,7 @@ namespace webmva.Controllers
             }
             else
                 MyLogger.Log(messaggio: $"Richiesta GET", controller: "ModuloController", metodo: "Create");
-                return View(new EditModuloVM());
+            return View(new EditModuloVM());
         }
 
         // POST: Modulo/
@@ -369,7 +369,7 @@ namespace webmva.Controllers
                     }
                 }
             }
-              else if (createmodulo.THEHARVESTER.Nome != null && cosa.Equals("theharvester"))
+            else if (createmodulo.THEHARVESTER.Nome != null && cosa.Equals("theharvester"))
             {
                 {
                     if (ModelState.IsValid)
@@ -383,7 +383,7 @@ namespace webmva.Controllers
                     }
                 }
             }
-               else if (createmodulo.AMASS.Nome != null && cosa.Equals("amass"))
+            else if (createmodulo.AMASS.Nome != null && cosa.Equals("amass"))
             {
                 {
                     if (ModelState.IsValid)
@@ -397,7 +397,7 @@ namespace webmva.Controllers
                     }
                 }
             }
-               else if (createmodulo.DRUPWN.Nome != null && cosa.Equals("drupwn"))
+            else if (createmodulo.DRUPWN.Nome != null && cosa.Equals("drupwn"))
             {
                 {
                     if (ModelState.IsValid)
@@ -411,7 +411,8 @@ namespace webmva.Controllers
                     }
                 }
             }
-            else {
+            else
+            {
                 MyLogger.Log(messaggio: $"ERRORE: Richiesta POST: BadRequest", controller: "ModuloController", metodo: "Create");
                 return BadRequest();
             }
@@ -426,8 +427,8 @@ namespace webmva.Controllers
             if (cosa == "nessus")
             {
                 bool check = await CheckServer(createmodulo.NESSUS.ServerIP, createmodulo.NESSUS.Porta);
-                MyLogger.Log(messaggio: $"Richiesta POST: Test verso https://{createmodulo.NESSUS.ServerIP}:{createmodulo.NESSUS.Porta} "+
-                    ((check)?"up":"down"), controller: "ModuloController", metodo: "Test");
+                MyLogger.Log(messaggio: $"Richiesta POST: Test verso https://{createmodulo.NESSUS.ServerIP}:{createmodulo.NESSUS.Porta} " +
+                    ((check) ? "up" : "down"), controller: "ModuloController", metodo: "Test");
                 TempData.Put("TestN", check.ToString());
                 TempData.Put("Anchor", "Nessus");
 
@@ -436,8 +437,8 @@ namespace webmva.Controllers
             else if (cosa == "openvas")
             {
                 bool check = await CheckServer(createmodulo.OPENVAS.ServerIPOpenvas, createmodulo.OPENVAS.PortaOpenvas);
-                MyLogger.Log(messaggio: $"Richiesta POST: Test verso https://{createmodulo.OPENVAS.ServerIPOpenvas}:{createmodulo.OPENVAS.PortaOpenvas} "+
-                    ((check)?"up":"down"), controller: "ModuloController", metodo: "Test");
+                MyLogger.Log(messaggio: $"Richiesta POST: Test verso https://{createmodulo.OPENVAS.ServerIPOpenvas}:{createmodulo.OPENVAS.PortaOpenvas} " +
+                    ((check) ? "up" : "down"), controller: "ModuloController", metodo: "Test");
                 TempData.Put("TestO", check.ToString());
                 TempData.Put("Anchor", "Openvas");
 
@@ -546,13 +547,13 @@ namespace webmva.Controllers
                 m = editmodulo.DRUPWN;
             else // è rimasto solo openvas, controllo dopo se m è ancora null o no
                 m = editmodulo.OPENVAS;
-            
-            if (m==null)
+
+            if (m == null)
             {
                 MyLogger.Log(messaggio: $"ERRORE: Richiesta POST con id {id}: BadRequest", controller: "ModuloController", metodo: "Edit");
                 return BadRequest();
             }
-            
+
             if (id != m.ID)
             {
                 MyLogger.Log(messaggio: $"ERRORE: Richiesta POST con id {id}: Richiesta malformata", controller: "ModuloController", metodo: "Edit");
@@ -582,7 +583,7 @@ namespace webmva.Controllers
                 MyLogger.Log(messaggio: $"Richiesta POST: \n\tModulo di tipo {m.Applicazione.ToString()} con nome: {m.Nome} modificato", controller: "ModuloController", metodo: "Edit");
                 return RedirectToAction(nameof(Index));
             }
-            
+
             return View(editmodulo);
         }
 
