@@ -101,7 +101,7 @@ namespace webmva
                     sb.Add("       \\/       \\/    \\/         \\/              \\/ ");
                     break;
                 case 7:
-                    sb.Add("__          __  _     __  ____      __     ");
+                    sb.Add(" __          __  _     __  ____      __     ");
                     sb.Add(" \\ \\        / / | |   |  \\/  \\ \\    / /\\    ");
                     sb.Add("  \\ \\  /\\  / /__| |__ | \\  / |\\ \\  / /  \\   ");
                     sb.Add("   \\ \\/  \\/ / _ \\ '_ \\| |\\/| | \\ \\/ / /\\ \\  ");
@@ -152,6 +152,7 @@ namespace webmva
                     break;
             }
             List<string> lucchetto = new List<string>();
+            lucchetto.Add("                 _____                ");
             lucchetto.Add("             /&%,     ,&&*            ");
             lucchetto.Add("           /&    /////   .&.          ");
             lucchetto.Add("          (%  ./,     */,  &.         ");
