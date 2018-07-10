@@ -37,7 +37,8 @@
                     <div class="col-sm-7" style="margin:0 auto; float:none">
                         <div class="form-group">
                             <h4 asp-for="@(Model.NMAP.Nome)">Nome Modulo  </h4>
-                            <input class="form-control" asp-for="@(Model.NMAP.Nome)" />
+                            <input class="form-control" asp-for="@(Model.NMAP.Nome)" myName="checkCaratteri" id="nmapNome" />
+                            <span class="text-danger" style="display:none" name="nmapNome"></span>
                         </div>
                     </div>
                     <div class="col-sm-12">
@@ -253,7 +254,8 @@
                     <div class="col-sm-7" style="margin:0 auto; float:none">
                         <div class="form-group row">
                             <h4 asp-for="@(Model.NESSUS.Nome)">Nome Modulo</h4>
-                            <input class="form-control" asp-for="@(Model.NESSUS.Nome)" />
+                            <input class="form-control" asp-for="@(Model.NESSUS.Nome)" myName="checkCaratteri" id="nessusNome" />
+                            <span class="text-danger" style="display:none" name="nessusNome"></span>
                         </div>
                     </div>
                     <div class="col-sm-12">
@@ -341,7 +343,8 @@
                     <div class="col-sm-7" style="margin:0 auto; float:none">
                         <div class="form-group row">
                             <h4 asp-for="@(Model.OPENVAS.Nome)">Nome Modulo</h4>
-                            <input class="form-control" asp-for="@(Model.OPENVAS.Nome)" />
+                            <input class="form-control" asp-for="@(Model.OPENVAS.Nome)" myName="checkCaratteri" id="openvasNome" />
+                            <span class="text-danger" style="display:none" name="openvasNome"></span>
                         </div>
                     </div>
                     <div class="col-sm-12">
@@ -429,7 +432,8 @@
                     <div class="col-sm-7" style="margin:0 auto; float:none">
                         <div class="row form-group">
                             <h4 asp-for="@(Model.DNSRECON.Nome)">Nome Modulo</h4>
-                            <input class="form-control" asp-for="@(Model.DNSRECON.Nome)" />
+                            <input class="form-control" asp-for="@(Model.DNSRECON.Nome)" myName="checkCaratteri" id="dnsreconNome" />
+                            <span class="text-danger" style="display:none" name="dnsreconNome"></span>
                         </div>
                     </div>
                     <hr />
@@ -534,7 +538,8 @@
                     <div class="col-sm-7" style="margin:0 auto; float:none">
                         <div class="form-group">
                             <h4 asp-for="@(Model.DROOPE.Nome)">Nome Modulo</h4>
-                            <input class="form-control" asp-for="@(Model.DROOPE.Nome)" />
+                            <input class="form-control" asp-for="@(Model.DROOPE.Nome)" myName="checkCaratteri" id="droopeNome" />
+                            <span class="text-danger" style="display:none" name="droopeNome"></span>
                         </div>
                     </div>
                     <hr />
@@ -611,7 +616,8 @@
                     <div class="col-sm-7" style="margin:0 auto; float:none">
                         <div class="form-group">
                             <h4 asp-for="@(Model.INFOGA.Nome)">Nome Modulo</h4>
-                            <input class="form-control" asp-for="@(Model.INFOGA.Nome)" />
+                            <input class="form-control" asp-for="@(Model.INFOGA.Nome)" myName="checkCaratteri" id="infogaNome" />
+                            <span class="text-danger" style="display:none" name="infogaNome"></span>
                         </div>
                     </div>
                     <hr />
@@ -689,7 +695,8 @@
                     <div class="col-sm-7" style="margin:0 auto; float:none">
                         <div class="form-group">
                             <h4 asp-for="@(Model.INFOGAEMAIL.Nome)">Nome Modulo</h4>
-                            <input class="form-control" asp-for="@(Model.INFOGAEMAIL.Nome)" />
+                            <input class="form-control" asp-for="@(Model.INFOGAEMAIL.Nome)" myName="checkCaratteri" id="infogaemailNome" />
+                            <span class="text-danger" style="display:none" name="infogaemailNome"></span>
                         </div>
                     </div>
                     <hr />
@@ -761,7 +768,8 @@
                     <div class="col-sm-7" style="margin:0 auto; float:none">
                         <div class="form-group">
                             <h4 asp-for="@(Model.WAPITI.Nome)">Nome Modulo</h4>
-                            <input class="form-control" asp-for="@(Model.WAPITI.Nome)" />
+                            <input class="form-control" asp-for="@(Model.WAPITI.Nome)" myName="checkCaratteri" id="wapitiNome" />
+                            <span class="text-danger" style="display:none" name="wapitiNome"></span>
                         </div>
                     </div>
                     <hr />
@@ -966,7 +974,8 @@
                     <div class="col-sm-7" style="margin:0 auto; float:none">
                         <div class="form-group">
                             <h4 asp-for="@(Model.SQLMAP.Nome)">Nome Modulo</h4>
-                            <input class="form-control" asp-for="@(Model.SQLMAP.Nome)" />
+                            <input class="form-control" asp-for="@(Model.SQLMAP.Nome)" myName="checkCaratteri" id="sqlmapNome" />
+                            <span class="text-danger" style="display:none" name="sqlmapNome"></span>
                         </div>
                     </div>
                     <hr />
@@ -1329,7 +1338,8 @@
                     <div class="col-sm-7" style="margin:0 auto; float:none">
                         <div class="form-group">
                             <h4 asp-for="@(Model.WIFITE.Nome)">Nome Modulo</h4>
-                            <input class="form-control" asp-for="@(Model.WIFITE.Nome)" />
+                            <input class="form-control" asp-for="@(Model.WIFITE.Nome)" myName="checkCaratteri" id="wifiteNome" />
+                            <span class="text-danger" style="display:none" name="wifitetNome"></span>
                         </div>
                     </div>
                     <hr />
@@ -1472,7 +1482,8 @@
                     <div class="col-sm-7" style="margin:0 auto; float:none">
                         <div class="form-group">
                             <h4 asp-for="@(Model.JOOMSCAN.Nome)">Nome Modulo</h4>
-                            <input class="form-control" asp-for="@(Model.JOOMSCAN.Nome)" />
+                            <input class="form-control" asp-for="@(Model.JOOMSCAN.Nome)" myName="checkCaratteri" id="joomNome" />
+                            <span class="text-danger" style="display:none" name="joomNome"></span>
                         </div>
                     </div>
                     <hr />
@@ -1540,7 +1551,8 @@
                     <div class="col-sm-7" style="margin:0 auto; float:none">
                         <div class="form-group">
                             <h4 asp-for="@(Model.WPSCAN.Nome)">Nome Modulo</h4>
-                            <input class="form-control" asp-for="@(Model.WPSCAN.Nome)" />
+                            <input class="form-control" asp-for="@(Model.WPSCAN.Nome)" myName="checkCaratteri" id="wpscanNome" />
+                            <span class="text-danger" style="display:none" name="wpscanNome"></span>
                         </div>
                     </div>
                     <hr />
@@ -1630,7 +1642,8 @@
                     <div class="col-sm-7" style="margin:0 auto; float:none">
                         <div class="form-group">
                             <h4 asp-for="@(Model.FIERCE.Nome)">Nome Modulo</h4>
-                            <input class="form-control" asp-for="@(Model.FIERCE.Nome)" />
+                            <input class="form-control" asp-for="@(Model.FIERCE.Nome)" myName="checkCaratteri" id="fierceNome" />
+                            <span class="text-danger" style="display:none" name="fierceNome"></span>
                         </div>
                     </div>
                     <hr />
@@ -1712,7 +1725,8 @@
                     <div class="col-sm-7" style="margin:0 auto; float:none">
                         <div class="form-group">
                             <h4 asp-for="@(Model.OPENDOOR.Nome)">Nome Modulo</h4>
-                            <input class="form-control" asp-for="@(Model.OPENDOOR.Nome)" />
+                            <input class="form-control" asp-for="@(Model.OPENDOOR.Nome)" myName="checkCaratteri" id="opendoorNome" />
+                            <span class="text-danger" style="display:none" name="opendoorNome"></span>
                         </div>
                     </div>
                     <hr />
@@ -1807,7 +1821,8 @@
                     <div class="col-sm-7" style="margin:0 auto; float:none">
                         <div class="form-group">
                             <h4 asp-for="@(Model.SUBLIST3R.Nome)">Nome Modulo</h4>
-                            <input class="form-control" asp-for="@(Model.SUBLIST3R.Nome)" />
+                            <input class="form-control" asp-for="@(Model.SUBLIST3R.Nome)" myName="checkCaratteri" id="subNome" />
+                            <span class="text-danger" style="display:none" name="subNome"></span>
                         </div>
                     </div>
                     <hr />
@@ -1985,7 +2000,8 @@
                     <div class="col-sm-7" style="margin:0 auto; float:none">
                         <div class="form-group">
                             <h4 asp-for="@(Model.WASCAN.Nome)">Nome Modulo</h4>
-                            <input class="form-control" asp-for="@(Model.WASCAN.Nome)" />
+                            <input class="form-control" asp-for="@(Model.WASCAN.Nome)" myName="checkCaratteri" id="wascanNome" />
+                            <span class="text-danger" style="display:none" name="wascanNome"></span>
                         </div>
                     </div>
                     <hr />
@@ -2142,7 +2158,8 @@
                     <div class="col-sm-7" style="margin:0 auto; float:none">
                         <div class="form-group">
                             <h4 asp-for="@(Model.NOSQL.Nome)">Nome Modulo</h4>
-                            <input class="form-control" asp-for="@(Model.NOSQL.Nome)" />
+                            <input class="form-control" asp-for="@(Model.NOSQL.Nome)" myName="checkCaratteri" id="nosqlNome" />
+                            <span class="text-danger" style="display:none" name="nosqlNome"></span>
                         </div>
                     </div>
                     <hr />
@@ -2184,7 +2201,8 @@
                     <div class="col-sm-7" style="margin:0 auto; float:none">
                         <div class="form-group">
                             <h4 asp-for="@(Model.ODAT.Nome)">Nome Modulo</h4>
-                            <input class="form-control" asp-for="@(Model.ODAT.Nome)" />
+                            <input class="form-control" asp-for="@(Model.ODAT.Nome)" myName="checkCaratteri" id="odatNome" />
+                            <span class="text-danger" style="display:none" name="odatNome"></span>
                         </div>
                     </div>
                     <div class="col-sm-12">
@@ -2335,7 +2353,8 @@
                     <div class="col-sm-7" style="margin:0 auto; float:none">
                         <div class="form-group">
                             <h4 asp-for="@(Model.DNSENUM.Nome)">Nome Modulo</h4>
-                            <input class="form-control" asp-for="@(Model.DNSENUM.Nome)" />
+                            <input class="form-control" asp-for="@(Model.DNSENUM.Nome)" myName="checkCaratteri" id="dnsenumNome" />
+                            <span class="text-danger" style="display:none" name="dnsenumNome"></span>
                         </div>
                     </div>
                     <hr />
@@ -2454,7 +2473,8 @@
                     <div class="col-sm-7" style="margin:0 auto; float:none">
                         <div class="form-group">
                             <h4 asp-for="@(Model.THEHARVESTER.Nome)">Nome Modulo</h4>
-                            <input class="form-control" asp-for="@(Model.THEHARVESTER.Nome)" />
+                            <input class="form-control" asp-for="@(Model.THEHARVESTER.Nome)" myName="checkCaratteri" id="thehaNome" />
+                            <span class="text-danger" style="display:none" name="thehaNome"></span>
                         </div>
                     </div>
                     <hr />
@@ -2624,7 +2644,8 @@
                     <div class="col-sm-7" style="margin:0 auto; float:none">
                         <div class="form-group">
                             <h4 asp-for="@(Model.AMASS.Nome)">Nome Modulo</h4>
-                            <input class="form-control" asp-for="@(Model.AMASS.Nome)" />
+                            <input class="form-control" asp-for="@(Model.AMASS.Nome)" myName="checkCaratteri" id="amassNome" />
+                            <span class="text-danger" style="display:none" name="amassNome"></span>
                         </div>
                     </div>
                     <hr />
@@ -2765,7 +2786,8 @@
                     <div class="col-sm-7" style="margin:0 auto; float:none">
                         <div class="form-group row">
                             <h4 asp-for="@(Model.NESSUS.Nome)">Nome Modulo</h4>
-                            <input class="form-control" asp-for="@(Model.NESSUS.Nome)" />
+                            <input class="form-control" asp-for="@(Model.NESSUS.Nome)" myName="checkCaratteri" id="osintNome" />
+                            <span class="text-danger" style="display:none" name="osintNome"></span>
                         </div>
                     </div>
                     <div class="col-sm-12">
@@ -2858,7 +2880,8 @@
                     <div class="col-sm-7" style="margin:0 auto; float:none">
                         <div class="form-group">
                             <h4 asp-for="@(Model.DRUPWN.Nome)">Nome Modulo</h4>
-                            <input class="form-control" asp-for="@(Model.DRUPWN.Nome)" />
+                            <input class="form-control" asp-for="@(Model.DRUPWN.Nome)" myName="checkCaratteri" id="drupwnNome" />
+                            <span class="text-danger" style="display:none" name="drupwnNome"></span>
                         </div>
                     </div>
                     <hr />
@@ -2993,4 +3016,34 @@
                 }
             ).change();
         });
-    </script> }
+    </script>
+    <script>
+        var pattern = /^[A-Za-zÀ-ÿ\d\-_\s]+$/i
+
+        $('input[myName="checkCaratteri"]')
+            .each(function () {
+                $(this).data("oldValue", '')
+                $(this).bind('input propertychange', function () {
+                    var $this = $(this);
+                    var newValue = $this.val();
+                    var id = $this.attr('id');
+                    if (!pattern.test(newValue)) {
+                        if (newValue) {
+                            $('span[name=' + id + ']').html("Carattere non ammesso. Inserire solo caratteri alfanumerici, trattini, underscore e spazi.");
+                            $('span[name=' + id + ']').show();
+                            $this.parent().addClass("has-error");
+                        }
+                        else
+                        	$this.data('oldValue', newValue);
+                    }
+                    else {
+                        $('span[name=' + id + ']').html("");
+                        $('span[name=' + id + ']').hide();
+                        $this.parent().removeClass("has-error");
+                        $this.data('oldValue', newValue);
+                    }
+                    return $this.val($this.data('oldValue'));
+                });
+            });
+    </script>
+    }
