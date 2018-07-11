@@ -194,7 +194,7 @@ fi
 echo "-------------------------------------------------------"
 echo "INSTALLAZIONE DIPENDENZE DNSENUM"
 echo "-------------------------------------------------------"
-sudo apt-get install libnet-ip-perl libnet-dns-perl libnet-netmask-perl libhtml-parser-perl libwww-mechanize-perl libxml-writer-perl -y >/dev/null
+sudo apt-get install libnet-ip-perl libnet-dns-perl libnet-netmask-perl libhtml-parser-perl libwww-mechanize-perl libxml-writer-perl libstring-random-perl -y >/dev/null
 
 perl -MNet::Whois::IP -e 1 >/dev/null 2>&1
 if [[ ! $? = 0 ]] ; then echo "Installo Net::Whois:IP..." && sudo apt-get install -y libnet-whois-ip-perl >/dev/null ; else echo "Pacchetto Net:Whois:IP già installato." ; fi
