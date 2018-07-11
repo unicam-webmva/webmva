@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace webmva.Migrations
 {
-    public partial class InseritoDRUPWN : Migration
+    public partial class ModificatoTHEHARVESTER : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -180,7 +180,6 @@ namespace webmva.Migrations
                     BingApiTheH = table.Column<bool>(type: "INTEGER", nullable: true),
                     BingTheH = table.Column<bool>(type: "INTEGER", nullable: true),
                     ModuloTHEHARVESTER_ComandoPersonalizzato = table.Column<string>(type: "TEXT", nullable: true),
-                    DNSBruteForceTheH = table.Column<bool>(type: "INTEGER", nullable: true),
                     DNSReverseQueryTheH = table.Column<bool>(type: "INTEGER", nullable: true),
                     DNSTLDTheH = table.Column<bool>(type: "INTEGER", nullable: true),
                     GoogleProfilesTheH = table.Column<bool>(type: "INTEGER", nullable: true),

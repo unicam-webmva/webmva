@@ -508,6 +508,8 @@ namespace webmva.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> EliminaSelezionatiConfirmed(string[] id, string progettoID)
         {
+
+            MyLogger.Log(messaggio: $"Richiesta POST", controller: "ReportController", metodo: "EliminaSelezionatiConfirmed");
             for (int i = 0; i < id.Length; i++)
             {
                 var report = await _context.Report
@@ -519,11 +521,13 @@ namespace webmva.Controllers
                     MyLogger.Log(messaggio: $"ERRORE: Richiesta POST: nessun report con id {id[i]}", controller: "ReportController", metodo: "EliminaSelezionati");
                     return NotFound();
                 }
-                MyLogger.Log(messaggio: $"Richiesta POST", controller: "ReportController", metodo: "EliminaSelezionatiConfirmed");
+                string cartella="";
                 // cancello i file
                 foreach (var percorso in report.Percorsi)
                 {
                     string percorsoCompleto = Path.Combine(Globals.CARTELLAREPORT, percorso.Percorso);
+                    cartella = Path.GetDirectoryName(percorsoCompleto);
+                    Console.WriteLine(percorsoCompleto);
                     if (System.IO.File.Exists(percorsoCompleto))
                     {
                         System.IO.File.Delete(percorsoCompleto);
@@ -534,6 +538,10 @@ namespace webmva.Controllers
                     }
                     else MyLogger.Log(messaggio: $"\tERRORE: impossibile eliminare il file {percorsoCompleto}: il file non esiste", controller: "ReportController", metodo: "EliminaSelezionatiConfirmed");
                 }
+                if(!Directory.EnumerateFileSystemEntries(cartella).Any()){
+                    Directory.Delete(cartella);
+                }
+
                 _context.Report.Remove(report);
                 var listaRecord = await _context.PercorsiReport.Where(riga => riga.ReportID == i).ToListAsync();
                 _context.PercorsiReport.RemoveRange(listaRecord);

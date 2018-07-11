@@ -531,7 +531,7 @@ namespace webmva.Controllers
             if (mod is ModuloWPSCAN)
             {
                 string percorsoExec = Path.Combine(Globals.CartellaWEBMVA, "Programmi", "wpscan");
-                string comando = $"ruby {percorsoExec}/{mod.Comando} -u {target} --log {Path.Combine(Globals.CARTELLAREPORT, cartella, nomeFile)}.txt ";
+                string comando = $"ruby {percorsoExec}/{mod.Comando} -u {target} --log {Path.Combine(Globals.CARTELLAREPORT, cartella, nomeFile).Replace(" ", @"\ ")}.txt ";
                 percorsi.Add(Path.Combine(cartella, nomeFile + ".txt"));
                 return comando;
             }
@@ -558,7 +558,8 @@ namespace webmva.Controllers
             }
             if (mod is ModuloTHEHARVESTER)
             {
-                string comando = $"{mod.Comando} -d {target} -f {nomeFile}.html";
+                string percorsoExec = Path.Combine(Globals.CartellaWEBMVA, "Programmi", "theHarvester");
+                string comando = $"python2 -u {percorsoExec}/{mod.Comando} -d {target} -f {nomeFile}.html";
                 percorsi.Add(Path.Combine(cartella, nomeFile + ".html"));
                 return comando;
             }

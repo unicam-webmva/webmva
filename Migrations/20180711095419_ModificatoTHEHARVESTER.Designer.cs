@@ -13,8 +13,8 @@ using webmva.Models;
 namespace webmva.Migrations
 {
     [DbContext(typeof(MyDbContext))]
-    [Migration("20180705084040_InseritoDRUPWN")]
-    partial class InseritoDRUPWN
+    [Migration("20180711095419_ModificatoTHEHARVESTER")]
+    partial class ModificatoTHEHARVESTER
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -611,8 +611,6 @@ namespace webmva.Migrations
 
                     b.Property<string>("ComandoPersonalizzato")
                         .HasColumnName("ModuloTHEHARVESTER_ComandoPersonalizzato");
-
-                    b.Property<bool>("DNSBruteForceTheH");
 
                     b.Property<bool>("DNSReverseQueryTheH");
 

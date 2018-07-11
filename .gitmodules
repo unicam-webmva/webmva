@@ -40,3 +40,8 @@
 [submodule "Programmi/odat"]
 	path = Programmi/odat
 	url = https://github.com/quentinhardy/odat
+
+	
+[submodule "Programmi/theHarvester"]
+	path = Programmi/theHarvester
+	url = https://github.com/laramies/theHarvester

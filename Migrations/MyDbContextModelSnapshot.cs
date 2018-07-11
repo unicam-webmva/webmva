@@ -611,8 +611,6 @@ namespace webmva.Migrations
                     b.Property<string>("ComandoPersonalizzato")
                         .HasColumnName("ModuloTHEHARVESTER_ComandoPersonalizzato");
 
-                    b.Property<bool>("DNSBruteForceTheH");
-
                     b.Property<bool>("DNSReverseQueryTheH");
 
                     b.Property<bool>("DNSTLDTheH");

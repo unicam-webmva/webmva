@@ -20,7 +20,6 @@ namespace webmva.Models
         public bool JigsawTheH { get; set; }
         public bool RicercaHostsVirtualiTheH { get; set; }
         public bool DNSReverseQueryTheH { get; set; }
-        public bool DNSBruteForceTheH { get; set; }
         public bool DNSTLDTheH { get; set; }
         public int NumberOfResult
         {
@@ -35,7 +34,7 @@ namespace webmva.Models
             {
                 if (string.IsNullOrEmpty(ComandoPersonalizzato))
                 {
-                    string risultato = "theharvester ";
+                    string risultato = "theHarvester.py";
                     if (!AllTheH)
                     {
                         string appoggio = " -b ";
@@ -57,7 +56,7 @@ namespace webmva.Models
                         }
                         risultato += appoggio;
                     }
-                    else risultato += "-b all ";
+                    else risultato += " -b all";
                     if (_numberOfResult != -1 && _numberOfResult > 0)
                     {
                         risultato += " -l " + NumberOfResult;
@@ -66,8 +65,6 @@ namespace webmva.Models
                         risultato += " -v";
                     if (DNSReverseQueryTheH)
                         risultato += " -n";
-                    if (DNSBruteForceTheH)
-                        risultato += " -c";
                     if (DNSTLDTheH)
                         risultato += " -t";
                     return risultato;

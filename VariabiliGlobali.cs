@@ -366,6 +366,23 @@ namespace webmva
         internal static string ConvertiReportTXT(string percorsoTXTAssoluto)
         {
             if (string.IsNullOrEmpty(percorsoTXTAssoluto)) return string.Empty;
+            string percorsoTXTEscape = "";
+            string percorsoPDFEscape = "";
+            if (percorsoTXTAssoluto.Contains(' '))
+            {
+                string[] pezzi2 = percorsoTXTAssoluto.Split(' ');
+                char spazio = ' ';
+                char bs = Char.ConvertFromUtf32(92).ToCharArray()[0];
+                string repl = bs.ToString() + spazio.ToString();
+                for (int j = 0; j < pezzi2.Length - 1; j++)
+                {
+                    percorsoTXTEscape += String.Concat(pezzi2[j], bs);
+                    percorsoTXTEscape = String.Concat(percorsoTXTEscape, spazio);
+                }
+                percorsoTXTEscape += pezzi2[pezzi2.Length - 1];
+                //Console.WriteLine(percorsoXMLEscape);
+            }
+            percorsoPDFEscape = percorsoTXTEscape.Replace(Path.GetExtension(percorsoTXTAssoluto), ".pdf");
             var extension = Path.GetExtension(percorsoTXTAssoluto).ToLower();
             string content = System.IO.File.ReadAllText(percorsoTXTAssoluto);
             string[] pezzi = Path.GetFileName(percorsoTXTAssoluto).Split('_');
@@ -373,7 +390,8 @@ namespace webmva
                                        System.Globalization.CultureInfo.InvariantCulture).ToString("dd MMMM yyyy HH:mm:ss");
 
             string percorsoPdf = percorsoTXTAssoluto.Substring(0, percorsoTXTAssoluto.LastIndexOf('.')) + ".pdf";
-            string comando = "wkhtmltopdf " + percorsoTXTAssoluto + " " + percorsoPdf;
+            string comando = "wkhtmltopdf " + percorsoTXTEscape + " " + percorsoPDFEscape;
+            Console.WriteLine(comando);
             comando.EseguiCLI(Globals.CartellaWEBMVA);
             return percorsoPdf;
         }
