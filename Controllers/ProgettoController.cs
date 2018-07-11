@@ -498,8 +498,8 @@ namespace webmva.Controllers
             }
             if (mod is ModuloOPENDOOR)
             {
-                string comando = $"cd /usr/local/bin && {mod.Comando} --host {target} | sed -r \"{regex}\" | tee {Path.Combine(Globals.CARTELLAREPORT, cartella, nomeFile)}opendoor.txt ";
-                percorsi.Add(Path.Combine(cartella, nomeFile + "opendoor.txt"));
+                string comando = $"cd /usr/local/bin && {mod.Comando} --host {target} | sed -r \"{regex}\" | tee {Path.Combine(Globals.CARTELLAREPORT, cartella, nomeFile).Replace(" ",@"\ ")}.txt ";
+                percorsi.Add(Path.Combine(cartella, nomeFile + ".txt"));
                 return comando;
             }
             if (mod is ModuloSQLMAP)

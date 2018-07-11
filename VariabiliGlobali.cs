@@ -384,14 +384,16 @@ namespace webmva
             }
             percorsoPDFEscape = percorsoTXTEscape.Replace(Path.GetExtension(percorsoTXTAssoluto), ".pdf");
             var extension = Path.GetExtension(percorsoTXTAssoluto).ToLower();
-            string content = System.IO.File.ReadAllText(percorsoTXTAssoluto);
             string[] pezzi = Path.GetFileName(percorsoTXTAssoluto).Split('_');
             string data = DateTime.ParseExact(pezzi[0] + pezzi[1], "yyyyMMddHHmmss",
                                        System.Globalization.CultureInfo.InvariantCulture).ToString("dd MMMM yyyy HH:mm:ss");
-
+            if(pezzi[2].Equals("opendoor")){
+                System.IO.File.WriteAllLines(percorsoTXTAssoluto,
+                    System.IO.File.ReadLines(percorsoTXTAssoluto)
+                        .Where(l => !l.Contains("info:")).ToList());
+            }
             string percorsoPdf = percorsoTXTAssoluto.Substring(0, percorsoTXTAssoluto.LastIndexOf('.')) + ".pdf";
             string comando = "wkhtmltopdf " + percorsoTXTEscape + " " + percorsoPDFEscape;
-            Console.WriteLine(comando);
             comando.EseguiCLI(Globals.CartellaWEBMVA);
             return percorsoPdf;
         }

@@ -538,9 +538,6 @@ namespace webmva.Controllers
                     }
                     else MyLogger.Log(messaggio: $"\tERRORE: impossibile eliminare il file {percorsoCompleto}: il file non esiste", controller: "ReportController", metodo: "EliminaSelezionatiConfirmed");
                 }
-                if(!Directory.EnumerateFileSystemEntries(cartella).Any()){
-                    Directory.Delete(cartella);
-                }
 
                 _context.Report.Remove(report);
                 var listaRecord = await _context.PercorsiReport.Where(riga => riga.ReportID == i).ToListAsync();
