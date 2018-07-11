@@ -39,6 +39,8 @@ namespace webmva.Models
                         risultato += " -v";
                     if (BruteforceSUB)
                         risultato += " -b";
+                    if (ThreadSUB != 0)
+                        risultato += " -t " + ThreadSUB;
                     if (!AllSUB)
                     {
                         string appoggio = " -e ";
@@ -63,10 +65,6 @@ namespace webmva.Models
                         }
                         risultato += appoggio;
 
-                    }
-                    if (ThreadSUB != 0)
-                    {
-                        risultato += "-t " + ThreadSUB;
                     }
                     return risultato;
                 }

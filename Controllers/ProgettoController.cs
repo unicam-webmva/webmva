@@ -565,8 +565,7 @@ namespace webmva.Controllers
             }
             if (mod is ModuloAMASS)
             {
-                string percorsoExec = Path.Combine(Globals.CartellaWEBMVA, "Programmi", "amass");
-                string comando = $"python -u {percorsoExec}/{mod.Comando} -d {target} -o {nomeFile}.txt -visjs {nomeFile}.visjs.html ";
+                string comando = $"{mod.Comando} -d {target} -o {nomeFile}.txt -visjs {nomeFile}.visjs.html ";
                 percorsi.Add(Path.Combine(cartella, nomeFile + ".txt"));
                 percorsi.Add(Path.Combine(cartella, nomeFile + ".visjs.html"));
                 return comando;
