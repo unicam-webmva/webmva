@@ -194,14 +194,7 @@ fi
 echo "-------------------------------------------------------"
 echo "INSTALLAZIONE DIPENDENZE DNSENUM"
 echo "-------------------------------------------------------"
-if hash cpanm >/dev/null 2>&1 ;
-then echo "cpanm è già installato, procedo con l'installazione delle dipendenze..." ;
-else {
-	echo "Sto installando cpanm..."
-	sudo apt-get install cpanminus -y > /dev/null
-	echo "Fine installazione cpanm, procedo con l'installazione delle dipendenze..."
-};
-fi
+sudo apt-get install libnet-ip-perl libnet-dns-perl libnet-netmask-perl libhtml-parser-perl libwww-mechanize-perl libxml-writer-perl -y >/dev/null
 
 perl -MNet::Whois::IP -e 1 >/dev/null 2>&1
 if [[ ! $? = 0 ]] ; then echo "Installo Net::Whois:IP..." && sudo apt-get install -y libnet-whois-ip-perl >/dev/null ; else echo "Pacchetto Net:Whois:IP già installato." ; fi
