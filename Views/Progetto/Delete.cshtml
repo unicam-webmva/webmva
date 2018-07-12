@@ -1,7 +1,7 @@
 @model webmva.Models.Progetto
 @{ ViewData["Title"] = "Delete";
     var contNMAP = 0;
-    var contNessus = 0;
+    var contServer = 0;
     var contOpenVAS = 0;
     var contDnsRecon = 0;
     var contFierce = 0;
@@ -62,7 +62,7 @@
                                 @foreach (var item in Model.ModuliProgetto)
                                 {
                                     if (item.Modulo is webmva.Models.ModuloNMAP) { contNMAP++; }
-                                    if (item.Modulo is webmva.Models.ModuloNESSUS) { contNessus++; }
+                                    if (item.Modulo is webmva.Models.ModuloSERVER) { contServer++; }
                                     if (item.Modulo is webmva.Models.ModuloDNSRECON) { contDnsRecon++; }
                                     if (item.Modulo is webmva.Models.ModuloFIERCE) { contFierce++; }
                                     if (item.Modulo is webmva.Models.ModuloDROOPE) { contDroope++; }
@@ -112,9 +112,9 @@
                                         </table>
                                     </dd>
                                 }
-                                @if (contNessus != 0)
+                                @if (contServer != 0)
                                 {
-                                    <dd>Nessus</dd>
+                                    <dd>Server esterni</dd>
                                     <dd>
                                         <table class="table">
                                             <tr>
@@ -124,7 +124,7 @@
                                             </tr>
                                             @foreach (var item in Model.ModuliProgetto)
                                             {
-                                                @if (item.Modulo is webmva.Models.ModuloNESSUS)
+                                                @if (item.Modulo is webmva.Models.ModuloSERVER)
                                                 {
                                                     <tr>
                                                         <td></td>
