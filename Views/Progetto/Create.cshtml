@@ -1,5 +1,7 @@
 @model webmva.Models.Progetto
-@{ ViewData["Title"] = "Crea progetto"; }
+@{ ViewData["Title"] = "Crea progetto"; 
+    List<Progetto> lista = (List<Progetto>) ViewBag.lista;
+}
 <div class="container">
     <h2><em>Nuovo Progetto</em></h2>
     <hr />
@@ -23,6 +25,21 @@
                         <span class="text-danger" name="descrProj" style="display:none"></span><br>
                     </div>
                 </div>
+                    @if(@lista != null && @lista.Count() != 0)
+                    {
+                    <div class="col-sm-10" style="margin:5ex; float:none">
+                        <div class="form-group ">
+                            <h4>Copiare da un progetto già esistente?</h4><hr />
+                                <select class="col-sm-5" name="progettoDaCopiare">
+                                    <option value=0>No</option>
+                                    @foreach(var p in lista)
+                                    {
+                                        <option value="@p.ID">@p.Nome</option>
+                                    }
+                            </select>
+                        </div>
+                    </div>
+                    }
                 <div class="col-sm-6 col-sm-offset-6 text-right">
                     <div class="form-group">
                         <input type="submit" class="btn btn-default" value="Crea" />&nbsp;&nbsp; |

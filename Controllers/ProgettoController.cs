@@ -60,6 +60,9 @@ namespace webmva.Controllers
         // GET: Progetto/Create
         public IActionResult Create()
         {
+            List<Progetto> lista = _context.Progetti.ToList();
+            Console.WriteLine(lista.Count);
+            ViewData["lista"] = lista;
             MyLogger.Log(messaggio: $"Richiesta GET", controller: "ProgettoController", metodo: "Create");
             return View();
         }
@@ -69,12 +72,20 @@ namespace webmva.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(Progetto progetto)
+        public async Task<IActionResult> Create(Progetto progetto, string progettoDaCopiare)
         {
             if (ModelState.IsValid)
             {
                 _context.Add(progetto);
                 await _context.SaveChangesAsync();
+                if(!progettoDaCopiare.Equals("0"))
+                {
+                    List<ModuliProgetto> listaCopiata = await _context.ModuliProgetto.Where(m=>m.ProgettoID == int.Parse(progettoDaCopiare)).ToListAsync();
+                    int prgNuovo = progetto.ID;
+                    foreach(var el in listaCopiata)
+                        _context.ModuliProgetto.Add(new ModuliProgetto{ ProgettoID = prgNuovo, ModuloID = el.ModuloID, Target = el.Target });
+                    await _context.SaveChangesAsync();
+                }
                 MyLogger.Log(messaggio: $"Richiesta POST:\n\tNuovo progetto con nome {progetto.Nome}", controller: "ProgettoController", metodo: "Create");
                 return RedirectToAction(nameof(Edit), new { id = progetto.ID });
             }
