@@ -9,7 +9,7 @@ namespace webmva.ViewModels
     public class ListaModuliVM
     {
         public IEnumerable<Modulo> ModuliNMAP { get; set; }
-        public IEnumerable<Modulo> ModuliNESSUS { get; set; }
+        public IEnumerable<Modulo> ModuliSERVER { get; set; }
         public IEnumerable<Modulo> ModuliDNSRECON { get; set; }
         public IEnumerable<Modulo> ModuliFIERCE { get; set; }
         public IEnumerable<Modulo> ModuliOPENDOOR { get; set; }

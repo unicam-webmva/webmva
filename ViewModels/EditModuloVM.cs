@@ -9,7 +9,7 @@ namespace webmva.ViewModels
     public class EditModuloVM
     {
         private ModuloNMAP _nMAP = null;
-        private ModuloNESSUS _nESSUS = null;
+        private ModuloSERVER _sERVER = null;
         private ModuloDNSRECON _dNSRECON = null;
         private ModuloFIERCE _fIERCE = null;
         private ModuloDROOPE _dROOPE = null;
@@ -31,7 +31,7 @@ namespace webmva.ViewModels
         private ModuloAMASS _aMASS = null;
         private ModuloDRUPWN _dRUPWN = null;
         public ModuloNMAP NMAP { get => _nMAP; set => _nMAP = value; }
-        public ModuloNESSUS NESSUS { get => _nESSUS; set => _nESSUS = value; }
+        public ModuloSERVER SERVER { get => _sERVER; set => _sERVER = value; }
         public ModuloDNSRECON DNSRECON { get => _dNSRECON; set => _dNSRECON = value; }
         public ModuloFIERCE FIERCE { get => _fIERCE; set => _fIERCE = value; }
         public ModuloDROOPE DROOPE { get => _dROOPE; set => _dROOPE = value; }
@@ -55,7 +55,7 @@ namespace webmva.ViewModels
         public EditModuloVM()
         {
             NMAP = new ModuloNMAP();
-            NESSUS = new ModuloNESSUS();
+            SERVER = new ModuloSERVER();
             DNSRECON = new ModuloDNSRECON();
             FIERCE = new ModuloFIERCE();
             DROOPE = new ModuloDROOPE();
@@ -83,9 +83,9 @@ namespace webmva.ViewModels
             {
                 this.NMAP = (ModuloNMAP)mod;
             }
-            if (mod is ModuloNESSUS)
+            if (mod is ModuloSERVER)
             {
-                this.NESSUS = (ModuloNESSUS)mod;
+                this.SERVER = (ModuloSERVER)mod;
             }
             if (mod is ModuloOPENVAS)
             {
@@ -171,7 +171,7 @@ namespace webmva.ViewModels
         public EditModuloVM(ModuloNMAP mod)
         {
             NMAP = mod;
-            NESSUS = null;
+            SERVER = null;
             DNSRECON = null;
             DROOPE = null;
             JOOMSCAN = null;
@@ -193,11 +193,11 @@ namespace webmva.ViewModels
             AMASS = null;
             DRUPWN = null;
         }
-        public EditModuloVM(ModuloNESSUS mod)
+        public EditModuloVM(ModuloSERVER mod)
         {
             NMAP = null;
             DNSRECON = null;
-            NESSUS = mod;
+            SERVER = mod;
             DROOPE = null;
             JOOMSCAN = null;
             WPSCAN = null;
@@ -221,7 +221,7 @@ namespace webmva.ViewModels
         public EditModuloVM(ModuloDNSRECON mod)
         {
             NMAP = null;
-            NESSUS = null;
+            SERVER = null;
             DNSRECON = mod;
             DROOPE = null;
             JOOMSCAN = null;
@@ -246,7 +246,7 @@ namespace webmva.ViewModels
         public EditModuloVM(ModuloDROOPE mod)
         {
             NMAP = null;
-            NESSUS = null;
+            SERVER = null;
             DNSRECON = null;
             INFOGA = null;
             DROOPE = mod;
@@ -271,7 +271,7 @@ namespace webmva.ViewModels
         public EditModuloVM(ModuloJOOMSCAN mod)
         {
             NMAP = null;
-            NESSUS = null;
+            SERVER = null;
             DNSRECON = null;
             INFOGA = null;
             DROOPE = null;
@@ -296,7 +296,7 @@ namespace webmva.ViewModels
         public EditModuloVM(ModuloINFOGA mod)
         {
             NMAP = null;
-            NESSUS = null;
+            SERVER = null;
             DNSRECON = null;
             INFOGA = mod;
             DROOPE = null;
@@ -321,7 +321,7 @@ namespace webmva.ViewModels
         public EditModuloVM(ModuloINFOGAEMAIL mod)
         {
             NMAP = null;
-            NESSUS = null;
+            SERVER = null;
             DNSRECON = null;
             INFOGA = null;
             DROOPE = null;
@@ -346,7 +346,7 @@ namespace webmva.ViewModels
         public EditModuloVM(ModuloSUBLIST3R mod)
         {
             NMAP = null;
-            NESSUS = null;
+            SERVER = null;
             DNSRECON = null;
             INFOGA = null;
             DROOPE = null;
@@ -371,7 +371,7 @@ namespace webmva.ViewModels
         public EditModuloVM(ModuloWAPITI mod)
         {
             NMAP = null;
-            NESSUS = null;
+            SERVER = null;
             DNSRECON = null;
             INFOGA = null;
             DROOPE = null;
@@ -396,7 +396,7 @@ namespace webmva.ViewModels
         public EditModuloVM(ModuloSQLMAP mod)
         {
             NMAP = null;
-            NESSUS = null;
+            SERVER = null;
             DNSRECON = null;
             INFOGA = null;
             DROOPE = null;
@@ -421,7 +421,7 @@ namespace webmva.ViewModels
         public EditModuloVM(ModuloWIFITE mod)
         {
             NMAP = null;
-            NESSUS = null;
+            SERVER = null;
             DNSRECON = null;
             INFOGA = null;
             DROOPE = null;
@@ -447,7 +447,7 @@ namespace webmva.ViewModels
         public EditModuloVM(ModuloWPSCAN mod)
         {
             NMAP = null;
-            NESSUS = null;
+            SERVER = null;
             DNSRECON = null;
             INFOGA = null;
             DROOPE = null;
@@ -472,7 +472,7 @@ namespace webmva.ViewModels
         public EditModuloVM(ModuloFIERCE mod)
         {
             NMAP = null;
-            NESSUS = null;
+            SERVER = null;
             DNSRECON = null;
             INFOGA = null;
             DROOPE = null;
@@ -497,7 +497,7 @@ namespace webmva.ViewModels
         public EditModuloVM(ModuloOPENDOOR mod)
         {
             NMAP = null;
-            NESSUS = null;
+            SERVER = null;
             DNSRECON = null;
             INFOGA = null;
             DROOPE = null;
@@ -522,7 +522,7 @@ namespace webmva.ViewModels
         public EditModuloVM(ModuloWASCAN mod)
         {
             NMAP = null;
-            NESSUS = null;
+            SERVER = null;
             DNSRECON = null;
             INFOGA = null;
             DROOPE = null;
@@ -547,7 +547,7 @@ namespace webmva.ViewModels
         public EditModuloVM(ModuloNOSQL mod)
         {
             NMAP = null;
-            NESSUS = null;
+            SERVER = null;
             DNSRECON = null;
             INFOGA = null;
             DROOPE = null;
@@ -572,7 +572,7 @@ namespace webmva.ViewModels
         public EditModuloVM(ModuloODAT mod)
         {
             NMAP = null;
-            NESSUS = null;
+            SERVER = null;
             DNSRECON = null;
             INFOGA = null;
             DROOPE = null;
@@ -597,7 +597,7 @@ namespace webmva.ViewModels
         public EditModuloVM(ModuloDNSENUM mod)
         {
             NMAP = null;
-            NESSUS = null;
+            SERVER = null;
             DNSRECON = null;
             INFOGA = null;
             DROOPE = null;
@@ -622,7 +622,7 @@ namespace webmva.ViewModels
         public EditModuloVM(ModuloOPENVAS mod)
         {
             NMAP = null;
-            NESSUS = null;
+            SERVER = null;
             DNSRECON = null;
             INFOGA = null;
             DROOPE = null;
@@ -647,7 +647,7 @@ namespace webmva.ViewModels
         public EditModuloVM(ModuloTHEHARVESTER mod)
         {
             NMAP = null;
-            NESSUS = null;
+            SERVER = null;
             DNSRECON = null;
             INFOGA = null;
             DROOPE = null;
@@ -672,7 +672,7 @@ namespace webmva.ViewModels
         public EditModuloVM(ModuloAMASS mod)
         {
             NMAP = null;
-            NESSUS = null;
+            SERVER = null;
             DNSRECON = null;
             INFOGA = null;
             DROOPE = null;
@@ -697,7 +697,7 @@ namespace webmva.ViewModels
         public EditModuloVM(ModuloDRUPWN mod)
         {
             NMAP = null;
-            NESSUS = null;
+            SERVER = null;
             DNSRECON = null;
             INFOGA = null;
             DROOPE = null;

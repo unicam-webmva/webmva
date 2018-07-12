@@ -141,7 +141,7 @@ namespace webmva.Controllers
                 if (inserito && string.IsNullOrEmpty(target))
                 {
                     //guardo se c'è il target, sennò lo metto nella lista dei moduli senza target
-                    if (modulo.Applicazione != webmva.Models.APPLICAZIONE.WIFITE && modulo.Applicazione != webmva.Models.APPLICAZIONE.NOSQL && modulo.Applicazione != webmva.Models.APPLICAZIONE.OPENVAS && modulo.Applicazione != webmva.Models.APPLICAZIONE.NESSUS)
+                    if (modulo.Applicazione != webmva.Models.APPLICAZIONE.WIFITE && modulo.Applicazione != webmva.Models.APPLICAZIONE.NOSQL && modulo.Applicazione != webmva.Models.APPLICAZIONE.OPENVAS && modulo.Applicazione != webmva.Models.APPLICAZIONE.SERVER)
                     {
                         ModuliSenzaTarget.Add(modulo.Applicazione.ToString() + "- " + modulo.Nome);
                     }
@@ -257,13 +257,13 @@ namespace webmva.Controllers
             }
             if (moduliDaAggiornare.Any(m => m.Inserito && string.IsNullOrEmpty(m.Target)))
             {
-                //I moduli WIFITE, NOSQLMAP, NESSUS e OPENVAS non hanno bisogno del target
+                //I moduli WIFITE, NOSQLMAP, SERVER e OPENVAS non hanno bisogno del target
                 List<ModuliInProgetto> ModuliEccezioni = moduliDaAggiornare.Where(m => m.Inserito && string.IsNullOrEmpty(m.Target)).ToList();
                 foreach (var itm in ModuliEccezioni)
                 {
                     if (itm.Applicazione == webmva.Models.APPLICAZIONE.WIFITE ||
                         itm.Applicazione == webmva.Models.APPLICAZIONE.NOSQL ||
-                        itm.Applicazione == webmva.Models.APPLICAZIONE.NESSUS ||
+                        itm.Applicazione == webmva.Models.APPLICAZIONE.SERVER ||
                         itm.Applicazione == webmva.Models.APPLICAZIONE.OPENVAS)
                     {
                         continue;
@@ -440,7 +440,7 @@ namespace webmva.Controllers
                 percorsi.Add(percorsoFile);
                 return comando;
             }
-            if (mod is ModuloNESSUS || mod is ModuloOPENVAS)
+            if (mod is ModuloSERVER || mod is ModuloOPENVAS)
             {
                 // Qui non viene usato il comando perché si verrà reindirizzati fuori tramite python, 
                 // soluzione compatibile con quasi tutti i SO

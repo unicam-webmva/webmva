@@ -20,7 +20,7 @@ namespace webmva.Data
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<ModuloNMAP>().HasBaseType<Modulo>();
-            modelBuilder.Entity<ModuloNESSUS>().HasBaseType<Modulo>();
+            modelBuilder.Entity<ModuloSERVER>().HasBaseType<Modulo>();
             modelBuilder.Entity<ModuloDNSRECON>().HasBaseType<Modulo>();
             modelBuilder.Entity<ModuloFIERCE>().HasBaseType<Modulo>();
             modelBuilder.Entity<ModuloDROOPE>().HasBaseType<Modulo>();

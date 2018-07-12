@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace webmva.Migrations
 {
-    public partial class ModificatoTHEHARVESTER : Migration
+    public partial class CambiatoNessusServer : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -74,8 +74,6 @@ namespace webmva.Migrations
                     ModuloJOOMSCAN_ComandoPersonalizzato = table.Column<string>(type: "TEXT", nullable: true),
                     EnumerateComponents = table.Column<bool>(type: "INTEGER", nullable: true),
                     UserAgent = table.Column<string>(type: "TEXT", nullable: true),
-                    Porta = table.Column<int>(type: "INTEGER", nullable: true),
-                    ServerIP = table.Column<string>(type: "TEXT", nullable: true),
                     AckDiscoveryPorts = table.Column<string>(type: "TEXT", nullable: true),
                     AllDetections = table.Column<bool>(type: "INTEGER", nullable: true),
                     ArpDiscovery = table.Column<bool>(type: "INTEGER", nullable: true),
@@ -119,6 +117,9 @@ namespace webmva.Migrations
                     TimeoutO = table.Column<int>(type: "INTEGER", nullable: true),
                     PortaOpenvas = table.Column<int>(type: "INTEGER", nullable: true),
                     ServerIPOpenvas = table.Column<string>(type: "TEXT", nullable: true),
+                    Https = table.Column<bool>(type: "INTEGER", nullable: true),
+                    Porta = table.Column<int>(type: "INTEGER", nullable: true),
+                    ServerIP = table.Column<string>(type: "TEXT", nullable: true),
                     ModuloSQLMAP_ComandoPersonalizzato = table.Column<string>(type: "TEXT", nullable: true),
                     Detection = table.Column<int>(type: "INTEGER", nullable: true),
                     Rischio = table.Column<int>(type: "INTEGER", nullable: true),

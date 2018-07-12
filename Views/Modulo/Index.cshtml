@@ -39,8 +39,8 @@
                                                 </a>
                                             </li>
                                             <li>
-                                                <a data-toggle="collapse" href="#Nessus">
-                                                    Nessus
+                                                <a data-toggle="collapse" href="#Server">
+                                                    Server esterno
                                                     <span class="glyphicon glyphicon-play" style="font-size:65%"></span>
                                                 </a>
                                             </li>
@@ -299,14 +299,14 @@
             <div class="col-5">
                 <div class="panel panel-sidebar">
                     <div class="panel-heading">
-                        <a data-toggle="collapse" href="#Nessus">
+                        <a data-toggle="collapse" href="#Server">
                             <strong>
-                                NESSUS
+                                Server esterni
                             </strong>
                             <span class="caret"></span>
                         </a>
                     </div>
-                    <div class="collapse " id="Nessus">
+                    <div class="collapse " id="Server">
                         <div class="panel-body ">
                             <table class="table">
                                 <div class="method">
@@ -323,7 +323,7 @@
                                     </thead>
                                 </div>
                                 <tbody>
-                                    @foreach (var item in Model.ModuliNESSUS)
+                                    @foreach (var item in Model.ModuliSERVER)
                                     {
                                         <tr>
                                             <td>

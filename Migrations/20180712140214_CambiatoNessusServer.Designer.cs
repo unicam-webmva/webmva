@@ -13,8 +13,8 @@ using webmva.Models;
 namespace webmva.Migrations
 {
     [DbContext(typeof(MyDbContext))]
-    [Migration("20180711095419_ModificatoTHEHARVESTER")]
-    partial class ModificatoTHEHARVESTER
+    [Migration("20180712140214_CambiatoNessusServer")]
+    partial class CambiatoNessusServer
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -315,19 +315,6 @@ namespace webmva.Migrations
                     b.HasDiscriminator().HasValue("ModuloJOOMSCAN");
                 });
 
-            modelBuilder.Entity("webmva.Models.ModuloNESSUS", b =>
-                {
-                    b.HasBaseType("webmva.Models.Modulo");
-
-                    b.Property<int>("Porta");
-
-                    b.Property<string>("ServerIP");
-
-                    b.ToTable("ModuloNESSUS");
-
-                    b.HasDiscriminator().HasValue("ModuloNESSUS");
-                });
-
             modelBuilder.Entity("webmva.Models.ModuloNMAP", b =>
                 {
                     b.HasBaseType("webmva.Models.Modulo");
@@ -461,6 +448,21 @@ namespace webmva.Migrations
                     b.ToTable("ModuloOPENVAS");
 
                     b.HasDiscriminator().HasValue("ModuloOPENVAS");
+                });
+
+            modelBuilder.Entity("webmva.Models.ModuloSERVER", b =>
+                {
+                    b.HasBaseType("webmva.Models.Modulo");
+
+                    b.Property<bool>("Https");
+
+                    b.Property<int>("Porta");
+
+                    b.Property<string>("ServerIP");
+
+                    b.ToTable("ModuloSERVER");
+
+                    b.HasDiscriminator().HasValue("ModuloSERVER");
                 });
 
             modelBuilder.Entity("webmva.Models.ModuloSQLMAP", b =>

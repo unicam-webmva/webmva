@@ -1,7 +1,7 @@
 @model webmva.ViewModels.EditModuloVM
 @{ ViewData["Title"] = "Edit";
     bool nmap = Model.NMAP != null;
-    bool nessus = Model.NESSUS != null;
+    bool server = Model.SERVER != null;
     bool dnsrecon = Model.DNSRECON != null;
     bool fierce = Model.FIERCE != null;
     bool droopescan = Model.DROOPE != null;
@@ -235,95 +235,6 @@
                                     <a asp-action="Index"> Torna alla lista</a>
                                 </div>
                             </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </form>
-    }
-    @* -----NESSUS----- *@
-    else if (nessus)
-    {
-        <h2><em>Modifica modulo</em><strong> @(Model.NESSUS.Nome)</strong></h2>
-        <hr />
-        <form asp-action="Edit" name="nessusForm">
-            <input type="hidden" asp-for="@Model.NESSUS.Applicazione" value="@webmva.Models.APPLICAZIONE.NESSUS" />
-            <input type="hidden" asp-for="@Model.NESSUS.ID" />
-            <div class="row panel panel-default panel-body">
-                <div class="col-sm-12">
-                    <div class="col-sm-7" style="margin:0 auto; float:none">
-                        <div class="form-group row">
-                            <h4 asp-for="@(Model.NESSUS.Nome)">Nome Modulo</h4>
-                            <input class="form-control" asp-for="@(Model.NESSUS.Nome)" myName="checkCaratteri" id="nessusNome" />
-                            <span class="text-danger" style="display:none" name="nessusNome"></span>
-                        </div>
-                    </div>
-                    <div class="col-sm-12">
-                        <h4>Opzioni</h4><hr />
-                        <div class="col-sm-12">
-                            <div class="col-sm-7" style="margin:0 auto; float:none">
-                                <div class="form-group row">
-                                    <h4 asp-for="@(Model.NESSUS.ServerIP)">Server IP</h4>
-                                    <input class="form-control" asp-for="@(Model.NESSUS.ServerIP)" />
-                                </div>
-                            </div>
-                            <div class="col-sm-7" style="margin:0 auto; float:none">
-                                <div class="form-group row">
-                                    <h4 asp-for="@(Model.NESSUS.Porta)">Porta</h4>
-                                    <input <input type="number" class="form-control" asp-for="@(Model.NESSUS.Porta)" />
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-12">
-                        @if (ViewData["TestN"] != null)
-                        {
-                            <div class="col-sm-8">
-                                <h5 style="color:red">
-                                    <strong>
-                                        @{
-                                            string check = ViewBag.TestN;
-                                            if (check == "True")
-                                            {
-                                                @Html.Raw("Il server specificato è attivo");
-                                            }
-                                            else
-                                            {
-                                                @Html.Raw("Il server specificato è spento<br>");
-                                                @Html.Raw("Per farlo partire inserire nella shell: '/etc/init.d/nessusd start'");
-                                            }
-                                        }
-                                    </strong>
-                                </h5>
-                            </div>
-                        }
-                        <div class="col-sm-4  text-right ">
-                            <form asp-action="Test">
-                                <div class="form-group">
-                                    <input type="submit" asp-action="Test" asp-route-daDove="Edit/@Model.NESSUS.ID" class="btn btn-default" value="Test" asp-route-cosa="nessus" />
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-12">
-                    <hr />
-                    <div class="col-sm-6">
-                        <div clas="form-group row" style="color:red">
-                            <span class="glyphicon glyphicon-eye-open" style="font-size:90"></span>&nbsp;Non restituisce un report! Importarlo successivamente!
-                        </div>
-                        <div clas="form-group row">
-                            <a href="http://static.tenable.com/documentation/nessus_6.8_command_line_reference.pdf" target="_blank">
-                                <span class="glyphicon glyphicon-info-sign" style="font-size:90%"></span>
-                                consulta la documentazione di Nessus
-                            </a>
-                        </div>
-                    </div>
-                    <div class="col-sm-1"></div>
-                    <div class="col-sm-5 text-right">
-                        <div class="form-group row">
-                            <input type="submit" asp-action="Edit" class="btn btn-default" asp-route-id="@Model.NESSUS.ID" value="Salva" />&nbsp;&nbsp;|
-                            <a asp-action="Index"> Torna alla lista</a>
                         </div>
                     </div>
                 </div>
@@ -2766,21 +2677,21 @@
             </div>
         </form>
     }
-    @* -----OSINT-SCRAPER----- *@
-    if (nessus)
+    @* -----SERVER-ESTERNO----- *@
+    if (server)
     {
-        <h2><em>Modifica modulo</em><strong> @(Model.NESSUS.Nome)</strong></h2>
+        <h2><em>Modifica modulo</em><strong> @(Model.SERVER.Nome)</strong></h2>
         <hr />
-        <form asp-action="Create" name="nessusForm">
-            <input type="hidden" asp-for="@Model.NESSUS.Applicazione" value="@webmva.Models.APPLICAZIONE.NESSUS" />
-            <input type="hidden" asp-for="@Model.NESSUS.ID" />
+        <form asp-action="Edit" name="serverForm">
+            <input type="hidden" asp-for="@Model.SERVER.Applicazione" value="@webmva.Models.APPLICAZIONE.SERVER" />
+            <input type="hidden" asp-for="@Model.SERVER.ID" />
             <div class="row panel panel-default panel-body">
                 <div class="col-sm-12">
                     <div class="col-sm-7" style="margin:0 auto; float:none">
                         <div class="form-group row">
-                            <h4 asp-for="@(Model.NESSUS.Nome)">Nome Modulo</h4>
-                            <input class="form-control" asp-for="@(Model.NESSUS.Nome)" myName="checkCaratteri" id="osintNome" />
-                            <span class="text-danger" style="display:none" name="osintNome"></span>
+                            <h4 asp-for="@(Model.SERVER.Nome)">Nome Modulo</h4>
+                            <input class="form-control" asp-for="@(Model.SERVER.Nome)" myName="checkCaratteri" id="serverNome" />
+                            <span class="text-danger" style="display:none" name="serverNome"></span>
                         </div>
                     </div>
                     <div class="col-sm-12">
@@ -2788,19 +2699,25 @@
                         <div class="col-sm-12">
                             <div class="col-sm-7" style="margin:0 auto; float:none">
                                 <div class="form-group row">
-                                    <h4 asp-for="@(Model.NESSUS.ServerIP)">Server IP</h4>
-                                    <input class="form-control" asp-for="@(Model.NESSUS.ServerIP)" />
+                                    <h4 asp-for="@(Model.SERVER.ServerIP)">Server IP</h4>
+                                    <input class="form-control" asp-for="@(Model.SERVER.ServerIP)" />
                                 </div>
                             </div>
                             <div class="col-sm-7" style="margin:0 auto; float:none">
                                 <div class="form-group row">
-                                    <h4 asp-for="@(Model.NESSUS.Porta)">Porta</h4>
-                                    <input type="number" class="form-control" asp-for="@(Model.NESSUS.Porta)" value="6543" />
+                                    <h4 asp-for="@(Model.SERVER.ServerIP)">Https</h4>
+                                    <input asp-for="@(Model.SERVER.Https)" />
+                                </div>
+                            </div>
+                            <div class="col-sm-7" style="margin:0 auto; float:none">
+                                <div class="form-group row">
+                                    <h4 asp-for="@(Model.SERVER.Porta)">Porta</h4>
+                                    <input type="number" class="form-control" asp-for="@(Model.SERVER.Porta)" />
                                 </div>
                             </div>
                         </div>
                         <div class="col-sm-12">
-                            @if (ViewData["TestN"] != null)
+                            @if (ViewData["TestS"] != null)
                             {
                                 <div class="col-sm-8">
                                     <h5 style="color:red">
@@ -2814,7 +2731,6 @@
                                                 else
                                                 {
                                                     @Html.Raw("Il server specificato è spento<br>");
-                                                    @Html.Raw("Per farlo partire inserire nella shell: '/etc/init.d/nessusd start'");
                                                 }
                                             }
                                         </strong>
@@ -2824,7 +2740,7 @@
                             <div class="col-sm-4  text-right ">
                                 <form asp-action="Test">
                                     <div class="form-group">
-                                        <input type="submit" asp-action="Test" class="btn btn-default" value="Test" asp-route-cosa="nessus" asp-route-daDove="Create" />
+                                        <input type="submit" asp-action="Test" class="btn btn-default" value="Test" asp-route-cosa="server" asp-route-daDove="Edit" />
                                     </div>
                                 </form>
                             </div>
@@ -2832,27 +2748,10 @@
                     </div>
                     <div class="col-sm-12">
                         <hr />
-                        <div class="col-sm-6">
-                            <div clas="form-group row" style="color:red">
-                                <span class="glyphicon glyphicon-eye-open" style="font-size:90"></span>&nbsp;Non finziona però c'è!
-                            </div>
-                            <div clas="form-group row">
-                                <a href="https://securityonline.info/social-recon/" target="_blank">
-                                    <span class="glyphicon glyphicon-info-sign" style="font-size:90%"></span>
-                                    sito
-                                </a>
-                            </div>
-                            <div clas="form-group row">
-                                <a href="https://securityonline.info/social-recon/" target="_blank">
-                                    <span class="glyphicon glyphicon-info-sign" style="font-size:90%"></span>
-                                    consulta il documentazione di Osint-scraper
-                                </a>
-                            </div>
-                        </div>
                         <div class="col-sm-1"></div>
                         <div class="col-sm-5 text-right">
                             <div class="form-group row">
-                                <input type="submit" asp-action="Create" asp-route-cosa="nessus" class="btn btn-default" value="Crea" />&nbsp;&nbsp; |
+                                <input type="submit" asp-action="Edit" asp-route-cosa="server" class="btn btn-default" value="Salva" />&nbsp;&nbsp; |
                                 <a asp-action="Index"> Torna alla lista</a>
                             </div>
                         </div>

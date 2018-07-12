@@ -25,7 +25,7 @@ namespace webmva.Controllers
         public async Task<IActionResult> Index()
         {
             var listaNMAP = await _context.Moduli.Where(modulo => modulo.Applicazione == APPLICAZIONE.NMAP).ToListAsync();
-            var listaNESSUS = await _context.Moduli.Where(modulo => modulo.Applicazione == APPLICAZIONE.NESSUS).ToListAsync();
+            var listaNESSUS = await _context.Moduli.Where(modulo => modulo.Applicazione == APPLICAZIONE.SERVER).ToListAsync();
             var listaDNSRECON = await _context.Moduli.Where(modulo => modulo.Applicazione == APPLICAZIONE.DNSRECON).ToListAsync();
             var listaFIERCE = await _context.Moduli.Where(modulo => modulo.Applicazione == APPLICAZIONE.FIERCE).ToListAsync();
             var listaDROOPE = await _context.Moduli.Where(modulo => modulo.Applicazione == APPLICAZIONE.DROOPE).ToListAsync();
@@ -47,7 +47,7 @@ namespace webmva.Controllers
             var listaAMASS = await _context.Moduli.Where(modulo => modulo.Applicazione == APPLICAZIONE.AMASS).ToListAsync();
             var listaDRUPWN = await _context.Moduli.Where(modulo => modulo.Applicazione == APPLICAZIONE.DRUPWN).ToListAsync();
             MyLogger.Log(messaggio: "Richiesta GET", controller: "ModuloController", metodo: "Index");
-            return View(new ListaModuliVM { ModuliNMAP = listaNMAP, ModuliNESSUS = listaNESSUS, ModuliOPENDOOR = listaOPENDOOR, ModuliDNSRECON = listaDNSRECON, ModuliFIERCE = listaFIERCE, ModuliDROOPE = listaDROOPE, ModuliJOOMSCAN = listaJOOMSCAN, ModuliWPSCAN = listaWPSCAN, ModuliINFOGA = listaINFOGA, ModuliINFOGAEMAIL = listaINFOGAEMAIL, ModuliSUBLIST3R = listaSUBLIST3R, ModuliWAPITI = listaWAPITI, ModuliSQLMAP = listaSQLMAP, ModuliWIFITE = listaWIFITE, ModuliWASCAN = listaWASCAN, ModuliNOSQL = listaNOSQL, ModuliODAT = listaODAT, ModuliDNSENUM = listaDNSENUM, ModuliOPENVAS = listaOPENVAS, ModuliTHEHARVESTER = listaTHEHARVESTER, ModuliAMASS = listaAMASS, ModuliDRUPWN = listaDRUPWN });
+            return View(new ListaModuliVM { ModuliNMAP = listaNMAP, ModuliSERVER = listaNESSUS, ModuliOPENDOOR = listaOPENDOOR, ModuliDNSRECON = listaDNSRECON, ModuliFIERCE = listaFIERCE, ModuliDROOPE = listaDROOPE, ModuliJOOMSCAN = listaJOOMSCAN, ModuliWPSCAN = listaWPSCAN, ModuliINFOGA = listaINFOGA, ModuliINFOGAEMAIL = listaINFOGAEMAIL, ModuliSUBLIST3R = listaSUBLIST3R, ModuliWAPITI = listaWAPITI, ModuliSQLMAP = listaSQLMAP, ModuliWIFITE = listaWIFITE, ModuliWASCAN = listaWASCAN, ModuliNOSQL = listaNOSQL, ModuliODAT = listaODAT, ModuliDNSENUM = listaDNSENUM, ModuliOPENVAS = listaOPENVAS, ModuliTHEHARVESTER = listaTHEHARVESTER, ModuliAMASS = listaAMASS, ModuliDRUPWN = listaDRUPWN });
         }
 
         // GET: Modulo/Details/5
@@ -117,13 +117,13 @@ namespace webmva.Controllers
                     return RedirectToAction(nameof(Index));
                 }
             }
-            else if (createmodulo.NESSUS.Nome != null && cosa.Equals("nessus"))
+            else if (createmodulo.SERVER.Nome != null && cosa.Equals("server"))
             {
                 {
                     if (ModelState.IsValid)
                     {
-                        ModuloNESSUS mod = createmodulo.NESSUS;
-                        mod.Applicazione = APPLICAZIONE.NESSUS;
+                        ModuloSERVER mod = createmodulo.SERVER;
+                        mod.Applicazione = APPLICAZIONE.SERVER;
                         _context.Moduli.Add(mod);
                         await _context.SaveChangesAsync();
                         MyLogger.Log(messaggio: $"Richiesta POST: \n\tNuovo modulo Nessus con nome: {mod.Nome}", controller: "ModuloController", metodo: "Create");
@@ -426,17 +426,17 @@ namespace webmva.Controllers
         {
             if (cosa == "nessus")
             {
-                bool check = await CheckServer(createmodulo.NESSUS.ServerIP, createmodulo.NESSUS.Porta);
-                MyLogger.Log(messaggio: $"Richiesta POST: Test verso https://{createmodulo.NESSUS.ServerIP}:{createmodulo.NESSUS.Porta} " +
+                bool check = await CheckServer(createmodulo.SERVER.ServerIP, createmodulo.SERVER.Porta, createmodulo.SERVER.Https);
+                MyLogger.Log(messaggio: $"Richiesta POST: Test verso http{(createmodulo.SERVER.Https ? "s" : "")}://{createmodulo.SERVER.ServerIP}:{createmodulo.SERVER.Porta} " +
                     ((check) ? "up" : "down"), controller: "ModuloController", metodo: "Test");
-                TempData.Put("TestN", check.ToString());
-                TempData.Put("Anchor", "Nessus");
+                TempData.Put("TestS", check.ToString());
+                TempData.Put("Anchor", "Server");
 
 
             }
             else if (cosa == "openvas")
             {
-                bool check = await CheckServer(createmodulo.OPENVAS.ServerIPOpenvas, createmodulo.OPENVAS.PortaOpenvas);
+                bool check = await CheckServer(createmodulo.OPENVAS.ServerIPOpenvas, createmodulo.OPENVAS.PortaOpenvas, true);
                 MyLogger.Log(messaggio: $"Richiesta POST: Test verso https://{createmodulo.OPENVAS.ServerIPOpenvas}:{createmodulo.OPENVAS.PortaOpenvas} " +
                     ((check) ? "up" : "down"), controller: "ModuloController", metodo: "Test");
                 TempData.Put("TestO", check.ToString());
@@ -461,9 +461,9 @@ namespace webmva.Controllers
                 TempData.Remove("Anchor");
                 if (anchor == "Nessus")
                 {
-                    m = model.NESSUS;
-                    ViewData["TestN"] = TempData.Peek<string>("TestN");
-                    TempData.Remove("TestN");
+                    m = model.SERVER;
+                    ViewData["TestS"] = TempData.Peek<string>("TestS");
+                    TempData.Remove("TestS");
                 }
                 else if (anchor == "Openvas")
                 {
@@ -503,8 +503,8 @@ namespace webmva.Controllers
 
             if (!string.IsNullOrEmpty(editmodulo.NMAP.Nome))
                 m = editmodulo.NMAP;
-            else if (!string.IsNullOrEmpty(editmodulo.NESSUS.Nome))
-                m = editmodulo.NESSUS;
+            else if (!string.IsNullOrEmpty(editmodulo.SERVER.Nome))
+                m = editmodulo.SERVER;
             else if (!string.IsNullOrEmpty(editmodulo.DNSRECON.Nome))
                 m = editmodulo.DNSRECON;
             else if (!string.IsNullOrEmpty(editmodulo.FIERCE.Nome))
@@ -627,7 +627,7 @@ namespace webmva.Controllers
         {
             return _context.Moduli.Any(e => e.ID == id);
         }
-        private async Task<bool> CheckServer(string ip, int port)
+        private async Task<bool> CheckServer(string ip, int port, bool https)
         {
             using (var handler = new HttpClientHandler())
             {
@@ -638,7 +638,7 @@ namespace webmva.Controllers
                 {
                     // timeout per la richiesta
                     client.Timeout = new TimeSpan(0, 0, 5);
-                    Uri ppp = new Uri($"https://{ip}:{port}");
+                    Uri ppp = new Uri($"http{(https?"s":"")}://{ip}:{port}");
                     Console.WriteLine(ppp.ToString());
                     try
                     {
