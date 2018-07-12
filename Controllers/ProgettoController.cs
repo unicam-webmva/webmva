@@ -357,6 +357,13 @@ namespace webmva.Controllers
             _context.Progetti.Remove(progetto);
             var listaRecord = await _context.ModuliProgetto.Where(riga => riga.ProgettoID == id).ToListAsync();
             _context.ModuliProgetto.RemoveRange(listaRecord);
+            var listaReport = await _context.Report.Include(p=>p.Percorsi).Where(riga => riga.ProgettoID == id).ToListAsync();
+            foreach(var e in listaReport){
+                foreach(var p in e.Percorsi){
+                    _context.PercorsiReport.Remove(p);
+                }
+            }
+            _context.Report.RemoveRange(listaReport);
             await _context.SaveChangesAsync();
             MyLogger.Log(messaggio: $"Richiesta POST con id {id}:\n\tProgetto con nome {progetto.Nome} eliminato", controller: "ProgettoController", metodo: "Delete");
             return RedirectToAction(nameof(Index));
@@ -386,7 +393,7 @@ namespace webmva.Controllers
             foreach (ModuliProgetto modprog in progetto.ModuliProgetto)
             {
                 Modulo modulo = modprog.Modulo;
-                string nomeFile = CreaNomeFile(modulo.Applicazione, modulo.Comando, modulo.Nome);
+                string nomeFile = CreaNomeFile(modulo.Applicazione, modulo.Nome);
                 string comando = CreaComando(modulo, modprog.Target, Path.Combine(progetto.Nome, data.ToString("dd-MM-yyyy_HH-mm")), nomeFile, percorsi);
                 MyLogger.Log(messaggio: $"\tModulo {modulo.Applicazione.ToString()} - {modulo.Nome}, esecuzione comando: {comando} ...", controller: "ProgettoController", metodo: "Run");
                 comando.EseguiCLI(cartellaProgetto);
@@ -432,7 +439,7 @@ namespace webmva.Controllers
             //return View(new RisultatoVM { NomeProgetto = progetto.Nome, risultati = risultati });
             return Redirect(Url.Action($"Details/{report.ID}", "Report").Replace("%2F", "/"));
         }
-        private string CreaNomeFile(APPLICAZIONE app, string comandoModulo, string nomeModulo)
+        private string CreaNomeFile(APPLICAZIONE app, string nomeModulo)
         {
             string timestamp = DateTime.Now.ToString("yyyyMMdd_HHmmss");
             string nomeCamelCase = nomeModulo.ToCamelCase();
@@ -582,6 +589,12 @@ namespace webmva.Controllers
                 return comando;
             }
             if (mod is ModuloDRUPWN)
+            {
+                string comando = $"{mod.Comando} {target} | sed -r \"{regex}\" | tee {nomeFile}.txt";
+                percorsi.Add(Path.Combine(cartella, nomeFile + ".txt"));
+                return comando;
+            }
+            if (mod is ModuloWHOIS)
             {
                 string comando = $"{mod.Comando} {target} | sed -r \"{regex}\" | tee {nomeFile}.txt";
                 percorsi.Add(Path.Combine(cartella, nomeFile + ".txt"));

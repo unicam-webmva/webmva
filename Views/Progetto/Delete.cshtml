@@ -22,6 +22,7 @@
     var contTheHarvester = 0;
     var contAmass = 0;
     var contDrupwn = 0;
+    var contWhois = 0;
 }
 <br>
 <div class="container">
@@ -83,6 +84,7 @@
                                     if (item.Modulo is webmva.Models.ModuloTHEHARVESTER) { contTheHarvester++; }
                                     if (item.Modulo is webmva.Models.ModuloAMASS) { contAmass++; }
                                     if (item.Modulo is webmva.Models.ModuloDRUPWN) { contDrupwn++; }
+                                    if (item.Modulo is webmva.Models.ModuloWHOIS) { contWhois++; }
                                 }
                                 @if (contNMAP != 0)
                                 {
@@ -209,6 +211,34 @@
                                             @foreach (var item in Model.ModuliProgetto)
                                             {
                                                 @if (item.Modulo is webmva.Models.ModuloFIERCE)
+                                                {
+                                                    <tr>
+                                                        <td></td>
+                                                        <td>
+                                                            @Html.DisplayFor(modelItem => item.Modulo.Nome)
+                                                        </td>
+                                                        <td>
+                                                            @Html.DisplayFor(modelItem => item.Modulo.Comando)
+                                                        </td>
+                                                    </tr>
+                                                }
+                                            }
+                                        </table>
+                                    </dd>
+                                }
+                                @if (contWhois != 0)
+                                {
+                                    <dd>Whois</dd>
+                                    <dd>
+                                        <table class="table">
+                                            <tr>
+                                                <th> </th>
+                                                <th>Modulo</th>
+                                                <th>Comando</th>
+                                            </tr>
+                                            @foreach (var item in Model.ModuliProgetto)
+                                            {
+                                                @if (item.Modulo is webmva.Models.ModuloWHOIS)
                                                 {
                                                     <tr>
                                                         <td></td>

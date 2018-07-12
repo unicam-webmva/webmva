@@ -729,6 +729,28 @@ namespace webmva.Migrations
                     b.HasDiscriminator().HasValue("ModuloWASCAN");
                 });
 
+            modelBuilder.Entity("webmva.Models.ModuloWHOIS", b =>
+                {
+                    b.HasBaseType("webmva.Models.Modulo");
+
+                    b.Property<string>("ComandoPersonalizzato")
+                        .HasColumnName("ModuloWHOIS_ComandoPersonalizzato");
+
+                    b.Property<bool>("HideLegalWhois");
+
+                    b.Property<string>("HostWhois");
+
+                    b.Property<int>("PortaWhois");
+
+                    b.Property<bool>("SearchAllWhois");
+
+                    b.Property<bool>("VerboseWhois");
+
+                    b.ToTable("ModuloWHOIS");
+
+                    b.HasDiscriminator().HasValue("ModuloWHOIS");
+                });
+
             modelBuilder.Entity("webmva.Models.ModuloWIFITE", b =>
                 {
                     b.HasBaseType("webmva.Models.Modulo");

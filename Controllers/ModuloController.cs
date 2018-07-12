@@ -46,8 +46,9 @@ namespace webmva.Controllers
             var listaTHEHARVESTER = await _context.Moduli.Where(modulo => modulo.Applicazione == APPLICAZIONE.THEHARVESTER).ToListAsync();
             var listaAMASS = await _context.Moduli.Where(modulo => modulo.Applicazione == APPLICAZIONE.AMASS).ToListAsync();
             var listaDRUPWN = await _context.Moduli.Where(modulo => modulo.Applicazione == APPLICAZIONE.DRUPWN).ToListAsync();
+            var listaWHOIS = await _context.Moduli.Where(modulo => modulo.Applicazione == APPLICAZIONE.WHOIS).ToListAsync();
             MyLogger.Log(messaggio: "Richiesta GET", controller: "ModuloController", metodo: "Index");
-            return View(new ListaModuliVM { ModuliNMAP = listaNMAP, ModuliSERVER = listaNESSUS, ModuliOPENDOOR = listaOPENDOOR, ModuliDNSRECON = listaDNSRECON, ModuliFIERCE = listaFIERCE, ModuliDROOPE = listaDROOPE, ModuliJOOMSCAN = listaJOOMSCAN, ModuliWPSCAN = listaWPSCAN, ModuliINFOGA = listaINFOGA, ModuliINFOGAEMAIL = listaINFOGAEMAIL, ModuliSUBLIST3R = listaSUBLIST3R, ModuliWAPITI = listaWAPITI, ModuliSQLMAP = listaSQLMAP, ModuliWIFITE = listaWIFITE, ModuliWASCAN = listaWASCAN, ModuliNOSQL = listaNOSQL, ModuliODAT = listaODAT, ModuliDNSENUM = listaDNSENUM, ModuliOPENVAS = listaOPENVAS, ModuliTHEHARVESTER = listaTHEHARVESTER, ModuliAMASS = listaAMASS, ModuliDRUPWN = listaDRUPWN });
+            return View(new ListaModuliVM { ModuliNMAP = listaNMAP, ModuliSERVER = listaNESSUS, ModuliOPENDOOR = listaOPENDOOR, ModuliDNSRECON = listaDNSRECON, ModuliFIERCE = listaFIERCE, ModuliDROOPE = listaDROOPE, ModuliJOOMSCAN = listaJOOMSCAN, ModuliWPSCAN = listaWPSCAN, ModuliINFOGA = listaINFOGA, ModuliINFOGAEMAIL = listaINFOGAEMAIL, ModuliSUBLIST3R = listaSUBLIST3R, ModuliWAPITI = listaWAPITI, ModuliSQLMAP = listaSQLMAP, ModuliWIFITE = listaWIFITE, ModuliWASCAN = listaWASCAN, ModuliNOSQL = listaNOSQL, ModuliODAT = listaODAT, ModuliDNSENUM = listaDNSENUM, ModuliOPENVAS = listaOPENVAS, ModuliTHEHARVESTER = listaTHEHARVESTER, ModuliAMASS = listaAMASS, ModuliDRUPWN = listaDRUPWN, ModuliWHOIS = listaWHOIS });
         }
 
         // GET: Modulo/Details/5
@@ -411,6 +412,18 @@ namespace webmva.Controllers
                     }
                 }
             }
+            else if (createmodulo.WHOIS.Nome != null && cosa.Equals("whois"))
+            {
+                if (ModelState.IsValid)
+                {
+                    ModuloWHOIS mod = createmodulo.WHOIS;
+                    mod.Applicazione = APPLICAZIONE.WHOIS;
+                    _context.Moduli.Add(mod);
+                    await _context.SaveChangesAsync();
+                    MyLogger.Log(messaggio: $"Richiesta POST: \n\tNuovo modulo nmap con nome: {mod.Nome}", controller: "ModuloController", metodo: "Create");
+                    return RedirectToAction(nameof(Index));
+                }
+            }
             else
             {
                 MyLogger.Log(messaggio: $"ERRORE: Richiesta POST: BadRequest", controller: "ModuloController", metodo: "Create");
@@ -424,7 +437,7 @@ namespace webmva.Controllers
         [HttpPost]
         public async Task<IActionResult> Test(EditModuloVM createmodulo, string cosa, string daDove)
         {
-            if (cosa == "nessus")
+            if (cosa == "server")
             {
                 bool check = await CheckServer(createmodulo.SERVER.ServerIP, createmodulo.SERVER.Porta, createmodulo.SERVER.Https);
                 MyLogger.Log(messaggio: $"Richiesta POST: Test verso http{(createmodulo.SERVER.Https ? "s" : "")}://{createmodulo.SERVER.ServerIP}:{createmodulo.SERVER.Porta} " +
@@ -545,6 +558,8 @@ namespace webmva.Controllers
                 m = editmodulo.AMASS;
             else if (!string.IsNullOrEmpty(editmodulo.DRUPWN.Nome))
                 m = editmodulo.DRUPWN;
+            else if (!string.IsNullOrEmpty(editmodulo.WHOIS.Nome))
+                m = editmodulo.WHOIS;
             else // è rimasto solo openvas, controllo dopo se m è ancora null o no
                 m = editmodulo.OPENVAS;
 

@@ -29,6 +29,7 @@ if [ ! -d Programmi/odat ] ; then MANCANTI="${MANCANTI}odat " ; fi
 if ! hash fop >/dev/null 2>&1 ; then MANCANTI="${MANCANTI}fop " ; fi
 if ! hash drupwn >/dev/null 2>&1 ; then MANCANTI="${MANCANTI}drupwn " ; fi
 if ! hash theharvester >/dev/null 2>&1 ; then MANCANTI="${MANCANTI}theharvester " ; fi
+if ! hash whois >/dev/null 2>&1 ; then MANCANTI="${MANCANTI}whois " ; fi
 #questo mega if è tutto per wpscan
 if ! hash bundle >/dev/null 2>&1 ; 
     then  MANCANTI="${MANCANTI}wpscan " ;

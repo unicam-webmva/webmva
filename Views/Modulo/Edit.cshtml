@@ -22,6 +22,7 @@
     bool theharvester = Model.THEHARVESTER != null;
     bool amass = Model.AMASS != null;
     bool drupwn = Model.DRUPWN != null;
+    bool whois = Model.WHOIS != null;
 }
 @{
     @* -----NMAP----- *@
@@ -2863,6 +2864,100 @@
                             <div class="col-sm-6 text-right">
                                 <div class="form-group row">
                                     <input type="submit" asp-action="Edit" asp-route-cosa="drupwn" class="btn btn-default" value="Modifica" />&nbsp;&nbsp; |
+                                    <a asp-action="Index"> Torna alla lista</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    }
+    @* -----DRUPWN----- *@
+    if (whois)
+    {
+        <h2><em>Modifica modulo</em><strong> @(Model.WHOIS.Nome)</strong></h2>
+        <hr />
+        <form asp-action="Edit" name="whoisForm">
+            <input type="hidden" asp-for="@Model.WHOIS.Applicazione" value="@webmva.Models.WHOIS.DRUPWN" />
+            <input type="hidden" asp-for="@Model.WHOIS.ID" />
+            <div class="row panel panel-default panel-body">
+                <div class="col-sm-12">
+                    <div class="col-sm-7" style="margin:0 auto; float:none">
+                        <div class="form-group">
+                            <h4 asp-for="@(Model.WHOIS.Nome)">Nome Modulo</h4>
+                            <input class="form-control" asp-for="@(Model.WHOIS.Nome)" myName="checkCaratteri" id="whoisNome" />
+                            <span class="text-danger" name="whoisNome" style="display:none"></span>
+                        </div>
+                    </div>
+                    <hr />
+                    <div class="col-sm-12">
+                        <div class="col-sm-12">
+                            <div class="col-sm-7" style="margin:0 auto; float:none">
+                                <div class="form-group row">
+                                    <h4 asp-for="@(Model.WHOIS.ComandoPersonalizzato)">Comando Personalizzato</h4>
+                                    <input class="form-control" asp-for="@(Model.WHOIS.ComandoPersonalizzato)" />
+                                </div>
+                            </div>
+                            <hr />
+                        </div>
+                    </div>
+                    <div class="col-sm-12">
+                        <h4>Configurazione</h4>
+                        <hr />
+                        <div class="form-group row">
+                            <div class="col-sm-4">
+                                <label class="control-label">Scegli il Server </label>
+                            </div>
+                            <div class="col-sm-1"></div>
+                            <input type="text" class="col-sm-5" asp-for="@Model.WHOIS.HostWhois" placeholder="whois.ripe.net" />
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-sm-4">
+                                <label class="control-label">Scegli la Porta da usare per le richieste </label>
+                            </div>
+                            <div class="col-sm-1"></div>
+                            <input type="text" class="col-sm-5" asp-for="@Model.WHOIS.PortaWhois" placeholder="43" />
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-sm-6">
+                                <label class="control-label">
+                                    <input type="checkbox" asp-for="@Model.WHOIS.HideLegalWhois" /> Nascondi il disclaimer sulla legalità
+                                </label>
+                            </div>
+                            <div class="col-sm-6">
+                                <label class="control-label">
+                                    <input type="checkbox" asp-for="@Model.WHOIS.SearchAllWhois" /> Ricerca in tutti i database collegati
+                                </label>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-sm-6">
+                                <label class="control-label">
+                                    <input type="checkbox" asp-for="@Model.WHOIS.VerboseWhois" /> Aumenta la verbosità
+                                </label>
+                            </div>
+                        </div>
+                        <div class="col-sm-12">
+                            <hr />
+                            <div class="col-sm-5">
+                                <div clas="form-group row">
+                                    <div clas="form-group row">
+                                        <a href="https://github.com/rfc1036/whois" target="_blank">
+                                            <span class="glyphicon glyphicon-info-sign" style="font-size:90%"></span>
+                                            sito
+                                        </a>
+                                    </div>
+                                    <a href="https://www.mankier.com/1/whois.md" target="_blank">
+                                        <span class="glyphicon glyphicon-info-sign" style="font-size:90%"></span>
+                                        consulta la documentazione di Whois
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="col-sm-1"></div>
+                            <div class="col-sm-6 text-right">
+                                <div class="form-group row">
+                                    <input type="submit" asp-action="Create" asp-route-cosa="whois" class="btn btn-default" value="Crea" />&nbsp;&nbsp; |
                                     <a asp-action="Index"> Torna alla lista</a>
                                 </div>
                             </div>

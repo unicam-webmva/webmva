@@ -13,8 +13,8 @@ using webmva.Models;
 namespace webmva.Migrations
 {
     [DbContext(typeof(MyDbContext))]
-    [Migration("20180712140214_CambiatoNessusServer")]
-    partial class CambiatoNessusServer
+    [Migration("20180712220705_AggiuntoWHOIS")]
+    partial class AggiuntoWHOIS
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -728,6 +728,28 @@ namespace webmva.Migrations
                     b.ToTable("ModuloWASCAN");
 
                     b.HasDiscriminator().HasValue("ModuloWASCAN");
+                });
+
+            modelBuilder.Entity("webmva.Models.ModuloWHOIS", b =>
+                {
+                    b.HasBaseType("webmva.Models.Modulo");
+
+                    b.Property<string>("ComandoPersonalizzato")
+                        .HasColumnName("ModuloWHOIS_ComandoPersonalizzato");
+
+                    b.Property<bool>("HideLegalWhois");
+
+                    b.Property<string>("HostWhois");
+
+                    b.Property<int>("PortaWhois");
+
+                    b.Property<bool>("SearchAllWhois");
+
+                    b.Property<bool>("VerboseWhois");
+
+                    b.ToTable("ModuloWHOIS");
+
+                    b.HasDiscriminator().HasValue("ModuloWHOIS");
                 });
 
             modelBuilder.Entity("webmva.Models.ModuloWIFITE", b =>

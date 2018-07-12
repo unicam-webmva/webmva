@@ -608,6 +608,15 @@ namespace webmva
  | |__| | |  | |_| | |      \  /\  /  | |\  |
  |_____/|_|   \__,_|_|       \/  \/   |_| \_|");
                 }
+                else if (filename[2].Equals("whois"))
+                {
+                    intestazione.Add(@" __          ___           _     
+ \ \        / / |         (_)    
+  \ \  /\  / /| |__   ___  _ ___ 
+   \ \/  \/ / | '_ \ / _ \| / __|
+    \  /\  /  | | | | (_) | \__ \
+     \/  \/   |_| |_|\___/|_|___/");
+                }
 
                 intestazione.Add(@"___________________________________________________________________");
                 intestazione.Add("");
@@ -687,7 +696,6 @@ namespace webmva
                 }
             }
             System.IO.File.WriteAllLines(Path.Combine("wwwroot", "Report", percorso), content);
-
         }
     }
 }

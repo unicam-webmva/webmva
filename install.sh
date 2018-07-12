@@ -194,17 +194,25 @@ fi
 echo "-------------------------------------------------------"
 echo "INSTALLAZIONE DIPENDENZE DNSENUM"
 echo "-------------------------------------------------------"
-sudo apt-get install libnet-ip-perl libnet-dns-perl libnet-netmask-perl libhtml-parser-perl libwww-mechanize-perl libxml-writer-perl libstring-random-perl -y >/dev/null
-
-perl -MNet::Whois::IP -e 1 >/dev/null 2>&1
-if [[ ! $? = 0 ]] ; then echo "Installo Net::Whois:IP..." && sudo apt-get install -y libnet-whois-ip-perl >/dev/null ; else echo "Pacchetto Net:Whois:IP già installato." ; fi
-
-while read p; do
-  perl -M$p -e 1 >/dev/null 2>&1
-  if [[ ! $? = 0 ]] ; then echo "Installo ${p}..." && cpanm $p >/dev/null ; else echo "Pacchetto ${p} già installato." ; fi
-done <${WORKINGDIR}/Script/dipendenzePerl.txt
+echo "Sto installando le dipendenze di DnsEnum..."
+sudo apt-get install libnet-whois-ip-perl libnet-ip-perl libnet-dns-perl libnet-netmask-perl libhtml-parser-perl libwww-mechanize-perl libxml-writer-perl libstring-random-perl -y >/dev/null
 
 echo "Fine installazione dipendenze di DnsEnum."
+echo "-------------------------------------------------------"
+echo "INSTALLAZIONE WHOIS"
+echo "-------------------------------------------------------"
+echo "Sto installando whois..."
+if hash whois >/dev/null 2>&1 ; 
+then
+	echo "whois è già installato.";
+else {
+	echo "Sto installando whois..."
+	sudo apt-get install whois -y > /dev/null
+	echo "Fine installazione whois."
+	}
+fi
+
+echo "Fine installazione whois."
 echo "-------------------------------------------------------"
 echo "INSTALLAZIONE WPScan"
 echo "-------------------------------------------------------"

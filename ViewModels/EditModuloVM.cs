@@ -30,6 +30,7 @@ namespace webmva.ViewModels
         private ModuloTHEHARVESTER _tHEHARVESTER = null;
         private ModuloAMASS _aMASS = null;
         private ModuloDRUPWN _dRUPWN = null;
+        private ModuloWHOIS _wHOIS = null;
         public ModuloNMAP NMAP { get => _nMAP; set => _nMAP = value; }
         public ModuloSERVER SERVER { get => _sERVER; set => _sERVER = value; }
         public ModuloDNSRECON DNSRECON { get => _dNSRECON; set => _dNSRECON = value; }
@@ -52,6 +53,7 @@ namespace webmva.ViewModels
         public ModuloTHEHARVESTER THEHARVESTER { get => _tHEHARVESTER; set => _tHEHARVESTER = value; }
         public ModuloAMASS AMASS { get => _aMASS; set => _aMASS = value; }
         public ModuloDRUPWN DRUPWN { get => _dRUPWN; set => _dRUPWN = value; }
+        public ModuloWHOIS WHOIS { get => _wHOIS; set => _wHOIS = value; }
         public EditModuloVM()
         {
             NMAP = new ModuloNMAP();
@@ -76,6 +78,7 @@ namespace webmva.ViewModels
             THEHARVESTER = new ModuloTHEHARVESTER();
             AMASS = new ModuloAMASS();
             DRUPWN = new ModuloDRUPWN();
+            WHOIS = new ModuloWHOIS();
         }
         public EditModuloVM(Modulo mod)
         {
@@ -167,8 +170,12 @@ namespace webmva.ViewModels
             {
                 this.DRUPWN = (ModuloDRUPWN)mod;
             }
+            if (mod is ModuloWHOIS)
+            {
+                this.WHOIS = (ModuloWHOIS)mod;
+            }
         }
-        public EditModuloVM(ModuloNMAP mod)
+        /*public EditModuloVM(ModuloNMAP mod)
         {
             NMAP = mod;
             SERVER = null;
@@ -192,6 +199,7 @@ namespace webmva.ViewModels
             THEHARVESTER = null;
             AMASS = null;
             DRUPWN = null;
+            WHOIS = null;
         }
         public EditModuloVM(ModuloSERVER mod)
         {
@@ -217,6 +225,7 @@ namespace webmva.ViewModels
             THEHARVESTER = null;
             AMASS = null;
             DRUPWN = null;
+            WHOIS = null;
         }
         public EditModuloVM(ModuloDNSRECON mod)
         {
@@ -242,6 +251,7 @@ namespace webmva.ViewModels
             THEHARVESTER = null;
             AMASS = null;
             DRUPWN = null;
+            WHOIS = null;
         }
         public EditModuloVM(ModuloDROOPE mod)
         {
@@ -267,6 +277,7 @@ namespace webmva.ViewModels
             THEHARVESTER = null;
             AMASS = null;
             DRUPWN = null;
+            WHOIS = null;
         }
         public EditModuloVM(ModuloJOOMSCAN mod)
         {
@@ -292,6 +303,7 @@ namespace webmva.ViewModels
             THEHARVESTER = null;
             AMASS = null;
             DRUPWN = null;
+            WHOIS = null;
         }
         public EditModuloVM(ModuloINFOGA mod)
         {
@@ -317,6 +329,7 @@ namespace webmva.ViewModels
             THEHARVESTER = null;
             AMASS = null;
             DRUPWN = null;
+            WHOIS = null;
         }
         public EditModuloVM(ModuloINFOGAEMAIL mod)
         {
@@ -342,6 +355,7 @@ namespace webmva.ViewModels
             THEHARVESTER = null;
             AMASS = null;
             DRUPWN = null;
+            WHOIS = null;
         }
         public EditModuloVM(ModuloSUBLIST3R mod)
         {
@@ -367,6 +381,7 @@ namespace webmva.ViewModels
             THEHARVESTER = null;
             AMASS = null;
             DRUPWN = null;
+            WHOIS = null;
         }
         public EditModuloVM(ModuloWAPITI mod)
         {
@@ -392,6 +407,7 @@ namespace webmva.ViewModels
             THEHARVESTER = null;
             AMASS = null;
             DRUPWN = null;
+            WHOIS = null;
         }
         public EditModuloVM(ModuloSQLMAP mod)
         {
@@ -417,6 +433,7 @@ namespace webmva.ViewModels
             THEHARVESTER = null;
             AMASS = null;
             DRUPWN = null;
+            WHOIS = null;
         }
         public EditModuloVM(ModuloWIFITE mod)
         {
@@ -442,6 +459,7 @@ namespace webmva.ViewModels
             THEHARVESTER = null;
             AMASS = null;
             DRUPWN = null;
+            WHOIS = null;
         }
 
         public EditModuloVM(ModuloWPSCAN mod)
@@ -468,6 +486,7 @@ namespace webmva.ViewModels
             THEHARVESTER = null;
             AMASS = null;
             DRUPWN = null;
+            WHOIS = null;
         }
         public EditModuloVM(ModuloFIERCE mod)
         {
@@ -493,6 +512,7 @@ namespace webmva.ViewModels
             THEHARVESTER = null;
             AMASS = null;
             DRUPWN = null;
+            WHOIS = null;
         }
         public EditModuloVM(ModuloOPENDOOR mod)
         {
@@ -518,6 +538,7 @@ namespace webmva.ViewModels
             THEHARVESTER = null;
             AMASS = null;
             DRUPWN = null;
+            WHOIS = null;
         }
         public EditModuloVM(ModuloWASCAN mod)
         {
@@ -543,6 +564,7 @@ namespace webmva.ViewModels
             THEHARVESTER = null;
             AMASS = null;
             DRUPWN = null;
+            WHOIS = null;
         }
         public EditModuloVM(ModuloNOSQL mod)
         {
@@ -568,6 +590,7 @@ namespace webmva.ViewModels
             THEHARVESTER = null;
             AMASS = null;
             DRUPWN = null;
+            WHOIS = null;
         }
         public EditModuloVM(ModuloODAT mod)
         {
@@ -593,6 +616,7 @@ namespace webmva.ViewModels
             THEHARVESTER = null;
             AMASS = null;
             DRUPWN = null;
+            WHOIS = null;
         }
         public EditModuloVM(ModuloDNSENUM mod)
         {
@@ -618,6 +642,7 @@ namespace webmva.ViewModels
             THEHARVESTER = null;
             AMASS = null;
             DRUPWN = null;
+            WHOIS = null;
         }
         public EditModuloVM(ModuloOPENVAS mod)
         {
@@ -643,6 +668,7 @@ namespace webmva.ViewModels
             THEHARVESTER = null;
             AMASS = null;
             DRUPWN = null;
+            WHOIS = null;
         }
         public EditModuloVM(ModuloTHEHARVESTER mod)
         {
@@ -668,6 +694,7 @@ namespace webmva.ViewModels
             THEHARVESTER = mod;
             AMASS = null;
             DRUPWN = null;
+            WHOIS = null;
         }
         public EditModuloVM(ModuloAMASS mod)
         {
@@ -693,6 +720,7 @@ namespace webmva.ViewModels
             THEHARVESTER = null;
             AMASS = mod;
             DRUPWN = null;
+            WHOIS = null;
         }
         public EditModuloVM(ModuloDRUPWN mod)
         {
@@ -718,6 +746,33 @@ namespace webmva.ViewModels
             THEHARVESTER = null;
             AMASS = null;
             DRUPWN = mod;
+            WHOIS = null;
         }
+        public EditModuloVM(ModuloWHOIS mod)
+        {
+            NMAP = null;
+            SERVER = null;
+            DNSRECON = null;
+            INFOGA = null;
+            DROOPE = null;
+            JOOMSCAN = null;
+            WPSCAN = null;
+            WAPITI = null;
+            INFOGAEMAIL = null;
+            SUBLIST3R = null;
+            SQLMAP = null;
+            WIFITE = null;
+            FIERCE = null;
+            OPENDOOR = null;
+            WASCAN = null;
+            NOSQL = null;
+            ODAT = null;
+            DNSENUM = null;
+            OPENVAS = null;
+            THEHARVESTER = null;
+            AMASS = null;
+            DRUPWN = null;
+            WHOIS = mod;
+        }*/
     }
 }

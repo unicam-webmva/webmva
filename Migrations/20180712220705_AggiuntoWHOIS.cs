@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace webmva.Migrations
 {
-    public partial class CambiatoNessusServer : Migration
+    public partial class AggiuntoWHOIS : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -226,6 +226,12 @@ namespace webmva.Migrations
                     TimeoutW = table.Column<int>(type: "INTEGER", nullable: true),
                     UserAgentW = table.Column<string>(type: "TEXT", nullable: true),
                     VerbositàW = table.Column<bool>(type: "INTEGER", nullable: true),
+                    ModuloWHOIS_ComandoPersonalizzato = table.Column<string>(type: "TEXT", nullable: true),
+                    HideLegalWhois = table.Column<bool>(type: "INTEGER", nullable: true),
+                    HostWhois = table.Column<string>(type: "TEXT", nullable: true),
+                    PortaWhois = table.Column<int>(type: "INTEGER", nullable: true),
+                    SearchAllWhois = table.Column<bool>(type: "INTEGER", nullable: true),
+                    VerboseWhois = table.Column<bool>(type: "INTEGER", nullable: true),
                     ModuloWIFITE_ComandoPersonalizzato = table.Column<string>(type: "TEXT", nullable: true),
                     Wps = table.Column<int>(type: "INTEGER", nullable: true),
                     accessPoint = table.Column<bool>(type: "INTEGER", nullable: true),

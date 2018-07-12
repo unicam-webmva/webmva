@@ -42,8 +42,7 @@ namespace webmva.Data
             modelBuilder.Entity<ModuloTHEHARVESTER>().HasBaseType<Modulo>();
             modelBuilder.Entity<ModuloAMASS>().HasBaseType<Modulo>();
             modelBuilder.Entity<ModuloDRUPWN>().HasBaseType<Modulo>();
-
-
+            modelBuilder.Entity<ModuloWHOIS>().HasBaseType<Modulo>();
         }
     }
 }
