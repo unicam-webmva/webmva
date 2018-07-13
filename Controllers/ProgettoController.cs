@@ -61,7 +61,6 @@ namespace webmva.Controllers
         public IActionResult Create()
         {
             List<Progetto> lista = _context.Progetti.ToList();
-            Console.WriteLine(lista.Count);
             ViewData["lista"] = lista;
             MyLogger.Log(messaggio: $"Richiesta GET", controller: "ProgettoController", metodo: "Create");
             return View();
