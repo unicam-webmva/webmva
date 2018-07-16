@@ -212,7 +212,7 @@ namespace webmva.Models
                     if (threads > 1)
                         risultato += " --retries=" + threads;
                     if (!string.IsNullOrEmpty(dbms))
-                        risultato += " --dbms" + dbms;
+                        risultato += " --dbms=" + dbms;
                     if (!string.IsNullOrEmpty(dbmsCredenziali))
                         risultato += " --dbms-cred=" + dbmsCredenziali;
                     if (!string.IsNullOrEmpty(sistemaOperativo))

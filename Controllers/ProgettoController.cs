@@ -452,7 +452,7 @@ namespace webmva.Controllers
             {
                 // Inserisco il comando generato dal modulo, il target e la direttiva
                 // per esportare un xml con nome derivato dal timestamp e dal nome del modulo
-                string comando = $"{mod.Comando} -oX {nomeFile}.xml --webxml {target}";
+                string comando = $"sudo {mod.Comando} -oX {nomeFile}.xml --webxml {target}";
                 var percorsoFile = Path.Combine(cartella, nomeFile + ".xml");
                 percorsi.Add(percorsoFile);
                 return comando;
@@ -529,7 +529,7 @@ namespace webmva.Controllers
             if (mod is ModuloWIFITE)
             {
                 string percorsoExec = Path.Combine(Globals.CartellaWEBMVA, "Programmi", "wifite2");
-                string comando = $"sudo python {percorsoExec}/{mod.Comando}";
+                string comando = $"sudo python {percorsoExec}/{mod.Comando} && read";
                 return comando;
             }
             if (mod is ModuloNOSQL)
