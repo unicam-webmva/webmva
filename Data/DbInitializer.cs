@@ -35,9 +35,11 @@ namespace webmva.Data
             new ModuloSQLMAP{Applicazione = APPLICAZIONE.SQLMAP, Nome="Scan base"},
             new ModuloNOSQL{Applicazione = APPLICAZIONE.NOSQL, Nome="NoSQL"},
             new ModuloODAT{Applicazione = APPLICAZIONE.ODAT, Nome="Scan base"},
-            new ModuloWIFITE{Applicazione = APPLICAZIONE.WIFITE, Nome="Scan base interattivo"}
-
-            //new ModuloNESSUS{Applicazione = APPLICAZIONE.NESSUS,Nome="TestNessus", JSON="prova"}
+            new ModuloWIFITE{Applicazione = APPLICAZIONE.WIFITE, Nome="Scan base interattivo"},
+            new ModuloAMASS{Applicazione=APPLICAZIONE.AMASS, Nome="Scan base" },
+            new ModuloDRUPWN{Applicazione=APPLICAZIONE.AMASS, Nome="Scan base"},
+            new ModuloTHEHARVESTER{Applicazione=APPLICAZIONE.THEHARVESTER, Nome="Scan tutte le fonti"},
+            new ModuloWHOIS{Applicazione=APPLICAZIONE.WHOIS, Nome="Whois da Registro.it", HostWhois="whois.nic.it" }
             };
             foreach (Modulo m in moduli)
             { context.Moduli.Add(m); }

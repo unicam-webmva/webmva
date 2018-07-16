@@ -8,9 +8,6 @@ namespace webmva.Models
 
     public class ModuloAMASS : Modulo
     {
-
-        private bool _allTheH = true;
-        public bool AllTheH { get { return _allTheH; } set { _allTheH = value; } }
         public bool NoDnsAmass { get; set; }
         public bool IpAmass { get; set; }
         public bool NoAltsAmass { get; set; }
