@@ -81,10 +81,10 @@ namespace webmva.Controllers
                 var anchor = TempData.Peek<string>("Anchor");
                 TempData.Remove("Anchor");
                 ViewData["Anchor"] = anchor;
-                if (anchor == "Nessus")
+                if (anchor == "Server")
                 {
-                    ViewData["TestN"] = TempData.Peek<string>("TestN");
-                    TempData.Remove("TestN");
+                    ViewData["TestS"] = TempData.Peek<string>("TestS");
+                    TempData.Remove("TestS");
                 }
                 else if (anchor == "Openvas")
                 {

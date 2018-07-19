@@ -77,7 +77,7 @@ namespace webmva.Controllers
             {
                 _context.Add(progetto);
                 await _context.SaveChangesAsync();
-                if(!progettoDaCopiare.Equals("0"))
+                if(!string.IsNullOrEmpty(progettoDaCopiare) && !progettoDaCopiare.Equals("0"))
                 {
                     List<ModuliProgetto> listaCopiata = await _context.ModuliProgetto.Where(m=>m.ProgettoID == int.Parse(progettoDaCopiare)).ToListAsync();
                     int prgNuovo = progetto.ID;
@@ -452,7 +452,7 @@ namespace webmva.Controllers
             {
                 // Inserisco il comando generato dal modulo, il target e la direttiva
                 // per esportare un xml con nome derivato dal timestamp e dal nome del modulo
-                string comando = $"sudo {mod.Comando} -oX {nomeFile}.xml --webxml {target}";
+                string comando = $"touch {nomeFile}.xml ; sudo {mod.Comando} -oX {nomeFile}.xml --webxml {target}";
                 var percorsoFile = Path.Combine(cartella, nomeFile + ".xml");
                 percorsi.Add(percorsoFile);
                 return comando;
