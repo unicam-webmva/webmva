@@ -326,5 +326,5 @@ echo "FINE INSTALLAZIONE DIPENDENZE"
 echo "-------------------------------------------------------"
 echo "Tutte le dipendenze di WebMVA sono ora presenti nel sistema."
 echo "Per iniziare ad usare WebMVA, eseguire:"
-echo "dotnet run"
+echo "./run.sh"
 exit 0
