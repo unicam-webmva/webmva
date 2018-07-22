@@ -529,7 +529,7 @@ namespace webmva.Controllers
             if (mod is ModuloWIFITE)
             {
                 string percorsoExec = Path.Combine(Globals.CartellaWEBMVA, "Programmi", "wifite2");
-                string comando = $"sudo python {percorsoExec}/{mod.Comando} && read";
+                string comando = $"sudo python {percorsoExec}/{mod.Comando}";
                 return comando;
             }
             if (mod is ModuloNOSQL)
