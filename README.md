@@ -9,25 +9,25 @@
 
 ## Ambito
 
-Penetration Testing Tools
+Vulnerability Assessment Analysis
 
 
 ### Progetto
 
-Realizzazione di una pagina web per la gestione locale di test di vulnerabilità del sistema e la generazione di report di risultati.
+Realizzazione di una pagina web per la gestione locale di test di vulnerabilità del sistema e la generazione di report dei risultati.
 La piattaforma è progettata per supportare l'automazione in ogni fase del processo e consentire la personalizzazione per qualsiasi altro sistema che si utilizza.
 
 
 ### Obiettivi
 
-**WebMVA** si propone di rendere il processo di pentesting il più semplice possibile e creare report di ricerca di facile comprensione e utilizzabili dal cliente finale. 
+**WebMVA** si propone di rendere il processo di analisi delle vulnerabilità il più semplice possibile e creare report di ricerca di facile comprensione e utilizzabili dal cliente finale. 
 Il sistema esegue la scansione e rileva le vulnerabilità di rete prima che siano esposte, riducendo il tempo necessario per applicare le patch sul sistema del cliente.
 I dati immessi nel sistema mantengono una forma ben strutturata e organizzata per facilitare le eventuali ricerche nello storico di ciascun cliente. 
 
 
 ### Tecnologie usate
 
-ASP.NET Core, Entity Framework, HTML, Javascript, Bash Scripting, XSLT
+ASP.NET Core, Entity Framework, HTML, Javascript, Bash Scripting, XSL, SQLite
 
 
 ## Dipendenze
@@ -38,6 +38,7 @@ WebMVA dipende da una serie di pacchetti:
 * [nmap](https://nmap.org/)
 * [ruby](https://www.ruby-lang.org/it/)
 * [perl](https://www.perl.org/)
+* [whois](https://github.com/rfc1036/whois)
 * [Apache fop](https://xmlgraphics.apache.org/fop/)
 * [wkhtmltopdf](https://wkhtmltopdf.org/)
 * [Python](https://www.python.org/) (sia 2 che 3)
@@ -70,7 +71,7 @@ $ ./install.sh
 ```
 ### Avvio
 ```
-sudo dotnet run
+$ ./run.sh
 ```
 ## Installazione manuale
 
@@ -190,7 +191,7 @@ python3 setup.py build && python3 setup.py install
 cp -R data/ /usr/local/bin/data
 exit
 cd ${WEBMVA}
-rm -rf ${WEBMVA}/OpenDoor/
+sudo rm -rf ${WEBMVA}/OpenDoor/
 ```
 
 ## Uso
@@ -216,4 +217,4 @@ Se il file non esiste l'applicazione caricherà dei valori di default, che equiv
     "ConnectionString": "Data Source=webmva.db"
 }
 ```
-Tenere presente che se l'applicazione non ha i permessi di root non può scrivere in alcune cartelle e non può avviarsi su porte inferiori alla 1000, quindi eventualmente lanciarla con `sudo dotnet run`. Eseguire quest'applicazione con i permessi di root è particolarmente rischioso per i permessi dei file generati, non garantiamo sui risultati ottenuti in questa maniera. Eventualmente è possibile usare una porta sopra la 1000 e usare Apache o nginx come proxy server che ascoltano richieste sulla 80 e reindirizzano internamente alla porta scelta. L'applicazione ha permessi di lettura e scrittura solo all'interno della sua cartella radice.
+Tenere presente che se l'applicazione non ha i permessi di root non può scrivere in alcune cartelle e non può avviarsi su porte inferiori alla 1000, quindi eventualmente lanciarla con `sudo ./run.sh`. Eseguire quest'applicazione con i permessi di root è particolarmente rischioso per i permessi dei file generati, non garantiamo sui risultati ottenuti in questa maniera. Eventualmente è possibile usare una porta sopra la 1000 e usare Apache o nginx come proxy server che ascoltano richieste sulla 80 e reindirizzano internamente alla porta scelta. L'applicazione ha permessi di lettura e scrittura solo all'interno della sua cartella radice.
