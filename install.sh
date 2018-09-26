@@ -179,12 +179,8 @@ if hash dotnet >/dev/null 2>&1 ;
 then echo ".NET Core 2 SDK è già installato." ;
 else {
 	echo "Sto installando il kit di sviluppo di .NET Core 2..."
-	wget -qO- https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > microsoft.asc.gpg
-	sudo mv microsoft.asc.gpg /etc/apt/trusted.gpg.d/
-	wget -q https://packages.microsoft.com/config/ubuntu/18.04/prod.list
-	sudo mv prod.list /etc/apt/sources.list.d/microsoft-prod.list
-	sudo chown root:root /etc/apt/trusted.gpg.d/microsoft.asc.gpg
-	sudo chown root:root /etc/apt/sources.list.d/microsoft-prod.list
+	wget -q https://packages.microsoft.com/config/ubuntu/18.04/packages-microsoft-prod.deb
+	sudo dpkg -i packages-microsoft-prod.deb
 	sudo apt-get install -y apt-transport-https > /dev/null
 	sudo apt-get update > /dev/null
 	sudo apt-get install -y dotnet-sdk-2.1 > /dev/null
